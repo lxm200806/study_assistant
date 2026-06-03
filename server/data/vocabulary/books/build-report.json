@@ -1,0 +1,22 @@
+{
+  "ket": {
+    "total": 1571,
+    "issues": 172,
+    "pendingCn": 0
+  },
+  "pet": {
+    "total": 2834,
+    "issues": 457,
+    "pendingCn": 0
+  },
+  "zhongkao": {
+    "total": 1960,
+    "issues": 252,
+    "pendingCn": 0
+  },
+  "gaokao": {
+    "total": 3690,
+    "issues": 698,
+    "pendingCn": 0
+  }
+}

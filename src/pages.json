@@ -1,0 +1,102 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationBarTitleText": "登录"
+      }
+    },
+    {
+      "path": "pages/register/register",
+      "style": {
+        "navigationBarTitleText": "注册"
+      }
+    },
+    {
+      "path": "pages/home/home",
+      "style": {
+        "navigationBarTitleText": "学习助手"
+      }
+    },
+    {
+      "path": "pages/vocabulary/vocabulary",
+      "style": {
+        "navigationBarTitleText": "词汇统计"
+      }
+    },
+    {
+      "path": "pages/listening/listening",
+      "style": {
+        "navigationBarTitleText": "听力训练"
+      }
+    },
+    {
+      "path": "pages/recognition/recognition",
+      "style": {
+        "navigationBarTitleText": "认读训练"
+      }
+    },
+    {
+      "path": "pages/spelling/spelling",
+      "style": {
+        "navigationBarTitleText": "拼写训练"
+      }
+    },
+    {
+      "path": "pages/chat/chat",
+      "style": {
+        "navigationBarTitleText": "AI陪聊"
+      }
+    },
+    {
+      "path": "pages/vocabulary-map/vocabulary-map",
+      "style": {
+        "navigationBarTitleText": "词汇图谱"
+      }
+    },
+    {
+      "path": "pages/books/books",
+      "style": {
+        "navigationBarTitleText": "词汇书"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "学习助手",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#f5f5f5"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#667eea",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/vocabulary/vocabulary",
+        "text": "词汇",
+        "iconPath": "static/icons/book.png",
+        "selectedIconPath": "static/icons/book-active.png"
+      },
+      {
+        "pagePath": "pages/listening/listening",
+        "text": "听力",
+        "iconPath": "static/icons/listen.png",
+        "selectedIconPath": "static/icons/listen-active.png"
+      },
+      {
+        "pagePath": "pages/chat/chat",
+        "text": "陪聊",
+        "iconPath": "static/icons/chat.png",
+        "selectedIconPath": "static/icons/chat-active.png"
+      }
+    ]
+  }
+}

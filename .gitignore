@@ -1,0 +1,18 @@
+node_modules/
+dist/
+logs/
+*.pid
+*:Zone.Identifier
+
+server/prisma/dev.db
+server/prisma/dev.db-journal
+server/.env
+.env
+
+# 本地词典数据（体积大，需自行下载到 server/data/sources/）
+server/data/sources/ecdict.csv
+server/data/sources/ecdict.mini.csv
+server/data/sources/en-dict-cache.json
+
+# 编译产物
+server/dist/
