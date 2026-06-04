@@ -16,7 +16,7 @@
         >
           <text class="book-name">{{ book.name }}</text>
           <text class="book-level">{{ book.level }}</text>
-          <text class="book-count">{{ book.wordCount }}/{{ book.targetWordCount || book.wordCount }} 词</text>
+          <text class="book-count">{{ book.wordCount }} 词</text>
         </view>
       </view>
     </view>
@@ -25,6 +25,7 @@
       <text class="progress-text">
         本书进度 {{ vocabStore.bookProgress.practicedCount }}/{{ vocabStore.bookProgress.wordCount }}
         · 本轮剩余 {{ vocabStore.bookProgress.cycleRemaining }}
+        <text v-if="vocabStore.dueCount.dueCount > 0"> · 待复习 {{ vocabStore.dueCount.dueCount }} 词</text>
       </text>
       <view class="progress-bar">
         <view
@@ -118,22 +119,25 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import { useVocabularyStore, type MeaningType } from '@/stores/vocabulary'
 import type { Book } from '@/stores/vocabulary'
 import type { SessionMode } from '@/types/map'
 import { SESSION_MODE_LABELS } from '@/types/map'
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   showMeaningType?: boolean
+  trainingType?: 'listening' | 'speaking' | 'reading' | 'writing'
 }>(), {
-  showMeaningType: true
+  showMeaningType: true,
+  trainingType: 'reading'
 })
 
 const vocabStore = useVocabularyStore()
 
 const sessionModes = [
   { key: 'coverage' as SessionMode, label: SESSION_MODE_LABELS.coverage, desc: '优先练未覆盖的词' },
+  { key: 'review' as SessionMode, label: SESSION_MODE_LABELS.review, desc: '优先练到期复习词' },
   { key: 'weak' as SessionMode, label: SESSION_MODE_LABELS.weak, desc: '优先练薄弱词汇' },
   { key: 'random' as SessionMode, label: SESSION_MODE_LABELS.random, desc: '随机抽取' }
 ]
@@ -141,6 +145,7 @@ const sessionModes = [
 const selectBook = async (book: Book) => {
   vocabStore.setCurrentBook(book.code)
   await vocabStore.loadBookProgress(book.code)
+  await vocabStore.loadDueCount(book.code, props.trainingType)
   uni.showToast({ title: `已选择 ${book.name}`, icon: 'success' })
 }
 
@@ -168,6 +173,13 @@ const setFullBookRound = () => {
 onMounted(() => {
   if (vocabStore.currentBookCode) {
     vocabStore.loadBookProgress()
+    vocabStore.loadDueCount(vocabStore.currentBookCode, props.trainingType)
+  }
+})
+
+watch(() => vocabStore.currentBookCode, (code) => {
+  if (code) {
+    vocabStore.loadDueCount(code, props.trainingType)
   }
 })
 </script>

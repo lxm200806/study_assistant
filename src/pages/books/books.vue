@@ -23,8 +23,7 @@
           <text class="book-level">{{ book.level }}</text>
           <text class="book-desc">{{ book.description }}</text>
           <view class="book-meta">
-            <text class="book-count">已收录 {{ book.wordCount }} 词</text>
-            <text v-if="book.targetWordCount" class="book-target">目标 {{ book.targetWordCount }} 词</text>
+            <text class="book-count">共 {{ book.wordCount }} 词</text>
           </view>
         </view>
         <view v-if="vocabStore.currentBookCode === book.code" class="selected-badge">✓</view>

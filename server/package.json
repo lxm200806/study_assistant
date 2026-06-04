@@ -13,7 +13,12 @@
     "prisma:migrate": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/prisma/build/index.js migrate dev'",
     "build:vocabulary": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/vocabulary-import/build-all.ts --api'",
     "build:vocabulary:fast": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/vocabulary-import/build-all.ts'",
-    "prisma:generate": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/prisma/build/index.js generate'"
+    "prisma:generate": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/prisma/build/index.js generate'",
+    "migrate:fsrs": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/migrate-fsrs.ts'",
+    "seed:admin": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/seed-admin.ts'",
+    "fill:meanings": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/fill-missing-meanings.ts'",
+    "test": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/vitest/vitest.mjs run'",
+    "test:watch": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/vitest/vitest.mjs'"
   },
   "keywords": [
     "learning",
@@ -32,7 +37,8 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "ts-fsrs": "^5.4.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -45,6 +51,7 @@
     "nodemon": "^3.0.2",
     "prisma": "^5.10.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^3.2.4"
   }
 }

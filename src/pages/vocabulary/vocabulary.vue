@@ -17,9 +17,9 @@
     </view>
 
     <view class="tabs">
-      <view 
-        v-for="tab in tabs" 
-        :key="tab.key" 
+      <view
+        v-for="tab in tabs"
+        :key="tab.key"
         :class="['tab-item', activeTab === tab.key ? 'active' : '']"
         @tap="activeTab = tab.key"
       >
@@ -62,31 +62,55 @@
       </view>
     </view>
 
-    <view v-if="wordList.length > 0" class="word-list">
-      <view 
-        v-for="item in wordList" 
-        :key="item.word" 
-        class="word-card"
-        @tap="showWordDetail(item)"
-      >
-        <view class="word-header">
-          <view class="word-title-row">
-            <text class="word-text">{{ item.word }}</text>
-            <text :class="['level-badge', `level-${getMasteryLevel(item.mastery)}`]">
-              {{ getMasteryLabel(item.mastery) }}
-            </text>
-          </view>
-          <view class="word-stars">
-            <text v-for="i in 5" :key="i" :class="['star', i <= item.mastery ? 'active' : '']">★</text>
+    <view v-if="filteredList.length > 0" class="word-list-wrap">
+      <scroll-view scroll-y class="word-list-scroll">
+        <view class="word-list">
+          <view
+            v-for="item in paginatedList"
+            :key="item.word"
+            class="word-card"
+            @tap="showWordDetail(item)"
+          >
+            <view class="word-header">
+              <view class="word-title-row">
+                <text class="word-text">{{ item.word }}</text>
+                <text :class="['level-badge', `level-${getMasteryLevel(item.mastery)}`]">
+                  {{ getMasteryLabel(item.mastery) }}
+                </text>
+              </view>
+              <view class="word-stars">
+                <text v-for="i in 5" :key="i" :class="['star', i <= item.mastery ? 'active' : '']">★</text>
+              </view>
+            </view>
+            <view class="word-info">
+              <text class="word-phonetic">{{ item.phonetic }}</text>
+              <text class="word-meaning">{{ item.meaning }}</text>
+            </view>
+            <view v-if="item.weakReason || item.dueText" class="word-meta">
+              <text v-if="item.weakReason" class="weak-reason">{{ item.weakReason }}</text>
+              <text v-if="item.dueText" class="due-text">{{ item.dueText }}</text>
+            </view>
+            <view class="word-footer">
+              <text class="practice-count">练习 {{ item.count }} 次 · 正确率 {{ item.accuracy }}%</text>
+              <text class="last-practice">{{ item.lastPracticeText }}</text>
+            </view>
           </view>
         </view>
-        <view class="word-info">
-          <text class="word-phonetic">{{ item.phonetic }}</text>
-          <text class="word-meaning">{{ item.meaning }}</text>
+      </scroll-view>
+
+      <view v-if="totalPages > 1" class="pagination">
+        <view
+          :class="['page-btn', currentPage <= 1 ? 'disabled' : '']"
+          @tap="goPage(currentPage - 1)"
+        >
+          <text>上一页</text>
         </view>
-        <view class="word-footer">
-          <text class="practice-count">练习 {{ item.count }} 次 · 正确率 {{ item.accuracy }}%</text>
-          <text class="last-practice">{{ item.lastPracticeText }}</text>
+        <text class="page-info">第 {{ currentPage }} / {{ totalPages }} 页（共 {{ filteredList.length }} 词）</text>
+        <view
+          :class="['page-btn', currentPage >= totalPages ? 'disabled' : '']"
+          @tap="goPage(currentPage + 1)"
+        >
+          <text>下一页</text>
         </view>
       </view>
     </view>
@@ -103,8 +127,11 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { formatTimeAgo } from '@/utils'
-import { getMasteryLabel, getMasteryLevel } from '@/utils/mastery'
+import { getMasteryLabel, getMasteryLevel, formatDueDate, WEAK_REASON_LABELS } from '@/utils/mastery'
 import { STATUS_LABELS } from '@/types/map'
+import type { MasteryStatus, WeakReason } from '@/types/map'
+
+const PAGE_SIZE = 40
 
 const vocabStore = useVocabularyStore()
 
@@ -119,7 +146,8 @@ const filters = [
   { key: 'all', label: '全部' },
   { key: 'mastered', label: '已掌握' },
   { key: 'learning', label: '学习中' },
-  { key: 'weak', label: '需加强' }
+  { key: 'weak', label: '需加强' },
+  { key: 'unpracticed', label: '未练习' }
 ] as const
 
 type TabKey = typeof tabs[number]['key']
@@ -127,10 +155,7 @@ type FilterKey = typeof filters[number]['key']
 
 const activeTab = ref<TabKey>('listening')
 const activeFilter = ref<FilterKey>('all')
-
-const activeTabLabel = computed(() => {
-  return tabs.find(t => t.key === activeTab.value)?.label || ''
-})
+const currentPage = ref(1)
 
 const currentStats = computed(() => {
   if (vocabStore.bookMapData) {
@@ -139,8 +164,8 @@ const currentStats = computed(() => {
       total: s.practiced ?? (s.mastered + s.learning + s.unfamiliar),
       mastered: s.mastered,
       learning: s.learning,
-      weak: s.unfamiliar + s.unpracticed,
-      avgMastery: 0
+      weak: s.unfamiliar,
+      unpracticed: s.unpracticed
     }
   }
 
@@ -149,11 +174,14 @@ const currentStats = computed(() => {
   const total = list.length
   const mastered = list.filter(w => w.mastery >= 4).length
   const learning = list.filter(w => w.mastery >= 2 && w.mastery < 4).length
-  const weak = list.filter(w => w.mastery < 2).length
-  const avgMastery = total > 0
-    ? Math.round(list.reduce((sum, w) => sum + w.mastery, 0) / total)
-    : 0
-  return { total, mastered, learning, weak, avgMastery }
+  const weak = list.filter(w => w.mastery > 0 && w.mastery < 2).length
+  return {
+    total,
+    mastered,
+    learning,
+    weak,
+    unpracticed: 0
+  }
 })
 
 interface WordListItem {
@@ -165,48 +193,85 @@ interface WordListItem {
   count: number
   accuracy: number
   lastPracticeText: string
+  status: MasteryStatus
+  dueText: string
+  weakReason: string
 }
 
 const allWordList = computed<WordListItem[]>(() => {
-  if (vocabStore.bookMapData?.words.length) {
-    return vocabStore.bookMapData.words.map(w => {
-      const localStat = vocabStore.stats[activeTab.value][w.word]
-      const typeMastery = w.byType[activeTab.value] ?? w.mastery
-      const count = localStat?.count || 0
-      const accuracy = localStat && localStat.count > 0
+  if (!vocabStore.bookMapData?.words.length) return []
+
+  return vocabStore.bookMapData.words.map(w => {
+    const localStat = vocabStore.stats[activeTab.value][w.word]
+    const apiStats = w.typeStats
+    const mastery = apiStats?.practiceCount
+      ? apiStats.mastery
+      : (w.byType[activeTab.value] ?? w.mastery)
+    const count = apiStats?.practiceCount ?? localStat?.count ?? 0
+    const accuracy = apiStats?.practiceCount
+      ? apiStats.accuracy
+      : (localStat && localStat.count > 0
         ? Math.round((localStat.correctCount / localStat.count) * 100)
-        : 0
+        : 0)
 
-      return {
-        word: w.word,
-        meaning: w.meaning,
-        phonetic: '',
-        mastery: typeMastery,
-        count,
-        accuracy,
-        lastPracticeText: w.status === 'unpracticed'
-          ? '未练习'
-          : (localStat?.lastPractice ? formatTimeAgo(localStat.lastPractice) : STATUS_LABELS[w.status])
-      }
-    }).sort((a, b) => a.mastery - b.mastery)
-  }
+    let lastPracticeText = STATUS_LABELS[w.status]
+    if (w.status === 'unpracticed') {
+      lastPracticeText = '未练习'
+    } else if (w.lastPractice) {
+      lastPracticeText = formatTimeAgo(new Date(w.lastPractice).getTime())
+    } else if (localStat?.lastPractice) {
+      lastPracticeText = formatTimeAgo(localStat.lastPractice)
+    }
 
-  return []
+    const dueText = apiStats?.due ? formatDueDate(apiStats.due) : ''
+    const weakReasonLabel = apiStats?.weakReason
+      ? WEAK_REASON_LABELS[apiStats.weakReason as WeakReason]
+      : ''
+
+    return {
+      word: w.word,
+      meaning: w.meaning,
+      phonetic: '',
+      mastery,
+      count,
+      accuracy,
+      lastPracticeText,
+      status: w.status,
+      dueText,
+      weakReason: weakReasonLabel
+    }
+  }).sort((a, b) => a.mastery - b.mastery)
 })
 
-const wordList = computed(() => {
+const filteredList = computed(() => {
   if (activeFilter.value === 'all') return allWordList.value
-  if (activeFilter.value === 'weak') {
-    return allWordList.value.filter(item =>
-      getMasteryLevel(item.mastery) === 'weak' || item.lastPracticeText === '未练习'
-    )
+  if (activeFilter.value === 'unpracticed') {
+    return allWordList.value.filter(item => item.status === 'unpracticed')
   }
-  return allWordList.value.filter(item => getMasteryLevel(item.mastery) === activeFilter.value)
+  if (activeFilter.value === 'weak') {
+    return allWordList.value.filter(item => item.status === 'unfamiliar')
+  }
+  if (activeFilter.value === 'mastered') {
+    return allWordList.value.filter(item => item.status === 'mastered')
+  }
+  if (activeFilter.value === 'learning') {
+    return allWordList.value.filter(item => item.status === 'learning')
+  }
+  return allWordList.value
+})
+
+const totalPages = computed(() =>
+  Math.max(1, Math.ceil(filteredList.value.length / PAGE_SIZE))
+)
+
+const paginatedList = computed(() => {
+  const start = (currentPage.value - 1) * PAGE_SIZE
+  return filteredList.value.slice(start, start + PAGE_SIZE)
 })
 
 const emptyText = computed(() => {
   if (allWordList.value.length === 0) {
-    return `暂无词汇数据`
+    return '暂无词汇数据'
   }
   const filterLabel = filters.find(f => f.key === activeFilter.value)?.label || ''
   return `暂无「${filterLabel}」词汇`
@@ -214,13 +279,27 @@ const emptyText = computed(() => {
 
 const getTypeCount = (type: string) => {
   if (vocabStore.bookMapData) {
-    return vocabStore.bookMapData.words.filter(w => (w.byType[type] ?? 0) > 0).length
+    return vocabStore.bookMapData.words.filter(w => {
+      const ts = w.typeStats
+      if (ts?.practiceCount) return true
+      return (w.byType[type] ?? 0) > 0
+    }).length
   }
   return Object.keys(vocabStore.stats[type as TabKey]).length
 }
 
+const goPage = (page: number) => {
+  if (page < 1 || page > totalPages.value) return
+  currentPage.value = page
+}
+
+const resetPage = () => {
+  currentPage.value = 1
+}
+
 const selectBook = async (code: string) => {
   vocabStore.setCurrentBook(code)
+  resetPage()
   await reloadMap()
 }
 
@@ -235,13 +314,23 @@ const goToMap = () => {
 }
 
 watch(activeTab, () => {
+  resetPage()
   reloadMap()
 })
 
+watch(activeFilter, () => {
+  resetPage()
+})
+
 const showWordDetail = (item: WordListItem) => {
+  const extra = [
+    item.dueText ? `待复习：${item.dueText}` : '',
+    item.weakReason ? `薄弱原因：${item.weakReason}` : ''
+  ].filter(Boolean).join('\n')
+
   uni.showModal({
     title: item.word,
-    content: `${item.phonetic}\n\n${item.meaning}\n\n掌握程度: ${getMasteryLabel(item.mastery)}\n练习 ${item.count} 次，正确率 ${item.accuracy}%\n\n${item.example || ''}`,
+    content: `${item.phonetic}\n\n${item.meaning}\n\n掌握程度: ${getMasteryLabel(item.mastery)}\n练习 ${item.count} 次，正确率 ${item.accuracy}%\n${extra ? extra + '\n\n' : ''}${item.example || ''}`,
     showCancel: false
   })
 }
@@ -319,7 +408,7 @@ onMounted(async () => {
 
   &.active {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    
+
     .tab-text, .tab-icon {
       color: white;
     }
@@ -391,12 +480,14 @@ onMounted(async () => {
 
 .filter-bar {
   display: flex;
+  flex-wrap: wrap;
   gap: 12rpx;
   margin-bottom: 20rpx;
 }
 
 .filter-item {
   flex: 1;
+  min-width: 120rpx;
   text-align: center;
   padding: 16rpx 0;
   background: white;
@@ -409,6 +500,16 @@ onMounted(async () => {
     background: #667eea;
     color: white;
   }
+}
+
+.word-list-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.word-list-scroll {
+  max-height: calc(100vh - 520rpx);
 }
 
 .word-list {
@@ -495,6 +596,29 @@ onMounted(async () => {
   font-weight: 500;
 }
 
+.word-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.weak-reason {
+  font-size: 22rpx;
+  color: #e65100;
+  background: #fff3e0;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+}
+
+.due-text {
+  font-size: 22rpx;
+  color: #667eea;
+  background: #eef2ff;
+  padding: 4rpx 12rpx;
+  border-radius: 12rpx;
+}
+
 .word-footer {
   display: flex;
   justify-content: space-between;
@@ -508,6 +632,36 @@ onMounted(async () => {
 .last-practice {
   font-size: 24rpx;
   color: #999;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 8rpx;
+  background: white;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+
+.page-btn {
+  padding: 12rpx 24rpx;
+  background: #667eea;
+  color: white;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+
+  &.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+.page-info {
+  font-size: 24rpx;
+  color: #666;
+  flex: 1;
+  text-align: center;
 }
 
 .empty-state {

@@ -1,10 +1,33 @@
 import type { WordType } from '../types'
+import {
+  getMasteryStatus as deriveMasteryStatus,
+  getWeakReason,
+  buildFsrsFieldsFromStat,
+  computeWeakPriorityScore,
+  type MasteryStatus,
+  type WeakReason
+} from './review-engine.service'
 
-export type MasteryStatus = 'mastered' | 'learning' | 'unfamiliar' | 'unpracticed'
+export type { MasteryStatus, WeakReason }
 
 const WORD_TYPES: WordType[] = ['listening', 'speaking', 'reading', 'writing']
 
-export function getMasteryStatus(mastery: number, practiced: boolean): MasteryStatus {
+export function getMasteryStatus(
+  mastery: number,
+  practiced: boolean,
+  stat?: {
+    practiceCount?: number
+    reps?: number
+    retrievability?: number
+    due?: Date | null
+    fsrsState?: string
+    recentLapse?: boolean
+  }
+): MasteryStatus {
+  if (stat) {
+    return deriveMasteryStatus(buildFsrsFieldsFromStat(stat))
+  }
+
   if (!practiced || mastery === 0) return 'unpracticed'
   if (mastery >= 4) return 'mastered'
   if (mastery >= 2) return 'learning'
@@ -18,6 +41,16 @@ export interface WordStatEntry {
   correctCount: number
   mastery: number
   lastPractice: Date | null
+  due?: Date | null
+  stability?: number
+  difficulty?: number
+  reps?: number
+  lapses?: number
+  fsrsState?: string
+  lastReview?: Date | null
+  retrievability?: number
+  recentLapse?: boolean
+  weakReason?: WeakReason
 }
 
 export interface AggregatedWordMastery {
@@ -27,6 +60,9 @@ export interface AggregatedWordMastery {
   practiceCount: number
   byType: Partial<Record<WordType, number>>
   lastPractice: Date | null
+  retrievability?: number
+  due?: Date | null
+  fsrsState?: string
 }
 
 export function aggregateWordMastery(stats: WordStatEntry[]): AggregatedWordMastery | null {
@@ -38,6 +74,9 @@ export function aggregateWordMastery(stats: WordStatEntry[]): AggregatedWordMast
   let typeCount = 0
   let totalPractice = 0
   let lastPractice: Date | null = null
+  let lowestRetrievability = 1
+  let earliestDue: Date | null = null
+  let primaryState = 'New'
 
   for (const stat of stats) {
     byType[stat.type] = stat.mastery
@@ -47,12 +86,27 @@ export function aggregateWordMastery(stats: WordStatEntry[]): AggregatedWordMast
     if (stat.lastPractice && (!lastPractice || stat.lastPractice > lastPractice)) {
       lastPractice = stat.lastPractice
     }
+    if ((stat.retrievability ?? 1) < lowestRetrievability) {
+      lowestRetrievability = stat.retrievability ?? 1
+      primaryState = stat.fsrsState ?? 'New'
+      earliestDue = stat.due ?? null
+    }
   }
 
   const practiced = totalPractice > 0
   const mastery = typeCount > 0 ? Math.round(totalMastery / typeCount) : 0
 
-  return { wordId, mastery, practiced, practiceCount: totalPractice, byType, lastPractice }
+  return {
+    wordId,
+    mastery,
+    practiced,
+    practiceCount: totalPractice,
+    byType,
+    lastPractice,
+    retrievability: practiced ? lowestRetrievability : 0,
+    due: earliestDue,
+    fsrsState: primaryState
+  }
 }
 
 export function aggregateBookWordStats(
@@ -77,7 +131,15 @@ export function aggregateBookWordStats(
   return result
 }
 
-export function getPriorityScore(mastery: AggregatedWordMastery, inCurrentCycle: boolean): number {
+export function getPriorityScore(
+  mastery: AggregatedWordMastery,
+  inCurrentCycle: boolean,
+  typeStat?: WordStatEntry
+): number {
+  if (typeStat) {
+    return computeWeakPriorityScore(buildFsrsFieldsFromStat(typeStat))
+  }
+
   if (!mastery.practiced) return 1000
   if (mastery.mastery < 2) return 800 - mastery.mastery * 50
   if (mastery.mastery < 4) return 400 - mastery.mastery * 30
@@ -85,4 +147,35 @@ export function getPriorityScore(mastery: AggregatedWordMastery, inCurrentCycle:
   return 200 - mastery.mastery * 10
 }
 
-export { WORD_TYPES }
+export function buildTypeStatsFromEntry(entry?: WordStatEntry) {
+  if (!entry || entry.practiceCount <= 0) {
+    return {
+      practiceCount: 0,
+      correctCount: 0,
+      mastery: 0,
+      accuracy: 0,
+      due: null as Date | null,
+      retrievability: 0,
+      reps: 0,
+      lapses: 0,
+      fsrsState: 'New' as const,
+      weakReason: undefined as WeakReason | undefined
+    }
+  }
+
+  const fields = buildFsrsFieldsFromStat(entry)
+  return {
+    practiceCount: entry.practiceCount,
+    correctCount: entry.correctCount,
+    mastery: fields.mastery,
+    accuracy: Math.round((entry.correctCount / entry.practiceCount) * 100),
+    due: fields.due,
+    retrievability: fields.retrievability,
+    reps: fields.reps,
+    lapses: fields.lapses,
+    fsrsState: fields.fsrsState,
+    weakReason: getWeakReason(fields)
+  }
+}
+
+export { WORD_TYPES, getWeakReason }

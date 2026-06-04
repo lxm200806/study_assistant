@@ -140,7 +140,8 @@ export async function getBooks() {
     const meta = vocabularyBooks.find(b => b.code === book.code)
     return {
       ...book,
-      targetWordCount: meta?.targetWordCount ?? book.wordCount
+      wordCount: book.wordCount,
+      description: meta?.description || book.description
     }
   })
 }

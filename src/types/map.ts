@@ -1,6 +1,7 @@
-export type SessionMode = 'coverage' | 'random' | 'weak'
+export type SessionMode = 'coverage' | 'random' | 'weak' | 'review'
 
 export type MasteryStatus = 'mastered' | 'learning' | 'unfamiliar' | 'unpracticed'
+export type WeakReason = 'overdue' | 'low_retention' | 'recent_lapse'
 
 export interface BookProgress {
   bookCode: string
@@ -37,6 +38,19 @@ export interface TopicStats {
   mastered: number
 }
 
+export interface WordTypeStats {
+  practiceCount: number
+  correctCount: number
+  mastery: number
+  accuracy: number
+  due?: string | null
+  retrievability?: number
+  reps?: number
+  lapses?: number
+  fsrsState?: string
+  weakReason?: WeakReason
+}
+
 export interface MapWordEntry {
   wordId: string
   word: string
@@ -48,6 +62,7 @@ export interface MapWordEntry {
   status: MasteryStatus
   lastPractice: string | null
   byType: Record<string, number>
+  typeStats?: WordTypeStats
 }
 
 export interface VocabularyMapData {
@@ -71,7 +86,8 @@ export interface VocabularyMapData {
 export const SESSION_MODE_LABELS: Record<SessionMode, string> = {
   coverage: '全书覆盖',
   random: '随机练习',
-  weak: '薄弱强化'
+  weak: '薄弱强化',
+  review: '到期复习'
 }
 
 export const STATUS_LABELS: Record<MasteryStatus, string> = {

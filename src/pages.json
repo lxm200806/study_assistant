@@ -59,6 +59,12 @@
       "style": {
         "navigationBarTitleText": "词汇书"
       }
+    },
+    {
+      "path": "pages/admin/admin",
+      "style": {
+        "navigationBarTitleText": "词库管理"
+      }
     }
   ],
   "globalStyle": {

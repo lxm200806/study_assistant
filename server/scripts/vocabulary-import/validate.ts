@@ -1,8 +1,16 @@
 import type { EnrichedWord } from './enrich'
+import { isParseArtifact } from '../../src/utils/word-quality'
 
 export interface ValidationIssue {
   word: string
   reason: string
+}
+
+export function isMissingMeaning(meaning: string, englishMeaning?: string | null): boolean {
+  if (!meaning || meaning.trim().length === 0) return true
+  if (meaning.startsWith('[待校对]')) return true
+  if (englishMeaning?.startsWith('[待校对]')) return true
+  return false
 }
 
 export function validateBookWords(words: EnrichedWord[]): {
@@ -15,6 +23,11 @@ export function validateBookWords(words: EnrichedWord[]): {
 
   for (const w of words) {
     const key = w.word.toLowerCase()
+
+    if (isParseArtifact(key)) {
+      issues.push({ word: key, reason: 'PDF 解析错误（非有效词条）' })
+      continue
+    }
 
     if (seen.has(key)) {
       issues.push({ word: key, reason: '重复词条' })

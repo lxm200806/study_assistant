@@ -1,22 +1,42 @@
 {
   "ket": {
-    "total": 1571,
-    "issues": 172,
-    "pendingCn": 0
+    "parsed": 1542,
+    "total": 1534,
+    "target": 1599,
+    "gap": 65,
+    "issues": 160,
+    "pendingCn": 0,
+    "parseRejected": 1,
+    "droppedInEnrich": 0
   },
   "pet": {
-    "total": 2834,
-    "issues": 457,
-    "pendingCn": 0
+    "parsed": 2790,
+    "total": 2778,
+    "target": 3046,
+    "gap": 268,
+    "issues": 438,
+    "pendingCn": 1,
+    "parseRejected": 1,
+    "droppedInEnrich": 0
   },
   "zhongkao": {
-    "total": 1960,
-    "issues": 252,
-    "pendingCn": 0
+    "parsed": 1985,
+    "total": 1956,
+    "target": 1600,
+    "gap": -356,
+    "issues": 254,
+    "pendingCn": 0,
+    "parseRejected": 5,
+    "droppedInEnrich": 0
   },
   "gaokao": {
-    "total": 3690,
-    "issues": 698,
-    "pendingCn": 0
+    "parsed": 3743,
+    "total": 3685,
+    "target": 3500,
+    "gap": -185,
+    "issues": 701,
+    "pendingCn": 0,
+    "parseRejected": 6,
+    "droppedInEnrich": 0
   }
 }

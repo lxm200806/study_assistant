@@ -109,7 +109,9 @@ async function main() {
   for (const meta of BOOKS) {
     console.log(`\n构建 ${meta.name}...`)
     const list = wordLists[meta.code]
+    const parsedCount = list.length
     const enriched = []
+    const droppedInEnrich: string[] = []
     const needApi = useApi && (meta.code === 'ket' || meta.code === 'pet')
 
     for (let i = 0; i < list.length; i++) {
@@ -122,29 +124,48 @@ async function main() {
           topic: tax.topic,
           tags: tax.tags || []
         })
+      } else {
+        droppedInEnrich.push(list[i])
       }
       if ((i + 1) % 200 === 0) console.log(`  ${i + 1}/${list.length}`)
     }
 
     const { valid, issues } = validateBookWords(enriched)
+    const parseRejected = issues.filter(i => i.reason.includes('解析错误')).length
     const pending = valid.filter(w => w.meaning.startsWith('[待校对]'))
+    const missingWords = valid.filter(w => w.meaning.startsWith('[待校对]'))
 
     const bookJson = {
       ...meta,
+      targetWordCount: valid.length,
       wordCount: valid.length,
       words: valid
     }
 
     const outPath = path.join(OUT, `${meta.code}.json`)
     fs.writeFileSync(outPath, JSON.stringify(bookJson, null, 0))
-    console.log(`✓ ${meta.name}: ${valid.length} 词 → ${outPath}`)
+    console.log(`✓ ${meta.name}: ${valid.length} 词 (解析 ${parsedCount}) → ${outPath}`)
     if (issues.length) console.log(`  校验提示: ${issues.length} 条`)
-    if (pending.length) console.log(`  待校对中文: ${pending.length} 条 (可重新运行 --api 或人工补全)`)
+    if (pending.length) console.log(`  待校对中文: ${pending.length} 条`)
+    if (droppedInEnrich.length) console.log(`  enrich 丢弃: ${droppedInEnrich.length} 条`)
+
+    if (missingWords.length) {
+      const missingPath = path.join(OUT, `${meta.code}-missing.txt`)
+      fs.writeFileSync(missingPath, missingWords.map(w => w.word).join('\n'))
+    } else {
+      const missingPath = path.join(OUT, `${meta.code}-missing.txt`)
+      if (fs.existsSync(missingPath)) fs.unlinkSync(missingPath)
+    }
 
     report[meta.code] = {
+      parsed: parsedCount,
       total: valid.length,
+      target: meta.targetWordCount,
+      gap: meta.targetWordCount - valid.length,
       issues: issues.length,
-      pendingCn: pending.length
+      pendingCn: pending.length,
+      parseRejected,
+      droppedInEnrich: droppedInEnrich.length
     }
   }
 

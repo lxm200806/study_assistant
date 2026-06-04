@@ -46,6 +46,23 @@ export function getMasteryLevel(mastery: number): 'mastered' | 'learning' | 'wea
   return 'weak'
 }
 
+export const WEAK_REASON_LABELS: Record<string, string> = {
+  overdue: '已到期',
+  low_retention: '记忆率偏低',
+  recent_lapse: '刚答错'
+}
+
+export function formatDueDate(due?: string | null, now: number = Date.now()): string {
+  if (!due) return ''
+  const dueTime = new Date(due).getTime()
+  if (dueTime <= now) return '已到期'
+  const diffMs = dueTime - now
+  const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
+  if (diffHours < 24) return `${Math.max(1, diffHours)} 小时后复习`
+  const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24))
+  return `${diffDays} 天后复习`
+}
+
 export function buildSessionAnalysis(
   results: SessionWordResult[],
   previousMastery: Record<string, number> = {}

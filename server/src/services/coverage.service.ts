@@ -6,9 +6,13 @@ import {
   getMasteryStatus,
   type WordStatEntry
 } from './mastery-aggregate.service'
+import {
+  buildFsrsFieldsFromStat,
+  computeWeakPriorityScore
+} from './review-engine.service'
 import { getBookByCode } from './book.service'
 
-export type SessionMode = 'coverage' | 'random' | 'weak'
+export type SessionMode = 'coverage' | 'random' | 'weak' | 'review'
 
 export interface BookProgressInfo {
   bookCode: string
@@ -59,11 +63,51 @@ async function loadUserWordStats(userId: string, wordIds: string[]): Promise<Map
       practiceCount: stat.practiceCount,
       correctCount: stat.correctCount,
       mastery: stat.mastery,
-      lastPractice: stat.lastPractice
+      lastPractice: stat.lastPractice,
+      due: stat.due,
+      stability: stat.stability,
+      difficulty: stat.difficulty,
+      reps: stat.reps,
+      lapses: stat.lapses,
+      fsrsState: stat.fsrsState,
+      lastReview: stat.lastReview,
+      retrievability: stat.retrievability,
+      recentLapse: stat.recentLapse
     })
     map.set(stat.wordId, list)
   }
   return map
+}
+
+function getTypeStat(
+  statsMap: Map<string, WordStatEntry[]>,
+  wordId: string,
+  trainingType?: string
+): WordStatEntry | undefined {
+  if (!trainingType) return undefined
+  return statsMap.get(wordId)?.find(s => s.type === trainingType)
+}
+
+function computeScore(
+  bvWordId: string,
+  statsMap: Map<string, WordStatEntry[]>,
+  aggregated: ReturnType<typeof aggregateBookWordStats> extends Map<string, infer V> ? V : never,
+  inCycle: boolean,
+  mode: SessionMode,
+  trainingType?: string
+): number {
+  const typeStat = getTypeStat(statsMap, bvWordId, trainingType)
+  const now = new Date()
+
+  if (mode === 'weak' || mode === 'review') {
+    if (typeStat) {
+      return computeWeakPriorityScore(buildFsrsFieldsFromStat(typeStat, now))
+    }
+    if (!aggregated.practiced) return 500
+    return getPriorityScore(aggregated, inCycle)
+  }
+
+  return getPriorityScore(aggregated, inCycle, typeStat)
 }
 
 export async function getSessionWords(
@@ -82,6 +126,7 @@ export async function getSessionWords(
   const wordIds = bookWords.map(bv => bv.wordId)
   const statsMap = await loadUserWordStats(userId, wordIds)
   const aggregated = aggregateBookWordStats(wordIds, statsMap)
+  const now = new Date()
 
   let progress = await prisma.bookStudyProgress.findUnique({
     where: { userId_bookId: { userId, bookId: book.id } }
@@ -106,18 +151,43 @@ export async function getSessionWords(
     }
   }
 
+  if (mode === 'review') {
+    const dueWords = bookWords.filter(bv => {
+      const typeStat = getTypeStat(statsMap, bv.wordId, trainingType)
+      return typeStat?.due != null && typeStat.due.getTime() <= now.getTime()
+    })
+
+    let selectedBookWords = dueWords.slice(0, count)
+
+    if (selectedBookWords.length < count) {
+      const dueIds = new Set(selectedBookWords.map(bv => bv.wordId))
+      const scored = bookWords
+        .filter(bv => !dueIds.has(bv.wordId))
+        .map(bv => ({
+          bv,
+          score: computeScore(bv.wordId, statsMap, aggregated.get(bv.wordId)!, cycleSet.has(bv.wordId), 'weak', trainingType)
+        }))
+        .sort((a, b) => b.score - a.score)
+      selectedBookWords = [
+        ...selectedBookWords,
+        ...scored.slice(0, count - selectedBookWords.length).map(s => s.bv)
+      ]
+    }
+
+    const progressInfo = await getBookProgress(userId, bookCode)
+    return {
+      words: selectedBookWords.map(bv => formatWordForClient(bv.word)),
+      progress: progressInfo,
+      mode
+    }
+  }
+
   const scored = bookWords.map(bv => {
     const mastery = aggregated.get(bv.wordId)!
     const inCycle = cycleSet.has(bv.wordId)
-    let score = getPriorityScore(mastery, inCycle)
+    let score = computeScore(bv.wordId, statsMap, mastery, inCycle, mode, trainingType)
 
-    if (mode === 'weak') {
-      score = (5 - mastery.mastery) * 200 + (mastery.practiced ? 0 : 500)
-      if (trainingType) {
-        const typeMastery = mastery.byType[trainingType as WordStatEntry['type']] ?? 0
-        score += (5 - typeMastery) * 100
-      }
-    } else if (mode === 'coverage' && inCycle) {
+    if (mode === 'coverage' && inCycle) {
       score -= 500
     }
 

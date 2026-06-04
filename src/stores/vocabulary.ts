@@ -12,7 +12,6 @@ export interface Book {
   description: string
   level: string
   wordCount: number
-  targetWordCount?: number
 }
 
 export type { MeaningType }
@@ -52,6 +51,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   })
 
   const bookProgress = ref<BookProgress | null>(null)
+  const dueCount = ref({ dueCount: 0, overdueCount: 0 })
   const bookMapData = ref<VocabularyMapData | null>(null)
   const globalMapData = ref<VocabularyMapData | null>(null)
 
@@ -99,6 +99,17 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
       bookProgress.value = (result.data as BookProgress) || null
     } catch (error) {
       console.error('Failed to load book progress:', error)
+    }
+  }
+
+  const loadDueCount = async (bookCode?: string, trainingType?: string) => {
+    const code = bookCode || currentBookCode.value
+    if (!code) return
+    try {
+      const result = await bookAPI.dueCount(code, trainingType)
+      dueCount.value = (result.data as { dueCount: number; overdueCount: number }) || { dueCount: 0, overdueCount: 0 }
+    } catch (error) {
+      console.error('Failed to load due count:', error)
     }
   }
 
@@ -218,12 +229,21 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   }
 
   const updateWordStats = async (wordId: string, word: string, type: 'listening' | 'speaking' | 'reading' | 'writing', correct: boolean) => {
+    let apiResult: {
+      mastery?: number
+      practiceCount?: number
+      correctCount?: number
+      due?: string
+      retrievability?: number
+    } | null = null
+
     try {
-      await trainingAPI.practice(wordId, type, correct)
+      const result = await trainingAPI.practice(wordId, type, correct)
+      apiResult = (result.data as typeof apiResult) || null
     } catch (error) {
       console.error('Failed to update server stats:', error)
     }
-    
+
     if (!stats.value[type][word]) {
       stats.value[type][word] = {
         count: 0,
@@ -233,14 +253,18 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
       }
     }
 
-    stats.value[type][word].count++
-    if (correct) {
-      stats.value[type][word].correctCount++
+    if (apiResult) {
+      stats.value[type][word].count = apiResult.practiceCount ?? stats.value[type][word].count + 1
+      stats.value[type][word].correctCount = apiResult.correctCount ?? stats.value[type][word].correctCount
+      stats.value[type][word].mastery = apiResult.mastery ?? stats.value[type][word].mastery
+      stats.value[type][word].lastPractice = Date.now()
+    } else {
+      stats.value[type][word].count++
+      if (correct) {
+        stats.value[type][word].correctCount++
+      }
+      stats.value[type][word].lastPractice = Date.now()
     }
-    stats.value[type][word].lastPractice = Date.now()
-    
-    const accuracy = stats.value[type][word].correctCount / stats.value[type][word].count
-    stats.value[type][word].mastery = Math.round(accuracy * 5)
 
     saveStats()
   }
@@ -266,8 +290,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
 
   const getWordsForReview = async (type: 'listening' | 'speaking' | 'reading' | 'writing', limit: number = 5) => {
     try {
-      const result = await trainingAPI.review()
-      const reviewWords = (result.data || []).filter((r: any) => r.type === type)
+      const result = await trainingAPI.review(type, currentBookCode.value, limit)
+      const reviewWords = result.data || []
       return reviewWords.slice(0, limit).map((r: any) => r.word?.word || r.wordId)
     } catch (error) {
       console.error('Failed to get review words:', error)
@@ -339,12 +363,14 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     meaningType,
     studySettings,
     bookProgress,
+    dueCount,
     bookMapData,
     globalMapData,
     loadVocabulary,
     loadRandomVocabulary,
     loadSessionVocabulary,
     loadBookProgress,
+    loadDueCount,
     loadBookMap,
     loadGlobalMap,
     completeSession,

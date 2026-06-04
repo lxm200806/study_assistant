@@ -43,6 +43,7 @@ export interface TokenResponse {
   user: {
     id: string
     username: string
+    isAdmin: boolean
   }
 }
 

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { getBooks, getBookByCode, getRandomWordsFromBook } from '../services/book.service'
 import { getSessionWords, getBookProgress, type SessionMode } from '../services/coverage.service'
+import { getDueCount } from '../services/training.service'
 import { formatWordForClient } from '../utils/wordFormat'
 
 export async function getBooksHandler(req: Request, res: Response) {
@@ -76,6 +77,19 @@ export async function getBookProgressHandler(req: Request, res: Response) {
     const { code } = req.params
     const progress = await getBookProgress(userId, code)
     res.status(200).json({ success: true, data: progress })
+  } catch (error) {
+    const message = (error as Error).message
+    res.status(message === 'Book not found' ? 404 : 500).json({ success: false, error: message })
+  }
+}
+
+export async function getBookDueCountHandler(req: Request, res: Response) {
+  try {
+    const userId = req.userId!
+    const { code } = req.params
+    const type = req.query.type as import('../types').WordType | undefined
+    const counts = await getDueCount(userId, code, type)
+    res.status(200).json({ success: true, data: counts })
   } catch (error) {
     const message = (error as Error).message
     res.status(message === 'Book not found' ? 404 : 500).json({ success: false, error: message })

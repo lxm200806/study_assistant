@@ -1,6 +1,11 @@
 import fs from 'fs'
 import path from 'path'
 import type { KyleBingEntry } from './parse-kylebing'
+import {
+  lookupCnFromMap,
+  fetchEnglishDefinition,
+  resolveMissingMeaning
+} from './meaning-lookup'
 
 const CACHE_PATH = path.join(__dirname, '../../data/sources/en-dict-cache.json')
 
@@ -12,7 +17,7 @@ export interface EnrichedWord {
   emoji?: string
 }
 
-let cache: Record<string, { phonetic?: string; definition?: string }> = {}
+let cache: Record<string, { phonetic?: string; definition?: string; failed?: boolean }> = {}
 
 export function loadEnCache() {
   if (fs.existsSync(CACHE_PATH)) {
@@ -31,7 +36,7 @@ export async function enrichWord(
   useApi: boolean
 ): Promise<EnrichedWord | null> {
   const key = word.toLowerCase()
-  const fromCn = lookup.get(key)
+  const fromCn = lookupCnFromMap(key, lookup)
 
   let meaning = fromCn?.meaning || ''
   let phonetic = fromCn?.phonetic || ''
@@ -42,14 +47,24 @@ export async function enrichWord(
   if (cached?.definition) englishMeaning = cached.definition
 
   if (useApi && (!meaning || !englishMeaning || phonetic === `/${key}/` || phonetic === '')) {
-    await fetchDictionary(key)
-    const after = cache[key]
-    if (after?.definition && !englishMeaning) englishMeaning = after.definition
-    if (after?.phonetic && !phonetic) phonetic = after.phonetic
+    const resolved = await resolveMissingMeaning(key, lookup, cache, {
+      useTranslate: true,
+      useLlm: !!process.env.OPENAI_API_KEY || !!process.env.DEEPSEEK_API_KEY
+    })
+    if (resolved) {
+      if (resolved.meaning && !resolved.meaning.startsWith('[待校对]')) meaning = resolved.meaning
+      if (resolved.englishMeaning) englishMeaning = resolved.englishMeaning
+      if (resolved.phonetic) phonetic = resolved.phonetic
+    } else {
+      await fetchEnglishDefinition(key, cache)
+      const after = cache[key]
+      if (after?.definition && !englishMeaning) englishMeaning = after.definition
+      if (after?.phonetic && !phonetic) phonetic = after.phonetic
+    }
   }
 
   if (!meaning) {
-    return null
+    meaning = `[待校对] ${key}`
   }
 
   if (!englishMeaning) {
@@ -87,36 +102,4 @@ function sanitizePhonetic(p: string): string {
 
 function sanitizeEnglish(e: string): string {
   return e.replace(/\s+/g, ' ').trim().slice(0, 200)
-}
-
-async function fetchDictionary(word: string): Promise<void> {
-  if (cache[word]) return
-
-  try {
-    const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`)
-    if (!res.ok) {
-      cache[word] = {}
-      return
-    }
-    const data = await res.json() as Array<{
-      phonetic?: string
-      phonetics?: Array<{ text?: string }>
-      meanings?: Array<{ definitions?: Array<{ definition?: string }> }>
-    }>
-
-    const entry = data[0]
-    const phonetic = entry?.phonetic || entry?.phonetics?.find(p => p.text)?.text || ''
-    const definition = entry?.meanings?.[0]?.definitions?.[0]?.definition || ''
-
-    cache[word] = { phonetic, definition }
-  } catch {
-    cache[word] = {}
-  }
-
-  // 限速
-  await sleep(120)
-}
-
-function sleep(ms: number) {
-  return new Promise(r => setTimeout(r, ms))
 }

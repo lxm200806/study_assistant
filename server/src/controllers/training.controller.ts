@@ -1,18 +1,19 @@
 import { Request, Response } from 'express'
 import { practice, getReviewWords, getTrainingHistory } from '../services/training.service'
 import { markWordsPracticed, getNewlyCoveredCount } from '../services/coverage.service'
+import type { WordType } from '../types'
 
 export async function practiceHandler(req: Request, res: Response) {
   try {
     const userId = req.userId!
     const { wordId, type, isCorrect } = req.body
-    
+
     if (!wordId || !type || typeof isCorrect !== 'boolean') {
       return res.status(400).json({ error: 'Invalid request body' })
     }
-    
+
     const result = await practice(userId, { wordId, type, isCorrect })
-    res.status(200).json(result)
+    res.status(200).json({ success: true, data: result })
   } catch (error) {
     res.status(500).json({ error: (error as Error).message })
   }
@@ -21,9 +22,12 @@ export async function practiceHandler(req: Request, res: Response) {
 export async function getReviewHandler(req: Request, res: Response) {
   try {
     const userId = req.userId!
-    
-    const words = await getReviewWords(userId)
-    res.status(200).json(words)
+    const type = req.query.type as WordType | undefined
+    const bookCode = req.query.bookCode as string | undefined
+    const limit = parseInt(req.query.limit as string) || 50
+
+    const words = await getReviewWords(userId, { type, bookCode, limit })
+    res.status(200).json({ success: true, data: words })
   } catch (error) {
     res.status(500).json({ error: (error as Error).message })
   }
@@ -34,9 +38,9 @@ export async function getHistoryHandler(req: Request, res: Response) {
     const userId = req.userId!
     const page = parseInt(req.query.page as string) || 1
     const limit = parseInt(req.query.limit as string) || 20
-    
+
     const history = await getTrainingHistory(userId, page, limit)
-    res.status(200).json(history)
+    res.status(200).json({ success: true, data: history })
   } catch (error) {
     res.status(500).json({ error: (error as Error).message })
   }

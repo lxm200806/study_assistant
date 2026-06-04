@@ -43,6 +43,7 @@
         <text>还没有账号? </text>
         <text class="link" @tap="showRegister">立即注册</text>
       </view>
+      <text class="admin-hint">管理员账号：admin（默认密码见服务端配置）</text>
     </view>
 
     <view class="quick-login">
@@ -210,6 +211,14 @@ const loginWithPhone = () => {
 
 .link {
   color: #667eea;
+}
+
+.admin-hint {
+  display: block;
+  text-align: center;
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 20rpx;
 }
 
 .quick-login {

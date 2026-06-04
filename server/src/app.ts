@@ -10,9 +10,11 @@ import trainingRoutes from './routes/training.routes'
 import chatRoutes from './routes/chat.routes'
 import bookRoutes from './routes/book.routes'
 import statsRoutes from './routes/stats.routes'
+import adminRoutes from './routes/admin.routes'
 import { errorMiddleware } from './middleware/error'
 import { initVocabulary } from './utils/seed'
 import { initBooks } from './services/book.service'
+import { ensureAdminUser } from './services/admin-seed.service'
 
 dotenv.config()
 
@@ -47,6 +49,7 @@ app.use('/api/training', trainingRoutes)
 app.use('/api/chat', chatRoutes)
 app.use('/api/books', bookRoutes)
 app.use('/api/stats', statsRoutes)
+app.use('/api/admin', adminRoutes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 app.use(errorMiddleware)
@@ -62,5 +65,6 @@ app.listen(Number(PORT), '0.0.0.0', () => {
   // 后台同步词库，避免阻塞 HTTP 请求
   void initVocabulary()
     .then(() => initBooks())
+    .then(() => ensureAdminUser())
     .catch(err => console.error('Background book sync failed:', err))
 })

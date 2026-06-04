@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { register, login, refreshToken } from '../services/auth.service'
+import { register, login, refreshToken, getProfile } from '../services/auth.service'
 
 export async function registerHandler(req: Request, res: Response) {
   try {
@@ -46,9 +46,11 @@ export async function refreshHandler(req: Request, res: Response) {
   }
 }
 
-export function profileHandler(req: Request, res: Response) {
-  res.status(200).json({
-    userId: req.userId,
-    username: req.username
-  })
+export async function profileHandler(req: Request, res: Response) {
+  try {
+    const user = await getProfile(req.userId!)
+    res.status(200).json({ success: true, data: user })
+  } catch (error) {
+    res.status(404).json({ error: (error as Error).message })
+  }
 }

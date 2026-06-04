@@ -80,6 +80,23 @@ export const authAPI = {
   }
 }
 
+export const adminAPI = {
+  missingSummary: async () => {
+    return request('/admin/vocabulary/missing/summary', 'GET')
+  },
+  missingWords: async (
+    bookCode?: string,
+    page: number = 1,
+    limit: number = 50,
+    issueType?: 'missing_cn' | 'parse_error'
+  ) => {
+    const params = new URLSearchParams({ page: String(page), limit: String(limit) })
+    if (bookCode) params.set('bookCode', bookCode)
+    if (issueType) params.set('issueType', issueType)
+    return request(`/admin/vocabulary/missing?${params.toString()}`, 'GET')
+  }
+}
+
 export const vocabularyAPI = {
   list: async (page: number = 1, limit: number = 20) => {
     return request(`/vocabulary?page=${page}&limit=${limit}`, 'GET')
@@ -99,8 +116,13 @@ export const trainingAPI = {
   practice: async (wordId: string, type: string, isCorrect: boolean) => {
     return request('/training/practice', 'POST', { wordId, type, isCorrect })
   },
-  review: async () => {
-    return request('/training/review', 'GET')
+  review: async (type?: string, bookCode?: string, limit?: number) => {
+    const params = new URLSearchParams()
+    if (type) params.set('type', type)
+    if (bookCode) params.set('bookCode', bookCode)
+    if (limit) params.set('limit', String(limit))
+    const query = params.toString()
+    return request(`/training/review${query ? `?${query}` : ''}`, 'GET')
   },
   completeSession: async (bookCode: string, wordIds: string[]) => {
     return request('/training/session/complete', 'POST', { bookCode, wordIds })
@@ -135,6 +157,10 @@ export const bookAPI = {
   },
   progress: async (code: string) => {
     return request(`/books/${code}/progress`, 'GET')
+  },
+  dueCount: async (code: string, type?: string) => {
+    const typeQuery = type ? `?type=${type}` : ''
+    return request(`/books/${code}/due-count${typeQuery}`, 'GET')
   }
 }
 

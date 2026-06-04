@@ -15,16 +15,18 @@
         </view>
       </view>
 
-      <TrainingSetup />
+      <TrainingSetup training-type="listening" />
 
       <button class="btn-start" @tap="startTraining">开始训练</button>
     </view>
 
     <view v-else class="training-screen">
-      <view class="progress-bar">
-        <view class="progress-fill" :style="{ width: progressPercent + '%' }"></view>
-      </view>
-      <view class="progress-text">第 {{ currentGroup + 1 }} 组 / {{ totalGroups }} · {{ currentIndex + 1 }} / {{ words.length }}</view>
+      <TrainingProgressBar
+        :current-group="currentGroup"
+        :current-index="currentIndex"
+        :total-groups="totalGroups"
+        :words-in-group="words.length"
+      />
 
       <view class="question-card">
         <view class="audio-button" @tap="playAudio">
@@ -98,6 +100,7 @@ import { getWordMeaning } from '@/utils/vocabulary'
 import { buildUniqueOptions } from '@/utils/quiz-options'
 import TrainingSetup from '@/components/TrainingSetup.vue'
 import TrainingAnalysis from '@/components/TrainingAnalysis.vue'
+import TrainingProgressBar from '@/components/TrainingProgressBar.vue'
 import { useSessionAnalysis } from '@/composables/useSessionAnalysis'
 import { useTrainingFlow } from '@/composables/useTrainingFlow'
 
@@ -124,13 +127,6 @@ const totalGroups = ref(1)
 const listeningStats = ref({ total: 0, mastered: 0 })
 
 const sessionAnalysis = computed(() => getAnalysis())
-
-const progressPercent = computed(() => {
-  if (words.value.length === 0) return 0
-  const totalProgress = currentGroup.value * words.value.length + currentIndex.value + 1
-  const totalItems = totalGroups.value * words.value.length
-  return (totalProgress / totalItems) * 100
-})
 
 const currentWord = computed(() => {
   return words.value[currentIndex.value]
@@ -172,6 +168,8 @@ const selectOption = (index: number) => {
     (w) => vocabStore.getWordStats(w, 'listening'),
     vocabStore.meaningType
   )
+
+  void vocabStore.loadBookProgress()
   
   if (isCorrect.value) {
     totalCorrect.value++
@@ -224,7 +222,8 @@ const startTraining = async () => {
   currentIndex.value = 0
   resetSession()
   resetFlow()
-  
+
+  await vocabStore.loadBookProgress()
   await startGroup()
   
   selectedOption.value = -1
@@ -467,27 +466,6 @@ onMounted(() => {
 
 .training-screen {
   padding: 30rpx;
-}
-
-.progress-bar {
-  height: 12rpx;
-  background: #e8e8e8;
-  border-radius: 6rpx;
-  margin-bottom: 15rpx;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 6rpx;
-  transition: width 0.3s ease;
-}
-
-.progress-text {
-  font-size: 26rpx;
-  color: #999;
-  text-align: center;
-  margin-bottom: 30rpx;
 }
 
 .question-card {

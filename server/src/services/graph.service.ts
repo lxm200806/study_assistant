@@ -3,6 +3,7 @@ import { getBookByCode } from './book.service'
 import {
   aggregateBookWordStats,
   getMasteryStatus,
+  buildTypeStatsFromEntry,
   type WordStatEntry
 } from './mastery-aggregate.service'
 import { getContentTypeLabel, getTopicLabel, TOPIC_CATEGORIES } from '../data/taxonomy'
@@ -19,6 +20,18 @@ export interface MapWordEntry {
   status: string
   lastPractice: string | null
   byType: Record<string, number>
+  typeStats?: {
+    practiceCount: number
+    correctCount: number
+    mastery: number
+    accuracy: number
+    due: string | null
+    retrievability: number
+    reps: number
+    lapses: number
+    fsrsState: string
+    weakReason?: 'overdue' | 'low_retention' | 'recent_lapse'
+  }
 }
 
 export interface CategoryStats {
@@ -54,7 +67,16 @@ async function loadStatsMap(userId: string, wordIds: string[]): Promise<Map<stri
       practiceCount: stat.practiceCount,
       correctCount: stat.correctCount,
       mastery: stat.mastery,
-      lastPractice: stat.lastPractice
+      lastPractice: stat.lastPractice,
+      due: stat.due,
+      stability: stat.stability,
+      difficulty: stat.difficulty,
+      reps: stat.reps,
+      lapses: stat.lapses,
+      fsrsState: stat.fsrsState,
+      lastReview: stat.lastReview,
+      retrievability: stat.retrievability,
+      recentLapse: stat.recentLapse
     })
     map.set(stat.wordId, list)
   }
@@ -201,7 +223,16 @@ export async function getGlobalMap(userId: string) {
       practiceCount: stat.practiceCount,
       correctCount: stat.correctCount,
       mastery: stat.mastery,
-      lastPractice: stat.lastPractice
+      lastPractice: stat.lastPractice,
+      due: stat.due,
+      stability: stat.stability,
+      difficulty: stat.difficulty,
+      reps: stat.reps,
+      lapses: stat.lapses,
+      fsrsState: stat.fsrsState,
+      lastReview: stat.lastReview,
+      retrievability: stat.retrievability,
+      recentLapse: stat.recentLapse
     })
     wordStatsMap.set(stat.wordId, list)
   }
@@ -241,18 +272,43 @@ export async function getGlobalMap(userId: string) {
   }
 }
 
+function buildTypeStats(
+  statsMap: Map<string, WordStatEntry[]>,
+  wordId: string,
+  trainingType: string
+) {
+  const entry = statsMap.get(wordId)?.find(s => s.type === trainingType)
+  const stats = buildTypeStatsFromEntry(entry)
+  return {
+    ...stats,
+    due: stats.due?.toISOString() ?? null
+  }
+}
+
 export async function getBookWordStats(userId: string, bookCode: string, trainingType?: string) {
+  const book = await getBookByCode(bookCode)
+  if (!book) {
+    throw new Error('Book not found')
+  }
+
   const map = await getBookMap(userId, bookCode)
   if (!trainingType) return map
 
-  const words = map.words.map(w => ({
-    ...w,
-    mastery: w.byType[trainingType] ?? 0,
-    status: getMasteryStatus(
-      w.byType[trainingType] ?? 0,
-      (w.byType[trainingType] ?? 0) > 0
-    )
-  }))
+  const wordIds = book.vocabulary.map(bv => bv.wordId)
+  const statsMap = await loadStatsMap(userId, wordIds)
+
+  const words = map.words.map(w => {
+    const entry = statsMap.get(w.wordId)?.find(s => s.type === trainingType)
+    const typeStats = buildTypeStats(statsMap, w.wordId, trainingType)
+    const practiced = typeStats.practiceCount > 0
+    const mastery = practiced ? typeStats.mastery : 0
+    return {
+      ...w,
+      mastery,
+      status: getMasteryStatus(mastery, practiced, entry),
+      typeStats
+    }
+  })
 
   return {
     ...map,

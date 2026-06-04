@@ -10,8 +10,13 @@
           <text class="date-text">{{ currentDate }}</text>
         </view>
       </view>
-      <view class="logout-btn" @tap="handleLogout">
-        <text class="logout-icon">退出</text>
+      <view class="header-actions">
+        <view v-if="userStore.isAdmin" class="admin-btn" @tap="goAdmin">
+          <text>词库管理</text>
+        </view>
+        <view class="logout-btn" @tap="handleLogout">
+          <text class="logout-icon">退出</text>
+        </view>
       </view>
     </view>
 
@@ -200,6 +205,10 @@ const handleLogout = () => {
   })
 }
 
+const goAdmin = () => {
+  uni.navigateTo({ url: '/pages/admin/admin' })
+}
+
 const goToBooks = () => {
   uni.navigateTo({ url: '/pages/books/books' })
 }
@@ -228,7 +237,8 @@ const startReview = () => {
   uni.showToast({ title: '开始复习', icon: 'none' })
 }
 
-onMounted(() => {
+onMounted(async () => {
+  await userStore.checkLogin()
   updateDate()
   vocabStore.loadBooks()
   vocabStore.loadSettings()
@@ -286,6 +296,20 @@ onMounted(() => {
   font-size: 24rpx;
   color: #999;
   margin-top: 5rpx;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.admin-btn {
+  padding: 15rpx 24rpx;
+  background: #eef2ff;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #667eea;
 }
 
 .logout-btn {
