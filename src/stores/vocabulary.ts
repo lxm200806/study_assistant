@@ -4,6 +4,7 @@ import type { Vocabulary, VocabularyStats, TrainingRecord, MeaningType } from '@
 import { vocabularyAPI, trainingAPI, bookAPI, statsAPI } from '@/utils/api'
 import { getBookList } from '@/data/vocabulary'
 import type { SessionMode, BookProgress, VocabularyMapData, SessionResponse } from '@/types/map'
+import { unwrapStorage } from '@/utils/storage'
 
 export interface Book {
   id: string
@@ -12,6 +13,7 @@ export interface Book {
   description: string
   level: string
   wordCount: number
+  isFree?: boolean
 }
 
 export type { MeaningType }
@@ -34,20 +36,23 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   })
   const trainingRecords = ref<TrainingRecord[]>([])
   const serverStats = ref({
-    listening: { total: 0, mastered: 0 },
-    speaking: { total: 0, mastered: 0 },
-    reading: { total: 0, mastered: 0 },
-    writing: { total: 0, mastered: 0 }
+    listening: { total: 0, mastered: 0, avgMastery: 0 },
+    speaking: { total: 0, mastered: 0, avgMastery: 0 },
+    reading: { total: 0, mastered: 0, avgMastery: 0 },
+    writing: { total: 0, mastered: 0, avgMastery: 0 }
   })
+  const serverStatsLoaded = ref(false)
+  const dailyStats = ref({ date: '', wordCount: 0, goal: 30, streak: 0, progress: 0 })
+  const sessionTopic = ref<string | undefined>(undefined)
 
   const books = ref<Book[]>(getBookList())
   const currentBookCode = ref<string>(DEFAULT_BOOK_CODE)
   const meaningType = ref<MeaningType>('chinese')
   
-  const studySettings = ref<StudySettings>({
+  const   studySettings = ref<StudySettings>({
     wordsPerGroup: 10,
-    groupCount: 3,
-    sessionMode: 'coverage'
+    groupCount: 1,
+    sessionMode: 'smart'
   })
 
   const bookProgress = ref<BookProgress | null>(null)
@@ -68,26 +73,33 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     await loadSessionVocabulary(count)
   }
 
-  const loadSessionVocabulary = async (count: number = 10, trainingType?: string) => {
+  const loadSessionVocabulary = async (count: number = 10, trainingType?: string, topic?: string): Promise<Vocabulary[]> => {
     try {
       if (currentBookCode.value) {
         const result = await bookAPI.session(
           currentBookCode.value,
           count,
           studySettings.value.sessionMode,
-          trainingType
+          trainingType,
+          topic || sessionTopic.value
         )
         const data = result.data as SessionResponse | undefined
         vocabularyList.value = data?.words || []
         bookProgress.value = data?.progress || null
-        return
+        return vocabularyList.value
       }
 
       const result = await vocabularyAPI.random(count)
       vocabularyList.value = (result.data as Vocabulary[]) || []
+      return vocabularyList.value
     } catch (error) {
       console.error('Failed to load session vocabulary:', error)
       vocabularyList.value = []
+      const message = (error as Error).message || '加载词汇失败'
+      if (message.includes('会员') || message.includes('BOOK_LOCKED') || message.includes('403')) {
+        throw new Error('BOOK_LOCKED')
+      }
+      throw error
     }
   }
 
@@ -179,19 +191,26 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   }
 
   const loadSettings = () => {
-    const savedBook = uni.getStorageSync('currentBookCode')
-    const savedMeaning = uni.getStorageSync('meaningType') as MeaningType
-    const savedSettings = uni.getStorageSync('studySettings') as StudySettings
+    const savedBook = unwrapStorage<string>(uni.getStorageSync('currentBookCode'))
+      ?? (typeof uni.getStorageSync('currentBookCode') === 'string' ? uni.getStorageSync('currentBookCode') as string : '')
+    const savedMeaning = unwrapStorage<MeaningType>(uni.getStorageSync('meaningType'))
+    const savedSettings = unwrapStorage<StudySettings>(uni.getStorageSync('studySettings'))
 
-    currentBookCode.value = savedBook || DEFAULT_BOOK_CODE
+    if (savedBook) {
+      currentBookCode.value = savedBook
+    } else if (!currentBookCode.value) {
+      currentBookCode.value = DEFAULT_BOOK_CODE
+    }
     if (savedMeaning) {
       meaningType.value = savedMeaning
     }
     if (savedSettings) {
+      const rawMode = savedSettings.sessionMode as string
+      const mode = rawMode === 'random' ? 'smart' : (savedSettings.sessionMode || 'smart')
       studySettings.value = {
-        ...studySettings.value,
-        ...savedSettings,
-        sessionMode: savedSettings.sessionMode || 'coverage'
+        wordsPerGroup: savedSettings.wordsPerGroup || studySettings.value.wordsPerGroup,
+        groupCount: 1,
+        sessionMode: mode || 'smart'
       }
     }
   }
@@ -212,9 +231,33 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     try {
       const result = await vocabularyAPI.stats()
       serverStats.value = result.data || serverStats.value
+      serverStatsLoaded.value = true
     } catch (error) {
       console.error('Failed to load server stats:', error)
     }
+  }
+
+  const loadDailyStats = async () => {
+    try {
+      const goal = uni.getStorageSync('dailyGoal')
+      const result = await statsAPI.daily()
+      const data = result.data as typeof dailyStats.value | undefined
+      if (data) {
+        dailyStats.value = {
+          ...data,
+          goal: typeof goal === 'number' && goal > 0 ? goal : data.goal
+        }
+        if (dailyStats.value.goal > 0) {
+          dailyStats.value.progress = Math.min(100, Math.round((dailyStats.value.wordCount / dailyStats.value.goal) * 100))
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load daily stats:', error)
+    }
+  }
+
+  const setSessionTopic = (topic?: string) => {
+    sessionTopic.value = topic
   }
 
   const loadStats = () => {
@@ -267,6 +310,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     }
 
     saveStats()
+    void loadServerStats()
   }
 
   const getWordMastery = (word: string, type: 'listening' | 'speaking' | 'reading' | 'writing') => {
@@ -278,14 +322,31 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   }
 
   const getTypeStats = (type: 'listening' | 'speaking' | 'reading' | 'writing') => {
+    if (serverStatsLoaded.value && serverStats.value[type]) {
+      return serverStats.value[type]
+    }
+
     const words = stats.value[type]
     const total = Object.keys(words).length
     const mastered = Object.values(words).filter(w => w.mastery >= 4).length
-    const avgMastery = total > 0 
-      ? Math.round(Object.values(words).reduce((sum, w) => sum + w.mastery, 0) / total) 
+    const avgMastery = total > 0
+      ? Math.round(Object.values(words).reduce((sum, w) => sum + w.mastery, 0) / total)
       : 0
 
     return { total, mastered, avgMastery }
+  }
+
+  const getDueReviewWords = async (limit: number = 20) => {
+    try {
+      const result = await trainingAPI.review(undefined, currentBookCode.value, limit)
+      const reviewWords = result.data || []
+      return reviewWords
+        .map((r: { word?: { word?: string } }) => r.word?.word)
+        .filter((word): word is string => !!word)
+    } catch (error) {
+      console.error('Failed to get due review words:', error)
+      return []
+    }
   }
 
   const getWordsForReview = async (type: 'listening' | 'speaking' | 'reading' | 'writing', limit: number = 5) => {
@@ -357,6 +418,9 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     vocabularyList,
     stats,
     serverStats,
+    serverStatsLoaded,
+    dailyStats,
+    sessionTopic,
     trainingRecords,
     books,
     currentBookCode,
@@ -377,6 +441,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     setFullBookRound,
     setSessionMode,
     loadServerStats,
+    loadDailyStats,
+    setSessionTopic,
     loadStats,
     saveStats,
     updateWordStats,
@@ -384,6 +450,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     getWordStats,
     getTypeStats,
     getWordsForReview,
+    getDueReviewWords,
     addTrainingRecord,
     loadTrainingRecords,
     getTodayRecords,

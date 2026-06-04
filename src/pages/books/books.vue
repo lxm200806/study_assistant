@@ -62,6 +62,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useVocabularyStore, type MeaningType } from '@/stores/vocabulary'
+import { openMapTab } from '@/utils/navigation'
 
 const vocabStore = useVocabularyStore()
 
@@ -71,7 +72,7 @@ const selectBook = (book: any) => {
 }
 
 const goToBookMap = (code: string) => {
-  uni.navigateTo({ url: `/pages/vocabulary-map/vocabulary-map?book=${code}` })
+  openMapTab(code)
 }
 
 const setMeaningType = (type: MeaningType) => {

@@ -12,7 +12,7 @@ import {
 } from './review-engine.service'
 import { getBookByCode } from './book.service'
 
-export type SessionMode = 'coverage' | 'random' | 'weak' | 'review'
+export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review'
 
 export interface BookProgressInfo {
   bookCode: string
@@ -110,19 +110,47 @@ function computeScore(
   return getPriorityScore(aggregated, inCycle, typeStat)
 }
 
+function computeSmartScore(
+  bvWordId: string,
+  statsMap: Map<string, WordStatEntry[]>,
+  aggregated: ReturnType<typeof aggregateBookWordStats> extends Map<string, infer V> ? V : never,
+  inCycle: boolean,
+  trainingType?: string
+): number {
+  const typeStat = getTypeStat(statsMap, bvWordId, trainingType)
+  const now = new Date()
+  let score = getPriorityScore(aggregated, inCycle, typeStat)
+
+  if (typeStat?.due && typeStat.due.getTime() <= now.getTime()) {
+    score += 2000 + Math.min(500, (now.getTime() - typeStat.due.getTime()) / 3600000)
+  }
+
+  if (!inCycle) score += 800
+  if (!aggregated.practiced) score += 600
+
+  return score + Math.random() * 10
+}
+
 export async function getSessionWords(
   userId: string,
   bookCode: string,
   count: number,
   mode: SessionMode = 'coverage',
-  trainingType?: string
+  trainingType?: string,
+  topic?: string
 ) {
+  if ((mode as string) === 'random') {
+    mode = 'smart'
+  }
   const book = await getBookByCode(bookCode)
   if (!book) {
     throw new Error('Book not found')
   }
 
-  const bookWords = book.vocabulary.sort((a, b) => a.sortOrder - b.sortOrder)
+  const bookWordsAll = book.vocabulary.sort((a, b) => a.sortOrder - b.sortOrder)
+  const bookWords = topic
+    ? bookWordsAll.filter(bv => bv.word.topic === topic)
+    : bookWordsAll
   const wordIds = bookWords.map(bv => bv.wordId)
   const statsMap = await loadUserWordStats(userId, wordIds)
   const aggregated = aggregateBookWordStats(wordIds, statsMap)
@@ -140,9 +168,17 @@ export async function getSessionWords(
 
   const cycleSet = new Set(progress.practicedWordIds)
 
-  if (mode === 'random') {
-    const shuffled = [...bookWords].sort(() => Math.random() - 0.5)
-    const selected = shuffled.slice(0, count)
+  if (mode === 'smart') {
+    const scored = bookWords.map(bv => {
+      const mastery = aggregated.get(bv.wordId)!
+      const inCycle = cycleSet.has(bv.wordId)
+      return {
+        bv,
+        score: computeSmartScore(bv.wordId, statsMap, mastery, inCycle, trainingType)
+      }
+    })
+    scored.sort((a, b) => b.score - a.score)
+    const selected = scored.slice(0, count).map(s => s.bv)
     const progressInfo = await getBookProgress(userId, bookCode)
     return {
       words: selected.map(bv => formatWordForClient(bv.word)),

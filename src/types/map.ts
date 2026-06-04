@@ -1,4 +1,4 @@
-export type SessionMode = 'coverage' | 'random' | 'weak' | 'review'
+export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review'
 
 export type MasteryStatus = 'mastered' | 'learning' | 'unfamiliar' | 'unpracticed'
 export type WeakReason = 'overdue' | 'low_retention' | 'recent_lapse'
@@ -85,7 +85,7 @@ export interface VocabularyMapData {
 
 export const SESSION_MODE_LABELS: Record<SessionMode, string> = {
   coverage: '全书覆盖',
-  random: '随机练习',
+  smart: '智能推荐',
   weak: '薄弱强化',
   review: '到期复习'
 }

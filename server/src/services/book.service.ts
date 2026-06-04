@@ -17,7 +17,8 @@ export async function initBooks() {
             code: bookData.code,
             description: bookData.description,
             level: bookData.level,
-            wordCount: bookData.words.length
+            wordCount: bookData.words.length,
+            isFree: bookData.code === 'ket'
           }
         })
       } else {
@@ -27,7 +28,8 @@ export async function initBooks() {
             name: bookData.name,
             description: bookData.description,
             level: bookData.level,
-            wordCount: bookData.words.length
+            wordCount: bookData.words.length,
+            isFree: bookData.code === 'ket' ? true : book.isFree
           }
         })
       }
@@ -131,6 +133,7 @@ export async function getBooks() {
       description: true,
       level: true,
       wordCount: true,
+      isFree: true,
       createdAt: true
     },
     orderBy: { createdAt: 'asc' }

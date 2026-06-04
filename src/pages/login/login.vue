@@ -88,7 +88,7 @@ const showForgotPassword = () => {
 }
 
 const loginWithWechat = () => {
-  uni.showToast({ title: '微信登录开发中', icon: 'none' })
+  userStore.wechatLogin(`demo_${Date.now()}`)
 }
 
 const loginWithPhone = () => {

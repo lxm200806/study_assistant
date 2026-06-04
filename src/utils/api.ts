@@ -1,4 +1,12 @@
-function getApiBaseUrl(): string {
+import { unwrapStorage } from './storage'
+
+export function getAuthToken(): string | null {
+  const raw = uni.getStorageSync('accessToken')
+  const token = unwrapStorage<string>(raw) ?? (typeof raw === 'string' ? raw : null)
+  return token || null
+}
+
+export function getApiBaseUrl(): string {
   // 开发模式走 Vite 同源代理（使用完整 origin，避免 H5 相对路径异常）
   if (import.meta.env.DEV) {
     if (typeof window !== 'undefined' && window.location?.origin) {
@@ -33,7 +41,7 @@ export async function request<T>(
   data?: any,
   headers?: Record<string, string>
 ): Promise<ResponseData<T>> {
-  const token = uni.getStorageSync('accessToken')
+  const token = getAuthToken()
 
   const defaultHeaders: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -55,7 +63,15 @@ export async function request<T>(
         if (res.statusCode === 200 || res.statusCode === 201) {
           resolve(res.data as ResponseData<T>)
         } else {
-          reject(new Error((res.data as ResponseData).error || 'Request failed'))
+          const body = res.data as ResponseData
+          const errMsg = body?.error || 'Request failed'
+          if (res.statusCode === 401) {
+            reject(new Error(`Unauthorized: ${errMsg}`))
+          } else if (res.statusCode === 403) {
+            reject(new Error(`BOOK_LOCKED: ${errMsg}`))
+          } else {
+            reject(new Error(errMsg))
+          }
         }
       },
       fail: (err) => {
@@ -77,6 +93,12 @@ export const authAPI = {
   },
   profile: async () => {
     return request('/auth/profile', 'GET')
+  },
+  onboard: async () => {
+    return request('/auth/onboard', 'POST')
+  },
+  wechatLogin: async (code: string) => {
+    return request('/auth/wechat', 'POST', { code })
   }
 }
 
@@ -133,8 +155,8 @@ export const trainingAPI = {
 }
 
 export const chatAPI = {
-  send: async (content: string) => {
-    return request('/chat/send', 'POST', { content })
+  send: async (content: string, bookCode?: string) => {
+    return request('/chat/send', 'POST', { content, bookCode })
   },
   history: async (page: number = 1, limit: number = 20) => {
     return request(`/chat/history?page=${page}&limit=${limit}`, 'GET')
@@ -151,9 +173,11 @@ export const bookAPI = {
   random: async (code: string, count: number = 10) => {
     return request(`/books/${code}/random?count=${count}`, 'GET')
   },
-  session: async (code: string, count: number = 10, mode: string = 'coverage', type?: string) => {
-    const typeQuery = type ? `&type=${type}` : ''
-    return request(`/books/${code}/session?count=${count}&mode=${mode}${typeQuery}`, 'GET')
+  session: async (code: string, count: number = 10, mode: string = 'coverage', type?: string, topic?: string) => {
+    const params = new URLSearchParams({ count: String(count), mode })
+    if (type) params.set('type', type)
+    if (topic) params.set('topic', topic)
+    return request(`/books/${code}/session?${params.toString()}`, 'GET')
   },
   progress: async (code: string) => {
     return request(`/books/${code}/progress`, 'GET')
@@ -171,5 +195,20 @@ export const statsAPI = {
   },
   globalMap: async () => {
     return request('/stats/global/map', 'GET')
+  },
+  daily: async () => {
+    return request('/stats/daily', 'GET')
+  },
+  weeklyReport: async () => {
+    return request('/stats/weekly-report', 'GET')
+  }
+}
+
+export const quizAPI = {
+  words: async (bookCode: string, count: number = 30) => {
+    return request(`/training/quiz/words?bookCode=${bookCode}&count=${count}`, 'GET')
+  },
+  submit: async (bookCode: string, items: { wordId: string; isCorrect: boolean }[]) => {
+    return request('/training/quiz/submit', 'POST', { bookCode, items })
   }
 }

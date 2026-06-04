@@ -21,7 +21,19 @@
     {
       "path": "pages/vocabulary/vocabulary",
       "style": {
-        "navigationBarTitleText": "词汇统计"
+        "navigationBarTitleText": "统计"
+      }
+    },
+    {
+      "path": "pages/vocabulary-map/vocabulary-map",
+      "style": {
+        "navigationBarTitleText": "图谱"
+      }
+    },
+    {
+      "path": "pages/mine/mine",
+      "style": {
+        "navigationBarTitleText": "我的"
       }
     },
     {
@@ -43,15 +55,33 @@
       }
     },
     {
-      "path": "pages/chat/chat",
+      "path": "pages/speaking/speaking",
       "style": {
-        "navigationBarTitleText": "AI陪聊"
+        "navigationBarTitleText": "口语训练"
       }
     },
     {
-      "path": "pages/vocabulary-map/vocabulary-map",
+      "path": "pages/onboarding/onboarding",
       "style": {
-        "navigationBarTitleText": "词汇图谱"
+        "navigationBarTitleText": "新手引导"
+      }
+    },
+    {
+      "path": "pages/quiz/quiz",
+      "style": {
+        "navigationBarTitleText": "阶段小测"
+      }
+    },
+    {
+      "path": "pages/membership/membership",
+      "style": {
+        "navigationBarTitleText": "会员"
+      }
+    },
+    {
+      "path": "pages/chat/chat",
+      "style": {
+        "navigationBarTitleText": "AI陪聊"
       }
     },
     {
@@ -87,19 +117,19 @@
       },
       {
         "pagePath": "pages/vocabulary/vocabulary",
-        "text": "词汇",
+        "text": "统计",
         "iconPath": "static/icons/book.png",
         "selectedIconPath": "static/icons/book-active.png"
       },
       {
-        "pagePath": "pages/listening/listening",
-        "text": "听力",
+        "pagePath": "pages/vocabulary-map/vocabulary-map",
+        "text": "图谱",
         "iconPath": "static/icons/listen.png",
         "selectedIconPath": "static/icons/listen-active.png"
       },
       {
-        "pagePath": "pages/chat/chat",
-        "text": "陪聊",
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
         "iconPath": "static/icons/chat.png",
         "selectedIconPath": "static/icons/chat-active.png"
       }

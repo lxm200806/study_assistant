@@ -1,19 +1,7 @@
 <template>
   <view class="container">
     <view class="top-bar">
-      <scroll-view scroll-x class="book-scroll">
-        <view
-          v-for="book in vocabStore.books"
-          :key="book.code"
-          :class="['book-chip', vocabStore.currentBookCode === book.code ? 'active' : '']"
-          @tap="selectBook(book.code)"
-        >
-          <text>{{ book.name }}</text>
-        </view>
-      </scroll-view>
-      <view class="map-btn" @tap="goToMap">
-        <text>📊 图谱</text>
-      </view>
+      <BookSwitcher class="book-switcher-wrap" @change="onBookChange" />
     </view>
 
     <view class="tabs">
@@ -126,6 +114,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
+import BookSwitcher from '@/components/BookSwitcher.vue'
 import { formatTimeAgo } from '@/utils'
 import { getMasteryLabel, getMasteryLevel, formatDueDate, WEAK_REASON_LABELS } from '@/utils/mastery'
 import { STATUS_LABELS } from '@/types/map'
@@ -297,20 +286,13 @@ const resetPage = () => {
   currentPage.value = 1
 }
 
-const selectBook = async (code: string) => {
-  vocabStore.setCurrentBook(code)
+const onBookChange = async () => {
   resetPage()
   await reloadMap()
 }
 
 const reloadMap = async () => {
   await vocabStore.loadBookMap(vocabStore.currentBookCode, activeTab.value)
-}
-
-const goToMap = () => {
-  uni.navigateTo({
-    url: `/pages/vocabulary-map/vocabulary-map?book=${vocabStore.currentBookCode}`
-  })
 }
 
 watch(activeTab, () => {
@@ -340,6 +322,7 @@ onMounted(async () => {
   vocabStore.loadTrainingRecords()
   vocabStore.loadSettings()
   await vocabStore.loadBooks()
+  await vocabStore.loadServerStats()
   await reloadMap()
 })
 </script>
@@ -357,34 +340,9 @@ onMounted(async () => {
   margin-bottom: 20rpx;
 }
 
-.book-scroll {
-  flex: 1;
-  white-space: nowrap;
-}
-
-.book-chip {
-  display: inline-block;
-  padding: 14rpx 24rpx;
-  margin-right: 12rpx;
-  background: white;
-  border-radius: 30rpx;
-  font-size: 24rpx;
-  color: #666;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
-
-  &.active {
-    background: #667eea;
-    color: white;
-  }
-}
-
-.map-btn {
-  padding: 14rpx 24rpx;
-  background: #eef2ff;
-  border-radius: 30rpx;
-  font-size: 24rpx;
-  color: #667eea;
-  flex-shrink: 0;
+.book-switcher-wrap {
+  width: 100%;
+  margin-bottom: 0 !important;
 }
 
 .tabs {

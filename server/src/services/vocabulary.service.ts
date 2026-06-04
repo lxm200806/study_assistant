@@ -40,38 +40,23 @@ export async function getTrainingStats(userId: string) {
     where: { userId },
     select: { type: true, practiceCount: true, mastery: true }
   })
-  
-  const result: any = {
-    listening: { total: 0, mastered: 0 },
-    speaking: { total: 0, mastered: 0 },
-    reading: { total: 0, mastered: 0 },
-    writing: { total: 0, mastered: 0 }
+
+  const result: Record<string, { total: number; mastered: number; avgMastery: number }> = {
+    listening: { total: 0, mastered: 0, avgMastery: 0 },
+    speaking: { total: 0, mastered: 0, avgMastery: 0 },
+    reading: { total: 0, mastered: 0, avgMastery: 0 },
+    writing: { total: 0, mastered: 0, avgMastery: 0 }
   }
-  
-  const typeStats: Record<string, { count: number; totalMastery: number }> = {
-    listening: { count: 0, totalMastery: 0 },
-    speaking: { count: 0, totalMastery: 0 },
-    reading: { count: 0, totalMastery: 0 },
-    writing: { count: 0, totalMastery: 0 }
+
+  for (const key of Object.keys(result)) {
+    const typeStats = stats.filter(s => s.type === key)
+    const total = typeStats.length
+    const mastered = typeStats.filter(s => s.mastery >= 4).length
+    const avgMastery = total > 0
+      ? Math.round(typeStats.reduce((sum, s) => sum + s.mastery, 0) / total)
+      : 0
+    result[key] = { total, mastered, avgMastery }
   }
-  
-  stats.forEach((stat) => {
-    const type = stat.type as WordType
-    if (typeStats[type]) {
-      typeStats[type].count++
-      typeStats[type].totalMastery += stat.mastery
-    }
-  })
-  
-  Object.keys(result).forEach((key) => {
-    const type = key as WordType
-    if (typeStats[type]) {
-      result[type].total = typeStats[type].count
-      result[type].mastered = typeStats[type].count > 0 
-        ? Math.round(typeStats[type].totalMastery / typeStats[type].count) 
-        : 0
-    }
-  })
-  
+
   return result
 }

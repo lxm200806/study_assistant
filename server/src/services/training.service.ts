@@ -1,5 +1,8 @@
 import prisma from '../prisma/client'
 import { PracticeDto, WordType } from '../types'
+
+const TRAINING_TYPES: WordType[] = ['listening', 'speaking', 'reading', 'writing']
+const HOME_REVIEW_PER_TYPE = 5
 import {
   processPractice,
   buildFsrsFieldsFromStat,
@@ -114,10 +117,32 @@ export interface ReviewWordsOptions {
   limit?: number
 }
 
-export async function getReviewWords(userId: string, options: ReviewWordsOptions = {}) {
+async function fetchDueStatsByType(
+  userId: string,
+  options: { wordIds?: string[]; type: WordType; perTypeLimit: number }
+) {
   const now = new Date()
-  const { type, bookCode, limit = 50 } = options
+  const { wordIds, type, perTypeLimit } = options
 
+  return prisma.vocabularyStat.findMany({
+    where: {
+      userId,
+      practiceCount: { gt: 0 },
+      due: { lte: now },
+      type,
+      ...(wordIds ? { wordId: { in: wordIds } } : {})
+    },
+    include: { word: true },
+    orderBy: { due: 'asc' },
+    take: perTypeLimit
+  })
+}
+
+async function getAggregatedDueStats(
+  userId: string,
+  bookCode: string | undefined,
+  perTypeLimit: number
+) {
   let wordIds: string[] | undefined
   if (bookCode) {
     const book = await prisma.book.findUnique({
@@ -128,24 +153,51 @@ export async function getReviewWords(userId: string, options: ReviewWordsOptions
     wordIds = book.vocabulary.map(bv => bv.wordId)
   }
 
-  const stats = await prisma.vocabularyStat.findMany({
-    where: {
-      userId,
-      practiceCount: { gt: 0 },
-      due: { lte: now },
-      ...(type ? { type } : {}),
-      ...(wordIds ? { wordId: { in: wordIds } } : {})
-    },
-    include: { word: true },
-    orderBy: { due: 'asc' },
-    take: limit
-  })
+  const statsByType = await Promise.all(
+    TRAINING_TYPES.map(type =>
+      fetchDueStatsByType(userId, { wordIds, type, perTypeLimit })
+    )
+  )
 
-  return stats.map(stat => ({
+  return dedupeReviewStatsByWord(statsByType.flat())
+}
+
+export async function getReviewWords(userId: string, options: ReviewWordsOptions = {}) {
+  const now = new Date()
+  const { type, bookCode, limit = 50 } = options
+
+  const selected = type
+    ? await fetchDueStatsByType(userId, {
+        wordIds: bookCode
+          ? (await prisma.book.findUnique({
+              where: { code: bookCode },
+              include: { vocabulary: true }
+            }))?.vocabulary.map(bv => bv.wordId)
+          : undefined,
+        type,
+        perTypeLimit: limit
+      })
+    : (await getAggregatedDueStats(
+        userId,
+        bookCode,
+        Math.max(1, Math.ceil(limit / TRAINING_TYPES.length))
+      )).slice(0, limit)
+
+  return selected.map(stat => ({
     ...stat,
     status: getMasteryStatus(buildFsrsFieldsFromStat(stat, now)),
     weakReason: getWeakReason(buildFsrsFieldsFromStat(stat, now))
   }))
+}
+
+function dedupeReviewStatsByWord<T extends { wordId: string; due: Date | null }>(stats: T[]): T[] {
+  const seen = new Map<string, T>()
+  for (const stat of stats) {
+    if (!seen.has(stat.wordId)) {
+      seen.set(stat.wordId, stat)
+    }
+  }
+  return [...seen.values()]
 }
 
 export async function getDueCount(userId: string, bookCode: string, trainingType?: WordType) {
@@ -158,16 +210,17 @@ export async function getDueCount(userId: string, bookCode: string, trainingType
     return { dueCount: 0, overdueCount: 0 }
   }
 
-  const wordIds = book.vocabulary.map(bv => bv.wordId)
-  const dueCount = await prisma.vocabularyStat.count({
-    where: {
-      userId,
-      wordId: { in: wordIds },
-      practiceCount: { gt: 0 },
-      due: { lte: now },
-      ...(trainingType ? { type: trainingType } : {})
-    }
-  })
+  const dueCount = trainingType
+    ? await prisma.vocabularyStat.count({
+        where: {
+          userId,
+          wordId: { in: book.vocabulary.map(bv => bv.wordId) },
+          practiceCount: { gt: 0 },
+          due: { lte: now },
+          type: trainingType
+        }
+      })
+    : (await getAggregatedDueStats(userId, bookCode, HOME_REVIEW_PER_TYPE)).length
 
   return { dueCount, overdueCount: dueCount }
 }

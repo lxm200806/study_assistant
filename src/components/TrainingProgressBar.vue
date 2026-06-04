@@ -16,9 +16,7 @@
     <view class="session-bar">
       <view class="session-fill" :style="{ width: sessionPercent + '%' }" />
     </view>
-    <text class="session-text">
-      第 {{ currentGroup + 1 }} 组 / {{ totalGroups }} · {{ currentIndex + 1 }} / {{ wordsInGroup }}
-    </text>
+    <text class="session-text">{{ currentIndex + 1 }} / {{ wordsInGroup }}</text>
   </view>
 </template>
 
@@ -27,10 +25,10 @@ import { computed } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
 
 const props = defineProps<{
-  currentGroup: number
   currentIndex: number
-  totalGroups: number
   wordsInGroup: number
+  currentGroup?: number
+  totalGroups?: number
 }>()
 
 const vocabStore = useVocabularyStore()
@@ -38,10 +36,8 @@ const vocabStore = useVocabularyStore()
 const bookProgress = computed(() => vocabStore.bookProgress)
 
 const sessionPercent = computed(() => {
-  if (props.wordsInGroup <= 0 || props.totalGroups <= 0) return 0
-  const totalItems = props.totalGroups * props.wordsInGroup
-  const done = props.currentGroup * props.wordsInGroup + props.currentIndex + 1
-  return Math.min(100, (done / totalItems) * 100)
+  if (props.wordsInGroup <= 0) return 0
+  return Math.min(100, ((props.currentIndex + 1) / props.wordsInGroup) * 100)
 })
 </script>
 

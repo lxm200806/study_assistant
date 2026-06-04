@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { practice, getReviewWords, getTrainingHistory } from '../services/training.service'
 import { markWordsPracticed, getNewlyCoveredCount } from '../services/coverage.service'
+import { recordDailyStudy } from '../services/daily-study.service'
 import type { WordType } from '../types'
 
 export async function practiceHandler(req: Request, res: Response) {
@@ -57,6 +58,7 @@ export async function completeSessionHandler(req: Request, res: Response) {
 
     const newlyCovered = await getNewlyCoveredCount(userId, bookCode, wordIds)
     await markWordsPracticed(userId, bookCode, wordIds)
+    await recordDailyStudy(userId, wordIds.length)
 
     res.status(200).json({ success: true, newlyCovered })
   } catch (error) {

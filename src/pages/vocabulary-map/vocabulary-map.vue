@@ -17,14 +17,7 @@
       </view>
 
       <view v-if="scope === 'book'" class="book-picker">
-        <view
-          v-for="book in vocabStore.books"
-          :key="book.code"
-          :class="['book-chip', selectedBook === book.code ? 'active' : '']"
-          @tap="selectBook(book.code)"
-        >
-          <text>{{ book.name }}</text>
-        </view>
+        <BookSwitcher @change="onBookChange" />
       </view>
     </view>
 
@@ -53,6 +46,7 @@
         v-if="mapData.byTopic.length > 0"
         :topics="mapData.byTopic"
         :weakest-topics="mapData.weakestTopics"
+        @practice="startTopicTraining"
       />
 
       <view class="section-header">
@@ -69,9 +63,11 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
+import { onLoad, onShow } from '@dcloudio/uni-app'
+import { consumeMapTabBook } from '@/utils/navigation'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import type { VocabularyMapData } from '@/types/map'
+import BookSwitcher from '@/components/BookSwitcher.vue'
 import MasterySummaryRing from '@/components/map/MasterySummaryRing.vue'
 import CategoryBarChart from '@/components/map/CategoryBarChart.vue'
 import TopicWeaknessChart from '@/components/map/TopicWeaknessChart.vue'
@@ -111,9 +107,29 @@ const selectBook = async (code: string) => {
   await loadMap()
 }
 
+const onBookChange = async (code?: string) => {
+  if (code) selectedBook.value = code
+  await loadMap()
+}
+
+const startTopicTraining = (topic: string) => {
+  vocabStore.setSessionTopic(topic)
+  vocabStore.setStudySettings({ wordsPerGroup: 10, groupCount: 1, sessionMode: 'smart' })
+  uni.navigateTo({ url: `/pages/recognition/recognition?autoStart=1&topic=${topic}` })
+}
+
 onLoad((query) => {
   if (query?.scope === 'global') scope.value = 'global'
   if (query?.book) selectedBook.value = query.book as string
+})
+
+onShow(async () => {
+  const bookFromTab = consumeMapTabBook()
+  if (bookFromTab) {
+    selectedBook.value = bookFromTab
+    vocabStore.setCurrentBook(bookFromTab)
+    await loadMap()
+  }
 })
 
 onMounted(async () => {

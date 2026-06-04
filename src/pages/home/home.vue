@@ -1,6 +1,6 @@
 <template>
   <view class="container">
-    <view class="header">
+    <view class="header" @tap="goToMine">
       <view class="user-info">
         <view class="avatar">
           <text class="avatar-text">{{ userStore.username.charAt(0) }}</text>
@@ -10,23 +10,29 @@
           <text class="date-text">{{ currentDate }}</text>
         </view>
       </view>
-      <view class="header-actions">
-        <view v-if="userStore.isAdmin" class="admin-btn" @tap="goAdmin">
-          <text>词库管理</text>
-        </view>
-        <view class="logout-btn" @tap="handleLogout">
-          <text class="logout-icon">退出</text>
-        </view>
+      <text class="header-link">我的 ›</text>
+    </view>
+
+    <BookSwitcher @change="onBookChange" />
+
+    <view class="daily-cta" @tap="startDailyLearning">
+      <view class="daily-cta-main">
+        <text class="daily-cta-title">开始今日学习</text>
+        <text class="daily-cta-desc">
+          {{ dueCount > 0 ? `${dueCount} 词待复习 · 智能推荐` : '智能推荐新词' }}
+          · 目标 {{ dailyGoal }} 词
+        </text>
       </view>
+      <text class="daily-cta-arrow">→</text>
     </view>
 
     <view class="stats-card">
       <view class="stats-header">
-        <text class="stats-title">今日学习</text>
-        <text class="stats-subtitle">{{ todayStats.total }} 词</text>
+        <text class="stats-title">今日进度</text>
+        <text class="stats-subtitle">{{ dailyWordCount }}/{{ dailyGoal }} 词 · 🔥 {{ streak }} 天</text>
       </view>
       <view class="progress-bar">
-        <view class="progress-fill" :style="{ width: todayStats.accuracy + '%' }"></view>
+        <view class="progress-fill" :style="{ width: dailyProgress + '%' }"></view>
       </view>
       <view class="stats-detail">
         <view class="stat-item">
@@ -45,10 +51,10 @@
     </view>
 
     <view class="quick-actions">
-      <view class="action-card" @tap="goToBooks">
+      <view v-if="!vocabStore.currentBookCode" class="action-card" @tap="goToBooks">
         <view class="action-icon">📚</view>
         <text class="action-title">词汇书</text>
-        <text class="action-desc">{{ vocabStore.getCurrentBook?.name || '选择词汇书' }}</text>
+        <text class="action-desc">选择词汇书</text>
       </view>
       <view class="action-card" @tap="goToListening">
         <view class="action-icon">🎧</view>
@@ -65,6 +71,16 @@
         <text class="action-title">拼写训练</text>
         <text class="action-desc">听写单词</text>
       </view>
+      <view class="action-card" @tap="goToSpeaking">
+        <view class="action-icon">👄</view>
+        <text class="action-title">口语训练</text>
+        <text class="action-desc">跟读练习</text>
+      </view>
+      <view class="action-card" @tap="goToQuiz">
+        <view class="action-icon">📝</view>
+        <text class="action-title">阶段小测</text>
+        <text class="action-desc">30 词模拟测</text>
+      </view>
       <view class="action-card" @tap="goToChat">
         <view class="action-icon">💬</view>
         <text class="action-title">AI陪聊</text>
@@ -75,7 +91,7 @@
     <view class="vocabulary-stats">
       <view class="section-header">
         <text class="section-title">词汇掌握</text>
-        <text class="section-link" @tap="goToVocabulary">查看详情 →</text>
+        <text class="section-link" @tap="goToVocabulary">查看统计 →</text>
       </view>
       <view class="vocab-cards">
         <view class="vocab-item">
@@ -120,23 +136,6 @@
         </view>
       </view>
     </view>
-
-    <view v-if="reviewWords.length > 0" class="review-section">
-      <view class="section-header">
-        <text class="section-title">复习提醒</text>
-        <text class="section-badge">{{ reviewWords.length }} 词待复习</text>
-      </view>
-      <view class="review-words">
-        <view 
-          v-for="word in reviewWords.slice(0, 5)" 
-          :key="word" 
-          class="review-word"
-          @tap="startReview"
-        >
-          <text class="word-text">{{ word }}</text>
-        </view>
-      </view>
-    </view>
   </view>
 </template>
 
@@ -144,12 +143,20 @@
 import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import { useVocabularyStore } from '@/stores/vocabulary'
+import BookSwitcher from '@/components/BookSwitcher.vue'
+import { useDailySession } from '@/composables/useDailySession'
+import { openPage } from '@/utils/navigation'
 
 const userStore = useUserStore()
 const vocabStore = useVocabularyStore()
+const { startDailyTraining, getDailyGoal, ensureAccessibleBook } = useDailySession()
 
 const currentDate = ref('')
-const reviewWords = ref<string[]>([])
+const dueCount = ref(0)
+const dailyGoal = ref(30)
+const dailyWordCount = ref(0)
+const streak = ref(0)
+const dailyProgress = ref(0)
 
 const todayStats = ref({
   total: 0,
@@ -174,6 +181,14 @@ const loadStats = async () => {
   vocabStore.loadTrainingRecords()
   
   await vocabStore.loadServerStats()
+  await vocabStore.loadDueCount()
+  await vocabStore.loadDailyStats()
+  
+  dueCount.value = vocabStore.dueCount.dueCount
+  dailyGoal.value = getDailyGoal()
+  dailyWordCount.value = vocabStore.dailyStats.wordCount
+  streak.value = vocabStore.dailyStats.streak
+  dailyProgress.value = vocabStore.dailyStats.progress
   
   todayStats.value = vocabStore.getTodayStats
   
@@ -181,32 +196,14 @@ const loadStats = async () => {
   speakingStats.value = vocabStore.getTypeStats('speaking')
   readingStats.value = vocabStore.getTypeStats('reading')
   writingStats.value = vocabStore.getTypeStats('writing')
-  
-  const [listeningReview, speakingReview, readingReview, writingReview] = await Promise.all([
-    vocabStore.getWordsForReview('listening'),
-    vocabStore.getWordsForReview('speaking'),
-    vocabStore.getWordsForReview('reading'),
-    vocabStore.getWordsForReview('writing')
-  ])
-  
-  const allReviewWords = [...listeningReview, ...speakingReview, ...readingReview, ...writingReview]
-  reviewWords.value = [...new Set(allReviewWords)]
 }
 
-const handleLogout = () => {
-  uni.showModal({
-    title: '确认退出',
-    content: '确定要退出登录吗?',
-    success: (res) => {
-      if (res.confirm) {
-        userStore.logout()
-      }
-    }
-  })
+const startDailyLearning = () => {
+  void startDailyTraining('reading')
 }
 
-const goAdmin = () => {
-  uni.navigateTo({ url: '/pages/admin/admin' })
+const goToMine = () => {
+  uni.switchTab({ url: '/pages/mine/mine' })
 }
 
 const goToBooks = () => {
@@ -214,7 +211,7 @@ const goToBooks = () => {
 }
 
 const goToListening = () => {
-  uni.navigateTo({ url: '/pages/listening/listening' })
+  openPage('/pages/listening/listening')
 }
 
 const goToRecognition = () => {
@@ -225,25 +222,42 @@ const goToSpelling = () => {
   uni.navigateTo({ url: '/pages/spelling/spelling' })
 }
 
+const goToSpeaking = () => {
+  uni.navigateTo({ url: '/pages/speaking/speaking' })
+}
+
+const goToQuiz = () => {
+  uni.navigateTo({ url: '/pages/quiz/quiz' })
+}
+
 const goToChat = () => {
-  uni.switchTab({ url: '/pages/chat/chat' })
+  uni.navigateTo({ url: '/pages/chat/chat' })
 }
 
 const goToVocabulary = () => {
   uni.switchTab({ url: '/pages/vocabulary/vocabulary' })
 }
 
-const startReview = () => {
-  uni.showToast({ title: '开始复习', icon: 'none' })
-}
-
 onMounted(async () => {
   await userStore.checkLogin()
+  if (!userStore.isLoggedIn) {
+    uni.reLaunch({ url: '/pages/login/login' })
+    return
+  }
+  if (!userStore.hasOnboarded) {
+    uni.reLaunch({ url: '/pages/onboarding/onboarding' })
+    return
+  }
   updateDate()
   vocabStore.loadBooks()
   vocabStore.loadSettings()
+  ensureAccessibleBook()
   loadStats()
 })
+
+const onBookChange = async () => {
+  await loadStats()
+}
 </script>
 
 <style lang="scss" scoped>
@@ -298,29 +312,45 @@ onMounted(async () => {
   margin-top: 5rpx;
 }
 
-.header-actions {
+.header-link {
+  font-size: 26rpx;
+  color: #667eea;
+  flex-shrink: 0;
+}
+
+.daily-cta {
   display: flex;
   align-items: center;
-  gap: 12rpx;
+  justify-content: space-between;
+  background: white;
+  border-radius: 20rpx;
+  padding: 28rpx 32rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.15);
+  border: 2rpx solid #eef2ff;
 }
 
-.admin-btn {
-  padding: 15rpx 24rpx;
-  background: #eef2ff;
-  border-radius: 30rpx;
+.daily-cta-main {
+  flex: 1;
+}
+
+.daily-cta-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+}
+
+.daily-cta-desc {
   font-size: 24rpx;
+  color: #999;
+  margin-top: 6rpx;
+  display: block;
+}
+
+.daily-cta-arrow {
+  font-size: 40rpx;
   color: #667eea;
-}
-
-.logout-btn {
-  padding: 15rpx 30rpx;
-  background: #f5f5f5;
-  border-radius: 30rpx;
-}
-
-.logout-icon {
-  font-size: 26rpx;
-  color: #666;
 }
 
 .stats-card {
@@ -441,14 +471,6 @@ onMounted(async () => {
   color: #667eea;
 }
 
-.section-badge {
-  font-size: 22rpx;
-  color: #fff;
-  background: #ff6b6b;
-  padding: 5rpx 15rpx;
-  border-radius: 20rpx;
-}
-
 .vocab-cards {
   background: white;
   border-radius: 16rpx;
@@ -498,29 +520,5 @@ onMounted(async () => {
   &.active {
     color: #ffc107;
   }
-}
-
-.review-section {
-  background: white;
-  border-radius: 16rpx;
-  padding: 20rpx;
-}
-
-.review-words {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15rpx;
-}
-
-.review-word {
-  background: #fff3e0;
-  padding: 15rpx 25rpx;
-  border-radius: 30rpx;
-  border: 1rpx solid #ffe0b2;
-}
-
-.word-text {
-  font-size: 26rpx;
-  color: #ff9800;
 }
 </style>

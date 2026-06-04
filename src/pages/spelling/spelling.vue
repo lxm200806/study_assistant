@@ -1,30 +1,15 @@
 <template>
   <view class="container">
     <view v-if="!started" class="start-screen">
-      <view class="start-icon">✍️</view>
-      <text class="start-title">拼写训练</text>
-      <text class="start-desc">根据中文提示，拼写正确的英文单词</text>
-      <view class="start-stats">
-        <view class="stat-item">
-          <text class="stat-value">{{ writingStats.total }}</text>
-          <text class="stat-label">已学词汇</text>
-        </view>
-        <view class="stat-item">
-          <text class="stat-value">{{ writingStats.mastered }}</text>
-          <text class="stat-label">已掌握</text>
-        </view>
-      </view>
-
-      <TrainingSetup training-type="writing" />
-
+      <BookSwitcher compact training-type="writing" />
+      <TrainingStartStats :total="writingStats.total" :mastered="writingStats.mastered" />
+      <TrainingSetup compact training-type="writing" />
       <button class="btn-start" @tap="startTraining">开始训练</button>
     </view>
 
-    <view v-else class="training-screen">
+    <view v-else-if="!showFinish" class="training-screen">
       <TrainingProgressBar
-        :current-group="currentGroup"
         :current-index="currentIndex"
-        :total-groups="totalGroups"
         :words-in-group="words.length"
       />
 
@@ -33,6 +18,7 @@
           <text v-if="questionDisplay.mode === 'image'" class="word-image">{{ questionDisplay.content }}</text>
           <text class="word-meaning">{{ questionDisplay.mode === 'text' ? questionDisplay.content : getWordMeaning(currentWord, vocabStore.meaningType) }}</text>
           <text class="word-hint">音标: {{ currentWord.phonetic }}</text>
+          <button class="btn-listen" @tap="playSpellingAudio">🔊 听发音</button>
         </view>
       </view>
 
@@ -66,11 +52,16 @@
             <text>{{ currentWord.example }}</text>
           </view>
         </view>
-        <button class="btn-next" @tap="nextWord">{{ isLastWord ? '完成训练' : '下一题' }}</button>
+        <button v-if="showResult && !isLastWord" class="btn-next" @tap="nextWord">下一题</button>
+        <TrainingGroupActions
+          v-if="showResult && isLastWord"
+          @next-group="completeAndNextGroup"
+          @finish="completeAndFinish"
+        />
       </view>
     </view>
 
-    <view v-if="showFinish" class="finish-screen">
+    <view v-else class="finish-screen">
       <view class="finish-icon">{{ sessionAnalysis.accuracy >= 80 ? '🎉' : sessionAnalysis.accuracy >= 60 ? '👍' : '💪' }}</view>
       <text class="finish-title">训练完成!</text>
       <view class="finish-stats">
@@ -84,12 +75,14 @@
         </view>
       </view>
 
-      <TrainingAnalysis :analysis="sessionAnalysis" :newly-covered="newlyCovered" />
+      <TrainingAnalysis
+        :analysis="sessionAnalysis"
+        :newly-covered="newlyCovered"
+        :due-count="finishDueCount"
+        :weak-topics="weakTopicLabels"
+      />
 
-      <view class="finish-actions">
-        <button class="btn-secondary" @tap="goToVocabulary">掌握分析</button>
-        <button class="btn-primary" @tap="restartTraining">再来一组</button>
-      </view>
+      <TrainingFinishActions />
     </view>
   </view>
 </template>
@@ -100,10 +93,19 @@ import { useVocabularyStore } from '@/stores/vocabulary'
 import type { Vocabulary } from '@/types'
 import { getWordMeaning, getWordDisplayLabel } from '@/utils/vocabulary'
 import TrainingSetup from '@/components/TrainingSetup.vue'
+import TrainingStartStats from '@/components/TrainingStartStats.vue'
+import BookSwitcher from '@/components/BookSwitcher.vue'
 import TrainingAnalysis from '@/components/TrainingAnalysis.vue'
 import TrainingProgressBar from '@/components/TrainingProgressBar.vue'
+import TrainingFinishActions from '@/components/TrainingFinishActions.vue'
+import TrainingGroupActions from '@/components/TrainingGroupActions.vue'
 import { useSessionAnalysis } from '@/composables/useSessionAnalysis'
 import { useTrainingFlow } from '@/composables/useTrainingFlow'
+import { ensureTrainingWords } from '@/composables/useTrainingStart'
+import { useDailySession } from '@/composables/useDailySession'
+import { speakWord } from '@/utils/tts'
+import { onLoad } from '@dcloudio/uni-app'
+import { useGroupComplete } from '@/composables/useGroupComplete'
 
 const vocabStore = useVocabularyStore()
 const { recordAnswer, getAnalysis, resetSession } = useSessionAnalysis('writing')
@@ -114,15 +116,25 @@ const showResult = ref(false)
 const showFinish = ref(false)
 const isCorrect = ref(false)
 const currentIndex = ref(0)
-const currentGroup = ref(0)
 const words = ref<Vocabulary[]>([])
 const userInput = ref('')
 
 const totalCorrect = ref(0)
 const totalCount = ref(0)
-const totalGroups = ref(1)
 
-const writingStats = ref({ total: 0, mastered: 0 })
+const writingStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
+const finishDueCount = ref(0)
+const weakTopicLabels = ref<string[]>([])
+const autoStart = ref(false)
+
+const playSpellingAudio = async () => {
+  if (!currentWord.value) return
+  try {
+    await speakWord(currentWord.value.word)
+  } catch {
+    uni.showToast({ title: '播放失败', icon: 'none' })
+  }
+}
 
 const sessionAnalysis = computed(() => getAnalysis())
 
@@ -133,9 +145,7 @@ const questionDisplay = computed(() => {
   return getWordDisplayLabel(currentWord.value, vocabStore.meaningType)
 })
 
-const isLastWord = computed(() => {
-  return currentIndex.value === words.value.length - 1 && currentGroup.value === totalGroups.value - 1
-})
+const isLastWord = computed(() => currentIndex.value === words.value.length - 1)
 
 const submitAnswer = () => {
   if (!userInput.value.trim() || showResult.value) return
@@ -161,20 +171,7 @@ const submitAnswer = () => {
 }
 
 const nextWord = async () => {
-  if (isLastWord.value) {
-    await finishSession()
-    showFinish.value = true
-    return
-  }
-  
-  if (currentIndex.value === words.value.length - 1) {
-    currentGroup.value++
-    currentIndex.value = 0
-    startGroup()
-  } else {
-    currentIndex.value++
-  }
-  
+  currentIndex.value++
   userInput.value = ''
   showResult.value = false
   isCorrect.value = false
@@ -184,19 +181,24 @@ const startGroup = async () => {
   words.value = await loadGroup(vocabStore.studySettings.wordsPerGroup)
 }
 
+const { ensureAccessibleBook } = useDailySession()
+
 const startTraining = async () => {
   if (!vocabStore.ensureBookSelected()) return
+  ensureAccessibleBook()
 
-  totalGroups.value = vocabStore.studySettings.groupCount
-  totalCount.value = vocabStore.studySettings.wordsPerGroup * totalGroups.value
+  totalCount.value = vocabStore.studySettings.wordsPerGroup
   totalCorrect.value = 0
-  currentGroup.value = 0
   currentIndex.value = 0
   resetSession()
   resetFlow()
 
   await vocabStore.loadBookProgress()
   await startGroup()
+
+  if (!(await ensureTrainingWords(words.value))) {
+    return
+  }
   
   userInput.value = ''
   showResult.value = false
@@ -204,10 +206,26 @@ const startTraining = async () => {
   started.value = true
 }
 
-const restartTraining = () => {
+const nextGroupTraining = async () => {
   showFinish.value = false
-  startTraining()
+  resetSession()
+  resetFlow()
+  totalCorrect.value = 0
+  currentIndex.value = 0
+  userInput.value = ''
+  showResult.value = false
+  await startGroup()
+  if (!(await ensureTrainingWords(words.value))) return
 }
+
+const { completeAndNextGroup, completeAndFinish } = useGroupComplete({
+  finishSession,
+  nextGroupTraining,
+  showFinish,
+  showResult,
+  finishDueCount,
+  weakTopicLabels
+})
 
 const backToHome = () => {
   uni.navigateBack()
@@ -217,12 +235,21 @@ const goToVocabulary = () => {
   uni.switchTab({ url: '/pages/vocabulary/vocabulary' })
 }
 
-onMounted(() => {
+onLoad((query) => {
+  if (query?.autoStart === '1') autoStart.value = true
+  if (query?.topic) vocabStore.setSessionTopic(query.topic as string)
+})
+
+onMounted(async () => {
   vocabStore.loadBooks()
   vocabStore.loadStats()
   vocabStore.loadSettings()
   vocabStore.loadBookProgress()
+  await vocabStore.loadServerStats()
   writingStats.value = vocabStore.getTypeStats('writing')
+  if (autoStart.value) {
+    await startTraining()
+  }
 })
 </script>
 
@@ -233,54 +260,23 @@ onMounted(() => {
 }
 
 .start-screen {
-  padding: 30rpx;
+  padding: 20rpx 24rpx 120rpx;
 }
 
-.start-icon {
-  font-size: 120rpx;
-  text-align: center;
-  margin-bottom: 30rpx;
-}
-
-.start-title {
-  font-size: 48rpx;
+.btn-start {
+  width: 100%;
+  height: 88rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 44rpx;
+  font-size: 32rpx;
   font-weight: 600;
-  color: #333;
-  text-align: center;
-  display: block;
-  margin-bottom: 20rpx;
+  margin-top: 8rpx;
 }
 
-.start-desc {
-  font-size: 28rpx;
-  color: #999;
-  text-align: center;
-  display: block;
-  margin-bottom: 50rpx;
-}
-
-.start-stats {
-  display: flex;
-  justify-content: center;
-  gap: 60rpx;
-  margin-bottom: 40rpx;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.stat-value {
-  font-size: 48rpx;
-  font-weight: 600;
-  color: #667eea;
-}
-
-.stat-label {
-  font-size: 26rpx;
-  color: #999;
+.btn-start::after {
+  border: none;
 }
 
 .settings-section {
@@ -426,6 +422,17 @@ onMounted(() => {
   font-size: 26rpx;
   color: #999;
   font-style: italic;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.btn-listen {
+  background: #eef2ff;
+  color: #667eea;
+  border: none;
+  border-radius: 30rpx;
+  padding: 16rpx 32rpx;
+  font-size: 26rpx;
 }
 
 .input-card {

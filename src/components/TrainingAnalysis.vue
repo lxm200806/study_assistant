@@ -25,6 +25,17 @@
       <text class="section-title">📖 本轮新覆盖 {{ newlyCovered }} 个词</text>
     </view>
 
+    <view v-if="dueCount !== undefined && dueCount >= 0" class="section">
+      <text class="section-title">📅 明日待复习约 {{ dueCount }} 个词</text>
+    </view>
+
+    <view v-if="weakTopics && weakTopics.length > 0" class="section">
+      <text class="section-title">📌 薄弱主题</text>
+      <view class="tag-list">
+        <text v-for="t in weakTopics" :key="t" class="tag tag-weak">{{ t }}</text>
+      </view>
+    </view>
+
     <view v-if="analysis.newlyMastered.length > 0" class="section">
       <text class="section-title">🎉 新掌握 {{ analysis.newlyMastered.length }} 个词</text>
       <view class="tag-list">
@@ -97,6 +108,8 @@ import { getMasteryLabel } from '@/utils/mastery'
 const props = defineProps<{
   analysis: SessionAnalysis
   newlyCovered?: number
+  dueCount?: number
+  weakTopics?: string[]
 }>()
 
 const sortedResults = computed(() => {

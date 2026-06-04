@@ -2,7 +2,7 @@
   <view class="container">
     <view class="chat-header">
       <text class="header-title">AI陪聊</text>
-      <text class="header-subtitle">练习口语和听力</text>
+      <text class="header-subtitle">当前词书：{{ currentBookName }} · 练习口语和听力</text>
     </view>
 
     <scroll-view 
@@ -87,7 +87,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useUserStore } from '@/stores/user'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { chatAPI } from '@/utils/api'
@@ -115,6 +115,8 @@ const sessionStats = ref({
 })
 
 const sessionWords = ref<string[]>([])
+
+const currentBookName = computed(() => vocabStore.getCurrentBook?.name || vocabStore.currentBookCode || 'KET')
 
 const formatTime = (timestamp: number) => {
   const date = new Date(timestamp)
@@ -148,7 +150,7 @@ const sendMessage = async () => {
   isTyping.value = true
   
   try {
-    const result = await chatAPI.send(userText)
+    const result = await chatAPI.send(userText, vocabStore.currentBookCode)
     isTyping.value = false
     
     if (result.aiResponse) {
@@ -213,6 +215,8 @@ const loadInitialMessages = () => {
 
 onMounted(() => {
   loadInitialMessages()
+  vocabStore.loadBooks()
+  vocabStore.loadSettings()
   vocabStore.loadStats()
 })
 </script>

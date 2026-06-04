@@ -1,38 +1,31 @@
 <template>
   <view class="container">
     <view v-if="!started" class="start-screen">
-      <view class="start-icon">🎧</view>
-      <text class="start-title">听力训练</text>
-      <text class="start-desc">听单词发音，选择正确的中文含义</text>
-      <view class="start-stats">
-        <view class="stat-item">
-          <text class="stat-value">{{ listeningStats.total }}</text>
-          <text class="stat-label">已学词汇</text>
-        </view>
-        <view class="stat-item">
-          <text class="stat-value">{{ listeningStats.mastered }}</text>
-          <text class="stat-label">已掌握</text>
-        </view>
-      </view>
-
-      <TrainingSetup training-type="listening" />
-
+      <BookSwitcher compact training-type="listening" />
+      <TrainingStartStats :total="listeningStats.total" :mastered="listeningStats.mastered" />
+      <TrainingSetup compact training-type="listening" />
       <button class="btn-start" @tap="startTraining">开始训练</button>
     </view>
 
-    <view v-else class="training-screen">
+    <view v-else-if="!showFinish" class="training-screen">
+      <TrainingNavBack @back="requestExit" />
+
       <TrainingProgressBar
-        :current-group="currentGroup"
         :current-index="currentIndex"
-        :total-groups="totalGroups"
         :words-in-group="words.length"
       />
 
       <view class="question-card">
-        <view class="audio-button" @tap="playAudio">
-          <text class="audio-icon">{{ isPlaying ? '⏸️' : '🔊' }}</text>
-        </view>
-        <text class="question-hint">点击播放单词发音</text>
+        <button
+          type="button"
+          class="audio-button"
+          hover-class="audio-button-hover"
+          @tap.stop="playAudio"
+        >
+          <text class="audio-icon">{{ isPlaying ? '🔊' : '🔊' }}</text>
+        </button>
+        <text class="question-hint">{{ isPlaying ? '播放中…' : '点击播放单词发音' }}</text>
+        <text v-if="ttsHint" class="tts-hint">{{ ttsHint }}</text>
       </view>
 
       <view class="options-list">
@@ -40,6 +33,7 @@
           v-for="(option, index) in options" 
           :key="index"
           :class="['option-item', selectedOption === index ? 'selected' : '', getOptionClass(index)]"
+          hover-class="option-hover"
           @tap="selectOption(index)"
         >
           <text class="option-index">{{ optionLabels[index] }}</text>
@@ -64,11 +58,16 @@
             <text>{{ currentWord.example }}</text>
           </view>
         </view>
-        <button class="btn-next" @tap="nextWord">{{ isLastWord ? '完成训练' : '下一题' }}</button>
+        <button v-if="showResult && !isLastWord" class="btn-next" @tap="nextWord">下一题</button>
+        <TrainingGroupActions
+          v-if="showResult && isLastWord"
+          @next-group="completeAndNextGroup"
+          @finish="completeAndFinish"
+        />
       </view>
     </view>
 
-    <view v-if="showFinish" class="finish-screen">
+    <view v-else class="finish-screen">
       <view class="finish-icon">{{ sessionAnalysis.accuracy >= 80 ? '🎉' : sessionAnalysis.accuracy >= 60 ? '👍' : '💪' }}</view>
       <text class="finish-title">训练完成!</text>
       <view class="finish-stats">
@@ -82,29 +81,45 @@
         </view>
       </view>
 
-      <TrainingAnalysis :analysis="sessionAnalysis" :newly-covered="newlyCovered" />
+      <TrainingAnalysis
+        :analysis="sessionAnalysis"
+        :newly-covered="newlyCovered"
+        :due-count="finishDueCount"
+        :weak-topics="weakTopicLabels"
+      />
 
-      <view class="finish-actions">
-        <button class="btn-secondary" @tap="goToVocabulary">掌握分析</button>
-        <button class="btn-primary" @tap="restartTraining">再来一组</button>
-      </view>
+      <TrainingFinishActions />
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import type { Vocabulary } from '@/types'
 import { getWordMeaning } from '@/utils/vocabulary'
 import { buildUniqueOptions } from '@/utils/quiz-options'
 import TrainingSetup from '@/components/TrainingSetup.vue'
+import TrainingStartStats from '@/components/TrainingStartStats.vue'
+import BookSwitcher from '@/components/BookSwitcher.vue'
 import TrainingAnalysis from '@/components/TrainingAnalysis.vue'
 import TrainingProgressBar from '@/components/TrainingProgressBar.vue'
+import TrainingFinishActions from '@/components/TrainingFinishActions.vue'
+import TrainingGroupActions from '@/components/TrainingGroupActions.vue'
+import TrainingNavBack from '@/components/TrainingNavBack.vue'
 import { useSessionAnalysis } from '@/composables/useSessionAnalysis'
 import { useTrainingFlow } from '@/composables/useTrainingFlow'
+import { ensureTrainingWords, requireLoginForTraining } from '@/composables/useTrainingStart'
+import { useUserStore } from '@/stores/user'
+import { useDailySession } from '@/composables/useDailySession'
+import { speakWord, isTtsSupported, stopSpeak, preloadWordAudio } from '@/utils/tts'
+import { consumeTrainingAutoStart } from '@/utils/navigation'
+import { onLoad, onShow, onBackPress } from '@dcloudio/uni-app'
+import { useGroupComplete } from '@/composables/useGroupComplete'
+import { useTrainingExit } from '@/composables/useTrainingExit'
 
 const vocabStore = useVocabularyStore()
+const userStore = useUserStore()
 const { recordAnswer, getAnalysis, resetSession } = useSessionAnalysis('listening')
 const { newlyCovered, resetFlow, loadGroup, finishSession } = useTrainingFlow('listening')
 
@@ -115,16 +130,19 @@ const isPlaying = ref(false)
 const selectedOption = ref(-1)
 const isCorrect = ref(false)
 const currentIndex = ref(0)
-const currentGroup = ref(0)
 const words = ref<Vocabulary[]>([])
 const options = ref<string[]>([])
 const optionLabels = ['A', 'B', 'C', 'D']
 
 const totalCorrect = ref(0)
 const totalCount = ref(0)
-const totalGroups = ref(1)
 
-const listeningStats = ref({ total: 0, mastered: 0 })
+const listeningStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
+const finishDueCount = ref(0)
+const weakTopicLabels = ref<string[]>([])
+const autoStart = ref(false)
+const ttsHint = ref('')
+let playToken = 0
 
 const sessionAnalysis = computed(() => getAnalysis())
 
@@ -132,8 +150,17 @@ const currentWord = computed(() => {
   return words.value[currentIndex.value]
 })
 
-const isLastWord = computed(() => {
-  return currentIndex.value === words.value.length - 1 && currentGroup.value === totalGroups.value - 1
+const isLastWord = computed(() => currentIndex.value === words.value.length - 1)
+
+const preloadListeningAudio = (fromIndex = currentIndex.value) => {
+  const current = words.value[fromIndex]
+  const next = words.value[fromIndex + 1]
+  if (current?.word) preloadWordAudio(current.word)
+  if (next?.word) preloadWordAudio(next.word)
+}
+
+watch(currentWord, (word) => {
+  if (word?.word) preloadListeningAudio(currentIndex.value)
 })
 
 const getOptionClass = (index: number) => {
@@ -144,12 +171,36 @@ const getOptionClass = (index: number) => {
   return ''
 }
 
-const playAudio = () => {
+const playAudio = async () => {
+  if (!currentWord.value || isPlaying.value) return
+
+  const token = ++playToken
   isPlaying.value = true
-  uni.showToast({ title: '播放发音中...', icon: 'none', duration: 1000 })
-  setTimeout(() => {
+  ttsHint.value = ''
+  stopSpeak()
+
+  if (!isTtsSupported()) {
     isPlaying.value = false
-  }, 1000)
+    ttsHint.value = '当前环境不支持发音，请使用 Chrome 浏览器'
+    uni.showToast({ title: '当前环境不支持发音', icon: 'none' })
+    return
+  }
+
+  try {
+    await speakWord(currentWord.value.word)
+    if (token === playToken) {
+      ttsHint.value = ''
+    }
+  } catch {
+    if (token === playToken) {
+      ttsHint.value = '播放失败，请检查浏览器音量或再点一次喇叭'
+      uni.showToast({ title: '播放失败，请再点一次', icon: 'none' })
+    }
+  } finally {
+    if (token === playToken) {
+      isPlaying.value = false
+    }
+  }
 }
 
 const selectOption = (index: number) => {
@@ -177,24 +228,12 @@ const selectOption = (index: number) => {
 }
 
 const nextWord = async () => {
-  if (isLastWord.value) {
-    await finishSession()
-    showFinish.value = true
-    return
-  }
-  
-  if (currentIndex.value === words.value.length - 1) {
-    currentGroup.value++
-    currentIndex.value = 0
-    startGroup()
-  } else {
-    currentIndex.value++
-  }
-  
+  currentIndex.value++
   selectedOption.value = -1
   showResult.value = false
   isCorrect.value = false
   generateOptions()
+  void playAudio()
 }
 
 const generateOptions = () => {
@@ -212,31 +251,102 @@ const startGroup = async () => {
   words.value = await loadGroup(vocabStore.studySettings.wordsPerGroup)
 }
 
-const startTraining = async () => {
-  if (!vocabStore.ensureBookSelected()) return
+const { ensureAccessibleBook } = useDailySession()
 
-  totalGroups.value = vocabStore.studySettings.groupCount
-  totalCount.value = vocabStore.studySettings.wordsPerGroup * totalGroups.value
+const startTraining = async () => {
+  if (!(await requireLoginForTraining())) return
+  if (!vocabStore.ensureBookSelected()) return
+  ensureAccessibleBook()
+
+  totalCount.value = vocabStore.studySettings.wordsPerGroup
   totalCorrect.value = 0
-  currentGroup.value = 0
   currentIndex.value = 0
   resetSession()
   resetFlow()
 
-  await vocabStore.loadBookProgress()
-  await startGroup()
+  let loadError: unknown
+  try {
+    await vocabStore.loadBookProgress()
+    words.value = await loadGroup(vocabStore.studySettings.wordsPerGroup)
+  } catch (error) {
+    loadError = error
+    words.value = []
+  }
+
+  if (!(await ensureTrainingWords(words.value, loadError))) {
+    return
+  }
   
   selectedOption.value = -1
   showResult.value = false
   showFinish.value = false
   started.value = true
   generateOptions()
+  words.value.forEach(w => preloadWordAudio(w.word))
+  preloadListeningAudio()
+  ttsHint.value = '请先点击喇叭播放发音'
 }
 
-const restartTraining = () => {
+const nextGroupTraining = async () => {
   showFinish.value = false
-  startTraining()
+  resetSession()
+  resetFlow()
+  totalCorrect.value = 0
+  currentIndex.value = 0
+  selectedOption.value = -1
+  showResult.value = false
+  ttsHint.value = '请先点击喇叭播放发音'
+  try {
+    await startGroup()
+  } catch (error) {
+    if (!(await ensureTrainingWords([], error))) return
+    return
+  }
+  if (!(await ensureTrainingWords(words.value))) return
+  generateOptions()
+  words.value.forEach(w => preloadWordAudio(w.word))
+  preloadListeningAudio()
 }
+
+const { completeAndNextGroup, completeAndFinish } = useGroupComplete({
+  finishSession,
+  nextGroupTraining,
+  showFinish,
+  showResult,
+  finishDueCount,
+  weakTopicLabels,
+  onAfterNextGroup: () => {
+    ttsHint.value = '请先点击喇叭播放发音'
+  }
+})
+
+const resetTrainingState = () => {
+  stopSpeak()
+  isPlaying.value = false
+  autoStart.value = false
+  started.value = false
+  showFinish.value = false
+  showResult.value = false
+  selectedOption.value = -1
+  isCorrect.value = false
+  currentIndex.value = 0
+  words.value = []
+  options.value = []
+  ttsHint.value = ''
+}
+
+const { requestExit } = useTrainingExit({
+  beforeExit: stopSpeak,
+  onExit: resetTrainingState
+})
+
+onBackPress(() => {
+  if (started.value && !showFinish.value) {
+    requestExit()
+    return true
+  }
+  return false
+})
 
 const backToHome = () => {
   uni.navigateBack()
@@ -246,12 +356,36 @@ const goToVocabulary = () => {
   uni.switchTab({ url: '/pages/vocabulary/vocabulary' })
 }
 
-onMounted(() => {
+onLoad((query) => {
+  if (query?.autoStart === '1') autoStart.value = true
+  if (query?.topic) vocabStore.setSessionTopic(query.topic as string)
+})
+
+onMounted(async () => {
+  await userStore.checkLogin()
   vocabStore.loadBooks()
   vocabStore.loadStats()
   vocabStore.loadSettings()
+  ensureAccessibleBook()
   vocabStore.loadBookProgress()
+  await vocabStore.loadServerStats()
   listeningStats.value = vocabStore.getTypeStats('listening')
+  if (autoStart.value) {
+    await startTraining()
+  }
+})
+
+onShow(async () => {
+  if (!autoStart.value && consumeTrainingAutoStart()) {
+    autoStart.value = true
+    if (!started.value) {
+      await startTraining()
+    }
+  }
+})
+
+onUnmounted(() => {
+  stopSpeak()
 })
 </script>
 
@@ -262,54 +396,23 @@ onMounted(() => {
 }
 
 .start-screen {
-  padding: 30rpx;
+  padding: 20rpx 24rpx 120rpx;
 }
 
-.start-icon {
-  font-size: 120rpx;
-  text-align: center;
-  margin-bottom: 30rpx;
-}
-
-.start-title {
-  font-size: 48rpx;
+.btn-start {
+  width: 100%;
+  height: 88rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 44rpx;
+  font-size: 32rpx;
   font-weight: 600;
-  color: #333;
-  text-align: center;
-  display: block;
-  margin-bottom: 20rpx;
+  margin-top: 8rpx;
 }
 
-.start-desc {
-  font-size: 28rpx;
-  color: #999;
-  text-align: center;
-  display: block;
-  margin-bottom: 50rpx;
-}
-
-.start-stats {
-  display: flex;
-  justify-content: center;
-  gap: 60rpx;
-  margin-bottom: 40rpx;
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.stat-value {
-  font-size: 48rpx;
-  font-weight: 600;
-  color: #667eea;
-}
-
-.stat-label {
-  font-size: 26rpx;
-  color: #999;
+.btn-start::after {
+  border: none;
 }
 
 .settings-section {
@@ -452,18 +555,6 @@ onMounted(() => {
   font-size: 24rpx;
 }
 
-.btn-start {
-  width: 100%;
-  height: 96rpx;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 48rpx;
-  font-size: 34rpx;
-  font-weight: 600;
-  margin-top: 20rpx;
-}
-
 .training-screen {
   padding: 30rpx;
 }
@@ -488,6 +579,18 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   margin-bottom: 20rpx;
+  border: none;
+  padding: 0;
+  line-height: 1;
+}
+
+.audio-button::after {
+  border: none;
+}
+
+.audio-button-hover {
+  opacity: 0.85;
+  transform: scale(0.96);
 }
 
 .audio-icon {
@@ -497,6 +600,13 @@ onMounted(() => {
 .question-hint {
   font-size: 28rpx;
   color: #999;
+}
+
+.tts-hint {
+  font-size: 24rpx;
+  color: #ff9800;
+  margin-top: 12rpx;
+  display: block;
 }
 
 .options-list {
@@ -514,7 +624,8 @@ onMounted(() => {
   padding: 30rpx;
   border: 2rpx solid transparent;
   transition: all 0.3s ease;
-  
+  cursor: pointer;
+
   &.selected {
     border-color: #667eea;
     background: #f5f7ff;
@@ -529,6 +640,10 @@ onMounted(() => {
     border-color: #f44336;
     background: #ffebee;
   }
+}
+
+.option-hover {
+  background: #f5f7ff;
 }
 
 .option-index {

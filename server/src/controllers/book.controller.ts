@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { getBooks, getBookByCode, getRandomWordsFromBook } from '../services/book.service'
 import { getSessionWords, getBookProgress, type SessionMode } from '../services/coverage.service'
 import { getDueCount } from '../services/training.service'
+import { assertBookAccess } from '../services/book-access.service'
 import { formatWordForClient } from '../utils/wordFormat'
 
 export async function getBooksHandler(req: Request, res: Response) {
@@ -62,12 +63,20 @@ export async function getBookSessionHandler(req: Request, res: Response) {
     const count = parseInt(req.query.count as string) || 10
     const mode = (req.query.mode as SessionMode) || 'coverage'
     const type = req.query.type as string | undefined
+    const topic = req.query.topic as string | undefined
 
-    const result = await getSessionWords(userId, code, count, mode, type)
+    await assertBookAccess(userId, code)
+    const result = await getSessionWords(userId, code, count, mode, type, topic)
     res.status(200).json({ success: true, data: result })
   } catch (error) {
     const message = (error as Error).message
-    res.status(message === 'Book not found' ? 404 : 500).json({ success: false, error: message })
+    if (message === 'BOOK_LOCKED') {
+      return res.status(403).json({ success: false, error: '当前词书需开通会员后使用' })
+    }
+    if (message === 'Book not found') {
+      return res.status(404).json({ success: false, error: message })
+    }
+    res.status(500).json({ success: false, error: message })
   }
 }
 

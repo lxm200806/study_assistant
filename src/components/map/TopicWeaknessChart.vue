@@ -1,7 +1,7 @@
 <template>
   <view class="topic-chart">
     <text class="chart-title">非虚构主题掌握度</text>
-    <view v-for="item in displayTopics" :key="item.topic" class="topic-row">
+    <view v-for="item in displayTopics" :key="item.topic" class="topic-row" @tap="emitPractice(item.topic)">
       <text class="topic-label">{{ item.label }}</text>
       <view class="topic-bar-track">
         <view
@@ -15,7 +15,7 @@
     <view v-if="weakestTopics.length > 0" class="weak-topics">
       <text class="weak-title">薄弱主题</text>
       <view class="weak-tags">
-        <text v-for="t in weakestTopics" :key="t" class="weak-tag">{{ getTopicLabel(t) }}</text>
+        <text v-for="t in weakestTopics" :key="t" class="weak-tag" @tap="emitPractice(t)">{{ getTopicLabel(t) }}</text>
       </view>
     </view>
   </view>
@@ -30,6 +30,12 @@ const props = defineProps<{
   topics: TopicStats[]
   weakestTopics: string[]
 }>()
+
+const emit = defineEmits<{ practice: [topic: string] }>()
+
+const emitPractice = (topic: string) => {
+  emit('practice', topic)
+}
 
 const displayTopics = computed(() =>
   [...props.topics]

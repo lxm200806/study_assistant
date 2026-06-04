@@ -3,11 +3,13 @@ import { hashPassword, comparePassword } from '../utils/password'
 import { generateAccessToken, generateRefreshToken, verifyToken } from '../utils/jwt'
 import { LoginDto, RegisterDto, TokenResponse } from '../types'
 
-function toUserResponse(user: { id: string; username: string; isAdmin: boolean }) {
+function toUserResponse(user: { id: string; username: string; isAdmin: boolean; hasOnboarded?: boolean; plan?: string }) {
   return {
     id: user.id,
     username: user.username,
-    isAdmin: user.isAdmin
+    isAdmin: user.isAdmin,
+    hasOnboarded: user.hasOnboarded ?? false,
+    plan: user.plan ?? 'free'
   }
 }
 
@@ -88,7 +90,7 @@ export async function refreshToken(refreshToken: string): Promise<{ accessToken:
 export async function getProfile(userId: string) {
   const user = await prisma.user.findUnique({
     where: { id: userId },
-    select: { id: true, username: true, isAdmin: true, createdAt: true }
+    select: { id: true, username: true, isAdmin: true, hasOnboarded: true, plan: true, planExpiresAt: true, createdAt: true }
   })
 
   if (!user) {
@@ -96,4 +98,29 @@ export async function getProfile(userId: string) {
   }
 
   return user
+}
+
+export async function completeOnboarding(userId: string, bookCode?: string, dailyGoal?: number) {
+  return prisma.user.update({
+    where: { id: userId },
+    data: { hasOnboarded: true }
+  })
+}
+
+export async function wechatLoginStub(code: string) {
+  if (!code) throw new Error('Invalid wechat code')
+  const openId = `wx_${code.slice(0, 16)}`
+  let user = await prisma.user.findUnique({ where: { wxOpenId: openId } })
+  if (!user) {
+    user = await prisma.user.create({
+      data: {
+        username: `wx_${openId.slice(-8)}`,
+        passwordHash: await hashPassword(openId),
+        wxOpenId: openId
+      }
+    })
+  }
+  const accessToken = generateAccessToken(user.id, user.username)
+  const refreshToken = generateRefreshToken(user.id)
+  return { accessToken, refreshToken, user: toUserResponse(user) }
 }

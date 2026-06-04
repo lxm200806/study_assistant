@@ -13,6 +13,7 @@ server/.env
 server/data/sources/ecdict.csv
 server/data/sources/ecdict.mini.csv
 server/data/sources/en-dict-cache.json
+server/data/tts-cache/
 
 # 编译产物
 server/dist/
