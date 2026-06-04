@@ -12,6 +12,7 @@ import bookRoutes from './routes/book.routes'
 import statsRoutes from './routes/stats.routes'
 import adminRoutes from './routes/admin.routes'
 import ttsRoutes from './routes/tts.routes'
+import speechRoutes from './routes/speech.routes'
 import { errorMiddleware } from './middleware/error'
 import { initVocabulary } from './utils/seed'
 import { initBooks } from './services/book.service'
@@ -52,6 +53,7 @@ app.use('/api/books', bookRoutes)
 app.use('/api/stats', statsRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/tts', ttsRoutes)
+app.use('/api/speech', speechRoutes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 app.use(errorMiddleware)

@@ -100,3 +100,16 @@ export function getSpeakingState(): boolean {
 export function getWordAudioUrl(word: string): string {
   return buildTtsUrl(word)
 }
+
+export function speakText(text: string, maxLen = 120): Promise<void> {
+  const trimmed = text?.trim()
+  if (!trimmed) return Promise.reject(new Error('empty text'))
+
+  const clipped = trimmed.length > maxLen ? trimmed.slice(0, maxLen) : trimmed
+  if (!isTtsSupported()) {
+    return Promise.reject(new Error('TTS not supported'))
+  }
+
+  stopSpeak()
+  return playUrl(buildTtsUrl(clipped))
+}

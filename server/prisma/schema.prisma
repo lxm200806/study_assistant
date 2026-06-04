@@ -22,6 +22,7 @@ model User {
   vocabularyStats VocabularyStat[]
   trainingRecords TrainingRecord[]
   chatRecords     ChatRecord[]
+  speechUsageLogs SpeechUsageLog[]
   bookStudyProgress BookStudyProgress[]
   dailyStudyLogs  DailyStudyLog[]
   bookUnlocks     UserBookUnlock[]
@@ -129,9 +130,21 @@ model ChatRecord {
   userId     String
   role       String
   content    String
+  mode       String?
   createdAt  DateTime  @default(now())
   
   user   User       @relation(fields: [userId], references: [id])
+}
+
+model SpeechUsageLog {
+  id        String   @id @default(uuid())
+  userId    String
+  kind      String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId, createdAt])
 }
 
 model DailyStudyLog {

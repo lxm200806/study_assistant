@@ -115,7 +115,18 @@ const onBookChange = async (code?: string) => {
 const startTopicTraining = (topic: string) => {
   vocabStore.setSessionTopic(topic)
   vocabStore.setStudySettings({ wordsPerGroup: 10, groupCount: 1, sessionMode: 'smart' })
-  uni.navigateTo({ url: `/pages/recognition/recognition?autoStart=1&topic=${topic}` })
+  uni.showActionSheet({
+    itemList: ['认读训练', '口语训练', 'AI 用词挑战'],
+    success: (res) => {
+      if (res.tapIndex === 0) {
+        uni.navigateTo({ url: `/pages/recognition/recognition?autoStart=1&topic=${topic}` })
+      } else if (res.tapIndex === 1) {
+        uni.navigateTo({ url: `/pages/speaking/speaking?autoStart=1&topic=${topic}` })
+      } else {
+        uni.navigateTo({ url: `/pages/chat/chat?mode=challenge&scenario=${encodeURIComponent(topic)}` })
+      }
+    }
+  })
 }
 
 onLoad((query) => {

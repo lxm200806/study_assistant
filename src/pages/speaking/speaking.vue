@@ -13,26 +13,48 @@
         :words-in-group="words.length"
       />
 
+      <view class="mode-toggle">
+        <text :class="['mode-btn', practiceMode === 'word' ? 'active' : '']" @tap="practiceMode = 'word'">单词</text>
+        <text
+          :class="['mode-btn', practiceMode === 'example' ? 'active' : '']"
+          @tap="practiceMode = 'example'"
+        >例句</text>
+      </view>
+
       <view class="word-card">
-        <text v-if="currentWord?.image" class="word-image">{{ currentWord.image }}</text>
-        <text class="word-text">{{ currentWord?.word }}</text>
-        <text class="word-phonetic">{{ currentWord?.phonetic }}</text>
+        <text v-if="currentWord?.image && practiceMode === 'word'" class="word-image">{{ currentWord.image }}</text>
+        <text v-if="practiceMode === 'word'" class="word-text">{{ currentWord?.word }}</text>
+        <text v-else class="word-text example-text">{{ exampleText || currentWord?.word }}</text>
+        <text v-if="practiceMode === 'word'" class="word-phonetic">{{ currentWord?.phonetic }}</text>
         <text class="word-meaning">{{ getWordMeaning(currentWord!, vocabStore.meaningType) }}</text>
       </view>
 
       <view class="action-row">
-        <button class="btn-audio" @tap="playWord">🔊 听发音</button>
+        <button class="btn-audio" @tap="playReference">🔊 听标准音</button>
         <button :class="['btn-record', isRecording ? 'recording' : '']" @tap="toggleRecord">
           {{ isRecording ? '⏹ 停止录音' : '🎤 开始跟读' }}
         </button>
       </view>
 
-      <view v-if="hasRecorded && !showGroupActions" class="self-check">
-        <text class="check-hint">跟读完成，自评一下：</text>
+      <view v-if="hasRecorded && recordPath" class="replay-row">
+        <button class="btn-replay" @tap="replayRecording">▶ 回放我的录音</button>
+      </view>
+
+      <view v-if="assessResult" class="assess-card">
+        <text class="assess-line">识别：{{ assessResult.transcript || '—' }}</text>
+        <text class="assess-line">得分：{{ assessResult.score }} · {{ assessResult.feedback }}</text>
+      </view>
+
+      <view v-if="hasRecorded && !showGroupActions && !isAssessing" class="self-check">
+        <text class="check-hint">{{ assessResult ? '确认结果或手动调整：' : '跟读完成，自评一下：' }}</text>
         <view class="check-btns">
           <button class="btn-good" @tap="submitPractice(true)">练好了 ✓</button>
           <button class="btn-weak" @tap="submitPractice(false)">还需练习</button>
         </view>
+      </view>
+
+      <view v-if="isAssessing" class="assessing-hint">
+        <text>正在评估发音...</text>
       </view>
 
       <TrainingGroupActions
@@ -45,7 +67,12 @@
     <view v-else class="finish-screen">
       <view class="finish-icon">🎉</view>
       <text class="finish-title">口语训练完成!</text>
-      <TrainingAnalysis :analysis="sessionAnalysis" :newly-covered="newlyCovered" :due-count="dueCount" />
+      <TrainingAnalysis
+        :analysis="sessionAnalysis"
+        :newly-covered="newlyCovered"
+        :due-count="dueCount"
+        :weak-topics="weakTopicLabels"
+      />
       <TrainingFinishActions />
     </view>
   </view>
@@ -57,7 +84,7 @@ import { onLoad } from '@dcloudio/uni-app'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import type { Vocabulary } from '@/types'
 import { getWordMeaning } from '@/utils/vocabulary'
-import { speakWord } from '@/utils/tts'
+import { speakWord, speakText } from '@/utils/tts'
 import TrainingSetup from '@/components/TrainingSetup.vue'
 import TrainingStartStats from '@/components/TrainingStartStats.vue'
 import BookSwitcher from '@/components/BookSwitcher.vue'
@@ -70,8 +97,10 @@ import { useTrainingFlow } from '@/composables/useTrainingFlow'
 import { ensureTrainingWords } from '@/composables/useTrainingStart'
 import { useGroupComplete } from '@/composables/useGroupComplete'
 import { useDailySession } from '@/composables/useDailySession'
+import { useAudioSession } from '@/composables/useAudioSession'
 
 const vocabStore = useVocabularyStore()
+const audio = useAudioSession()
 const { recordAnswer, getAnalysis, resetSession } = useSessionAnalysis('speaking')
 const { newlyCovered, resetFlow, loadGroup, finishSession } = useTrainingFlow('speaking')
 
@@ -79,47 +108,91 @@ const started = ref(false)
 const showFinish = ref(false)
 const isRecording = ref(false)
 const hasRecorded = ref(false)
+const isAssessing = ref(false)
 const currentIndex = ref(0)
 const words = ref<Vocabulary[]>([])
 const dueCount = ref(0)
+const weakTopicLabels = ref<string[]>([])
 const speakingStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
 const autoStart = ref(false)
 const showGroupActions = ref(false)
-
-let recorder: UniApp.RecorderManager | null = null
+const practiceMode = ref<'word' | 'example'>('word')
+const recordPath = ref('')
+const assessResult = ref<{ transcript: string; score: number; passed: boolean; feedback: string } | null>(null)
 
 const sessionAnalysis = computed(() => getAnalysis())
 const currentWord = computed(() => words.value[currentIndex.value])
 const isLastWord = computed(() => currentIndex.value === words.value.length - 1)
+const exampleText = computed(() => currentWord.value?.example || '')
 
-const playWord = async () => {
+const referenceText = computed(() => {
+  if (practiceMode.value === 'example' && exampleText.value) return exampleText.value
+  return currentWord.value?.word || ''
+})
+
+const playReference = async () => {
   if (!currentWord.value) return
   try {
-    await speakWord(currentWord.value.word)
+    if (practiceMode.value === 'example' && exampleText.value) {
+      await speakText(exampleText.value)
+    } else {
+      await speakWord(currentWord.value.word)
+    }
   } catch {
     uni.showToast({ title: '播放失败', icon: 'none' })
   }
 }
 
-const toggleRecord = () => {
-  if (!recorder) {
-    recorder = uni.getRecorderManager()
-    recorder.onStop(() => {
-      isRecording.value = false
-      hasRecorded.value = true
-    })
-  }
-  if (isRecording.value) {
-    recorder.stop()
-  } else {
-    hasRecorded.value = false
-    isRecording.value = true
-    recorder.start({ format: 'mp3' })
+const runAssess = async (path: string) => {
+  if (!referenceText.value) return
+  isAssessing.value = true
+  assessResult.value = null
+  try {
+    const result = await audio.assessPronunciation(path, referenceText.value)
+    if (result) assessResult.value = result
+  } catch {
+    // fallback to self-check only
+  } finally {
+    isAssessing.value = false
   }
 }
 
-const submitPractice = async (correct: boolean) => {
+const toggleRecord = async () => {
+  if (isRecording.value) {
+    isRecording.value = false
+    try {
+      recordPath.value = await audio.stopRecord()
+      hasRecorded.value = true
+      await runAssess(recordPath.value)
+    } catch {
+      uni.showToast({ title: '录音失败', icon: 'none' })
+      hasRecorded.value = false
+    }
+  } else {
+    assessResult.value = null
+    hasRecorded.value = false
+    recordPath.value = ''
+    try {
+      await audio.startRecord()
+      isRecording.value = true
+    } catch {
+      uni.showToast({ title: '无法开始录音', icon: 'none' })
+    }
+  }
+}
+
+const replayRecording = async () => {
+  if (!recordPath.value) return
+  try {
+    await audio.playLocal(recordPath.value)
+  } catch {
+    uni.showToast({ title: '回放失败', icon: 'none' })
+  }
+}
+
+const submitPractice = async (manualCorrect: boolean) => {
   if (!currentWord.value) return
+  const correct = assessResult.value?.passed ?? manualCorrect
   vocabStore.updateWordStats(currentWord.value.id, currentWord.value.word, 'speaking', correct)
   vocabStore.addTrainingRecord('speaking', currentWord.value.word, correct)
   recordAnswer(
@@ -129,12 +202,14 @@ const submitPractice = async (correct: boolean) => {
     vocabStore.meaningType
   )
   hasRecorded.value = false
+  recordPath.value = ''
+  assessResult.value = null
   if (isLastWord.value) {
     showGroupActions.value = true
     return
   }
   currentIndex.value++
-  void playWord()
+  void playReference()
 }
 
 const startGroup = async () => {
@@ -143,12 +218,20 @@ const startGroup = async () => {
 
 const { ensureAccessibleBook } = useDailySession()
 
+const resetWordState = () => {
+  hasRecorded.value = false
+  recordPath.value = ''
+  assessResult.value = null
+  isRecording.value = false
+}
+
 const startTraining = async () => {
   if (!vocabStore.ensureBookSelected()) return
   ensureAccessibleBook()
   currentIndex.value = 0
   resetSession()
   resetFlow()
+  resetWordState()
   await vocabStore.loadBookProgress()
   await startGroup()
 
@@ -158,7 +241,7 @@ const startTraining = async () => {
 
   started.value = true
   showFinish.value = false
-  void playWord()
+  void playReference()
 }
 
 const nextGroupTraining = async () => {
@@ -167,10 +250,10 @@ const nextGroupTraining = async () => {
   resetSession()
   resetFlow()
   currentIndex.value = 0
-  hasRecorded.value = false
+  resetWordState()
   await startGroup()
   if (!(await ensureTrainingWords(words.value))) return
-  void playWord()
+  void playReference()
 }
 
 const { completeAndNextGroup, completeAndFinish } = useGroupComplete({
@@ -179,6 +262,7 @@ const { completeAndNextGroup, completeAndFinish } = useGroupComplete({
   showFinish,
   showResult: showGroupActions,
   finishDueCount: dueCount,
+  weakTopicLabels,
   onAfterNextGroup: () => {
     showGroupActions.value = false
   }
@@ -246,6 +330,28 @@ onMounted(async () => {
   border: none;
 }
 
+.mode-toggle {
+  display: flex;
+  gap: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.mode-btn {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx;
+  background: white;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #666;
+
+  &.active {
+    background: #667eea;
+    color: white;
+    font-weight: 600;
+  }
+}
+
 .word-card {
   background: white;
   border-radius: 20rpx;
@@ -266,6 +372,11 @@ onMounted(async () => {
   font-weight: 600;
   color: #333;
   display: block;
+
+  &.example-text {
+    font-size: 32rpx;
+    line-height: 1.5;
+  }
 }
 
 .word-phonetic {
@@ -281,13 +392,13 @@ onMounted(async () => {
   display: block;
 }
 
-.action-row {
+.action-row, .replay-row {
   display: flex;
   gap: 16rpx;
   margin-bottom: 24rpx;
 }
 
-.btn-audio, .btn-record {
+.btn-audio, .btn-record, .btn-replay {
   flex: 1;
   border: none;
   border-radius: 40rpx;
@@ -300,6 +411,27 @@ onMounted(async () => {
 .btn-record.recording {
   background: #ffebee;
   color: #f44336;
+}
+
+.assess-card {
+  background: #eef2ff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.assess-line {
+  display: block;
+  font-size: 24rpx;
+  color: #333;
+  margin-bottom: 6rpx;
+}
+
+.assessing-hint {
+  text-align: center;
+  padding: 20rpx;
+  color: #999;
+  font-size: 26rpx;
 }
 
 .self-check {
