@@ -4,6 +4,8 @@
       <text class="header-title">AI陪聊</text>
       <text class="header-subtitle">
         {{ currentBookName }} · {{ modeLabel }}
+        <text v-if="chatMode === 'roleplay' && scenarioChosen && scenario"> · {{ scenarioLabel }}</text>
+        <text v-else-if="modeHint && chatMode !== 'roleplay'"> · {{ modeHint }}</text>
         <text v-if="!quota.isPremium && quota.remaining >= 0"> · 今日剩余 {{ quota.remaining }} 次</text>
       </text>
       <view class="mode-tabs">
@@ -11,7 +13,7 @@
           v-for="m in chatModes"
           :key="m.id"
           :class="['mode-tab', chatMode === m.id ? 'active' : '']"
-          @tap="chatMode = m.id"
+          @tap="onModeTab(m.id)"
         >{{ m.label }}</text>
       </view>
       <view class="ui-tabs">
@@ -20,7 +22,33 @@
       </view>
     </view>
 
+    <!-- Scenario picker overlay (shown when roleplay mode is chosen but no scenario yet) -->
+    <view v-if="showScenarioPicker" class="scenario-picker">
+      <text class="scenario-picker-title">选择一个情景开始对话</text>
+      <view class="scenario-grid">
+        <view
+          v-for="s in builtInScenarios"
+          :key="s.id"
+          class="scenario-card"
+          @tap="selectScenario(s.id, s.label)"
+        >
+          <text class="scenario-card-icon">{{ s.icon }}</text>
+          <text class="scenario-card-label">{{ s.label }}</text>
+        </view>
+      </view>
+      <view class="scenario-custom">
+        <input
+          class="scenario-custom-input"
+          v-model="customScenarioInput"
+          placeholder="自定义场景，例如：图书馆借书"
+          @confirm="confirmCustomScenario"
+        />
+        <text class="scenario-custom-btn" @tap="confirmCustomScenario">开始</text>
+      </view>
+    </view>
+
     <scroll-view
+      v-if="!showScenarioPicker"
       class="chat-messages"
       scroll-y
       :scroll-into-view="scrollToId"
@@ -39,7 +67,10 @@
           <text class="message-text">{{ msg.text || (msg.streaming ? '...' : '') }}</text>
           <view class="message-footer">
             <text class="message-time">{{ formatTime(msg.timestamp) }}</text>
-            <text v-if="!msg.isUser && msg.text" class="speak-btn" @tap="speakAiMessage(msg.text)">🔊</text>
+            <view v-if="!msg.isUser && msg.text && !msg.streaming" class="message-actions">
+              <text class="msg-action-btn" @tap.stop="copyMessage(msg.text)">复制</text>
+              <text class="msg-action-btn" @tap.stop="speakAiMessage(msg.text)">🔊</text>
+            </view>
           </view>
         </view>
       </view>
@@ -49,14 +80,7 @@
       </view>
     </scroll-view>
 
-    <view v-if="sessionWords.length" class="session-bar">
-      <text class="session-label">本会话词汇</text>
-      <scroll-view scroll-x class="session-scroll">
-        <text v-for="word in sessionWords" :key="word" class="session-tag">{{ word }}</text>
-      </scroll-view>
-    </view>
-
-    <view v-if="uiMode === 'voice'" class="voice-panel">
+    <view v-if="!showScenarioPicker && uiMode === 'voice'" class="voice-panel">
       <text class="voice-status">{{ voiceStatusLabel }}</text>
       <text v-if="asrProvider === 'xfyun'" class="voice-provider">讯飞流式识别</text>
       <text v-else class="voice-provider">Whisper 识别（建议配置讯飞 ASR）</text>
@@ -74,7 +98,7 @@
       <text class="voice-hint">按住说话，松开后 AI 自动回复并朗读</text>
     </view>
 
-    <view v-else class="chat-input-bar">
+    <view v-else-if="!showScenarioPicker" class="chat-input-bar">
       <view class="input-container">
         <input
           class="chat-input"
@@ -98,8 +122,9 @@ import { onLoad } from '@dcloudio/uni-app'
 import { useUserStore } from '@/stores/user'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { chatAPI } from '@/utils/api'
-import { speakText, stopSpeak } from '@/utils/tts'
+import { stopSpeak, unlockTtsPlayback, speakReplyText } from '@/utils/tts'
 import { streamChatMessage } from '@/utils/chat-stream'
+import { isMeaningfulSpeechText } from '@/utils/speech-text'
 import { useAudioSession } from '@/composables/useAudioSession'
 import { useStreamingTts } from '@/composables/useStreamingTts'
 import { useStreamingAsr } from '@/composables/useStreamingAsr'
@@ -124,9 +149,21 @@ interface Message {
 }
 
 const chatModes = [
-  { id: 'free' as ChatMode, label: '自由聊' },
-  { id: 'challenge' as ChatMode, label: '用词挑战' },
-  { id: 'roleplay' as ChatMode, label: '情景' }
+  { id: 'free' as ChatMode, label: '自由聊', hint: '像朋友一样自然聊' },
+  { id: 'challenge' as ChatMode, label: '用词挑战', hint: '用目标词造句练习' },
+  { id: 'roleplay' as ChatMode, label: '情景', hint: '角色扮演对话' }
+]
+
+// Built-in scenarios mirrored from the backend constants (label + icon for UI)
+const builtInScenarios = [
+  { id: 'cafe',       label: '咖啡馆点餐', icon: '☕' },
+  { id: 'shopping',   label: '逛商场',     icon: '🛍' },
+  { id: 'directions', label: '问路',       icon: '🗺' },
+  { id: 'doctor',     label: '看医生',     icon: '🩺' },
+  { id: 'hotel',      label: '酒店入住',   icon: '🏨' },
+  { id: 'airport',    label: '机场对话',   icon: '✈️' },
+  { id: 'birthday',   label: '生日派对',   icon: '🎂' },
+  { id: 'interview',  label: '工作面试',   icon: '💼' },
 ]
 
 const messages = ref<Message[]>([])
@@ -135,7 +172,8 @@ const scrollToId = ref('')
 const chatMode = ref<ChatMode>('free')
 const uiMode = ref<UiMode>('voice')
 const scenario = ref('')
-const sessionWords = ref<string[]>([])
+const scenarioChosen = ref(false)
+const customScenarioInput = ref('')
 const quota = ref({ remaining: -1, isPremium: false })
 const voiceStatus = ref<VoiceStatus>('idle')
 const partialTranscript = ref('')
@@ -144,6 +182,12 @@ let voiceSessionStarted = false
 
 const currentBookName = computed(() => vocabStore.getCurrentBook?.name || vocabStore.currentBookCode || 'KET')
 const modeLabel = computed(() => chatModes.find(m => m.id === chatMode.value)?.label || '自由聊')
+const modeHint = computed(() => chatModes.find(m => m.id === chatMode.value)?.hint || '')
+const showScenarioPicker = computed(() => chatMode.value === 'roleplay' && !scenarioChosen.value)
+const scenarioLabel = computed(() => {
+  const found = builtInScenarios.find(s => s.id === scenario.value)
+  return found ? found.label : scenario.value
+})
 const voiceBusy = computed(() => voiceStatus.value === 'transcribing' || voiceStatus.value === 'thinking' || voiceStatus.value === 'speaking')
 
 const voiceStatusLabel = computed(() => {
@@ -156,6 +200,38 @@ const voiceStatusLabel = computed(() => {
   }
   return map[voiceStatus.value]
 })
+
+const onModeTab = (id: ChatMode) => {
+  if (chatMode.value === id) return
+  chatMode.value = id
+  if (id === 'roleplay') {
+    // Reset scenario choice so the picker shows again
+    scenarioChosen.value = false
+    scenario.value = ''
+    customScenarioInput.value = ''
+  }
+}
+
+const selectScenario = (id: string, label: string) => {
+  scenario.value = id
+  scenarioChosen.value = true
+  messages.value = []
+  const greeting = `Scene: ${label}. Alex is ready — feel free to start!`
+  addMessage(greeting, false)
+}
+
+const confirmCustomScenario = () => {
+  const text = customScenarioInput.value.trim()
+  if (!text) {
+    uni.showToast({ title: '请输入场景描述', icon: 'none' })
+    return
+  }
+  scenario.value = text
+  scenarioChosen.value = true
+  customScenarioInput.value = ''
+  messages.value = []
+  addMessage(`Custom scene: ${text}. Let's go!`, false)
+}
 
 const formatTime = (timestamp: number) => {
   const date = new Date(timestamp)
@@ -181,14 +257,6 @@ const addMessage = (text: string, isUser: boolean, streaming = false): Message =
   return msg
 }
 
-const applyMatchedWords = (matched: Array<{ word: string }>) => {
-  for (const item of matched) {
-    if (!sessionWords.value.includes(item.word)) {
-      sessionWords.value.push(item.word)
-    }
-  }
-}
-
 const sendStreamTurn = async (userText: string) => {
   if (!userText.trim() || isBusy.value) return
 
@@ -199,6 +267,7 @@ const sendStreamTurn = async (userText: string) => {
 
   addMessage(userText, true)
   const aiMsg = addMessage('', false, true)
+  let voiceSpokeAny = false
 
   await new Promise<void>((resolve) => {
     void streamChatMessage({
@@ -208,19 +277,38 @@ const sendStreamTurn = async (userText: string) => {
       scenario: chatMode.value === 'roleplay' ? scenario.value : undefined,
       onToken: (token) => {
         aiMsg.text += token
-        voiceStatus.value = 'speaking'
-        streamingTts.feed(token)
+        if (uiMode.value === 'voice' && token) {
+          voiceStatus.value = 'speaking'
+          voiceSpokeAny = true
+          streamingTts.feed(token)
+        }
       },
       onDone: (payload) => {
-        aiMsg.text = payload.fullText || aiMsg.text
+        const finalText = payload.fullText || aiMsg.text
+        aiMsg.text = finalText
         aiMsg.streaming = false
-        if (payload.matchedWords?.length) applyMatchedWords(payload.matchedWords)
         if (typeof payload.remainingFree === 'number') quota.value.remaining = payload.remainingFree
-        void streamingTts.flush().finally(() => {
+        if (payload.usedFallback) {
+          uni.showToast({ title: '大模型未接通，已使用备用回复', icon: 'none' })
+        }
+
+        void (async () => {
+          if (uiMode.value === 'voice' && finalText.trim()) {
+            voiceStatus.value = 'speaking'
+            if (voiceSpokeAny) {
+              await streamingTts.flush()
+            } else {
+              try {
+                await speakReplyText(finalText)
+              } catch {
+                uni.showToast({ title: '自动朗读失败，请点 🔊', icon: 'none' })
+              }
+            }
+          }
           voiceStatus.value = 'idle'
           isBusy.value = false
           resolve()
-        })
+        })()
       },
       onError: (message) => {
         aiMsg.text = message.includes('今日免费') ? '今日免费对话次数已用完。' : '抱歉，暂时无法回复。'
@@ -250,6 +338,7 @@ const sendTextMessage = async () => {
 
 const onVoicePressStart = async () => {
   if (voiceBusy.value || voiceStatus.value === 'listening') return
+  await unlockTtsPlayback()
   streamingTts.stop()
   stopSpeak()
   voiceStatus.value = 'listening'
@@ -259,41 +348,76 @@ const onVoicePressStart = async () => {
     await startSession()
     voiceSessionStarted = true
     await audio.startRecord()
-  } catch {
+  } catch (error) {
     voiceStatus.value = 'idle'
-    uni.showToast({ title: '无法开始录音', icon: 'none' })
+    const msg = (error as Error).message || ''
+    if (msg.includes('Unauthorized')) {
+      uni.showToast({ title: '请先登录', icon: 'none' })
+    } else if (msg.includes('麦克风') || msg.includes('不支持')) {
+      uni.showToast({ title: msg, icon: 'none' })
+    } else {
+      uni.showToast({ title: '无法开始录音', icon: 'none' })
+    }
   }
 }
 
 const onVoicePressEnd = async () => {
   if (voiceStatus.value !== 'listening') return
+  await unlockTtsPlayback()
   voiceStatus.value = 'transcribing'
 
   try {
     const path = await audio.stopRecord()
     if (!voiceSessionStarted) throw new Error('session missing')
-    const text = await uploadRecording(path)
+    const text = (await uploadRecording(path)).trim()
     partialTranscript.value = text
-    if (!text.trim()) {
+    if (!isMeaningfulSpeechText(text)) {
       voiceStatus.value = 'idle'
-      uni.showToast({ title: '未识别到内容', icon: 'none' })
+      uni.showToast({ title: '未识别到有效内容，请再说一次', icon: 'none' })
       return
     }
     await sendStreamTurn(text)
   } catch (error) {
     voiceStatus.value = 'idle'
-    const msg = (error as Error).message
-    uni.showToast({ title: msg.includes('未配置') ? '语音识别未配置' : '语音识别失败', icon: 'none' })
+    const msg = (error as Error).message || ''
+    const title = msg.includes('未配置') || msg.includes('WHISPER')
+      ? '语音识别未配置'
+      : msg.includes('今日免费') || msg.includes('SPEECH_LIMIT')
+        ? '今日语音识别次数已用完'
+        : msg || '语音识别失败'
+    uni.showToast({ title, icon: 'none' })
   }
 }
 
 const speakAiMessage = async (text: string) => {
   try {
+    await unlockTtsPlayback()
     streamingTts.stop()
-    await speakText(text)
+    await speakReplyText(text)
   } catch {
     uni.showToast({ title: '播放失败', icon: 'none' })
   }
+}
+
+const copyMessage = (text: string) => {
+  const content = text?.trim()
+  if (!content) return
+  uni.setClipboardData({
+    data: content,
+    success: () => uni.showToast({ title: '已复制', icon: 'success' })
+  })
+}
+
+const welcomeForMode = (mode: ChatMode) => {
+  if (mode === 'challenge') {
+    return 'Ready for a word challenge? Tell me something, and I\'ll help you practice vocabulary from your book.'
+  }
+  if (mode === 'roleplay') {
+    return scenario.value
+      ? `Let's role-play: ${scenario.value}. Say something to start the scene!`
+      : 'Pick a scenario or just start talking — we\'ll stay in character.'
+  }
+  return 'Hi! Chat with me like a friend — say hello or tell me about your day.'
 }
 
 const loadHistory = async () => {
@@ -307,10 +431,10 @@ const loadHistory = async () => {
       timestamp: new Date(row.createdAt).getTime()
     }))
     if (messages.value.length === 0) {
-      addMessage('你好！按住麦克风用英语聊天，我会自动回复并朗读。', false)
+      addMessage(welcomeForMode(chatMode.value), false)
     }
   } catch {
-    addMessage('你好！按住麦克风用英语聊天，我会自动回复并朗读。', false)
+    addMessage(welcomeForMode(chatMode.value), false)
   }
 }
 
@@ -327,7 +451,10 @@ onLoad((query) => {
   if (query?.mode === 'challenge' || query?.mode === 'roleplay' || query?.mode === 'free') {
     chatMode.value = query.mode as ChatMode
   }
-  if (query?.scenario) scenario.value = query.scenario as string
+  if (query?.scenario) {
+    scenario.value = query.scenario as string
+    scenarioChosen.value = true
+  }
   if (query?.ui === 'text') uiMode.value = 'text'
 })
 
@@ -456,7 +583,18 @@ onUnmounted(() => {
 }
 
 .message-time { font-size: 22rpx; color: #999; }
-.speak-btn { font-size: 28rpx; padding: 4rpx 8rpx; }
+
+.message-actions {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.msg-action-btn {
+  font-size: 24rpx;
+  color: #667eea;
+  padding: 4rpx 8rpx;
+}
 
 .status-banner {
   background: #eef2ff;
@@ -464,31 +602,6 @@ onUnmounted(() => {
   padding: 16rpx 20rpx;
   font-size: 26rpx;
   color: #667eea;
-}
-
-.session-bar {
-  background: white;
-  padding: 12rpx 20rpx;
-  border-top: 1rpx solid #eee;
-}
-
-.session-label {
-  font-size: 22rpx;
-  color: #999;
-  display: block;
-  margin-bottom: 8rpx;
-}
-
-.session-scroll { white-space: nowrap; }
-
-.session-tag {
-  display: inline-block;
-  background: #fff3e0;
-  color: #ff9800;
-  font-size: 22rpx;
-  padding: 6rpx 16rpx;
-  border-radius: 20rpx;
-  margin-right: 12rpx;
 }
 
 .voice-panel {
@@ -571,5 +684,78 @@ onUnmounted(() => {
   font-size: 28rpx;
 
   &[disabled] { opacity: 0.5; }
+}
+
+// Scenario picker
+.scenario-picker {
+  flex: 1;
+  padding: 40rpx 28rpx 48rpx;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.scenario-picker-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  margin-bottom: 36rpx;
+  display: block;
+}
+
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+  margin-bottom: 40rpx;
+}
+
+.scenario-card {
+  background: white;
+  border-radius: 24rpx;
+  padding: 32rpx 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.07);
+  active-opacity: 0.7;
+}
+
+.scenario-card-icon {
+  font-size: 64rpx;
+}
+
+.scenario-card-label {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  text-align: center;
+}
+
+.scenario-custom {
+  display: flex;
+  gap: 16rpx;
+  align-items: center;
+}
+
+.scenario-custom-input {
+  flex: 1;
+  height: 80rpx;
+  background: white;
+  border-radius: 40rpx;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+}
+
+.scenario-custom-btn {
+  font-size: 28rpx;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 18rpx 32rpx;
+  border-radius: 40rpx;
+  font-weight: 500;
 }
 </style>

@@ -1,4 +1,6 @@
 import prisma from '../prisma/client'
+import { isXfyunAsrConfigured } from './llm-config.service'
+import { transcribeWithXfyun, type XfyunAudioEncoding } from './asr-xfyun.service'
 
 const FREE_DAILY_SPEECH = 10
 const PASS_THRESHOLD = Number(process.env.SPEECH_PASS_THRESHOLD || 70)
@@ -58,11 +60,40 @@ function levenshtein(a: string, b: string): number {
   return matrix[a.length][b.length]
 }
 
+function audioExtension(mimeType: string): string {
+  const lower = mimeType.toLowerCase()
+  if (lower.includes('wav')) return 'wav'
+  if (lower.includes('webm')) return 'webm'
+  if (lower.includes('ogg')) return 'ogg'
+  if (lower.includes('mp4') || lower.includes('m4a')) return 'm4a'
+  return 'mp3'
+}
+
 function getWhisperConfig(): { apiKey: string; baseUrl: string } | null {
-  const apiKey = process.env.WHISPER_API_KEY || process.env.OPENAI_API_KEY
-  if (!apiKey) return null
-  const baseUrl = (process.env.WHISPER_BASE_URL || process.env.LLM_BASE_URL || 'https://api.openai.com/v1').replace(/\/$/, '')
-  return { apiKey, baseUrl }
+  if (process.env.WHISPER_API_KEY) {
+    return {
+      apiKey: process.env.WHISPER_API_KEY,
+      baseUrl: (process.env.WHISPER_BASE_URL || 'https://api.openai.com/v1').replace(/\/$/, '')
+    }
+  }
+  if (process.env.WHISPER_BASE_URL && process.env.OPENAI_API_KEY) {
+    return {
+      apiKey: process.env.OPENAI_API_KEY,
+      baseUrl: process.env.WHISPER_BASE_URL.replace(/\/$/, '')
+    }
+  }
+  // Avoid sending Whisper requests to chat-only proxies (e.g. LM Studio)
+  if (process.env.OPENAI_API_KEY && !process.env.LLM_BASE_URL) {
+    return {
+      apiKey: process.env.OPENAI_API_KEY,
+      baseUrl: 'https://api.openai.com/v1'
+    }
+  }
+  return null
+}
+
+function xfyunEncodingFromMime(mimeType: string): XfyunAudioEncoding {
+  return mimeType.toLowerCase().includes('l16') ? 'raw' : 'lame'
 }
 
 async function isPremiumUser(userId: string): Promise<boolean> {
@@ -90,11 +121,6 @@ async function recordSpeechUsage(userId: string, kind: string): Promise<void> {
 export async function transcribeAudio(userId: string, audioBase64: string, mimeType = 'audio/mp3'): Promise<TranscribeResult> {
   await checkSpeechQuota(userId)
 
-  const config = getWhisperConfig()
-  if (!config) {
-    throw new Error('WHISPER_NOT_CONFIGURED')
-  }
-
   const buffer = Buffer.from(audioBase64, 'base64')
   if (buffer.length === 0) {
     throw new Error('EMPTY_AUDIO')
@@ -103,7 +129,22 @@ export async function transcribeAudio(userId: string, audioBase64: string, mimeT
     throw new Error('AUDIO_TOO_LARGE')
   }
 
-  const ext = mimeType.includes('wav') ? 'wav' : 'mp3'
+  if (isXfyunAsrConfigured()) {
+    try {
+      const text = await transcribeWithXfyun(audioBase64, xfyunEncodingFromMime(mimeType))
+      await recordSpeechUsage(userId, 'transcribe')
+      return { text }
+    } catch (error) {
+      console.error('[speech] xfyun transcribe failed:', (error as Error).message)
+    }
+  }
+
+  const config = getWhisperConfig()
+  if (!config) {
+    throw new Error('WHISPER_NOT_CONFIGURED')
+  }
+
+  const ext = audioExtension(mimeType)
   const blob = new Blob([buffer], { type: mimeType })
   const form = new FormData()
   form.append('file', blob, `audio.${ext}`)
@@ -132,7 +173,25 @@ export async function assessPronunciation(
   audioBase64: string,
   mimeType = 'audio/mp3'
 ): Promise<AssessResult> {
-  const { text: transcript } = await transcribeAudio(userId, audioBase64, mimeType)
+  let transcript = ''
+  try {
+    const result = await transcribeAudio(userId, audioBase64, mimeType)
+    transcript = result.text
+  } catch (err) {
+    const msg = (err as Error).message
+    // Only quota errors should block the request entirely.
+    if (msg === 'SPEECH_LIMIT') throw err
+    console.error('[assess] transcription failed, using fallback:', msg)
+    return {
+      transcript: '',
+      score: 0,
+      passed: false,
+      feedback: msg === 'WHISPER_NOT_CONFIGURED'
+        ? '语音识别未配置，请手动自评。'
+        : '语音识别暂时不可用，请手动自评。'
+    }
+  }
+
   const score = computeSpeechScore(referenceText, transcript)
   const passed = score >= PASS_THRESHOLD
 

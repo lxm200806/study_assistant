@@ -15,5 +15,7 @@ echo ""
 node ./node_modules/prisma/build/index.js generate
 
 exec node ./node_modules/nodemon/bin/nodemon.js \
+  --watch src \
+  --watch .env \
   -e ts,json \
   --exec "node ./node_modules/ts-node/dist/bin.js src/app.ts"

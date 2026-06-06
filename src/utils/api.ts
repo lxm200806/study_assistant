@@ -183,8 +183,12 @@ export const speechAPI = {
   asrConfig: async () => {
     return request<{ provider: 'xfyun' | 'whisper' }>('/speech/asr/config', 'GET')
   },
-  asrStartSession: async () => {
-    return request<{ sessionId: string; provider: 'xfyun' | 'whisper' }>('/speech/asr/session/start', 'POST', {})
+  asrStartSession: async (encoding: 'lame' | 'raw' = 'lame') => {
+    return request<{ sessionId: string; provider: 'xfyun' | 'whisper' }>(
+      '/speech/asr/session/start',
+      'POST',
+      { encoding }
+    )
   },
   asrPushChunk: async (sessionId: string, audioBase64: string, isLast = false) => {
     return request<{ partial: string; isFinal: boolean }>('/speech/asr/session/chunk', 'POST', {

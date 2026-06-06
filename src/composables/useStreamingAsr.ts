@@ -1,5 +1,9 @@
 import { ref } from 'vue'
-import { useAudioSession } from '@/composables/useAudioSession'
+import {
+  detectRecordBackend,
+  pickH5MimeType,
+  prepareRecordingForAsr
+} from '@/utils/audio-recording'
 import { speechAPI } from '@/utils/api'
 
 const CHUNK_SIZE = 8000
@@ -30,7 +34,8 @@ export function useStreamingAsr() {
 
   const startSession = async () => {
     partialText.value = ''
-    const res = await speechAPI.asrStartSession()
+    const encoding = detectRecordBackend() === 'h5' ? 'raw' : 'lame'
+    const res = await speechAPI.asrStartSession(encoding)
     sessionId = res.data?.sessionId || ''
     if (res.data?.provider === 'xfyun' || res.data?.provider === 'whisper') {
       asrProvider.value = res.data.provider
@@ -41,9 +46,9 @@ export function useStreamingAsr() {
   const uploadRecording = async (filePath: string): Promise<string> => {
     if (!sessionId) await startSession()
 
-    const audio = useAudioSession()
-    const base64 = await readFileBase64(filePath)
-    const chunks = splitBase64Chunks(base64)
+    const fallbackMime = detectRecordBackend() === 'h5' ? pickH5MimeType() : 'audio/mp3'
+    const prepared = await prepareRecordingForAsr(filePath, fallbackMime)
+    const chunks = splitBase64Chunks(prepared.base64)
 
     for (let i = 0; i < chunks.length; i++) {
       const isLast = i === chunks.length - 1
@@ -51,13 +56,10 @@ export function useStreamingAsr() {
       if (res.data?.partial) {
         partialText.value = res.data.partial
       }
-      if (res.data?.isFinal && res.data.partial) {
-        return res.data.partial
-      }
     }
 
     const endRes = await speechAPI.asrEndSession(sessionId)
-    const text = endRes.data?.text || partialText.value
+    const text = (endRes.data?.text || partialText.value).trim()
     partialText.value = text
     sessionId = ''
     return text
@@ -72,17 +74,3 @@ export function useStreamingAsr() {
   }
 }
 
-function readFileBase64(filePath: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    if (typeof uni.getFileSystemManager !== 'function') {
-      reject(new Error('file system not supported'))
-      return
-    }
-    uni.getFileSystemManager().readFile({
-      filePath,
-      encoding: 'base64',
-      success: (res) => resolve(res.data as string),
-      fail: (err) => reject(new Error(err.errMsg || 'read failed'))
-    })
-  })
-}

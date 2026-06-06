@@ -1,36 +1,45 @@
 ---
-description: 改完代码后主动启动后端与前端，方便用户测试
+description: 改代码后按端自动重启服务，确保改动生效
 alwaysApply: true
 ---
 
-# 改完后主动启动服务端 + 客户端
+# 改代码后自动重启对应服务
 
-完成修改后，**不要只告诉用户自己启动**，应自行执行 `./start-dev.sh`（或分别启动 `./start-server.sh` 与 `./start-client.sh`），并验证两端均可访问。
+完成修改后**自行重启**，不要只告诉用户手动重启。
 
-## 何时启动
+## 服务端（必须重启才生效）
 
-- 修改 `server/`、`src/`、词库、数据库、配置
-- 重建词库或同步数据库后
-
-## 命令
+改动 `server/**`、`server/.env`、Prisma schema / 迁移、词库导入脚本等 → **重启后端**：
 
 ```bash
-# 推荐：一键启动后端 3004 + 前端 5173
-./start-dev.sh
-
-# 或分别启动
-./start-server.sh   # 后台阻塞运行
-./start-client.sh   # 另开终端
+./restart-server.sh
+# 或首次/两端都未运行：./start-dev.sh
 ```
+
+后端 dev 已用 nodemon 监听 `server/src` 与 `.env`，进程在跑时会自动重启；若未启动或重启失败，执行 `./restart-server.sh`。
+
+## 客户端
+
+- **`src/**` 大部分 `.vue` / `.ts`**：Vite HMR 热更新，**无需**重启。
+- **需全量重启前端** 时再执行 `./restart-client.sh`：
+  - `vite.config.*`、`pages.json`、`manifest.json`
+  - 根目录 `package.json` / 新增依赖
+  - `dev-h5.sh`、环境变量、全局样式入口等
+
+```bash
+./restart-client.sh
+```
+
+## Agent 工作流
+
+1. 只改 `server/` → 改完后运行 `./restart-server.sh` 并 curl 验证 3004
+2. 只改 `src/` 且为普通页面/组件 → 通常不必重启；告知用户刷新浏览器即可
+3. 改前端配置/依赖 → `./restart-client.sh` 并 curl 验证 5173
+4. 同时改前后端 → `./restart-server.sh` + 按需 `./restart-client.sh`，或 `./start-dev.sh`
 
 ## 验证
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3004/api/books  # 期望 200
-curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:5173/            # 期望 200
+curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3004/api/books  # 200
+curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:5173/            # 200
 ```
-
-## 访问地址
-
-- 前端测试：http://localhost:5173
-- API 文档：http://localhost:3004/api-docs

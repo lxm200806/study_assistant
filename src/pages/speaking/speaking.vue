@@ -175,8 +175,12 @@ const toggleRecord = async () => {
     try {
       await audio.startRecord()
       isRecording.value = true
-    } catch {
-      uni.showToast({ title: '无法开始录音', icon: 'none' })
+    } catch (error) {
+      const msg = (error as Error).message || ''
+      uni.showToast({
+        title: msg.includes('麦克风') || msg.includes('不支持') ? msg : '无法开始录音',
+        icon: 'none'
+      })
     }
   }
 }

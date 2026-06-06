@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto'
 import { isXfyunAsrConfigured } from './llm-config.service'
-import { createXfyunSession, XfyunAsrSession } from './asr-xfyun.service'
+import { createXfyunSession, type XfyunAudioEncoding, XfyunAsrSession } from './asr-xfyun.service'
 import { transcribeAudio } from './speech.service'
 
 const SESSION_TTL_MS = 5 * 60 * 1000
@@ -8,6 +8,7 @@ const SESSION_TTL_MS = 5 * 60 * 1000
 interface AsrSessionEntry {
   userId: string
   provider: 'xfyun' | 'whisper'
+  encoding: XfyunAudioEncoding
   xfyun?: XfyunAsrSession
   audioChunks: Buffer[]
   partialText: string
@@ -25,7 +26,10 @@ function cleanupSessions(): void {
   }
 }
 
-export async function startAsrSession(userId: string): Promise<{ sessionId: string; provider: string }> {
+export async function startAsrSession(
+  userId: string,
+  encoding: XfyunAudioEncoding = 'lame'
+): Promise<{ sessionId: string; provider: string }> {
   cleanupSessions()
   const sessionId = randomUUID()
   const provider = isXfyunAsrConfigured() ? 'xfyun' : 'whisper'
@@ -33,6 +37,7 @@ export async function startAsrSession(userId: string): Promise<{ sessionId: stri
   const entry: AsrSessionEntry = {
     userId,
     provider,
+    encoding,
     audioChunks: [],
     partialText: '',
     createdAt: Date.now()
@@ -40,10 +45,11 @@ export async function startAsrSession(userId: string): Promise<{ sessionId: stri
 
   if (provider === 'xfyun') {
     try {
-      const xfyun = createXfyunSession()
+      const xfyun = createXfyunSession(encoding)
       await xfyun.connect()
       entry.xfyun = xfyun
-    } catch {
+    } catch (error) {
+      console.error('[asr-session] xfyun connect failed:', (error as Error).message)
       entry.provider = 'whisper'
     }
   }
@@ -70,14 +76,18 @@ export async function pushAsrChunk(
 
   if (session.provider === 'xfyun' && session.xfyun) {
     session.xfyun.sendAudioChunk(audioBase64, isLast)
-    await new Promise(r => setTimeout(r, isLast ? 400 : 80))
+    await new Promise(r => setTimeout(r, isLast ? 800 : 80))
     session.partialText = session.xfyun.getPartialText()
     return { partial: session.partialText, isFinal: isLast }
   }
 
   if (isLast) {
     const combined = Buffer.concat(session.audioChunks)
-    const result = await transcribeAudio(userId, combined.toString('base64'), 'audio/mp3')
+    const result = await transcribeAudio(
+      userId,
+      combined.toString('base64'),
+      session.encoding === 'raw' ? 'audio/L16;rate=16000' : 'audio/mp3'
+    )
     session.partialText = result.text
     sessions.delete(sessionId)
     return { partial: session.partialText, isFinal: true }
@@ -110,7 +120,11 @@ export async function endAsrSession(userId: string, sessionId: string): Promise<
     return ''
   }
 
-  const result = await transcribeAudio(userId, combined.toString('base64'), 'audio/mp3')
+  const result = await transcribeAudio(
+    userId,
+    combined.toString('base64'),
+    session.encoding === 'raw' ? 'audio/L16;rate=16000' : 'audio/mp3'
+  )
   sessions.delete(sessionId)
   return result.text
 }

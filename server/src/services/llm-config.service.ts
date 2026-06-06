@@ -1,10 +1,18 @@
+function sanitizeEnvValue(value: string | undefined): string | undefined {
+  if (!value) return undefined
+  const trimmed = value.trim()
+  if (!trimmed) return undefined
+  return trimmed.replace(/^["']+|["';]+$/g, '')
+}
+
 export function getLlmApiKey(): string | undefined {
-  return process.env.DEEPSEEK_API_KEY || process.env.OPENAI_API_KEY
+  return sanitizeEnvValue(process.env.DEEPSEEK_API_KEY) || sanitizeEnvValue(process.env.OPENAI_API_KEY)
 }
 
 export function getLlmBaseUrl(): string {
-  if (process.env.LLM_BASE_URL) {
-    return process.env.LLM_BASE_URL.replace(/\/$/, '')
+  const baseUrl = sanitizeEnvValue(process.env.LLM_BASE_URL)
+  if (baseUrl) {
+    return baseUrl.replace(/\/$/, '')
   }
   if (process.env.DEEPSEEK_API_KEY) {
     return 'https://api.deepseek.com/v1'
@@ -13,7 +21,8 @@ export function getLlmBaseUrl(): string {
 }
 
 export function getLlmModel(): string {
-  if (process.env.LLM_MODEL) return process.env.LLM_MODEL
+  const model = sanitizeEnvValue(process.env.LLM_MODEL)
+  if (model) return model
   if (process.env.DEEPSEEK_API_KEY) return 'deepseek-chat'
   return 'gpt-4o-mini'
 }

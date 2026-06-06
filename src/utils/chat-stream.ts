@@ -6,6 +6,7 @@ export interface ChatStreamDonePayload {
   fullText: string
   matchedWords: Array<{ wordId: string; word: string; type: string }>
   remainingFree?: number
+  usedFallback?: boolean
 }
 
 export interface ChatStreamOptions {

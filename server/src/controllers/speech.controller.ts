@@ -13,7 +13,8 @@ export async function getAsrConfigHandler(_req: Request, res: Response) {
 export async function startAsrSessionHandler(req: Request, res: Response) {
   try {
     const userId = req.userId!
-    const result = await startAsrSession(userId)
+    const { encoding } = req.body as { encoding?: 'lame' | 'raw' }
+    const result = await startAsrSession(userId, encoding === 'raw' ? 'raw' : 'lame')
     res.status(200).json({ success: true, data: result })
   } catch (error) {
     res.status(500).json({ success: false, error: (error as Error).message })
@@ -92,7 +93,11 @@ export async function assessHandler(req: Request, res: Response) {
     res.status(200).json({ success: true, data: result })
   } catch (error) {
     const msg = (error as Error).message
-    const status = msg === 'SPEECH_LIMIT' ? 429 : msg === 'WHISPER_NOT_CONFIGURED' ? 503 : 500
+    let status = 500
+    if (msg === 'SPEECH_LIMIT') status = 429
+    else if (msg === 'WHISPER_NOT_CONFIGURED') status = 503
+    else if (msg === 'AUDIO_TOO_LARGE' || msg === 'EMPTY_AUDIO') status = 400
+    else console.error('[assess] unexpected error:', msg, (error as Error).stack)
     res.status(status).json({ success: false, error: msg })
   }
 }

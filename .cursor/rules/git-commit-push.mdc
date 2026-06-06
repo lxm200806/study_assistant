@@ -1,0 +1,28 @@
+---
+description: 用户说「提交git」时自动 commit 并 push，无需反复确认
+alwaysApply: true
+---
+
+# 提交 Git（提交git）
+
+当用户说「提交git」「提交 git」「提交」且语境为版本控制时，**直接执行**，不要再问是否 push、用什么邮箱等。
+
+## 流程
+
+1. 并行查看状态：`git status`、`git diff`、`git log -3`
+2. `git add -A`，排除明显不应提交的文件：
+   - `.env`、密钥、凭证
+   - 过期的构建产物（如 `*-missing.txt`）
+3. 若未配置 `user.name` / `user.email`，**不要**改 git config；用环境变量提交：
+   - `GIT_AUTHOR_NAME=lxm200806`
+   - `GIT_AUTHOR_EMAIL=lxm200806@users.noreply.github.com`
+   - `GIT_COMMITTER_NAME` / `GIT_COMMITTER_EMAIL` 同上
+4. 写简洁 commit message（1–2 句，说明 why）
+5. **提交后立即** `git push -u origin HEAD`（或当前分支）
+6. 回报：commit hash、分支、远程 push 结果
+
+## 禁止
+
+- 不要因「是否 push」「作者邮箱」等问题打断用户
+- 不要 `git config` 修改全局或本地配置
+- 不要 force push 到 main/master

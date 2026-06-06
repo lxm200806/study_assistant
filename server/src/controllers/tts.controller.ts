@@ -20,6 +20,9 @@ export async function getTtsHandler(req: Request, res: Response, next: NextFunct
     if (error instanceof Error && error.message === 'INVALID_WORD') {
       return res.status(400).json({ error: 'Invalid word' })
     }
+    if (error instanceof Error && error.message === 'TTS_SYNTHESIS_FAILED') {
+      return res.status(422).json({ error: 'TTS synthesis failed' })
+    }
     next(error)
   }
 }

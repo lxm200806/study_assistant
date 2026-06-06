@@ -6,11 +6,13 @@ import {
   saveUserChatMessage,
   saveAiChatMessage,
   buildLlmMessages,
-  buildFallbackResponse,
-  resolveTargetWords
+  buildFallbackResponse
 } from './chat-context.service'
-import { getLlmApiKey, getLlmBaseUrl, getLlmModel } from './llm-config.service'
+import { getLearnerChatContext } from './chat-learner-context.service'
+import { getLlmApiKey } from './llm-config.service'
+import { generateChatReply } from './llm-chat.service'
 import { getChatRemaining } from './chat.service'
+import { sanitizeFreeChatReply } from './chat-reply-sanitize.service'
 
 function writeSse(res: Response, event: string, data: unknown): void {
   res.write(`event: ${event}\n`)
@@ -36,80 +38,49 @@ export async function streamChatMessage(
     await assertChatQuota(userId)
     await saveUserChatMessage(userId, content, mode)
 
-    const apiKey = getLlmApiKey()
     const messages = await buildLlmMessages(userId, content, bookCode, mode, scenario)
     let fullText = ''
+    let streamedAny = false
 
-    if (!apiKey) {
-      const targetWords = await resolveTargetWords(userId, bookCode)
-      fullText = buildFallbackResponse(content, targetWords)
-      writeSse(res, 'token', { text: fullText })
-    } else {
-      const llmRes = await fetch(`${getLlmBaseUrl()}/chat/completions`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          model: getLlmModel(),
-          messages,
-          temperature: 0.7,
-          max_tokens: 400,
-          stream: true
-        })
-      })
+    const llmOptions = mode === 'free' ? { temperature: 0.4 } : undefined
 
-      if (!llmRes.ok || !llmRes.body) {
-        const targetWords = await resolveTargetWords(userId, bookCode)
-        fullText = buildFallbackResponse(content, targetWords)
-        writeSse(res, 'token', { text: fullText })
-      } else {
-        const reader = llmRes.body.getReader()
-        const decoder = new TextDecoder()
-        let buffer = ''
+    if (getLlmApiKey()) {
+      fullText = await generateChatReply(messages, (token) => {
+        streamedAny = true
+        writeSse(res, 'token', { text: token })
+      }, llmOptions)
+      fullText = fullText.trim()
 
-        while (true) {
-          const { done, value } = await reader.read()
-          if (done) break
-          buffer += decoder.decode(value, { stream: true })
-          const lines = buffer.split('\n')
-          buffer = lines.pop() || ''
-
-          for (const line of lines) {
-            const trimmed = line.trim()
-            if (!trimmed.startsWith('data:')) continue
-            const payload = trimmed.slice(5).trim()
-            if (payload === '[DONE]') continue
-            try {
-              const json = JSON.parse(payload) as {
-                choices?: Array<{ delta?: { content?: string } }>
-              }
-              const delta = json.choices?.[0]?.delta?.content
-              if (delta) {
-                fullText += delta
-                writeSse(res, 'token', { text: delta })
-              }
-            } catch {
-              // ignore malformed chunks
-            }
-          }
+      // Lightweight last-resort sanitize for free mode (prompt is the primary guard).
+      if (mode === 'free') {
+        const cleaned = sanitizeFreeChatReply(fullText, content)
+        if (cleaned !== fullText && cleaned) {
+          fullText = cleaned
         }
       }
     }
 
-    fullText = fullText.trim()
-    if (!fullText) {
-      const targetWords = await resolveTargetWords(userId, bookCode)
-      fullText = buildFallbackResponse(content, targetWords)
-      writeSse(res, 'token', { text: fullText })
+    const usedFallback = !fullText
+    if (usedFallback) {
+      const learnerContext = await getLearnerChatContext(userId, bookCode)
+      fullText = buildFallbackResponse(content, learnerContext.backgroundWords, mode)
+      if (!streamedAny) {
+        writeSse(res, 'token', { text: fullText })
+      }
     }
 
     await saveAiChatMessage(userId, fullText, mode)
-    const matchedWords: MatchedWord[] = await recordChatVocabulary(userId, bookCode, content, fullText)
+    const matchedWords: MatchedWord[] = mode === 'challenge'
+      ? await recordChatVocabulary(userId, bookCode, content, fullText)
+      : []
     const quota = await getChatRemaining(userId)
 
-    writeSse(res, 'done', { fullText, matchedWords, remainingFree: quota.isPremium ? undefined : quota.remaining })
+    writeSse(res, 'done', {
+      fullText,
+      matchedWords,
+      remainingFree: quota.isPremium ? undefined : quota.remaining,
+      usedFallback
+    })
     res.end()
   } catch (error) {
     const msg = (error as Error).message
