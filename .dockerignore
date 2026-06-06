@@ -1,0 +1,31 @@
+# Dependencies & build output (rebuilt inside Docker)
+node_modules
+server/node_modules
+dist
+server/dist
+
+# Git & IDE
+.git
+.cursor
+*.md
+!deploy/README.md
+
+# Secrets & local env
+.env
+.env.*
+!.env.prod.example
+server/.env
+
+# Logs & runtime
+logs
+*.log
+*.pid
+
+# Large local data not needed for image build
+server/data/sources
+server/data/tts-cache
+server/data/vocabulary/books/*-missing.txt
+
+# Test & dev only
+**/*.test.ts
+**/__tests__

@@ -7,20 +7,11 @@ export function getAuthToken(): string | null {
 }
 
 export function getApiBaseUrl(): string {
-  // 开发模式走 Vite 同源代理（使用完整 origin，避免 H5 相对路径异常）
-  if (import.meta.env.DEV) {
-    if (typeof window !== 'undefined' && window.location?.origin) {
-      return `${window.location.origin}/api`
-    }
-    return '/api'
+  // Dev: Vite proxy; Prod: Nginx proxies /api → backend (same origin).
+  if (typeof window !== 'undefined' && window.location?.origin) {
+    return `${window.location.origin}/api`
   }
-
-  if (typeof window !== 'undefined' && window.location?.hostname) {
-    const { protocol, hostname } = window.location
-    return `${protocol}//${hostname}:3004/api`
-  }
-
-  return 'http://localhost:3004/api'
+  return import.meta.env.DEV ? '/api' : 'http://localhost:3004/api'
 }
 
 export interface ResponseData<T = any> {
