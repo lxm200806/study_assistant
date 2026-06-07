@@ -96,6 +96,11 @@ function xfyunEncodingFromMime(mimeType: string): XfyunAudioEncoding {
   return mimeType.toLowerCase().includes('l16') ? 'raw' : 'lame'
 }
 
+function isBrowserFriendlyMime(mimeType: string): boolean {
+  const lower = mimeType.toLowerCase()
+  return lower.includes('webm') || lower.includes('ogg') || lower.includes('mp4') || lower.includes('m4a')
+}
+
 async function isPremiumUser(userId: string): Promise<boolean> {
   const user = await prisma.user.findUnique({ where: { id: userId } })
   return user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
@@ -130,12 +135,16 @@ export async function transcribeAudio(userId: string, audioBase64: string, mimeT
   }
 
   if (isXfyunAsrConfigured()) {
+    if (isBrowserFriendlyMime(mimeType)) {
+      // Browser H5 recordings are often WebM/Opus; keep them on the Whisper path.
+    } else {
     try {
       const text = await transcribeWithXfyun(audioBase64, xfyunEncodingFromMime(mimeType))
       await recordSpeechUsage(userId, 'transcribe')
       return { text }
     } catch (error) {
       console.error('[speech] xfyun transcribe failed:', (error as Error).message)
+    }
     }
   }
 

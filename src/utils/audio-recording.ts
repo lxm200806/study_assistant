@@ -142,11 +142,17 @@ export async function prepareRecordingForAsr(
   }
 
   if (typeof window !== 'undefined' && (window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext)) {
-    const pcmBase64 = await convertRecordingToPcm16Base64(filePath, fallbackMimeType)
-    return {
-      base64: pcmBase64,
-      mimeType: 'audio/L16;rate=16000',
-      xfyunEncoding: 'raw'
+    try {
+      const pcmBase64 = await convertRecordingToPcm16Base64(filePath, fallbackMimeType)
+      return {
+        base64: pcmBase64,
+        mimeType: 'audio/L16;rate=16000',
+        xfyunEncoding: 'raw'
+      }
+    } catch {
+      // Some H5 recorders emit WebM/Opus that decodeAudioData cannot decode.
+      // Fall back to the original container so the backend can route it to Whisper.
+      return { base64, mimeType, xfyunEncoding: 'lame' }
     }
   }
 

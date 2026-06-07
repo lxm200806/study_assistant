@@ -75,8 +75,8 @@
         </view>
       </view>
 
-      <view v-if="voiceStatus === 'transcribing'" class="status-banner">
-        <text>识别中：{{ asrPartialText || partialTranscript || '...' }}</text>
+      <view v-if="voiceStatus === 'listening' || voiceStatus === 'transcribing'" class="status-banner">
+        <text>识别中：{{ liveTranscriptDisplay }}</text>
       </view>
     </scroll-view>
 
@@ -93,7 +93,7 @@
         @mouseup.prevent="onVoicePressEnd"
         @mouseleave.prevent="onVoicePressEnd"
       >
-        <text class="voice-mic-icon">{{ voiceStatus === 'listening' ? '⏺' : '🎤' }}</text>
+        <text class="voice-mic-icon">{{ voiceStatus === 'listening' ? '●' : '🎙' }}</text>
       </view>
       <text class="voice-hint">按住说话，松开后 AI 自动回复并朗读</text>
     </view>
@@ -103,7 +103,7 @@
         <input
           class="chat-input"
           v-model="inputText"
-          placeholder="输入消息..."
+          placeholder="杈撳叆娑堟伅..."
           @confirm="sendTextMessage"
         />
       </view>
@@ -134,7 +134,7 @@ const vocabStore = useVocabularyStore()
 const audio = useAudioSession()
 const streamingTts = useStreamingTts()
 const streamingAsr = useStreamingAsr()
-const { partialText: asrPartialText, asrProvider, loadConfig, startSession, uploadRecording } = streamingAsr
+const { partialText: asrPartialText, asrProvider, loadConfig, startLiveRecording, stopLiveRecording, stopLiveRecognition } = streamingAsr
 
 type ChatMode = 'free' | 'challenge' | 'roleplay'
 type UiMode = 'voice' | 'text'
@@ -149,21 +149,21 @@ interface Message {
 }
 
 const chatModes = [
-  { id: 'free' as ChatMode, label: '自由聊', hint: '像朋友一样自然聊' },
+  { id: 'free' as ChatMode, label: '自由聊天', hint: '像朋友一样自然聊' },
   { id: 'challenge' as ChatMode, label: '用词挑战', hint: '用目标词造句练习' },
   { id: 'roleplay' as ChatMode, label: '情景', hint: '角色扮演对话' }
 ]
 
 // Built-in scenarios mirrored from the backend constants (label + icon for UI)
 const builtInScenarios = [
-  { id: 'cafe',       label: '咖啡馆点餐', icon: '☕' },
-  { id: 'shopping',   label: '逛商场',     icon: '🛍' },
-  { id: 'directions', label: '问路',       icon: '🗺' },
-  { id: 'doctor',     label: '看医生',     icon: '🩺' },
-  { id: 'hotel',      label: '酒店入住',   icon: '🏨' },
-  { id: 'airport',    label: '机场对话',   icon: '✈️' },
-  { id: 'birthday',   label: '生日派对',   icon: '🎂' },
-  { id: 'interview',  label: '工作面试',   icon: '💼' },
+  { id: 'cafe', label: '咖啡馆点餐', icon: '☕' },
+  { id: 'shopping', label: '逛商店', icon: '🛍' },
+  { id: 'directions', label: '问路', icon: '🗺' },
+  { id: 'doctor', label: '看医生', icon: '🏥' },
+  { id: 'hotel', label: '酒店入住', icon: '🏨' },
+  { id: 'airport', label: '机场对话', icon: '✈️' },
+  { id: 'birthday', label: '生日派对', icon: '🎂' },
+  { id: 'interview', label: '工作面试', icon: '💼' },
 ]
 
 const messages = ref<Message[]>([])
@@ -178,10 +178,9 @@ const quota = ref({ remaining: -1, isPremium: false })
 const voiceStatus = ref<VoiceStatus>('idle')
 const partialTranscript = ref('')
 const isBusy = ref(false)
-let voiceSessionStarted = false
 
 const currentBookName = computed(() => vocabStore.getCurrentBook?.name || vocabStore.currentBookCode || 'KET')
-const modeLabel = computed(() => chatModes.find(m => m.id === chatMode.value)?.label || '自由聊')
+const modeLabel = computed(() => chatModes.find(m => m.id === chatMode.value)?.label || '自由聊天')
 const modeHint = computed(() => chatModes.find(m => m.id === chatMode.value)?.hint || '')
 const showScenarioPicker = computed(() => chatMode.value === 'roleplay' && !scenarioChosen.value)
 const scenarioLabel = computed(() => {
@@ -189,6 +188,7 @@ const scenarioLabel = computed(() => {
   return found ? found.label : scenario.value
 })
 const voiceBusy = computed(() => voiceStatus.value === 'transcribing' || voiceStatus.value === 'thinking' || voiceStatus.value === 'speaking')
+const liveTranscriptDisplay = computed(() => asrPartialText.value || partialTranscript.value || '...')
 
 const voiceStatusLabel = computed(() => {
   const map: Record<VoiceStatus, string> = {
@@ -216,7 +216,7 @@ const selectScenario = (id: string, label: string) => {
   scenario.value = id
   scenarioChosen.value = true
   messages.value = []
-  const greeting = `Scene: ${label}. Alex is ready — feel free to start!`
+  const greeting = `Scene: ${label}. Alex is ready - feel free to start!`
   addMessage(greeting, false)
 }
 
@@ -289,7 +289,7 @@ const sendStreamTurn = async (userText: string) => {
         aiMsg.streaming = false
         if (typeof payload.remainingFree === 'number') quota.value.remaining = payload.remainingFree
         if (payload.usedFallback) {
-          uni.showToast({ title: '大模型未接通，已使用备用回复', icon: 'none' })
+          uni.showToast({ title: '模型未连通，已使用备用回复', icon: 'none' })
         }
 
         void (async () => {
@@ -301,7 +301,7 @@ const sendStreamTurn = async (userText: string) => {
               try {
                 await speakReplyText(finalText)
               } catch {
-                uni.showToast({ title: '自动朗读失败，请点 🔊', icon: 'none' })
+                uni.showToast({ title: '自动朗读失败，请点扬声器', icon: 'none' })
               }
             }
           }
@@ -343,11 +343,12 @@ const onVoicePressStart = async () => {
   stopSpeak()
   voiceStatus.value = 'listening'
   partialTranscript.value = ''
-  voiceSessionStarted = false
   try {
-    await startSession()
-    voiceSessionStarted = true
-    await audio.startRecord()
+    if (import.meta.env?.UNI_PLATFORM === 'h5') {
+      await startLiveRecording()
+    } else {
+      await audio.startRecord()
+    }
   } catch (error) {
     voiceStatus.value = 'idle'
     const msg = (error as Error).message || ''
@@ -367,16 +368,20 @@ const onVoicePressEnd = async () => {
   voiceStatus.value = 'transcribing'
 
   try {
-    const path = await audio.stopRecord()
-    if (!voiceSessionStarted) throw new Error('session missing')
-    const text = (await uploadRecording(path)).trim()
-    partialTranscript.value = text
-    if (!isMeaningfulSpeechText(text)) {
+    let finalText = ''
+    if (import.meta.env?.UNI_PLATFORM === 'h5') {
+      finalText = (await stopLiveRecording()).trim()
+    } else {
+      const path = await audio.stopRecord()
+      finalText = (await audio.uploadTranscribe(path)).trim()
+    }
+    partialTranscript.value = finalText
+    if (!isMeaningfulSpeechText(finalText)) {
       voiceStatus.value = 'idle'
       uni.showToast({ title: '未识别到有效内容，请再说一次', icon: 'none' })
       return
     }
-    await sendStreamTurn(text)
+    await sendStreamTurn(finalText)
   } catch (error) {
     voiceStatus.value = 'idle'
     const msg = (error as Error).message || ''
@@ -415,9 +420,9 @@ const welcomeForMode = (mode: ChatMode) => {
   if (mode === 'roleplay') {
     return scenario.value
       ? `Let's role-play: ${scenario.value}. Say something to start the scene!`
-      : 'Pick a scenario or just start talking — we\'ll stay in character.'
+      : 'Pick a scenario or just start talking - we\'ll stay in character.'
   }
-  return 'Hi! Chat with me like a friend — say hello or tell me about your day.'
+  return 'Hi! Chat with me like a friend - say hello or tell me about your day.'
 }
 
 const loadHistory = async () => {
@@ -467,6 +472,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  stopLiveRecognition()
   streamingTts.stop()
   stopSpeak()
 })
