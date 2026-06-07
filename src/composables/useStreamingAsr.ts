@@ -50,6 +50,10 @@ function resampleTo16k(input: Float32Array, inputRate: number): Int16Array {
   return pcm
 }
 
+function nowMs(): number {
+  return typeof performance !== 'undefined' ? performance.now() : Date.now()
+}
+
 export function useStreamingAsr() {
   const partialText = ref('')
   const asrProvider = ref<'xfyun' | 'whisper'>('whisper')
@@ -65,6 +69,20 @@ export function useStreamingAsr() {
   let speechRecognition: BrowserSpeechRecognition | null = null
   let browserSpeechFinal = ''
   let browserSpeechPartial = ''
+  let recordingStartedAt = 0
+  let pushedChunkCount = 0
+
+  const debugLog = (event: string, payload: Record<string, unknown> = {}) => {
+    try {
+      console.debug('[VoiceASR]', {
+        event,
+        elapsedMs: recordingStartedAt ? Math.round(nowMs() - recordingStartedAt) : 0,
+        ...payload
+      })
+    } catch {
+      // ignore
+    }
+  }
 
   const loadConfig = async () => {
     try {
@@ -84,6 +102,10 @@ export function useStreamingAsr() {
     if (res.data?.provider === 'xfyun' || res.data?.provider === 'whisper') {
       asrProvider.value = res.data.provider
     }
+    debugLog('backend-session-started', {
+      provider: asrProvider.value,
+      hasSessionId: !!sessionId
+    })
     if (!sessionId) throw new Error('ASR session failed')
   }
 
@@ -98,15 +120,31 @@ export function useStreamingAsr() {
 
   const pushPcm = (pcm: Int16Array, isLast = false) => {
     if (!sessionId || pcm.length === 0) return
+    const chunkNo = ++pushedChunkCount
     const audioBase64 = pcm16ToBase64(pcm)
     uploadChain = uploadChain
       .then(async () => {
         const res = await speechAPI.asrPushChunk(sessionId, audioBase64, isLast)
         if (res.data?.partial) {
           partialText.value = res.data.partial
+          debugLog('backend-partial', {
+            chunkNo,
+            isLast,
+            text: res.data.partial
+          })
+        } else if (chunkNo % 10 === 0 || isLast) {
+          debugLog('backend-no-partial-yet', {
+            chunkNo,
+            isLast
+          })
         }
       })
-      .catch(() => {
+      .catch((error) => {
+        debugLog('backend-chunk-error', {
+          chunkNo,
+          isLast,
+          message: (error as Error).message
+        })
         // Keep later chunks flowing even if one partial request fails.
       })
   }
@@ -123,12 +161,20 @@ export function useStreamingAsr() {
       webkitSpeechRecognition?: new () => BrowserSpeechRecognition
     }
     const RecognitionCtor = speechWindow.SpeechRecognition || speechWindow.webkitSpeechRecognition
-    if (!RecognitionCtor) return
+    if (!RecognitionCtor) {
+      debugLog('browser-speech-unavailable')
+      return
+    }
 
     speechRecognition = new RecognitionCtor()
     speechRecognition.lang = 'en-US'
     speechRecognition.interimResults = true
     speechRecognition.continuous = true
+    debugLog('browser-speech-starting', {
+      lang: speechRecognition.lang,
+      interimResults: speechRecognition.interimResults,
+      continuous: speechRecognition.continuous
+    })
     speechRecognition.onresult = (event: any) => {
       let finalText = ''
       let interimText = ''
@@ -142,17 +188,27 @@ export function useStreamingAsr() {
       browserSpeechFinal = finalText.trim()
       browserSpeechPartial = interimText.trim()
       const text = browserSpeechText()
-      if (text) partialText.value = text
+      if (text) {
+        partialText.value = text
+        debugLog('browser-speech-result', {
+          finalText: browserSpeechFinal,
+          interimText: browserSpeechPartial,
+          text
+        })
+      }
     }
     speechRecognition.onerror = () => {
+      debugLog('browser-speech-error')
       // Backend ASR remains the source of truth; this is only a live display fallback.
     }
     speechRecognition.onend = () => {
+      debugLog('browser-speech-ended', { recording })
       if (!recording || !speechRecognition) return
       window.setTimeout(() => {
         if (!recording || !speechRecognition) return
         try {
           speechRecognition.start()
+          debugLog('browser-speech-restarted')
         } catch {
           // ignore
         }
@@ -161,7 +217,9 @@ export function useStreamingAsr() {
 
     try {
       speechRecognition.start()
+      debugLog('browser-speech-started')
     } catch {
+      debugLog('browser-speech-start-failed')
       speechRecognition = null
     }
   }
@@ -170,6 +228,9 @@ export function useStreamingAsr() {
     if (!speechRecognition) return
     try {
       speechRecognition.stop()
+      debugLog('browser-speech-stop-requested', {
+        fallbackText: browserSpeechText()
+      })
     } catch {
       // ignore
     }
@@ -203,6 +264,9 @@ export function useStreamingAsr() {
   const startH5LiveRecording = async () => {
     try {
       mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      debugLog('mic-stream-opened', {
+        audioTracks: mediaStream.getAudioTracks().length
+      })
     } catch (error) {
       throw mapMicError(error)
     }
@@ -213,6 +277,9 @@ export function useStreamingAsr() {
     }
 
     audioContext = new AudioCtx()
+    debugLog('audio-context-created', {
+      sampleRate: audioContext.sampleRate
+    })
     sourceNode = audioContext.createMediaStreamSource(mediaStream)
     processorNode = audioContext.createScriptProcessor(4096, 1, 1)
     recording = true
@@ -230,12 +297,18 @@ export function useStreamingAsr() {
   }
 
   const startLiveRecording = async () => {
+    recordingStartedAt = nowMs()
+    pushedChunkCount = 0
     currentBackend = detectRecordBackend()
+    debugLog('start-live-recording', { backend: currentBackend })
     try {
       await startSession()
     } catch (error) {
       if (currentBackend === 'h5' && canUseBrowserSpeechFallback()) {
         sessionId = ''
+        debugLog('backend-session-failed-using-browser-fallback', {
+          message: (error as Error).message
+        })
       } else {
         throw error
       }
@@ -247,6 +320,11 @@ export function useStreamingAsr() {
   }
 
   const stopLiveRecording = async (): Promise<string> => {
+    debugLog('stop-live-recording-requested', {
+      pushedChunkCount,
+      currentPartialText: partialText.value,
+      browserSpeechText: browserSpeechText()
+    })
     recording = false
     stopBrowserSpeechFallback()
     const fallbackText = () => (partialText.value || browserSpeechText()).trim()
@@ -255,16 +333,27 @@ export function useStreamingAsr() {
     }
 
     await uploadChain
-    if (!sessionId) return fallbackText()
+    if (!sessionId) {
+      const text = fallbackText()
+      debugLog('stop-live-recording-final-browser-fallback', { text })
+      return text
+    }
 
     try {
       const endRes = await speechAPI.asrEndSession(sessionId)
       const text = (endRes.data?.text || fallbackText()).trim()
       partialText.value = text
+      debugLog('stop-live-recording-final-backend', { text })
       return text
     } catch (error) {
       const text = fallbackText()
-      if (text) return text
+      if (text) {
+        debugLog('stop-live-recording-final-fallback-after-error', {
+          text,
+          message: (error as Error).message
+        })
+        return text
+      }
       throw error
     } finally {
       sessionId = ''

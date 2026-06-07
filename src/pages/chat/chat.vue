@@ -103,7 +103,7 @@
         <input
           class="chat-input"
           v-model="inputText"
-          placeholder="杈撳叆娑堟伅..."
+          placeholder="输入消息..."
           @confirm="sendTextMessage"
         />
       </view>
@@ -117,7 +117,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, onUnmounted } from 'vue'
+import { ref, onMounted, computed, onUnmounted, watch } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { useUserStore } from '@/stores/user'
 import { useVocabularyStore } from '@/stores/vocabulary'
@@ -126,6 +126,7 @@ import { stopSpeak, unlockTtsPlayback, speakReplyText } from '@/utils/tts'
 import { streamChatMessage } from '@/utils/chat-stream'
 import { isMeaningfulSpeechText } from '@/utils/speech-text'
 import { useAudioSession } from '@/composables/useAudioSession'
+import { isBrowserH5 } from '@/utils/audio-recording'
 import { useStreamingTts } from '@/composables/useStreamingTts'
 import { useStreamingAsr } from '@/composables/useStreamingAsr'
 
@@ -178,6 +179,26 @@ const quota = ref({ remaining: -1, isPremium: false })
 const voiceStatus = ref<VoiceStatus>('idle')
 const partialTranscript = ref('')
 const isBusy = ref(false)
+let liveUserDraftMessage: Message | null = null
+let voiceDebugStartedAt = 0
+
+const voiceDebugElapsedMs = () => {
+  if (!voiceDebugStartedAt) return 0
+  return Math.round((typeof performance !== 'undefined' ? performance.now() : Date.now()) - voiceDebugStartedAt)
+}
+
+const debugVoiceChat = (event: string, payload: Record<string, unknown> = {}) => {
+  try {
+    console.debug('[VoiceChat]', {
+      event,
+      elapsedMs: voiceDebugElapsedMs(),
+      voiceStatus: voiceStatus.value,
+      ...payload
+    })
+  } catch {
+    // ignore
+  }
+}
 
 const currentBookName = computed(() => vocabStore.getCurrentBook?.name || vocabStore.currentBookCode || 'KET')
 const modeLabel = computed(() => chatModes.find(m => m.id === chatMode.value)?.label || '自由聊天')
@@ -257,7 +278,38 @@ const addMessage = (text: string, isUser: boolean, streaming = false): Message =
   return msg
 }
 
-const sendStreamTurn = async (userText: string) => {
+const updateMessage = (message: Message | null | undefined, patch: Partial<Message>) => {
+  if (!message) return
+  const index = messages.value.findIndex(msg => msg.id === message.id)
+  if (index < 0) return
+  messages.value[index] = { ...messages.value[index], ...patch }
+  Object.assign(message, messages.value[index])
+  scrollToBottom(message.id)
+}
+
+const getMessageText = (message: Message | null | undefined) => {
+  if (!message) return ''
+  return messages.value.find(msg => msg.id === message.id)?.text || message.text || ''
+}
+
+const removeLiveUserDraftMessage = () => {
+  if (!liveUserDraftMessage) return
+  debugVoiceChat('remove-live-user-draft', { messageId: liveUserDraftMessage.id })
+  messages.value = messages.value.filter(msg => msg.id !== liveUserDraftMessage?.id)
+  liveUserDraftMessage = null
+}
+
+watch(asrPartialText, (text) => {
+  if (!liveUserDraftMessage) return
+  if (!text) return
+  debugVoiceChat('asr-partial-updates-user-bubble', {
+    messageId: liveUserDraftMessage.id,
+    text
+  })
+  updateMessage(liveUserDraftMessage, { text, streaming: true })
+})
+
+const sendStreamTurn = async (userText: string, existingUserMessage?: Message | null) => {
   if (!userText.trim() || isBusy.value) return
 
   isBusy.value = true
@@ -265,7 +317,16 @@ const sendStreamTurn = async (userText: string) => {
   streamingTts.reset()
   stopSpeak()
 
-  addMessage(userText, true)
+  if (existingUserMessage) {
+    debugVoiceChat('reuse-live-user-draft-for-send', {
+      messageId: existingUserMessage.id,
+      finalText: userText
+    })
+    updateMessage(existingUserMessage, { text: userText, streaming: false })
+  } else {
+    debugVoiceChat('add-user-message-for-text-send', { text: userText })
+    addMessage(userText, true)
+  }
   const aiMsg = addMessage('', false, true)
   let voiceSpokeAny = false
 
@@ -276,7 +337,7 @@ const sendStreamTurn = async (userText: string) => {
       mode: chatMode.value,
       scenario: chatMode.value === 'roleplay' ? scenario.value : undefined,
       onToken: (token) => {
-        aiMsg.text += token
+        updateMessage(aiMsg, { text: getMessageText(aiMsg) + token })
         if (uiMode.value === 'voice' && token) {
           voiceStatus.value = 'speaking'
           voiceSpokeAny = true
@@ -284,9 +345,8 @@ const sendStreamTurn = async (userText: string) => {
         }
       },
       onDone: (payload) => {
-        const finalText = payload.fullText || aiMsg.text
-        aiMsg.text = finalText
-        aiMsg.streaming = false
+        const finalText = payload.fullText || getMessageText(aiMsg)
+        updateMessage(aiMsg, { text: finalText, streaming: false })
         if (typeof payload.remainingFree === 'number') quota.value.remaining = payload.remainingFree
         if (payload.usedFallback) {
           uni.showToast({ title: '模型未连通，已使用备用回复', icon: 'none' })
@@ -311,17 +371,21 @@ const sendStreamTurn = async (userText: string) => {
         })()
       },
       onError: (message) => {
-        aiMsg.text = message.includes('今日免费') ? '今日免费对话次数已用完。' : '抱歉，暂时无法回复。'
-        aiMsg.streaming = false
+        updateMessage(aiMsg, {
+          text: message.includes('今日免费') ? '今日免费对话次数已用完。' : '抱歉，暂时无法回复。',
+          streaming: false
+        })
         voiceStatus.value = 'idle'
         isBusy.value = false
         resolve()
       }
     }).catch((error) => {
-      aiMsg.text = (error as Error).message.includes('今日免费')
-        ? '今日免费对话次数已用完。'
-        : '抱歉，暂时无法回复。'
-      aiMsg.streaming = false
+      updateMessage(aiMsg, {
+        text: (error as Error).message.includes('今日免费')
+          ? '今日免费对话次数已用完。'
+          : '抱歉，暂时无法回复。',
+        streaming: false
+      })
       voiceStatus.value = 'idle'
       isBusy.value = false
       resolve()
@@ -338,19 +402,32 @@ const sendTextMessage = async () => {
 
 const onVoicePressStart = async () => {
   if (voiceBusy.value || voiceStatus.value === 'listening') return
+  voiceDebugStartedAt = typeof performance !== 'undefined' ? performance.now() : Date.now()
   await unlockTtsPlayback()
   streamingTts.stop()
   stopSpeak()
   voiceStatus.value = 'listening'
   partialTranscript.value = ''
+  removeLiveUserDraftMessage()
+  liveUserDraftMessage = addMessage('', true, true)
+  debugVoiceChat('press-start-created-live-user-draft', {
+    messageId: liveUserDraftMessage.id,
+    isBrowserH5: isBrowserH5()
+  })
   try {
-    if (import.meta.env?.UNI_PLATFORM === 'h5') {
+    if (isBrowserH5()) {
+      debugVoiceChat('start-h5-live-recording')
       await startLiveRecording()
     } else {
+      debugVoiceChat('start-native-recording')
       await audio.startRecord()
     }
   } catch (error) {
     voiceStatus.value = 'idle'
+    removeLiveUserDraftMessage()
+    debugVoiceChat('press-start-error', {
+      message: (error as Error).message
+    })
     const msg = (error as Error).message || ''
     if (msg.includes('Unauthorized')) {
       uni.showToast({ title: '请先登录', icon: 'none' })
@@ -366,24 +443,33 @@ const onVoicePressEnd = async () => {
   if (voiceStatus.value !== 'listening') return
   await unlockTtsPlayback()
   voiceStatus.value = 'transcribing'
+  debugVoiceChat('press-end-stop-recording')
 
   try {
     let finalText = ''
-    if (import.meta.env?.UNI_PLATFORM === 'h5') {
+    if (isBrowserH5()) {
       finalText = (await stopLiveRecording()).trim()
     } else {
       const path = await audio.stopRecord()
       finalText = (await audio.uploadTranscribe(path)).trim()
     }
     partialTranscript.value = finalText
+    debugVoiceChat('press-end-final-asr-text', { finalText })
     if (!isMeaningfulSpeechText(finalText)) {
       voiceStatus.value = 'idle'
+      removeLiveUserDraftMessage()
       uni.showToast({ title: '未识别到有效内容，请再说一次', icon: 'none' })
       return
     }
-    await sendStreamTurn(finalText)
+    const userDraft = liveUserDraftMessage
+    liveUserDraftMessage = null
+    await sendStreamTurn(finalText, userDraft)
   } catch (error) {
     voiceStatus.value = 'idle'
+    removeLiveUserDraftMessage()
+    debugVoiceChat('press-end-error', {
+      message: (error as Error).message
+    })
     const msg = (error as Error).message || ''
     const title = msg.includes('未配置') || msg.includes('WHISPER')
       ? '语音识别未配置'
