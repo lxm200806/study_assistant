@@ -10,13 +10,13 @@ export async function practiceHandler(req: Request, res: Response) {
     const { wordId, type, isCorrect } = req.body
 
     if (!wordId || !type || typeof isCorrect !== 'boolean') {
-      return res.status(400).json({ error: 'Invalid request body' })
+      return res.status(400).json({ success: false, error: 'Invalid request body' })
     }
 
     const result = await practice(userId, { wordId, type, isCorrect })
     res.status(200).json({ success: true, data: result })
   } catch (error) {
-    res.status(500).json({ error: (error as Error).message })
+    res.status(500).json({ success: false, error: (error as Error).message })
   }
 }
 
@@ -30,7 +30,7 @@ export async function getReviewHandler(req: Request, res: Response) {
     const words = await getReviewWords(userId, { type, bookCode, limit })
     res.status(200).json({ success: true, data: words })
   } catch (error) {
-    res.status(500).json({ error: (error as Error).message })
+    res.status(500).json({ success: false, error: (error as Error).message })
   }
 }
 
@@ -43,7 +43,7 @@ export async function getHistoryHandler(req: Request, res: Response) {
     const history = await getTrainingHistory(userId, page, limit)
     res.status(200).json({ success: true, data: history })
   } catch (error) {
-    res.status(500).json({ error: (error as Error).message })
+    res.status(500).json({ success: false, error: (error as Error).message })
   }
 }
 
@@ -53,15 +53,15 @@ export async function completeSessionHandler(req: Request, res: Response) {
     const { bookCode, wordIds } = req.body as { bookCode?: string; wordIds?: string[] }
 
     if (!bookCode || !Array.isArray(wordIds)) {
-      return res.status(400).json({ error: 'bookCode and wordIds are required' })
+      return res.status(400).json({ success: false, error: 'bookCode and wordIds are required' })
     }
 
     const newlyCovered = await getNewlyCoveredCount(userId, bookCode, wordIds)
     await markWordsPracticed(userId, bookCode, wordIds)
     await recordDailyStudy(userId, wordIds.length)
 
-    res.status(200).json({ success: true, newlyCovered })
+    res.status(200).json({ success: true, data: { newlyCovered }, newlyCovered })
   } catch (error) {
-    res.status(500).json({ error: (error as Error).message })
+    res.status(500).json({ success: false, error: (error as Error).message })
   }
 }

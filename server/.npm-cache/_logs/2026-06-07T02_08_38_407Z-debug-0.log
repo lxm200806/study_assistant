@@ -1,0 +1,19 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.12.1
+2 info using node@v24.15.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\lixia\Documents\Study-Cici\study_assistant\server\.npmrc
+5 silly config load:file:C:\Users\lixia\.npmrc
+6 silly config load:file:C:\Users\lixia\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm ls @scarf/scarf
+8 verbose argv "ls" "@scarf/scarf" "--json" "--long"
+9 verbose logfile logs-max:10 dir:C:\Users\lixia\Documents\Study-Cici\study_assistant\server\.npm-cache\_logs\2026-06-07T02_08_38_407Z-
+10 verbose logfile C:\Users\lixia\Documents\Study-Cici\study_assistant\server\.npm-cache\_logs\2026-06-07T02_08_38_407Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+13 verbose cwd C:\Users\lixia\Documents\Study-Cici\study_assistant\server
+14 verbose os Windows_NT 10.0.26200
+15 verbose node v24.15.0
+16 verbose npm  v11.12.1
+17 verbose exit 0
+18 info ok

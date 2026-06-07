@@ -36,6 +36,8 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    ports:
+      - "3004:3004"
     expose:
       - "3004"
     networks:
