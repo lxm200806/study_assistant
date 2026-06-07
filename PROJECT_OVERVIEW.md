@@ -125,6 +125,13 @@ bash start-dev.sh
 
 该脚本会启动 PostgreSQL、执行迁移、启动后端 API 和前端 H5。
 
+### 运行模式
+
+| 模式 | 入口 | 端口/数据源 |
+|------|------|-------------|
+| 本地测试 | `bash start-dev.sh` 或 `bash start-server.sh` | 后端 `3005`，本机 PostgreSQL |
+| Docker 发布 | `docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --build` | 后端 `3004`，Docker PostgreSQL，Web `80` |
+
 ### 前端
 
 ```bash
@@ -150,8 +157,8 @@ npm run prisma:generate
 | 项 | 默认值 |
 |----|--------|
 | 前端端口 | 5173 |
-| 后端端口 | 3004 |
-| API 基础地址 | `/api`，由 Vite 代理到 `http://127.0.0.1:3004` |
+| 后端端口 | 3005（本地）/ 3004（Docker） |
+| API 基础地址 | `/api`，由 Vite 代理到 `http://127.0.0.1:3005` |
 | 数据库 | PostgreSQL `localhost:5432/study_assistant` |
 
 ## 环境变量

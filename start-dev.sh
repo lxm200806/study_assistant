@@ -1,5 +1,5 @@
 #!/bin/bash
-# 同时启动后端 (3004) 与前端 (5173)，便于本地测试
+# 同时启动后端 (3005) 与前端 (5173)，便于本地测试
 # 用法: ./start-dev.sh
 set -e
 cd "$(dirname "$0")"
@@ -15,7 +15,7 @@ echo "🐘 检查数据库..."
 bash ./scripts/start-db.sh
 bash ./scripts/db-migrate.sh
 
-stop_port 3004 "后端 API"
+stop_port 3005 "后端 API"
 stop_port 5173 "前端 H5"
 
 echo ""
@@ -27,8 +27,8 @@ cd ..
 
 echo "⏳ 等待后端就绪..."
 for i in $(seq 1 60); do
-  if curl -sf http://127.0.0.1:3004/api/books >/dev/null 2>&1; then
-    echo "✓ 后端已就绪 (http://localhost:3004)"
+  if curl -sf http://127.0.0.1:3005/api/books >/dev/null 2>&1; then
+    echo "✓ 后端已就绪 (http://localhost:3005)"
     break
   fi
   if [ "$i" -eq 60 ]; then
@@ -59,6 +59,6 @@ done
 echo ""
 source ./scripts/print-access-urls.sh
 print_access_urls 5173 "前端 H5 访问地址"
-echo "📖 API 文档: http://localhost:3004/api-docs"
+echo "📖 API 文档: http://localhost:3005/api-docs"
 echo "📋 日志: logs/server.log  logs/client.log"
 echo ""

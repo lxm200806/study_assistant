@@ -26,6 +26,13 @@ deploy/              生产 Nginx 与 Web 镜像配置
 
 项目脚本默认面向 WSL/Linux shell，Windows 下建议在 WSL 中运行。
 
+### 两种运行模式
+
+| 模式 | 入口 | 说明 |
+|------|------|------|
+| 本地测试 | `bash start-dev.sh` | 启动本地后端 `3005` + 前端 `5173`，连接本机数据库 |
+| Docker 发布 | `docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --build` | 启动 Docker 后端 `3004` + Web `80`，连接 Docker 内数据库 |
+
 1. 安装依赖：
 
 ```bash
@@ -60,8 +67,8 @@ bash start-dev.sh
 | 服务 | 地址 |
 |------|------|
 | 前端 H5 | http://localhost:5173 |
-| 后端 API | http://localhost:3004 |
-| API 文档 | http://localhost:3004/api-docs |
+| 后端 API | http://localhost:3005 |
+| API 文档 | http://localhost:3005/api-docs |
 | PostgreSQL | localhost:5432 |
 
 ## 常用命令

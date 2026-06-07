@@ -9,7 +9,7 @@ source ../scripts/node-env.sh
 echo "🚀 启动后端开发服务器..."
 echo "📍 Node: $(command -v node) ($(node --version))"
 echo "📂 目录: $(pwd)"
-echo "🌐 API: http://localhost:3004"
+echo "🌐 API: http://localhost:3005"
 echo ""
 
 node ./node_modules/prisma/build/index.js generate

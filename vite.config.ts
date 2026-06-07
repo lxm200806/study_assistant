@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
 
-const API_PORT = process.env.API_PORT || '3004'
+const API_PORT = process.env.API_PORT || '3005'
 
 export default defineConfig({
   plugins: [uni()],
