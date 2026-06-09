@@ -1,0 +1,5 @@
+export const ERROR_CODES = {
+  BOOK_LOCKED: 'BOOK_LOCKED',
+  UNAUTHORIZED: 401,
+  FORBIDDEN: 403
+} as const;

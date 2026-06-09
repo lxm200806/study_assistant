@@ -1,4 +1,5 @@
 import { useVocabularyStore } from '@/stores/vocabulary'
+import { DEFAULTS } from '@/config/defaults'
 import { openPage } from '@/utils/navigation'
 import { isBookAccessible } from '@/composables/useTrainingStart'
 
@@ -23,7 +24,7 @@ export function useDailySession() {
     if (book && isBookAccessible(book.code, book.isFree)) {
       return true
     }
-    vocabStore.setCurrentBook('ket')
+    vocabStore.setCurrentBook(DEFAULTS.BOOK_CODE)
     uni.showToast({ title: '已切换到免费 KET 词书', icon: 'none' })
     return true
   }

@@ -1,33 +1,39 @@
 {
-  "name": "study-assistant",
-  "version": "1.0.0",
-  "description": "学习助手 - 词汇学习与训练应用",
-  "scripts": {
-    "dev:h5": "bash dev-h5.sh",
-    "fix:native": "bash scripts/fix-native-deps.sh",
-    "build:h5": "bash -c 'source scripts/node-env.sh && node ./node_modules/@dcloudio/vite-plugin-uni/bin/uni.js build'",
-    "dev:mp-weixin": "bash -c 'source scripts/node-env.sh && node ./node_modules/@dcloudio/vite-plugin-uni/bin/uni.js -p mp-weixin'",
-    "build:mp-weixin": "bash -c 'source scripts/node-env.sh && node ./node_modules/@dcloudio/vite-plugin-uni/bin/uni.js build -p mp-weixin'"
-  },
-  "dependencies": {
-    "@dcloudio/uni-app": "3.0.0-4020420240722001",
-    "@dcloudio/uni-components": "3.0.0-4020420240722001",
-    "@dcloudio/uni-h5": "3.0.0-4020420240722001",
-    "@dcloudio/uni-mp-weixin": "3.0.0-4020420240722001",
-    "pinia": "^2.1.7",
-    "vue": "^3.4.21"
-  },
-  "devDependencies": {
-    "@dcloudio/types": "^3.4.8",
-    "@dcloudio/uni-automator": "3.0.0-4020420240722001",
-    "@dcloudio/uni-cli-shared": "3.0.0-4020420240722001",
-    "@dcloudio/uni-stacktracey": "3.0.0-4020420240722001",
-    "@dcloudio/vite-plugin-uni": "3.0.0-4020420240722001",
-    "@types/node": "^20.11.0",
-    "sass": "^1.100.0",
-    "sass-embedded": "^1.100.0",
-    "typescript": "^5.3.3",
-    "vite": "^5.0.12",
-    "vue-tsc": "^1.8.27"
-  }
+    "version": "1.0.0",
+    "name": "study-assistant",
+    "description": "Study Assistant - a language learning app",
+    "scripts": {
+        "dev:h5": "bash dev-h5.sh",
+        "build:mp-weixin": "bash -c 'source scripts/node-env.sh && node ./node_modules/@dcloudio/vite-plugin-uni/bin/uni.js build -p mp-weixin'",
+        "build:h5": "bash -c 'source scripts/node-env.sh && node ./node_modules/@dcloudio/vite-plugin-uni/bin/uni.js build'",
+        "fix:native": "bash scripts/fix-native-deps.sh",
+        "dev:mp-weixin": "bash -c 'source scripts/node-env.sh && node ./node_modules/@dcloudio/vite-plugin-uni/bin/uni.js -p mp-weixin'"
+    },
+    "dependencies": {
+        "@dcloudio/uni-app": "3.0.0-4020420240722001",
+        "@dcloudio/uni-components": "3.0.0-4020420240722001",
+        "@dcloudio/uni-h5": "3.0.0-4020420240722001",
+        "@dcloudio/uni-mp-weixin": "3.0.0-4020420240722001",
+        "pinia": "^2.1.7",
+        "vue": "^3.4.21"
+    },
+    "devDependencies": {
+        "@dcloudio/types": "^3.4.8",
+        "@dcloudio/uni-automator": "3.0.0-4020420240722001",
+        "@dcloudio/uni-cli-shared": "3.0.0-4020420240722001",
+        "@dcloudio/uni-stacktracey": "3.0.0-4020420240722001",
+        "@dcloudio/vite-plugin-uni": "3.0.0-4020420240722001",
+        "@types/node": "^20.11.0",
+        "@typescript-eslint/eslint-plugin": "^7.18.0",
+        "@typescript-eslint/parser": "^7.18.0",
+        "eslint": "^8.57.1",
+        "eslint-config-prettier": "^9.1.2",
+        "eslint-plugin-prettier": "^5.5.6",
+        "prettier": "^3.8.4",
+        "sass": "^1.100.0",
+        "sass-embedded": "^1.100.0",
+        "typescript": "^5.3.3",
+        "vite": "^5.0.12",
+        "vue-tsc": "^1.8.27"
+    }
 }
