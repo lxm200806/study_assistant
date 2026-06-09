@@ -1,0 +1,40 @@
+{
+  "expo": {
+    "name": "学习助手",
+    "slug": "study-assistant-mobile",
+    "scheme": "studyassistant",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.studyassistant.mobile",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "用于语音陪聊、口语练习和发音评测。",
+        "NSSpeechRecognitionUsageDescription": "用于将你的语音转为文本，帮助 AI 陪聊和口语练习。"
+      }
+    },
+    "android": {
+      "package": "com.studyassistant.mobile",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
+      ]
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-av",
+        {
+          "microphonePermission": "用于语音陪聊、口语练习和发音评测。"
+        }
+      ]
+    ],
+    "extra": {
+      "apiBaseUrl": "http://127.0.0.1:3004/api"
+    }
+  }
+}
