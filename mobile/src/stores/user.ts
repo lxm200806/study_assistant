@@ -1,65 +1,96 @@
-锘縤mport * as SecureStore from 'expo-secure-store'
+// User store for Study Assistant Mobile
+import { useState, useEffect } from 'react'
+import * as SecureStore from 'expo-secure-store'
 
-interface UserState {
+export interface User {
+  id: string
   username: string
-  isPremium: boolean
-  currentBook: string
-  dailyGoal: number
-  onboarded: boolean
+  isAdmin?: boolean
+  plan?: string
+  planExpiresAt?: string
 }
 
-const STORAGE_KEYS = {
-  username: 'mobile_username',
-  isPremium: 'mobile_isPremium',
-  currentBook: 'mobile_currentBook',
-  dailyGoal: 'mobile_dailyGoal',
-  onboarded: 'mobile_onboarded',
+const USER_KEY = 'study_assistant_user'
+
+export function useUserStore() {
+  const [user, setUser] = useState<User | null>(null)
+  const [booting, setBooting] = useState(true)
+
+  // Load user on mount
+  useEffect(() => {
+    loadUser()
+  }, [])
+
+  const loadUser = async () => {
+    try {
+      const raw = await SecureStore.getItemAsync(USER_KEY)
+      if (raw) {
+        setUser(JSON.parse(raw))
+      }
+    } catch (err) {
+      console.error('Failed to load user:', err)
+    } finally {
+      setBooting(false)
+    }
+  }
+
+  const login = async (username: string, password: string) => {
+    // TODO: 调用后端登录 API
+    try {
+      // Mock response for now
+      const mockUser: User = { id: '1', username, isAdmin: false }
+      await SecureStore.setItemAsync(USER_KEY, JSON.stringify(mockUser))
+      setUser(mockUser)
+    } catch (err) {
+      console.error('Login failed:', err)
+      throw err
+    }
+  }
+
+  const register = async (username: string, password: string) => {
+    // TODO: 调用后端注册 API
+    try {
+      const mockUser: User = { id: '1', username, isAdmin: false }
+      await SecureStore.setItemAsync(USER_KEY, JSON.stringify(mockUser))
+      setUser(mockUser)
+    } catch (err) {
+      console.error('Register failed:', err)
+      throw err
+    }
+  }
+
+  const logout = async () => {
+    try {
+      await SecureStore.deleteItemAsync(USER_KEY)
+      setUser(null)
+    } catch (err) {
+      console.error('Logout failed:', err)
+    }
+  }
+
+  const checkLogin = async (): Promise<boolean> => {
+    if (user) return true
+    await loadUser()
+    return !!user
+  }
+
+  const setOnboarded = async (value: boolean) => {
+    // TODO: 更新用户 onboarded 状态
+  }
+
+  return {
+    user,
+    booting,
+    login,
+    register,
+    logout,
+    checkLogin,
+    setOnboarded,
+    isLoggedIn: !!user,
+    username: user?.username || ''
+  }
 }
 
-let state: UserState = {
-  username: '',
-  isPremium: false,
-  currentBook: 'ket',
-  dailyGoal: 30,
-  onboarded: false,
-}
+// Expose store singleton for compatibility
+export const USER_STORE = useUserStore()
 
-export async function initUserStore() {
-  try {
-    const u = await SecureStore.getItemAsync(STORAGE_KEYS.username)
-    if (u) state.username = u
-    const ip = await SecureStore.getItemAsync(STORAGE_KEYS.isPremium)
-    if (ip) state.isPremium = ip === 'true'
-    const cb = await SecureStore.getItemAsync(STORAGE_KEYS.currentBook)
-    if (cb) state.currentBook = cb
-    const dg = await SecureStore.getItemAsync(STORAGE_KEYS.dailyGoal)
-    if (dg) state.dailyGoal = Number(dg)
-    const ob = await SecureStore.getItemAsync(STORAGE_KEYS.onboarded)
-    if (ob) state.onboarded = ob === 'true'
-  } catch {}
-}
-
-function save(key: string, value: string | boolean | number) {
-  SecureStore.setItemAsync(STORAGE_KEYS[key as keyof typeof STORAGE_KEYS], String(value)).catch(() => {})
-}
-
-export const USER_STORE = {
-  get username() { return state.username },
-  set username(v) { state.username = v; save('username', v) },
-
-  get isPremium() { return state.isPremium },
-  set isPremium(v) { state.isPremium = v; save('isPremium', v) },
-
-  get currentBook() { return state.currentBook },
-  set currentBook(v) { state.currentBook = v; save('currentBook', v) },
-
-  get dailyGoal() { return state.dailyGoal },
-  set dailyGoal(v) { state.dailyGoal = v; save('dailyGoal', v) },
-
-  get onboarded() { return state.onboarded },
-  set onboarded(v) { state.onboarded = v; save('onboarded', v) },
-
-  reset() {
-    state = { username: '', isPremium: false, currentBook: 'ket', dailyGoal: 30, onboarded: false }
-  },
-} as const

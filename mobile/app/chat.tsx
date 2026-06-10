@@ -1,7 +1,7 @@
-// AI Chat Screen (Text Mode)
-import { ref, computed } from 'react'
-import { View, Text, ScrollView, TouchableOpacity, TextInput, StyleSheet } from 'react-native'
-import { router } from 'expo-router'
+
+import { ref, computed, onMounted } from 'react'
+import { View, Text, ScrollView, TouchableOpacity, TextInput, StyleSheet, Platform } from 'react-native'
+import { router, useFocusEffect } from 'expo-router'
 import { VOCAB_STORE } from '@/stores/vocabulary'
 
 type ChatMode = 'free' | 'challenge' | 'roleplay'
@@ -18,10 +18,13 @@ export default function ChatScreen() {
   const [messages, setMessages] = ref<Message[]>([])
   const [inputText, setInputText] = ref('')
   const [chatMode, setChatMode] = ref<ChatMode>('free')
-  const [uiMode, setUiMode] = ref<UiMode>('text') // Default to text mode
+  const [uiMode, setUiMode] = ref<UiMode>('voice')
   const [isBusy, setIsBusy] = ref(false)
 
-  const currentBookName = computed(() => VOCAB_STORE.getCurrentBook?.name || 'KET')
+  const currentBookName = computed(() => {
+    return VOCAB_STORE.getCurrentBook?.name || 'KET'
+  })
+
   const modeLabel = computed(() => {
     const labels: Record<ChatMode, string> = {
       free: '自由聊天',
@@ -31,8 +34,16 @@ export default function ChatScreen() {
     return labels[chatMode.value]
   })
 
+  // Load history
+  useFocusEffect(
+    () => {
+      // TODO: 加载历史消息
+      console.log('Chat screen focused')
+    }
+  )
+
   const sendMessage = async () => {
-    if (!inputText.value.trim() || isBusy.value) return
+    if (!inputText.value.trim()) return
     
     const userMsg: Message = {
       id: Date.now().toString(),
@@ -49,7 +60,9 @@ export default function ChatScreen() {
       // TODO: 调用后端聊天 API
       const response = await fetch('http://127.0.0.1:3004/api/chat/send', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({
           content: userMsg.text,
           bookCode: VOCAB_STORE.currentBook,
@@ -69,6 +82,13 @@ export default function ChatScreen() {
       }
     } catch (error) {
       console.error('Chat error:', error)
+      const errorMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        text: '发送失败，请重试',
+        isUser: false,
+        timestamp: Date.now()
+      }
+      setMessages(prev => [...prev, errorMsg])
     } finally {
       setIsBusy(false)
     }
@@ -86,10 +106,15 @@ export default function ChatScreen() {
           {['free', 'challenge', 'roleplay'].map((m) => (
             <TouchableOpacity
               key={m}
-              style={[styles.modeTab, chatMode.value === m && styles.modeTabActive]}
+              style={[
+                styles.modeTab,
+                chatMode.value === m && styles.modeTabActive
+              ]}
               onPress={() => setChatMode(m as ChatMode)}
             >
-              <Text style={styles.modeTabText}>{chatModeLabel(m)}</Text>
+              <Text style={[styles.modeTabText, chatMode.value === m && {color: '#667eea'}]}>
+                {m === 'free' ? '自由聊天' : m === 'challenge' ? '词汇挑战' : '情景'}
+              </Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -100,13 +125,13 @@ export default function ChatScreen() {
             style={[styles.uiTab, uiMode.value === 'voice' && styles.uiTabActive]}
             onPress={() => setUiMode('voice')}
           >
-            <Text style={styles.uiTabText}>语音对话</Text>
+            <Text style={[styles.uiTabText, uiMode.value === 'voice' && {color: '#667eea'}]}>语音对话</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.uiTab, uiMode.value === 'text' && styles.uiTabActive]}
             onPress={() => setUiMode('text')}
           >
-            <Text style={styles.uiTabText}>文字</Text>
+            <Text style={[styles.uiTabText, uiMode.value === 'text' && {color: '#667eea'}]}>文字</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -121,11 +146,20 @@ export default function ChatScreen() {
             styles.messageItem,
             msg.isUser ? styles.userMessage : styles.aiMessage
           ]}>
-            <View style={[styles.avatar, msg.isUser && styles.userAvatar]}>
+            <View style={[
+              styles.avatar,
+              msg.isUser && styles.userAvatar
+            ]}>
               <Text style={styles.avatarText}>{msg.isUser ? '我' : 'AI'}</Text>
             </View>
-            <View style={[styles.messageContent, msg.isUser && styles.userMessageContent]}>
+            <View style={[
+              styles.messageContent,
+              msg.isUser && styles.userMessageContent
+            ]}>
               <Text style={[styles.messageText, msg.isUser && {color: '#fff'}]}>{msg.text}</Text>
+              <Text style={[styles.messageTime, {fontSize: 12, color: '#999', marginTop: 4}]}>
+                {new Date(msg.timestamp).toLocaleTimeString()}
+              </Text>
             </View>
           </View>
         ))}
@@ -134,10 +168,10 @@ export default function ChatScreen() {
       {/* Input Area */}
       {uiMode.value === 'voice' ? (
         <View style={styles.voicePanel}>
-          <TouchableOpacity style={styles.micButton}>
+          <View style={styles.micButton}>
             <Text style={styles.micIcon}>??</Text>
-          </TouchableOpacity>
-          <Text style={styles.hint}>按住说话，松开发送</Text>
+          </View>
+          <Text style={styles.hint}>按住说话，松开发送给 AI</Text>
         </View>
       ) : (
         <View style={styles.inputBar}>
@@ -150,7 +184,10 @@ export default function ChatScreen() {
             disabled={isBusy.value}
           />
           <TouchableOpacity
-            style={[styles.sendBtn, !inputText.value.trim() && styles.sendBtnDisabled]}
+            style={[
+              styles.sendBtn,
+              !inputText.value.trim() && styles.sendBtnDisabled
+            ]}
             onPress={sendMessage}
             disabled={!inputText.value.trim() || isBusy.value}
           >
@@ -162,29 +199,20 @@ export default function ChatScreen() {
   )
 }
 
-function chatModeLabel(mode: string) {
-  const labels: Record<string, string> = {
-    free: '自由聊天',
-    challenge: '词汇挑战',
-    roleplay: '情景'
-  }
-  return labels[mode] || mode
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5'
   },
   header: {
-    backgroundColor: '#3157d5',
+    backgroundColor: '#667eea',
     paddingTop: 40,
     paddingBottom: 20,
     paddingHorizontal: 20
   },
   title: {
     fontSize: 36,
-    fontWeight: '700',
+    fontWeight: '600',
     color: '#fff'
   },
   subtitle: {
@@ -253,20 +281,26 @@ const styles = StyleSheet.create({
     marginRight: 15
   },
   userAvatar: {
-    backgroundColor: '#3157d5'
+    backgroundColor: '#667eea'
   },
   messageContent: {
     maxWidth: '70%',
     backgroundColor: '#fff',
     borderRadius: 20,
-    padding: 20
+    padding: 20,
+    boxShadow: '0 2rpx 8rpx rgba(0,0,0,0.08)'
   },
   userMessageContent: {
-    backgroundColor: '#3157d5'
+    backgroundColor: '#667eea'
   },
   messageText: {
     fontSize: 30,
-    color: '#17202a'
+    color: '#333',
+    display: 'block',
+    marginBottom: 10
+  },
+  messageTime: {
+    fontSize: 22
   },
   voicePanel: {
     backgroundColor: '#fff',
@@ -277,7 +311,7 @@ const styles = StyleSheet.create({
     width: 160,
     height: 160,
     borderRadius: 50,
-    backgroundColor: '#3157d5',
+    backgroundColor: '#667eea',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -301,12 +335,13 @@ const styles = StyleSheet.create({
     height: 80,
     backgroundColor: '#f5f5f5',
     borderRadius: 40,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
+    fontSize: 30
   },
   sendBtn: {
     height: 80,
     paddingHorizontal: 40,
-    backgroundColor: '#3157d5',
+    backgroundColor: '#667eea',
     borderRadius: 40,
     display: 'flex',
     alignItems: 'center',
@@ -314,6 +349,10 @@ const styles = StyleSheet.create({
   },
   sendBtnDisabled: {
     opacity: 0.5
+  },
+  sendBtnText: {
+    color: '#fff',
+    fontSize: 28
   }
 })
 
