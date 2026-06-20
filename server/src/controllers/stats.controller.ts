@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+﻿import { Request, Response } from 'express'
 import { getBookMap, getGlobalMap, getBookWordStats } from '../services/graph.service'
 
 export async function getBookMapHandler(req: Request, res: Response) {
@@ -21,7 +21,8 @@ export async function getBookMapHandler(req: Request, res: Response) {
 export async function getGlobalMapHandler(req: Request, res: Response) {
   try {
     const userId = req.userId!
-    const data = await getGlobalMap(userId)
+    const limit = Math.min(Math.max(parseInt(req.query.limit as string) || 500, 1), 2000)
+    const data = await getGlobalMap(userId, limit)
     res.status(200).json({ success: true, data })
   } catch (error) {
     res.status(500).json({ success: false, error: (error as Error).message })

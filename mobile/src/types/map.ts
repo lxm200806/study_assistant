@@ -1,4 +1,6 @@
-// Map type definitions for Study Assistant Mobile
+ï»¿// Map type definitions for Study Assistant Mobile
+import type { MasteryStatus } from './index'
+
 export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review'
 
 export interface BookProgress {
@@ -7,6 +9,15 @@ export interface BookProgress {
   practicedCount: number
   coverageRate: number
   cycleRemaining: number
+}
+
+/** Per-book mastery info for a word in the global map */
+export interface WordBookGroup {
+  bookCode: string
+  bookName: string
+  mastery: number
+  practiced: boolean
+  practiceCount: number
 }
 
 export interface VocabularyMapData {
@@ -50,21 +61,22 @@ export interface VocabularyMapData {
     status: MasteryStatus
     lastPractice: string | null
     byType: Record<string, number>
+    /** Per-book mastery (global map only) */
+    groups?: WordBookGroup[]
   }>
   weakestTopics: string[]
 }
 
 export const SESSION_MODE_LABELS: Record<SessionMode, string> = {
-  coverage: 'È«Êé¸²¸Ç',
-  smart: 'ÖÇÄÜÍÆ¼ö',
-  weak: 'Ç¿»¯Èõµã',
-  review: 'ÖÜÆÚ¸´Ï°'
+  coverage: 'å…¨ä¹¦è¦†ç›–',
+  smart: 'æ™ºèƒ½æ¨è',
+  weak: 'å¼ºåŒ–å¼±ç‚¹',
+  review: 'å‘¨æœŸå¤ä¹ '
 }
 
 export const STATUS_LABELS: Record<MasteryStatus, string> = {
-  mastered: 'ÒÑÕÆÎÕ',
-  learning: 'Ñ§Ï°ÖĞ',
-  unfamiliar: '²»ÊìÏ¤',
-  unpracticed: 'Î´Á·Ï°'
+  mastered: 'å·²æŒæ¡',
+  learning: 'å­¦ä¹ ä¸­',
+  unfamiliar: 'ä¸ç†Ÿæ‚‰',
+  unpracticed: 'æœªç»ƒä¹ '
 }
-

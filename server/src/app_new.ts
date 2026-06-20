@@ -47,7 +47,7 @@ app.use(cors())
 app.use(express.json({ limit: '10mb' }))
 
 app.use('/api/auth', authRoutes)
-app.use('/api/vocab', vocabRoutes)
+app.use('/api/vocabulary', vocabularyRoutes)
 app.use('/api/training', trainingRoutes)
 app.use('/api/chat', chatRoutes)
 app.use('/api/books', bookRoutes)
@@ -73,4 +73,3 @@ app.listen(Number(PORT), '0.0.0.0', () => {
     .then(() => ensureAdminUser())
     .catch(err => console.error('Background book sync failed:', err))
 })
-
