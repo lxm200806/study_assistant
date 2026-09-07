@@ -1,7 +1,8 @@
 import prisma from '../prisma/client'
+import { getBillingUser } from './billing-user'
 
 export async function canAccessBook(userId: string, bookCode: string): Promise<boolean> {
-  const user = await prisma.user.findUnique({ where: { id: userId } })
+  const user = await getBillingUser(userId)
   if (!user) return false
   if (user.isAdmin) return true
   if (user.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())) {
@@ -13,7 +14,7 @@ export async function canAccessBook(userId: string, bookCode: string): Promise<b
   if (book.isFree) return true
 
   const unlock = await prisma.userBookUnlock.findUnique({
-    where: { userId_bookId: { userId, bookId: book.id } }
+    where: { userId_bookId: { userId: user.id, bookId: book.id } }
   })
   return !!unlock
 }

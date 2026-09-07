@@ -1,5 +1,18 @@
 <template>
-  <view class="container">
+  <view v-if="userStore.isChinese" class="container">
+    <view class="header">
+      <text class="title">语文掌握</text>
+      <text class="subtitle">词条、卡片、学过、已掌握。详细内容在课程的「掌握」页。</text>
+    </view>
+    <view class="card">
+      <text>词条 {{ chineseCoverage.entryCount || 0 }} · 卡片 {{ chineseCoverage.total || 0 }}</text>
+      <text class="muted">已组课 {{ chineseCoverage.inCourse || 0 }} · 学过词条 {{ chineseCoverage.studiedEntries || 0 }} · 已掌握 {{ chineseCoverage.mastered || 0 }}</text>
+    </view>
+    <view v-for="item in chineseCoverage.byKind || []" :key="item.kind" class="card">
+      <text>{{ item.kind }} · 词条 {{ item.entries || item.total }} · 已组课 {{ item.in_course || 0 }}</text>
+    </view>
+  </view>
+  <view v-else class="container">
     <view class="top-bar">
       <BookSwitcher class="book-switcher-wrap" @change="onBookChange" />
     </view>
@@ -114,6 +127,9 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
+import { useUserStore } from '@/stores/user'
+import { chineseAPI } from '@/utils/api'
+import { applySubjectTabBar } from '@/utils/subject'
 import BookSwitcher from '@/components/BookSwitcher.vue'
 import { formatTimeAgo } from '@/utils'
 import { getMasteryLabel, getMasteryLevel, formatDueDate, WEAK_REASON_LABELS } from '@/utils/mastery'
@@ -123,6 +139,8 @@ import type { MasteryStatus, WeakReason } from '@/types/map'
 const PAGE_SIZE = 40
 
 const vocabStore = useVocabularyStore()
+const userStore = useUserStore()
+const chineseCoverage = ref<any>({})
 
 const tabs = [
   { key: 'listening', label: '听力', icon: '🎧' },
@@ -318,6 +336,17 @@ const showWordDetail = (item: WordListItem) => {
 }
 
 onMounted(async () => {
+  await userStore.checkLogin()
+  applySubjectTabBar(userStore.activeSubject)
+  uni.setNavigationBarTitle({ title: userStore.isChinese ? '掌握' : '统计' })
+  if (userStore.isChinese) {
+    try {
+      chineseCoverage.value = await chineseAPI.coverage()
+    } catch {
+      chineseCoverage.value = {}
+    }
+    return
+  }
   vocabStore.loadStats()
   vocabStore.loadTrainingRecords()
   vocabStore.loadSettings()
@@ -332,6 +361,10 @@ onMounted(async () => {
   padding: 20rpx;
   padding-bottom: 120rpx;
 }
+
+.header { padding: 8rpx 8rpx 24rpx; }
+.title { display: block; font-size: 40rpx; font-weight: 700; }
+.subtitle, .muted { display: block; color: #888; font-size: 24rpx; margin-top: 8rpx; }
 
 .top-bar {
   display: flex;

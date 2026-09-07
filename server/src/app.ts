@@ -14,10 +14,12 @@ import statsRoutes from './routes/stats.routes'
 import adminRoutes from './routes/admin.routes'
 import ttsRoutes from './routes/tts.routes'
 import speechRoutes from './routes/speech.routes'
+import chineseRoutes from './chinese/chinese.routes'
 import { errorMiddleware } from './middleware/error'
 import { initVocabulary } from './utils/seed'
 import { initBooks } from './services/book.service'
 import { ensureAdminUser } from './services/admin-seed.service'
+import { seedChineseIfEmpty } from './chinese/materials'
 
 dotenv.config()
 
@@ -28,9 +30,9 @@ const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: '学习助手API',
+      title: '????API',
       version: '1.0.0',
-      description: '学习助手服务端API文档'
+      description: '???????API??'
     },
     servers: [
       {
@@ -55,22 +57,24 @@ app.use('/api/stats', statsRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/tts', ttsRoutes)
 app.use('/api/speech', speechRoutes)
+app.use('/api/chinese', chineseRoutes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
 app.use(errorMiddleware)
 
 app.get('/', (req, res) => {
-  res.send('学习助手服务�?API')
+  res.send('??????�?API')
 })
 
 app.listen(Number(PORT), '0.0.0.0', () => {
   console.log(`Server running on http://0.0.0.0:${PORT}`)
-  console.log(`API文档: http://localhost:${PORT}/api-docs`)
+  console.log(`API??: http://localhost:${PORT}/api-docs`)
 
-  // 后台同步词库，避免阻�?HTTP 请求
+  // ??????????�?HTTP ??
   void initVocabulary()
     .then(() => initBooks())
     .then(() => ensureAdminUser())
-    .catch(err => console.error('Background book sync failed:', err))
+    .then(() => seedChineseIfEmpty())
+    .catch(err => console.error('Background book/chinese sync failed:', err))
 })
 

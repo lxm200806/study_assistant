@@ -4,7 +4,8 @@ import { assertBookAccess } from '../services/book-access.service'
 
 export async function getQuizWordsHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const bookCode = req.query.bookCode as string
     const count = parseInt(req.query.count as string) || 30
     if (!bookCode) {
@@ -21,7 +22,8 @@ export async function getQuizWordsHandler(req: Request, res: Response) {
 
 export async function submitQuizHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { bookCode, items } = req.body as { bookCode?: string; items?: { wordId: string; isCorrect: boolean }[] }
     if (!bookCode || !Array.isArray(items)) {
       return res.status(400).json({ success: false, error: 'Invalid body' })

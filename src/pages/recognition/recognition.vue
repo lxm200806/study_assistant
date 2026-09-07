@@ -102,6 +102,7 @@ import { ensureTrainingWords } from '@/composables/useTrainingStart'
 import { useGroupComplete } from '@/composables/useGroupComplete'
 import { useDailySession } from '@/composables/useDailySession'
 import { onLoad } from '@dcloudio/uni-app'
+import { requireSubject } from '@/utils/subject'
 
 const vocabStore = useVocabularyStore()
 const { recordAnswer, getAnalysis, resetSession } = useSessionAnalysis('reading')
@@ -259,6 +260,7 @@ onLoad((query) => {
 })
 
 onMounted(async () => {
+  if (!(await requireSubject('english'))) return
   vocabStore.loadBooks()
   vocabStore.loadStats()
   vocabStore.loadSettings()

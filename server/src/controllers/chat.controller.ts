@@ -3,7 +3,8 @@ import { sendChatMessage, getChatHistory, getChatRemaining, type ChatMode } from
 import { streamChatMessage } from '../services/chat-stream.service'
 
 export async function streamMessageHandler(req: Request, res: Response) {
-  const userId = req.userId!
+  const userId = req.learnerId
+  if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
   const { content, bookCode, mode, scenario } = req.body as {
     content?: string
     bookCode?: string
@@ -20,7 +21,8 @@ export async function streamMessageHandler(req: Request, res: Response) {
 
 export async function sendMessageHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { content, bookCode, mode, scenario } = req.body as {
       content?: string
       bookCode?: string
@@ -51,7 +53,8 @@ export async function sendMessageHandler(req: Request, res: Response) {
 
 export async function getHistoryHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const page = parseInt(req.query.page as string) || 1
     const limit = parseInt(req.query.limit as string) || 20
 
@@ -64,7 +67,8 @@ export async function getHistoryHandler(req: Request, res: Response) {
 
 export async function getChatQuotaHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const quota = await getChatRemaining(userId)
     res.status(200).json({ success: true, data: quota })
   } catch (error) {

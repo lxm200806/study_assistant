@@ -105,6 +105,7 @@ import { ensureTrainingWords } from '@/composables/useTrainingStart'
 import { useDailySession } from '@/composables/useDailySession'
 import { speakWord } from '@/utils/tts'
 import { onLoad } from '@dcloudio/uni-app'
+import { requireSubject } from '@/utils/subject'
 import { useGroupComplete } from '@/composables/useGroupComplete'
 
 const vocabStore = useVocabularyStore()
@@ -241,6 +242,7 @@ onLoad((query) => {
 })
 
 onMounted(async () => {
+  if (!(await requireSubject('english'))) return
   vocabStore.loadBooks()
   vocabStore.loadStats()
   vocabStore.loadSettings()

@@ -97,6 +97,7 @@ import { useTrainingFlow } from '@/composables/useTrainingFlow'
 import { ensureTrainingWords } from '@/composables/useTrainingStart'
 import { useGroupComplete } from '@/composables/useGroupComplete'
 import { useDailySession } from '@/composables/useDailySession'
+import { requireSubject } from '@/utils/subject'
 import { useAudioSession } from '@/composables/useAudioSession'
 
 const vocabStore = useVocabularyStore()
@@ -278,6 +279,7 @@ onLoad((query) => {
 })
 
 onMounted(async () => {
+  if (!(await requireSubject('english'))) return
   vocabStore.loadBooks()
   vocabStore.loadStats()
   vocabStore.loadSettings()

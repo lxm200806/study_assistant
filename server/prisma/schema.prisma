@@ -16,8 +16,17 @@ model User {
   planExpiresAt DateTime?
   wxOpenId      String?   @unique
   hasOnboarded  Boolean   @default(false)
+  activeSubject String    @default("english")
+  accountType     String    @default("student")
+  displayName     String?
+  parentId        String?
+  activeLearnerId String?
+  archivedAt      DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+
+  parent   User?  @relation("ParentChildren", fields: [parentId], references: [id])
+  children User[] @relation("ParentChildren")
   
   vocabularyStats VocabularyStat[]
   trainingRecords TrainingRecord[]
@@ -27,6 +36,13 @@ model User {
   dailyStudyLogs  DailyStudyLog[]
   bookUnlocks     UserBookUnlock[]
   orgMembers      OrgMember[]
+  chineseCourses      ChineseCourse[]
+  chineseReviewStates ChineseReviewState[]
+  chineseReviewLogs   ChineseReviewLog[]
+  chineseDrafts       ChineseDraft[]
+  chineseUploads      ChineseResource[] @relation("ChineseResourceUploader")
+
+  @@index([parentId])
 }
 
 model Book {
@@ -204,4 +220,195 @@ model OrgClass {
   createdAt DateTime @default(now())
 
   org Organization @relation(fields: [orgId], references: [id])
+}
+
+model ChineseResource {
+  id            String   @id @default(uuid())
+  ownerType     String
+  ownerId       String?
+  path          String
+  filename      String
+  mime          String?
+  slug          String   @default("")
+  status        String   @default("stored")
+  uploadedBy    String?
+  syncedVersion Int      @default(0)
+  syncedHash    String   @default("")
+  createdAt     DateTime @default(now())
+
+  uploader   User?              @relation("ChineseResourceUploader", fields: [uploadedBy], references: [id])
+  published  ChinesePublished[]
+
+  @@index([ownerType, slug])
+  @@map("chinese_resources")
+}
+
+model ChineseDraft {
+  id               String   @id @default(uuid())
+  kind             String
+  level            String
+  grade            String   @default("")
+  prompt           String
+  answer           String
+  tags             String   @default("")
+  source           String   @default("")
+  sourceResourceId String?
+  createdBy        String?
+  pointKey         String   @default("")
+  groupKey         String   @default("")
+  subGroupKey      String   @default("")
+  entryKey         String   @default("")
+  lemma            String   @default("")
+  questionType     String   @default("dictation")
+  audience         String   @default("all")
+  options          String   @default("")
+  status           String   @default("draft")
+  createdAt        DateTime @default(now())
+
+  creator User? @relation(fields: [createdBy], references: [id])
+
+  @@index([status, pointKey])
+  @@map("chinese_drafts")
+}
+
+model ChinesePublished {
+  id               String   @id @default(uuid())
+  kind             String
+  level            String
+  grade            String   @default("")
+  prompt           String
+  answer           String
+  tags             String   @default("")
+  source           String   @default("")
+  sourceResourceId String?
+  draftId          String?
+  pointKey         String?  @unique
+  groupKey         String   @default("")
+  subGroupKey      String   @default("")
+  entryKey         String   @default("")
+  lemma            String   @default("")
+  questionType     String   @default("dictation")
+  audience         String   @default("all")
+  options          String   @default("")
+  publishedAt      DateTime @default(now())
+
+  sourceResource ChineseResource?     @relation(fields: [sourceResourceId], references: [id])
+  courseItems    ChineseCourseItem[]
+  reviewStates   ChineseReviewState[]
+  reviewLogs     ChineseReviewLog[]
+
+  @@index([kind, level, grade])
+  @@index([entryKey])
+  @@index([groupKey])
+  @@index([questionType])
+  @@map("chinese_published")
+}
+
+model ChineseEntry {
+  id        String   @id @default(uuid())
+  entryKey  String   @unique
+  kind      String
+  lemma     String   @default("")
+  grade     String   @default("")
+  grades    String   @default("")
+  levels    String   @default("")
+  tags      String   @default("")
+  source    String   @default("")
+  updatedAt DateTime @updatedAt
+
+  gradeLinks ChineseEntryGrade[]
+  levelLinks ChineseEntryLevel[]
+
+  @@map("chinese_entries")
+}
+
+model ChineseEntryGrade {
+  entryKey String
+  grade    String
+  entry    ChineseEntry @relation(fields: [entryKey], references: [entryKey], onDelete: Cascade)
+
+  @@id([entryKey, grade])
+  @@index([grade])
+  @@map("chinese_entry_grades")
+}
+
+model ChineseEntryLevel {
+  entryKey String
+  level    String
+  entry    ChineseEntry @relation(fields: [entryKey], references: [entryKey], onDelete: Cascade)
+
+  @@id([entryKey, level])
+  @@map("chinese_entry_levels")
+}
+
+model ChineseCourse {
+  id                String   @id @default(uuid())
+  userId            String
+  name              String
+  note              String   @default("")
+  kinds             String   @default("")
+  levels            String   @default("")
+  grades            String   @default("")
+  newEnergy         Int      @default(30)
+  reviewEnergy      Int      @default(30)
+  reviewDefaultTest Boolean  @default(false)
+  createdAt         DateTime @default(now())
+
+  user         User                 @relation(fields: [userId], references: [id])
+  items        ChineseCourseItem[]
+  reviewStates ChineseReviewState[]
+  reviewLogs   ChineseReviewLog[]
+
+  @@index([userId])
+  @@map("chinese_courses")
+}
+
+model ChineseCourseItem {
+  courseId String
+  pointId  String
+  sort     Int    @default(0)
+
+  course ChineseCourse    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  point  ChinesePublished @relation(fields: [pointId], references: [id])
+
+  @@id([courseId, pointId])
+  @@map("chinese_course_items")
+}
+
+model ChineseReviewState {
+  userId   String
+  courseId String
+  pointId  String
+  n        Int       @default(0)
+  ef       Float     @default(2.5)
+  interval Int       @default(0)
+  due      DateTime? @db.Date
+  lapses   Int       @default(0)
+  last     DateTime? @db.Date
+
+  user   User             @relation(fields: [userId], references: [id])
+  course ChineseCourse    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  point  ChinesePublished @relation(fields: [pointId], references: [id])
+
+  @@id([userId, courseId, pointId])
+  @@index([userId, courseId, due])
+  @@map("chinese_review_states")
+}
+
+model ChineseReviewLog {
+  id        String   @id @default(uuid())
+  userId    String
+  courseId  String
+  pointId   String
+  quality   Int
+  isNew     Boolean
+  correct   Boolean
+  createdAt DateTime @default(now())
+
+  user   User             @relation(fields: [userId], references: [id])
+  course ChineseCourse    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  point  ChinesePublished @relation(fields: [pointId], references: [id])
+
+  @@index([userId, courseId, createdAt])
+  @@map("chinese_review_logs")
 }

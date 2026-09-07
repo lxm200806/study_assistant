@@ -6,13 +6,50 @@
           <text class="avatar-text">{{ userStore.username.charAt(0) }}</text>
         </view>
         <view class="greeting">
-          <text class="greeting-text">你好, {{ userStore.username }}</text>
-          <text class="date-text">{{ currentDate }}</text>
+          <text class="greeting-text">你好, {{ userStore.learnerName }}</text>
+          <text class="date-text">{{ userStore.isParent ? '家长' : '学生' }} · {{ userStore.isChinese ? '语文' : '英语' }} · {{ currentDate }}</text>
         </view>
       </view>
       <text class="header-link">我的 ›</text>
     </view>
 
+    <template v-if="userStore.isChinese">
+      <view class="daily-cta" @tap="startChineseLearning">
+        <view class="daily-cta-main">
+          <text class="daily-cta-title">开始今日默写</text>
+          <text class="daily-cta-desc">{{ chineseCta }}</text>
+        </view>
+        <text class="daily-cta-arrow">→</text>
+      </view>
+      <view class="quick-actions">
+        <view class="action-card" @tap="goChineseCourses">
+          <view class="action-icon">📖</view>
+          <text class="action-title">我的课程</text>
+          <text class="action-desc">默写 · 计划 · 掌握</text>
+        </view>
+        <view class="action-card" @tap="goChineseLibrary">
+          <view class="action-icon">🧩</view>
+          <text class="action-title">组课</text>
+          <text class="action-desc">按年级生成课程</text>
+        </view>
+        <view class="action-card" @tap="goChinesePoints">
+          <view class="action-icon">📚</view>
+          <text class="action-title">知识点</text>
+          <text class="action-desc">浏览已发布库</text>
+        </view>
+        <view class="action-card" @tap="goChineseCoverage">
+          <view class="action-icon">📊</view>
+          <text class="action-title">全库覆盖</text>
+          <text class="action-desc">学过 · 掌握</text>
+        </view>
+      </view>
+      <view v-for="item in chineseCourses" :key="item.id" class="card course-home" @tap="goChineseDrill(item.id)">
+        <text class="action-title">{{ item.name }}</text>
+        <text class="action-desc">{{ item.progress?.title || '今日默写' }} · {{ item.itemCount || item.item_count || 0 }} 条</text>
+      </view>
+    </template>
+
+    <template v-else>
     <BookSwitcher @change="onBookChange" />
 
     <view class="daily-cta" @tap="startDailyLearning">
@@ -136,16 +173,20 @@
         </view>
       </view>
     </view>
+    </template>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, computed } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { useUserStore } from '@/stores/user'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import BookSwitcher from '@/components/BookSwitcher.vue'
 import { useDailySession } from '@/composables/useDailySession'
 import { openPage } from '@/utils/navigation'
+import { chineseAPI } from '@/utils/api'
+import { applySubjectTabBar } from '@/utils/subject'
 
 const userStore = useUserStore()
 const vocabStore = useVocabularyStore()
@@ -168,6 +209,13 @@ const listeningStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
 const speakingStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
 const readingStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
 const writingStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
+const chineseCourses = ref<any[]>([])
+
+const chineseCta = computed(() => {
+  const first = chineseCourses.value[0]
+  if (!first) return '先打开课程，开始今日默写'
+  return first.progress?.title || '今日默写'
+})
 
 const updateDate = () => {
   const now = new Date()
@@ -238,7 +286,28 @@ const goToVocabulary = () => {
   uni.switchTab({ url: '/pages/vocabulary/vocabulary' })
 }
 
-onMounted(async () => {
+const goChineseCourses = () => openPage('/pages/chinese/courses')
+const goChineseLibrary = () => openPage('/pages/chinese/library')
+const goChinesePoints = () => openPage('/pages/chinese/points')
+const goChineseCoverage = () => openPage('/pages/chinese/coverage')
+const goChineseDrill = (id: string) => openPage(`/pages/chinese/drill?id=${id}`)
+
+const startChineseLearning = () => {
+  const first = chineseCourses.value[0]
+  if (first) goChineseDrill(first.id)
+  else goChineseCourses()
+}
+
+async function loadChineseHome() {
+  try {
+    const data = (await chineseAPI.courses()) as unknown as any[]
+    chineseCourses.value = Array.isArray(data) ? data : []
+  } catch {
+    chineseCourses.value = []
+  }
+}
+
+onShow(async () => {
   await userStore.checkLogin()
   if (!userStore.isLoggedIn) {
     uni.reLaunch({ url: '/pages/login/login' })
@@ -248,7 +317,17 @@ onMounted(async () => {
     uni.reLaunch({ url: '/pages/onboarding/onboarding' })
     return
   }
+  if (userStore.isParent && !userStore.activeLearnerId) {
+    uni.reLaunch({ url: '/pages/family/students' })
+    return
+  }
+  applySubjectTabBar(userStore.activeSubject)
+  uni.setNavigationBarTitle({ title: userStore.isChinese ? '语文' : '英语' })
   updateDate()
+  if (userStore.isChinese) {
+    await loadChineseHome()
+    return
+  }
   vocabStore.loadBooks()
   vocabStore.loadSettings()
   ensureAccessibleBook()
@@ -520,5 +599,9 @@ const onBookChange = async () => {
   &.active {
     color: #ffc107;
   }
+}
+
+.course-home {
+  margin-top: 8rpx;
 }
 </style>

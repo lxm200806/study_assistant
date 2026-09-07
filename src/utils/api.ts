@@ -23,7 +23,17 @@ export interface ResponseData<T = any> {
   user?: {
     id: string
     username: string
+    isAdmin?: boolean
+    hasOnboarded?: boolean
+    plan?: string
+    activeSubject?: string
+    accountType?: string
+    displayName?: string
+    activeLearnerId?: string | null
+    learner?: { id: string; name: string; activeSubject?: string } | null
+    children?: Array<{ id: string; name: string; activeSubject?: string }>
   }
+  learner?: { id: string; name: string; activeSubject?: string }
 }
 
 export async function request<T>(
@@ -73,11 +83,11 @@ export async function request<T>(
 }
 
 export const authAPI = {
-  login: async (username: string, password: string) => {
-    return request('/auth/login', 'POST', { username, password })
+  login: async (username: string, password: string, accountType?: string) => {
+    return request('/auth/login', 'POST', { username, password, accountType })
   },
-  register: async (username: string, password: string) => {
-    return request('/auth/register', 'POST', { username, password })
+  register: async (username: string, password: string, accountType?: string) => {
+    return request('/auth/register', 'POST', { username, password, accountType })
   },
   refresh: async (refreshToken: string) => {
     return request('/auth/refresh', 'POST', { refreshToken })
@@ -85,8 +95,29 @@ export const authAPI = {
   profile: async () => {
     return request('/auth/profile', 'GET')
   },
-  onboard: async () => {
-    return request('/auth/onboard', 'POST')
+  onboard: async (subject?: string, accountType?: string) => {
+    const body: Record<string, string> = {}
+    if (subject) body.subject = subject
+    if (accountType) body.accountType = accountType
+    return request('/auth/onboard', 'POST', body)
+  },
+  setSubject: async (subject: string) => {
+    return request('/auth/subject', 'PUT', { subject })
+  },
+  students: async () => {
+    return request('/auth/students', 'GET')
+  },
+  createStudent: async (name: string) => {
+    return request('/auth/students', 'POST', { name })
+  },
+  setActiveStudent: async (studentId: string) => {
+    return request('/auth/students/active', 'PUT', { studentId })
+  },
+  renameStudent: async (id: string, name: string) => {
+    return request(`/auth/students/${id}`, 'PUT', { name })
+  },
+  archiveStudent: async (id: string) => {
+    return request(`/auth/students/${id}`, 'DELETE')
   },
   wechatLogin: async (code: string) => {
     return request('/auth/wechat', 'POST', { code })
@@ -251,4 +282,33 @@ export const quizAPI = {
   submit: async (bookCode: string, items: { wordId: string; isCorrect: boolean }[]) => {
     return request('/training/quiz/submit', 'POST', { bookCode, items })
   }
+}
+
+export const chineseAPI = {
+  meta: () => request('/chinese/meta', 'GET'),
+  library: (query = '') => request(`/chinese/library${query ? `?${query}` : ''}`, 'GET'),
+  coverage: () => request('/chinese/library/coverage', 'GET'),
+  courses: () => request('/chinese/courses', 'GET'),
+  previewCourse: (body: Record<string, unknown>) => request('/chinese/courses/preview', 'POST', body),
+  createCourse: (body: Record<string, unknown>) => request('/chinese/courses', 'POST', body),
+  patchCourse: (id: string, body: Record<string, unknown>) => request(`/chinese/courses/${id}`, 'PUT', body),
+  deleteCourse: (id: string) => request(`/chinese/courses/${id}`, 'DELETE'),
+  syncCourse: (id: string) => request(`/chinese/courses/${id}/sync`, 'POST'),
+  today: (id: string, mode?: string) =>
+    request(`/chinese/courses/${id}/today${mode ? `?mode=${encodeURIComponent(mode)}` : ''}`, 'GET'),
+  plan: (id: string) => request(`/chinese/courses/${id}/plan`, 'GET'),
+  review: (id: string, body: Record<string, unknown>) => request(`/chinese/courses/${id}/review`, 'POST', body),
+  stats: (id: string) => request(`/chinese/courses/${id}/stats`, 'GET'),
+  resources: () => request('/chinese/resources', 'GET'),
+  resource: (id: string) => request(`/chinese/resources/${id}`, 'GET'),
+  syncResource: (id: string) => request(`/chinese/resources/${id}/sync`, 'POST'),
+  syncIncremental: () => request('/chinese/resources/sync-incremental', 'POST'),
+  syncAll: () => request('/chinese/resources/sync-all', 'POST'),
+  seed: () => request('/chinese/resources/seed', 'POST'),
+  drafts: (query = '') => request(`/chinese/drafts${query ? `?${query}` : ''}`, 'GET'),
+  importDrafts: (body: Record<string, unknown>) => request('/chinese/drafts/import', 'POST', body),
+  patchDraft: (id: string, body: Record<string, unknown>) => request(`/chinese/drafts/${id}`, 'PUT', body),
+  publishDraft: (id: string) => request(`/chinese/drafts/${id}/publish`, 'POST'),
+  publishDrafts: (ids: string[]) => request('/chinese/drafts/publish-batch', 'POST', { ids }),
+  patchPoint: (id: string, body: Record<string, unknown>) => request(`/chinese/library/${id}`, 'PUT', body)
 }

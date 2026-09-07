@@ -75,7 +75,8 @@ export async function getRandomWordsHandler(req: Request, res: Response) {
 
 export async function getStatsHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     
     const stats = await getTrainingStats(userId)
     res.status(200).json({ success: true, data: stats })

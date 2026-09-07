@@ -129,6 +129,7 @@ import { useAudioSession } from '@/composables/useAudioSession'
 import { isBrowserH5 } from '@/utils/audio-recording'
 import { useStreamingTts } from '@/composables/useStreamingTts'
 import { useStreamingAsr } from '@/composables/useStreamingAsr'
+import { requireSubject } from '@/utils/subject'
 
 const userStore = useUserStore()
 const vocabStore = useVocabularyStore()
@@ -550,6 +551,7 @@ onLoad((query) => {
 })
 
 onMounted(async () => {
+  if (!(await requireSubject('english'))) return
   vocabStore.loadBooks()
   vocabStore.loadSettings()
   await loadConfig()

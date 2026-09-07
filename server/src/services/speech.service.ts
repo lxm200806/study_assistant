@@ -1,6 +1,7 @@
 import prisma from '../prisma/client'
 import { isXfyunAsrConfigured } from './llm-config.service'
 import { transcribeWithXfyun, type XfyunAudioEncoding } from './asr-xfyun.service'
+import { getBillingUser } from './billing-user'
 
 const FREE_DAILY_SPEECH = 10
 const PASS_THRESHOLD = Number(process.env.SPEECH_PASS_THRESHOLD || 70)
@@ -102,8 +103,8 @@ function isBrowserFriendlyMime(mimeType: string): boolean {
 }
 
 async function isPremiumUser(userId: string): Promise<boolean> {
-  const user = await prisma.user.findUnique({ where: { id: userId } })
-  return user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
+  const user = await getBillingUser(userId)
+  return !!user && user.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
 }
 
 async function checkSpeechQuota(userId: string): Promise<void> {

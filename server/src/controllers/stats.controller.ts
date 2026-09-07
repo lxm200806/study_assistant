@@ -3,7 +3,8 @@ import { getBookMap, getGlobalMap, getBookWordStats } from '../services/graph.se
 
 export async function getBookMapHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { code } = req.params
     const trainingType = req.query.type as string | undefined
 
@@ -20,7 +21,8 @@ export async function getBookMapHandler(req: Request, res: Response) {
 
 export async function getGlobalMapHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const limit = Math.min(Math.max(parseInt(req.query.limit as string) || 500, 1), 2000)
     const data = await getGlobalMap(userId, limit)
     res.status(200).json({ success: true, data })

@@ -3,10 +3,21 @@ import { practice, getReviewWords, getTrainingHistory } from '../services/traini
 import { markWordsPracticed, getNewlyCoveredCount } from '../services/coverage.service'
 import { recordDailyStudy } from '../services/daily-study.service'
 import type { WordType } from '../types'
+import { studyUserId } from '../middleware/auth'
+
+function studyOrReply(req: Request, res: Response) {
+  try {
+    return studyUserId(req)
+  } catch (error) {
+    res.status(409).json({ success: false, error: (error as Error).message })
+    return null
+  }
+}
 
 export async function practiceHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = studyOrReply(req, res)
+    if (!userId) return
     const { wordId, type, isCorrect } = req.body
 
     if (!wordId || !type || typeof isCorrect !== 'boolean') {
@@ -22,7 +33,8 @@ export async function practiceHandler(req: Request, res: Response) {
 
 export async function getReviewHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = studyOrReply(req, res)
+    if (!userId) return
     const type = req.query.type as WordType | undefined
     const bookCode = req.query.bookCode as string | undefined
     const limit = parseInt(req.query.limit as string) || 50
@@ -36,7 +48,8 @@ export async function getReviewHandler(req: Request, res: Response) {
 
 export async function getHistoryHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = studyOrReply(req, res)
+    if (!userId) return
     const page = parseInt(req.query.page as string) || 1
     const limit = parseInt(req.query.limit as string) || 20
 
@@ -49,7 +62,8 @@ export async function getHistoryHandler(req: Request, res: Response) {
 
 export async function completeSessionHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = studyOrReply(req, res)
+    if (!userId) return
     const { bookCode, wordIds } = req.body as { bookCode?: string; wordIds?: string[] }
 
     if (!bookCode || !Array.isArray(wordIds)) {

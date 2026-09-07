@@ -111,6 +111,7 @@ import { useSessionAnalysis } from '@/composables/useSessionAnalysis'
 import { useTrainingFlow } from '@/composables/useTrainingFlow'
 import { ensureTrainingWords, requireLoginForTraining } from '@/composables/useTrainingStart'
 import { useUserStore } from '@/stores/user'
+import { requireSubject } from '@/utils/subject'
 import { useDailySession } from '@/composables/useDailySession'
 import { speakWord, isTtsSupported, stopSpeak, preloadWordAudio } from '@/utils/tts'
 import { consumeTrainingAutoStart } from '@/utils/navigation'
@@ -362,7 +363,7 @@ onLoad((query) => {
 })
 
 onMounted(async () => {
-  await userStore.checkLogin()
+  if (!(await requireSubject('english'))) return
   vocabStore.loadBooks()
   vocabStore.loadStats()
   vocabStore.loadSettings()

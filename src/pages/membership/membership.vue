@@ -55,6 +55,7 @@ import { onLoad } from '@dcloudio/uni-app'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { useUserStore } from '@/stores/user'
 import { statsAPI } from '@/utils/api'
+import { requireSubject } from '@/utils/subject'
 
 const vocabStore = useVocabularyStore()
 const userStore = useUserStore()
@@ -99,6 +100,7 @@ onLoad((options) => {
 })
 
 onMounted(async () => {
+  if (!(await requireSubject('english'))) return
   await vocabStore.loadBooks()
   books.value = vocabStore.books as typeof books.value
   try {

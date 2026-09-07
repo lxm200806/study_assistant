@@ -1,5 +1,18 @@
 <template>
-  <view class="container">
+  <view v-if="userStore.isChinese" class="container">
+    <view class="header">
+      <text class="title">全库覆盖</text>
+      <text class="subtitle">同一成语可出现在多册，全局词条不重复。</text>
+    </view>
+    <view class="card">
+      <text>词条 {{ chineseCoverage.entryCount || 0 }} · 卡片 {{ chineseCoverage.total || 0 }}</text>
+      <text class="muted">已组课 {{ chineseCoverage.inCourse || 0 }} · 学过 {{ chineseCoverage.studiedEntries || chineseCoverage.studied || 0 }}</text>
+    </view>
+    <view v-for="item in chineseCoverage.byEntryGrade || chineseCoverage.byGrade || []" :key="item.grade" class="card">
+      <text>{{ item.grade }} · 词条 {{ item.entries || item.total }} · 已组课 {{ item.in_course || 0 }}</text>
+    </view>
+  </view>
+  <view v-else class="container">
     <view class="header">
       <view class="scope-tabs">
         <view
@@ -66,6 +79,9 @@ import { ref, computed, onMounted } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { consumeMapTabBook } from '@/utils/navigation'
 import { useVocabularyStore } from '@/stores/vocabulary'
+import { useUserStore } from '@/stores/user'
+import { chineseAPI } from '@/utils/api'
+import { applySubjectTabBar } from '@/utils/subject'
 import type { VocabularyMapData } from '@/types/map'
 import BookSwitcher from '@/components/BookSwitcher.vue'
 import MasterySummaryRing from '@/components/map/MasterySummaryRing.vue'
@@ -74,6 +90,8 @@ import TopicWeaknessChart from '@/components/map/TopicWeaknessChart.vue'
 import WordHeatmapGrid from '@/components/map/WordHeatmapGrid.vue'
 
 const vocabStore = useVocabularyStore()
+const userStore = useUserStore()
+const chineseCoverage = ref<any>({})
 const scope = ref<'book' | 'global'>('book')
 const selectedBook = ref(vocabStore.currentBookCode || 'ket')
 const loading = ref(false)
@@ -135,6 +153,17 @@ onLoad((query) => {
 })
 
 onShow(async () => {
+  await userStore.checkLogin()
+  applySubjectTabBar(userStore.activeSubject)
+  uni.setNavigationBarTitle({ title: userStore.isChinese ? '覆盖' : '图谱' })
+  if (userStore.isChinese) {
+    try {
+      chineseCoverage.value = await chineseAPI.coverage()
+    } catch {
+      chineseCoverage.value = {}
+    }
+    return
+  }
   const bookFromTab = consumeMapTabBook()
   if (bookFromTab) {
     selectedBook.value = bookFromTab
@@ -144,6 +173,16 @@ onShow(async () => {
 })
 
 onMounted(async () => {
+  await userStore.checkLogin()
+  applySubjectTabBar(userStore.activeSubject)
+  if (userStore.isChinese) {
+    try {
+      chineseCoverage.value = await chineseAPI.coverage()
+    } catch {
+      chineseCoverage.value = {}
+    }
+    return
+  }
   await vocabStore.loadBooks()
   vocabStore.loadSettings()
   await loadMap()
@@ -161,6 +200,9 @@ onMounted(async () => {
 .header {
   margin-bottom: 20rpx;
 }
+
+.title { display: block; font-size: 40rpx; font-weight: 700; }
+.subtitle, .muted { display: block; color: #888; font-size: 24rpx; margin-top: 8rpx; }
 
 .scope-tabs {
   display: flex;

@@ -4,12 +4,13 @@ import { getReviewWords } from './training.service'
 import { type ChatMode } from './chat.service'
 import { buildSystemPrompt, getLearnerChatContext } from './chat-learner-context.service'
 import { sanitizeFreeChatReply } from './chat-reply-sanitize.service'
+import { getBillingUser } from './billing-user'
 
 const HISTORY_LIMIT = 20
 export const FREE_DAILY_CHAT = 5
 
 export async function assertChatQuota(userId: string): Promise<void> {
-  const user = await prisma.user.findUnique({ where: { id: userId } })
+  const user = await getBillingUser(userId)
   const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
   if (isPremium) return
 

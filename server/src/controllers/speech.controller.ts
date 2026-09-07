@@ -12,7 +12,8 @@ export async function getAsrConfigHandler(_req: Request, res: Response) {
 
 export async function startAsrSessionHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { encoding } = req.body as { encoding?: 'lame' | 'raw' }
     const result = await startAsrSession(userId, encoding === 'raw' ? 'raw' : 'lame')
     res.status(200).json({ success: true, data: result })
@@ -23,7 +24,8 @@ export async function startAsrSessionHandler(req: Request, res: Response) {
 
 export async function pushAsrChunkHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { sessionId, audioBase64, isLast } = req.body as {
       sessionId?: string
       audioBase64?: string
@@ -41,7 +43,8 @@ export async function pushAsrChunkHandler(req: Request, res: Response) {
 
 export async function endAsrSessionHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { sessionId } = req.body as { sessionId?: string }
     if (!sessionId) {
       return res.status(400).json({ success: false, error: 'sessionId is required' })
@@ -55,7 +58,8 @@ export async function endAsrSessionHandler(req: Request, res: Response) {
 
 export async function transcribeHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { audioBase64, mimeType } = req.body as { audioBase64?: string; mimeType?: string }
 
     if (!audioBase64) {
@@ -78,7 +82,8 @@ export async function transcribeHandler(req: Request, res: Response) {
 
 export async function assessHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { referenceText, audioBase64, mimeType } = req.body as {
       referenceText?: string
       audioBase64?: string

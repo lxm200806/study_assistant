@@ -2,15 +2,62 @@ import prisma from '../prisma/client'
 import { hashPassword, comparePassword } from '../utils/password'
 import { generateAccessToken, generateRefreshToken, verifyToken } from '../utils/jwt'
 import { LoginDto, RegisterDto, TokenResponse } from '../types'
+import { ensureActiveLearner, type LearnerSummary } from './family.service'
 
-function toUserResponse(user: { id: string; username: string; isAdmin: boolean; hasOnboarded?: boolean; plan?: string }) {
+function normalizeAccountType(value?: string | null) {
+  return value === 'parent' ? 'parent' : 'student'
+}
+
+function normalizeSubject(value?: string | null) {
+  return value === 'chinese' ? 'chinese' : 'english'
+}
+
+function toUserResponse(user: {
+  id: string
+  username: string
+  isAdmin: boolean
+  hasOnboarded?: boolean
+  plan?: string
+  activeSubject?: string
+  accountType?: string
+  displayName?: string | null
+  activeLearnerId?: string | null
+}, extras?: { children?: LearnerSummary[]; learner?: LearnerSummary | null }) {
+  const accountType = normalizeAccountType(user.accountType)
   return {
     id: user.id,
     username: user.username,
     isAdmin: user.isAdmin,
     hasOnboarded: user.hasOnboarded ?? false,
-    plan: user.plan ?? 'free'
+    plan: user.plan ?? 'free',
+    activeSubject: normalizeSubject(user.activeSubject),
+    accountType,
+    displayName: user.displayName || user.username,
+    activeLearnerId: extras?.learner?.id || user.activeLearnerId || null,
+    learner: extras?.learner || null,
+    children: extras?.children || []
   }
+}
+
+async function withFamily(user: {
+  id: string
+  username: string
+  isAdmin: boolean
+  hasOnboarded?: boolean
+  plan?: string
+  activeSubject?: string
+  accountType?: string
+  displayName?: string | null
+  activeLearnerId?: string | null
+}) {
+  if (normalizeAccountType(user.accountType) !== 'parent') {
+    return toUserResponse(user, {
+      children: [],
+      learner: { id: user.id, name: user.displayName || user.username, activeSubject: normalizeSubject(user.activeSubject) }
+    })
+  }
+  const family = await ensureActiveLearner(user.id, user.activeLearnerId)
+  return toUserResponse({ ...user, activeLearnerId: family.activeLearnerId }, family)
 }
 
 export async function register(dto: RegisterDto): Promise<TokenResponse> {
@@ -23,12 +70,15 @@ export async function register(dto: RegisterDto): Promise<TokenResponse> {
   }
 
   const passwordHash = await hashPassword(dto.password)
+  const accountType = normalizeAccountType(dto.accountType)
 
   const user = await prisma.user.create({
     data: {
       username: dto.username,
       passwordHash,
-      isAdmin: false
+      isAdmin: false,
+      accountType,
+      displayName: dto.username
     }
   })
 
@@ -38,7 +88,7 @@ export async function register(dto: RegisterDto): Promise<TokenResponse> {
   return {
     accessToken,
     refreshToken,
-    user: toUserResponse(user)
+    user: await withFamily(user)
   }
 }
 
@@ -47,8 +97,12 @@ export async function login(dto: LoginDto): Promise<TokenResponse> {
     where: { username: dto.username }
   })
 
-  if (!user) {
+  if (!user || user.archivedAt) {
     throw new Error('Invalid credentials')
+  }
+
+  if (user.parentId) {
+    throw new Error('请使用家长账号登录')
   }
 
   const isPasswordValid = await comparePassword(dto.password, user.passwordHash)
@@ -57,13 +111,21 @@ export async function login(dto: LoginDto): Promise<TokenResponse> {
     throw new Error('Invalid credentials')
   }
 
+  if (dto.accountType && normalizeAccountType(user.accountType) !== normalizeAccountType(dto.accountType)) {
+    throw new Error(
+      user.accountType === 'parent'
+        ? '这是家长账号，请选择家长模式登录'
+        : '这是学生账号，请选择学生模式登录'
+    )
+  }
+
   const accessToken = generateAccessToken(user.id, user.username)
   const refreshToken = generateRefreshToken(user.id)
 
   return {
     accessToken,
     refreshToken,
-    user: toUserResponse(user)
+    user: await withFamily(user)
   }
 }
 
@@ -89,22 +151,37 @@ export async function refreshToken(refreshToken: string): Promise<{ accessToken:
 
 export async function getProfile(userId: string) {
   const user = await prisma.user.findUnique({
-    where: { id: userId },
-    select: { id: true, username: true, isAdmin: true, hasOnboarded: true, plan: true, planExpiresAt: true, createdAt: true }
+    where: { id: userId }
   })
 
   if (!user) {
     throw new Error('User not found')
   }
 
-  return user
+  return withFamily(user)
 }
 
-export async function completeOnboarding(userId: string, bookCode?: string, dailyGoal?: number) {
-  return prisma.user.update({
+export async function completeOnboarding(userId: string, subject?: string, accountType?: string) {
+  const activeSubject = subject === 'chinese' || subject === 'english' ? subject : undefined
+  const nextType = accountType === 'parent' || accountType === 'student' ? accountType : undefined
+  const user = await prisma.user.update({
     where: { id: userId },
-    data: { hasOnboarded: true }
+    data: {
+      hasOnboarded: true,
+      ...(activeSubject ? { activeSubject } : {}),
+      ...(nextType ? { accountType: nextType } : {})
+    }
   })
+  return withFamily(user)
+}
+
+export async function setActiveSubject(userId: string, subject: string) {
+  const activeSubject = normalizeSubject(subject)
+  const user = await prisma.user.update({
+    where: { id: userId },
+    data: { activeSubject }
+  })
+  return withFamily(user)
 }
 
 export async function wechatLoginStub(code: string) {
@@ -122,5 +199,5 @@ export async function wechatLoginStub(code: string) {
   }
   const accessToken = generateAccessToken(user.id, user.username)
   const refreshToken = generateRefreshToken(user.id)
-  return { accessToken, refreshToken, user: toUserResponse(user) }
+  return { accessToken, refreshToken, user: await withFamily(user) }
 }

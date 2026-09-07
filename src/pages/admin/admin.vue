@@ -74,6 +74,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import { adminAPI } from '@/utils/api'
+import { requireSubject } from '@/utils/subject'
 
 const userStore = useUserStore()
 
@@ -167,8 +168,8 @@ const goHome = () => {
 }
 
 onMounted(async () => {
-  const ok = await userStore.checkLogin()
-  if (!ok || !userStore.isAdmin) {
+  if (!(await requireSubject('english'))) return
+  if (!userStore.isAdmin) {
     uni.showToast({ title: '需要管理员账号', icon: 'none' })
     setTimeout(() => uni.reLaunch({ url: '/pages/login/login' }), 800)
     return

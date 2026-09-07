@@ -60,10 +60,16 @@
         "navigationBarTitleText": "口语训练"
       }
     },
-    {
+      {
       "path": "pages/onboarding/onboarding",
       "style": {
         "navigationBarTitleText": "新手引导"
+      }
+    },
+    {
+      "path": "pages/family/students",
+      "style": {
+        "navigationBarTitleText": "学生角色"
       }
     },
     {
@@ -94,6 +100,60 @@
       "path": "pages/admin/admin",
       "style": {
         "navigationBarTitleText": "词库管理"
+      }
+    },
+    {
+      "path": "pages/chinese/courses",
+      "style": {
+        "navigationBarTitleText": "语文课程"
+      }
+    },
+    {
+      "path": "pages/chinese/library",
+      "style": {
+        "navigationBarTitleText": "语文组课"
+      }
+    },
+    {
+      "path": "pages/chinese/drill",
+      "style": {
+        "navigationBarTitleText": "今日默写"
+      }
+    },
+    {
+      "path": "pages/chinese/plan",
+      "style": {
+        "navigationBarTitleText": "学习计划"
+      }
+    },
+    {
+      "path": "pages/chinese/stats",
+      "style": {
+        "navigationBarTitleText": "课程掌握"
+      }
+    },
+    {
+      "path": "pages/chinese/coverage",
+      "style": {
+        "navigationBarTitleText": "全库覆盖"
+      }
+    },
+    {
+      "path": "pages/chinese/materials",
+      "style": {
+        "navigationBarTitleText": "语文教材"
+      }
+    },
+    {
+      "path": "pages/chinese/drafts",
+      "style": {
+        "navigationBarTitleText": "草稿审核"
+      }
+    },
+    {
+      "path": "pages/chinese/points",
+      "style": {
+        "navigationBarTitleText": "语文知识点"
       }
     }
   ],

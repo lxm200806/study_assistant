@@ -61,6 +61,7 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { requireSubject } from '@/utils/subject'
 import { useVocabularyStore, type MeaningType } from '@/stores/vocabulary'
 import { openMapTab } from '@/utils/navigation'
 
@@ -83,7 +84,8 @@ const setMeaningType = (type: MeaningType) => {
   })
 }
 
-onMounted(() => {
+onMounted(async () => {
+  if (!(await requireSubject('english'))) return
   vocabStore.loadBooks()
   vocabStore.loadSettings()
 })

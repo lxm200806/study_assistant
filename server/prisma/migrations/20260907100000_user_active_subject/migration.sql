@@ -1,0 +1,1 @@
+ALTER TABLE "User" ADD COLUMN IF NOT EXISTS "activeSubject" TEXT NOT NULL DEFAULT 'english';

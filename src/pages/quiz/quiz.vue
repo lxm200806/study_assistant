@@ -41,13 +41,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import type { Vocabulary } from '@/types'
 import { getWordMeaning } from '@/utils/vocabulary'
 import { buildUniqueOptions } from '@/utils/quiz-options'
 import { quizAPI } from '@/utils/api'
 import { openMapTab } from '@/utils/navigation'
+import { requireSubject } from '@/utils/subject'
 import BookSwitcher from '@/components/BookSwitcher.vue'
 
 const vocabStore = useVocabularyStore()
@@ -143,6 +144,10 @@ const goToMap = () => {
 const goHome = () => {
   uni.switchTab({ url: '/pages/home/home' })
 }
+
+onMounted(async () => {
+  await requireSubject('english')
+})
 
 onUnmounted(() => {
   if (timer) clearInterval(timer)

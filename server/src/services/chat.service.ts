@@ -7,6 +7,7 @@ import { completeChat } from './llm-chat.service'
 import { buildFallbackResponse, loadRecentChatHistory } from './chat-context.service'
 import { buildSystemPrompt, getLearnerChatContext } from './chat-learner-context.service'
 import { sanitizeFreeChatReply } from './chat-reply-sanitize.service'
+import { getBillingUser } from './billing-user'
 
 const FREE_DAILY_CHAT = 5
 
@@ -26,7 +27,7 @@ export async function sendChatMessage(
   mode: ChatMode = 'free',
   scenario?: string
 ): Promise<SendChatResult> {
-  const user = await prisma.user.findUnique({ where: { id: userId } })
+  const user = await getBillingUser(userId)
   const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
 
   if (!isPremium) {
@@ -94,7 +95,7 @@ async function generateAIResponse(
 }
 
 export async function getChatRemaining(userId: string): Promise<{ remaining: number; isPremium: boolean }> {
-  const user = await prisma.user.findUnique({ where: { id: userId } })
+  const user = await getBillingUser(userId)
   const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
   if (isPremium) return { remaining: -1, isPremium: true }
 

@@ -9,6 +9,15 @@
     </view>
 
     <view class="form-card">
+      <view class="mode-switch">
+        <view :class="['mode-btn', accountType === 'student' ? 'active' : '']" @tap="accountType = 'student'">
+          <text>学生模式</text>
+        </view>
+        <view :class="['mode-btn', accountType === 'parent' ? 'active' : '']" @tap="accountType = 'parent'">
+          <text>家长模式</text>
+        </view>
+      </view>
+      <text class="mode-hint">{{ accountType === 'parent' ? '注册后可添加多个学生角色' : '学生自己学，语文和英语分开' }}</text>
       <view class="form-item">
         <text class="form-label">用户名</text>
         <input 
@@ -59,13 +68,14 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useUserStore } from '@/stores/user'
+import { useUserStore, type AccountType } from '@/stores/user'
 
 const userStore = useUserStore()
 
 const username = ref('')
 const password = ref('')
 const confirmPassword = ref('')
+const accountType = ref<AccountType>('student')
 
 const usernameError = ref('')
 const passwordError = ref('')
@@ -116,7 +126,7 @@ const handleRegister = () => {
     return
   }
   
-  userStore.register(username.value, password.value)
+  userStore.register(username.value, password.value, accountType.value)
 }
 
 const goToLogin = () => {
@@ -172,6 +182,36 @@ const goToLogin = () => {
   background: white;
   border-radius: 24rpx;
   padding: 40rpx;
+}
+
+.mode-switch {
+  display: flex;
+  background: #f3f4ff;
+  border-radius: 999rpx;
+  padding: 8rpx;
+  margin-bottom: 16rpx;
+}
+
+.mode-btn {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  border-radius: 999rpx;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.mode-btn.active {
+  background: #667eea;
+  color: #fff;
+  font-weight: 600;
+}
+
+.mode-hint {
+  display: block;
+  color: #888;
+  font-size: 24rpx;
+  margin-bottom: 28rpx;
 }
 
 .form-item {

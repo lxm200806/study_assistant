@@ -58,7 +58,8 @@ export async function getRandomWordsFromBookHandler(req: Request, res: Response)
 
 export async function getBookSessionHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { code } = req.params
     const count = parseInt(req.query.count as string) || 10
     const mode = (req.query.mode as SessionMode) || 'coverage'
@@ -82,7 +83,8 @@ export async function getBookSessionHandler(req: Request, res: Response) {
 
 export async function getBookProgressHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { code } = req.params
     const progress = await getBookProgress(userId, code)
     res.status(200).json({ success: true, data: progress })
@@ -94,7 +96,8 @@ export async function getBookProgressHandler(req: Request, res: Response) {
 
 export async function getBookDueCountHandler(req: Request, res: Response) {
   try {
-    const userId = req.userId!
+    const userId = req.learnerId
+    if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { code } = req.params
     const type = req.query.type as import('../types').WordType | undefined
     const counts = await getDueCount(userId, code, type)
