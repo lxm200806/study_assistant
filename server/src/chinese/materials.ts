@@ -85,6 +85,7 @@ function packFingerprint(pack: { original?: string; points?: PointLike[] }): str
       lemma: String(item.lemma || ''),
       question_type: String(item.question_type || ''),
       audience: String(item.audience || ''),
+      difficulty: String(item.difficulty || ''),
       options: String(item.options || '')
     }))
   }
@@ -242,7 +243,7 @@ export async function upsertEntry(point: PointLike) {
   }
 }
 
-function pointUnchanged(row: { kind: string; level: string; grade: string; prompt: string; answer: string; tags: string; source: string; pointKey: string | null; groupKey: string; subGroupKey: string; entryKey: string; lemma: string; questionType: string; audience: string; options: string; sourceResourceId: string | null }, point: PointLike, resourceId: string | null, key: string) {
+function pointUnchanged(row: { kind: string; level: string; grade: string; prompt: string; answer: string; tags: string; source: string; pointKey: string | null; groupKey: string; subGroupKey: string; entryKey: string; lemma: string; questionType: string; audience: string; difficulty: string; options: string; sourceResourceId: string | null }, point: PointLike, resourceId: string | null, key: string) {
   return (
     row.kind === point.kind &&
     row.level === point.level &&
@@ -258,6 +259,7 @@ function pointUnchanged(row: { kind: string; level: string; grade: string; promp
     (row.lemma || '') === (point.lemma || '') &&
     (row.questionType || 'dictation') === (point.question_type || 'dictation') &&
     (row.audience || 'all') === (point.audience || 'all') &&
+    (row.difficulty || '') === (point.difficulty || '') &&
     (row.options || '') === (point.options || '') &&
     (row.sourceResourceId === resourceId || resourceId == null)
   )
@@ -296,6 +298,7 @@ export async function upsertPublished(pointInput: PointLike, resourceId: string 
     lemma: String(point.lemma || ''),
     questionType: String(point.question_type || 'dictation'),
     audience: String(point.audience || 'all'),
+    difficulty: String(point.difficulty || ''),
     options: String(point.options || '')
   }
   if (existing) {

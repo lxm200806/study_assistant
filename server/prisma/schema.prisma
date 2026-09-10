@@ -290,6 +290,7 @@ model ChinesePublished {
   lemma            String   @default("")
   questionType     String   @default("dictation")
   audience         String   @default("all")
+  difficulty       String   @default("")
   options          String   @default("")
   publishedAt      DateTime @default(now())
 
@@ -302,6 +303,7 @@ model ChinesePublished {
   @@index([entryKey])
   @@index([groupKey])
   @@index([questionType])
+  @@index([difficulty])
   @@map("chinese_published")
 }
 

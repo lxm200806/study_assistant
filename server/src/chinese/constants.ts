@@ -48,6 +48,15 @@ export const AUDIENCE_LABEL: Record<Audience, string> = {
   upper: '高年级'
 }
 
+export const DIFFICULTIES = ['primary', 'xiaoshengchu', 'junior'] as const
+export type Difficulty = (typeof DIFFICULTIES)[number]
+
+export const DIFFICULTY_LABEL: Record<Difficulty, string> = {
+  primary: '小学',
+  xiaoshengchu: '小升初',
+  junior: '初中'
+}
+
 export const LOWER_GRADES = new Set(['一年级上', '一年级下', '二年级上', '二年级下'])
 export const UPPER_GRADES = new Set(['四年级上', '四年级下', '五年级上', '五年级下', '六年级上', '六年级下'])
 export const MID_GRADES = new Set(['三年级上', '三年级下'])
@@ -87,6 +96,7 @@ export interface PointLike {
   question_type?: string
   questionType?: string
   audience?: string
+  difficulty?: string
   options?: unknown
   energy?: number
   last?: string | Date | null
@@ -118,4 +128,17 @@ export function normalizeQuestionType(value: unknown): QuestionType {
 export function normalizeAudience(value: unknown): Audience {
   const text = String(value || '').trim()
   return (AUDIENCES as readonly string[]).includes(text) ? (text as Audience) : 'all'
+}
+
+const DIFFICULTY_ALIAS: Record<string, Difficulty> = {
+  小学: 'primary',
+  小升初: 'xiaoshengchu',
+  初中: 'junior'
+}
+
+export function normalizeDifficulty(value: unknown): Difficulty | '' {
+  const text = String(value || '').trim()
+  if (!text) return ''
+  if ((DIFFICULTIES as readonly string[]).includes(text)) return text as Difficulty
+  return DIFFICULTY_ALIAS[text] || ''
 }

@@ -17,7 +17,7 @@ import {
   normalizeQuestionType,
   type PointLike
 } from './constants'
-import { fillEntryFields, lemmaOf, normalizeAudience, normalizeQuestionType as nq } from './entries'
+import { fillEntryFields, lemmaOf, normalizeAudience, normalizeDifficulty, normalizeQuestionType as nq } from './entries'
 import { normalize } from './grade'
 import * as sm2 from './sm2'
 
@@ -114,6 +114,7 @@ export function normalizePoint(item: unknown): PointLike | null {
     lemma,
     question_type: qtype,
     audience: normalizeAudience(raw.audience),
+    difficulty: normalizeDifficulty(raw.difficulty),
     options: raw.options
   })
 }

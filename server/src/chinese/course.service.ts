@@ -21,11 +21,13 @@ import {
   DEFAULT_COURSE_NAME,
   DEFAULT_NEW_ENERGY,
   DEFAULT_REVIEW_ENERGY,
+  DIFFICULTY_LABEL,
   KIND_LABEL,
   QUESTION_TYPE_LABEL,
   isKind,
   isLevel,
   normalizeAudience,
+  normalizeDifficulty,
   normalizeQuestionType,
   type PointLike
 } from './constants'
@@ -58,6 +60,7 @@ function toPointLike(row: {
   lemma?: string
   questionType?: string
   audience?: string
+  difficulty?: string
   options?: string
   n?: number | null
   ef?: number | null
@@ -82,6 +85,7 @@ function toPointLike(row: {
     lemma: row.lemma || '',
     question_type: row.questionType || 'dictation',
     audience: row.audience || 'all',
+    difficulty: row.difficulty || '',
     options: row.options || '',
     n: row.n,
     ef: row.ef,
@@ -99,6 +103,7 @@ export function metaPayload() {
     grades: [...GRADES],
     questionTypes: Object.entries(QUESTION_TYPE_LABEL).map(([id, label]) => ({ id, label })),
     audiences: Object.entries(AUDIENCE_LABEL).map(([id, label]) => ({ id, label })),
+    difficulties: Object.entries(DIFFICULTY_LABEL).map(([id, label]) => ({ id, label })),
     studyModes: [...MODE_OPTIONS]
   }
 }
@@ -116,6 +121,7 @@ function decorateLibraryItem(row: PointLike & { resource_slug?: string; resource
     lemma: row.lemma || '',
     questionType: row.question_type || 'dictation',
     audience: row.audience || 'all',
+    difficulty: row.difficulty || '',
     options: parseOptions(row.options),
     energy: pointEnergy(row),
     entryGrades: row.entry_grades || '',
@@ -195,6 +201,7 @@ function serializePoint(point: PointLike, extra?: Record<string, unknown>) {
     lemma: point.lemma || '',
     questionType: point.question_type || 'dictation',
     audience: point.audience || 'all',
+    difficulty: point.difficulty || '',
     energy: pointEnergy(point)
   }
   if (extra) Object.assign(data, extra)
@@ -393,6 +400,8 @@ async function ensureDefaultSynced(course: {
   reviewDefaultTest: boolean
 }) {
   if (!isDefaultCourse(course)) return course
+  const itemCount = await prisma.chineseCourseItem.count({ where: { courseId: course.id } })
+  if (itemCount > 0) return course
   await syncCourseItems(course)
   return course
 }
@@ -415,6 +424,8 @@ export async function listLibrary(query: Record<string, unknown>, isAdmin: boole
   if (query.questionType && qtype) where.questionType = qtype
   const aud = query.audience ? normalizeAudience(query.audience) : ''
   if (query.audience && aud) where.audience = aud
+  const diff = query.difficulty ? normalizeDifficulty(query.difficulty) : ''
+  if (query.difficulty && diff) where.difficulty = diff
   const resourceFilter = parseResourceFilter(query.resourceId, Boolean(query.unlinked))
   if (resourceFilter === 0) where.sourceResourceId = null
   else if (resourceFilter) where.sourceResourceId = String(resourceFilter)
@@ -515,8 +526,8 @@ export async function listCourses(userId: string) {
   for (const row of rows) {
     let itemCount = row._count.items
     if (isDefaultCourse(row)) {
-      const added = await syncCourseItems(row)
-      if (added) itemCount = await courseItemCount(row.id)
+      await ensureDefaultSynced(row)
+      itemCount = await courseItemCount(row.id)
     }
     const { planned, logs, points } = await planCourseToday(row, userId, today)
     results.push(
@@ -524,7 +535,7 @@ export async function listCourses(userId: string) {
         row,
         itemCount,
         undefined,
-        await matchingPublishedCount(row),
+        isDefaultCourse(row) ? itemCount : await matchingPublishedCount(row),
         buildProgress(planned, logs, points.length)
       )
     )
@@ -605,6 +616,7 @@ export async function todayQueue(courseId: string, userId: string, mode?: string
       lemma: entry.row.lemma || '',
       questionType: qtype,
       audience: entry.row.audience || 'all',
+      difficulty: entry.row.difficulty || '',
       options: parseOptions(entry.row.options)
     }
     const showAnswer = active === 'recite' || (qtype === 'recite' && active !== 'test')
@@ -921,6 +933,7 @@ export async function patchPublished(pointId: string, body: Record<string, unkno
     lemma: String(body.lemma ?? row.lemma),
     question_type: String(body.questionType ?? body.question_type ?? row.questionType),
     audience: String(body.audience ?? row.audience),
+    difficulty: String(body.difficulty ?? row.difficulty),
     options: body.options ?? row.options,
     key: row.pointKey || ''
   }
@@ -945,6 +958,7 @@ export async function patchPublished(pointId: string, body: Record<string, unkno
       lemma: String(grouped.lemma || ''),
       questionType: String(grouped.question_type || 'dictation'),
       audience: String(grouped.audience || 'all'),
+      difficulty: String(grouped.difficulty || ''),
       options: String(grouped.options || '')
     }
   })

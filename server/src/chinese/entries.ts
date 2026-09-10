@@ -8,12 +8,13 @@ import {
   SOLO_KINDS,
   UPPER_GRADES,
   normalizeAudience,
+  normalizeDifficulty,
   normalizeQuestionType,
   type PointLike
 } from './constants'
 import { normalize } from './grade'
 
-export { normalizeAudience, normalizeQuestionType }
+export { normalizeAudience, normalizeDifficulty, normalizeQuestionType }
 
 const HINT_MARKERS = ['形容', '比喻', '描写', '意思', '指', '表示']
 const SUFFIX_HINT = /（四字）$|（成语）$|（词语）$/
@@ -122,10 +123,16 @@ export function meaningHint(point: PointLike | null | undefined): string {
   return String(point?.prompt || '').replace(SUFFIX_HINT, '').trim()
 }
 
+function isCategoryHint(hint: string): boolean {
+  const text = hint.replace(/\s+/g, '')
+  if (!text) return false
+  return /教辅|常见成语|结构的成语|的成语$/.test(text)
+}
+
 export function looksLikeMeaning(point: PointLike | null | undefined): boolean {
   const hint = meaningHint(point)
-  if (hint.length < 4) return false
-  return HINT_MARKERS.some(marker => hint.includes(marker)) || String(point?.prompt || '').includes('（四字）')
+  if (hint.length < 4 || isCategoryHint(hint)) return false
+  return HINT_MARKERS.some(marker => hint.includes(marker))
 }
 
 export function splitLabels(text: unknown): string[] {
@@ -207,23 +214,13 @@ export function audiencesForGrades(grades: string[] | null | undefined): Set<str
 export function mutateLemma(text: unknown): string {
   const source = String(text || '')
   const chars = Array.from(source)
-  if (!chars.length) return `${source}甲`
+  if (!chars.length) return source
   const index = stableInt(source) % chars.length
   const current = chars[index]
-  let replacement = CONFUSABLES[current]
-  if (!replacement || replacement === current) {
-    replacement = '甲'
-    for (const extra of '甲乙丙丁戊己庚辛') {
-      if (!source.includes(extra)) {
-        replacement = extra
-        break
-      }
-    }
-  }
+  const replacement = CONFUSABLES[current]
+  if (!replacement || replacement === current) return source
   chars[index] = replacement
-  const mutated = chars.join('')
-  if (mutated === source) return source.length > 1 ? `${source.slice(0, -1)}甲` : `${source}乙`
-  return mutated
+  return chars.join('')
 }
 
 export function fillEntryFields(point: PointLike): PointLike {
@@ -236,6 +233,7 @@ export function fillEntryFields(point: PointLike): PointLike {
   const entryKey = String(point.entry_key || point.entryKey || '').trim() || makeEntryKey(kind, lemma, key)
   point.question_type = qtype
   point.audience = audience
+  point.difficulty = normalizeDifficulty(point.difficulty)
   point.lemma = lemma
   point.entry_key = entryKey
   point.options = encodeOptions(point.options)
@@ -254,7 +252,7 @@ export function makeCharJudgeCard(base: PointLike): PointLike {
   const lemma = String(base.lemma || base.answer || '').trim()
   const key = String(base.key || base.point_key || base.pointKey || '').trim()
   const wrong = mutateLemma(lemma)
-  const useWrong = stableInt(`${lemma}:judge`) % 2 === 1
+  const useWrong = wrong !== lemma && stableInt(`${lemma}:judge`) % 2 === 1
   const display = useWrong ? wrong : lemma
   return fillEntryFields({
     ...base,
@@ -275,7 +273,7 @@ function choicePool(points: PointLike[]): string[] {
   for (const point of points) {
     const hint = meaningHint(point)
     const qtype = normalizeQuestionType(point.question_type || point.questionType)
-    if (hint.length < 4 || seen.has(hint) || qtype === 'char_judge' || qtype === 'meaning_choice') continue
+    if (hint.length < 4 || isCategoryHint(hint) || seen.has(hint) || qtype === 'char_judge' || qtype === 'meaning_choice') continue
     seen.add(hint)
     hints.push(hint)
   }
@@ -285,7 +283,8 @@ function choicePool(points: PointLike[]): string[] {
 export function makeMeaningCard(base: PointLike, pool: string[]): PointLike {
   const lemma = String(base.lemma || base.answer || '').trim()
   const key = String(base.key || base.point_key || base.pointKey || '').trim()
-  const correct = meaningHint(base) || '请选择正确的意思'
+  const hint = meaningHint(base)
+  const correct = hint && !isCategoryHint(hint) ? hint : '请选择正确的意思'
   const others = pool.filter(item => item !== correct).sort((a, b) => stableInt(lemma + a) - stableInt(lemma + b))
   const distractors = others.slice(0, 3)
   let pad = 0

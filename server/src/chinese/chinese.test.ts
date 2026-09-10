@@ -3,6 +3,7 @@ import { gradeAnswer, gradeCard, gradeCharJudge, gradeChoice, normalize } from '
 import { addDays, isMastered, schedule } from './sm2'
 import { applyTodayMode, normalizeMode, resolveDefaultMode, reviewOutcome } from './study-modes'
 import { fillGroupFields, planTodayGroups, pointEnergy, validateCard } from './cards'
+import { looksLikeMeaning, makeCharJudgeCard } from './entries'
 import { kidFeedback, progressStatus } from './progress'
 
 describe('chinese grade', () => {
@@ -95,6 +96,19 @@ describe('chinese study modes', () => {
 })
 
 describe('chinese cards', () => {
+  it('does not treat idiom categories as definitions', () => {
+    expect(looksLikeMeaning({ prompt: '小学教辅常见成语（四字）' })).toBe(false)
+    expect(looksLikeMeaning({ prompt: '描写春天的成语（四字）' })).toBe(false)
+    expect(looksLikeMeaning({ prompt: '形容做事认真细致（四字）' })).toBe(true)
+  })
+
+  it('never creates placeholder-character spelling questions', () => {
+    const card = makeCharJudgeCard({ key: 'idiom-test', lemma: '阿谀奉承', answer: '阿谀奉承' })
+    const options = JSON.parse(String(card.options || '{}'))
+    expect(options.display).not.toMatch(/[甲乙丙丁戊己庚辛]/)
+    if (options.display === '阿谀奉承') expect(card.answer).toBe('对')
+  })
+
   it('validates kinds and zi length', () => {
     expect(validateCard('zi', '写这个字', '己')).toBeNull()
     expect(validateCard('zi', '写这个字', '已经')).toContain('一个字')

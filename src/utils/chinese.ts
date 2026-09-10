@@ -54,6 +54,16 @@ export const AUDIENCE_LABEL: Record<string, string> = Object.fromEntries(
   AUDIENCE_OPTIONS.map(item => [item.id, item.label])
 )
 
+export const DIFFICULTY_OPTIONS = [
+  { id: 'primary', label: '小学' },
+  { id: 'xiaoshengchu', label: '小升初' },
+  { id: 'junior', label: '初中' }
+]
+
+export const DIFFICULTY_LABEL: Record<string, string> = Object.fromEntries(
+  DIFFICULTY_OPTIONS.map(item => [item.id, item.label])
+)
+
 export function kindLabel(kind?: string) {
   return KIND_LABEL[kind || ''] || kind || ''
 }
@@ -68,4 +78,8 @@ export function questionTypeLabel(value?: string) {
 
 export function audienceLabel(value?: string) {
   return AUDIENCE_LABEL[value || ''] || value || '全年级'
+}
+
+export function difficultyLabel(value?: string) {
+  return DIFFICULTY_LABEL[value || ''] || ''
 }

@@ -1,5 +1,6 @@
 <template>
   <view class="container">
+    <text v-if="courseName" class="course-name">{{ courseName }}</text>
     <view class="mode-switch">
       <view
         v-for="item in modeOptions"
@@ -27,7 +28,7 @@
 
       <template v-if="card">
         <text class="muted">
-          {{ card.grade || '未分年级' }} · {{ levelLabel(card.level) }} · {{ kindLabel(card.kind) }}
+          {{ card.grade || '未分年级' }} · {{ difficultyLabel(card.difficulty) || levelLabel(card.level) }} · {{ kindLabel(card.kind) }}
           · {{ card.role === 'review' ? '复习' : '新学' }}
           · 第 {{ card.taskIndex || index + 1 }} / {{ card.taskCount || queue.length }} 张学习卡
         </text>
@@ -107,7 +108,7 @@
 import { computed, ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { chineseAPI } from '@/utils/api'
-import { kindLabel, levelLabel, questionTypeLabel } from '@/utils/chinese'
+import { difficultyLabel, kindLabel, levelLabel, questionTypeLabel } from '@/utils/chinese'
 import { requireSubject } from '@/utils/subject'
 
 const FALLBACK_MODES = [
@@ -117,6 +118,8 @@ const FALLBACK_MODES = [
 ]
 
 const courseId = ref('')
+const courseName = ref('')
+const fullQueue = ref<any[]>([])
 const queue = ref<any[]>([])
 const index = ref(0)
 const answer = ref('')
@@ -186,25 +189,40 @@ const wrongChars = computed(() => {
 })
 const resultTone = computed(() => (result.value?.revealed ? 'warn' : result.value?.correct ? 'ok' : 'error'))
 
-async function loadToday(nextMode?: string) {
+function applyMode(nextMode: string) {
+  mode.value = nextMode
+  index.value = 0
+  result.value = null
+  answer.value = ''
+  revealedCount.value = 0
+  if (nextMode === 'test') {
+    const review = fullQueue.value.filter(item => item.role === 'review')
+    queue.value = review.length ? review : []
+    return
+  }
+  queue.value = fullQueue.value
+}
+
+async function loadToday() {
   loading.value = true
   try {
-    const data = (await chineseAPI.today(courseId.value, nextMode || '')) as any
-    queue.value = data.items || []
-    index.value = 0
-    result.value = null
-    answer.value = ''
-    revealedCount.value = 0
+    const data = (await chineseAPI.today(courseId.value, 'learn')) as any
+    fullQueue.value = data.items || []
+    itemCount.value = Number(data.itemCount) || 0
+    progress.value = data.progress || {}
+    courseName.value = String(data.courseName || '')
+    if (courseName.value) {
+      uni.setNavigationBarTitle({ title: courseName.value })
+    }
+    reviewDefaultTest.value = !!data.reviewDefaultTest
+    if (Array.isArray(data.modes) && data.modes.length) modeOptions.value = data.modes
     sessionStreak.value = 0
     sessionDoneCount.value = 0
     sessionAttempts.value = 0
-    itemCount.value = Number(data.itemCount) || 0
-    mode.value = data.mode || 'learn'
-    progress.value = data.progress || {}
-    reviewDefaultTest.value = !!data.reviewDefaultTest
-    if (Array.isArray(data.modes) && data.modes.length) modeOptions.value = data.modes
+    applyMode(data.defaultMode || data.mode || 'learn')
   } catch (error: any) {
     uni.showToast({ title: error.message || '加载失败', icon: 'none' })
+    fullQueue.value = []
     queue.value = []
   } finally {
     loading.value = false
@@ -213,7 +231,7 @@ async function loadToday(nextMode?: string) {
 
 function selectMode(id: string) {
   if (id === mode.value || modeLocked.value) return
-  loadToday(id)
+  applyMode(id)
 }
 
 async function submit(reveal: boolean) {
@@ -302,6 +320,7 @@ onLoad(async (query) => {
 .pref { display: flex; align-items: center; gap: 12rpx; margin: 12rpx 0; font-size: 26rpx; }
 .check { color: #667eea; font-size: 32rpx; }
 .muted, .hint { display: block; color: #888; font-size: 24rpx; margin-top: 8rpx; }
+.course-name { display: block; font-size: 36rpx; font-weight: 700; color: #222; margin: 8rpx 8rpx 16rpx; }
 .today-title { display: block; font-size: 32rpx; font-weight: 700; }
 .cheer { display: block; margin-top: 8rpx; color: #667eea; }
 .prompt { display: block; margin: 24rpx 0; font-size: 36rpx; font-weight: 700; }
