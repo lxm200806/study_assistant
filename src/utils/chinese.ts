@@ -37,7 +37,9 @@ export const QUESTION_TYPE_OPTIONS = [
   { id: 'dictation', label: '默写' },
   { id: 'recite', label: '背诵' },
   { id: 'char_judge', label: '字对错' },
-  { id: 'meaning_choice', label: '理解意思' }
+  { id: 'meaning_choice', label: '理解意思' },
+  { id: 'context_choice', label: '语境选成语' },
+  { id: 'usage_judge', label: '使用正误' }
 ]
 
 export const QUESTION_TYPE_LABEL: Record<string, string> = Object.fromEntries(

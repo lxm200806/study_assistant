@@ -115,7 +115,7 @@ export function lemmaOf(point: PointLike | null | undefined): string {
   if (text) return text
   const qtype = normalizeQuestionType(point?.question_type || point?.questionType)
   const answer = String(point?.answer || '').trim()
-  if (qtype === 'char_judge' || qtype === 'meaning_choice') return ''
+  if (qtype === 'char_judge' || qtype === 'meaning_choice' || qtype === 'usage_judge') return ''
   return answer
 }
 
@@ -309,7 +309,7 @@ export function makeMeaningCard(base: PointLike, pool: string[]): PointLike {
 
 export function maybeExpandPackCards(points: PointLike[] | null | undefined): PointLike[] {
   const rows = (points || []).filter(item => item && typeof item === 'object').map(item => ({ ...item }))
-  if (rows.some(item => ['char_judge', 'meaning_choice'].includes(normalizeQuestionType(item.question_type || item.questionType)))) {
+  if (rows.some(item => ['char_judge', 'meaning_choice', 'context_choice', 'usage_judge'].includes(normalizeQuestionType(item.question_type || item.questionType)))) {
     return rows.map(item => fillEntryFields(item))
   }
   const pool = choicePool(rows)

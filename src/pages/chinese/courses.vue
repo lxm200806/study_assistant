@@ -34,6 +34,7 @@
           {{ item.note || '无备注' }} · {{ item.itemCount || item.item_count || 0 }} 个知识点
           <template v-if="item.kinds && item.kinds.length"> · {{ kindNames(item.kinds) }} · {{ (item.levels || []).join(' / ') }}</template>
           <template v-if="item.grades && item.grades.length"> · {{ item.grades.join(' / ') }}</template>
+          <template v-if="item.difficulties && item.difficulties.length"> · 成语：{{ difficultyNames(item.difficulties) }}</template>
           · 每天新学 {{ item.newEnergy || 30 }} 能 / 复习 {{ item.reviewEnergy || 30 }} 能
         </text>
         <text class="today-title">{{ progressTitle(item) }}</text>
@@ -61,7 +62,7 @@
 import { onShow } from '@dcloudio/uni-app'
 import { ref, computed } from 'vue'
 import { chineseAPI } from '@/utils/api'
-import { KIND_LABEL } from '@/utils/chinese'
+import { DIFFICULTY_LABEL, KIND_LABEL } from '@/utils/chinese'
 import { openPage } from '@/utils/navigation'
 import { requireSubject } from '@/utils/subject'
 
@@ -78,6 +79,7 @@ interface CourseItem {
   kinds?: string[]
   levels?: string[]
   grades?: string[]
+  difficulties?: string[]
   progress?: { title?: string; status?: string; summary?: string; todayStreak?: number; todayDoneCount?: number; todayPracticed?: number }
 }
 
@@ -94,6 +96,10 @@ const staleNames = computed(() =>
 
 function kindNames(ids: string[]) {
   return (ids || []).map(id => KIND_LABEL[id] || id).join(' / ')
+}
+
+function difficultyNames(ids: string[]) {
+  return (ids || []).map(id => DIFFICULTY_LABEL[id] || id).join(' / ')
 }
 
 function progressTitle(item: CourseItem) {

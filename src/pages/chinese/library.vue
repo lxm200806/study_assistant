@@ -47,6 +47,18 @@
         </view>
       </view>
 
+      <text class="label">成语难度（仅影响词语）</text>
+      <view class="chips">
+        <view
+          v-for="item in DIFFICULTY_OPTIONS"
+          :key="item.id"
+          :class="['chip', difficulties.includes(item.id) ? 'active' : '']"
+          @tap="toggleRequired(difficulties, item.id)"
+        >
+          <text>{{ item.label }}</text>
+        </view>
+      </view>
+
       <view class="row">
         <view class="field">
           <text class="label">每天新学能量</text>
@@ -71,12 +83,13 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { chineseAPI } from '@/utils/api'
-import { GRADE_OPTIONS, KIND_OPTIONS, LEVEL_OPTIONS } from '@/utils/chinese'
+import { DIFFICULTY_OPTIONS, GRADE_OPTIONS, KIND_OPTIONS, LEVEL_OPTIONS } from '@/utils/chinese'
 import { openPage } from '@/utils/navigation'
 import { requireSubject } from '@/utils/subject'
 
 const kinds = ref(KIND_OPTIONS.map(item => item.id))
 const levels = ref([...LEVEL_OPTIONS])
+const difficulties = ref(DIFFICULTY_OPTIONS.map(item => item.id))
 const grades = ref(['三年级上'])
 const newEnergy = ref(30)
 const reviewEnergy = ref(30)
@@ -100,6 +113,14 @@ function toggle(list: string[], item: string) {
   else list.push(item)
 }
 
+function toggleRequired(list: string[], item: string) {
+  if (list.includes(item) && list.length === 1) {
+    uni.showToast({ title: '至少选择一个难度', icon: 'none' })
+    return
+  }
+  toggle(list, item)
+}
+
 async function loadLibrary() {
   if (!kinds.value.length || !levels.value.length) {
     total.value = 0
@@ -113,6 +134,7 @@ async function loadLibrary() {
     const params = new URLSearchParams()
     params.set('kinds', kinds.value.join(','))
     params.set('levels', levels.value.join(','))
+    params.set('difficulties', difficulties.value.join(','))
     if (grades.value.length) params.set('grades', grades.value.join(','))
     params.set('limit', '20')
     const data = (await chineseAPI.library(params.toString())) as any
@@ -123,6 +145,7 @@ async function loadLibrary() {
       kinds: kinds.value,
       levels: levels.value,
       grades: grades.value,
+      difficulties: difficulties.value,
       newEnergy: newEnergy.value,
       reviewEnergy: reviewEnergy.value
     })) as any
@@ -143,6 +166,7 @@ async function createCourse() {
       kinds: kinds.value,
       levels: levels.value,
       grades: grades.value,
+      difficulties: difficulties.value,
       newEnergy: newEnergy.value,
       reviewEnergy: reviewEnergy.value
     })) as any
@@ -155,7 +179,7 @@ async function createCourse() {
   }
 }
 
-watch([kinds, levels, grades, newEnergy, reviewEnergy], loadLibrary, { deep: true })
+watch([kinds, levels, grades, difficulties, newEnergy, reviewEnergy], loadLibrary, { deep: true })
 onMounted(async () => {
   if (!(await requireSubject('chinese', 'parent'))) return
   await loadLibrary()

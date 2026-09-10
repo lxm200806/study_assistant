@@ -8,7 +8,10 @@
         :class="['mode-btn', mode === item.id ? 'active' : '', modeLocked ? 'disabled' : '']"
         @tap="selectMode(item.id)"
       >
-        <text class="mode-label">{{ item.label }}</text>
+        <text class="mode-label">
+          {{ item.label }}
+          <text v-if="modeCounts[item.id] != null" class="mode-count">{{ modeCounts[item.id] }}</text>
+        </text>
         <text class="mode-hint">{{ item.hint }}</text>
       </view>
     </view>
@@ -23,19 +26,22 @@
       <text class="hint">{{ modeHint }}</text>
       <view class="pref" @tap="toggleReviewPref">
         <text class="check">{{ reviewDefaultTest ? '☑' : '☐' }}</text>
-        <text>到期复习默认用测试模式</text>
+        <text>有到期复习时，默认进入复习测验</text>
       </view>
 
       <template v-if="card">
         <text class="muted">
           {{ card.grade || '未分年级' }} · {{ difficultyLabel(card.difficulty) || levelLabel(card.level) }} · {{ kindLabel(card.kind) }}
-          · {{ card.role === 'review' ? '复习' : '新学' }}
+          · {{ mode === 'recite' ? '朗读背诵' : card.role === 'review' ? '复习' : '新学' }}
           · 第 {{ card.taskIndex || index + 1 }} / {{ card.taskCount || queue.length }} 张学习卡
         </text>
-        <text v-if="card.groupSize > 1" class="muted">本卡 {{ card.groupIndex }} / {{ card.groupSize }} · {{ card.groupEnergy || 0 }} 能</text>
+        <text v-if="card.groupSize > 1" class="muted">
+          本卡 {{ card.groupIndex }} / {{ card.groupSize }}
+          <template v-if="mode !== 'recite'"> · {{ card.groupEnergy || 0 }} 能</template>
+        </text>
         <text v-if="card.parts > 1" class="muted">大卡拆天：{{ card.part }} / {{ card.parts }}</text>
         <text v-if="card.source && mode !== 'test'" class="muted">{{ card.source }}</text>
-        <text class="muted">{{ questionTypeLabel(questionType) }}<template v-if="card.lemma && !isJudgeWidget"> · {{ card.lemma }}</template></text>
+        <text class="muted">{{ questionTypeLabel(questionType) }}<template v-if="mode !== 'test' && card.lemma && !isJudgeWidget && !isChoiceWidget"> · {{ card.lemma }}</template></text>
         <text class="prompt">{{ card.prompt }}</text>
 
         <template v-if="isReciteWidget && !result">
@@ -79,6 +85,7 @@
           <text class="hint">{{ feedbackHint }}</text>
           <text v-if="wrongChars.length" class="bad">不一样的字：{{ wrongChars.join('、') }}</text>
           <text>标准答案：{{ result.answer }}</text>
+          <text v-if="card.options?.explanation" class="hint">解析：{{ card.options.explanation }}</text>
           <view v-if="!result.revealed && result.chars && result.chars.length" class="diff">
             <text
               v-for="(ch, i) in result.chars"
@@ -112,14 +119,13 @@ import { difficultyLabel, kindLabel, levelLabel, questionTypeLabel } from '@/uti
 import { requireSubject } from '@/utils/subject'
 
 const FALLBACK_MODES = [
-  { id: 'learn', label: '学习', hint: '先练会' },
-  { id: 'test', label: '测试', hint: '考考你' },
-  { id: 'recite', label: '背诵', hint: '读出来' }
+  { id: 'learn', label: '学一学', hint: '新题＋提示' },
+  { id: 'test', label: '复习测验', hint: '只测到期' },
+  { id: 'recite', label: '朗读背诵', hint: '不计成绩' }
 ]
 
 const courseId = ref('')
 const courseName = ref('')
-const fullQueue = ref<any[]>([])
 const queue = ref<any[]>([])
 const index = ref(0)
 const answer = ref('')
@@ -129,6 +135,7 @@ const busy = ref(false)
 const itemCount = ref(0)
 const mode = ref('learn')
 const modeOptions = ref(FALLBACK_MODES)
+const modeCounts = ref<Record<string, number>>({})
 const progress = ref<any>({})
 const sessionStreak = ref(0)
 const sessionDoneCount = ref(0)
@@ -139,8 +146,8 @@ const prefBusy = ref(false)
 
 const card = computed(() => queue.value[index.value] || null)
 const questionType = computed(() => card.value?.questionType || 'dictation')
-const isJudgeWidget = computed(() => questionType.value === 'char_judge')
-const isChoiceWidget = computed(() => questionType.value === 'meaning_choice')
+const isJudgeWidget = computed(() => ['char_judge', 'usage_judge'].includes(questionType.value))
+const isChoiceWidget = computed(() => ['meaning_choice', 'context_choice'].includes(questionType.value))
 const isReciteWidget = computed(() => {
   if (mode.value === 'test' || isJudgeWidget.value || isChoiceWidget.value) return false
   return questionType.value === 'recite' || mode.value === 'recite'
@@ -153,11 +160,11 @@ const reciteLines = computed(() => {
   const text = String(card.value.answer || '').trim()
   return text ? [text] : ['（暂无原文）']
 })
-const modeLocked = computed(() => busy.value || !!result.value || !!answer.value.trim() || revealedCount.value > 0)
+const modeLocked = computed(() => loading.value || busy.value || !!result.value || !!answer.value.trim() || revealedCount.value > 0)
 const modeHint = computed(() => {
-  if (mode.value === 'test') return '测试是正式默写：少提示、提交前不能看答案。'
-  if (mode.value === 'recite') return '背诵练听和读，不改下次出现的日子。'
-  return '学习先练会：不会时可以看答案，记成「模糊」。'
+  if (mode.value === 'test') return '复习测验只检查到期内容：不显示词条和来源，提交前不能看答案。'
+  if (mode.value === 'recite') return '朗读背诵只安排适合读背的诗文和名句，不计成绩，不改变复习日期。'
+  return '学一学包含新题和到期复习；不会时可以看答案，系统仍会安排后续复习。'
 })
 const cheerText = computed(() => {
   const parts = []
@@ -167,16 +174,25 @@ const cheerText = computed(() => {
   if (done > 0) parts.push(`今日已完成 ${done} 条`)
   return parts.join(' · ')
 })
-const statusTitle = computed(() => progress.value.title || '今日默写')
-const statusHint = computed(() => progress.value.hint || '')
+const statusTitle = computed(() => {
+  if (mode.value === 'test') return queue.value.length ? `到期复习 ${queue.value.length} 张` : '今天没有到期复习'
+  if (mode.value === 'recite') return queue.value.length ? `可朗读背诵 ${queue.value.length} 张` : '今天没有读背内容'
+  return progress.value.title || '今日学习'
+})
+const statusHint = computed(() => {
+  if (mode.value === 'test') return queue.value.length ? '独立完成后再核对答案。' : '可以切到「学一学」练新卡。'
+  if (mode.value === 'recite') return queue.value.length ? '按顺序朗读、逐行背诵，不计入学习进度。' : '今天的任务中没有诗文或名句。'
+  return progress.value.hint || ''
+})
 const emptyTitle = computed(() => {
-  if (mode.value === 'test' && Number(progress.value.remainingNewEnergy) > 0) return '今天没有到期复习可测'
+  if (mode.value === 'test') return '没有需要测验的题卡'
+  if (mode.value === 'recite') return '没有可读背的题卡'
   if (progress.value.status === 'done' || progress.value.todayDone) return '今天练完了'
-  return statusTitle.value || '今天的默写做完了'
+  return statusTitle.value || '今天的学习完成了'
 })
 const emptyHint = computed(() => {
-  if (mode.value === 'test' && Number(progress.value.remainingNewEnergy) > 0) return '可以切到「学习」练新卡，或明天再来测复习。'
-  if (mode.value === 'recite' && progress.value.status === 'remaining') return '今天没有可朗读的学习卡。'
+  if (mode.value === 'test') return '可以切到「学一学」练新卡，或明天再来复习。'
+  if (mode.value === 'recite') return '今天的任务中没有适合朗读背诵的诗文或名句。'
   return progress.value.hint || '今天没有要练的卡片。'
 })
 const feedback = computed(() => result.value?.feedback || {})
@@ -189,25 +205,10 @@ const wrongChars = computed(() => {
 })
 const resultTone = computed(() => (result.value?.revealed ? 'warn' : result.value?.correct ? 'ok' : 'error'))
 
-function applyMode(nextMode: string) {
-  mode.value = nextMode
-  index.value = 0
-  result.value = null
-  answer.value = ''
-  revealedCount.value = 0
-  if (nextMode === 'test') {
-    const review = fullQueue.value.filter(item => item.role === 'review')
-    queue.value = review.length ? review : []
-    return
-  }
-  queue.value = fullQueue.value
-}
-
-async function loadToday() {
+async function loadToday(requestedMode = '') {
   loading.value = true
   try {
-    const data = (await chineseAPI.today(courseId.value, 'learn')) as any
-    fullQueue.value = data.items || []
+    const data = (await chineseAPI.today(courseId.value, requestedMode || undefined)) as any
     itemCount.value = Number(data.itemCount) || 0
     progress.value = data.progress || {}
     courseName.value = String(data.courseName || '')
@@ -216,13 +217,18 @@ async function loadToday() {
     }
     reviewDefaultTest.value = !!data.reviewDefaultTest
     if (Array.isArray(data.modes) && data.modes.length) modeOptions.value = data.modes
+    modeCounts.value = data.modeCounts || {}
     sessionStreak.value = 0
     sessionDoneCount.value = 0
     sessionAttempts.value = 0
-    applyMode(data.defaultMode || data.mode || 'learn')
+    mode.value = data.mode || data.defaultMode || requestedMode || 'learn'
+    queue.value = data.items || []
+    index.value = 0
+    result.value = null
+    answer.value = ''
+    revealedCount.value = 0
   } catch (error: any) {
     uni.showToast({ title: error.message || '加载失败', icon: 'none' })
-    fullQueue.value = []
     queue.value = []
   } finally {
     loading.value = false
@@ -231,7 +237,7 @@ async function loadToday() {
 
 function selectMode(id: string) {
   if (id === mode.value || modeLocked.value) return
-  applyMode(id)
+  loadToday(id)
 }
 
 async function submit(reveal: boolean) {
@@ -296,7 +302,7 @@ function speak() {
   window.speechSynthesis.cancel()
   let text = card.value.prompt
   if (isJudgeWidget.value) text = judgeDisplay.value || text
-  else if (card.value.lemma) text = card.value.lemma
+  else if (!isChoiceWidget.value && card.value.lemma) text = card.value.lemma
   const utter = new SpeechSynthesisUtterance(text)
   utter.lang = 'zh-CN'
   utter.rate = 0.85
@@ -316,6 +322,8 @@ onLoad(async (query) => {
 .mode-btn.active { background: #667eea; }
 .mode-btn.active .mode-label, .mode-btn.active .mode-hint { color: #fff; }
 .mode-label { display: block; font-weight: 700; font-size: 28rpx; }
+.mode-count { display: inline-block; min-width: 32rpx; margin-left: 6rpx; padding: 0 8rpx; border-radius: 999rpx; background: rgba(102, 126, 234, .12); font-size: 20rpx; }
+.mode-btn.active .mode-count { background: rgba(255, 255, 255, .24); }
 .mode-hint { display: block; font-size: 22rpx; color: #888; }
 .pref { display: flex; align-items: center; gap: 12rpx; margin: 12rpx 0; font-size: 26rpx; }
 .check { color: #667eea; font-size: 32rpx; }

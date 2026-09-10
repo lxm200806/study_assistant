@@ -5,9 +5,9 @@ export type StudyMode = (typeof MODES)[number]
 export const DEFAULT_MODE: StudyMode = 'learn'
 export const LEARN_REVEAL_QUALITY = 3
 export const MODE_OPTIONS = [
-  { id: 'learn', label: '学习', hint: '先练会' },
-  { id: 'test', label: '测试', hint: '考考你' },
-  { id: 'recite', label: '背诵', hint: '读出来' }
+  { id: 'learn', label: '学一学', hint: '新题＋提示' },
+  { id: 'test', label: '复习测验', hint: '只测到期' },
+  { id: 'recite', label: '朗读背诵', hint: '不计成绩' }
 ] as const
 
 const LINE_SPLIT = /(?<=[。！？；!?;\n])/
@@ -31,11 +31,6 @@ export function normalizeMode(value: unknown, fallback: StudyMode = DEFAULT_MODE
 }
 
 export function defaultStudyMode(planned: PlannedToday | null | undefined): StudyMode {
-  const groups = [...((planned || {}).groups || [])]
-  if (groups.length && groups[0].role === 'review') return 'test'
-  const reviewEnergy = Number((planned || {}).reviewEnergy || 0)
-  const newEnergy = Number((planned || {}).newEnergy || 0)
-  if (reviewEnergy && !newEnergy) return 'test'
   return 'learn'
 }
 
@@ -54,14 +49,24 @@ export function groupsForMode<T extends { role?: string }>(groups: T[] | null | 
   const active = normalizeMode(mode)
   const rows = [...(groups || [])]
   if (active !== 'test') return rows
-  const review = rows.filter(group => group.role === 'review')
-  return review.length ? review : rows
+  return rows.filter(group => group.role === 'review')
+}
+
+function isRecitable(row: PointLike): boolean {
+  const kind = String(row.kind || '')
+  const questionType = String(row.question_type || '')
+  return ['poem', 'wenyan', 'saying', 'sentence'].includes(kind) &&
+    ['recite', 'dictation'].includes(questionType)
 }
 
 export function applyTodayMode(planned: PlannedToday, mode: unknown): PlannedToday {
   const next = { ...planned }
   const active = normalizeMode(mode)
-  const groups = groupsForMode(next.groups || [], active)
+  const groups = active === 'recite'
+    ? (next.groups || [])
+        .map(group => ({ ...group, rows: (group.rows || []).filter(isRecitable) }))
+        .filter(group => (group.rows || []).length > 0)
+    : groupsForMode(next.groups || [], active)
   const newEnergy = groups.filter(group => group.role !== 'review').reduce((sum, group) => sum + Number(group.energy || 0), 0)
   const reviewEnergy = groups.filter(group => group.role === 'review').reduce((sum, group) => sum + Number(group.energy || 0), 0)
   const charged = active !== 'recite'

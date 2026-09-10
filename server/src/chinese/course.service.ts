@@ -21,6 +21,7 @@ import {
   DEFAULT_COURSE_NAME,
   DEFAULT_NEW_ENERGY,
   DEFAULT_REVIEW_ENERGY,
+  DIFFICULTIES,
   DIFFICULTY_LABEL,
   KIND_LABEL,
   QUESTION_TYPE_LABEL,
@@ -61,6 +62,7 @@ function toPointLike(row: {
   questionType?: string
   audience?: string
   difficulty?: string
+  isActive?: boolean
   options?: string
   n?: number | null
   ef?: number | null
@@ -86,6 +88,7 @@ function toPointLike(row: {
     question_type: row.questionType || 'dictation',
     audience: row.audience || 'all',
     difficulty: row.difficulty || '',
+    active: row.isActive !== false,
     options: row.options || '',
     n: row.n,
     ef: row.ef,
@@ -131,11 +134,17 @@ function decorateLibraryItem(row: PointLike & { resource_slug?: string; resource
   return data
 }
 
-function courseFilters(course: { kinds: string; levels: string; grades: string }) {
-  const kinds = decodeFilters(course.kinds, KINDS) || [...KINDS]
-  const levels = decodeFilters(course.levels, LEVELS) || [...LEVELS]
+function courseFilters(course: { kinds: string; levels: string; grades: string; difficulties: string }) {
+  const kinds = decodeFilters(course.kinds, KINDS)
+  const levels = decodeFilters(course.levels, LEVELS)
   const grades = decodeFilters(course.grades, GRADES)
-  return { kinds, levels, grades }
+  const difficulties = decodeFilters(course.difficulties, DIFFICULTIES)
+  return {
+    kinds: kinds.length ? kinds : [...KINDS],
+    levels: levels.length ? levels : [...LEVELS],
+    grades,
+    difficulties: difficulties.length ? difficulties : [...DIFFICULTIES]
+  }
 }
 
 function isDefaultCourse(course: { name: string }) {
@@ -150,6 +159,7 @@ export function serializeCourse(
     kinds: string
     levels: string
     grades: string
+    difficulties: string
     newEnergy: number
     reviewEnergy: number
     reviewDefaultTest: boolean
@@ -165,6 +175,7 @@ export function serializeCourse(
     kinds: decodeFilters(row.kinds, KINDS),
     levels: decodeFilters(row.levels, LEVELS),
     grades: decodeFilters(row.grades, GRADES),
+    difficulties: decodeFilters(row.difficulties, DIFFICULTIES),
     newEnergy: row.newEnergy || 30,
     reviewEnergy: row.reviewEnergy || 30,
     reviewDefaultTest: Boolean(row.reviewDefaultTest),
@@ -202,6 +213,7 @@ function serializePoint(point: PointLike, extra?: Record<string, unknown>) {
     questionType: point.question_type || 'dictation',
     audience: point.audience || 'all',
     difficulty: point.difficulty || '',
+    active: point.active !== false,
     energy: pointEnergy(point)
   }
   if (extra) Object.assign(data, extra)
@@ -228,13 +240,18 @@ async function withoutPendingDrafts<T extends { pointKey?: string | null; point_
   return rows.filter(row => !isShadow(row))
 }
 
-async function candidatePoints(kinds: string[], levels: string[], grades: string[]) {
+async function candidatePoints(kinds: string[], levels: string[], grades: string[], difficulties: string[] = [...DIFFICULTIES]) {
   const wanted = audiencesForGrades(grades)
   const rows = await withoutPendingDrafts(
     await prisma.chinesePublished.findMany({
       where: {
+        isActive: true,
         kind: { in: kinds },
         level: { in: levels },
+        OR: [
+          { kind: { not: 'idiom' } },
+          { difficulty: { in: difficulties.length ? difficulties : [...DIFFICULTIES] } }
+        ],
         ...(wanted ? { audience: { in: Array.from(wanted) } } : {})
       },
       orderBy: [{ grade: 'asc' }, { kind: 'asc' }, { entryKey: 'asc' }, { questionType: 'asc' }, { id: 'asc' }]
@@ -255,7 +272,7 @@ async function candidatePoints(kinds: string[], levels: string[], grades: string
 export async function ensureUserDefaultCourse(userId: string) {
   const existing = await prisma.chineseCourse.count({ where: { userId } })
   if (existing) return null
-  const points = await candidatePoints([...KINDS], [...LEVELS], [])
+  const points = await candidatePoints([...KINDS], [...LEVELS], [], [...DIFFICULTIES])
   if (!points.length) return null
   const course = await prisma.chineseCourse.create({
     data: {
@@ -264,7 +281,8 @@ export async function ensureUserDefaultCourse(userId: string) {
       note: '系统预置，含已发布知识点',
       kinds: encodeFilters([...KINDS], KINDS),
       levels: encodeFilters([...LEVELS], LEVELS),
-      grades: ''
+      grades: '',
+      difficulties: encodeFilters([...DIFFICULTIES], DIFFICULTIES)
     }
   })
   if (points.length) {
@@ -275,9 +293,9 @@ export async function ensureUserDefaultCourse(userId: string) {
   return course
 }
 
-async function matchingPublishedCount(course: { kinds: string; levels: string; grades: string }) {
-  const { kinds, levels, grades } = courseFilters(course)
-  return (await candidatePoints(kinds, levels, grades)).length
+async function matchingPublishedCount(course: { kinds: string; levels: string; grades: string; difficulties: string }) {
+  const { kinds, levels, grades, difficulties } = courseFilters(course)
+  return (await candidatePoints(kinds, levels, grades, difficulties)).length
 }
 
 async function courseItemCount(courseId: string) {
@@ -307,8 +325,8 @@ async function pruneDuplicateCourseItems(courseId: string, points: PointLike[]) 
   return removed
 }
 
-async function syncCourseItems(course: { id: string; kinds: string; levels: string; grades: string; name: string }) {
-  const { kinds, levels, grades } = courseFilters(course)
+async function syncCourseItems(course: { id: string; kinds: string; levels: string; grades: string; difficulties: string; name: string }) {
+  const { kinds, levels, grades, difficulties } = courseFilters(course)
   if ((!decodeFilters(course.kinds, KINDS).length || !decodeFilters(course.levels, LEVELS).length) && !isDefaultCourse(course)) {
     return 0
   }
@@ -316,7 +334,7 @@ async function syncCourseItems(course: { id: string; kinds: string; levels: stri
   const have = new Set(existing.map(item => item.pointId))
   let maxSort = existing.reduce((max, item) => Math.max(max, item.sort), -1)
   let added = 0
-  const points = await candidatePoints(kinds, levels, grades)
+  const points = await candidatePoints(kinds, levels, grades, difficulties)
   for (const point of points) {
     if (have.has(String(point.id))) continue
     maxSort += 1
@@ -395,6 +413,7 @@ async function ensureDefaultSynced(course: {
   kinds: string
   levels: string
   grades: string
+  difficulties: string
   newEnergy: number
   reviewEnergy: number
   reviewDefaultTest: boolean
@@ -418,14 +437,21 @@ export async function listLibrary(query: Record<string, unknown>, isAdmin: boole
   const hideAnswer = !isAdmin && !query.answers
   const [limit, offset] = pageArgs(query.limit, query.offset)
   const where: any = {}
+  if (!(isAdmin && query.includeInactive)) where.isActive = true
   if (kinds.length) where.kind = { in: kinds }
   if (levels.length) where.level = { in: levels }
   const qtype = query.questionType ? normalizeQuestionType(query.questionType) : ''
   if (query.questionType && qtype) where.questionType = qtype
   const aud = query.audience ? normalizeAudience(query.audience) : ''
   if (query.audience && aud) where.audience = aud
-  const diff = query.difficulty ? normalizeDifficulty(query.difficulty) : ''
-  if (query.difficulty && diff) where.difficulty = diff
+  const difficultyList = query.difficulties
+    ? decodeFilters(String(query.difficulties), DIFFICULTIES)
+    : query.difficulty
+      ? [normalizeDifficulty(query.difficulty)].filter(Boolean)
+      : []
+  if (difficultyList.length) {
+    where.OR = [{ kind: { not: 'idiom' } }, { difficulty: { in: difficultyList } }]
+  }
   const resourceFilter = parseResourceFilter(query.resourceId, Boolean(query.unlinked))
   if (resourceFilter === 0) where.sourceResourceId = null
   else if (resourceFilter) where.sourceResourceId = String(resourceFilter)
@@ -474,17 +500,19 @@ export async function listLibrary(query: Record<string, unknown>, isAdmin: boole
   }
 }
 
-export async function createCourse(userId: string, body: { name?: string; note?: string; kinds?: string[]; levels?: string[]; grades?: string[]; newEnergy?: number; reviewEnergy?: number; reviewDefaultTest?: boolean }) {
+export async function createCourse(userId: string, body: { name?: string; note?: string; kinds?: string[]; levels?: string[]; grades?: string[]; difficulties?: string[]; newEnergy?: number; reviewEnergy?: number; reviewDefaultTest?: boolean }) {
   const name = String(body.name || '').trim()
   if (!name) throw new HttpError(400, '请填写课程名称')
   const kinds = (body.kinds || []).filter(item => isKind(item))
   const levels = (body.levels || []).filter(item => isLevel(item))
   const grades = (body.grades || []).filter(item => (GRADES as readonly string[]).includes(item))
+  const difficulties = (body.difficulties || []).filter(item => (DIFFICULTIES as readonly string[]).includes(item))
   const useKinds = kinds.length ? kinds : [...KINDS]
   const useLevels = levels.length ? levels : [...LEVELS]
+  const useDifficulties = difficulties.length ? difficulties : [...DIFFICULTIES]
   const newEnergy = parseEnergyLimit(body.newEnergy) || DEFAULT_NEW_ENERGY
   const reviewEnergy = parseEnergyLimit(body.reviewEnergy) || DEFAULT_REVIEW_ENERGY
-  const points = await candidatePoints(useKinds, useLevels, grades)
+  const points = await candidatePoints(useKinds, useLevels, grades, useDifficulties)
   if (!points.length) throw new HttpError(400, '没有符合条件的已发布知识点')
   const course = await prisma.chineseCourse.create({
     data: {
@@ -494,6 +522,7 @@ export async function createCourse(userId: string, body: { name?: string; note?:
       kinds: encodeFilters(useKinds, KINDS),
       levels: encodeFilters(useLevels, LEVELS),
       grades: encodeFilters(grades, GRADES),
+      difficulties: encodeFilters(useDifficulties, DIFFICULTIES),
       newEnergy,
       reviewEnergy,
       reviewDefaultTest: Boolean(body.reviewDefaultTest)
@@ -506,11 +535,17 @@ export async function createCourse(userId: string, body: { name?: string; note?:
   return serializeCourse(course, points.length, plan, points.length)
 }
 
-export async function previewCourse(body: { kinds?: string[]; levels?: string[]; grades?: string[]; newEnergy?: number; reviewEnergy?: number }) {
+export async function previewCourse(body: { kinds?: string[]; levels?: string[]; grades?: string[]; difficulties?: string[]; newEnergy?: number; reviewEnergy?: number }) {
   const kinds = (body.kinds || []).filter(item => isKind(item))
   const levels = (body.levels || []).filter(item => isLevel(item))
   const grades = (body.grades || []).filter(item => (GRADES as readonly string[]).includes(item))
-  const points = await candidatePoints(kinds.length ? kinds : [...KINDS], levels.length ? levels : [...LEVELS], grades)
+  const difficulties = (body.difficulties || []).filter(item => (DIFFICULTIES as readonly string[]).includes(item))
+  const points = await candidatePoints(
+    kinds.length ? kinds : [...KINDS],
+    levels.length ? levels : [...LEVELS],
+    grades,
+    difficulties.length ? difficulties : [...DIFFICULTIES]
+  )
   return planCourseDays(points, body.newEnergy, body.reviewEnergy)
 }
 
@@ -543,15 +578,19 @@ export async function listCourses(userId: string) {
   return results
 }
 
-export async function patchCourse(courseId: string, userId: string, body: { name?: string; note?: string; newEnergy?: number; reviewEnergy?: number; reviewDefaultTest?: boolean }) {
+export async function patchCourse(courseId: string, userId: string, body: { name?: string; note?: string; difficulties?: string[]; newEnergy?: number; reviewEnergy?: number; reviewDefaultTest?: boolean }) {
   const course = await ownCourse(courseId, userId)
-  const data: { name?: string; note?: string; newEnergy?: number; reviewEnergy?: number; reviewDefaultTest?: boolean } = {}
+  const data: { name?: string; note?: string; difficulties?: string; newEnergy?: number; reviewEnergy?: number; reviewDefaultTest?: boolean } = {}
   if (body.name != null) {
     const name = String(body.name).trim()
     if (!name) throw new HttpError(400, '请填写课程名称')
     data.name = name
   }
   if (body.note != null) data.note = String(body.note).trim()
+  if (body.difficulties != null) {
+    const difficulties = body.difficulties.filter(item => (DIFFICULTIES as readonly string[]).includes(item))
+    data.difficulties = encodeFilters(difficulties.length ? difficulties : [...DIFFICULTIES], DIFFICULTIES)
+  }
   if (body.newEnergy != null) data.newEnergy = parseEnergyLimit(body.newEnergy) || course.newEnergy
   if (body.reviewEnergy != null) data.reviewEnergy = parseEnergyLimit(body.reviewEnergy) || course.reviewEnergy
   if (body.reviewDefaultTest != null) data.reviewDefaultTest = Boolean(body.reviewDefaultTest)
@@ -595,16 +634,19 @@ export async function todayQueue(courseId: string, userId: string, mode?: string
     const active = mode ? normalizeMode(mode) : suggested
     const progress = buildProgress(planned, logs, points.length)
     const shaped = applyTodayMode(planned as any, active)
+  const modeCounts = Object.fromEntries(
+    MODE_OPTIONS.map(option => [option.id, Number(applyTodayMode(planned as any, option.id).cards || 0)])
+  )
   const hideSource = active === 'test'
     const items = flattenTodayGroups(shaped.groups as any).map(entry => {
     const qtype = String(entry.row.question_type || 'dictation')
     const extra: Record<string, unknown> = {
-      groupKey: entry.group_key,
+      groupKey: active === 'test' ? '' : entry.group_key,
       groupSize: entry.group_size,
       groupIndex: entry.group_index,
       taskIndex: entry.task_index,
       taskCount: entry.task_count,
-      pointKey: entry.row.point_key || '',
+      pointKey: active === 'test' ? '' : entry.row.point_key || '',
       energy: entry.energy,
       groupEnergy: entry.group_energy,
       part: entry.part,
@@ -612,8 +654,8 @@ export async function todayQueue(courseId: string, userId: string, mode?: string
       cardTitle: entry.title,
       role: entry.role || 'new',
       mode: active,
-      entryKey: entry.row.entry_key || '',
-      lemma: entry.row.lemma || '',
+      entryKey: active === 'test' ? '' : entry.row.entry_key || '',
+      lemma: active === 'test' ? '' : entry.row.lemma || '',
       questionType: qtype,
       audience: entry.row.audience || 'all',
       difficulty: entry.row.difficulty || '',
@@ -647,6 +689,7 @@ export async function todayQueue(courseId: string, userId: string, mode?: string
     reviewDefaultTest: course.reviewDefaultTest,
     energyCharged: shaped.energyCharged ?? true,
     modes: [...MODE_OPTIONS],
+    modeCounts,
     progress
   }
 }
@@ -934,6 +977,7 @@ export async function patchPublished(pointId: string, body: Record<string, unkno
     question_type: String(body.questionType ?? body.question_type ?? row.questionType),
     audience: String(body.audience ?? row.audience),
     difficulty: String(body.difficulty ?? row.difficulty),
+    active: body.active == null ? row.isActive : Boolean(body.active),
     options: body.options ?? row.options,
     key: row.pointKey || ''
   }
@@ -959,6 +1003,7 @@ export async function patchPublished(pointId: string, body: Record<string, unkno
       questionType: String(grouped.question_type || 'dictation'),
       audience: String(grouped.audience || 'all'),
       difficulty: String(grouped.difficulty || ''),
+      isActive: grouped.active !== false,
       options: String(grouped.options || '')
     }
   })

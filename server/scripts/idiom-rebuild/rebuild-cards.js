@@ -114,6 +114,9 @@ function makeChoices(entry, pool) {
 
 function main() {
   const pack = readJson(packPath)
+  const reviewedExamCards = pack.points.filter(point =>
+    ['context_choice', 'usage_judge'].includes(point.question_type)
+  )
   const worksheet = readJson(path.join(workDir, 'worksheet.json'))
   const dictionary = readJson(path.join(root, 'data/sources/idiom-xinhua.json'))
   const dictionaryMap = new Map(dictionary.map(item => [item.word, item]))
@@ -219,6 +222,14 @@ function main() {
       })
     }
   }
+
+  // 二期考试型题卡经过逐题人工/模型二审，重建基础卡时原样保留。
+  const activeCommonWords = new Set(entries
+    .filter(entry => entry.difficulty !== 'junior')
+    .map(entry => entry.word))
+  points.push(...reviewedExamCards.filter(card =>
+    card.active !== false && activeCommonWords.has(card.lemma)
+  ))
 
   const output = { ...pack, version: Number(pack.version || 1) + 1, count: points.length, points }
   fs.copyFileSync(packPath, `${packPath}.bak`)

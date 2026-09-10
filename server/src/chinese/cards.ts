@@ -55,12 +55,12 @@ export function validateCard(kind: string, prompt: unknown, answer: unknown, que
   if (!isKind(kind)) return '类型无效，仅支持 poem / wenyan / idiom / saying / sentence / zi'
   const qtype = normalizeQuestionType(questionType)
   if (!String(prompt || '').trim() || !String(answer || '').trim()) return '提示和答案必填'
-  if (qtype === 'char_judge') {
+  if (qtype === 'char_judge' || qtype === 'usage_judge') {
     const compact = normalize(answer)
-    if (compact !== '对' && compact !== '错') return '字对错答案须为对或错'
+    if (compact !== '对' && compact !== '错') return '判断题答案须为对或错'
     return null
   }
-  if (qtype === 'meaning_choice') return null
+  if (qtype === 'meaning_choice' || qtype === 'context_choice') return null
   const compact = normalize(answer)
   if (kind === 'zi' && compact.length !== 1) return '易错字答案必须是一个字'
   if (kind === 'idiom' && (compact.length < 3 || compact.length > 8)) return '词语过长，请拆成一条'
@@ -115,6 +115,7 @@ export function normalizePoint(item: unknown): PointLike | null {
     question_type: qtype,
     audience: normalizeAudience(raw.audience),
     difficulty: normalizeDifficulty(raw.difficulty),
+    active: raw.active !== false && raw.isActive !== false,
     options: raw.options
   })
 }
@@ -255,7 +256,8 @@ export function pointEnergy(point: PointLike): number {
   const qtype = nq(point.question_type || point.questionType)
   const kind = point.kind
   if (qtype === 'char_judge') return kind === 'idiom' ? 2 : 1
-  if (qtype === 'meaning_choice') return kind === 'idiom' ? 4 : 2
+  if (qtype === 'usage_judge') return kind === 'idiom' ? 4 : 2
+  if (qtype === 'meaning_choice' || qtype === 'context_choice') return kind === 'idiom' ? 4 : 2
   const tags = String(point.tags || '')
   const length = normalize(point.lemma || point.answer || '').length
   if (qtype === 'recite' && kind === 'idiom') return 2

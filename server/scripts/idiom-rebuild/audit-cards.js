@@ -13,6 +13,13 @@ const pointKeys = new Set()
 const groups = new Map()
 const difficulties = new Set(['primary', 'xiaoshengchu', 'junior'])
 const categoryPattern = /教辅|常见成语|结构的成语|的成语$|有关的成语$/
+const allowedQuestionTypes = new Set([
+  'recite',
+  'char_judge',
+  'meaning_choice',
+  'context_choice',
+  'usage_judge'
+])
 
 function parseOptions(point) {
   try {
@@ -36,6 +43,8 @@ for (const point of pack.points || []) {
   else pointKeys.add(point.key)
 
   if (!difficulties.has(point.difficulty)) errors.push(`${point.key}: 难度无效 ${point.difficulty}`)
+  if (!allowedQuestionTypes.has(point.question_type)) errors.push(`${point.key}: 题型无效 ${point.question_type}`)
+  if (typeof point.active !== 'boolean') errors.push(`${point.key}: 缺少 active 布尔标记`)
   if (!point.entry_key || !point.lemma) errors.push(`${point.key}: 缺 entry_key/lemma`)
   if (!groups.has(point.entry_key)) groups.set(point.entry_key, [])
   groups.get(point.entry_key).push(point)
@@ -71,6 +80,26 @@ for (const point of pack.points || []) {
     if (point.answer === '对' && differences !== 0) errors.push(`${point.key}: 标“对”但写法不同`)
     if (point.answer === '错' && differences !== 1) errors.push(`${point.key}: 错字题应只改一个字`)
   }
+
+  if (point.question_type === 'context_choice') {
+    const options = parseOptions(point)
+    const choices = Array.isArray(options.choices) ? options.choices : []
+    if (!String(point.prompt || '').includes('____')) errors.push(`${point.key}: 语境题没有空缺`)
+    if (String(point.prompt || '').includes(point.answer)) errors.push(`${point.key}: 语境题泄漏答案`)
+    if (choices.length !== 4 || new Set(choices).size !== 4) errors.push(`${point.key}: 语境题须有 4 个不同选项`)
+    if (!choices.includes(point.answer)) errors.push(`${point.key}: 语境题选项不含答案`)
+    if (point.active === false) errors.push(`${point.key}: 下架词条不应有语境题`)
+  }
+
+  if (point.question_type === 'usage_judge') {
+    const options = parseOptions(point)
+    const display = String(options.display || '')
+    const explanation = String(options.explanation || '')
+    if (!['对', '错'].includes(point.answer)) errors.push(`${point.key}: 使用正误题答案须为对或错`)
+    if (!display.includes(point.lemma)) errors.push(`${point.key}: 使用正误句未出现目标成语`)
+    if (explanation.length < 6 || explanation.length > 40) errors.push(`${point.key}: 使用正误题解析长度不合适`)
+    if (point.active === false) errors.push(`${point.key}: 下架词条不应有使用正误题`)
+  }
 }
 
 for (const [entryKey, cards] of groups) {
@@ -81,6 +110,10 @@ for (const [entryKey, cards] of groups) {
   if (difficulty !== 'junior' && (!types.has('recite') || !types.has('meaning_choice'))) {
     errors.push(`${entryKey}: 小学/小升初成语缺默写或选意思题`)
   }
+  if (cards[0]?.active !== false && difficulty !== 'junior' && (!types.has('context_choice') || !types.has('usage_judge'))) {
+    errors.push(`${entryKey}: 上架的小学/小升初成语缺语境题或使用正误题`)
+  }
+  if (cards.some(card => card.active !== cards[0]?.active)) errors.push(`${entryKey}: 同一成语 active 不一致`)
 }
 
 const stats = {}

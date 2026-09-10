@@ -32,6 +32,8 @@ describe('chinese grade', () => {
     expect(gradeChoice('做事认真', '做事认真').correct).toBe(true)
     expect(gradeCard({ question_type: 'char_judge', answer: '错' }, '错').correct).toBe(true)
     expect(gradeCard({ question_type: 'char_judge', answer: '对' }, '', true).correct).toBe(false)
+    expect(gradeCard({ question_type: 'usage_judge', answer: '错' }, '错').correct).toBe(true)
+    expect(gradeCard({ question_type: 'context_choice', answer: '一丝不苟' }, '一丝不苟').correct).toBe(true)
   })
 })
 
@@ -62,9 +64,19 @@ describe('chinese study modes', () => {
     expect(normalizeMode('learn')).toBe('learn')
   })
 
-  it('defaults to test when review is first', () => {
-    expect(resolveDefaultMode({ groups: [{ role: 'review' }], reviewEnergy: 16, newEnergy: 8 })).toBe('test')
+  it('defaults to learn unless review testing is enabled', () => {
+    expect(resolveDefaultMode({ groups: [{ role: 'review' }], reviewEnergy: 16, newEnergy: 8 })).toBe('learn')
+    expect(resolveDefaultMode({ groups: [{ role: 'review' }], reviewEnergy: 16, newEnergy: 8 }, true)).toBe('test')
     expect(resolveDefaultMode({ groups: [{ role: 'new' }], reviewEnergy: 0, newEnergy: 16 })).toBe('learn')
+  })
+
+  it('test mode never falls back to new cards', () => {
+    const planned = applyTodayMode(
+      { groups: [{ role: 'new', energy: 8, rows: [{}] }] },
+      'test'
+    )
+    expect(planned.cards).toBe(0)
+    expect(planned.groups).toEqual([])
   })
 
   it('blocks reveal in test mode', () => {
@@ -86,12 +98,23 @@ describe('chinese study modes', () => {
 
   it('recite mode zeros charged energy', () => {
     const planned = applyTodayMode(
-      { groups: [{ role: 'new', energy: 16, rows: [{}] }, { role: 'review', energy: 8, rows: [{}] }] },
+      {
+        groups: [{
+          role: 'new',
+          energy: 16,
+          rows: [
+            { kind: 'poem', question_type: 'recite' },
+            { kind: 'idiom', question_type: 'recite' }
+          ]
+        }]
+      },
       'recite'
     )
     expect(planned.energyCharged).toBe(false)
     expect(planned.newEnergy).toBe(0)
     expect(planned.reviewEnergy).toBe(0)
+    expect(planned.cards).toBe(1)
+    expect(planned.groups[0].rows).toEqual([{ kind: 'poem', question_type: 'recite' }])
   })
 })
 
@@ -112,6 +135,12 @@ describe('chinese cards', () => {
   it('validates kinds and zi length', () => {
     expect(validateCard('zi', '写这个字', '己')).toBeNull()
     expect(validateCard('zi', '写这个字', '已经')).toContain('一个字')
+  })
+
+  it('validates new exam-style card answers', () => {
+    expect(validateCard('idiom', '他做事____。', '一丝不苟', 'context_choice', '一丝不苟')).toBeNull()
+    expect(validateCard('idiom', '这个句子使用是否恰当', '错', 'usage_judge', '一丝不苟')).toBeNull()
+    expect(validateCard('idiom', '这个句子使用是否恰当', '不知道', 'usage_judge', '一丝不苟')).toContain('对或错')
   })
 
   it('assigns poem energy by length', () => {

@@ -29,14 +29,16 @@ export const GRADES = [
 ] as const
 export type ChineseGrade = (typeof GRADES)[number]
 
-export const QUESTION_TYPES = ['dictation', 'recite', 'char_judge', 'meaning_choice'] as const
+export const QUESTION_TYPES = ['dictation', 'recite', 'char_judge', 'meaning_choice', 'context_choice', 'usage_judge'] as const
 export type QuestionType = (typeof QUESTION_TYPES)[number]
 
 export const QUESTION_TYPE_LABEL: Record<QuestionType, string> = {
   dictation: '默写',
   recite: '背诵',
   char_judge: '字对错',
-  meaning_choice: '理解意思'
+  meaning_choice: '理解意思',
+  context_choice: '语境选成语',
+  usage_judge: '使用正误'
 }
 
 export const AUDIENCES = ['all', 'lower', 'upper'] as const
@@ -97,6 +99,8 @@ export interface PointLike {
   questionType?: string
   audience?: string
   difficulty?: string
+  active?: boolean
+  isActive?: boolean
   options?: unknown
   energy?: number
   last?: string | Date | null

@@ -14,6 +14,7 @@ export interface PackSpec {
   jsonName: string
   mdName: string
   sourceJson?: string
+  attachToExistingDefault?: boolean
 }
 
 export const GRADE_PACKS: PackSpec[] = [
@@ -36,7 +37,8 @@ export const IDIOM_PACK: PackSpec = {
   title: '小学成语',
   jsonName: '小学成语.json',
   mdName: '小学成语.md',
-  sourceJson: path.join('idioms', '小学成语.json')
+  sourceJson: path.join('idioms', '小学成语.json'),
+  attachToExistingDefault: false
 }
 
 export const PACKS = [...GRADE_PACKS, IDIOM_PACK]
@@ -86,6 +88,7 @@ function packFingerprint(pack: { original?: string; points?: PointLike[] }): str
       question_type: String(item.question_type || ''),
       audience: String(item.audience || ''),
       difficulty: String(item.difficulty || ''),
+      active: item.active !== false && item.isActive !== false,
       options: String(item.options || '')
     }))
   }
@@ -243,7 +246,7 @@ export async function upsertEntry(point: PointLike) {
   }
 }
 
-function pointUnchanged(row: { kind: string; level: string; grade: string; prompt: string; answer: string; tags: string; source: string; pointKey: string | null; groupKey: string; subGroupKey: string; entryKey: string; lemma: string; questionType: string; audience: string; difficulty: string; options: string; sourceResourceId: string | null }, point: PointLike, resourceId: string | null, key: string) {
+function pointUnchanged(row: { kind: string; level: string; grade: string; prompt: string; answer: string; tags: string; source: string; pointKey: string | null; groupKey: string; subGroupKey: string; entryKey: string; lemma: string; questionType: string; audience: string; difficulty: string; isActive: boolean; options: string; sourceResourceId: string | null }, point: PointLike, resourceId: string | null, key: string) {
   return (
     row.kind === point.kind &&
     row.level === point.level &&
@@ -260,6 +263,7 @@ function pointUnchanged(row: { kind: string; level: string; grade: string; promp
     (row.questionType || 'dictation') === (point.question_type || 'dictation') &&
     (row.audience || 'all') === (point.audience || 'all') &&
     (row.difficulty || '') === (point.difficulty || '') &&
+    row.isActive === (point.active !== false && point.isActive !== false) &&
     (row.options || '') === (point.options || '') &&
     (row.sourceResourceId === resourceId || resourceId == null)
   )
@@ -299,6 +303,7 @@ export async function upsertPublished(pointInput: PointLike, resourceId: string 
     questionType: String(point.question_type || 'dictation'),
     audience: String(point.audience || 'all'),
     difficulty: String(point.difficulty || ''),
+    isActive: point.active !== false && point.isActive !== false,
     options: String(point.options || '')
   }
   if (existing) {
@@ -369,7 +374,7 @@ export async function syncPack(spec: PackSpec, force = true) {
     else if (status === 'updated') updated += 1
     else unchanged += 1
   }
-  await attachDefaultCourse(ids)
+  if (spec.attachToExistingDefault !== false) await attachDefaultCourse(ids)
   await prisma.chineseResource.update({
     where: { id: jsonResource.id },
     data: { status: 'extracted', syncedVersion: parseVersion(pack.version), syncedHash: pack.contentHash || '' }
