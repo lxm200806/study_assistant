@@ -18,7 +18,8 @@
     "seed:admin": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/seed-admin.ts'",
     "fill:meanings": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/fill-missing-meanings.ts'",
     "test": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/vitest/vitest.mjs run'",
-    "test:watch": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/vitest/vitest.mjs'"
+    "test:watch": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/vitest/vitest.mjs'",
+    "test:smoke": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/vitest/vitest.mjs run src/http-smoke.test.ts src/utils/jwt.test.ts'"
   },
   "keywords": [
     "learning",

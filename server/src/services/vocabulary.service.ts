@@ -18,9 +18,21 @@ export async function getVocabularyById(id: string) {
 }
 
 export async function getRandomVocabulary(count: number = 10) {
-  const allWords = await prisma.vocabulary.findMany()
-  const shuffled = allWords.sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, count)
+  const take = Math.min(Math.max(Number(count) || 10, 1), 100)
+  return prisma.$queryRaw<
+    Array<{
+      id: string
+      word: string
+      meaning: string
+      phonetic: string | null
+      imageUrl: string | null
+      exampleSentence: string | null
+      englishMeaning: string | null
+    }>
+  >`SELECT id, word, meaning, phonetic, "imageUrl", "exampleSentence", "englishMeaning"
+    FROM "Vocabulary"
+    ORDER BY RANDOM()
+    LIMIT ${take}`
 }
 
 export async function getVocabularyStats(userId: string, type?: WordType) {

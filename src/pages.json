@@ -60,7 +60,7 @@
         "navigationBarTitleText": "口语训练"
       }
     },
-      {
+    {
       "path": "pages/onboarding/onboarding",
       "style": {
         "navigationBarTitleText": "新手引导"

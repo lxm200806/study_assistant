@@ -11,7 +11,7 @@ nohup bash ./start-server.sh > logs/server.log 2>&1 &
 echo $! > logs/server.pid
 
 for i in $(seq 1 60); do
-  if curl -sf http://127.0.0.1:3005/api/books >/dev/null 2>&1; then
+  if curl -sf http://127.0.0.1:3005/health >/dev/null 2>&1; then
     echo "✓ 后端已就绪 http://localhost:3005"
     exit 0
   fi

@@ -19,15 +19,17 @@ export async function practiceHandler(req: Request, res: Response) {
     const userId = studyOrReply(req, res)
     if (!userId) return
     const { wordId, type, isCorrect } = req.body
+    const allowedTypes = ['listening', 'speaking', 'reading', 'writing']
 
-    if (!wordId || !type || typeof isCorrect !== 'boolean') {
+    if (!wordId || !allowedTypes.includes(type) || typeof isCorrect !== 'boolean') {
       return res.status(400).json({ success: false, error: 'Invalid request body' })
     }
 
     const result = await practice(userId, { wordId, type, isCorrect })
     res.status(200).json({ success: true, data: result })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    const err = error as Error & { status?: number }
+    res.status(err.status || 500).json({ success: false, error: err.message })
   }
 }
 

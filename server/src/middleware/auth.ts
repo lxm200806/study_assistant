@@ -21,7 +21,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
   }
   
   const token = authHeader.split(' ')[1]
-  const decoded = verifyToken(token)
+  const decoded = verifyToken(token, 'access')
   
   if (!decoded) {
     return res.status(401).json({ error: 'Invalid token' })
@@ -72,8 +72,8 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
         req.learnerId = user.id
       }
       next()
-    } catch {
-      res.status(401).json({ error: 'Unauthorized' })
+    } catch (error) {
+      next(error)
     }
   })()
 }

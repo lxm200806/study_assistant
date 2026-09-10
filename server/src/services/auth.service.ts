@@ -80,24 +80,33 @@ async function withFamily(user: {
 }
 
 export async function register(dto: RegisterDto): Promise<TokenResponse> {
+  const username = String(dto.username || '').trim()
+  const password = String(dto.password || '')
+  if (username.length < 3 || username.length > 32) {
+    throw new Error('Username must be 3–32 characters')
+  }
+  if (password.length < 6) {
+    throw new Error('Password must be at least 6 characters')
+  }
+
   const existingUser = await prisma.user.findUnique({
-    where: { username: dto.username }
+    where: { username }
   })
 
   if (existingUser) {
     throw new Error('Username already exists')
   }
 
-  const passwordHash = await hashPassword(dto.password)
+  const passwordHash = await hashPassword(password)
 
   const user = await prisma.user.create({
     data: {
-      username: dto.username,
+      username,
       passwordHash,
       isAdmin: false,
       accountType: 'parent',
       activeRole: 'parent',
-      displayName: dto.username
+      displayName: username
     }
   })
 
@@ -141,7 +150,7 @@ export async function login(dto: LoginDto): Promise<TokenResponse> {
 }
 
 export async function refreshToken(refreshToken: string): Promise<{ accessToken: string }> {
-  const decoded = verifyToken(refreshToken)
+  const decoded = verifyToken(refreshToken, 'refresh')
 
   if (!decoded) {
     throw new Error('Invalid refresh token')
@@ -151,8 +160,8 @@ export async function refreshToken(refreshToken: string): Promise<{ accessToken:
     where: { id: decoded.userId }
   })
 
-  if (!user) {
-    throw new Error('User not found')
+  if (!user || user.archivedAt) {
+    throw new Error('Invalid refresh token')
   }
 
   const accessToken = generateAccessToken(user.id, user.username)

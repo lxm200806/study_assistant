@@ -91,7 +91,7 @@ const selectOption = (i: number) => {
 }
 
 const nextQuestion = () => {
-  if (currentIndex.value >= words.length - 1) {
+    if (currentIndex.value >= words.value.length - 1) {
     void submitQuiz()
     return
   }

@@ -4,6 +4,27 @@ import { getSessionWords, getBookProgress, type SessionMode } from '../services/
 import { getDueCount } from '../services/training.service'
 import { assertBookAccess } from '../services/book-access.service'
 import { formatWordForClient } from '../utils/wordFormat'
+import { studyUserId } from '../middleware/auth'
+
+function studyOrReply(req: Request, res: Response) {
+  try {
+    return studyUserId(req)
+  } catch (error) {
+    res.status(409).json({ success: false, error: (error as Error).message })
+    return null
+  }
+}
+
+function bookError(res: Response, error: unknown) {
+  const message = (error as Error).message
+  if (message === 'BOOK_LOCKED') {
+    return res.status(403).json({ success: false, error: '当前词书需开通会员后使用' })
+  }
+  if (message === 'Book not found') {
+    return res.status(404).json({ success: false, error: message })
+  }
+  return res.status(500).json({ success: false, error: message })
+}
 
 export async function getBooksHandler(req: Request, res: Response) {
   try {
@@ -16,7 +37,10 @@ export async function getBooksHandler(req: Request, res: Response) {
 
 export async function getBookDetailHandler(req: Request, res: Response) {
   try {
+    const userId = studyOrReply(req, res)
+    if (!userId) return
     const { code } = req.params
+    await assertBookAccess(userId, code)
     const book = await getBookByCode(code)
 
     if (!book) {
@@ -38,13 +62,16 @@ export async function getBookDetailHandler(req: Request, res: Response) {
       }
     })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    bookError(res, error)
   }
 }
 
 export async function getRandomWordsFromBookHandler(req: Request, res: Response) {
   try {
+    const userId = studyOrReply(req, res)
+    if (!userId) return
     const { code } = req.params
+    await assertBookAccess(userId, code)
     const count = parseInt(req.query.count as string) || 10
 
     const words = await getRandomWordsFromBook(code, count)
@@ -52,7 +79,7 @@ export async function getRandomWordsFromBookHandler(req: Request, res: Response)
 
     res.status(200).json({ success: true, data: formattedWords })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    bookError(res, error)
   }
 }
 
@@ -70,14 +97,7 @@ export async function getBookSessionHandler(req: Request, res: Response) {
     const result = await getSessionWords(userId, code, count, mode, type, topic)
     res.status(200).json({ success: true, data: result })
   } catch (error) {
-    const message = (error as Error).message
-    if (message === 'BOOK_LOCKED') {
-      return res.status(403).json({ success: false, error: '当前词书需开通会员后使用' })
-    }
-    if (message === 'Book not found') {
-      return res.status(404).json({ success: false, error: message })
-    }
-    res.status(500).json({ success: false, error: message })
+    bookError(res, error)
   }
 }
 

@@ -35,6 +35,11 @@ function toPracticeResult(
 }
 
 export async function practice(userId: string, dto: PracticeDto): Promise<PracticeResult> {
+  const word = await prisma.vocabulary.findUnique({ where: { id: dto.wordId }, select: { id: true } })
+  if (!word) {
+    throw Object.assign(new Error('Word not found'), { status: 404 })
+  }
+
   const now = new Date()
   const existingStat = await prisma.vocabularyStat.findUnique({
     where: {

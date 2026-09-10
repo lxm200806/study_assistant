@@ -52,8 +52,16 @@ touch server/.env
 
 ```env
 DATABASE_URL="postgresql://study:study123@localhost:5432/study_assistant?schema=public"
-PORT=3004
+PORT=3005
 JWT_SECRET="change_me_at_least_32_characters_long"
+```
+
+本地开发端口是 `3005`（与 `start-dev.sh`、Vite 代理一致）。Docker 生产后端使用 `3004`。
+
+也可直接复制示例文件：
+
+```bash
+cp server/.env.example server/.env
 ```
 
 3. 一键启动数据库、迁移、后端和前端：
