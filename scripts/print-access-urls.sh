@@ -16,7 +16,7 @@ print_access_urls() {
     echo "  备用: http://${wsl_ip}:$port"
   fi
   echo ""
-  echo "  API 已通过 Vite 代理到后端，无需单独访问 3004"
+  echo "  API 已通过 Vite 代理到后端，无需单独访问 3005"
   echo "  请优先使用 http://localhost:$port（Windows 浏览器访问 WSL 最稳定）"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 }
