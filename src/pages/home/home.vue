@@ -14,13 +14,21 @@
     </view>
 
     <template v-if="userStore.isStudentRole">
-      <view v-if="userStore.isChinese" class="daily-cta" @tap="startChineseLearning">
-        <view class="daily-cta-main">
-          <text class="daily-cta-title">开始今日默写</text>
-          <text class="daily-cta-desc">{{ chineseCta }}</text>
+      <template v-if="userStore.isChinese">
+        <view v-if="!studentChineseCourses.length" class="card">
+          <text class="action-title">还没有课程</text>
+          <text class="action-desc">请让家长先组课。组好后会出现在这里。</text>
         </view>
-        <text class="daily-cta-arrow">→</text>
-      </view>
+        <view
+          v-for="item in studentChineseCourses"
+          :key="item.id"
+          class="card course-home"
+          @tap="goChineseDrill(item.id)"
+        >
+          <text class="action-title">{{ item.name }}</text>
+          <text class="action-desc">{{ courseProgressText(item) }}</text>
+        </view>
+      </template>
       <view v-else class="daily-cta" @tap="startDailyLearning">
         <view class="daily-cta-main">
           <text class="daily-cta-title">开始今日学习</text>
@@ -210,11 +218,16 @@ const headerName = computed(() =>
 )
 const roleLabel = computed(() => (userStore.isStudentRole ? '学生' : '家长'))
 
-const chineseCta = computed(() => {
-  const first = chineseCourses.value[0]
-  if (!first) return '先打开课程，开始今日默写'
-  return first.progress?.title || '今日默写'
+const studentChineseCourses = computed(() => {
+  const rows = chineseCourses.value
+  const parentMade = rows.filter(item => !item.isDefault)
+  return parentMade.length ? parentMade : rows
 })
+
+function courseProgressText(item: { progress?: { title?: string }; itemCount?: number; item_count?: number }) {
+  const count = item.itemCount || item.item_count || 0
+  return `${item.progress?.title || '今日默写'} · ${count} 条`
+}
 
 const updateDate = () => {
   const now = new Date()
@@ -294,19 +307,6 @@ const goChineseLibrary = () => openPage('/pages/chinese/library')
 const goChinesePoints = () => openPage('/pages/chinese/points')
 const goChineseCoverage = () => openPage('/pages/chinese/coverage')
 const goChineseDrill = (id: string) => openPage(`/pages/chinese/drill?id=${id}`)
-
-const startChineseLearning = () => {
-  const first = chineseCourses.value[0]
-  if (first) {
-    goChineseDrill(first.id)
-    return
-  }
-  if (userStore.isStudentRole) {
-    uni.showToast({ title: '请让家长先组课', icon: 'none' })
-    return
-  }
-  goChineseCourses()
-}
 
 async function loadChineseHome() {
   try {
@@ -434,6 +434,7 @@ const onBookChange = async () => {
   font-size: 28rpx;
   margin-bottom: 24rpx;
 }
+
 
 .daily-cta {
   display: flex;
