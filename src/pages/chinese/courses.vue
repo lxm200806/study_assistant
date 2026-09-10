@@ -1,58 +1,41 @@
 <template>
-  <view class="container">
-    <view class="header">
-      <text class="title">语文课程</text>
-      <text class="subtitle">组课、同步新词、查看掌握。今日默写请让学生角色进入。</text>
-    </view>
-
-    <view class="toolbar">
-      <button class="btn-primary compact" @tap="goLibrary">组课</button>
-      <button class="btn-secondary compact" @tap="goPoints">知识点</button>
-      <button class="btn-secondary compact" @tap="goCoverage">覆盖</button>
-    </view>
-
-    <text v-if="loading" class="muted">正在加载课程…</text>
+  <view class="container course-list">
+    <text v-if="loading" class="loading-text">正在加载课程…</text>
     <view v-else-if="!courses.length" class="empty card">
-      <text>还没有课程。先去组课，按年级和类型生成一份；或等教材同步后刷新，系统会自动生成默认课程。</text>
+      <text class="empty-title">还没有课程</text>
+      <text class="empty-desc">先按年级和类型生成一份课程。</text>
+      <button class="btn-primary empty-btn" @tap="goLibrary">去组课</button>
     </view>
-    <text v-if="staleNames" class="banner">词库有更新：{{ staleNames }} 比已发布库少知识点。点「同步新词」按原筛选补进。</text>
 
     <view v-for="item in courses" :key="item.id" class="card course-card">
       <template v-if="editingId === item.id">
-        <text class="label">课程名称</text>
-        <input class="input" v-model="editName" />
-        <text class="label">备注</text>
-        <input class="input" v-model="editNote" />
-        <view class="actions">
-          <button class="btn-primary compact" :disabled="busy" @tap="saveEdit(item.id)">保存</button>
-          <button class="btn-secondary compact" :disabled="busy" @tap="cancelEdit">取消</button>
+        <text class="edit-title">修改课程名称</text>
+        <input class="input" v-model="editName" maxlength="30" focus />
+        <view class="edit-actions">
+          <button class="action-btn primary-action" :disabled="busy" @tap="saveEdit(item.id)">保存</button>
+          <button class="action-btn plain-action" :disabled="busy" @tap="cancelEdit">取消</button>
         </view>
       </template>
       <template v-else>
-        <text class="course-name">{{ item.name }}</text>
-        <text class="muted">
-          {{ item.note || '无备注' }}
-          <template v-if="item.entryCount != null"> · {{ item.entryCount }} 个词条</template>
-          · {{ item.itemCount || item.item_count || 0 }} 张题卡
-          <template v-if="item.kinds && item.kinds.length"> · {{ kindNames(item.kinds) }}</template>
-          <template v-if="item.grades && item.grades.length"> · {{ item.grades.join(' / ') }}</template>
-          <template v-if="item.difficulties && item.difficulties.length"> · 成语：{{ difficultyNames(item.difficulties) }}</template>
-          · 每天约 {{ item.dailyMinutes || 15 }} 分钟
-        </text>
-        <text class="today-title">{{ progressTitle(item) }}</text>
-        <text v-if="progressCheer(item)" class="cheer">{{ progressCheer(item) }}</text>
-        <text v-if="item.progress && item.progress.summary" class="hint">{{ item.progress.summary }}</text>
-        <text v-if="item.pendingCount" class="banner">词库有更新，本课还可补进 {{ item.pendingCount }} 条。</text>
-        <view class="pref" @tap="toggleReviewPref(item)">
-          <text class="check">{{ item.reviewDefaultTest ? '☑' : '☐' }}</text>
-          <text>有到期复习时，默认进入复习测验</text>
+        <view class="course-heading">
+          <text class="course-name">{{ item.name }}</text>
+          <text v-if="item.pendingCount" class="update-badge">可同步 {{ item.pendingCount }} 条</text>
         </view>
-        <view class="actions">
-          <button class="btn-primary compact" @tap="goStats(item.id)">查看掌握</button>
-          <button class="btn-secondary compact" @tap="goPlan(item.id)">学习计划</button>
-          <button class="btn-secondary compact" @tap="startEdit(item)">改名</button>
-          <button class="btn-secondary compact" :disabled="busy" @tap="syncCourse(item)">同步新词</button>
-          <button class="btn-secondary compact danger" :disabled="busy" @tap="removeCourse(item)">删除</button>
+        <view class="course-details">
+          <text>词条 {{ item.entryCount || 0 }}</text>
+          <text class="detail-dot">·</text>
+          <text>题卡 {{ item.itemCount || item.item_count || 0 }}</text>
+          <text class="detail-dot">·</text>
+          <text>每天 {{ item.dailyMinutes || 15 }} 分钟</text>
+        </view>
+        <view class="main-actions">
+          <button class="action-btn primary-action" @tap="goStats(item.id)">查看掌握</button>
+          <button class="action-btn plan-action" @tap="goPlan(item.id)">学习计划</button>
+        </view>
+        <view class="minor-actions">
+          <button class="text-action" @tap="startEdit(item)">改名</button>
+          <button class="text-action" :disabled="busy" @tap="syncCourse(item)">同步新词</button>
+          <button class="text-action danger" :disabled="busy" @tap="removeCourse(item)">删除</button>
         </view>
       </template>
     </view>
@@ -61,9 +44,8 @@
 
 <script setup lang="ts">
 import { onShow } from '@dcloudio/uni-app'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { chineseAPI } from '@/utils/api'
-import { DIFFICULTY_LABEL, KIND_LABEL } from '@/utils/chinese'
 import { openPage } from '@/utils/navigation'
 import { requireSubject } from '@/utils/subject'
 
@@ -76,11 +58,6 @@ interface CourseItem {
   entryCount?: number
   dailyMinutes?: number
   pendingCount?: number
-  reviewDefaultTest?: boolean
-  kinds?: string[]
-  grades?: string[]
-  difficulties?: string[]
-  progress?: { title?: string; status?: string; summary?: string; todayStreak?: number; todayDoneCount?: number; todayPracticed?: number }
 }
 
 const courses = ref<CourseItem[]>([])
@@ -88,32 +65,6 @@ const loading = ref(true)
 const busy = ref(false)
 const editingId = ref('')
 const editName = ref('')
-const editNote = ref('')
-
-const staleNames = computed(() =>
-  courses.value.filter(item => Number(item.pendingCount) > 0).map(item => item.name).join('、')
-)
-
-function kindNames(ids: string[]) {
-  return (ids || []).map(id => KIND_LABEL[id] || id).join(' / ')
-}
-
-function difficultyNames(ids: string[]) {
-  return (ids || []).map(id => DIFFICULTY_LABEL[id] || id).join(' / ')
-}
-
-function progressTitle(item: CourseItem) {
-  return item.progress?.title || (item.progress?.status === 'done' ? '今天练完了' : '今天还没开始练')
-}
-
-function progressCheer(item: CourseItem) {
-  const progress = item.progress || {}
-  const parts = []
-  if (Number(progress.todayStreak) > 0) parts.push(`连续正确 ${progress.todayStreak}`)
-  if (Number(progress.todayDoneCount) > 0) parts.push(`今日已完成 ${progress.todayDoneCount} 条`)
-  else if (Number(progress.todayPracticed) > 0) parts.push(`今日已练 ${progress.todayPracticed} 条`)
-  return parts.join(' · ')
-}
 
 async function loadCourses() {
   loading.value = true
@@ -130,7 +81,6 @@ async function loadCourses() {
 function startEdit(item: CourseItem) {
   editingId.value = item.id
   editName.value = item.name
-  editNote.value = item.note || ''
 }
 
 function cancelEdit() {
@@ -138,28 +88,17 @@ function cancelEdit() {
 }
 
 async function saveEdit(id: string) {
+  const name = editName.value.trim()
+  if (!name) {
+    uni.showToast({ title: '请输入课程名称', icon: 'none' })
+    return
+  }
   busy.value = true
   try {
-    await chineseAPI.patchCourse(id, { name: editName.value, note: editNote.value })
+    await chineseAPI.patchCourse(id, { name })
     editingId.value = ''
     uni.showToast({ title: '已保存', icon: 'success' })
     await loadCourses()
-  } catch (error: any) {
-    uni.showToast({ title: error.message || '保存失败', icon: 'none' })
-  } finally {
-    busy.value = false
-  }
-}
-
-async function toggleReviewPref(item: CourseItem) {
-  busy.value = true
-  try {
-    const result = (await chineseAPI.patchCourse(item.id, { reviewDefaultTest: !item.reviewDefaultTest })) as any
-    item.reviewDefaultTest = !!result.reviewDefaultTest
-    uni.showToast({
-      title: item.reviewDefaultTest ? '到期复习将默认用测试' : '已改回自动选择模式',
-      icon: 'none'
-    })
   } catch (error: any) {
     uni.showToast({ title: error.message || '保存失败', icon: 'none' })
   } finally {
@@ -203,8 +142,6 @@ function removeCourse(item: CourseItem) {
 }
 
 const goLibrary = () => openPage('/pages/chinese/library')
-const goPoints = () => openPage('/pages/chinese/points')
-const goCoverage = () => openPage('/pages/chinese/coverage')
 const goPlan = (id: string) => openPage(`/pages/chinese/plan?id=${id}`)
 const goStats = (id: string) => openPage(`/pages/chinese/stats?id=${id}`)
 
@@ -215,22 +152,45 @@ onShow(async () => {
 </script>
 
 <style lang="scss" scoped>
-.header { padding: 12rpx 8rpx 24rpx; }
-.title { display: block; font-size: 40rpx; font-weight: 700; color: #222; }
-.subtitle { display: block; margin-top: 8rpx; color: #888; font-size: 26rpx; }
-.toolbar { display: flex; gap: 16rpx; margin-bottom: 16rpx; }
-.compact { flex: 1; margin: 0; font-size: 28rpx; height: 80rpx; line-height: 80rpx; }
-.muted, .hint { display: block; color: #888; font-size: 24rpx; margin-top: 8rpx; }
-.course-name { display: block; font-size: 32rpx; font-weight: 600; color: #222; }
-.today-title { display: block; margin-top: 16rpx; font-size: 30rpx; color: #667eea; font-weight: 600; }
-.cheer { display: block; margin-top: 8rpx; color: #667eea; font-size: 24rpx; }
-.banner { display: block; margin-top: 12rpx; color: #b45309; font-size: 24rpx; }
-.pref { display: flex; align-items: center; gap: 12rpx; margin-top: 16rpx; font-size: 26rpx; }
-.check { color: #667eea; font-size: 32rpx; }
-.actions { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 20rpx; }
-.actions .compact { flex: 1 1 40%; }
-.danger { color: #b91c1c; }
-.label { display: block; margin: 16rpx 0 8rpx; font-size: 26rpx; color: #555; }
-.input { background: #f7f7f7; border-radius: 12rpx; padding: 18rpx 20rpx; font-size: 28rpx; }
-.empty { padding: 40rpx; }
+.course-list { padding-top: 20rpx; }
+.loading-text { display: block; padding: 80rpx 0; text-align: center; color: #999; font-size: 26rpx; }
+.course-card {
+  margin-bottom: 22rpx;
+  padding: 28rpx;
+  overflow: hidden;
+  border: 1rpx solid #eef0f7;
+  border-radius: 24rpx;
+  box-shadow: 0 10rpx 30rpx rgba(60, 72, 120, 0.08);
+}
+.course-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20rpx; }
+.course-name { flex: 1; color: #1f2937; font-size: 34rpx; font-weight: 700; line-height: 1.35; }
+.update-badge { flex-shrink: 0; padding: 6rpx 12rpx; border-radius: 999rpx; background: #fff7ed; color: #c2410c; font-size: 20rpx; }
+.course-details { display: flex; align-items: center; flex-wrap: wrap; gap: 10rpx; margin-top: 14rpx; color: #6b7280; font-size: 24rpx; }
+.detail-dot { color: #d1d5db; }
+.main-actions { display: flex; gap: 16rpx; margin-top: 26rpx; }
+.action-btn {
+  flex: 1;
+  height: 72rpx;
+  margin: 0;
+  border: 0;
+  border-radius: 14rpx;
+  font-size: 25rpx;
+  font-weight: 600;
+  line-height: 72rpx;
+}
+.action-btn::after, .text-action::after { border: 0; }
+.primary-action { background: linear-gradient(135deg, #667eea, #5b6ee1); color: #fff; }
+.plan-action { background: #eef2ff; color: #5264d9; }
+.plain-action { background: #f3f4f6; color: #4b5563; }
+.minor-actions { display: flex; align-items: center; justify-content: flex-end; margin-top: 18rpx; padding-top: 16rpx; border-top: 1rpx solid #f0f1f5; }
+.text-action { min-width: 0; height: 48rpx; margin: 0; padding: 0 20rpx; background: transparent; color: #6b7280; font-size: 23rpx; line-height: 48rpx; }
+.text-action + .text-action { border-left: 1rpx solid #eee; border-radius: 0; }
+.danger { color: #dc2626; }
+.edit-title { display: block; margin-bottom: 14rpx; color: #374151; font-size: 26rpx; font-weight: 600; }
+.input { box-sizing: border-box; width: 100%; background: #f7f8fc; border: 2rpx solid #dfe4ff; border-radius: 14rpx; padding: 18rpx 20rpx; font-size: 28rpx; }
+.edit-actions { display: flex; gap: 16rpx; margin-top: 18rpx; }
+.empty { padding: 60rpx 40rpx; text-align: center; }
+.empty-title { display: block; color: #374151; font-size: 30rpx; font-weight: 600; }
+.empty-desc { display: block; margin-top: 10rpx; color: #9ca3af; font-size: 24rpx; }
+.empty-btn { width: 240rpx; margin-top: 26rpx; }
 </style>
