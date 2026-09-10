@@ -23,7 +23,7 @@
         </text>
         <view class="pref" @tap="toggleReviewPref">
           <text class="check">{{ reviewDefaultTest ? '☑' : '☐' }}</text>
-          <text>到期复习默认用测试模式</text>
+          <text>有到期复习时，默认进入复习测验</text>
         </view>
       </view>
       <view class="card stats">
@@ -60,10 +60,7 @@ const mastery = computed(() => data.value.mastery || {})
 const accuracyText = computed(() => (today.value.todayAccuracy == null ? '—' : `${today.value.todayAccuracy}%`))
 const remainingText = computed(() => {
   if (today.value.status === 'done') return '练完了'
-  const parts = []
-  if (today.value.remainingNewEnergy) parts.push(`新${today.value.remainingNewEnergy}`)
-  if (today.value.remainingReviewEnergy) parts.push(`复${today.value.remainingReviewEnergy}`)
-  return parts.join(' / ') || '0 能'
+  return today.value.remainingMinutes ? `约${today.value.remainingMinutes}分钟` : '0分钟'
 })
 const weakText = computed(() => {
   const rows = today.value.weakKinds || mastery.value.weakKinds || []

@@ -52,11 +52,11 @@ export function groupsForMode<T extends { role?: string }>(groups: T[] | null | 
   return rows.filter(group => group.role === 'review')
 }
 
-function isRecitable(row: PointLike): boolean {
+export function isRecitable(row: PointLike): boolean {
   const kind = String(row.kind || '')
-  const questionType = String(row.question_type || '')
-  return ['poem', 'wenyan', 'saying', 'sentence'].includes(kind) &&
-    ['recite', 'dictation'].includes(questionType)
+  const questionType = String(row.question_type || row.questionType || '')
+  if (questionType === 'recite') return true
+  return questionType === 'dictation' && ['poem', 'wenyan', 'saying', 'sentence'].includes(kind)
 }
 
 export function applyTodayMode(planned: PlannedToday, mode: unknown): PlannedToday {

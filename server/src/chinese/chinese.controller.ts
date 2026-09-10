@@ -97,7 +97,13 @@ export const syncCourseHandler = wrap(async req => {
 
 export const todayHandler = wrap(async req => {
   const user = await withUser(req)
-  return todayQueue(req.params.courseId, studyId(user), String(req.query.mode || ''))
+  return todayQueue(
+    req.params.courseId,
+    studyId(user),
+    String(req.query.mode || ''),
+    Number(req.query.extraMinutes || 0),
+    Number(req.query.reciteOffset || 0)
+  )
 })
 
 export const planHandler = wrap(async req => {

@@ -31,11 +31,13 @@
       <template v-else>
         <text class="course-name">{{ item.name }}</text>
         <text class="muted">
-          {{ item.note || '无备注' }} · {{ item.itemCount || item.item_count || 0 }} 个知识点
-          <template v-if="item.kinds && item.kinds.length"> · {{ kindNames(item.kinds) }} · {{ (item.levels || []).join(' / ') }}</template>
+          {{ item.note || '无备注' }}
+          <template v-if="item.entryCount != null"> · {{ item.entryCount }} 个词条</template>
+          · {{ item.itemCount || item.item_count || 0 }} 张题卡
+          <template v-if="item.kinds && item.kinds.length"> · {{ kindNames(item.kinds) }}</template>
           <template v-if="item.grades && item.grades.length"> · {{ item.grades.join(' / ') }}</template>
           <template v-if="item.difficulties && item.difficulties.length"> · 成语：{{ difficultyNames(item.difficulties) }}</template>
-          · 每天新学 {{ item.newEnergy || 30 }} 能 / 复习 {{ item.reviewEnergy || 30 }} 能
+          · 每天约 {{ item.dailyMinutes || 15 }} 分钟
         </text>
         <text class="today-title">{{ progressTitle(item) }}</text>
         <text v-if="progressCheer(item)" class="cheer">{{ progressCheer(item) }}</text>
@@ -43,12 +45,11 @@
         <text v-if="item.pendingCount" class="banner">词库有更新，本课还可补进 {{ item.pendingCount }} 条。</text>
         <view class="pref" @tap="toggleReviewPref(item)">
           <text class="check">{{ item.reviewDefaultTest ? '☑' : '☐' }}</text>
-          <text>到期复习默认用测试模式</text>
+          <text>有到期复习时，默认进入复习测验</text>
         </view>
         <view class="actions">
           <button class="btn-primary compact" @tap="goStats(item.id)">查看掌握</button>
-          <button class="btn-secondary compact" @tap="goPlan(item.id)">计划</button>
-          <button class="btn-secondary compact" @tap="goStats(item.id)">掌握</button>
+          <button class="btn-secondary compact" @tap="goPlan(item.id)">学习计划</button>
           <button class="btn-secondary compact" @tap="startEdit(item)">改名</button>
           <button class="btn-secondary compact" :disabled="busy" @tap="syncCourse(item)">同步新词</button>
           <button class="btn-secondary compact danger" :disabled="busy" @tap="removeCourse(item)">删除</button>
@@ -72,12 +73,11 @@ interface CourseItem {
   note?: string
   itemCount?: number
   item_count?: number
-  newEnergy?: number
-  reviewEnergy?: number
+  entryCount?: number
+  dailyMinutes?: number
   pendingCount?: number
   reviewDefaultTest?: boolean
   kinds?: string[]
-  levels?: string[]
   grades?: string[]
   difficulties?: string[]
   progress?: { title?: string; status?: string; summary?: string; todayStreak?: number; todayDoneCount?: number; todayPracticed?: number }

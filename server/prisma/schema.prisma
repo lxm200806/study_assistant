@@ -357,6 +357,7 @@ model ChineseCourse {
   difficulties      String   @default("")
   newEnergy         Int      @default(30)
   reviewEnergy      Int      @default(30)
+  dailyMinutes      Int      @default(15)
   reviewDefaultTest Boolean  @default(false)
   createdAt         DateTime @default(now())
 

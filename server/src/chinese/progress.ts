@@ -1,4 +1,4 @@
-import { KIND_LABEL } from './constants'
+import { ENERGY_PER_MINUTE, KIND_LABEL } from './constants'
 
 export const STATUS_EMPTY = 'empty'
 export const STATUS_DONE = 'done'
@@ -34,10 +34,8 @@ export function weakKindRows(counts: Record<string, { errors?: number; attempts?
 }
 
 export function remainingEnergyText(newEnergy: number, reviewEnergy: number): string {
-  const parts: string[] = []
-  if (newEnergy) parts.push(`新学 ${newEnergy} 能`)
-  if (reviewEnergy) parts.push(`复习 ${reviewEnergy} 能`)
-  return parts.join('、')
+  const energy = Math.max(0, Number(newEnergy || 0) + Number(reviewEnergy || 0))
+  return energy ? `约 ${Math.max(1, Math.ceil(energy / ENERGY_PER_MINUTE))} 分钟` : ''
 }
 
 export function progressStatus(itemCount: number, remainingCards: number, practiced: number): string {
@@ -54,7 +52,7 @@ export function studentCopy(status: string, newEnergy: number, reviewEnergy: num
   if (status === STATUS_IDLE) {
     return ['今天没有要练的', '没有到期复习，也没有排进今日的新学卡。明天再来，或打开学习计划看看后面几天。']
   }
-  if (remaining) return [`还差${remaining}`, '写完这些就收工。先复习到期的，再学新的。']
+  if (remaining) return [`还需${remaining}`, '完成这些就达到今天的学习时长。先复习，再学新内容。']
   return ['还差几条', '继续写，写完就收工。']
 }
 
@@ -76,7 +74,7 @@ export function parentCopy(
     sentence = '今天还没开始练，也没有到期复习或新学任务。'
   } else if (practiced <= 0) {
     sentence = '今天还没开始练。'
-    if (remaining) sentence += `还差${remaining}。`
+    if (remaining) sentence += `还需${remaining}。`
   } else if (status === STATUS_DONE) {
     sentence = `今天练完了。共练 ${practiced} 条`
     if (accuracy != null) sentence += `，正确率 ${accuracy}%`
@@ -84,7 +82,7 @@ export function parentCopy(
   } else {
     sentence = `今天已练 ${practiced} 条`
     if (accuracy != null) sentence += `，正确率 ${accuracy}%`
-    sentence += remaining ? `。还差${remaining}。` : '。'
+    sentence += remaining ? `。还需${remaining}。` : '。'
   }
   if (weakText && practiced) sentence += `相对容易错的是${weakText}。`
   if (total) sentence += `课内已掌握 ${Number(mastered || 0)} / ${Number(total)} 条。`
@@ -165,7 +163,7 @@ export function summarizeLogs(logs: Array<{ point_id?: unknown; pointId?: unknow
 }
 
 export function buildProgress(
-  planned: { cards?: number; tasks?: number; newEnergy?: number; reviewEnergy?: number; newBudget?: number; reviewBudget?: number } | null | undefined,
+  planned: { cards?: number; tasks?: number; newEnergy?: number; reviewEnergy?: number; newBudget?: number; reviewBudget?: number; dailyMinutes?: number; targetMinutes?: number; spentMinutes?: number; remainingMinutes?: number } | null | undefined,
   logs: Array<{ point_id?: unknown; pointId?: unknown; quality?: number; correct?: boolean; kind?: string }> | null | undefined,
   itemCount = 0,
   mastered?: number | null,
@@ -201,6 +199,10 @@ export function buildProgress(
     remainingReviewEnergy: reviewEnergy,
     remainingCards,
     remainingTasks,
+    dailyMinutes: Number(planned?.dailyMinutes || 0),
+    targetMinutes: Number(planned?.targetMinutes || planned?.dailyMinutes || 0),
+    spentMinutes: Number(planned?.spentMinutes || 0),
+    remainingMinutes: Number(planned?.remainingMinutes || 0),
     newBudget,
     reviewBudget,
     todayDone: status === STATUS_DONE || (energyFilled && logStats.todayPracticed > 0),

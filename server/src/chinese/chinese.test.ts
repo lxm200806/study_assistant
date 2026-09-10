@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { gradeAnswer, gradeCard, gradeCharJudge, gradeChoice, normalize } from './grade'
 import { addDays, isMastered, schedule } from './sm2'
-import { applyTodayMode, normalizeMode, resolveDefaultMode, reviewOutcome } from './study-modes'
-import { fillGroupFields, planTodayGroups, pointEnergy, validateCard } from './cards'
+import { applyTodayMode, isRecitable, normalizeMode, resolveDefaultMode, reviewOutcome } from './study-modes'
+import { energyToMinutes, fillGroupFields, minutesToEnergy, planCourseDays, planTodayGroups, pointEnergy, validateCard } from './cards'
 import { looksLikeMeaning, makeCharJudgeCard } from './entries'
 import { kidFeedback, progressStatus } from './progress'
 
@@ -113,12 +113,49 @@ describe('chinese study modes', () => {
     expect(planned.energyCharged).toBe(false)
     expect(planned.newEnergy).toBe(0)
     expect(planned.reviewEnergy).toBe(0)
-    expect(planned.cards).toBe(1)
-    expect(planned.groups[0].rows).toEqual([{ kind: 'poem', question_type: 'recite' }])
+    expect(planned.cards).toBe(2)
+    expect(isRecitable({ kind: 'idiom', question_type: 'recite' })).toBe(true)
+    expect(isRecitable({ kind: 'idiom', question_type: 'usage_judge' })).toBe(false)
   })
 })
 
 describe('chinese cards', () => {
+  it('converts minutes to internal work units', () => {
+    expect(minutesToEnergy(15)).toBe(60)
+    expect(energyToMinutes(60)).toBe(15)
+  })
+
+  it('uses one daily budget with review before new work', () => {
+    const planned = planTodayGroups(
+      [
+        { id: 'review', kind: 'idiom', question_type: 'recite', answer: '复习词', last: '2026-01-01', due: '2026-01-01' },
+        { id: 'new', kind: 'idiom', question_type: 'recite', answer: '新词' }
+      ],
+      new Set(),
+      '2026-01-02',
+      5,
+      0,
+      0
+    )
+    expect(planned.groups[0].role).toBe('review')
+    expect(planned.targetMinutes).toBe(5)
+  })
+
+  it('deducts spent time and allows a five minute extension', () => {
+    const rows = [{ id: 'new', kind: 'poem', question_type: 'recite', answer: '床前明月光，疑是地上霜。' }]
+    expect(planTodayGroups(rows, new Set(), '2026-01-01', 5, 20, 0).cards).toBe(0)
+    expect(planTodayGroups(rows, new Set(), '2026-01-01', 5, 20, 5).cards).toBe(1)
+  })
+
+  it('serializes recognizable knowledge points and minute estimates', () => {
+    const plan = planCourseDays([
+      { id: 'idiom', group_key: 'idiom:阿谀奉承', kind: 'idiom', lemma: '阿谀奉承', prompt: '用好听的话讨好别人（四字）', question_type: 'recite' }
+    ], 10)
+    expect(plan.dailyMinutes).toBe(10)
+    expect(plan.days[0].cards[0].knowledgePoint).toBe('阿谀奉承')
+    expect(plan.days[0].cards[0].estimatedMinutes).toBeGreaterThan(0)
+  })
+
   it('does not treat idiom categories as definitions', () => {
     expect(looksLikeMeaning({ prompt: '小学教辅常见成语（四字）' })).toBe(false)
     expect(looksLikeMeaning({ prompt: '描写春天的成语（四字）' })).toBe(false)

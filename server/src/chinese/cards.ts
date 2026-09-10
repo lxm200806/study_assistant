@@ -1,9 +1,12 @@
 import { createHash } from 'crypto'
 import {
+  DAILY_MINUTES_MAX,
+  DAILY_MINUTES_MIN,
+  DEFAULT_DAILY_MINUTES,
   DEFAULT_NEW_ENERGY,
-  DEFAULT_REVIEW_ENERGY,
   ENERGY_MAX,
   ENERGY_MIN,
+  ENERGY_PER_MINUTE,
   GRADES,
   KINDS,
   LEVELS,
@@ -243,6 +246,21 @@ export function parseEnergyLimit(value: unknown, fallback: number | null = DEFAU
   return Math.min(Math.max(number, ENERGY_MIN), ENERGY_MAX)
 }
 
+export function parseDailyMinutes(value: unknown, fallback = DEFAULT_DAILY_MINUTES): number {
+  const number = Number(value)
+  if (!Number.isFinite(number)) return fallback
+  return Math.round(Math.min(Math.max(number, DAILY_MINUTES_MIN), DAILY_MINUTES_MAX))
+}
+
+export function minutesToEnergy(minutes: unknown): number {
+  return parseDailyMinutes(minutes) * ENERGY_PER_MINUTE
+}
+
+export function energyToMinutes(energy: unknown): number {
+  const number = Math.max(0, Number(energy) || 0)
+  return number ? Math.max(1, Math.ceil(number / ENERGY_PER_MINUTE)) : 0
+}
+
 export function energyOverflow(daily: number): number {
   return Math.max(6, Math.floor(Number(daily) / 5))
 }
@@ -370,6 +388,20 @@ export function packOneDay(sessions: StudySession[], daily: number): [StudySessi
   return [picked, used]
 }
 
+function packWithin(sessions: StudySession[], limit: number, allowOversizedFirst = true): [StudySession[], number] {
+  if (limit <= 0) return [[], 0]
+  const picked: StudySession[] = []
+  let used = 0
+  for (const session of sessions) {
+    if (!picked.length && session.energy > limit && !allowOversizedFirst) break
+    if (picked.length && used + session.energy > limit) break
+    picked.push(session)
+    used += session.energy
+    if (used >= limit) break
+  }
+  return [picked, used]
+}
+
 export function rowId(row: PointLike): string {
   if (row.id != null) return String(row.id)
   return String(row.point_key || row.pointKey || row.key || '')
@@ -387,18 +419,39 @@ function serializePlanDays(days: Array<{ day?: number; sessions: StudySession[];
     const cards = day.sessions.map(session => {
       const count = session.rows.length
       const role = session.role || 'new'
+      const first = session.rows[0] || {}
+      const recite = session.rows.find(row => String(row.question_type || row.questionType) === 'recite')
+      const knowledgePoint = String(
+        first.kind === 'idiom'
+          ? first.lemma || first.answer || first.prompt || session.title
+          : first.prompt || first.lemma || first.answer || session.title
+      )
+      const summary = String(
+        first.kind === 'idiom'
+          ? recite?.prompt || first.prompt || ''
+          : session.source || first.lemma || ''
+      ).replace(/（四字）$/, '')
       return {
         title: session.title,
+        knowledgePoint,
+        summary,
         groupKey: session.group_key,
         kind: session.kind,
         grade: session.grade,
         source: session.source,
         energy: session.energy,
+        estimatedMinutes: energyToMinutes(session.energy),
         pointCount: count,
+        questionCount: count,
         part: session.part,
         parts: session.parts,
         role,
-        prompts: session.rows.slice(0, 8).map(row => String(row.prompt || ''))
+        prompts: session.rows.slice(0, 8).map(row => String(row.prompt || '')),
+        entries: session.rows.slice(0, 8).map(row => ({
+          prompt: String(row.prompt || ''),
+          lemma: String(row.lemma || ''),
+          questionType: String(row.question_type || row.questionType || 'dictation')
+        }))
       }
     })
     let newEnergy = day.new_energy
@@ -411,6 +464,7 @@ function serializePlanDays(days: Array<{ day?: number; sessions: StudySession[];
       day: day.day || index + 1,
       mode,
       energy: day.energy != null ? day.energy : newEnergy + reviewEnergy,
+      estimatedMinutes: energyToMinutes(day.energy != null ? day.energy : newEnergy + reviewEnergy),
       newEnergy,
       reviewEnergy,
       pointCount,
@@ -422,10 +476,11 @@ function serializePlanDays(days: Array<{ day?: number; sessions: StudySession[];
   })
 }
 
-export function planCourseDays(rows: PointLike[], newEnergy: unknown = DEFAULT_NEW_ENERGY, reviewEnergy: unknown = DEFAULT_REVIEW_ENERGY) {
-  const newBudget = parseEnergyLimit(newEnergy, DEFAULT_NEW_ENERGY) || DEFAULT_NEW_ENERGY
-  const reviewBudget = parseEnergyLimit(reviewEnergy, DEFAULT_REVIEW_ENERGY) || DEFAULT_REVIEW_ENERGY
-  let remainingNew = expandSessions(clusterGroups(rows), newBudget)
+export function planCourseDays(rows: PointLike[], dailyMinutes: unknown = DEFAULT_DAILY_MINUTES) {
+  const minutes = parseDailyMinutes(dailyMinutes)
+  const dailyBudget = minutesToEnergy(minutes)
+  const dailyLimit = dailyBudget
+  let remainingNew = expandSessions(clusterGroups(rows), dailyBudget)
   const states = new Map<string, ReturnType<typeof sm2.schedule>>()
   const days: Array<{ day: number; sessions: StudySession[]; energy: number; new_energy: number; review_energy: number }> = []
   let newDayCount = 0
@@ -437,14 +492,14 @@ export function planCourseDays(rows: PointLike[], newEnergy: unknown = DEFAULT_N
       if (!state || sm2.isMastered(state)) return false
       return String(state.due || '') <= today
     })
-    const reviewSessions = expandSessions(clusterGroups(dueRows), reviewBudget)
+    const reviewSessions = expandSessions(clusterGroups(dueRows), dailyBudget)
     for (const session of reviewSessions) session.role = 'review'
-    const [reviewToday, reviewUsed] = packOneDay(reviewSessions, reviewBudget)
+    const [reviewToday, reviewUsed] = packWithin(reviewSessions, dailyLimit)
     let newToday: StudySession[] = []
     let newUsed = 0
     if (remainingNew.length) {
       remainingNew = remainingNew.filter(session => !session.rows.every(row => states.has(rowId(row))))
-      ;[newToday, newUsed] = packOneDay(remainingNew, newBudget)
+      ;[newToday, newUsed] = packWithin(remainingNew, Math.max(0, dailyLimit - reviewUsed))
       remainingNew = remainingNew.slice(newToday.length)
       for (const session of newToday) session.role = 'new'
     }
@@ -470,8 +525,10 @@ export function planCourseDays(rows: PointLike[], newEnergy: unknown = DEFAULT_N
     })
   }
   return {
-    newEnergy: newBudget,
-    reviewEnergy: reviewBudget,
+    dailyMinutes: minutes,
+    dailyEnergy: dailyBudget,
+    newEnergy: dailyBudget,
+    reviewEnergy: dailyBudget,
     groupCount: clusterGroups(rows).length,
     pointCount: rows.length,
     totalEnergy: rowsEnergy(rows),
@@ -486,11 +543,17 @@ export function planTodayGroups(
   rows: PointLike[],
   failedIds: Set<unknown>,
   today: string,
-  newEnergy: unknown = DEFAULT_NEW_ENERGY,
-  reviewEnergy: unknown = DEFAULT_REVIEW_ENERGY
+  dailyMinutes: unknown = DEFAULT_DAILY_MINUTES,
+  spentEnergy: unknown = 0,
+  extraMinutes: unknown = 0
 ) {
-  const newBudget = parseEnergyLimit(newEnergy, DEFAULT_NEW_ENERGY) || DEFAULT_NEW_ENERGY
-  const reviewBudget = parseEnergyLimit(reviewEnergy, DEFAULT_REVIEW_ENERGY) || DEFAULT_REVIEW_ENERGY
+  const baseMinutes = parseDailyMinutes(dailyMinutes)
+  const extensionMinutes = Math.max(0, Math.min(Number(extraMinutes) || 0, DAILY_MINUTES_MAX))
+  const targetMinutes = baseMinutes + extensionMinutes
+  const dailyBudget = targetMinutes * ENERGY_PER_MINUTE
+  const spent = Math.max(0, Number(spentEnergy) || 0)
+  const available = Math.max(0, dailyBudget - spent)
+  const limit = available
   const dueRows: PointLike[] = []
   const failedRows: PointLike[] = []
   const freshRows: PointLike[] = []
@@ -499,10 +562,15 @@ export function planTodayGroups(
     else if (String(row.due || '') <= today) dueRows.push(row)
     else if (failedIds.has(row.id)) failedRows.push(row)
   }
-  const reviewSessions = expandSessions([...clusterGroups(dueRows), ...clusterGroups(failedRows)], reviewBudget)
-  const freshSessions = expandSessions(clusterGroups(freshRows), newBudget)
-  const [reviewToday, reviewUsed] = packOneDay(reviewSessions, reviewBudget)
-  const [freshToday, freshUsed] = packOneDay(freshSessions, newBudget)
+  const reviewSessions = expandSessions([...clusterGroups(dueRows), ...clusterGroups(failedRows)], dailyBudget)
+  const freshSessions = expandSessions(clusterGroups(freshRows), dailyBudget)
+  const allowOversized = spent <= 0 || extensionMinutes > 0
+  const [reviewToday, reviewUsed] = packWithin(reviewSessions, limit, allowOversized)
+  const [freshToday, freshUsed] = packWithin(
+    freshSessions,
+    Math.max(0, limit - reviewUsed),
+    allowOversized && reviewUsed <= 0
+  )
   for (const session of reviewToday) session.role = 'review'
   for (const session of freshToday) session.role = 'new'
   const picked = [...reviewToday, ...freshToday]
@@ -515,8 +583,16 @@ export function planTodayGroups(
     cards: picked.reduce((sum, session) => sum + session.rows.length, 0),
     newEnergy: freshUsed,
     reviewEnergy: reviewUsed,
-    newBudget,
-    reviewBudget
+    newBudget: dailyBudget,
+    reviewBudget: dailyBudget,
+    dailyMinutes: baseMinutes,
+    targetMinutes,
+    extraMinutes: extensionMinutes,
+    spentMinutes: energyToMinutes(spent),
+    remainingMinutes: Math.min(
+      Math.max(0, targetMinutes - energyToMinutes(spent)),
+      energyToMinutes(reviewUsed + freshUsed)
+    )
   }
 }
 

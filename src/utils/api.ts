@@ -297,8 +297,14 @@ export const chineseAPI = {
   patchCourse: (id: string, body: Record<string, unknown>) => request(`/chinese/courses/${id}`, 'PUT', body),
   deleteCourse: (id: string) => request(`/chinese/courses/${id}`, 'DELETE'),
   syncCourse: (id: string) => request(`/chinese/courses/${id}/sync`, 'POST'),
-  today: (id: string, mode?: string) =>
-    request(`/chinese/courses/${id}/today${mode ? `?mode=${encodeURIComponent(mode)}` : ''}`, 'GET'),
+  today: (id: string, mode?: string, options?: { extraMinutes?: number; reciteOffset?: number }) => {
+    const params = new URLSearchParams()
+    if (mode) params.set('mode', mode)
+    if (options?.extraMinutes) params.set('extraMinutes', String(options.extraMinutes))
+    if (options?.reciteOffset) params.set('reciteOffset', String(options.reciteOffset))
+    const query = params.toString()
+    return request(`/chinese/courses/${id}/today${query ? `?${query}` : ''}`, 'GET')
+  },
   plan: (id: string) => request(`/chinese/courses/${id}/plan`, 'GET'),
   review: (id: string, body: Record<string, unknown>) => request(`/chinese/courses/${id}/review`, 'POST', body),
   stats: (id: string) => request(`/chinese/courses/${id}/stats`, 'GET'),
