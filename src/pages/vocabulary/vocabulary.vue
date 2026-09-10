@@ -9,7 +9,7 @@
       <text class="muted">已组课 {{ chineseCoverage.inCourse || 0 }} · 学过词条 {{ chineseCoverage.studiedEntries || 0 }} · 已掌握 {{ chineseCoverage.mastered || 0 }}</text>
     </view>
     <view v-for="item in chineseCoverage.byKind || []" :key="item.kind" class="card">
-      <text>{{ item.kind }} · 词条 {{ item.entries || item.total }} · 已组课 {{ item.in_course || 0 }}</text>
+      <text>{{ kindLabel(item.kind) }} · 词条 {{ item.entries || item.total }} · 已组课 {{ item.in_course || 0 }}</text>
     </view>
   </view>
   <view v-else class="container">
@@ -130,6 +130,7 @@ import { onShow } from '@dcloudio/uni-app'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { useUserStore } from '@/stores/user'
 import { chineseAPI } from '@/utils/api'
+import { kindLabel } from '@/utils/chinese'
 import { applyAppShell, requireReadySession } from '@/utils/subject'
 import BookSwitcher from '@/components/BookSwitcher.vue'
 import { formatTimeAgo } from '@/utils'

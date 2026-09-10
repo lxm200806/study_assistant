@@ -35,6 +35,18 @@
         </view>
       </view>
 
+      <text class="label">级别</text>
+      <view class="chips">
+        <view
+          v-for="item in LEVEL_OPTIONS"
+          :key="item"
+          :class="['chip', levels.includes(item) ? 'active' : '']"
+          @tap="toggleRequired(levels, item)"
+        >
+          <text>{{ levelLabel(item) }}</text>
+        </view>
+      </view>
+
       <text class="label">成语难度（仅影响词语）</text>
       <view class="chips">
         <view
@@ -72,12 +84,13 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { chineseAPI } from '@/utils/api'
-import { DIFFICULTY_OPTIONS, GRADE_OPTIONS, KIND_OPTIONS, LEVEL_OPTIONS } from '@/utils/chinese'
+import { DIFFICULTY_OPTIONS, GRADE_OPTIONS, KIND_OPTIONS, LEVEL_OPTIONS, levelLabel } from '@/utils/chinese'
 import { openPage } from '@/utils/navigation'
 import { requireSubject } from '@/utils/subject'
 
 const kinds = ref(KIND_OPTIONS.map(item => item.id))
 const difficulties = ref(DIFFICULTY_OPTIONS.map(item => item.id))
+const levels = ref([...LEVEL_OPTIONS])
 const grades = ref(['三年级上'])
 const DAILY_MINUTE_OPTIONS = [10, 15, 20, 30]
 const dailyMinutes = ref(15)
@@ -103,14 +116,14 @@ function toggle(list: string[], item: string) {
 
 function toggleRequired(list: string[], item: string) {
   if (list.includes(item) && list.length === 1) {
-    uni.showToast({ title: '至少选择一个难度', icon: 'none' })
+    uni.showToast({ title: '至少选一项', icon: 'none' })
     return
   }
   toggle(list, item)
 }
 
 async function loadLibrary() {
-  if (!kinds.value.length) {
+  if (!kinds.value.length || !levels.value.length) {
     total.value = 0
     entryCount.value = 0
     preview.value = {}
@@ -121,7 +134,7 @@ async function loadLibrary() {
   try {
     const params = new URLSearchParams()
     params.set('kinds', kinds.value.join(','))
-    params.set('levels', LEVEL_OPTIONS.join(','))
+    params.set('levels', levels.value.join(','))
     params.set('difficulties', difficulties.value.join(','))
     if (grades.value.length) params.set('grades', grades.value.join(','))
     params.set('limit', '20')
@@ -131,7 +144,7 @@ async function loadLibrary() {
     entryCount.value = data.entryCount || data.total || 0
     preview.value = (await chineseAPI.previewCourse({
       kinds: kinds.value,
-      levels: LEVEL_OPTIONS,
+      levels: levels.value,
       grades: grades.value,
       difficulties: difficulties.value,
       dailyMinutes: dailyMinutes.value
@@ -151,7 +164,7 @@ async function createCourse() {
       name: name.value,
       note: note.value,
       kinds: kinds.value,
-      levels: LEVEL_OPTIONS,
+      levels: levels.value,
       grades: grades.value,
       difficulties: difficulties.value,
       dailyMinutes: dailyMinutes.value
@@ -165,7 +178,7 @@ async function createCourse() {
   }
 }
 
-watch([kinds, grades, difficulties, dailyMinutes], loadLibrary, { deep: true })
+watch([kinds, grades, difficulties, levels, dailyMinutes], loadLibrary, { deep: true })
 onMounted(async () => {
   if (!(await requireSubject('chinese', 'parent'))) return
   await loadLibrary()

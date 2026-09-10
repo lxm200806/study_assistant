@@ -17,7 +17,7 @@
       <view class="chips">
         <view :class="['chip', level === '' ? 'active' : '']" @tap="level = ''"><text>全部</text></view>
         <view v-for="item in LEVEL_OPTIONS" :key="item" :class="['chip', level === item ? 'active' : '']" @tap="level = item">
-          <text>{{ item }}</text>
+          <text>{{ levelLabel(item) }}</text>
         </view>
       </view>
       <text class="label">年级</text>
@@ -100,7 +100,7 @@
           :class="['chip', editing.level === item ? 'active' : '']"
           @tap="editing.level = item"
         >
-          <text>{{ item }}</text>
+          <text>{{ levelLabel(item) }}</text>
         </view>
       </view>
       <text class="label">年级</text>
@@ -130,7 +130,7 @@
         <text class="section">{{ groupHeading(group) }}</text>
         <text class="muted">{{ groupMeta(group) }} · {{ group.items.length }} 张卡</text>
         <view v-for="item in group.items" :key="item.id" class="point-item">
-          <text class="name">{{ item.level }} · {{ questionTypeLabel(item.questionType) }} · {{ item.prompt }}</text>
+          <text class="name">{{ levelLabel(item.level) }} · {{ questionTypeLabel(item.questionType) }} · {{ item.prompt }}</text>
           <text class="muted">{{ item.answer }}</text>
           <button v-if="userStore.isAdmin" class="btn-secondary compact" @tap="startEdit(item)">编辑</button>
         </view>
@@ -138,7 +138,7 @@
     </template>
     <template v-else>
       <view v-for="item in points" :key="item.id" class="card">
-        <text class="name">{{ item.grade || '未分年级' }} · {{ item.level }} · {{ kindLabel(item.kind) }} · {{ questionTypeLabel(item.questionType) }}</text>
+        <text class="name">{{ item.grade || '未分年级' }} · {{ levelLabel(item.level) }} · {{ kindLabel(item.kind) }} · {{ questionTypeLabel(item.questionType) }}</text>
         <text>{{ item.prompt }}</text>
         <text class="muted">{{ item.answer }}</text>
         <text class="muted">{{ item.source }}{{ item.resourceTitle ? ' · ' + packShort(item.resourceTitle) : '' }}</text>
@@ -165,6 +165,7 @@ import {
   LEVEL_OPTIONS,
   QUESTION_TYPE_OPTIONS,
   kindLabel,
+  levelLabel,
   questionTypeLabel
 } from '@/utils/chinese'
 import { useUserStore } from '@/stores/user'
@@ -255,6 +256,10 @@ function formatLabels(text: string, empty: string) {
 function groupMeta(group: any) {
   const parts = [formatLabels(group.grades || group.grade, '未分年级')]
   const levels = formatLabels(group.levels, '')
+    .split('、')
+    .filter(Boolean)
+    .map(item => levelLabel(item))
+    .join('、')
   if (levels) parts.push(levels)
   parts.push(kindLabel(group.kind))
   return parts.join(' · ')
