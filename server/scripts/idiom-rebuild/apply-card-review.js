@@ -1,11 +1,10 @@
 // 合并二审后的选择题选项和字形判断题。
 const fs = require('fs')
 const path = require('path')
+const { loadCompiledPack, writeSplitPack } = require('./idiom-files')
 
-const root = path.join(__dirname, '../..')
-const packPath = path.join(root, 'data/chinese/raw/idioms/小学成语.json')
 const reviewDir = path.join(__dirname, 'work/card-reviewed')
-const pack = JSON.parse(fs.readFileSync(packPath, 'utf8'))
+const pack = loadCompiledPack()
 const reviews = new Map()
 
 for (const name of fs.readdirSync(reviewDir).filter(name => name.endsWith('-reviewed.json')).sort()) {
@@ -16,7 +15,12 @@ for (const name of fs.readdirSync(reviewDir).filter(name => name.endsWith('-revi
       throw new Error(`${name}: ${row.word} 的 choices 无效`)
     }
     if (!row.choices.includes(row.answer)) throw new Error(`${name}: ${row.word} 选项不含答案`)
-    if (!['对', '错'].includes(row.judgeAnswer)) throw new Error(`${name}: ${row.word} judgeAnswer 无效`)
+    if (row.spellingChoices != null) {
+      if (!Array.isArray(row.spellingChoices) || row.spellingChoices.length !== 4 || new Set(row.spellingChoices).size !== 4) {
+        throw new Error(`${name}: ${row.word} 的 spellingChoices 无效`)
+      }
+      if (!row.spellingChoices.includes(row.word)) throw new Error(`${name}: ${row.word} 易错字选项不含正确写法`)
+    }
     reviews.set(row.word, row)
   }
 }
@@ -30,12 +34,14 @@ for (const point of pack.points) {
   if (point.question_type === 'meaning_choice') {
     if (review.answer !== point.answer) throw new Error(`${point.lemma}: 二审不得修改正确答案`)
     point.options = JSON.stringify({ choices: review.choices })
-  } else if (point.question_type === 'char_judge') {
-    point.answer = review.judgeAnswer
-    point.options = JSON.stringify({ display: review.judgeDisplay })
+  } else if (point.question_type === 'spelling_choice') {
+    const current = JSON.parse(point.options || '{}').choices || []
+    const reviewed = Array.isArray(review.spellingChoices) ? review.spellingChoices : current
+    point.answer = point.lemma
+    point.options = JSON.stringify({ choices: reviewed })
   }
 }
 
 pack.version = Number(pack.version || 1) + 1
-fs.writeFileSync(packPath, `${JSON.stringify(pack, null, 2)}\n`, 'utf8')
+writeSplitPack(pack)
 console.log('已合并二审', reviews.size)

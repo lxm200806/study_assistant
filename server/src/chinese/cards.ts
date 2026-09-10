@@ -63,7 +63,7 @@ export function validateCard(kind: string, prompt: unknown, answer: unknown, que
     if (compact !== '对' && compact !== '错') return '判断题答案须为对或错'
     return null
   }
-  if (qtype === 'meaning_choice' || qtype === 'context_choice') return null
+  if (['pinyin_choice', 'spelling_choice', 'meaning_choice', 'context_choice'].includes(qtype)) return null
   const compact = normalize(answer)
   if (kind === 'zi' && compact.length !== 1) return '易错字答案必须是一个字'
   if (kind === 'idiom' && (compact.length < 3 || compact.length > 8)) return '词语过长，请拆成一条'
@@ -275,7 +275,9 @@ export function pointEnergy(point: PointLike): number {
   const kind = point.kind
   if (qtype === 'char_judge') return kind === 'idiom' ? 2 : 1
   if (qtype === 'usage_judge') return kind === 'idiom' ? 4 : 2
-  if (qtype === 'meaning_choice' || qtype === 'context_choice') return kind === 'idiom' ? 4 : 2
+  if (['pinyin_choice', 'spelling_choice', 'meaning_choice', 'context_choice'].includes(qtype)) {
+    return kind === 'idiom' ? 4 : 2
+  }
   const tags = String(point.tags || '')
   const length = normalize(point.lemma || point.answer || '').length
   if (qtype === 'recite' && kind === 'idiom') return 2

@@ -95,10 +95,12 @@ export function gradeCard(point: PointLike | null | undefined, userInput: unknow
   const expected = point?.answer || ''
   if (reveal) {
     if (qtype === 'char_judge' || qtype === 'usage_judge') return gradeCharJudge('', expected)
-    if (qtype === 'meaning_choice' || qtype === 'context_choice') return gradeChoice('', expected)
+    if (['pinyin_choice', 'spelling_choice', 'meaning_choice', 'context_choice'].includes(qtype)) return gradeChoice('', expected)
     return gradeAnswer('', expected)
   }
   if (qtype === 'char_judge' || qtype === 'usage_judge') return gradeCharJudge(userInput, expected)
-  if (qtype === 'meaning_choice' || qtype === 'context_choice') return gradeChoice(userInput, expected)
+  if (['pinyin_choice', 'spelling_choice', 'meaning_choice', 'context_choice'].includes(qtype)) {
+    return gradeChoice(userInput, expected)
+  }
   return gradeAnswer(userInput, expected)
 }

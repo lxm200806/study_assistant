@@ -1,7 +1,7 @@
 export const KIND_OPTIONS = [
   { id: 'poem', label: '古诗' },
   { id: 'wenyan', label: '文言文' },
-  { id: 'idiom', label: '词语' },
+  { id: 'idiom', label: '成语' },
   { id: 'saying', label: '俗语名句' },
   { id: 'sentence', label: '优美句子' },
   { id: 'zi', label: '易错字' }
@@ -37,6 +37,8 @@ export const QUESTION_TYPE_OPTIONS = [
   { id: 'dictation', label: '默写' },
   { id: 'recite', label: '背诵' },
   { id: 'char_judge', label: '字对错' },
+  { id: 'pinyin_choice', label: '拼音选择' },
+  { id: 'spelling_choice', label: '易错字选择' },
   { id: 'meaning_choice', label: '理解意思' },
   { id: 'context_choice', label: '语境选成语' },
   { id: 'usage_judge', label: '使用正误' }
@@ -57,9 +59,9 @@ export const AUDIENCE_LABEL: Record<string, string> = Object.fromEntries(
 )
 
 export const DIFFICULTY_OPTIONS = [
-  { id: 'primary', label: '小学' },
-  { id: 'xiaoshengchu', label: '小升初' },
-  { id: 'junior', label: '初中' }
+  { id: 'primary', label: '基础' },
+  { id: 'xiaoshengchu', label: '拓展' },
+  { id: 'junior', label: '培优' }
 ]
 
 export const DIFFICULTY_LABEL: Record<string, string> = Object.fromEntries(

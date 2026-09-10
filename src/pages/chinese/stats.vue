@@ -33,7 +33,9 @@
       <view v-for="item in data.items || []" :key="item.id" class="card">
         <text class="prompt">{{ item.lemma || item.prompt }}</text>
         <text class="muted">
-          {{ item.grade || '未分年级' }} · {{ item.kind }} · {{ item.mastered ? '已掌握' : item.last ? '学习中' : '未学' }}
+          <template v-if="item.kind === 'idiom'">{{ difficultyLabel(item.difficulty) }}</template>
+          <template v-else>{{ item.grade || '未分年级' }}</template>
+          · {{ kindLabel(item.kind) }} · {{ item.mastered ? '已掌握' : item.last ? '学习中' : '未学' }}
         </text>
         <text class="muted">
           学 {{ item.study_count || 0 }} / 复习 {{ item.review_count || 0 }} / 错 {{ item.error_count || 0 }}
@@ -49,6 +51,7 @@
 import { computed, ref } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { chineseAPI } from '@/utils/api'
+import { difficultyLabel, kindLabel } from '@/utils/chinese'
 import { requireSubject } from '@/utils/subject'
 
 const courseId = ref('')

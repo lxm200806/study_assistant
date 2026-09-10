@@ -115,7 +115,7 @@ export function lemmaOf(point: PointLike | null | undefined): string {
   if (text) return text
   const qtype = normalizeQuestionType(point?.question_type || point?.questionType)
   const answer = String(point?.answer || '').trim()
-  if (qtype === 'char_judge' || qtype === 'meaning_choice' || qtype === 'usage_judge') return ''
+  if (['char_judge', 'pinyin_choice', 'spelling_choice', 'meaning_choice', 'usage_judge'].includes(qtype)) return ''
   return answer
 }
 
@@ -273,7 +273,12 @@ function choicePool(points: PointLike[]): string[] {
   for (const point of points) {
     const hint = meaningHint(point)
     const qtype = normalizeQuestionType(point.question_type || point.questionType)
-    if (hint.length < 4 || isCategoryHint(hint) || seen.has(hint) || qtype === 'char_judge' || qtype === 'meaning_choice') continue
+    if (
+      hint.length < 4 ||
+      isCategoryHint(hint) ||
+      seen.has(hint) ||
+      ['char_judge', 'pinyin_choice', 'spelling_choice', 'meaning_choice'].includes(qtype)
+    ) continue
     seen.add(hint)
     hints.push(hint)
   }
@@ -309,7 +314,14 @@ export function makeMeaningCard(base: PointLike, pool: string[]): PointLike {
 
 export function maybeExpandPackCards(points: PointLike[] | null | undefined): PointLike[] {
   const rows = (points || []).filter(item => item && typeof item === 'object').map(item => ({ ...item }))
-  if (rows.some(item => ['char_judge', 'meaning_choice', 'context_choice', 'usage_judge'].includes(normalizeQuestionType(item.question_type || item.questionType)))) {
+  if (rows.some(item => [
+    'char_judge',
+    'pinyin_choice',
+    'spelling_choice',
+    'meaning_choice',
+    'context_choice',
+    'usage_judge'
+  ].includes(normalizeQuestionType(item.question_type || item.questionType)))) {
     return rows.map(item => fillEntryFields(item))
   }
   const pool = choicePool(rows)

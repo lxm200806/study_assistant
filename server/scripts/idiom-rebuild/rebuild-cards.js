@@ -2,9 +2,9 @@
 const crypto = require('crypto')
 const fs = require('fs')
 const path = require('path')
+const { loadCompiledPack, writeSplitPack } = require('./idiom-files')
 
 const root = path.join(__dirname, '../..')
-const packPath = path.join(root, 'data/chinese/raw/idioms/小学成语.json')
 const workDir = path.join(__dirname, 'work')
 const reviewedDir = path.join(workDir, 'reviewed')
 
@@ -113,7 +113,7 @@ function makeChoices(entry, pool) {
 }
 
 function main() {
-  const pack = readJson(packPath)
+  const pack = loadCompiledPack()
   const reviewedExamCards = pack.points.filter(point =>
     ['context_choice', 'usage_judge'].includes(point.question_type)
   )
@@ -179,7 +179,7 @@ function main() {
       tags: String(base.tags || '')
     }
 
-    // 没有可靠释义的初中生僻词不生成含糊的默写/释义题，仅保留字形判断。
+    // 没有可靠释义的培优词不生成含糊的背诵/释义题，仅保留易错字选择。
     if (entry.meaning) {
       points.push({
         ...common,
@@ -189,6 +189,20 @@ function main() {
         audience: entry.difficulty === 'primary' ? 'all' : 'upper',
         options: '',
         sub_group: 'recite',
+        sub_group_key: 'recite'
+      })
+    }
+
+    if (entry.pinyin) {
+      points.push({
+        ...common,
+        key: `${base.key}:pinyin_choice`,
+        prompt: `“${entry.word}”的正确拼音是？`,
+        answer: entry.pinyin,
+        question_type: 'pinyin_choice',
+        audience: 'all',
+        options: '',
+        sub_group: 'pinyin_choice',
         sub_group_key: 'recite'
       })
     }
@@ -232,16 +246,15 @@ function main() {
   ))
 
   const output = { ...pack, version: Number(pack.version || 1) + 1, count: points.length, points }
-  fs.copyFileSync(packPath, `${packPath}.bak`)
-  fs.writeFileSync(packPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8')
+  const published = writeSplitPack(output)
 
   const counts = {}
-  for (const point of points) {
+  for (const point of published.points) {
     const key = `${point.difficulty}/${point.question_type}`
     counts[key] = (counts[key] || 0) + 1
   }
-  console.log('重建完成', points.length, counts)
-  console.log('备份', `${packPath}.bak`)
+  console.log('重建完成', published.points.length, counts)
+  console.log('已写入唯一词条、分题型题卡和发布包')
 }
 
 main()

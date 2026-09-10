@@ -255,10 +255,19 @@ async function candidatePoints(kinds: string[], levels: string[], grades: string
       where: {
         isActive: true,
         kind: { in: kinds },
-        level: { in: levels },
-        OR: [
-          { kind: { not: 'idiom' } },
-          { difficulty: { in: difficulties.length ? difficulties : [...DIFFICULTIES] } }
+        AND: [
+          {
+            OR: [
+              { kind: 'idiom' },
+              { level: { in: levels } }
+            ]
+          },
+          {
+            OR: [
+              { kind: { not: 'idiom' } },
+              { difficulty: { in: difficulties.length ? difficulties : [...DIFFICULTIES] } }
+            ]
+          }
         ],
         ...(wanted ? { audience: { in: Array.from(wanted) } } : {})
       },
@@ -272,7 +281,9 @@ async function candidatePoints(kinds: string[], levels: string[], grades: string
       select: { entryKey: true }
     })
     const allowedKeys = new Set(gradeLinks.map(item => item.entryKey))
-    filtered = rows.filter(row => grades.includes(row.grade) || (row.entryKey && allowedKeys.has(row.entryKey)))
+    filtered = rows.filter(row =>
+      row.kind === 'idiom' || grades.includes(row.grade) || (row.entryKey && allowedKeys.has(row.entryKey))
+    )
   }
   return pickCourseCards(filtered.map(toPointLike), grades)
 }
@@ -531,10 +542,14 @@ export async function listLibrary(query: Record<string, unknown>, isAdmin: boole
     if (wanted) mapped = mapped.filter(row => wanted.has(String(row.audience || 'all')))
     const gradeLinks = await prisma.chineseEntryGrade.findMany({ where: { grade: { in: grades } } })
     const allowedKeys = new Set(gradeLinks.map(item => item.entryKey))
-    mapped = mapped.filter(row => grades.includes(String(row.grade || '')) || (row.entry_key && allowedKeys.has(String(row.entry_key))))
+    mapped = mapped.filter(row =>
+      row.kind === 'idiom' ||
+      grades.includes(String(row.grade || '')) ||
+      (row.entry_key && allowedKeys.has(String(row.entry_key)))
+    )
     mapped = pickCourseCards(mapped, grades) as typeof mapped
   } else if (grades.length) {
-    mapped = mapped.filter(row => grades.includes(String(row.grade || '')))
+    mapped = mapped.filter(row => row.kind === 'idiom' || grades.includes(String(row.grade || '')))
   }
   const total = mapped.length
   const entryCount = new Set(mapped.map(row => String(row.entry_key || '') || `id:${row.id}`)).size
@@ -911,6 +926,7 @@ export async function courseStats(courseId: string, userId: string) {
       kind: item.point.kind,
       level: item.point.level,
       grade: item.point.grade,
+      difficulty: item.point.difficulty,
       prompt: item.point.prompt,
       source: item.point.source,
       entry_key: item.point.entryKey,
@@ -1054,10 +1070,11 @@ export async function listResources(isAdmin: boolean, userId: string) {
 export async function patchPublished(pointId: string, body: Record<string, unknown>) {
   const row = await prisma.chinesePublished.findUnique({ where: { id: pointId } })
   if (!row) throw new HttpError(404, '知识点不存在')
+  const kind = String(body.kind ?? row.kind)
   const merged = {
-    kind: String(body.kind ?? row.kind),
+    kind,
     level: String(body.level ?? row.level),
-    grade: normalizeGrade(body.grade ?? row.grade),
+    grade: kind === 'idiom' ? '' : normalizeGrade(body.grade ?? row.grade),
     prompt: String(body.prompt ?? row.prompt),
     answer: String(body.answer ?? row.answer),
     tags: String(body.tags ?? row.tags),
@@ -1065,7 +1082,7 @@ export async function patchPublished(pointId: string, body: Record<string, unkno
     entry_key: String(body.entryKey ?? body.entry_key ?? row.entryKey),
     lemma: String(body.lemma ?? row.lemma),
     question_type: String(body.questionType ?? body.question_type ?? row.questionType),
-    audience: String(body.audience ?? row.audience),
+    audience: kind === 'idiom' ? 'all' : String(body.audience ?? row.audience),
     difficulty: String(body.difficulty ?? row.difficulty),
     active: body.active == null ? row.isActive : Boolean(body.active),
     options: body.options ?? row.options,

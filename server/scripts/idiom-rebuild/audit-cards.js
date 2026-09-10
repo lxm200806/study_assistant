@@ -1,11 +1,7 @@
 // 题卡发布前的机械质量检查。任何 error 都阻止同步数据库。
-const fs = require('fs')
-const path = require('path')
-
-const root = path.join(__dirname, '../..')
-const pack = JSON.parse(
-  fs.readFileSync(path.join(root, 'data/chinese/raw/idioms/小学成语.json'), 'utf8')
-)
+const { isPlausibleSyllable, loadCompiledPack, loadSource } = require('./idiom-files')
+const pack = loadCompiledPack()
+const { entries } = loadSource()
 
 const errors = []
 const warnings = []
@@ -15,7 +11,8 @@ const difficulties = new Set(['primary', 'xiaoshengchu', 'junior'])
 const categoryPattern = /教辅|常见成语|结构的成语|的成语$|有关的成语$/
 const allowedQuestionTypes = new Set([
   'recite',
-  'char_judge',
+  'pinyin_choice',
+  'spelling_choice',
   'meaning_choice',
   'context_choice',
   'usage_judge'
@@ -30,13 +27,6 @@ function parseOptions(point) {
   }
 }
 
-function differenceCount(left, right) {
-  const a = Array.from(left)
-  const b = Array.from(right)
-  if (a.length !== b.length) return Infinity
-  return a.reduce((count, char, index) => count + (char === b[index] ? 0 : 1), 0)
-}
-
 for (const point of pack.points || []) {
   if (!point.key) errors.push('存在没有 key 的题卡')
   else if (pointKeys.has(point.key)) errors.push(`重复 key: ${point.key}`)
@@ -44,6 +34,7 @@ for (const point of pack.points || []) {
 
   if (!difficulties.has(point.difficulty)) errors.push(`${point.key}: 难度无效 ${point.difficulty}`)
   if (!allowedQuestionTypes.has(point.question_type)) errors.push(`${point.key}: 题型无效 ${point.question_type}`)
+  if (point.grade) errors.push(`${point.key}: 成语不应再设置年级`)
   if (typeof point.active !== 'boolean') errors.push(`${point.key}: 缺少 active 布尔标记`)
   if (!point.entry_key || !point.lemma) errors.push(`${point.key}: 缺 entry_key/lemma`)
   if (!groups.has(point.entry_key)) groups.set(point.entry_key, [])
@@ -66,19 +57,34 @@ for (const point of pack.points || []) {
     if (categoryPattern.test(String(point.answer || ''))) {
       errors.push(`${point.key}: 分类标签被当作答案：${point.answer}`)
     }
-    if (point.difficulty === 'junior') errors.push(`${point.key}: 初中生僻词不应生成选意思题`)
+    if (point.difficulty === 'junior') errors.push(`${point.key}: 培优词条不应生成选意思题`)
   }
 
-  if (point.question_type === 'char_judge') {
+  if (point.question_type === 'spelling_choice') {
     const options = parseOptions(point)
-    const display = String(options.display || '')
-    if (!display) errors.push(`${point.key}: 字形判断缺 display`)
-    if (/甲/.test(display) && !/甲/.test(point.lemma)) {
-      errors.push(`${point.key}: 使用占位字制造错字：${display}`)
+    const choices = Array.isArray(options.choices) ? options.choices : []
+    if (point.answer !== point.lemma) errors.push(`${point.key}: 易错字选择题答案必须是规范成语`)
+    if (choices.length !== 4 || new Set(choices).size !== 4) errors.push(`${point.key}: 易错字题须有 4 个不同选项`)
+    if (!choices.includes(point.answer)) errors.push(`${point.key}: 易错字题选项不含正确写法`)
+    if (choices.some(choice => /甲/.test(choice) && !/甲/.test(point.lemma))) {
+      errors.push(`${point.key}: 易错字题使用了占位字`)
     }
-    const differences = differenceCount(display, point.lemma)
-    if (point.answer === '对' && differences !== 0) errors.push(`${point.key}: 标“对”但写法不同`)
-    if (point.answer === '错' && differences !== 1) errors.push(`${point.key}: 错字题应只改一个字`)
+  }
+
+  if (point.question_type === 'pinyin_choice') {
+    const options = parseOptions(point)
+    const choices = Array.isArray(options.choices) ? options.choices : []
+    const entry = entries.get(point.entry_key)
+    if (choices.length !== 4 || new Set(choices).size !== 4) errors.push(`${point.key}: 拼音题须有 4 个不同选项`)
+    if (!choices.includes(point.answer)) errors.push(`${point.key}: 拼音题选项不含正确答案`)
+    if (entry && point.answer !== entry.pinyin) errors.push(`${point.key}: 拼音答案与词条不一致`)
+    if (!String(point.prompt || '').includes(point.lemma || '')) errors.push(`${point.key}: 拼音题未出示词条`)
+    if (String(point.answer || '').split(/\s+/).length !== Array.from(point.lemma || '').length) {
+      errors.push(`${point.key}: 拼音音节数与字数不一致`)
+    }
+    if (choices.some(choice => String(choice).split(/\s+/).some(item => !isPlausibleSyllable(item)))) {
+      errors.push(`${point.key}: 拼音干扰项含不成立音节`)
+    }
   }
 
   if (point.question_type === 'context_choice') {
@@ -104,14 +110,16 @@ for (const point of pack.points || []) {
 
 for (const [entryKey, cards] of groups) {
   const types = new Set(cards.map(card => card.question_type))
-  if (!types.has('char_judge')) errors.push(`${entryKey}: 缺字形判断题`)
+  if (!types.has('spelling_choice')) errors.push(`${entryKey}: 缺易错字选择题`)
+  if (!types.has('pinyin_choice')) errors.push(`${entryKey}: 缺拼音选择题`)
+  if (!types.has('recite')) errors.push(`${entryKey}: 缺背诵题或可靠解释`)
   const difficulty = cards[0]?.difficulty
   if (cards.some(card => card.difficulty !== difficulty)) errors.push(`${entryKey}: 同一成语难度不一致`)
   if (difficulty !== 'junior' && (!types.has('recite') || !types.has('meaning_choice'))) {
-    errors.push(`${entryKey}: 小学/小升初成语缺默写或选意思题`)
+    errors.push(`${entryKey}: 基础/拓展成语缺背诵或选意思题`)
   }
   if (cards[0]?.active !== false && difficulty !== 'junior' && (!types.has('context_choice') || !types.has('usage_judge'))) {
-    errors.push(`${entryKey}: 上架的小学/小升初成语缺语境题或使用正误题`)
+    errors.push(`${entryKey}: 上架的基础/拓展成语缺语境题或使用正误题`)
   }
   if (cards.some(card => card.active !== cards[0]?.active)) errors.push(`${entryKey}: 同一成语 active 不一致`)
 }

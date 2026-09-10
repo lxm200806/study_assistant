@@ -1,0 +1,148 @@
+{
+  "reviewed_at": "2026-09-11",
+  "scope": "仅核对规范书写和拼音，不复制第三方释义或题卡",
+  "status_note": "web-cross-checked 表示公开网络多来源交叉核对，不等于《新华成语词典》第2版官方授权核验。",
+  "sources": [
+    "https://dict.idioms.moe.edu.tw/",
+    "https://pedia.cloud.edu.tw/",
+    "https://www.zdic.net/",
+    "https://www.hanyuguoxue.com/",
+    "https://baike.baidu.com/"
+  ],
+  "corrected": [
+    {
+      "lemma": "勤学苦练",
+      "before": "qín xué kǔ zh",
+      "after": "qín xué kǔ liàn"
+    },
+    {
+      "lemma": "一帆风顺",
+      "before": "yī fán fēng shùn",
+      "after": "yī fān fēng shùn"
+    },
+    {
+      "lemma": "大步流星",
+      "before": "dǎ bù liú xīng",
+      "after": "dà bù liú xīng"
+    },
+    {
+      "lemma": "风云变幻",
+      "before": "fēng yún bià huàn",
+      "after": "fēng yún biàn huàn"
+    },
+    {
+      "lemma": "愁眉不展",
+      "before": "chóu méi bù zhān",
+      "after": "chóu méi bù zhǎn"
+    },
+    {
+      "lemma": "单枪匹马",
+      "before": "dān qiāng pí mǎ",
+      "after": "dān qiāng pǐ mǎ"
+    },
+    {
+      "lemma": "葬身鱼腹",
+      "before": "zàng shēn yū fù",
+      "after": "zàng shēn yú fù"
+    },
+    {
+      "lemma": "味同嚼蜡",
+      "before": "wèi tóng jiáo cù",
+      "after": "wèi tóng jiáo là"
+    },
+    {
+      "lemma": "惊心动魄",
+      "before": "jīng xīng dòng pò",
+      "after": "jīng xīn dòng pò"
+    },
+    {
+      "lemma": "畏首畏尾",
+      "before": "wèi shǒ wèi wěi",
+      "after": "wèi shǒu wèi wěi"
+    },
+    {
+      "lemma": "简明扼要",
+      "before": "jiǎn míng é yào",
+      "after": "jiǎn míng è yào"
+    },
+    {
+      "lemma": "约法三章",
+      "before": "yuè fǎ sān zhāng",
+      "after": "yuē fǎ sān zhāng"
+    },
+    {
+      "lemma": "与世无争",
+      "before": "yú shì wú zhēng",
+      "after": "yǔ shì wú zhēng"
+    },
+    {
+      "lemma": "有的放矢",
+      "before": "yǒu dǐ fàng shǐ",
+      "after": "yǒu dì fàng shǐ"
+    },
+    {
+      "lemma": "耳濡目染",
+      "before": "ěr rǔ mù rǎn",
+      "after": "ěr rú mù rǎn"
+    },
+    {
+      "lemma": "约定俗成",
+      "before": "yuè dìng sú chéng",
+      "after": "yuē dìng sú chéng"
+    },
+    {
+      "lemma": "草船借箭",
+      "before": "cǎo chuǎn jiè jiàn",
+      "after": "cǎo chuán jiè jiàn"
+    },
+    {
+      "lemma": "进退两难",
+      "before": "jìn tuì liǎng nán",
+      "after": "jìn tuì liǎng nán"
+    },
+    {
+      "lemma": "金石为开",
+      "before": "jīn shí wèi kāi",
+      "after": "jīn shí wéi kāi"
+    },
+    {
+      "lemma": "一针见血",
+      "before": "yī zhēn jiàn xiě",
+      "after": "yī zhēn jiàn xuè"
+    }
+  ],
+  "supplemental": [
+    "万物复苏",
+    "五彩斑斓",
+    "刀枪不入",
+    "各显神通",
+    "名扬中外",
+    "哈哈大笑",
+    "囊萤夜读",
+    "天籁之音",
+    "天高云淡",
+    "天高地阔",
+    "奔流不息",
+    "妙笔生花",
+    "层林叠翠",
+    "层林尽染",
+    "形态各异",
+    "微风习习",
+    "技高一筹",
+    "果实累累",
+    "漫天卷地",
+    "焦躁不安",
+    "瑰丽无比",
+    "百鸟争鸣",
+    "秋风习习",
+    "膀大腰圆",
+    "金桂飘香",
+    "泉水叮咚",
+    "冰雪融化",
+    "清清楚楚",
+    "兴旺发达",
+    "火光冲天",
+    "笑容满面",
+    "夏日炎炎"
+  ]
+}

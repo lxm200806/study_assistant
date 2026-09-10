@@ -11,7 +11,7 @@
       <text class="label">备注</text>
       <input class="input" v-model="note" placeholder="部编必背与日积月累" />
 
-      <text class="label">年级</text>
+      <text class="label">年级（古诗文等内容）</text>
       <view class="chips">
         <view
           v-for="item in GRADE_OPTIONS"
@@ -35,7 +35,7 @@
         </view>
       </view>
 
-      <text class="label">成语难度（仅影响词语）</text>
+      <text class="label">成语分层（不按年级）</text>
       <view class="chips">
         <view
           v-for="item in DIFFICULTY_OPTIONS"

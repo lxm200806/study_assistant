@@ -1,11 +1,9 @@
-// 把小学/小升初题卡切成二审批次，重点检查选择题歧义和错别字真实性。
+// 把基础/拓展题卡切成二审批次，重点检查选择题歧义和错别字真实性。
 const fs = require('fs')
 const path = require('path')
+const { loadCompiledPack } = require('./idiom-files')
 
-const root = path.join(__dirname, '../..')
-const pack = JSON.parse(
-  fs.readFileSync(path.join(root, 'data/chinese/raw/idioms/小学成语.json'), 'utf8')
-)
+const pack = loadCompiledPack()
 const outDir = path.join(__dirname, 'work/card-review')
 fs.rmSync(outDir, { recursive: true, force: true })
 fs.mkdirSync(outDir, { recursive: true })
@@ -20,16 +18,16 @@ const rows = []
 for (const cards of byEntry.values()) {
   const choice = cards.find(card => card.question_type === 'meaning_choice')
   if (!choice) continue
-  const judge = cards.find(card => card.question_type === 'char_judge')
+  const spelling = cards.find(card => card.question_type === 'spelling_choice')
   const options = JSON.parse(choice.options || '{}')
-  const judgeOptions = JSON.parse(judge?.options || '{}')
+  const spellingOptions = JSON.parse(spelling?.options || '{}')
   rows.push({
     word: choice.lemma,
     difficulty: choice.difficulty,
     answer: choice.answer,
     choices: options.choices,
-    judgeDisplay: judgeOptions.display || choice.lemma,
-    judgeAnswer: judge?.answer || '对'
+    spellingAnswer: spelling?.answer || choice.lemma,
+    spellingChoices: spellingOptions.choices || []
   })
 }
 

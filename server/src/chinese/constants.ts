@@ -29,13 +29,24 @@ export const GRADES = [
 ] as const
 export type ChineseGrade = (typeof GRADES)[number]
 
-export const QUESTION_TYPES = ['dictation', 'recite', 'char_judge', 'meaning_choice', 'context_choice', 'usage_judge'] as const
+export const QUESTION_TYPES = [
+  'dictation',
+  'recite',
+  'char_judge',
+  'pinyin_choice',
+  'spelling_choice',
+  'meaning_choice',
+  'context_choice',
+  'usage_judge'
+] as const
 export type QuestionType = (typeof QUESTION_TYPES)[number]
 
 export const QUESTION_TYPE_LABEL: Record<QuestionType, string> = {
   dictation: '默写',
   recite: '背诵',
   char_judge: '字对错',
+  pinyin_choice: '拼音选择',
+  spelling_choice: '易错字选择',
   meaning_choice: '理解意思',
   context_choice: '语境选成语',
   usage_judge: '使用正误'
@@ -54,9 +65,9 @@ export const DIFFICULTIES = ['primary', 'xiaoshengchu', 'junior'] as const
 export type Difficulty = (typeof DIFFICULTIES)[number]
 
 export const DIFFICULTY_LABEL: Record<Difficulty, string> = {
-  primary: '小学',
-  xiaoshengchu: '小升初',
-  junior: '初中'
+  primary: '基础',
+  xiaoshengchu: '拓展',
+  junior: '培优'
 }
 
 export const LOWER_GRADES = new Set(['一年级上', '一年级下', '二年级上', '二年级下'])
@@ -141,7 +152,10 @@ export function normalizeAudience(value: unknown): Audience {
 const DIFFICULTY_ALIAS: Record<string, Difficulty> = {
   小学: 'primary',
   小升初: 'xiaoshengchu',
-  初中: 'junior'
+  初中: 'junior',
+  基础: 'primary',
+  拓展: 'xiaoshengchu',
+  培优: 'junior'
 }
 
 export function normalizeDifficulty(value: unknown): Difficulty | '' {

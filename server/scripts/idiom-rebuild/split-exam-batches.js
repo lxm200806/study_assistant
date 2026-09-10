@@ -2,11 +2,9 @@
 const crypto = require('crypto')
 const fs = require('fs')
 const path = require('path')
+const { loadCompiledPack } = require('./idiom-files')
 
-const root = path.join(__dirname, '../..')
-const pack = JSON.parse(
-  fs.readFileSync(path.join(root, 'data/chinese/raw/idioms/小学成语.json'), 'utf8')
-)
+const pack = loadCompiledPack()
 const outDir = path.join(__dirname, 'work/exam-batches')
 fs.rmSync(outDir, { recursive: true, force: true })
 fs.mkdirSync(outDir, { recursive: true })

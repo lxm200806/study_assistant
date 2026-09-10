@@ -37,7 +37,11 @@
           <view class="pick" @tap="toggleOne(item.id)">
             <text class="check">{{ isSelected(item.id) ? '☑' : '☐' }}</text>
             <view class="lib-body">
-              <text class="name">{{ item.grade || '未分年级' }} · {{ kindLabel(item.kind) }} / {{ item.level }}</text>
+              <text class="name">
+                <template v-if="item.kind === 'idiom'">{{ difficultyLabel(item.difficulty) }}</template>
+                <template v-else>{{ item.grade || '未分年级' }} / {{ item.level }}</template>
+                · {{ kindLabel(item.kind) }}
+              </text>
               <text>{{ item.prompt }}</text>
               <text class="muted">{{ item.answer }}</text>
             </view>
@@ -61,7 +65,7 @@
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { computed, ref } from 'vue'
 import { chineseAPI } from '@/utils/api'
-import { kindLabel } from '@/utils/chinese'
+import { difficultyLabel, kindLabel } from '@/utils/chinese'
 import { useUserStore } from '@/stores/user'
 import { requireSubject } from '@/utils/subject'
 

@@ -27,7 +27,7 @@
 
       <template v-if="card">
         <text class="muted">
-          {{ card.grade || '未分年级' }}<template v-if="difficultyLabel(card.difficulty)"> · {{ difficultyLabel(card.difficulty) }}</template> · {{ kindLabel(card.kind) }}
+          <template v-if="card.kind !== 'idiom'">{{ card.grade || '未分年级' }} · </template><template v-if="difficultyLabel(card.difficulty)">{{ difficultyLabel(card.difficulty) }} · </template>{{ kindLabel(card.kind) }}
           · {{ mode === 'recite' ? '朗读背诵' : card.role === 'review' ? '复习' : '新学' }}
           · 第 {{ index + 1 }} / {{ queue.length }} 题
         </text>
@@ -68,7 +68,7 @@
           <button
             v-for="(choice, choiceIndex) in choiceOptions"
             :key="choiceIndex"
-            class="btn-secondary choice"
+            :class="['btn-secondary', 'choice', questionType === 'pinyin_choice' ? 'pinyin-choice' : '']"
             @tap="pickAnswer(choice)"
           >{{ choice }}</button>
         </template>
@@ -150,7 +150,9 @@ const reciteReturned = ref(0)
 const card = computed(() => queue.value[index.value] || null)
 const questionType = computed(() => card.value?.questionType || 'dictation')
 const isJudgeWidget = computed(() => ['char_judge', 'usage_judge'].includes(questionType.value))
-const isChoiceWidget = computed(() => ['meaning_choice', 'context_choice'].includes(questionType.value))
+const isChoiceWidget = computed(() =>
+  ['pinyin_choice', 'spelling_choice', 'meaning_choice', 'context_choice'].includes(questionType.value)
+)
 const isReciteWidget = computed(() => {
   if (mode.value === 'test' || isJudgeWidget.value || isChoiceWidget.value) return false
   return questionType.value === 'recite' || mode.value === 'recite'
@@ -356,6 +358,7 @@ onLoad(async (query) => {
 .recite-line { display: block; padding: 12rpx 0; font-size: 30rpx; }
 .compact { margin: 8rpx 0; }
 .choice { margin: 8rpx 0; }
+.pinyin-choice { letter-spacing: 2rpx; word-break: keep-all; }
 .diff { margin-top: 12rpx; font-size: 32rpx; letter-spacing: 4rpx; }
 .ok { color: #16a34a; }
 .bad { color: #dc2626; }

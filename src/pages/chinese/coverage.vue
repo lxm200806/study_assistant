@@ -2,7 +2,7 @@
   <view class="container">
     <view class="header">
       <text class="title">全库覆盖</text>
-      <text class="subtitle">同一成语可以出现在多本教材里。全局词条不重复，但可以同时属于多个年级。</text>
+      <text class="subtitle">成语按基础、拓展、培优分层；古诗文等其他内容仍按教材年级统计。</text>
     </view>
     <view class="card stats">
       <view class="stat"><text class="num">{{ data.entryCount || data.total || 0 }}</text><text>词条</text></view>
@@ -22,7 +22,7 @@
     </view>
     <view class="card">
       <text class="section">按年级（全局词条）</text>
-      <text class="muted">同一个成语若既属一年级又属二年级，两边都会计入。</text>
+      <text class="muted">这里只统计古诗文、名句等按教材年级组织的内容，不包含成语。</text>
       <view v-for="item in entryGradeRows" :key="item.grade" class="row">
         <text>{{ item.grade }} · 词条 {{ item.entries || item.total }} · 卡片 {{ item.total }} · 已组课 {{ item.in_course || item.inCourse || 0 }}</text>
       </view>

@@ -1,10 +1,6 @@
 // 软下架缺少可靠释义或明确不是规范成语的词条；不删除题卡和学习记录。
-const fs = require('fs')
-const path = require('path')
-
-const root = path.join(__dirname, '../..')
-const packPath = path.join(root, 'data/chinese/raw/idioms/小学成语.json')
-const pack = JSON.parse(fs.readFileSync(packPath, 'utf8'))
+const { loadCompiledPack, writeSplitPack } = require('./idiom-files')
+const pack = loadCompiledPack()
 const cardsByEntry = new Map()
 
 for (const point of pack.points || []) {
@@ -32,5 +28,5 @@ for (const cards of cardsByEntry.values()) {
 }
 
 pack.version = Number(pack.version || 1) + 1
-fs.writeFileSync(packPath, `${JSON.stringify(pack, null, 2)}\n`, 'utf8')
+writeSplitPack(pack)
 console.log(JSON.stringify({ inactiveEntries, inactiveCards }, null, 2))

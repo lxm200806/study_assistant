@@ -20,7 +20,7 @@ for (let start = 0; start < targets.length; start += SIZE) {
     词典释义: row.dictRaw || '（词典未收录）',
     出处: row.source,
     词频: row.freq,
-    初判难度: row.difficulty === 'primary' ? '小学' : '小升初'
+    初判分层: row.difficulty === 'primary' ? '基础' : '拓展'
   }))
   const name = `batch-${String(index).padStart(2, '0')}.json`
   fs.writeFileSync(path.join(batchDir, name), JSON.stringify(slice, null, 1), 'utf8')

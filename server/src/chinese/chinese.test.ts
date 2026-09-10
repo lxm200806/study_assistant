@@ -34,6 +34,8 @@ describe('chinese grade', () => {
     expect(gradeCard({ question_type: 'char_judge', answer: '对' }, '', true).correct).toBe(false)
     expect(gradeCard({ question_type: 'usage_judge', answer: '错' }, '错').correct).toBe(true)
     expect(gradeCard({ question_type: 'context_choice', answer: '一丝不苟' }, '一丝不苟').correct).toBe(true)
+    expect(gradeCard({ question_type: 'spelling_choice', answer: '一丝不苟' }, '一丝不苟').correct).toBe(true)
+    expect(gradeCard({ question_type: 'pinyin_choice', answer: 'yī sī bù gǒu' }, 'yī sī bù gǒu').correct).toBe(true)
   })
 })
 
@@ -176,6 +178,7 @@ describe('chinese cards', () => {
 
   it('validates new exam-style card answers', () => {
     expect(validateCard('idiom', '他做事____。', '一丝不苟', 'context_choice', '一丝不苟')).toBeNull()
+    expect(validateCard('idiom', '正确写法是？', '一丝不苟', 'spelling_choice', '一丝不苟')).toBeNull()
     expect(validateCard('idiom', '这个句子使用是否恰当', '错', 'usage_judge', '一丝不苟')).toBeNull()
     expect(validateCard('idiom', '这个句子使用是否恰当', '不知道', 'usage_judge', '一丝不苟')).toContain('对或错')
   })

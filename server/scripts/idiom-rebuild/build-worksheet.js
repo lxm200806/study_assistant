@@ -1,12 +1,12 @@
 // 生成成语整改工作表：合并词典释义、拼音、词频、教材出处，给出初判难度
 const fs = require('fs')
 const path = require('path')
+const { loadCompiledPack } = require('./idiom-files')
 
 const root = path.join(__dirname, '../..')
-const packPath = path.join(root, 'data/chinese/raw/idioms/小学成语.json')
 const workDir = path.join(__dirname, 'work')
 
-const pack = JSON.parse(fs.readFileSync(packPath, 'utf8'))
+const pack = loadCompiledPack()
 const dict = JSON.parse(fs.readFileSync(path.join(root, 'data/sources/idiom-xinhua.json'), 'utf8'))
 const dictMap = new Map(dict.map(item => [item.word, item]))
 
@@ -56,8 +56,6 @@ const rows = recite.map(point => {
     dictGloss: cleanExplanation(info?.explanation),
     dictRaw: String(info?.explanation || '').replace(/[”“"]/g, '').trim(),
     source: point.source || '',
-    grade: point.grade || '',
-    level: point.level || '',
     textbook: /部编/.test(point.source || ''),
     freq: freq.get(word) || 0
   }
@@ -72,6 +70,6 @@ const counts = rows.reduce((acc, row) => ((acc[row.difficulty] = (acc[row.diffic
 const noGloss = rows.filter(row => !row.dictGloss && !row.existingGloss)
 console.log('成语', rows.length, '难度分布', counts)
 console.log('需人工补释义（词典未收录且原本无释义）', noGloss.length)
-console.log('其中小学/小升初档', noGloss.filter(r => r.difficulty !== 'junior').length)
+console.log('其中基础/拓展档', noGloss.filter(r => r.difficulty !== 'junior').length)
 console.log('样例', rows.filter(r => r.difficulty === 'xiaoshengchu').slice(0, 5).map(r => [r.word, r.freq, r.dictGloss]))
-console.log('待改写（小学+小升初）', rows.filter(r => r.difficulty !== 'junior').length)
+console.log('待改写（基础+拓展）', rows.filter(r => r.difficulty !== 'junior').length)

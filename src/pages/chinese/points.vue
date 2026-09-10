@@ -13,20 +13,36 @@
           <text>{{ item.label }}</text>
         </view>
       </view>
-      <text class="label">级别</text>
-      <view class="chips">
-        <view :class="['chip', level === '' ? 'active' : '']" @tap="level = ''"><text>全部</text></view>
-        <view v-for="item in LEVEL_OPTIONS" :key="item" :class="['chip', level === item ? 'active' : '']" @tap="level = item">
-          <text>{{ item }}</text>
+      <template v-if="kind === 'idiom'">
+        <text class="label">成语分层</text>
+        <view class="chips">
+          <view :class="['chip', difficulty === '' ? 'active' : '']" @tap="difficulty = ''"><text>全部</text></view>
+          <view
+            v-for="item in DIFFICULTY_OPTIONS"
+            :key="item.id"
+            :class="['chip', difficulty === item.id ? 'active' : '']"
+            @tap="difficulty = item.id"
+          >
+            <text>{{ item.label }}</text>
+          </view>
         </view>
-      </view>
-      <text class="label">年级</text>
-      <view class="chips">
-        <view :class="['chip', grade === '' ? 'active' : '']" @tap="grade = ''"><text>全部</text></view>
-        <view v-for="item in GRADE_OPTIONS" :key="item" :class="['chip', grade === item ? 'active' : '']" @tap="grade = item">
-          <text>{{ item }}</text>
+      </template>
+      <template v-else>
+        <text class="label">级别</text>
+        <view class="chips">
+          <view :class="['chip', level === '' ? 'active' : '']" @tap="level = ''"><text>全部</text></view>
+          <view v-for="item in LEVEL_OPTIONS" :key="item" :class="['chip', level === item ? 'active' : '']" @tap="level = item">
+            <text>{{ item }}</text>
+          </view>
         </view>
-      </view>
+        <text class="label">年级</text>
+        <view class="chips">
+          <view :class="['chip', grade === '' ? 'active' : '']" @tap="grade = ''"><text>全部</text></view>
+          <view v-for="item in GRADE_OPTIONS" :key="item" :class="['chip', grade === item ? 'active' : '']" @tap="grade = item">
+            <text>{{ item }}</text>
+          </view>
+        </view>
+      </template>
       <text class="label">原始资料</text>
       <view class="chips">
         <view :class="['chip', resourceId === 'all' ? 'active' : '']" @tap="resourceId = 'all'"><text>全部</text></view>
@@ -52,8 +68,9 @@
           <text>{{ item.label }}</text>
         </view>
       </view>
-      <text class="label">受众</text>
-      <view class="chips">
+      <template v-if="kind !== 'idiom'">
+        <text class="label">受众</text>
+        <view class="chips">
         <view :class="['chip', audience === '' ? 'active' : '']" @tap="audience = ''"><text>全部</text></view>
         <view
           v-for="item in AUDIENCE_OPTIONS"
@@ -63,7 +80,8 @@
         >
           <text>{{ item.label }}</text>
         </view>
-      </view>
+        </view>
+      </template>
       <view class="check-row" @tap="byGroup = !byGroup">
         <text class="check">{{ byGroup ? '☑' : '☐' }}</text>
         <text>按词条分组</text>
@@ -92,8 +110,22 @@
           <text>{{ item.label }}</text>
         </view>
       </view>
-      <text class="label">级别</text>
-      <view class="chips">
+      <template v-if="editing.kind === 'idiom'">
+        <text class="label">成语分层</text>
+        <view class="chips">
+          <view
+            v-for="item in DIFFICULTY_OPTIONS"
+            :key="item.id"
+            :class="['chip', editing.difficulty === item.id ? 'active' : '']"
+            @tap="editing.difficulty = item.id"
+          >
+            <text>{{ item.label }}</text>
+          </view>
+        </view>
+      </template>
+      <template v-else>
+        <text class="label">级别</text>
+        <view class="chips">
         <view
           v-for="item in LEVEL_OPTIONS"
           :key="item"
@@ -102,19 +134,20 @@
         >
           <text>{{ item }}</text>
         </view>
-      </view>
-      <text class="label">年级</text>
-      <view class="chips">
-        <view :class="['chip', editing.grade === '' ? 'active' : '']" @tap="editing.grade = ''"><text>未分年级</text></view>
-        <view
-          v-for="item in GRADE_OPTIONS"
-          :key="item"
-          :class="['chip', editing.grade === item ? 'active' : '']"
-          @tap="editing.grade = item"
-        >
-          <text>{{ item }}</text>
         </view>
-      </view>
+        <text class="label">年级</text>
+        <view class="chips">
+          <view :class="['chip', editing.grade === '' ? 'active' : '']" @tap="editing.grade = ''"><text>未分年级</text></view>
+          <view
+            v-for="item in GRADE_OPTIONS"
+            :key="item"
+            :class="['chip', editing.grade === item ? 'active' : '']"
+            @tap="editing.grade = item"
+          >
+            <text>{{ item }}</text>
+          </view>
+        </view>
+      </template>
       <text class="label">词条</text>
       <input class="input" v-model="editing.lemma" />
       <text class="label">出处</text>
@@ -130,7 +163,11 @@
         <text class="section">{{ groupHeading(group) }}</text>
         <text class="muted">{{ groupMeta(group) }} · {{ group.items.length }} 张卡</text>
         <view v-for="item in group.items" :key="item.id" class="point-item">
-          <text class="name">{{ item.level }} · {{ questionTypeLabel(item.questionType) }} · {{ item.prompt }}</text>
+          <text class="name">
+            <template v-if="item.kind === 'idiom'">{{ difficultyLabel(item.difficulty) }}</template>
+            <template v-else>{{ item.level }}</template>
+            · {{ questionTypeLabel(item.questionType) }} · {{ item.prompt }}
+          </text>
           <text class="muted">{{ item.answer }}</text>
           <button v-if="userStore.isAdmin" class="btn-secondary compact" @tap="startEdit(item)">编辑</button>
         </view>
@@ -138,7 +175,11 @@
     </template>
     <template v-else>
       <view v-for="item in points" :key="item.id" class="card">
-        <text class="name">{{ item.grade || '未分年级' }} · {{ item.level }} · {{ kindLabel(item.kind) }} · {{ questionTypeLabel(item.questionType) }}</text>
+        <text class="name">
+          <template v-if="item.kind === 'idiom'">{{ difficultyLabel(item.difficulty) }}</template>
+          <template v-else>{{ item.grade || '未分年级' }} · {{ item.level }}</template>
+          · {{ kindLabel(item.kind) }} · {{ questionTypeLabel(item.questionType) }}
+        </text>
         <text>{{ item.prompt }}</text>
         <text class="muted">{{ item.answer }}</text>
         <text class="muted">{{ item.source }}{{ item.resourceTitle ? ' · ' + packShort(item.resourceTitle) : '' }}</text>
@@ -160,11 +201,13 @@ import { computed, ref, watch } from 'vue'
 import { chineseAPI } from '@/utils/api'
 import {
   AUDIENCE_OPTIONS,
+  DIFFICULTY_OPTIONS,
   GRADE_OPTIONS,
   KIND_OPTIONS,
   LEVEL_OPTIONS,
   QUESTION_TYPE_OPTIONS,
   kindLabel,
+  difficultyLabel,
   questionTypeLabel
 } from '@/utils/chinese'
 import { useUserStore } from '@/stores/user'
@@ -180,6 +223,7 @@ const intro = computed(() =>
 const kind = ref('')
 const level = ref('')
 const grade = ref('')
+const difficulty = ref('')
 const resourceId = ref('all')
 const questionType = ref('')
 const audience = ref('')
@@ -217,6 +261,7 @@ const groupedPoints = computed(() => {
         levels: item.entryLevels || item.level || '',
         source: item.source || '',
         lemma: item.lemma || '',
+        difficulty: item.difficulty || '',
         items: []
       }
       groups.push(seen[key])
@@ -253,6 +298,9 @@ function formatLabels(text: string, empty: string) {
 }
 
 function groupMeta(group: any) {
+  if (group.kind === 'idiom') {
+    return [difficultyLabel(group.difficulty), kindLabel(group.kind)].filter(Boolean).join(' · ')
+  }
   const parts = [formatLabels(group.grades || group.grade, '未分年级')]
   const levels = formatLabels(group.levels, '')
   if (levels) parts.push(levels)
@@ -272,6 +320,7 @@ function libraryQuery(offset: number) {
   if (kind.value) query.push(`kind=${encodeURIComponent(kind.value)}`)
   if (level.value) query.push(`level=${encodeURIComponent(level.value)}`)
   if (grade.value) query.push(`grade=${encodeURIComponent(grade.value)}`)
+  if (kind.value === 'idiom' && difficulty.value) query.push(`difficulty=${encodeURIComponent(difficulty.value)}`)
   if (resourceId.value === 'unlinked') query.push('resourceId=unlinked')
   else if (resourceId.value && resourceId.value !== 'all') query.push(`resourceId=${encodeURIComponent(resourceId.value)}`)
   if (questionType.value) query.push(`questionType=${encodeURIComponent(questionType.value)}`)
@@ -325,6 +374,7 @@ function startEdit(item: any) {
     source: item.source || '',
     questionType: item.questionType || 'dictation',
     audience: item.audience || 'all',
+    difficulty: item.difficulty || 'primary',
     tags: item.tags || ''
   }
 }
@@ -341,7 +391,17 @@ async function savePoint() {
   }
 }
 
-watch([kind, level, grade, resourceId, questionType, audience], () => {
+watch(kind, value => {
+  if (value === 'idiom') {
+    level.value = ''
+    grade.value = ''
+    audience.value = ''
+  } else {
+    difficulty.value = ''
+  }
+})
+
+watch([kind, level, grade, difficulty, resourceId, questionType, audience], () => {
   page.value = 1
   loadPoints()
 })

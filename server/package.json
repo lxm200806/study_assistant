@@ -17,6 +17,8 @@
     "migrate:fsrs": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/migrate-fsrs.ts'",
     "seed:admin": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/seed-admin.ts'",
     "fill:meanings": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/fill-missing-meanings.ts'",
+    "build:idioms": "node scripts/idiom-rebuild/build-pack.js",
+    "audit:idioms": "node scripts/idiom-rebuild/audit-cards.js",
     "test": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/vitest/vitest.mjs run'",
     "test:watch": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/vitest/vitest.mjs'"
   },

@@ -1,12 +1,11 @@
 // 把逐题审核后的语境题、使用正误题追加到 raw pack。
 const fs = require('fs')
 const path = require('path')
+const { loadCompiledPack, writeSplitPack } = require('./idiom-files')
 
-const root = path.join(__dirname, '../..')
-const packPath = path.join(root, 'data/chinese/raw/idioms/小学成语.json')
 const reviewDir = path.join(__dirname, 'work/exam-reviewed')
 const batchDir = path.join(__dirname, 'work/exam-batches')
-const pack = JSON.parse(fs.readFileSync(packPath, 'utf8'))
+const pack = loadCompiledPack()
 const baseByWord = new Map(
   pack.points
     .filter(point => point.question_type === 'recite')
@@ -103,5 +102,5 @@ for (const review of reviews.values()) {
 
 pack.count = pack.points.length
 pack.version = Number(pack.version || 1) + 1
-fs.writeFileSync(packPath, `${JSON.stringify(pack, null, 2)}\n`, 'utf8')
+writeSplitPack(pack)
 console.log(JSON.stringify({ reviewedEntries: reviews.size, cards: pack.points.length }, null, 2))

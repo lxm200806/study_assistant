@@ -35,9 +35,9 @@ export const GRADE_PACKS: PackSpec[] = [
 export const IDIOM_PACK: PackSpec = {
   slug: 'elementary-idioms',
   title: '小学成语',
-  jsonName: '小学成语.json',
+  jsonName: '小学成语_发布包.json',
   mdName: '小学成语.md',
-  sourceJson: path.join('idioms', '小学成语.json'),
+  sourceJson: path.join('idioms', 'generated', '小学成语_发布包.json'),
   attachToExistingDefault: false
 }
 
@@ -202,12 +202,13 @@ export async function upsertEntry(point: PointLike) {
   const key = String(point.entry_key || '').trim()
   if (!key) return
   const existing = await prisma.chineseEntry.findUnique({ where: { entryKey: key } })
-  const grades = mergeLabels(existing?.grades || existing?.grade, point.grade, GRADE_ORDER)
-  const levels = mergeLabels(existing?.levels, point.level, LEVEL_ORDER)
+  const kind = String(point.kind || existing?.kind || '')
+  const idiom = kind === 'idiom'
+  const grades = idiom ? [] : mergeLabels(existing?.grades || existing?.grade, point.grade, GRADE_ORDER)
+  const levels = idiom ? [] : mergeLabels(existing?.levels, point.level, LEVEL_ORDER)
   const sources = mergeLabels(existing?.source, point.source)
   const tags = mergeLabels(existing?.tags, point.tags)
   const lemma = String(point.lemma || existing?.lemma || '').trim()
-  const kind = String(point.kind || existing?.kind || '')
   await prisma.chineseEntry.upsert({
     where: { entryKey: key },
     create: {
@@ -230,6 +231,11 @@ export async function upsertEntry(point: PointLike) {
       source: joinLabels(sources)
     }
   })
+  if (idiom) {
+    await prisma.chineseEntryGrade.deleteMany({ where: { entryKey: key } })
+    await prisma.chineseEntryLevel.deleteMany({ where: { entryKey: key } })
+    return
+  }
   for (const grade of grades) {
     await prisma.chineseEntryGrade.upsert({
       where: { entryKey_grade: { entryKey: key, grade } },
@@ -271,6 +277,10 @@ function pointUnchanged(row: { kind: string; level: string; grade: string; promp
 
 export async function upsertPublished(pointInput: PointLike, resourceId: string | null = null, force = false): Promise<[string, 'unchanged' | 'updated' | 'inserted']> {
   const point = fillGroupFields({ ...pointInput })
+  if (point.kind === 'idiom') {
+    point.grade = ''
+    point.audience = 'all'
+  }
   await upsertEntry(point)
   const key = String(point.key || '').trim() || null
   let existing = key

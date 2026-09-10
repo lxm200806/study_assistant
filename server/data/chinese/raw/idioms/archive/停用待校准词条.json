@@ -1,0 +1,3401 @@
+{
+  "title": "停用待校准词条",
+  "version": 10,
+  "count": 178,
+  "note": "不进入发布包。多数为普通四字短语、残缺表达、错写词或缺少可靠词典依据的条目。",
+  "entries": [
+    {
+      "key": "idiom:渑池会面",
+      "lemma": "渑池会面",
+      "pinyin": "",
+      "meaning": "蔺相如在渑池维护赵国尊严的历史事件",
+      "tags": "成语;课文;课内必背",
+      "source": "部编五年级上册·课文",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:书山有路",
+      "lemma": "书山有路",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;学习;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:勤俭节约",
+      "lemma": "勤俭节约",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;学习;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:天道酬勤",
+      "lemma": "天道酬勤",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;学习;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:知书达理",
+      "lemma": "知书达理",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;学习;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:勇敢无畏",
+      "lemma": "勇敢无畏",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;品质;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:惩恶扬善",
+      "lemma": "惩恶扬善",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;品质;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:英勇无畏",
+      "lemma": "英勇无畏",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;品质;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:诚实可靠",
+      "lemma": "诚实可靠",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;品质;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:诚实守信",
+      "lemma": "诚实守信",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;品质;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:乌云密布",
+      "lemma": "乌云密布",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:云雾缭绕",
+      "lemma": "云雾缭绕",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:奇山异水",
+      "lemma": "奇山异水",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:山花烂漫",
+      "lemma": "山花烂漫",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:峰峦叠嶂",
+      "lemma": "峰峦叠嶂",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:微风拂面",
+      "lemma": "微风拂面",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:月光如水",
+      "lemma": "月光如水",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:水平如镜",
+      "lemma": "水平如镜",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:水清石出",
+      "lemma": "水清石出",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:波澜不惊",
+      "lemma": "波澜不惊",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:清风徐来",
+      "lemma": "清风徐来",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:皓月当空",
+      "lemma": "皓月当空",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:碧波荡漾",
+      "lemma": "碧波荡漾",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:繁星满天",
+      "lemma": "繁星满天",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:风景如画",
+      "lemma": "风景如画",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;写景;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:灯火通明",
+      "lemma": "灯火通明",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;场面;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:灯火阑珊",
+      "lemma": "灯火阑珊",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;场面;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:热闹异常",
+      "lemma": "热闹异常",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;场面;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:热闹非凡",
+      "lemma": "热闹非凡",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;场面;课内拓展",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:不入虎穴",
+      "lemma": "不入虎穴",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;动物;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:九牛二虎",
+      "lemma": "九牛二虎",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;动物;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:沈鱼落雁",
+      "lemma": "沈鱼落雁",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;动物;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:螳螂捕蝉",
+      "lemma": "螳螂捕蝉",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;动物;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:秋色宜人",
+      "lemma": "秋色宜人",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;秋天;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:落叶纷飞",
+      "lemma": "落叶纷飞",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;秋天;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:大雪纷飞",
+      "lemma": "大雪纷飞",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;冬天;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:寒气袭人",
+      "lemma": "寒气袭人",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;冬天;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:寒气逼人",
+      "lemma": "寒气逼人",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;冬天;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:寒风刺骨",
+      "lemma": "寒风刺骨",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;冬天;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:暑气逼人",
+      "lemma": "暑气逼人",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;夏天;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:骄阳似火",
+      "lemma": "骄阳似火",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;夏天;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:虚度光阴",
+      "lemma": "虚度光阴",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;时间;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:一心报国",
+      "lemma": "一心报国",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;数字;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:低人一等",
+      "lemma": "低人一等",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;数字;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:成百上千",
+      "lemma": "成百上千",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;数字;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:晴空万里",
+      "lemma": "晴空万里",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;数字;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:更上一层",
+      "lemma": "更上一层",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;数字;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:激动万分",
+      "lemma": "激动万分",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;数字;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:冷冷清清",
+      "lemma": "冷冷清清",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:匆匆忙忙",
+      "lemma": "匆匆忙忙",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:嘻嘻哈哈",
+      "lemma": "嘻嘻哈哈",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:圆圆满满",
+      "lemma": "圆圆满满",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:多多少少",
+      "lemma": "多多少少",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:大大小小",
+      "lemma": "大大小小",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:密密麻麻",
+      "lemma": "密密麻麻",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:干干净净",
+      "lemma": "干干净净",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:平平安安",
+      "lemma": "平平安安",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:开开心心",
+      "lemma": "开开心心",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:弯弯曲曲",
+      "lemma": "弯弯曲曲",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:快快乐乐",
+      "lemma": "快快乐乐",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:懒懒散散",
+      "lemma": "懒懒散散",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:扎扎实实",
+      "lemma": "扎扎实实",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:摇摇摆摆",
+      "lemma": "摇摇摆摆",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:整整齐齐",
+      "lemma": "整整齐齐",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:断断续续",
+      "lemma": "断断续续",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:方方正正",
+      "lemma": "方方正正",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:曲曲折折",
+      "lemma": "曲曲折折",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:来来往往",
+      "lemma": "来来往往",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:模模糊糊",
+      "lemma": "模模糊糊",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:炳炳凿凿",
+      "lemma": "炳炳凿凿",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:犹犹豫豫",
+      "lemma": "犹犹豫豫",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:真真假假",
+      "lemma": "真真假假",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:端端正正",
+      "lemma": "端端正正",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:红红火火",
+      "lemma": "红红火火",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:老老实实",
+      "lemma": "老老实实",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:认认真真",
+      "lemma": "认认真真",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:踏踏实实",
+      "lemma": "踏踏实实",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:进进出出",
+      "lemma": "进进出出",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:长长短短",
+      "lemma": "长长短短",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:陆陆续续",
+      "lemma": "陆陆续续",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:高高低低",
+      "lemma": "高高低低",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:高高兴兴",
+      "lemma": "高高兴兴",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABB;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:上蹿下跳",
+      "lemma": "上蹿下跳",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:不畏艰险",
+      "lemma": "不畏艰险",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:主次分明",
+      "lemma": "主次分明",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:举步维艰",
+      "lemma": "举步维艰",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:乐于助人",
+      "lemma": "乐于助人",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:互帮互助",
+      "lemma": "互帮互助",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:亲切和蔼",
+      "lemma": "亲切和蔼",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:人声嘈杂",
+      "lemma": "人声嘈杂",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:华灯初上",
+      "lemma": "华灯初上",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:古树参天",
+      "lemma": "古树参天",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:嗓音洪亮",
+      "lemma": "嗓音洪亮",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:团结互助",
+      "lemma": "团结互助",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:团结友爱",
+      "lemma": "团结友爱",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:圆满成功",
+      "lemma": "圆满成功",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:境地尴尬",
+      "lemma": "境地尴尬",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:天差地别",
+      "lemma": "天差地别",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:完好无损",
+      "lemma": "完好无损",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:宽容大度",
+      "lemma": "宽容大度",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:尊老爱幼",
+      "lemma": "尊老爱幼",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:尘土飞扬",
+      "lemma": "尘土飞扬",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:尬尴场面",
+      "lemma": "尬尴场面",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:层次分明",
+      "lemma": "层次分明",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:彩旗飘扬",
+      "lemma": "彩旗飘扬",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:志向远大",
+      "lemma": "志向远大",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:怪石嶙峋",
+      "lemma": "怪石嶙峋",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:怯懦无能",
+      "lemma": "怯懦无能",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:悄无声息",
+      "lemma": "悄无声息",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:慈祥可亲",
+      "lemma": "慈祥可亲",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:成事在天",
+      "lemma": "成事在天",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:掌声雷动",
+      "lemma": "掌声雷动",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:无能无力",
+      "lemma": "无能无力",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:时隐时现",
+      "lemma": "时隐时现",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:晚霞满天",
+      "lemma": "晚霞满天",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:朝霞满天",
+      "lemma": "朝霞满天",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:条理分明",
+      "lemma": "条理分明",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:条理清晰",
+      "lemma": "条理清晰",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:枫叶似火",
+      "lemma": "枫叶似火",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:桃红李白",
+      "lemma": "桃红李白",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:欢声笑语",
+      "lemma": "欢声笑语",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:止步不前",
+      "lemma": "止步不前",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:残阳如血",
+      "lemma": "残阳如血",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:殷切期望",
+      "lemma": "殷切期望",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:求真务实",
+      "lemma": "求真务实",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:烟雾弥漫",
+      "lemma": "烟雾弥漫",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:烟雾缭绕",
+      "lemma": "烟雾缭绕",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:相差甚远",
+      "lemma": "相差甚远",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:眨眼之间",
+      "lemma": "眨眼之间",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:神色慌张",
+      "lemma": "神色慌张",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:稍不注意",
+      "lemma": "稍不注意",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:笑语喧哗",
+      "lemma": "笑语喧哗",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:笨手笨脚",
+      "lemma": "笨手笨脚",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:红旗招展",
+      "lemma": "红旗招展",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:红日高照",
+      "lemma": "红日高照",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:细心观察",
+      "lemma": "细心观察",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:绿意盎然",
+      "lemma": "绿意盎然",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:绿树成荫",
+      "lemma": "绿树成荫",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:至关重要",
+      "lemma": "至关重要",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:色彩斑斓",
+      "lemma": "色彩斑斓",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:芬芳扑鼻",
+      "lemma": "芬芳扑鼻",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:解除武装",
+      "lemma": "解除武装",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:详略得当",
+      "lemma": "详略得当",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:说到做到",
+      "lemma": "说到做到",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:赃款赃物",
+      "lemma": "赃款赃物",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:赔了夫人",
+      "lemma": "赔了夫人",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:转瞬即逝",
+      "lemma": "转瞬即逝",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:软弱无能",
+      "lemma": "软弱无能",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:迎难而上",
+      "lemma": "迎难而上",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:远近皆知",
+      "lemma": "远近皆知",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:远近闻名",
+      "lemma": "远近闻名",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:遵纪守法",
+      "lemma": "遵纪守法",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:重点突出",
+      "lemma": "重点突出",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:银装素裹",
+      "lemma": "银装素裹",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:镇定自若",
+      "lemma": "镇定自若",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:长江后浪",
+      "lemma": "长江后浪",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:阳光明媚",
+      "lemma": "阳光明媚",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:阳光普照",
+      "lemma": "阳光普照",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:阳光灿烂",
+      "lemma": "阳光灿烂",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:难分高低",
+      "lemma": "难分高低",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:鞭炮齐鸣",
+      "lemma": "鞭炮齐鸣",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:香气扑鼻",
+      "lemma": "香气扑鼻",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;综合;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:冬雪皑皑",
+      "lemma": "冬雪皑皑",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:冷气森森",
+      "lemma": "冷气森森",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:凉风习习",
+      "lemma": "凉风习习",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:春雨绵绵",
+      "lemma": "春雨绵绵",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:暖风习习",
+      "lemma": "暖风习习",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:涓涓细流",
+      "lemma": "涓涓细流",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:烈日炎炎",
+      "lemma": "烈日炎炎",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:白云悠悠",
+      "lemma": "白云悠悠",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:白云朵朵",
+      "lemma": "白云朵朵",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:硕果累累",
+      "lemma": "硕果累累",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:秋雨绵绵",
+      "lemma": "秋雨绵绵",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:繁星点点",
+      "lemma": "繁星点点",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:细雨蒙蒙",
+      "lemma": "细雨蒙蒙",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:自信满满",
+      "lemma": "自信满满",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:谢谢不敏",
+      "lemma": "谢谢不敏",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;AABC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    },
+    {
+      "key": "idiom:雾气腾腾",
+      "lemma": "雾气腾腾",
+      "pinyin": "",
+      "meaning": "",
+      "tags": "成语;ABCC;小升初高频",
+      "source": "小学成语培优全书·教辅常见",
+      "difficulty": "junior",
+      "active": false
+    }
+  ],
+  "cards": [
+    {
+      "key": "idiom-tb-0048",
+      "entry_key": "idiom:渑池会面",
+      "prompt": "蔺相如在渑池维护赵国尊严的历史事件（四字）",
+      "answer": "渑池会面",
+      "question_type": "recite",
+      "audience": "all",
+      "options": ""
+    },
+    {
+      "key": "idiom-tb-0048:char_judge",
+      "entry_key": "idiom:渑池会面",
+      "prompt": "“渑池会面”的正确写法是？",
+      "answer": "渑池会面",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"渑池会面\",\"池渑会面\",\"面池会渑\",\"会池渑面\"]}"
+    },
+    {
+      "key": "idiom-l3-0097:char_judge:char_judge",
+      "entry_key": "idiom:书山有路",
+      "prompt": "“书山有路”的正确写法是？",
+      "answer": "书山有路",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"书山有路\",\"书山友路\",\"有山书路\",\"山书有路\"]}"
+    },
+    {
+      "key": "idiom-l3-0098:char_judge:char_judge",
+      "entry_key": "idiom:勤俭节约",
+      "prompt": "“勤俭节约”的正确写法是？",
+      "answer": "勤俭节约",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"节俭勤约\",\"俭勤节约\",\"勤俭节约\",\"约俭节勤\"]}"
+    },
+    {
+      "key": "idiom-l3-0105:char_judge:char_judge",
+      "entry_key": "idiom:天道酬勤",
+      "prompt": "“天道酬勤”的正确写法是？",
+      "answer": "天道酬勤",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"道天酬勤\",\"天道酬勤\",\"夭道酬勤\",\"天到酬勤\"]}"
+    },
+    {
+      "key": "idiom-l3-0126:char_judge:char_judge",
+      "entry_key": "idiom:知书达理",
+      "prompt": "“知书达理”的正确写法是？",
+      "answer": "知书达理",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"知书达理\",\"书知达理\",\"理书达知\",\"达书知理\"]}"
+    },
+    {
+      "key": "idiom-l3-0140:char_judge:char_judge",
+      "entry_key": "idiom:勇敢无畏",
+      "prompt": "“勇敢无畏”的正确写法是？",
+      "answer": "勇敢无畏",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"无敢勇畏\",\"敢勇无畏\",\"勇敢无畏\",\"勇敢天畏\"]}"
+    },
+    {
+      "key": "idiom-l3-0153:char_judge:char_judge",
+      "entry_key": "idiom:惩恶扬善",
+      "prompt": "“惩恶扬善”的正确写法是？",
+      "answer": "惩恶扬善",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"扬恶惩善\",\"惩恶扬善\",\"善恶扬惩\",\"恶惩扬善\"]}"
+    },
+    {
+      "key": "idiom-l3-0166:char_judge:char_judge",
+      "entry_key": "idiom:英勇无畏",
+      "prompt": "“英勇无畏”的正确写法是？",
+      "answer": "英勇无畏",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"英勇无畏\",\"无勇英畏\",\"勇英无畏\",\"英勇天畏\"]}"
+    },
+    {
+      "key": "idiom-l3-0170:char_judge:char_judge",
+      "entry_key": "idiom:诚实可靠",
+      "prompt": "“诚实可靠”的正确写法是？",
+      "answer": "诚实可靠",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"诚实可靠\",\"可实诚靠\",\"靠实可诚\",\"实诚可靠\"]}"
+    },
+    {
+      "key": "idiom-l3-0171:char_judge:char_judge",
+      "entry_key": "idiom:诚实守信",
+      "prompt": "“诚实守信”的正确写法是？",
+      "answer": "诚实守信",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"诚实守信\",\"守实诚信\",\"实诚守信\",\"诚实守言\"]}"
+    },
+    {
+      "key": "idiom-l2-0184:char_judge:char_judge",
+      "entry_key": "idiom:乌云密布",
+      "prompt": "“乌云密布”的正确写法是？",
+      "answer": "乌云密布",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"密云乌布\",\"云乌密布\",\"布云密乌\",\"乌云密布\"]}"
+    },
+    {
+      "key": "idiom-l2-0189:char_judge:char_judge",
+      "entry_key": "idiom:云雾缭绕",
+      "prompt": "“云雾缭绕”的正确写法是？",
+      "answer": "云雾缭绕",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"云雾缭绕\",\"缭雾云绕\",\"绕雾缭云\",\"雾云缭绕\"]}"
+    },
+    {
+      "key": "idiom-l2-0205:char_judge:char_judge",
+      "entry_key": "idiom:奇山异水",
+      "prompt": "“奇山异水”的正确写法是？",
+      "answer": "奇山异水",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"奇山异水\",\"水山异奇\",\"异山奇水\",\"山奇异水\"]}"
+    },
+    {
+      "key": "idiom-l2-0210:char_judge:char_judge",
+      "entry_key": "idiom:山花烂漫",
+      "prompt": "“山花烂漫”的正确写法是？",
+      "answer": "山花烂漫",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"花山烂漫\",\"烂花山漫\",\"山花烂漫\",\"漫花烂山\"]}"
+    },
+    {
+      "key": "idiom-l2-0214:char_judge:char_judge",
+      "entry_key": "idiom:峰峦叠嶂",
+      "prompt": "“峰峦叠嶂”的正确写法是？",
+      "answer": "峰峦叠嶂",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"嶂峦叠峰\",\"峦峰叠嶂\",\"峰峦叠嶂\",\"叠峦峰嶂\"]}"
+    },
+    {
+      "key": "idiom-l2-0219:char_judge:char_judge",
+      "entry_key": "idiom:微风拂面",
+      "prompt": "“微风拂面”的正确写法是？",
+      "answer": "微风拂面",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"风微拂面\",\"拂风微面\",\"微风拂面\",\"面风拂微\"]}"
+    },
+    {
+      "key": "idiom-l2-0236:char_judge:char_judge",
+      "entry_key": "idiom:月光如水",
+      "prompt": "“月光如水”的正确写法是？",
+      "answer": "月光如水",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"水光如月\",\"月光如水\",\"光月如水\",\"如光月水\"]}"
+    },
+    {
+      "key": "idiom-l2-0246:char_judge:char_judge",
+      "entry_key": "idiom:水平如镜",
+      "prompt": "“水平如镜”的正确写法是？",
+      "answer": "水平如镜",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"水平如镜\",\"如平水镜\",\"平水如镜\",\"镜平如水\"]}"
+    },
+    {
+      "key": "idiom-l2-0248:char_judge:char_judge",
+      "entry_key": "idiom:水清石出",
+      "prompt": "“水清石出”的正确写法是？",
+      "answer": "水清石出",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"清水石出\",\"石清水出\",\"水清石出\",\"水青石出\"]}"
+    },
+    {
+      "key": "idiom-l2-0252:char_judge:char_judge",
+      "entry_key": "idiom:波澜不惊",
+      "prompt": "“波澜不惊”的正确写法是？",
+      "answer": "波澜不惊",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"不澜波惊\",\"波澜步惊\",\"澜波不惊\",\"波澜不惊\"]}"
+    },
+    {
+      "key": "idiom-l2-0255:char_judge:char_judge",
+      "entry_key": "idiom:清风徐来",
+      "prompt": "“清风徐来”的正确写法是？",
+      "answer": "清风徐来",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"徐风清来\",\"风清徐来\",\"清风徐来\",\"青风徐来\"]}"
+    },
+    {
+      "key": "idiom-l2-0267:char_judge:char_judge",
+      "entry_key": "idiom:皓月当空",
+      "prompt": "“皓月当空”的正确写法是？",
+      "answer": "皓月当空",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"当月皓空\",\"月皓当空\",\"空月当皓\",\"皓月当空\"]}"
+    },
+    {
+      "key": "idiom-l2-0269:char_judge:char_judge",
+      "entry_key": "idiom:碧波荡漾",
+      "prompt": "“碧波荡漾”的正确写法是？",
+      "answer": "碧波荡漾",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"荡波碧漾\",\"漾波荡碧\",\"碧波荡漾\",\"波碧荡漾\"]}"
+    },
+    {
+      "key": "idiom-l2-0272:char_judge:char_judge",
+      "entry_key": "idiom:繁星满天",
+      "prompt": "“繁星满天”的正确写法是？",
+      "answer": "繁星满天",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"繁星满夭\",\"繁星满天\",\"满星繁天\",\"星繁满天\"]}"
+    },
+    {
+      "key": "idiom-l2-0305:char_judge:char_judge",
+      "entry_key": "idiom:风景如画",
+      "prompt": "“风景如画”的正确写法是？",
+      "answer": "风景如画",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"景风如画\",\"风景如画\",\"画景如风\",\"如景风画\"]}"
+    },
+    {
+      "key": "idiom-l2-0319:char_judge:char_judge",
+      "entry_key": "idiom:灯火通明",
+      "prompt": "“灯火通明”的正确写法是？",
+      "answer": "灯火通明",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"灯火通明\",\"通火灯明\",\"火灯通明\",\"明火通灯\"]}"
+    },
+    {
+      "key": "idiom-l2-0320:char_judge:char_judge",
+      "entry_key": "idiom:灯火阑珊",
+      "prompt": "“灯火阑珊”的正确写法是？",
+      "answer": "灯火阑珊",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"灯火阑珊\",\"阑火灯珊\",\"火灯阑珊\",\"珊火阑灯\"]}"
+    },
+    {
+      "key": "idiom-l2-0321:char_judge:char_judge",
+      "entry_key": "idiom:热闹异常",
+      "prompt": "“热闹异常”的正确写法是？",
+      "answer": "热闹异常",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"异闹热常\",\"常闹异热\",\"热闹异常\",\"闹热异常\"]}"
+    },
+    {
+      "key": "idiom-l2-0322:char_judge:char_judge",
+      "entry_key": "idiom:热闹非凡",
+      "prompt": "“热闹非凡”的正确写法是？",
+      "answer": "热闹非凡",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"热闹非凡\",\"凡闹非热\",\"闹热非凡\",\"非闹热凡\"]}"
+    },
+    {
+      "key": "idiom-l2-0354:char_judge:char_judge",
+      "entry_key": "idiom:不入虎穴",
+      "prompt": "“不入虎穴”的正确写法是？",
+      "answer": "不入虎穴",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"不人虎穴\",\"步入虎穴\",\"入不虎穴\",\"不入虎穴\"]}"
+    },
+    {
+      "key": "idiom-l2-0356:char_judge:char_judge",
+      "entry_key": "idiom:九牛二虎",
+      "prompt": "“九牛二虎”的正确写法是？",
+      "answer": "九牛二虎",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"九牛二虎\",\"牛九二虎\",\"二牛九虎\",\"虎牛二九\"]}"
+    },
+    {
+      "key": "idiom-l2-0370:char_judge:char_judge",
+      "entry_key": "idiom:沈鱼落雁",
+      "prompt": "“沈鱼落雁”的正确写法是？",
+      "answer": "沈鱼落雁",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"雁鱼落沈\",\"鱼沈落雁\",\"落鱼沈雁\",\"沈鱼落雁\"]}"
+    },
+    {
+      "key": "idiom-l2-0389:char_judge:char_judge",
+      "entry_key": "idiom:螳螂捕蝉",
+      "prompt": "“螳螂捕蝉”的正确写法是？",
+      "answer": "螳螂捕蝉",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"螳螂捕蝉\",\"蝉螂捕螳\",\"螂螳捕蝉\",\"捕螂螳蝉\"]}"
+    },
+    {
+      "key": "idiom-l3-0435:char_judge:char_judge",
+      "entry_key": "idiom:秋色宜人",
+      "prompt": "“秋色宜人”的正确写法是？",
+      "answer": "秋色宜人",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"秋色宜入\",\"色秋宜人\",\"秋色宜人\",\"宜色秋人\"]}"
+    },
+    {
+      "key": "idiom-l3-0436:char_judge:char_judge",
+      "entry_key": "idiom:落叶纷飞",
+      "prompt": "“落叶纷飞”的正确写法是？",
+      "answer": "落叶纷飞",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"飞叶纷落\",\"纷叶落飞\",\"叶落纷飞\",\"落叶纷飞\"]}"
+    },
+    {
+      "key": "idiom-l3-0443:char_judge:char_judge",
+      "entry_key": "idiom:大雪纷飞",
+      "prompt": "“大雪纷飞”的正确写法是？",
+      "answer": "大雪纷飞",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"大雪纷飞\",\"太雪纷飞\",\"雪大纷飞\",\"纷雪大飞\"]}"
+    },
+    {
+      "key": "idiom-l3-0445:char_judge:char_judge",
+      "entry_key": "idiom:寒气袭人",
+      "prompt": "“寒气袭人”的正确写法是？",
+      "answer": "寒气袭人",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"寒气袭入\",\"袭气寒人\",\"寒气袭人\",\"气寒袭人\"]}"
+    },
+    {
+      "key": "idiom-l3-0446:char_judge:char_judge",
+      "entry_key": "idiom:寒气逼人",
+      "prompt": "“寒气逼人”的正确写法是？",
+      "answer": "寒气逼人",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"寒气逼人\",\"逼气寒人\",\"寒气逼入\",\"气寒逼人\"]}"
+    },
+    {
+      "key": "idiom-l3-0447:char_judge:char_judge",
+      "entry_key": "idiom:寒风刺骨",
+      "prompt": "“寒风刺骨”的正确写法是？",
+      "answer": "寒风刺骨",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"风寒刺骨\",\"骨风刺寒\",\"寒风刺骨\",\"刺风寒骨\"]}"
+    },
+    {
+      "key": "idiom-l3-0457:char_judge:char_judge",
+      "entry_key": "idiom:暑气逼人",
+      "prompt": "“暑气逼人”的正确写法是？",
+      "answer": "暑气逼人",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"暑气逼人\",\"暑气逼入\",\"逼气暑人\",\"气暑逼人\"]}"
+    },
+    {
+      "key": "idiom-l3-0460:char_judge:char_judge",
+      "entry_key": "idiom:骄阳似火",
+      "prompt": "“骄阳似火”的正确写法是？",
+      "answer": "骄阳似火",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"火阳似骄\",\"骄阳似火\",\"似阳骄火\",\"阳骄似火\"]}"
+    },
+    {
+      "key": "idiom-l3-0470:char_judge:char_judge",
+      "entry_key": "idiom:虚度光阴",
+      "prompt": "“虚度光阴”的正确写法是？",
+      "answer": "虚度光阴",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"度虚光阴\",\"阴度光虚\",\"虚度光阴\",\"光度虚阴\"]}"
+    },
+    {
+      "key": "idiom-l3-0491:char_judge:char_judge",
+      "entry_key": "idiom:一心报国",
+      "prompt": "“一心报国”的正确写法是？",
+      "answer": "一心报国",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"报心一国\",\"心一报国\",\"一心报国\",\"一必报国\"]}"
+    },
+    {
+      "key": "idiom-l3-0569:char_judge:char_judge",
+      "entry_key": "idiom:低人一等",
+      "prompt": "“低人一等”的正确写法是？",
+      "answer": "低人一等",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"一人低等\",\"低入一等\",\"人低一等\",\"低人一等\"]}"
+    },
+    {
+      "key": "idiom-l3-0603:char_judge:char_judge",
+      "entry_key": "idiom:成百上千",
+      "prompt": "“成百上千”的正确写法是？",
+      "answer": "成百上千",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"城百上千\",\"百成上千\",\"成百上千\",\"成百上干\"]}"
+    },
+    {
+      "key": "idiom-l3-0608:char_judge:char_judge",
+      "entry_key": "idiom:晴空万里",
+      "prompt": "“晴空万里”的正确写法是？",
+      "answer": "晴空万里",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"晴空方里\",\"空晴万里\",\"晴空万里\",\"万空晴里\"]}"
+    },
+    {
+      "key": "idiom-l3-0609:char_judge:char_judge",
+      "entry_key": "idiom:更上一层",
+      "prompt": "“更上一层”的正确写法是？",
+      "answer": "更上一层",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"更上一层\",\"层上一更\",\"一上更层\",\"上更一层\"]}"
+    },
+    {
+      "key": "idiom-l3-0613:char_judge:char_judge",
+      "entry_key": "idiom:激动万分",
+      "prompt": "“激动万分”的正确写法是？",
+      "answer": "激动万分",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"激动万分\",\"动激万分\",\"激动方分\",\"万动激分\"]}"
+    },
+    {
+      "key": "idiom-l3-0643:char_judge:char_judge",
+      "entry_key": "idiom:冷冷清清",
+      "prompt": "“冷冷清清”的正确写法是？",
+      "answer": "冷冷清清",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"冷冷青清\",\"清冷冷清\",\"冷冷清清\",\"冷冷清青\"]}"
+    },
+    {
+      "key": "idiom-l3-0645:char_judge:char_judge",
+      "entry_key": "idiom:匆匆忙忙",
+      "prompt": "“匆匆忙忙”的正确写法是？",
+      "answer": "匆匆忙忙",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"匆忙匆忙\",\"忙匆忙匆\",\"匆匆忙忙\",\"忙匆匆忙\"]}"
+    },
+    {
+      "key": "idiom-l3-0649:char_judge:char_judge",
+      "entry_key": "idiom:嘻嘻哈哈",
+      "prompt": "“嘻嘻哈哈”的正确写法是？",
+      "answer": "嘻嘻哈哈",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"哈嘻哈嘻\",\"嘻嘻哈哈\",\"嘻哈嘻哈\",\"哈嘻嘻哈\"]}"
+    },
+    {
+      "key": "idiom-l3-0650:char_judge:char_judge",
+      "entry_key": "idiom:圆圆满满",
+      "prompt": "“圆圆满满”的正确写法是？",
+      "answer": "圆圆满满",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"满圆满圆\",\"满圆圆满\",\"圆满圆满\",\"圆圆满满\"]}"
+    },
+    {
+      "key": "idiom-l3-0652:char_judge:char_judge",
+      "entry_key": "idiom:多多少少",
+      "prompt": "“多多少少”的正确写法是？",
+      "answer": "多多少少",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"多少多少\",\"少多少多\",\"多多少少\",\"少多多少\"]}"
+    },
+    {
+      "key": "idiom-l3-0653:char_judge:char_judge",
+      "entry_key": "idiom:大大小小",
+      "prompt": "“大大小小”的正确写法是？",
+      "answer": "大大小小",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"大大小小\",\"大太小小\",\"太大小小\",\"小大大小\"]}"
+    },
+    {
+      "key": "idiom-l3-0654:char_judge:char_judge",
+      "entry_key": "idiom:密密麻麻",
+      "prompt": "“密密麻麻”的正确写法是？",
+      "answer": "密密麻麻",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"密麻密麻\",\"麻密麻密\",\"密密麻麻\",\"麻密密麻\"]}"
+    },
+    {
+      "key": "idiom-l3-0655:char_judge:char_judge",
+      "entry_key": "idiom:干干净净",
+      "prompt": "“干干净净”的正确写法是？",
+      "answer": "干干净净",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"干千净净\",\"净干干净\",\"千干净净\",\"干干净净\"]}"
+    },
+    {
+      "key": "idiom-l3-0656:char_judge:char_judge",
+      "entry_key": "idiom:平平安安",
+      "prompt": "“平平安安”的正确写法是？",
+      "answer": "平平安安",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"平平安安\",\"安平平安\",\"平安平安\",\"安平安平\"]}"
+    },
+    {
+      "key": "idiom-l3-0657:char_judge:char_judge",
+      "entry_key": "idiom:开开心心",
+      "prompt": "“开开心心”的正确写法是？",
+      "answer": "开开心心",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"开开心心\",\"心开开心\",\"开开必心\",\"开开心必\"]}"
+    },
+    {
+      "key": "idiom-l3-0658:char_judge:char_judge",
+      "entry_key": "idiom:弯弯曲曲",
+      "prompt": "“弯弯曲曲”的正确写法是？",
+      "answer": "弯弯曲曲",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"曲弯弯曲\",\"曲弯曲弯\",\"弯曲弯曲\",\"弯弯曲曲\"]}"
+    },
+    {
+      "key": "idiom-l3-0661:char_judge:char_judge",
+      "entry_key": "idiom:快快乐乐",
+      "prompt": "“快快乐乐”的正确写法是？",
+      "answer": "快快乐乐",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"快快乐乐\",\"乐快乐快\",\"乐快快乐\",\"快乐快乐\"]}"
+    },
+    {
+      "key": "idiom-l3-0663:char_judge:char_judge",
+      "entry_key": "idiom:懒懒散散",
+      "prompt": "“懒懒散散”的正确写法是？",
+      "answer": "懒懒散散",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"懒懒散散\",\"散懒懒散\",\"散懒散懒\",\"懒散懒散\"]}"
+    },
+    {
+      "key": "idiom-l3-0664:char_judge:char_judge",
+      "entry_key": "idiom:扎扎实实",
+      "prompt": "“扎扎实实”的正确写法是？",
+      "answer": "扎扎实实",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"扎扎实实\",\"实扎实扎\",\"实扎扎实\",\"扎实扎实\"]}"
+    },
+    {
+      "key": "idiom-l3-0665:char_judge:char_judge",
+      "entry_key": "idiom:摇摇摆摆",
+      "prompt": "“摇摇摆摆”的正确写法是？",
+      "answer": "摇摇摆摆",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"摆摇摆摇\",\"摇摆摇摆\",\"摇摇摆摆\",\"摆摇摇摆\"]}"
+    },
+    {
+      "key": "idiom-l3-0666:char_judge:char_judge",
+      "entry_key": "idiom:整整齐齐",
+      "prompt": "“整整齐齐”的正确写法是？",
+      "answer": "整整齐齐",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"整齐整齐\",\"整整齐齐\",\"齐整整齐\",\"齐整齐整\"]}"
+    },
+    {
+      "key": "idiom-l3-0667:char_judge:char_judge",
+      "entry_key": "idiom:断断续续",
+      "prompt": "“断断续续”的正确写法是？",
+      "answer": "断断续续",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"续断断续\",\"续断续断\",\"断续断续\",\"断断续续\"]}"
+    },
+    {
+      "key": "idiom-l3-0668:char_judge:char_judge",
+      "entry_key": "idiom:方方正正",
+      "prompt": "“方方正正”的正确写法是？",
+      "answer": "方方正正",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"方正方正\",\"方方正正\",\"正方正方\",\"正方方正\"]}"
+    },
+    {
+      "key": "idiom-l3-0671:char_judge:char_judge",
+      "entry_key": "idiom:曲曲折折",
+      "prompt": "“曲曲折折”的正确写法是？",
+      "answer": "曲曲折折",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"折曲曲折\",\"折曲折曲\",\"曲折曲折\",\"曲曲折折\"]}"
+    },
+    {
+      "key": "idiom-l3-0672:char_judge:char_judge",
+      "entry_key": "idiom:来来往往",
+      "prompt": "“来来往往”的正确写法是？",
+      "answer": "来来往往",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"来往来往\",\"往来往来\",\"来来往往\",\"往来来往\"]}"
+    },
+    {
+      "key": "idiom-l3-0673:char_judge:char_judge",
+      "entry_key": "idiom:模模糊糊",
+      "prompt": "“模模糊糊”的正确写法是？",
+      "answer": "模模糊糊",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"模糊模糊\",\"糊模糊模\",\"模模糊糊\",\"糊模模糊\"]}"
+    },
+    {
+      "key": "idiom-l3-0677:char_judge:char_judge",
+      "entry_key": "idiom:炳炳凿凿",
+      "prompt": "“炳炳凿凿”的正确写法是？",
+      "answer": "炳炳凿凿",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"炳凿炳凿\",\"凿炳凿炳\",\"凿炳炳凿\",\"炳炳凿凿\"]}"
+    },
+    {
+      "key": "idiom-l3-0679:char_judge:char_judge",
+      "entry_key": "idiom:犹犹豫豫",
+      "prompt": "“犹犹豫豫”的正确写法是？",
+      "answer": "犹犹豫豫",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"豫犹犹豫\",\"豫犹豫犹\",\"犹豫犹豫\",\"犹犹豫豫\"]}"
+    },
+    {
+      "key": "idiom-l3-0680:char_judge:char_judge",
+      "entry_key": "idiom:真真假假",
+      "prompt": "“真真假假”的正确写法是？",
+      "answer": "真真假假",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"真假真假\",\"真真假假\",\"假真真假\",\"假真假真\"]}"
+    },
+    {
+      "key": "idiom-l3-0681:char_judge:char_judge",
+      "entry_key": "idiom:端端正正",
+      "prompt": "“端端正正”的正确写法是？",
+      "answer": "端端正正",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"正端端正\",\"正端正端\",\"端正端正\",\"端端正正\"]}"
+    },
+    {
+      "key": "idiom-l3-0682:char_judge:char_judge",
+      "entry_key": "idiom:红红火火",
+      "prompt": "“红红火火”的正确写法是？",
+      "answer": "红红火火",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"红红火火\",\"红火红火\",\"火红火红\",\"火红红火\"]}"
+    },
+    {
+      "key": "idiom-l3-0685:char_judge:char_judge",
+      "entry_key": "idiom:老老实实",
+      "prompt": "“老老实实”的正确写法是？",
+      "answer": "老老实实",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"实老老实\",\"老老实实\",\"老实老实\",\"实老实老\"]}"
+    },
+    {
+      "key": "idiom-l3-0687:char_judge:char_judge",
+      "entry_key": "idiom:认认真真",
+      "prompt": "“认认真真”的正确写法是？",
+      "answer": "认认真真",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"认认真真\",\"真认真认\",\"真认认真\",\"认真认真\"]}"
+    },
+    {
+      "key": "idiom-l3-0688:char_judge:char_judge",
+      "entry_key": "idiom:踏踏实实",
+      "prompt": "“踏踏实实”的正确写法是？",
+      "answer": "踏踏实实",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"踏踏实实\",\"实踏实踏\",\"实踏踏实\",\"踏实踏实\"]}"
+    },
+    {
+      "key": "idiom-l3-0690:char_judge:char_judge",
+      "entry_key": "idiom:进进出出",
+      "prompt": "“进进出出”的正确写法是？",
+      "answer": "进进出出",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"进进出出\",\"出进进出\",\"进出进出\",\"出进出进\"]}"
+    },
+    {
+      "key": "idiom-l3-0692:char_judge:char_judge",
+      "entry_key": "idiom:长长短短",
+      "prompt": "“长长短短”的正确写法是？",
+      "answer": "长长短短",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"长短长短\",\"短长短长\",\"短长长短\",\"长长短短\"]}"
+    },
+    {
+      "key": "idiom-l3-0693:char_judge:char_judge",
+      "entry_key": "idiom:陆陆续续",
+      "prompt": "“陆陆续续”的正确写法是？",
+      "answer": "陆陆续续",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"续陆陆续\",\"续陆续陆\",\"陆陆续续\",\"陆续陆续\"]}"
+    },
+    {
+      "key": "idiom-l3-0696:char_judge:char_judge",
+      "entry_key": "idiom:高高低低",
+      "prompt": "“高高低低”的正确写法是？",
+      "answer": "高高低低",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"低高低高\",\"高低高低\",\"低高高低\",\"高高低低\"]}"
+    },
+    {
+      "key": "idiom-l3-0697:char_judge:char_judge",
+      "entry_key": "idiom:高高兴兴",
+      "prompt": "“高高兴兴”的正确写法是？",
+      "answer": "高高兴兴",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"高兴高兴\",\"高高兴兴\",\"兴高兴高\",\"兴高高兴\"]}"
+    },
+    {
+      "key": "idiom-l3-0700:char_judge:char_judge",
+      "entry_key": "idiom:上蹿下跳",
+      "prompt": "“上蹿下跳”的正确写法是？",
+      "answer": "上蹿下跳",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"蹿上下跳\",\"跳蹿下上\",\"上蹿下跳\",\"下蹿上跳\"]}"
+    },
+    {
+      "key": "idiom-l3-0731:char_judge:char_judge",
+      "entry_key": "idiom:不畏艰险",
+      "prompt": "“不畏艰险”的正确写法是？",
+      "answer": "不畏艰险",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"艰畏不险\",\"步畏艰险\",\"不畏艰险\",\"畏不艰险\"]}"
+    },
+    {
+      "key": "idiom-l3-0773:char_judge:char_judge",
+      "entry_key": "idiom:主次分明",
+      "prompt": "“主次分明”的正确写法是？",
+      "answer": "主次分明",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"明次分主\",\"分次主明\",\"主次分明\",\"次主分明\"]}"
+    },
+    {
+      "key": "idiom-l3-0775:char_judge:char_judge",
+      "entry_key": "idiom:举步维艰",
+      "prompt": "“举步维艰”的正确写法是？",
+      "answer": "举步维艰",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"举步维艰\",\"步举维艰\",\"维步举艰\",\"举不维艰\"]}"
+    },
+    {
+      "key": "idiom-l3-0780:char_judge:char_judge",
+      "entry_key": "idiom:乐于助人",
+      "prompt": "“乐于助人”的正确写法是？",
+      "answer": "乐于助人",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"于乐助人\",\"乐于助人\",\"助于乐人\",\"乐于助入\"]}"
+    },
+    {
+      "key": "idiom-l3-0792:char_judge:char_judge",
+      "entry_key": "idiom:互帮互助",
+      "prompt": "“互帮互助”的正确写法是？",
+      "answer": "互帮互助",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"互帮互助\",\"帮互互助\",\"互互帮助\",\"助帮互互\"]}"
+    },
+    {
+      "key": "idiom-l3-0795:char_judge:char_judge",
+      "entry_key": "idiom:亲切和蔼",
+      "prompt": "“亲切和蔼”的正确写法是？",
+      "answer": "亲切和蔼",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"蔼切和亲\",\"亲切和蔼\",\"和切亲蔼\",\"切亲和蔼\"]}"
+    },
+    {
+      "key": "idiom-l3-0798:char_judge:char_judge",
+      "entry_key": "idiom:人声嘈杂",
+      "prompt": "“人声嘈杂”的正确写法是？",
+      "answer": "人声嘈杂",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"入声嘈杂\",\"嘈声人杂\",\"人声嘈杂\",\"声人嘈杂\"]}"
+    },
+    {
+      "key": "idiom-l3-0908:char_judge:char_judge",
+      "entry_key": "idiom:华灯初上",
+      "prompt": "“华灯初上”的正确写法是？",
+      "answer": "华灯初上",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"灯华初上\",\"华灯初上\",\"初灯华上\",\"上灯初华\"]}"
+    },
+    {
+      "key": "idiom-l3-0929:char_judge:char_judge",
+      "entry_key": "idiom:古树参天",
+      "prompt": "“古树参天”的正确写法是？",
+      "answer": "古树参天",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"参树古天\",\"古树参夭\",\"古树参天\",\"树古参天\"]}"
+    },
+    {
+      "key": "idiom-l3-0982:char_judge:char_judge",
+      "entry_key": "idiom:嗓音洪亮",
+      "prompt": "“嗓音洪亮”的正确写法是？",
+      "answer": "嗓音洪亮",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"亮音洪嗓\",\"洪音嗓亮\",\"音嗓洪亮\",\"嗓音洪亮\"]}"
+    },
+    {
+      "key": "idiom-l3-0989:char_judge:char_judge",
+      "entry_key": "idiom:团结互助",
+      "prompt": "“团结互助”的正确写法是？",
+      "answer": "团结互助",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"团结互助\",\"结团互助\",\"助结互团\",\"互结团助\"]}"
+    },
+    {
+      "key": "idiom-l3-0990:char_judge:char_judge",
+      "entry_key": "idiom:团结友爱",
+      "prompt": "“团结友爱”的正确写法是？",
+      "answer": "团结友爱",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"友结团爱\",\"团结友爱\",\"爱结友团\",\"结团友爱\"]}"
+    },
+    {
+      "key": "idiom-l3-0998:char_judge:char_judge",
+      "entry_key": "idiom:圆满成功",
+      "prompt": "“圆满成功”的正确写法是？",
+      "answer": "圆满成功",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"圆满成功\",\"成满圆功\",\"满圆成功\",\"圆满城功\"]}"
+    },
+    {
+      "key": "idiom-l3-1007:char_judge:char_judge",
+      "entry_key": "idiom:境地尴尬",
+      "prompt": "“境地尴尬”的正确写法是？",
+      "answer": "境地尴尬",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"尴地境尬\",\"境地尴尬\",\"地境尴尬\",\"境第尴尬\"]}"
+    },
+    {
+      "key": "idiom-l3-1039:char_judge:char_judge",
+      "entry_key": "idiom:天差地别",
+      "prompt": "“天差地别”的正确写法是？",
+      "answer": "天差地别",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"天差第别\",\"差天地别\",\"夭差地别\",\"天差地别\"]}"
+    },
+    {
+      "key": "idiom-l3-1085:char_judge:char_judge",
+      "entry_key": "idiom:完好无损",
+      "prompt": "“完好无损”的正确写法是？",
+      "answer": "完好无损",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"完好无损\",\"无好完损\",\"完好天损\",\"好完无损\"]}"
+    },
+    {
+      "key": "idiom-l3-1092:char_judge:char_judge",
+      "entry_key": "idiom:宽容大度",
+      "prompt": "“宽容大度”的正确写法是？",
+      "answer": "宽容大度",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"大容宽度\",\"宽容太度\",\"宽容大度\",\"容宽大度\"]}"
+    },
+    {
+      "key": "idiom-l3-1104:char_judge:char_judge",
+      "entry_key": "idiom:尊老爱幼",
+      "prompt": "“尊老爱幼”的正确写法是？",
+      "answer": "尊老爱幼",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"爱老尊幼\",\"幼老爱尊\",\"老尊爱幼\",\"尊老爱幼\"]}"
+    },
+    {
+      "key": "idiom-l3-1109:char_judge:char_judge",
+      "entry_key": "idiom:尘土飞扬",
+      "prompt": "“尘土飞扬”的正确写法是？",
+      "answer": "尘土飞扬",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"土尘飞扬\",\"尘士飞扬\",\"尘土飞扬\",\"飞土尘扬\"]}"
+    },
+    {
+      "key": "idiom-l3-1110:char_judge:char_judge",
+      "entry_key": "idiom:尬尴场面",
+      "prompt": "“尬尴场面”的正确写法是？",
+      "answer": "尬尴场面",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"面尴场尬\",\"场尴尬面\",\"尬尴场面\",\"尴尬场面\"]}"
+    },
+    {
+      "key": "idiom-l3-1114:char_judge:char_judge",
+      "entry_key": "idiom:层次分明",
+      "prompt": "“层次分明”的正确写法是？",
+      "answer": "层次分明",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"次层分明\",\"明次分层\",\"层次分明\",\"分次层明\"]}"
+    },
+    {
+      "key": "idiom-l3-1158:char_judge:char_judge",
+      "entry_key": "idiom:彩旗飘扬",
+      "prompt": "“彩旗飘扬”的正确写法是？",
+      "answer": "彩旗飘扬",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"飘旗彩扬\",\"彩旗飘扬\",\"旗彩飘扬\",\"扬旗飘彩\"]}"
+    },
+    {
+      "key": "idiom-l3-1189:char_judge:char_judge",
+      "entry_key": "idiom:志向远大",
+      "prompt": "“志向远大”的正确写法是？",
+      "answer": "志向远大",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"志向远大\",\"向志远大\",\"志向远太\",\"远向志大\"]}"
+    },
+    {
+      "key": "idiom-l3-1197:char_judge:char_judge",
+      "entry_key": "idiom:怪石嶙峋",
+      "prompt": "“怪石嶙峋”的正确写法是？",
+      "answer": "怪石嶙峋",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"嶙石怪峋\",\"怪石嶙峋\",\"石怪嶙峋\",\"峋石嶙怪\"]}"
+    },
+    {
+      "key": "idiom-l3-1198:char_judge:char_judge",
+      "entry_key": "idiom:怯懦无能",
+      "prompt": "“怯懦无能”的正确写法是？",
+      "answer": "怯懦无能",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"懦怯无能\",\"怯懦无能\",\"无懦怯能\",\"怯懦天能\"]}"
+    },
+    {
+      "key": "idiom-l3-1204:char_judge:char_judge",
+      "entry_key": "idiom:悄无声息",
+      "prompt": "“悄无声息”的正确写法是？",
+      "answer": "悄无声息",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"悄天声息\",\"声无悄息\",\"悄无声息\",\"无悄声息\"]}"
+    },
+    {
+      "key": "idiom-l3-1229:char_judge:char_judge",
+      "entry_key": "idiom:慈祥可亲",
+      "prompt": "“慈祥可亲”的正确写法是？",
+      "answer": "慈祥可亲",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"可祥慈亲\",\"亲祥可慈\",\"祥慈可亲\",\"慈祥可亲\"]}"
+    },
+    {
+      "key": "idiom-l3-1231:char_judge:char_judge",
+      "entry_key": "idiom:成事在天",
+      "prompt": "“成事在天”的正确写法是？",
+      "answer": "成事在天",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"成事在天\",\"成事在夭\",\"事成在天\",\"城事在天\"]}"
+    },
+    {
+      "key": "idiom-l3-1269:char_judge:char_judge",
+      "entry_key": "idiom:掌声雷动",
+      "prompt": "“掌声雷动”的正确写法是？",
+      "answer": "掌声雷动",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"动声雷掌\",\"雷声掌动\",\"掌声雷动\",\"声掌雷动\"]}"
+    },
+    {
+      "key": "idiom-l3-1326:char_judge:char_judge",
+      "entry_key": "idiom:无能无力",
+      "prompt": "“无能无力”的正确写法是？",
+      "answer": "无能无力",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"无能无力\",\"无能天力\",\"能无无力\",\"天能无力\"]}"
+    },
+    {
+      "key": "idiom-l3-1334:char_judge:char_judge",
+      "entry_key": "idiom:时隐时现",
+      "prompt": "“时隐时现”的正确写法是？",
+      "answer": "时隐时现",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"时时隐现\",\"现隐时时\",\"时隐时现\",\"隐时时现\"]}"
+    },
+    {
+      "key": "idiom-l3-1342:char_judge:char_judge",
+      "entry_key": "idiom:晚霞满天",
+      "prompt": "“晚霞满天”的正确写法是？",
+      "answer": "晚霞满天",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"晚霞满夭\",\"晚霞满天\",\"霞晚满天\",\"满霞晚天\"]}"
+    },
+    {
+      "key": "idiom-l3-1370:char_judge:char_judge",
+      "entry_key": "idiom:朝霞满天",
+      "prompt": "“朝霞满天”的正确写法是？",
+      "answer": "朝霞满天",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"满霞朝天\",\"霞朝满天\",\"朝霞满夭\",\"朝霞满天\"]}"
+    },
+    {
+      "key": "idiom-l3-1375:char_judge:char_judge",
+      "entry_key": "idiom:条理分明",
+      "prompt": "“条理分明”的正确写法是？",
+      "answer": "条理分明",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"理条分明\",\"明理分条\",\"分理条明\",\"条理分明\"]}"
+    },
+    {
+      "key": "idiom-l3-1376:char_judge:char_judge",
+      "entry_key": "idiom:条理清晰",
+      "prompt": "“条理清晰”的正确写法是？",
+      "answer": "条理清晰",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"清理条晰\",\"条理青晰\",\"条理清晰\",\"理条清晰\"]}"
+    },
+    {
+      "key": "idiom-l3-1379:char_judge:char_judge",
+      "entry_key": "idiom:枫叶似火",
+      "prompt": "“枫叶似火”的正确写法是？",
+      "answer": "枫叶似火",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"枫叶似火\",\"火叶似枫\",\"叶枫似火\",\"似叶枫火\"]}"
+    },
+    {
+      "key": "idiom-l3-1386:char_judge:char_judge",
+      "entry_key": "idiom:桃红李白",
+      "prompt": "“桃红李白”的正确写法是？",
+      "answer": "桃红李白",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"白红李桃\",\"李红桃白\",\"红桃李白\",\"桃红李白\"]}"
+    },
+    {
+      "key": "idiom-l3-1390:char_judge:char_judge",
+      "entry_key": "idiom:欢声笑语",
+      "prompt": "“欢声笑语”的正确写法是？",
+      "answer": "欢声笑语",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"欢声笑语\",\"声欢笑语\",\"笑声欢语\",\"欢声笑悟\"]}"
+    },
+    {
+      "key": "idiom-l3-1398:char_judge:char_judge",
+      "entry_key": "idiom:止步不前",
+      "prompt": "“止步不前”的正确写法是？",
+      "answer": "止步不前",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"止不不前\",\"止步不前\",\"止步步前\",\"步止不前\"]}"
+    },
+    {
+      "key": "idiom-l3-1407:char_judge:char_judge",
+      "entry_key": "idiom:残阳如血",
+      "prompt": "“残阳如血”的正确写法是？",
+      "answer": "残阳如血",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"血阳如残\",\"残阳如血\",\"阳残如血\",\"如阳残血\"]}"
+    },
+    {
+      "key": "idiom-l3-1408:char_judge:char_judge",
+      "entry_key": "idiom:殷切期望",
+      "prompt": "“殷切期望”的正确写法是？",
+      "answer": "殷切期望",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"期切殷望\",\"切殷期望\",\"望切期殷\",\"殷切期望\"]}"
+    },
+    {
+      "key": "idiom-l3-1416:char_judge:char_judge",
+      "entry_key": "idiom:求真务实",
+      "prompt": "“求真务实”的正确写法是？",
+      "answer": "求真务实",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"真求务实\",\"求真务实\",\"实真务求\",\"务真求实\"]}"
+    },
+    {
+      "key": "idiom-l3-1460:char_judge:char_judge",
+      "entry_key": "idiom:烟雾弥漫",
+      "prompt": "“烟雾弥漫”的正确写法是？",
+      "answer": "烟雾弥漫",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"弥雾烟漫\",\"漫雾弥烟\",\"烟雾弥漫\",\"雾烟弥漫\"]}"
+    },
+    {
+      "key": "idiom-l3-1461:char_judge:char_judge",
+      "entry_key": "idiom:烟雾缭绕",
+      "prompt": "“烟雾缭绕”的正确写法是？",
+      "answer": "烟雾缭绕",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"绕雾缭烟\",\"缭雾烟绕\",\"雾烟缭绕\",\"烟雾缭绕\"]}"
+    },
+    {
+      "key": "idiom-l3-1508:char_judge:char_judge",
+      "entry_key": "idiom:相差甚远",
+      "prompt": "“相差甚远”的正确写法是？",
+      "answer": "相差甚远",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"差相甚远\",\"远差甚相\",\"相差甚远\",\"甚差相远\"]}"
+    },
+    {
+      "key": "idiom-l3-1516:char_judge:char_judge",
+      "entry_key": "idiom:眨眼之间",
+      "prompt": "“眨眼之间”的正确写法是？",
+      "answer": "眨眼之间",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"之眼眨间\",\"眼眨之间\",\"眨眼之间\",\"间眼之眨\"]}"
+    },
+    {
+      "key": "idiom-l3-1533:char_judge:char_judge",
+      "entry_key": "idiom:神色慌张",
+      "prompt": "“神色慌张”的正确写法是？",
+      "answer": "神色慌张",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"色神慌张\",\"慌色神张\",\"张色慌神\",\"神色慌张\"]}"
+    },
+    {
+      "key": "idiom-l3-1537:char_judge:char_judge",
+      "entry_key": "idiom:稍不注意",
+      "prompt": "“稍不注意”的正确写法是？",
+      "answer": "稍不注意",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"注不稍意\",\"稍步注意\",\"稍不注意\",\"不稍注意\"]}"
+    },
+    {
+      "key": "idiom-l3-1549:char_judge:char_judge",
+      "entry_key": "idiom:笑语喧哗",
+      "prompt": "“笑语喧哗”的正确写法是？",
+      "answer": "笑语喧哗",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"笑语喧哗\",\"笑悟喧哗\",\"喧语笑哗\",\"语笑喧哗\"]}"
+    },
+    {
+      "key": "idiom-l3-1552:char_judge:char_judge",
+      "entry_key": "idiom:笨手笨脚",
+      "prompt": "“笨手笨脚”的正确写法是？",
+      "answer": "笨手笨脚",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"手笨笨脚\",\"笨手笨脚\",\"笨笨手脚\",\"脚手笨笨\"]}"
+    },
+    {
+      "key": "idiom-l3-1568:char_judge:char_judge",
+      "entry_key": "idiom:红旗招展",
+      "prompt": "“红旗招展”的正确写法是？",
+      "answer": "红旗招展",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"旗红招展\",\"招旗红展\",\"红旗招展\",\"展旗招红\"]}"
+    },
+    {
+      "key": "idiom-l3-1569:char_judge:char_judge",
+      "entry_key": "idiom:红日高照",
+      "prompt": "“红日高照”的正确写法是？",
+      "answer": "红日高照",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"高日红照\",\"日红高照\",\"红日高照\",\"照日高红\"]}"
+    },
+    {
+      "key": "idiom-l3-1572:char_judge:char_judge",
+      "entry_key": "idiom:细心观察",
+      "prompt": "“细心观察”的正确写法是？",
+      "answer": "细心观察",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"观心细察\",\"心细观察\",\"细必观察\",\"细心观察\"]}"
+    },
+    {
+      "key": "idiom-l3-1579:char_judge:char_judge",
+      "entry_key": "idiom:绿意盎然",
+      "prompt": "“绿意盎然”的正确写法是？",
+      "answer": "绿意盎然",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"意绿盎然\",\"绿意盎然\",\"盎意绿然\",\"然意盎绿\"]}"
+    },
+    {
+      "key": "idiom-l3-1580:char_judge:char_judge",
+      "entry_key": "idiom:绿树成荫",
+      "prompt": "“绿树成荫”的正确写法是？",
+      "answer": "绿树成荫",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"树绿成荫\",\"绿树成荫\",\"成树绿荫\",\"绿树城荫\"]}"
+    },
+    {
+      "key": "idiom-l3-1637:char_judge:char_judge",
+      "entry_key": "idiom:至关重要",
+      "prompt": "“至关重要”的正确写法是？",
+      "answer": "至关重要",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"要关重至\",\"重关至要\",\"关至重要\",\"至关重要\"]}"
+    },
+    {
+      "key": "idiom-l3-1649:char_judge:char_judge",
+      "entry_key": "idiom:色彩斑斓",
+      "prompt": "“色彩斑斓”的正确写法是？",
+      "answer": "色彩斑斓",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"斑彩色斓\",\"色彩斑斓\",\"斓彩斑色\",\"彩色斑斓\"]}"
+    },
+    {
+      "key": "idiom-l3-1651:char_judge:char_judge",
+      "entry_key": "idiom:芬芳扑鼻",
+      "prompt": "“芬芳扑鼻”的正确写法是？",
+      "answer": "芬芳扑鼻",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"鼻芳扑芬\",\"芳芬扑鼻\",\"扑芳芬鼻\",\"芬芳扑鼻\"]}"
+    },
+    {
+      "key": "idiom-l3-1689:char_judge:char_judge",
+      "entry_key": "idiom:解除武装",
+      "prompt": "“解除武装”的正确写法是？",
+      "answer": "解除武装",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"武除解装\",\"除解武装\",\"装除武解\",\"解除武装\"]}"
+    },
+    {
+      "key": "idiom-l3-1698:char_judge:char_judge",
+      "entry_key": "idiom:详略得当",
+      "prompt": "“详略得当”的正确写法是？",
+      "answer": "详略得当",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"详略得当\",\"得略详当\",\"当略得详\",\"略详得当\"]}"
+    },
+    {
+      "key": "idiom-l3-1702:char_judge:char_judge",
+      "entry_key": "idiom:说到做到",
+      "prompt": "“说到做到”的正确写法是？",
+      "answer": "说到做到",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"说到做道\",\"说到作到\",\"说到做到\",\"说道做到\"]}"
+    },
+    {
+      "key": "idiom-l3-1714:char_judge:char_judge",
+      "entry_key": "idiom:赃款赃物",
+      "prompt": "“赃款赃物”的正确写法是？",
+      "answer": "赃款赃物",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"赃款赃物\",\"赃款赃勿\",\"款赃赃物\",\"物款赃赃\"]}"
+    },
+    {
+      "key": "idiom-l3-1716:char_judge:char_judge",
+      "entry_key": "idiom:赔了夫人",
+      "prompt": "“赔了夫人”的正确写法是？",
+      "answer": "赔了夫人",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"赔了夫入\",\"夫了赔人\",\"了赔夫人\",\"赔了夫人\"]}"
+    },
+    {
+      "key": "idiom-l3-1734:char_judge:char_judge",
+      "entry_key": "idiom:转瞬即逝",
+      "prompt": "“转瞬即逝”的正确写法是？",
+      "answer": "转瞬即逝",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"瞬转即逝\",\"即瞬转逝\",\"转瞬即逝\",\"转瞬既逝\"]}"
+    },
+    {
+      "key": "idiom-l3-1736:char_judge:char_judge",
+      "entry_key": "idiom:软弱无能",
+      "prompt": "“软弱无能”的正确写法是？",
+      "answer": "软弱无能",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"无弱软能\",\"弱软无能\",\"软弱天能\",\"软弱无能\"]}"
+    },
+    {
+      "key": "idiom-l3-1742:char_judge:char_judge",
+      "entry_key": "idiom:迎难而上",
+      "prompt": "“迎难而上”的正确写法是？",
+      "answer": "迎难而上",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"难迎而上\",\"上难而迎\",\"而难迎上\",\"迎难而上\"]}"
+    },
+    {
+      "key": "idiom-l3-1749:char_judge:char_judge",
+      "entry_key": "idiom:远近皆知",
+      "prompt": "“远近皆知”的正确写法是？",
+      "answer": "远近皆知",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"近远皆知\",\"知近皆远\",\"远近皆知\",\"皆近远知\"]}"
+    },
+    {
+      "key": "idiom-l3-1750:char_judge:char_judge",
+      "entry_key": "idiom:远近闻名",
+      "prompt": "“远近闻名”的正确写法是？",
+      "answer": "远近闻名",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"远近闻名\",\"近远闻名\",\"名近闻远\",\"闻近远名\"]}"
+    },
+    {
+      "key": "idiom-l3-1764:char_judge:char_judge",
+      "entry_key": "idiom:遵纪守法",
+      "prompt": "“遵纪守法”的正确写法是？",
+      "answer": "遵纪守法",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"守纪遵法\",\"法纪守遵\",\"遵纪守法\",\"纪遵守法\"]}"
+    },
+    {
+      "key": "idiom-l3-1771:char_judge:char_judge",
+      "entry_key": "idiom:重点突出",
+      "prompt": "“重点突出”的正确写法是？",
+      "answer": "重点突出",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"重点突出\",\"点重突出\",\"出点突重\",\"突点重出\"]}"
+    },
+    {
+      "key": "idiom-l3-1781:char_judge:char_judge",
+      "entry_key": "idiom:银装素裹",
+      "prompt": "“银装素裹”的正确写法是？",
+      "answer": "银装素裹",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"素装银裹\",\"装银素裹\",\"银装素裹\",\"裹装素银\"]}"
+    },
+    {
+      "key": "idiom-l3-1789:char_judge:char_judge",
+      "entry_key": "idiom:镇定自若",
+      "prompt": "“镇定自若”的正确写法是？",
+      "answer": "镇定自若",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"定镇自若\",\"镇定自若\",\"镇定字若\",\"自定镇若\"]}"
+    },
+    {
+      "key": "idiom-l3-1790:char_judge:char_judge",
+      "entry_key": "idiom:长江后浪",
+      "prompt": "“长江后浪”的正确写法是？",
+      "answer": "长江后浪",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"后江长浪\",\"江长后浪\",\"浪江后长\",\"长江后浪\"]}"
+    },
+    {
+      "key": "idiom-l3-1798:char_judge:char_judge",
+      "entry_key": "idiom:阳光明媚",
+      "prompt": "“阳光明媚”的正确写法是？",
+      "answer": "阳光明媚",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"光阳明媚\",\"明光阳媚\",\"媚光明阳\",\"阳光明媚\"]}"
+    },
+    {
+      "key": "idiom-l3-1799:char_judge:char_judge",
+      "entry_key": "idiom:阳光普照",
+      "prompt": "“阳光普照”的正确写法是？",
+      "answer": "阳光普照",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"光阳普照\",\"阳光普照\",\"照光普阳\",\"普光阳照\"]}"
+    },
+    {
+      "key": "idiom-l3-1800:char_judge:char_judge",
+      "entry_key": "idiom:阳光灿烂",
+      "prompt": "“阳光灿烂”的正确写法是？",
+      "answer": "阳光灿烂",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"烂光灿阳\",\"阳光灿烂\",\"光阳灿烂\",\"灿光阳烂\"]}"
+    },
+    {
+      "key": "idiom-l3-1807:char_judge:char_judge",
+      "entry_key": "idiom:难分高低",
+      "prompt": "“难分高低”的正确写法是？",
+      "answer": "难分高低",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"难分高低\",\"高分难低\",\"分难高低\",\"低分高难\"]}"
+    },
+    {
+      "key": "idiom-l3-1823:char_judge:char_judge",
+      "entry_key": "idiom:鞭炮齐鸣",
+      "prompt": "“鞭炮齐鸣”的正确写法是？",
+      "answer": "鞭炮齐鸣",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"齐炮鞭鸣\",\"鞭炮齐鸣\",\"炮鞭齐鸣\",\"鸣炮齐鞭\"]}"
+    },
+    {
+      "key": "idiom-l3-1835:char_judge:char_judge",
+      "entry_key": "idiom:香气扑鼻",
+      "prompt": "“香气扑鼻”的正确写法是？",
+      "answer": "香气扑鼻",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"扑气香鼻\",\"香气扑鼻\",\"气香扑鼻\",\"鼻气扑香\"]}"
+    },
+    {
+      "key": "idiom-l3-1861:char_judge:char_judge",
+      "entry_key": "idiom:冬雪皑皑",
+      "prompt": "“冬雪皑皑”的正确写法是？",
+      "answer": "冬雪皑皑",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"雪冬皑皑\",\"皑雪皑冬\",\"冬雪皑皑\",\"皑雪冬皑\"]}"
+    },
+    {
+      "key": "idiom-l3-1862:char_judge:char_judge",
+      "entry_key": "idiom:冷气森森",
+      "prompt": "“冷气森森”的正确写法是？",
+      "answer": "冷气森森",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"森气冷森\",\"气冷森森\",\"森气森冷\",\"冷气森森\"]}"
+    },
+    {
+      "key": "idiom-l3-1863:char_judge:char_judge",
+      "entry_key": "idiom:凉风习习",
+      "prompt": "“凉风习习”的正确写法是？",
+      "answer": "凉风习习",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"凉风习习\",\"习风习凉\",\"习风凉习\",\"风凉习习\"]}"
+    },
+    {
+      "key": "idiom-l3-1898:char_judge:char_judge",
+      "entry_key": "idiom:春雨绵绵",
+      "prompt": "“春雨绵绵”的正确写法是？",
+      "answer": "春雨绵绵",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"椿雨绵绵\",\"春雨绵绵\",\"雨春绵绵\",\"绵雨春绵\"]}"
+    },
+    {
+      "key": "idiom-l3-1899:char_judge:char_judge",
+      "entry_key": "idiom:暖风习习",
+      "prompt": "“暖风习习”的正确写法是？",
+      "answer": "暖风习习",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"风暖习习\",\"习风习暖\",\"暖风习习\",\"习风暖习\"]}"
+    },
+    {
+      "key": "idiom-l3-1911:char_judge:char_judge",
+      "entry_key": "idiom:涓涓细流",
+      "prompt": "“涓涓细流”的正确写法是？",
+      "answer": "涓涓细流",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"涓涓细流\",\"流涓细涓\",\"涓细涓流\",\"细涓涓流\"]}"
+    },
+    {
+      "key": "idiom-l3-1915:char_judge:char_judge",
+      "entry_key": "idiom:烈日炎炎",
+      "prompt": "“烈日炎炎”的正确写法是？",
+      "answer": "烈日炎炎",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"炎日炎烈\",\"烈日炎炎\",\"炎日烈炎\",\"日烈炎炎\"]}"
+    },
+    {
+      "key": "idiom-l3-1918:char_judge:char_judge",
+      "entry_key": "idiom:白云悠悠",
+      "prompt": "“白云悠悠”的正确写法是？",
+      "answer": "白云悠悠",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"白云悠悠\",\"云白悠悠\",\"悠云白悠\",\"悠云悠白\"]}"
+    },
+    {
+      "key": "idiom-l3-1919:char_judge:char_judge",
+      "entry_key": "idiom:白云朵朵",
+      "prompt": "“白云朵朵”的正确写法是？",
+      "answer": "白云朵朵",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"朵云白朵\",\"白云朵朵\",\"云白朵朵\",\"朵云朵白\"]}"
+    },
+    {
+      "key": "idiom-l3-1921:char_judge:char_judge",
+      "entry_key": "idiom:硕果累累",
+      "prompt": "“硕果累累”的正确写法是？",
+      "answer": "硕果累累",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"累果硕累\",\"硕果累累\",\"果硕累累\",\"累果累硕\"]}"
+    },
+    {
+      "key": "idiom-l3-1923:char_judge:char_judge",
+      "entry_key": "idiom:秋雨绵绵",
+      "prompt": "“秋雨绵绵”的正确写法是？",
+      "answer": "秋雨绵绵",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"雨秋绵绵\",\"绵雨绵秋\",\"秋雨绵绵\",\"绵雨秋绵\"]}"
+    },
+    {
+      "key": "idiom-l3-1925:char_judge:char_judge",
+      "entry_key": "idiom:繁星点点",
+      "prompt": "“繁星点点”的正确写法是？",
+      "answer": "繁星点点",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"繁星点点\",\"点星点繁\",\"星繁点点\",\"点星繁点\"]}"
+    },
+    {
+      "key": "idiom-l3-1926:char_judge:char_judge",
+      "entry_key": "idiom:细雨蒙蒙",
+      "prompt": "“细雨蒙蒙”的正确写法是？",
+      "answer": "细雨蒙蒙",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"蒙雨细蒙\",\"蒙雨蒙细\",\"雨细蒙蒙\",\"细雨蒙蒙\"]}"
+    },
+    {
+      "key": "idiom-l3-1928:char_judge:char_judge",
+      "entry_key": "idiom:自信满满",
+      "prompt": "“自信满满”的正确写法是？",
+      "answer": "自信满满",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"信自满满\",\"自言满满\",\"字信满满\",\"自信满满\"]}"
+    },
+    {
+      "key": "idiom-l3-1934:char_judge:char_judge",
+      "entry_key": "idiom:谢谢不敏",
+      "prompt": "“谢谢不敏”的正确写法是？",
+      "answer": "谢谢不敏",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"不谢谢敏\",\"谢谢步敏\",\"敏谢不谢\",\"谢谢不敏\"]}"
+    },
+    {
+      "key": "idiom-l3-1941:char_judge:char_judge",
+      "entry_key": "idiom:雾气腾腾",
+      "prompt": "“雾气腾腾”的正确写法是？",
+      "answer": "雾气腾腾",
+      "question_type": "spelling_choice",
+      "audience": "all",
+      "options": "{\"choices\":[\"腾气腾雾\",\"雾气腾腾\",\"腾气雾腾\",\"气雾腾腾\"]}"
+    }
+  ]
+}
