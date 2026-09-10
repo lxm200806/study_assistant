@@ -201,7 +201,7 @@ onLoad((query: Record<string, string | undefined> = {}) => {
 })
 
 onShow(async () => {
-  if (!(await requireSubject('chinese'))) return
+  if (!(await requireSubject('chinese', 'parent'))) return
   if (!userStore.isAdmin) {
     uni.showToast({ title: '需要管理员', icon: 'none' })
     uni.navigateBack()

@@ -11,7 +11,8 @@ import {
   createStudentHandler,
   renameStudentHandler,
   archiveStudentHandler,
-  setActiveStudentHandler
+  setActiveStudentHandler,
+  setRoleHandler
 } from '../controllers/auth.controller'
 import { authMiddleware } from '../middleware/auth'
 
@@ -25,6 +26,7 @@ router.post('/onboard', authMiddleware, onboardHandler)
 router.put('/subject', authMiddleware, setSubjectHandler)
 router.get('/students', authMiddleware, listStudentsHandler)
 router.post('/students', authMiddleware, createStudentHandler)
+router.put('/role', authMiddleware, setRoleHandler)
 router.put('/students/active', authMiddleware, setActiveStudentHandler)
 router.put('/students/:id', authMiddleware, renameStudentHandler)
 router.delete('/students/:id', authMiddleware, archiveStudentHandler)

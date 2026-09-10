@@ -48,8 +48,14 @@ export async function createChild(parentId: string, name: string) {
     throw new Error('请填写 1–20 个字的学生姓名')
   }
   const parent = await prisma.user.findUnique({ where: { id: parentId } })
-  if (!parent || parent.accountType !== 'parent') {
-    throw new Error('只有家长可以添加学生')
+  if (!parent || parent.parentId) {
+    throw new Error('只有家庭账号可以添加学生')
+  }
+  if (parent.accountType !== 'parent') {
+    await prisma.user.update({
+      where: { id: parentId },
+      data: { accountType: 'parent' }
+    })
   }
   const count = await prisma.user.count({ where: { parentId, archivedAt: null } })
   if (count >= MAX_CHILDREN) {

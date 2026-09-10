@@ -24,7 +24,7 @@ const plan = ref<any>({})
 const loading = ref(true)
 
 onLoad(async (query) => {
-  if (!(await requireSubject('chinese'))) return
+  if (!(await requireSubject('chinese', 'parent'))) return
   try {
     plan.value = await chineseAPI.plan(String(query?.id || ''))
   } catch (error: any) {

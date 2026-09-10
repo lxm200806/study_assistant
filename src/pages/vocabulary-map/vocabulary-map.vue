@@ -81,7 +81,7 @@ import { consumeMapTabBook } from '@/utils/navigation'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { useUserStore } from '@/stores/user'
 import { chineseAPI } from '@/utils/api'
-import { applySubjectTabBar } from '@/utils/subject'
+import { applyAppShell, requireReadySession } from '@/utils/subject'
 import type { VocabularyMapData } from '@/types/map'
 import BookSwitcher from '@/components/BookSwitcher.vue'
 import MasterySummaryRing from '@/components/map/MasterySummaryRing.vue'
@@ -153,8 +153,12 @@ onLoad((query) => {
 })
 
 onShow(async () => {
-  await userStore.checkLogin()
-  applySubjectTabBar(userStore.activeSubject)
+  if (!(await requireReadySession())) return
+  if (userStore.isStudentRole) {
+    uni.switchTab({ url: '/pages/home/home' })
+    return
+  }
+  applyAppShell()
   uni.setNavigationBarTitle({ title: userStore.isChinese ? '覆盖' : '图谱' })
   if (userStore.isChinese) {
     try {
@@ -173,8 +177,12 @@ onShow(async () => {
 })
 
 onMounted(async () => {
-  await userStore.checkLogin()
-  applySubjectTabBar(userStore.activeSubject)
+  if (!(await requireReadySession())) return
+  if (userStore.isStudentRole) {
+    uni.switchTab({ url: '/pages/home/home' })
+    return
+  }
+  applyAppShell()
   if (userStore.isChinese) {
     try {
       chineseCoverage.value = await chineseAPI.coverage()

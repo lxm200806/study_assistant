@@ -67,6 +67,12 @@
       }
     },
     {
+      "path": "pages/family/roles",
+      "style": {
+        "navigationBarTitleText": "选择角色"
+      }
+    },
+    {
       "path": "pages/family/students",
       "style": {
         "navigationBarTitleText": "学生角色"

@@ -100,7 +100,7 @@ onLoad((options) => {
 })
 
 onMounted(async () => {
-  if (!(await requireSubject('english'))) return
+  if (!(await requireSubject('english', 'parent'))) return
   await vocabStore.loadBooks()
   books.value = vocabStore.books as typeof books.value
   try {

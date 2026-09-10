@@ -146,7 +146,7 @@ const goHome = () => {
 }
 
 onMounted(async () => {
-  await requireSubject('english')
+  if (!(await requireSubject('english', 'parent'))) return
 })
 
 onUnmounted(() => {

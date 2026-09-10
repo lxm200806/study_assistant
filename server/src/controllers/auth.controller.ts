@@ -1,16 +1,16 @@
 import { Request, Response } from 'express'
-import { register, login, refreshToken, getProfile, completeOnboarding, wechatLoginStub, setActiveSubject } from '../services/auth.service'
+import { register, login, refreshToken, getProfile, completeOnboarding, wechatLoginStub, setActiveSubject, setActiveRole } from '../services/auth.service'
 import { archiveChild, createChild, listChildren, renameChild, setActiveLearner } from '../services/family.service'
 
 export async function registerHandler(req: Request, res: Response) {
   try {
-    const { username, password, accountType } = req.body
+    const { username, password } = req.body
     
     if (!username || !password) {
       return res.status(400).json({ error: 'Username and password are required' })
     }
     
-    const result = await register({ username, password, accountType })
+    const result = await register({ username, password })
     res.status(201).json(result)
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
@@ -19,13 +19,13 @@ export async function registerHandler(req: Request, res: Response) {
 
 export async function loginHandler(req: Request, res: Response) {
   try {
-    const { username, password, accountType } = req.body
+    const { username, password } = req.body
     
     if (!username || !password) {
       return res.status(400).json({ error: 'Username and password are required' })
     }
     
-    const result = await login({ username, password, accountType })
+    const result = await login({ username, password })
     res.status(200).json(result)
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
@@ -58,7 +58,7 @@ export async function profileHandler(req: Request, res: Response) {
 
 export async function onboardHandler(req: Request, res: Response) {
   try {
-    const user = await completeOnboarding(req.userId!, req.body?.subject, req.body?.accountType)
+    const user = await completeOnboarding(req.userId!, req.body?.subject)
     res.status(200).json({ success: true, user })
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
@@ -118,6 +118,15 @@ export async function setActiveStudentHandler(req: Request, res: Response) {
     const learner = await setActiveLearner(req.userId!, String(req.body?.studentId || req.body?.id || ''))
     const user = await getProfile(req.userId!)
     res.status(200).json({ success: true, learner, user })
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function setRoleHandler(req: Request, res: Response) {
+  try {
+    const user = await setActiveRole(req.userId!, String(req.body?.role || ''), String(req.body?.studentId || req.body?.id || ''))
+    res.status(200).json({ success: true, user })
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
   }

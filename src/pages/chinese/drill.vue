@@ -286,7 +286,7 @@ function speak() {
 }
 
 onLoad(async (query) => {
-  if (!(await requireSubject('chinese'))) return
+  if (!(await requireSubject('chinese', 'student'))) return
   courseId.value = String(query?.id || '')
   loadToday()
 })

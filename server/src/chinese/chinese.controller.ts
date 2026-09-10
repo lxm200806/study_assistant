@@ -37,11 +37,8 @@ async function withUser(req: Request) {
 }
 
 function studyId(user: { id: string; accountType?: string | null; learnerId?: string }) {
-  if (user.accountType === 'parent') {
-    if (!user.learnerId) throw new HttpError(409, '请先添加学生')
-    return user.learnerId
-  }
-  return user.learnerId || user.id
+  if (!user.learnerId) throw new HttpError(409, '请先添加学生')
+  return user.learnerId
 }
 
 function wrap(handler: (req: Request, res: Response) => Promise<unknown>) {

@@ -5,11 +5,23 @@
         <text class="avatar-text">{{ displayName.charAt(0) }}</text>
       </view>
       <view class="profile-info">
-        <text class="username">{{ userStore.learnerName }}</text>
+        <text class="username">{{ displayName }}</text>
         <text class="plan-tag">{{ planLabel }}</text>
       </view>
     </view>
 
+    <view v-if="userStore.isStudentRole" class="menu-section">
+      <view class="menu-item" @tap="userStore.goRoles()">
+        <text class="menu-icon">🔄</text>
+        <view class="menu-text">
+          <text class="menu-label">切换角色</text>
+          <text class="menu-desc">返回选择家长或学生</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+
+    <template v-else>
     <view class="subject-switch">
       <view :class="['subject-btn', userStore.isChinese ? 'active' : '']" @tap="switchSubject('chinese')">
         <text>语文</text>
@@ -20,7 +32,15 @@
     </view>
     <text class="switch-hint">当前在{{ userStore.isChinese ? '语文' : '英语' }}。两个学科分开学，互不影响。</text>
 
-    <view v-if="userStore.isParent" class="menu-section">
+    <view class="menu-section">
+      <view class="menu-item" @tap="userStore.goRoles()">
+        <text class="menu-icon">🔄</text>
+        <view class="menu-text">
+          <text class="menu-label">切换角色</text>
+          <text class="menu-desc">家长 / 学生进入方式</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
       <view class="menu-item" @tap="goStudents">
         <text class="menu-icon">👨‍🎓</text>
         <view class="menu-text">
@@ -33,7 +53,7 @@
         <text class="menu-icon">{{ item.id === userStore.activeLearnerId ? '✅' : '👤' }}</text>
         <view class="menu-text">
           <text class="menu-label">{{ item.name }}</text>
-          <text class="menu-desc">{{ item.id === userStore.activeLearnerId ? '当前学习的学生' : '点按切换' }}</text>
+          <text class="menu-desc">{{ item.id === userStore.activeLearnerId ? '当前查看的学生' : '点按切换查看' }}</text>
         </view>
         <text class="menu-arrow">›</text>
       </view>
@@ -44,7 +64,7 @@
         <text class="menu-icon">📖</text>
         <view class="menu-text">
           <text class="menu-label">语文课程</text>
-          <text class="menu-desc">组课、今日默写、计划</text>
+          <text class="menu-desc">组课、计划、掌握</text>
         </view>
         <text class="menu-arrow">›</text>
       </view>
@@ -67,14 +87,6 @@
         </view>
         <text class="menu-arrow">›</text>
       </view>
-      <view class="menu-item" @tap="goChat">
-        <text class="menu-icon">💬</text>
-        <view class="menu-text">
-          <text class="menu-label">AI 陪聊</text>
-          <text class="menu-desc">口语练习与对话</text>
-        </view>
-        <text class="menu-arrow">›</text>
-      </view>
     </view>
 
     <view v-if="!userStore.isChinese" class="menu-section">
@@ -90,8 +102,8 @@
       <view class="menu-item" @tap="goParentReport">
         <text class="menu-icon">📊</text>
         <view class="menu-text">
-          <text class="menu-label">{{ userStore.isParent ? '学习周报' : '家长周报' }}</text>
-          <text class="menu-desc">{{ userStore.isParent ? '当前学生本周概况' : '本周学习概况 · 分享给家长' }}</text>
+          <text class="menu-label">学习周报</text>
+          <text class="menu-desc">当前学生本周概况</text>
         </view>
         <text class="menu-arrow">›</text>
       </view>
@@ -120,6 +132,7 @@
         <text class="menu-arrow">›</text>
       </view>
     </view>
+    </template>
 
     <button class="btn-logout" @tap="handleLogout">退出登录</button>
   </view>
@@ -129,15 +142,19 @@
 import { computed, onMounted } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import { useUserStore } from '@/stores/user'
-import { applySubjectTabBar, type Subject } from '@/utils/subject'
+import { applyAppShell, requireReadySession, type Subject } from '@/utils/subject'
 
 const userStore = useUserStore()
 
-const displayName = computed(() => userStore.learnerName || '学习者')
+const displayName = computed(() =>
+  userStore.isStudentRole
+    ? (userStore.learnerName || '学生')
+    : (userStore.displayName || userStore.username || '家长')
+)
 
 const planLabel = computed(() => {
-  if (userStore.isAdmin) return '管理员'
-  const mode = userStore.isParent ? '家长' : '学生'
+  if (userStore.isAdmin && userStore.isParent) return '管理员'
+  const mode = userStore.isStudentRole ? '学生' : '家长'
   if (userStore.plan === 'premium') return `${mode} · Premium`
   return `${mode} · ${userStore.isChinese ? '语文' : '英语'}`
 })
@@ -169,10 +186,6 @@ const goBooks = () => {
   uni.navigateTo({ url: '/pages/books/books' })
 }
 
-const goChinese = () => {
-  uni.navigateTo({ url: '/pages/chinese/courses' })
-}
-
 const goChinesePoints = () => {
   uni.navigateTo({ url: '/pages/chinese/points' })
 }
@@ -183,10 +196,6 @@ const goMembership = () => {
 
 const goParentReport = () => {
   uni.navigateTo({ url: '/pages/membership/membership?focus=report' })
-}
-
-const goChat = () => {
-  uni.navigateTo({ url: '/pages/chat/chat' })
 }
 
 const goAdmin = () => {
@@ -211,16 +220,13 @@ const handleLogout = () => {
   })
 }
 
-onShow(() => {
-  applySubjectTabBar(userStore.activeSubject)
+onShow(async () => {
+  if (!(await requireReadySession({ allowNoStudents: true }))) return
+  applyAppShell()
 })
 
 onMounted(async () => {
-  await userStore.checkLogin()
-  if (!userStore.isLoggedIn) {
-    uni.reLaunch({ url: '/pages/login/login' })
-    return
-  }
+  if (!(await requireReadySession({ allowNoStudents: true }))) return
   if (userStore.isParent) await userStore.refreshProfile()
 })
 </script>

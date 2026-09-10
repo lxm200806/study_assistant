@@ -363,7 +363,7 @@ onLoad((query) => {
 })
 
 onMounted(async () => {
-  if (!(await requireSubject('english'))) return
+  if (!(await requireSubject('english', 'student'))) return
   vocabStore.loadBooks()
   vocabStore.loadStats()
   vocabStore.loadSettings()

@@ -45,7 +45,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
       if (!user || user.archivedAt) {
         return res.status(401).json({ error: 'Unauthorized' })
       }
-      req.accountType = user.accountType === 'parent' ? 'parent' : 'student'
+      req.accountType = user.parentId ? 'student' : 'parent'
       if (req.accountType === 'parent') {
         if (user.activeLearnerId) {
           const child = await prisma.user.findFirst({

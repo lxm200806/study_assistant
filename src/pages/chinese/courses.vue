@@ -2,7 +2,7 @@
   <view class="container">
     <view class="header">
       <text class="title">语文课程</text>
-      <text class="subtitle">先打开一门课做今日默写。系统默认课程会在词库更新后自动补进；自己组的课请点「同步新词」。</text>
+      <text class="subtitle">组课、同步新词、查看掌握。今日默写请让学生角色进入。</text>
     </view>
 
     <view class="toolbar">
@@ -45,7 +45,7 @@
           <text>到期复习默认用测试模式</text>
         </view>
         <view class="actions">
-          <button class="btn-primary compact" @tap="goDrill(item.id)">今日默写</button>
+          <button class="btn-primary compact" @tap="goStats(item.id)">查看掌握</button>
           <button class="btn-secondary compact" @tap="goPlan(item.id)">计划</button>
           <button class="btn-secondary compact" @tap="goStats(item.id)">掌握</button>
           <button class="btn-secondary compact" @tap="startEdit(item)">改名</button>
@@ -199,12 +199,11 @@ function removeCourse(item: CourseItem) {
 const goLibrary = () => openPage('/pages/chinese/library')
 const goPoints = () => openPage('/pages/chinese/points')
 const goCoverage = () => openPage('/pages/chinese/coverage')
-const goDrill = (id: string) => openPage(`/pages/chinese/drill?id=${id}`)
 const goPlan = (id: string) => openPage(`/pages/chinese/plan?id=${id}`)
 const goStats = (id: string) => openPage(`/pages/chinese/stats?id=${id}`)
 
 onShow(async () => {
-  if (!(await requireSubject('chinese'))) return
+  if (!(await requireSubject('chinese', 'parent'))) return
   await loadCourses()
 })
 </script>

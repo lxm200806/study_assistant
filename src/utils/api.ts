@@ -30,6 +30,7 @@ export interface ResponseData<T = any> {
     accountType?: string
     displayName?: string
     activeLearnerId?: string | null
+    activeRole?: string
     learner?: { id: string; name: string; activeSubject?: string } | null
     children?: Array<{ id: string; name: string; activeSubject?: string }>
   }
@@ -83,11 +84,11 @@ export async function request<T>(
 }
 
 export const authAPI = {
-  login: async (username: string, password: string, accountType?: string) => {
-    return request('/auth/login', 'POST', { username, password, accountType })
+  login: async (username: string, password: string) => {
+    return request('/auth/login', 'POST', { username, password })
   },
-  register: async (username: string, password: string, accountType?: string) => {
-    return request('/auth/register', 'POST', { username, password, accountType })
+  register: async (username: string, password: string) => {
+    return request('/auth/register', 'POST', { username, password })
   },
   refresh: async (refreshToken: string) => {
     return request('/auth/refresh', 'POST', { refreshToken })
@@ -95,14 +96,16 @@ export const authAPI = {
   profile: async () => {
     return request('/auth/profile', 'GET')
   },
-  onboard: async (subject?: string, accountType?: string) => {
+  onboard: async (subject?: string) => {
     const body: Record<string, string> = {}
     if (subject) body.subject = subject
-    if (accountType) body.accountType = accountType
     return request('/auth/onboard', 'POST', body)
   },
   setSubject: async (subject: string) => {
     return request('/auth/subject', 'PUT', { subject })
+  },
+  setRole: async (role: 'parent' | 'student', studentId?: string) => {
+    return request('/auth/role', 'PUT', { role, studentId })
   },
   students: async () => {
     return request('/auth/students', 'GET')

@@ -3,13 +3,11 @@ export type WordType = 'listening' | 'speaking' | 'reading' | 'writing'
 export interface LoginDto {
   username: string
   password: string
-  accountType?: string
 }
 
 export interface RegisterDto {
   username: string
   password: string
-  accountType?: string
 }
 
 export interface PracticeDto {
@@ -52,6 +50,7 @@ export interface TokenResponse {
     accountType?: string
     displayName?: string
     activeLearnerId?: string | null
+    activeRole?: string
     learner?: { id: string; name: string; activeSubject?: string } | null
     children?: Array<{ id: string; name: string; activeSubject?: string }>
   }

@@ -85,7 +85,7 @@ async function toggleReviewPref() {
 }
 
 onLoad(async query => {
-  if (!(await requireSubject('chinese'))) return
+  if (!(await requireSubject('chinese', 'parent'))) return
   courseId.value = String(query?.id || '')
   try {
     await loadStats()

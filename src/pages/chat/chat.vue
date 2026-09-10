@@ -551,7 +551,7 @@ onLoad((query) => {
 })
 
 onMounted(async () => {
-  if (!(await requireSubject('english'))) return
+  if (!(await requireSubject('english', 'parent'))) return
   vocabStore.loadBooks()
   vocabStore.loadSettings()
   await loadConfig()

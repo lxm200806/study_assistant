@@ -347,7 +347,7 @@ watch([kind, level, grade, resourceId, questionType, audience], () => {
 })
 
 onShow(async () => {
-  if (!(await requireSubject('chinese'))) return
+  if (!(await requireSubject('chinese', 'parent'))) return
   try {
     const data = (await chineseAPI.resources()) as unknown as any[]
     resources.value = Array.isArray(data) ? data : []

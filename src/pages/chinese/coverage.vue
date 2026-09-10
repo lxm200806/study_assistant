@@ -44,7 +44,7 @@ const emptyCourses = computed(() => Number(data.value.total) > 0 && !Number(data
 const entryGradeRows = computed(() => data.value.byEntryGrade || data.value.byGrade || [])
 
 onShow(async () => {
-  if (!(await requireSubject('chinese'))) return
+  if (!(await requireSubject('chinese', 'parent'))) return
   try {
     data.value = await chineseAPI.coverage()
   } catch (error: any) {

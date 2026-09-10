@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import { useUserStore } from '@/stores/user'
-import { applySubjectTabBar } from '@/utils/subject'
+import { applyAppShell } from '@/utils/subject'
 
 onLaunch(() => {
   console.log('App Launch')
@@ -10,7 +10,7 @@ onLaunch(() => {
 onShow(async () => {
   const userStore = useUserStore()
   await userStore.checkLogin()
-  applySubjectTabBar(userStore.activeSubject)
+  applyAppShell()
 })
 
 onHide(() => {

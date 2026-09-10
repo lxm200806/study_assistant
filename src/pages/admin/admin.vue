@@ -168,7 +168,7 @@ const goHome = () => {
 }
 
 onMounted(async () => {
-  if (!(await requireSubject('english'))) return
+  if (!(await requireSubject('english', 'parent'))) return
   if (!userStore.isAdmin) {
     uni.showToast({ title: '需要管理员账号', icon: 'none' })
     setTimeout(() => uni.reLaunch({ url: '/pages/login/login' }), 800)

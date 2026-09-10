@@ -2,14 +2,14 @@ import prisma from '../prisma/client'
 import { hashPassword, comparePassword } from '../utils/password'
 import { generateAccessToken, generateRefreshToken, verifyToken } from '../utils/jwt'
 import { LoginDto, RegisterDto, TokenResponse } from '../types'
-import { ensureActiveLearner, type LearnerSummary } from './family.service'
-
-function normalizeAccountType(value?: string | null) {
-  return value === 'parent' ? 'parent' : 'student'
-}
+import { ensureActiveLearner, setActiveLearner, type LearnerSummary } from './family.service'
 
 function normalizeSubject(value?: string | null) {
   return value === 'chinese' ? 'chinese' : 'english'
+}
+
+function normalizeRole(value?: string | null) {
+  return value === 'student' ? 'student' : 'parent'
 }
 
 function toUserResponse(user: {
@@ -22,8 +22,8 @@ function toUserResponse(user: {
   accountType?: string
   displayName?: string | null
   activeLearnerId?: string | null
+  activeRole?: string | null
 }, extras?: { children?: LearnerSummary[]; learner?: LearnerSummary | null }) {
-  const accountType = normalizeAccountType(user.accountType)
   return {
     id: user.id,
     username: user.username,
@@ -31,12 +31,34 @@ function toUserResponse(user: {
     hasOnboarded: user.hasOnboarded ?? false,
     plan: user.plan ?? 'free',
     activeSubject: normalizeSubject(user.activeSubject),
-    accountType,
+    accountType: 'parent',
     displayName: user.displayName || user.username,
     activeLearnerId: extras?.learner?.id || user.activeLearnerId || null,
+    activeRole: normalizeRole(user.activeRole),
     learner: extras?.learner || null,
     children: extras?.children || []
   }
+}
+
+async function ensureFamilyAccount(user: {
+  id: string
+  username: string
+  isAdmin: boolean
+  hasOnboarded?: boolean
+  plan?: string
+  activeSubject?: string
+  accountType?: string
+  displayName?: string | null
+  activeLearnerId?: string | null
+  activeRole?: string | null
+  parentId?: string | null
+}) {
+  if (user.parentId) return user
+  if (user.accountType === 'parent') return user
+  return prisma.user.update({
+    where: { id: user.id },
+    data: { accountType: 'parent', activeRole: normalizeRole(user.activeRole) }
+  })
 }
 
 async function withFamily(user: {
@@ -49,15 +71,12 @@ async function withFamily(user: {
   accountType?: string
   displayName?: string | null
   activeLearnerId?: string | null
+  activeRole?: string | null
+  parentId?: string | null
 }) {
-  if (normalizeAccountType(user.accountType) !== 'parent') {
-    return toUserResponse(user, {
-      children: [],
-      learner: { id: user.id, name: user.displayName || user.username, activeSubject: normalizeSubject(user.activeSubject) }
-    })
-  }
-  const family = await ensureActiveLearner(user.id, user.activeLearnerId)
-  return toUserResponse({ ...user, activeLearnerId: family.activeLearnerId }, family)
+  const familyUser = await ensureFamilyAccount(user)
+  const family = await ensureActiveLearner(familyUser.id, familyUser.activeLearnerId)
+  return toUserResponse({ ...familyUser, activeLearnerId: family.activeLearnerId }, family)
 }
 
 export async function register(dto: RegisterDto): Promise<TokenResponse> {
@@ -70,14 +89,14 @@ export async function register(dto: RegisterDto): Promise<TokenResponse> {
   }
 
   const passwordHash = await hashPassword(dto.password)
-  const accountType = normalizeAccountType(dto.accountType)
 
   const user = await prisma.user.create({
     data: {
       username: dto.username,
       passwordHash,
       isAdmin: false,
-      accountType,
+      accountType: 'parent',
+      activeRole: 'parent',
       displayName: dto.username
     }
   })
@@ -102,21 +121,13 @@ export async function login(dto: LoginDto): Promise<TokenResponse> {
   }
 
   if (user.parentId) {
-    throw new Error('请使用家长账号登录')
+    throw new Error('请使用家庭账号登录')
   }
 
   const isPasswordValid = await comparePassword(dto.password, user.passwordHash)
 
   if (!isPasswordValid) {
     throw new Error('Invalid credentials')
-  }
-
-  if (dto.accountType && normalizeAccountType(user.accountType) !== normalizeAccountType(dto.accountType)) {
-    throw new Error(
-      user.accountType === 'parent'
-        ? '这是家长账号，请选择家长模式登录'
-        : '这是学生账号，请选择学生模式登录'
-    )
   }
 
   const accessToken = generateAccessToken(user.id, user.username)
@@ -161,15 +172,14 @@ export async function getProfile(userId: string) {
   return withFamily(user)
 }
 
-export async function completeOnboarding(userId: string, subject?: string, accountType?: string) {
+export async function completeOnboarding(userId: string, subject?: string) {
   const activeSubject = subject === 'chinese' || subject === 'english' ? subject : undefined
-  const nextType = accountType === 'parent' || accountType === 'student' ? accountType : undefined
   const user = await prisma.user.update({
     where: { id: userId },
     data: {
       hasOnboarded: true,
-      ...(activeSubject ? { activeSubject } : {}),
-      ...(nextType ? { accountType: nextType } : {})
+      accountType: 'parent',
+      ...(activeSubject ? { activeSubject } : {})
     }
   })
   return withFamily(user)
@@ -184,6 +194,37 @@ export async function setActiveSubject(userId: string, subject: string) {
   return withFamily(user)
 }
 
+export async function setActiveRole(userId: string, role?: string, studentId?: string) {
+  const user = await prisma.user.findUnique({ where: { id: userId } })
+  if (!user || user.parentId) {
+    throw new Error('无法切换角色')
+  }
+
+  if (role === 'parent') {
+    const updated = await prisma.user.update({
+      where: { id: userId },
+      data: { activeRole: 'parent', accountType: 'parent' }
+    })
+    return withFamily(updated)
+  }
+
+  if (role === 'student') {
+    const family = await ensureActiveLearner(userId, studentId || user.activeLearnerId)
+    const targetId = studentId || family.learner?.id
+    if (!targetId) {
+      throw new Error('请先添加学生')
+    }
+    await setActiveLearner(userId, targetId)
+    const updated = await prisma.user.update({
+      where: { id: userId },
+      data: { activeRole: 'student', activeLearnerId: targetId, accountType: 'parent' }
+    })
+    return withFamily(updated)
+  }
+
+  throw new Error('请选择家长或学生角色')
+}
+
 export async function wechatLoginStub(code: string) {
   if (!code) throw new Error('Invalid wechat code')
   const openId = `wx_${code.slice(0, 16)}`
@@ -193,7 +234,9 @@ export async function wechatLoginStub(code: string) {
       data: {
         username: `wx_${openId.slice(-8)}`,
         passwordHash: await hashPassword(openId),
-        wxOpenId: openId
+        wxOpenId: openId,
+        accountType: 'parent',
+        activeRole: 'parent'
       }
     })
   }

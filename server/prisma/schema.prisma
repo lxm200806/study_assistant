@@ -17,10 +17,11 @@ model User {
   wxOpenId      String?   @unique
   hasOnboarded  Boolean   @default(false)
   activeSubject String    @default("english")
-  accountType     String    @default("student")
+  accountType     String    @default("parent")
   displayName     String?
   parentId        String?
   activeLearnerId String?
+  activeRole      String    @default("parent")
   archivedAt      DateTime?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt

@@ -126,10 +126,11 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { useUserStore } from '@/stores/user'
 import { chineseAPI } from '@/utils/api'
-import { applySubjectTabBar } from '@/utils/subject'
+import { applyAppShell, requireReadySession } from '@/utils/subject'
 import BookSwitcher from '@/components/BookSwitcher.vue'
 import { formatTimeAgo } from '@/utils'
 import { getMasteryLabel, getMasteryLevel, formatDueDate, WEAK_REASON_LABELS } from '@/utils/mastery'
@@ -335,9 +336,22 @@ const showWordDetail = (item: WordListItem) => {
   })
 }
 
+onShow(async () => {
+  if (!(await requireReadySession())) return
+  if (userStore.isStudentRole) {
+    uni.switchTab({ url: '/pages/home/home' })
+    return
+  }
+  applyAppShell()
+})
+
 onMounted(async () => {
-  await userStore.checkLogin()
-  applySubjectTabBar(userStore.activeSubject)
+  if (!(await requireReadySession())) return
+  if (userStore.isStudentRole) {
+    uni.switchTab({ url: '/pages/home/home' })
+    return
+  }
+  applyAppShell()
   uni.setNavigationBarTitle({ title: userStore.isChinese ? '掌握' : '统计' })
   if (userStore.isChinese) {
     try {

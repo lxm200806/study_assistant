@@ -1,178 +1,172 @@
 <template>
   <view class="container">
-    <view class="header" @tap="goToMine">
+    <view class="header" @tap="onHeaderTap">
       <view class="user-info">
         <view class="avatar">
-          <text class="avatar-text">{{ userStore.username.charAt(0) }}</text>
+          <text class="avatar-text">{{ headerName.charAt(0) }}</text>
         </view>
         <view class="greeting">
-          <text class="greeting-text">你好, {{ userStore.learnerName }}</text>
-          <text class="date-text">{{ userStore.isParent ? '家长' : '学生' }} · {{ userStore.isChinese ? '语文' : '英语' }} · {{ currentDate }}</text>
+          <text class="greeting-text">你好, {{ headerName }}</text>
+          <text class="date-text">{{ roleLabel }} · {{ userStore.isChinese ? '语文' : '英语' }} · {{ currentDate }}</text>
         </view>
       </view>
-      <text class="header-link">我的 ›</text>
+      <text class="header-link">{{ userStore.isStudentRole ? '切换角色 ›' : '我的 ›' }}</text>
     </view>
 
-    <template v-if="userStore.isChinese">
-      <view class="daily-cta" @tap="startChineseLearning">
+    <template v-if="userStore.isStudentRole">
+      <view v-if="userStore.isChinese" class="daily-cta" @tap="startChineseLearning">
         <view class="daily-cta-main">
           <text class="daily-cta-title">开始今日默写</text>
           <text class="daily-cta-desc">{{ chineseCta }}</text>
         </view>
         <text class="daily-cta-arrow">→</text>
       </view>
-      <view class="quick-actions">
-        <view class="action-card" @tap="goChineseCourses">
-          <view class="action-icon">📖</view>
-          <text class="action-title">我的课程</text>
-          <text class="action-desc">默写 · 计划 · 掌握</text>
+      <view v-else class="daily-cta" @tap="startDailyLearning">
+        <view class="daily-cta-main">
+          <text class="daily-cta-title">开始今日学习</text>
+          <text class="daily-cta-desc">
+            {{ dueCount > 0 ? `${dueCount} 词待复习 · 智能推荐` : '智能推荐新词' }}
+            · 目标 {{ dailyGoal }} 词
+          </text>
         </view>
-        <view class="action-card" @tap="goChineseLibrary">
-          <view class="action-icon">🧩</view>
-          <text class="action-title">组课</text>
-          <text class="action-desc">按年级生成课程</text>
-        </view>
-        <view class="action-card" @tap="goChinesePoints">
-          <view class="action-icon">📚</view>
-          <text class="action-title">知识点</text>
-          <text class="action-desc">浏览已发布库</text>
-        </view>
-        <view class="action-card" @tap="goChineseCoverage">
-          <view class="action-icon">📊</view>
-          <text class="action-title">全库覆盖</text>
-          <text class="action-desc">学过 · 掌握</text>
-        </view>
-      </view>
-      <view v-for="item in chineseCourses" :key="item.id" class="card course-home" @tap="goChineseDrill(item.id)">
-        <text class="action-title">{{ item.name }}</text>
-        <text class="action-desc">{{ item.progress?.title || '今日默写' }} · {{ item.itemCount || item.item_count || 0 }} 条</text>
+        <text class="daily-cta-arrow">→</text>
       </view>
     </template>
 
     <template v-else>
-    <BookSwitcher @change="onBookChange" />
+      <view class="student-strip">
+        <view
+          v-for="item in userStore.children"
+          :key="item.id"
+          :class="['student-chip', item.id === userStore.activeLearnerId ? 'active' : '']"
+          @tap="pickChild(item.id)"
+        >
+          <text>{{ item.name }}</text>
+        </view>
+        <view class="student-chip add" @tap="goStudents">+ 添加</view>
+      </view>
+      <view v-if="userStore.learner" class="let-study" @tap="enterCurrentStudent">
+        让 {{ userStore.learnerName }} 去学习
+      </view>
 
-    <view class="daily-cta" @tap="startDailyLearning">
-      <view class="daily-cta-main">
-        <text class="daily-cta-title">开始今日学习</text>
-        <text class="daily-cta-desc">
-          {{ dueCount > 0 ? `${dueCount} 词待复习 · 智能推荐` : '智能推荐新词' }}
-          · 目标 {{ dailyGoal }} 词
-        </text>
-      </view>
-      <text class="daily-cta-arrow">→</text>
-    </view>
+      <template v-if="userStore.isChinese">
+        <view class="quick-actions">
+          <view class="action-card" @tap="goChineseCourses">
+            <view class="action-icon">📖</view>
+            <text class="action-title">我的课程</text>
+            <text class="action-desc">计划 · 掌握</text>
+          </view>
+          <view class="action-card" @tap="goChineseLibrary">
+            <view class="action-icon">🧩</view>
+            <text class="action-title">组课</text>
+            <text class="action-desc">按年级生成课程</text>
+          </view>
+          <view class="action-card" @tap="goChinesePoints">
+            <view class="action-icon">📚</view>
+            <text class="action-title">知识点</text>
+            <text class="action-desc">浏览已发布库</text>
+          </view>
+          <view class="action-card" @tap="goChineseCoverage">
+            <view class="action-icon">📊</view>
+            <text class="action-title">全库覆盖</text>
+            <text class="action-desc">学过 · 掌握</text>
+          </view>
+        </view>
+        <view v-for="item in chineseCourses" :key="item.id" class="card course-home" @tap="goChineseCourses">
+          <text class="action-title">{{ item.name }}</text>
+          <text class="action-desc">{{ item.progress?.title || '今日默写' }} · {{ item.itemCount || item.item_count || 0 }} 条</text>
+        </view>
+      </template>
 
-    <view class="stats-card">
-      <view class="stats-header">
-        <text class="stats-title">今日进度</text>
-        <text class="stats-subtitle">{{ dailyWordCount }}/{{ dailyGoal }} 词 · 🔥 {{ streak }} 天</text>
-      </view>
-      <view class="progress-bar">
-        <view class="progress-fill" :style="{ width: dailyProgress + '%' }"></view>
-      </view>
-      <view class="stats-detail">
-        <view class="stat-item">
-          <text class="stat-value">{{ todayStats.correct }}</text>
-          <text class="stat-label">正确</text>
-        </view>
-        <view class="stat-item">
-          <text class="stat-value">{{ todayStats.total - todayStats.correct }}</text>
-          <text class="stat-label">错误</text>
-        </view>
-        <view class="stat-item">
-          <text class="stat-value">{{ todayStats.accuracy }}%</text>
-          <text class="stat-label">正确率</text>
-        </view>
-      </view>
-    </view>
+      <template v-else>
+        <BookSwitcher @change="onBookChange" />
 
-    <view class="quick-actions">
-      <view v-if="!vocabStore.currentBookCode" class="action-card" @tap="goToBooks">
-        <view class="action-icon">📚</view>
-        <text class="action-title">词汇书</text>
-        <text class="action-desc">选择词汇书</text>
-      </view>
-      <view class="action-card" @tap="goToListening">
-        <view class="action-icon">🎧</view>
-        <text class="action-title">听力训练</text>
-        <text class="action-desc">训练听力词汇</text>
-      </view>
-      <view class="action-card" @tap="goToRecognition">
-        <view class="action-icon">👁️</view>
-        <text class="action-title">认读训练</text>
-        <text class="action-desc">看图识词</text>
-      </view>
-      <view class="action-card" @tap="goToSpelling">
-        <view class="action-icon">✍️</view>
-        <text class="action-title">拼写训练</text>
-        <text class="action-desc">听写单词</text>
-      </view>
-      <view class="action-card" @tap="goToSpeaking">
-        <view class="action-icon">👄</view>
-        <text class="action-title">口语训练</text>
-        <text class="action-desc">跟读练习</text>
-      </view>
-      <view class="action-card" @tap="goToQuiz">
-        <view class="action-icon">📝</view>
-        <text class="action-title">阶段小测</text>
-        <text class="action-desc">30 词模拟测</text>
-      </view>
-      <view class="action-card" @tap="goToChat">
-        <view class="action-icon">💬</view>
-        <text class="action-title">AI陪聊</text>
-        <text class="action-desc">口语练习</text>
-      </view>
-    </view>
+        <view class="stats-card">
+          <view class="stats-header">
+            <text class="stats-title">今日进度</text>
+            <text class="stats-subtitle">{{ dailyWordCount }}/{{ dailyGoal }} 词 · 🔥 {{ streak }} 天</text>
+          </view>
+          <view class="progress-bar">
+            <view class="progress-fill" :style="{ width: dailyProgress + '%' }"></view>
+          </view>
+          <view class="stats-detail">
+            <view class="stat-item">
+              <text class="stat-value">{{ todayStats.correct }}</text>
+              <text class="stat-label">正确</text>
+            </view>
+            <view class="stat-item">
+              <text class="stat-value">{{ todayStats.total - todayStats.correct }}</text>
+              <text class="stat-label">错误</text>
+            </view>
+            <view class="stat-item">
+              <text class="stat-value">{{ todayStats.accuracy }}%</text>
+              <text class="stat-label">正确率</text>
+            </view>
+          </view>
+        </view>
 
-    <view class="vocabulary-stats">
-      <view class="section-header">
-        <text class="section-title">词汇掌握</text>
-        <text class="section-link" @tap="goToVocabulary">查看统计 →</text>
-      </view>
-      <view class="vocab-cards">
-        <view class="vocab-item">
-          <view class="vocab-icon">🎧</view>
-          <view class="vocab-info">
-            <text class="vocab-label">听力词汇</text>
-            <text class="vocab-count">{{ listeningStats.total }} 词</text>
+        <view class="quick-actions">
+          <view class="action-card" @tap="goToBooks">
+            <view class="action-icon">📚</view>
+            <text class="action-title">词汇书</text>
+            <text class="action-desc">选择与解锁词书</text>
           </view>
-          <view class="vocab-stars">
-            <text v-for="i in 5" :key="i" :class="['star', i <= listeningStats.avgMastery ? 'active' : '']">★</text>
+          <view class="action-card" @tap="goToVocabulary">
+            <view class="action-icon">📊</view>
+            <text class="action-title">学习统计</text>
+            <text class="action-desc">查看掌握情况</text>
           </view>
         </view>
-        <view class="vocab-item">
-          <view class="vocab-icon">👄</view>
-          <view class="vocab-info">
-            <text class="vocab-label">口语词汇</text>
-            <text class="vocab-count">{{ speakingStats.total }} 词</text>
+
+        <view class="vocabulary-stats">
+          <view class="section-header">
+            <text class="section-title">词汇掌握</text>
+            <text class="section-link" @tap="goToVocabulary">查看统计 →</text>
           </view>
-          <view class="vocab-stars">
-            <text v-for="i in 5" :key="i" :class="['star', i <= speakingStats.avgMastery ? 'active' : '']">★</text>
+          <view class="vocab-cards">
+            <view class="vocab-item">
+              <view class="vocab-icon">🎧</view>
+              <view class="vocab-info">
+                <text class="vocab-label">听力词汇</text>
+                <text class="vocab-count">{{ listeningStats.total }} 词</text>
+              </view>
+              <view class="vocab-stars">
+                <text v-for="i in 5" :key="i" :class="['star', i <= listeningStats.avgMastery ? 'active' : '']">★</text>
+              </view>
+            </view>
+            <view class="vocab-item">
+              <view class="vocab-icon">👄</view>
+              <view class="vocab-info">
+                <text class="vocab-label">口语词汇</text>
+                <text class="vocab-count">{{ speakingStats.total }} 词</text>
+              </view>
+              <view class="vocab-stars">
+                <text v-for="i in 5" :key="i" :class="['star', i <= speakingStats.avgMastery ? 'active' : '']">★</text>
+              </view>
+            </view>
+            <view class="vocab-item">
+              <view class="vocab-icon">📖</view>
+              <view class="vocab-info">
+                <text class="vocab-label">认读词汇</text>
+                <text class="vocab-count">{{ readingStats.total }} 词</text>
+              </view>
+              <view class="vocab-stars">
+                <text v-for="i in 5" :key="i" :class="['star', i <= readingStats.avgMastery ? 'active' : '']">★</text>
+              </view>
+            </view>
+            <view class="vocab-item">
+              <view class="vocab-icon">✏️</view>
+              <view class="vocab-info">
+                <text class="vocab-label">拼写词汇</text>
+                <text class="vocab-count">{{ writingStats.total }} 词</text>
+              </view>
+              <view class="vocab-stars">
+                <text v-for="i in 5" :key="i" :class="['star', i <= writingStats.avgMastery ? 'active' : '']">★</text>
+              </view>
+            </view>
           </view>
         </view>
-        <view class="vocab-item">
-          <view class="vocab-icon">📖</view>
-          <view class="vocab-info">
-            <text class="vocab-label">认读词汇</text>
-            <text class="vocab-count">{{ readingStats.total }} 词</text>
-          </view>
-          <view class="vocab-stars">
-            <text v-for="i in 5" :key="i" :class="['star', i <= readingStats.avgMastery ? 'active' : '']">★</text>
-          </view>
-        </view>
-        <view class="vocab-item">
-          <view class="vocab-icon">✏️</view>
-          <view class="vocab-info">
-            <text class="vocab-label">拼写词汇</text>
-            <text class="vocab-count">{{ writingStats.total }} 词</text>
-          </view>
-          <view class="vocab-stars">
-            <text v-for="i in 5" :key="i" :class="['star', i <= writingStats.avgMastery ? 'active' : '']">★</text>
-          </view>
-        </view>
-      </view>
-    </view>
+      </template>
     </template>
   </view>
 </template>
@@ -186,7 +180,7 @@ import BookSwitcher from '@/components/BookSwitcher.vue'
 import { useDailySession } from '@/composables/useDailySession'
 import { openPage } from '@/utils/navigation'
 import { chineseAPI } from '@/utils/api'
-import { applySubjectTabBar } from '@/utils/subject'
+import { applyAppShell, requireReadySession } from '@/utils/subject'
 
 const userStore = useUserStore()
 const vocabStore = useVocabularyStore()
@@ -210,6 +204,11 @@ const speakingStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
 const readingStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
 const writingStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
 const chineseCourses = ref<any[]>([])
+
+const headerName = computed(() =>
+  userStore.isStudentRole ? userStore.learnerName : (userStore.displayName || userStore.username)
+)
+const roleLabel = computed(() => (userStore.isStudentRole ? '学生' : '家长'))
 
 const chineseCta = computed(() => {
   const first = chineseCourses.value[0]
@@ -254,32 +253,36 @@ const goToMine = () => {
   uni.switchTab({ url: '/pages/mine/mine' })
 }
 
+const onHeaderTap = () => {
+  if (userStore.isStudentRole) {
+    userStore.goRoles()
+    return
+  }
+  goToMine()
+}
+
+const goStudents = () => {
+  uni.navigateTo({ url: '/pages/family/students' })
+}
+
+async function pickChild(id: string) {
+  if (id === userStore.activeLearnerId) return
+  await userStore.switchStudent(id)
+  if (userStore.isChinese) await loadChineseHome()
+  else await loadStats()
+}
+
+async function enterCurrentStudent() {
+  if (!userStore.activeLearnerId) {
+    userStore.goRoles()
+    return
+  }
+  await userStore.chooseStudentRole(userStore.activeLearnerId)
+  uni.showToast({ title: `已进入 ${userStore.learnerName}`, icon: 'none' })
+}
+
 const goToBooks = () => {
   uni.navigateTo({ url: '/pages/books/books' })
-}
-
-const goToListening = () => {
-  openPage('/pages/listening/listening')
-}
-
-const goToRecognition = () => {
-  uni.navigateTo({ url: '/pages/recognition/recognition' })
-}
-
-const goToSpelling = () => {
-  uni.navigateTo({ url: '/pages/spelling/spelling' })
-}
-
-const goToSpeaking = () => {
-  uni.navigateTo({ url: '/pages/speaking/speaking' })
-}
-
-const goToQuiz = () => {
-  uni.navigateTo({ url: '/pages/quiz/quiz' })
-}
-
-const goToChat = () => {
-  uni.navigateTo({ url: '/pages/chat/chat' })
 }
 
 const goToVocabulary = () => {
@@ -294,8 +297,15 @@ const goChineseDrill = (id: string) => openPage(`/pages/chinese/drill?id=${id}`)
 
 const startChineseLearning = () => {
   const first = chineseCourses.value[0]
-  if (first) goChineseDrill(first.id)
-  else goChineseCourses()
+  if (first) {
+    goChineseDrill(first.id)
+    return
+  }
+  if (userStore.isStudentRole) {
+    uni.showToast({ title: '请让家长先组课', icon: 'none' })
+    return
+  }
+  goChineseCourses()
 }
 
 async function loadChineseHome() {
@@ -308,20 +318,12 @@ async function loadChineseHome() {
 }
 
 onShow(async () => {
-  await userStore.checkLogin()
-  if (!userStore.isLoggedIn) {
-    uni.reLaunch({ url: '/pages/login/login' })
+  if (!(await requireReadySession({ allowNoStudents: true }))) return
+  if (userStore.isStudentRole && !userStore.children.length) {
+    userStore.goRoles()
     return
   }
-  if (!userStore.hasOnboarded) {
-    uni.reLaunch({ url: '/pages/onboarding/onboarding' })
-    return
-  }
-  if (userStore.isParent && !userStore.activeLearnerId) {
-    uni.reLaunch({ url: '/pages/family/students' })
-    return
-  }
-  applySubjectTabBar(userStore.activeSubject)
+  applyAppShell()
   uni.setNavigationBarTitle({ title: userStore.isChinese ? '语文' : '英语' })
   updateDate()
   if (userStore.isChinese) {
@@ -395,6 +397,42 @@ const onBookChange = async () => {
   font-size: 26rpx;
   color: #667eea;
   flex-shrink: 0;
+}
+
+.student-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-bottom: 16rpx;
+}
+
+.student-chip {
+  background: #fff;
+  border-radius: 999rpx;
+  padding: 12rpx 24rpx;
+  font-size: 26rpx;
+  color: #555;
+  border: 2rpx solid transparent;
+
+  &.active {
+    border-color: #667eea;
+    color: #667eea;
+    background: #eef2ff;
+  }
+
+  &.add {
+    color: #667eea;
+  }
+}
+
+.let-study {
+  background: #eef2ff;
+  color: #4c51bf;
+  text-align: center;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  margin-bottom: 24rpx;
 }
 
 .daily-cta {

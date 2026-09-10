@@ -157,7 +157,7 @@ async function createCourse() {
 
 watch([kinds, levels, grades, newEnergy, reviewEnergy], loadLibrary, { deep: true })
 onMounted(async () => {
-  if (!(await requireSubject('chinese'))) return
+  if (!(await requireSubject('chinese', 'parent'))) return
   await loadLibrary()
 })
 </script>

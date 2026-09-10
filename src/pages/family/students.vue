@@ -2,7 +2,7 @@
   <view class="container">
     <view class="header">
       <text class="title">学生角色</text>
-      <text class="subtitle">家长模式下，每个学生有自己的语文/英语进度，互不影响。</text>
+      <text class="subtitle">每个学生有自己的语文/英语进度。点按学生可切换家长正在查看的进度。</text>
     </view>
 
     <view v-for="item in userStore.children" :key="item.id" :class="['card', item.id === userStore.activeLearnerId ? 'active' : '']" @tap="selectStudent(item.id)">
@@ -46,6 +46,10 @@ async function addStudent() {
     await userStore.createStudent(value)
     name.value = ''
     uni.showToast({ title: '已添加', icon: 'success' })
+    if (!userStore.roleChosen) {
+      uni.redirectTo({ url: '/pages/family/roles' })
+      return
+    }
     uni.switchTab({ url: '/pages/home/home' })
   } catch (error: any) {
     uni.showToast({ title: error.message || '添加失败', icon: 'none' })
@@ -108,7 +112,7 @@ onShow(async () => {
     return
   }
   if (!userStore.isParent) {
-    uni.switchTab({ url: '/pages/mine/mine' })
+    userStore.goRoles()
     return
   }
   await userStore.refreshProfile()
