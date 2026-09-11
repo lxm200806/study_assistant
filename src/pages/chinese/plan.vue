@@ -3,9 +3,11 @@
     <view class="header">
       <text class="title">学习计划</text>
       <text class="subtitle">
-        {{ plan.course && plan.course.name }} · 每天约 {{ dailyMinutes }} 分钟 · 预计 {{ estimatedDays }} 天
+        {{ plan.course && plan.course.name }} · 每天约 {{ dailyMinutes }} 分钟
+        <template v-if="plan.newPerDay"> · 约 {{ plan.newPerDay }} 个新词条/天</template>
+        · 预计 {{ estimatedDays }} 天
         <template v-if="plan.truncated && plan.calendarDays && plan.calendarDays !== estimatedDays">
-          （课表仅排出前 {{ plan.calendarDays }} 天）
+          （课表仅展示前 {{ plan.calendarDays }} 天）
         </template>
       </text>
       <text v-if="plan.warning" class="warning">{{ plan.warning }}</text>

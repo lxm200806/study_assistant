@@ -7,9 +7,9 @@
 
     <view class="card">
       <text class="label">课程名称</text>
-      <input class="input" v-model="name" placeholder="三年级上册默写" />
+      <input class="input" v-model="name" placeholder="三年级上册默写" @input="nameTouched = true" />
       <text class="label">备注</text>
-      <input class="input" v-model="note" placeholder="部编必背与日积月累" />
+      <input class="input" v-model="note" placeholder="部编必背与日积月累" @input="nameTouched = true" />
 
       <text class="label">年级（古诗文等内容）</text>
       <view class="chips">
@@ -93,9 +93,14 @@ const preview = ref<{
   calendarDays?: number
   truncated?: boolean
   warning?: string
+  newPerDay?: number
+  entryCount?: number
+  suggestedName?: string
+  suggestedNote?: string
 }>({})
 const loading = ref(false)
 const busy = ref(false)
+const nameTouched = ref(false)
 let ticket = 0
 
 const sizeWarning = computed(() => String(preview.value.warning || ''))
@@ -103,10 +108,12 @@ const sizeWarning = computed(() => String(preview.value.warning || ''))
 const previewText = computed(() => {
   const days = preview.value.estimatedDays || preview.value.rawDayCount || preview.value.dayCount
   const calendar = preview.value.calendarDays
+  const pace = preview.value.newPerDay
   let text = `当前筛选 ${entryCount.value} 个词条、${total.value} 张题卡 · 每天 ${dailyMinutes.value} 分钟`
+  if (pace) text += ` · 约 ${pace} 个新词条/天`
   if (days) text += ` · 预计 ${days} 天`
   if (preview.value.truncated && calendar && calendar !== days) {
-    text += `（课表仅排出前 ${calendar} 天）`
+    text += `（课表仅展示前 ${calendar} 天）`
   }
   return text
 })
@@ -152,6 +159,10 @@ async function loadLibrary() {
       difficulties: difficulties.value,
       dailyMinutes: dailyMinutes.value
     })) as any
+    if (!nameTouched.value && preview.value.suggestedName) {
+      name.value = String(preview.value.suggestedName)
+      note.value = String(preview.value.suggestedNote || note.value)
+    }
   } catch (error: any) {
     if (current !== ticket) return
     uni.showToast({ title: error.message || '预览失败', icon: 'none' })
@@ -172,7 +183,10 @@ async function createCourse() {
       difficulties: difficulties.value,
       dailyMinutes: dailyMinutes.value
     })) as any
-    uni.showToast({ title: `已生成 ${course.itemCount || 0} 张题卡`, icon: 'success' })
+    uni.showToast({
+      title: course.reused ? '已有相同课程，未重复生成' : `已生成 ${course.entryCount || course.itemCount || 0} 个词条`,
+      icon: 'success'
+    })
     setTimeout(() => openPage('/pages/chinese/courses'), 400)
   } catch (error: any) {
     uni.showToast({ title: error.message || '生成失败', icon: 'none' })

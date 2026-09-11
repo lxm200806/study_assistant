@@ -1,12 +1,13 @@
 import type { PointLike } from './constants'
 
-export const MODES = ['learn', 'test', 'recite'] as const
+export const MODES = ['learn', 'test', 'recite', 'filter'] as const
 export type StudyMode = (typeof MODES)[number]
 export const DEFAULT_MODE: StudyMode = 'learn'
 export const LEARN_REVEAL_QUALITY = 3
 export const MODE_OPTIONS = [
   { id: 'learn', label: '学一学', hint: '新题＋提示' },
   { id: 'test', label: '复习测验', hint: '只测到期' },
+  { id: 'filter', label: '快速筛选', hint: '标出会的词' },
   { id: 'recite', label: '朗读背诵', hint: '不计成绩' }
 ] as const
 
@@ -26,7 +27,14 @@ export interface PlannedToday {
 export function normalizeMode(value: unknown, fallback: StudyMode = DEFAULT_MODE): StudyMode {
   const text = String(value || '').trim().toLowerCase()
   if ((MODES as readonly string[]).includes(text)) return text as StudyMode
-  const aliases: Record<string, StudyMode> = { 学习: 'learn', 测试: 'test', 背诵: 'recite' }
+  const aliases: Record<string, StudyMode> = {
+    学习: 'learn',
+    测试: 'test',
+    背诵: 'recite',
+    筛选: 'filter',
+    place: 'filter',
+    placement: 'filter'
+  }
   return aliases[String(value || '').trim()] || ((MODES as readonly string[]).includes(fallback) ? fallback : DEFAULT_MODE)
 }
 
@@ -48,8 +56,8 @@ export function resolveDefaultMode(planned: PlannedToday | null | undefined, rev
 export function groupsForMode<T extends { role?: string }>(groups: T[] | null | undefined, mode: unknown): T[] {
   const active = normalizeMode(mode)
   const rows = [...(groups || [])]
-  if (active !== 'test') return rows
-  return rows.filter(group => group.role === 'review')
+  if (active === 'test') return rows.filter(group => group.role === 'review')
+  return rows
 }
 
 export function isRecitable(row: PointLike): boolean {
@@ -94,8 +102,14 @@ export function reviewOutcome(mode: unknown, gradeResult: { quality?: number; co
   if (active === 'test' && revealed) {
     return { ok: false, error: '测试模式不能看答案', mode: active, update_sm2: false as const }
   }
+  if (active === 'filter' && revealed) {
+    return { ok: false, error: '筛选模式不能看答案', mode: active, update_sm2: false as const }
+  }
   if (active === 'recite') {
     return { ok: true, mode: active, quality, correct, update_sm2: false, revealed: Boolean(revealed) }
+  }
+  if (active === 'filter') {
+    return { ok: true, mode: active, quality: correct ? 5 : 1, correct, update_sm2: true, revealed: false, placement: true }
   }
   if (active === 'learn' && revealed) {
     return { ok: true, mode: active, quality: LEARN_REVEAL_QUALITY, correct: false, update_sm2: true, revealed: true }

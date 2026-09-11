@@ -2,13 +2,13 @@
   <view class="container">
     <view class="header">
       <text class="title">语文教材</text>
-      <text class="subtitle">官方册同步后直接进已发布库。灰色未同步、红色有更新、绿色已同步。</text>
+      <text class="subtitle">{{ isAdmin ? '官方册同步后直接进已发布库。灰色未同步、红色有更新、绿色已同步。' : '这里只查看已同步的官方教材。同步和改库需要管理员。' }}</text>
     </view>
-    <view class="toolbar">
+    <view v-if="isAdmin" class="toolbar">
       <button class="btn-primary compact" :disabled="busy" @tap="sync(false)">增量同步</button>
       <button class="btn-secondary compact" :disabled="busy" @tap="sync(true)">全部重同步</button>
     </view>
-    <view class="toolbar">
+    <view v-if="isAdmin" class="toolbar">
       <button class="btn-secondary compact" @tap="goDrafts">草稿审核</button>
       <button class="btn-secondary compact" @tap="goPoints">知识点</button>
     </view>
@@ -27,7 +27,7 @@
       <text class="muted">{{ item.filename }} · 文件 v{{ item.version || 1 }} · 已同步 v{{ item.syncedVersion || 0 }} · {{ item.pointCount || 0 }} 条</text>
       <text v-if="item.syncState === 'outdated'" class="warn">内容已变化，尚未同步到知识库。</text>
       <text v-else-if="item.syncState === 'pending'" class="warn">尚未写入知识库。</text>
-      <view class="actions">
+      <view v-if="isAdmin" class="actions">
         <button class="btn-primary compact" :disabled="busy" @tap="syncOne(item.id)">同步本册</button>
         <button class="btn-secondary compact" @tap="previewResource(item.id)">查看原文</button>
         <button class="btn-secondary compact" @tap="useForExtract(item.id)">用作抽取</button>
@@ -39,7 +39,7 @@
       <view v-for="item in originalFiles" :key="item.id" class="card">
         <text class="name">{{ item.filename }}</text>
         <text class="muted">{{ item.slug }}</text>
-        <button class="btn-secondary compact" @tap="previewResource(item.id)">查看原文</button>
+        <button v-if="isAdmin" class="btn-secondary compact" @tap="previewResource(item.id)">查看原文</button>
       </view>
     </template>
 
@@ -48,7 +48,7 @@
       <view v-for="item in otherResources" :key="item.id" class="card">
         <text class="name">{{ item.filename }}</text>
         <text class="muted">{{ item.ownerType || item.owner_type }} · {{ item.status }}</text>
-        <view class="actions">
+        <view v-if="isAdmin" class="actions">
           <button class="btn-primary compact" :disabled="busy" @tap="syncOne(item.id)">同步到知识库</button>
           <button class="btn-secondary compact" @tap="previewResource(item.id)">查看原文</button>
           <button class="btn-secondary compact" @tap="useForExtract(item.id)">用作抽取</button>
@@ -72,6 +72,7 @@ import { openPage } from '@/utils/navigation'
 import { requireSubject } from '@/utils/subject'
 
 const userStore = useUserStore()
+const isAdmin = computed(() => !!userStore.isAdmin)
 const resources = ref<any[]>([])
 const busy = ref(false)
 const message = ref('')
@@ -152,11 +153,6 @@ function goPoints() {
 
 onShow(async () => {
   if (!(await requireSubject('chinese', 'parent'))) return
-  if (!userStore.isAdmin) {
-    uni.showToast({ title: '需要管理员', icon: 'none' })
-    uni.navigateBack()
-    return
-  }
   await load()
 })
 </script>

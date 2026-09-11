@@ -3,19 +3,24 @@ import { gradeAnswer, gradeCard, gradeCharJudge, gradeChoice, normalize } from '
 import { addDays, isMastered, schedule } from './sm2'
 import { applyTodayMode, isRecitable, normalizeMode, resolveDefaultMode, reviewOutcome } from './study-modes'
 import {
-  courseSizeWarning,
   energyToMinutes,
-  estimateCourseDuration,
   fillGroupFields,
   minutesToEnergy,
-  planCourseDays,
-  planTodayGroups,
   pointEnergy,
   validateCard
 } from './cards'
-import { KIND_LABEL, PLAN_MAX_DAYS, PLAN_WARN_DAYS } from './constants'
+import { KIND_LABEL, PLAN_CALENDAR_DAYS, PLAN_WARN_DAYS } from './constants'
 import { looksLikeMeaning, makeCharJudgeCard } from './entries'
 import { kidFeedback, progressStatus, weakKindRows } from './progress'
+import { applyAttempt, computeMastery, decayMastery, entryIsDue, retestIntervalDays } from './mastery'
+import {
+  compareLearningEntries,
+  courseSizeWarning,
+  planCourseDays,
+  planTodayGroups,
+  sortLearningEntries,
+  clusterEntries
+} from './schedule'
 
 describe('chinese grade', () => {
   it('strips punctuation', () => {
@@ -73,6 +78,7 @@ describe('chinese sm2', () => {
 
 describe('chinese study modes', () => {
   it('normalizes aliases', () => {
+    expect(normalizeMode('筛选')).toBe('filter')
     expect(normalizeMode('测试')).toBe('test')
     expect(normalizeMode('learn')).toBe('learn')
   })
@@ -230,7 +236,7 @@ describe('chinese cards', () => {
 
   it('does not silently cap a small course estimate', () => {
     const plan = planCourseDays([
-      { id: 'idiom', group_key: 'idiom:阿谀奉承', kind: 'idiom', lemma: '阿谀奉承', prompt: '用好听的话讨好别人（四字）', question_type: 'recite' }
+      { id: 'idiom', group_key: 'idiom:阿谀奉承', entry_key: 'idiom:阿谀奉承', kind: 'idiom', lemma: '阿谀奉承', prompt: '用好听的话讨好别人（四字）', question_type: 'recite' }
     ], 10)
     expect(plan.truncated).toBe(false)
     expect(plan.estimatedDays).toBe(plan.calendarDays)
@@ -238,50 +244,122 @@ describe('chinese cards', () => {
     expect(plan.warning).toBe('')
   })
 
-  it('exposes an uncapped estimate and warning when the calendar is truncated', () => {
-    const rows = Array.from({ length: 80 }, (_, index) => ({
-      id: `w${index}`,
-      kind: 'wenyan',
+  it('paces a full idiom set around 360 days instead of thousands', () => {
+    const rows = Array.from({ length: 1800 }, (_, index) => ({
+      id: `i${index}`,
+      entry_key: `idiom:词${index}`,
+      group_key: `idiom:词${index}`,
+      kind: 'idiom',
+      lemma: `词${index}`,
+      difficulty: 'primary',
       question_type: 'recite',
-      prompt: `文言${index}`,
-      answer: '甲'.repeat(130)
+      prompt: `提示${index}`,
+      answer: `词${index}`
     }))
-    const plan = planCourseDays(rows, 5)
-    expect(plan.truncated).toBe(true)
-    expect(plan.estimatedDays).toBeGreaterThan(PLAN_MAX_DAYS)
-    expect(plan.rawDayCount).toBe(plan.estimatedDays)
-    expect(plan.calendarDays).toBeLessThanOrEqual(PLAN_MAX_DAYS)
-    expect(plan.warning).toMatch(/实际约需/)
-    expect(plan.warning).toMatch(/难度/)
+    const plan = planCourseDays(rows, 15)
+    expect(plan.newPerDay).toBe(5)
+    expect(plan.estimatedDays).toBe(360)
+    expect(plan.estimatedDays).toBeLessThan(500)
+    expect(plan.calendarDays).toBeLessThanOrEqual(PLAN_CALENDAR_DAYS)
+    expect(plan.rawDayCount).toBe(360)
   })
 
-  it('warns when energy alone implies more than the soft day threshold', () => {
-    const duration = estimateCourseDuration({
-      calendarDays: 40,
-      dailyEnergy: 20,
-      totalEnergy: 20 * (PLAN_WARN_DAYS + 10),
-      remainingNewEnergy: 0,
-      introducedNewEnergy: 800,
-      remainingNewCount: 0,
-      hasUnmastered: false
-    })
-    expect(duration.truncated).toBe(false)
-    expect(duration.estimatedDays).toBeGreaterThan(PLAN_WARN_DAYS)
+  it('orders new idioms easy and in-text first', () => {
+    const sorted = sortLearningEntries(clusterEntries([
+      { id: '1', entry_key: 'idiom:培优', kind: 'idiom', lemma: '叱咤风云', difficulty: 'junior', tags: '成语', question_type: 'recite' },
+      { id: '2', entry_key: 'idiom:基础课文', kind: 'idiom', lemma: '一丝不苟', difficulty: 'primary', tags: '成语;课文;课内必背', question_type: 'recite' },
+      { id: '3', entry_key: 'idiom:拓展', kind: 'idiom', lemma: '一叶知秋', difficulty: 'xiaoshengchu', tags: '成语;日积月累', question_type: 'recite' }
+    ]))
+    expect(sorted.map(item => item.lemma)).toEqual(['一丝不苟', '一叶知秋', '叱咤风云'])
+    expect(compareLearningEntries(sorted[0], sorted[1])).toBeLessThan(0)
+  })
+
+  it('warns only when the entry-based plan is far beyond a school year', () => {
+    const rows = Array.from({ length: 1800 }, (_, index) => ({
+      id: `i${index}`,
+      entry_key: `idiom:词${index}`,
+      kind: 'idiom',
+      lemma: `词${index}`,
+      difficulty: 'primary',
+      question_type: 'recite'
+    }))
+    const ok = planCourseDays(rows, 15)
+    expect(ok.warning).toBe('')
     const warning = courseSizeWarning({
-      estimatedDays: duration.estimatedDays,
-      calendarDays: 40,
-      dailyMinutes: 5,
-      pointCount: 80,
-      energyDays: duration.energyDays,
-      truncated: false
+      estimatedDays: PLAN_WARN_DAYS + 40,
+      calendarDays: 90,
+      dailyMinutes: 10,
+      pointCount: 8000,
+      entryCount: 1800,
+      newPerDay: 3,
+      truncated: true
     })
-    expect(warning).toMatch(/课程规模较大/)
+    expect(warning).toMatch(/约需|规模较大/)
     expect(warning).toMatch(/难度/)
   })
 
   it('labels idiom as 成语 for parents and meta', () => {
     expect(KIND_LABEL.idiom).toBe('成语')
     expect(weakKindRows({ idiom: { errors: 3, attempts: 4 } })[0].label).toBe('成语')
+  })
+})
+
+describe('chinese mastery', () => {
+  it('scores 0-100, rises with correct answers, and decays if idle', () => {
+    let score = 0
+    score = applyAttempt(score, { correct: true, quality: 5, isNew: true, placement: true })
+    expect(score).toBeGreaterThanOrEqual(80)
+    const later = computeMastery([{ correct: true, quality: 5, placement: true, day: '2026-01-01' }], '2026-01-01', '2026-03-01')
+    expect(later).toBeLessThan(score)
+    expect(decayMastery(80, 21)).toBeCloseTo(40, 0)
+  })
+
+  it('does not treat skipped calendar days as extra failures', () => {
+    const afterBinge = computeMastery([
+      { correct: true, quality: 4, day: '2026-01-01' },
+      { correct: true, quality: 4, day: '2026-01-01' },
+      { correct: true, quality: 4, day: '2026-01-01' }
+    ], '2026-01-01', '2026-01-02')
+    const afterGap = computeMastery([
+      { correct: true, quality: 4, day: '2026-01-01' },
+      { correct: true, quality: 4, day: '2026-01-01' },
+      { correct: true, quality: 4, day: '2026-01-01' }
+    ], '2026-01-01', '2026-01-04')
+    expect(afterBinge).toBeGreaterThan(40)
+    expect(afterGap).toBeLessThan(afterBinge)
+    expect(afterGap).toBeGreaterThan(20)
+  })
+
+  it('still retests high-mastery entries after a long interval', () => {
+    expect(retestIntervalDays(90)).toBeGreaterThanOrEqual(21)
+    const rows = [{ id: '1', last: '2026-01-01', due: '2026-01-22', n: 4, interval: 21, entry_key: 'idiom:会' }]
+    expect(entryIsDue(rows, '2026-01-02', 90)).toBe(false)
+    expect(entryIsDue(rows, '2026-02-10', 90)).toBe(true)
+  })
+})
+
+describe('chinese filter mode', () => {
+  it('builds a short placement queue and keeps review-before-new in learn mode', () => {
+    const rows = Array.from({ length: 20 }, (_, index) => ({
+      id: `n${index}`,
+      entry_key: `idiom:${index}`,
+      kind: 'idiom',
+      lemma: `词${index}`,
+      question_type: 'meaning_choice',
+      prompt: '意思',
+      answer: `词${index}`
+    }))
+    const filtered = planTodayGroups(rows, new Set(), '2026-01-01', 15, 0, 0, 'filter')
+    expect(filtered.groups.length).toBeGreaterThan(0)
+    expect(filtered.groups.length).toBeLessThanOrEqual(12)
+    expect(filtered.groups.every(group => group.rows.length === 1)).toBe(true)
+  })
+
+  it('blocks reveal in filter mode and treats a pass as placement', () => {
+    expect(reviewOutcome('filter', { quality: 5, correct: true }, true).ok).toBe(false)
+    const pass = reviewOutcome('filter', { quality: 5, correct: true }, false)
+    expect(pass.update_sm2).toBe(true)
+    expect(pass.quality).toBe(5)
   })
 })
 

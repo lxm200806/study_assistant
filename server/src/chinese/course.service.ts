@@ -14,12 +14,22 @@ import {
   pageArgs,
   parseDailyMinutes,
   parseResourceFilter,
-  planCourseDays,
-  planTodayGroups,
   pointEnergy,
   minutesToEnergy,
   validateCard
 } from './cards'
+import {
+  clusterEntries,
+  planCourseDays,
+  planTodayGroups,
+  sortLearningEntries,
+  suggestCourseCopy
+} from './schedule'
+import {
+  isMasteredScore,
+  masteryFromLogs,
+  masteryLabel
+} from './mastery'
 import {
   AUDIENCE_LABEL,
   DEFAULT_COURSE_NAME,
@@ -27,6 +37,7 @@ import {
   DIFFICULTIES,
   DIFFICULTY_LABEL,
   KIND_LABEL,
+  MASTERY_KNOWN,
   QUESTION_TYPE_LABEL,
   isKind,
   isLevel,
@@ -38,7 +49,7 @@ import {
 import { audiencesForGrades, joinLabels, pickCourseCards, parseOptions } from './entries'
 import { HttpError } from './http'
 import { decorateResource, findPack, packStatus, PACKS, upsertEntry } from './materials'
-import { buildProgress, kidFeedback, masteryCounts, parentCopy } from './progress'
+import { buildProgress, kidFeedback, parentCopy } from './progress'
 import * as sm2 from './sm2'
 import { MODE_OPTIONS, answerLines, applyTodayMode, isRecitable, normalizeMode, resolveDefaultMode, reviewOutcome } from './study-modes'
 import { gradeCard } from './grade'
@@ -448,7 +459,8 @@ async function planCourseToday(
   course: { id: string; dailyMinutes: number },
   userId: string,
   today: string,
-  extraMinutes = 0
+  extraMinutes = 0,
+  mode = 'learn'
 ) {
   const points = await loadTodayPoints(course.id, userId)
   const logs = await loadTodayLogs(course.id, userId, today)
@@ -459,7 +471,8 @@ async function planCourseToday(
     today,
     course.dailyMinutes || DEFAULT_DAILY_MINUTES,
     spentEnergy,
-    extraMinutes
+    extraMinutes,
+    mode
   )
   return { points, logs, planned }
 }
@@ -576,17 +589,41 @@ export async function createCourse(userId: string, body: { name?: string; note?:
     ? Math.round((Number(body.newEnergy || 0) + Number(body.reviewEnergy || 0)) / 4)
     : body.dailyMinutes
   const dailyMinutes = parseDailyMinutes(legacyMinutes)
-  const points = await candidatePoints(useKinds, useLevels, grades, useDifficulties)
+  const points = sortLearningEntries(clusterEntries(await candidatePoints(useKinds, useLevels, grades, useDifficulties))).flatMap(entry => entry.rows)
   if (!points.length) throw new HttpError(400, '没有符合条件的已发布知识点')
+  const kindsEnc = encodeFilters(useKinds, KINDS)
+  const levelsEnc = encodeFilters(useLevels, LEVELS)
+  const gradesEnc = encodeFilters(grades, GRADES)
+  const diffsEnc = encodeFilters(useDifficulties, DIFFICULTIES)
+  const existing = await prisma.chineseCourse.findFirst({
+    where: {
+      learnerId: userId,
+      kinds: kindsEnc,
+      levels: levelsEnc,
+      grades: gradesEnc,
+      difficulties: diffsEnc,
+      dailyMinutes
+    },
+    orderBy: { createdAt: 'desc' }
+  })
+  if (existing) {
+    const plan = planCourseDays(points, dailyMinutes)
+    return {
+      ...serializeCourse(existing, points.length, plan, points.length),
+      entryCount: plan.entryCount || plan.groupCount,
+      reused: true
+    }
+  }
+  const suggested = suggestCourseCopy({ kinds: useKinds, grades, difficulties: useDifficulties, dailyMinutes })
   const course = await prisma.chineseCourse.create({
     data: {
       learnerId: userId,
       name,
-      note: String(body.note || '').trim(),
-      kinds: encodeFilters(useKinds, KINDS),
-      levels: encodeFilters(useLevels, LEVELS),
-      grades: encodeFilters(grades, GRADES),
-      difficulties: encodeFilters(useDifficulties, DIFFICULTIES),
+      note: String(body.note || '').trim() || suggested.note,
+      kinds: kindsEnc,
+      levels: levelsEnc,
+      grades: gradesEnc,
+      difficulties: diffsEnc,
       dailyMinutes,
       reviewDefaultTest: Boolean(body.reviewDefaultTest)
     }
@@ -595,7 +632,7 @@ export async function createCourse(userId: string, body: { name?: string; note?:
     data: points.map((point, index) => ({ courseId: course.id, pointId: String(point.id), sort: index }))
   })
   const plan = planCourseDays(points, dailyMinutes)
-  return { ...serializeCourse(course, points.length, plan, points.length), entryCount: plan.groupCount }
+  return { ...serializeCourse(course, points.length, plan, points.length), entryCount: plan.entryCount || plan.groupCount, reused: false }
 }
 
 export async function previewCourse(body: { kinds?: string[]; levels?: string[]; grades?: string[]; difficulties?: string[]; dailyMinutes?: number; newEnergy?: number; reviewEnergy?: number }) {
@@ -612,7 +649,15 @@ export async function previewCourse(body: { kinds?: string[]; levels?: string[];
   const legacyMinutes = body.dailyMinutes == null && (body.newEnergy != null || body.reviewEnergy != null)
     ? Math.round((Number(body.newEnergy || 0) + Number(body.reviewEnergy || 0)) / 4)
     : body.dailyMinutes
-  return planCourseDays(points, parseDailyMinutes(legacyMinutes))
+  const dailyMinutes = parseDailyMinutes(legacyMinutes)
+  const plan = planCourseDays(points, dailyMinutes)
+  const suggested = suggestCourseCopy({
+    kinds: kinds.length ? kinds : [...KINDS],
+    grades,
+    difficulties: difficulties.length ? difficulties : [...DIFFICULTIES],
+    dailyMinutes
+  })
+  return { ...plan, suggestedName: suggested.name, suggestedNote: suggested.note }
 }
 
 export async function listCourses(userId: string) {
@@ -701,9 +746,16 @@ export async function syncCourse(courseId: string, userId: string) {
 export async function todayQueue(courseId: string, userId: string, mode?: string, extraMinutes = 0, reciteOffset = 0) {
   const today = sm2.todayText()
   const course = await ensureDefaultSynced(await ownCourse(courseId, userId))
-  const { points, logs, planned } = await planCourseToday(course, userId, today, extraMinutes)
+  const requested = mode ? normalizeMode(mode) : ''
+  const { points, logs, planned } = await planCourseToday(
+    course,
+    userId,
+    today,
+    extraMinutes,
+    requested === 'filter' ? 'filter' : 'learn'
+  )
     const suggested = resolveDefaultMode(planned as any, course.reviewDefaultTest)
-    const active = mode ? normalizeMode(mode) : suggested
+    const active = requested || suggested
     const progress = buildProgress(planned, logs, points.length)
   const reciteGroups = clusterGroups(points.filter(isRecitable))
   const safeReciteOffset = Math.max(0, Math.floor(Number(reciteOffset) || 0))
@@ -717,6 +769,7 @@ export async function todayQueue(courseId: string, userId: string, mode?: string
     MODE_OPTIONS.map(option => [option.id, Number(applyTodayMode(planned as any, option.id).cards || 0)])
   )
   modeCounts.recite = reciteGroups.length
+  modeCounts.filter = clusterEntries(points).filter(entry => entry.rows.every(row => !row.last)).length
   const hideSource = active === 'test'
     const items = flattenTodayGroups(shaped.groups as any).map(entry => {
     const qtype = String(entry.row.question_type || 'dictation')
@@ -802,6 +855,39 @@ export async function coursePlan(courseId: string, userId: string) {
   return { ...plan, course: serializeCourse(course, points.length) }
 }
 
+async function markEntryKnown(courseId: string, userId: string, entryKey: string, today: string, exceptPointId = '') {
+  if (!entryKey) return
+  const siblings = await prisma.chineseCourseItem.findMany({
+    where: { courseId, point: { entryKey } },
+    select: { pointId: true }
+  })
+  const due = sm2.parseDay(sm2.addDays(today, 21))
+  const last = sm2.parseDay(today)
+  for (const row of siblings) {
+    if (row.pointId === exceptPointId) continue
+    await prisma.chineseReviewState.upsert({
+      where: { learnerId_courseId_pointId: { learnerId: userId, courseId, pointId: row.pointId } },
+      create: {
+        learnerId: userId,
+        courseId,
+        pointId: row.pointId,
+        n: 4,
+        ef: 2.5,
+        interval: 21,
+        due: due || undefined,
+        lapses: 0,
+        last: last || undefined
+      },
+      update: {
+        n: 4,
+        interval: 21,
+        due: due || undefined,
+        last: last || undefined
+      }
+    })
+  }
+}
+
 export async function reviewPoint(courseId: string, userId: string, body: { pointId?: string; answer?: string; reveal?: boolean; mode?: string; selfRating?: string }) {
   const today = sm2.todayText()
   const mode = normalizeMode(body.mode)
@@ -860,6 +946,9 @@ export async function reviewPoint(courseId: string, userId: string, body: { poin
         correct: result.correct
       }
     })
+    if (mode === 'filter' && result.correct) {
+      await markEntryKnown(courseId, userId, String(point.entry_key || ''), today, item.pointId)
+    }
   }
   return {
     ...result,
@@ -884,26 +973,6 @@ export async function courseStats(courseId: string, userId: string) {
   })
   const states = await prisma.chineseReviewState.findMany({ where: { learnerId: userId, courseId } })
   const logs = await prisma.chineseReviewLog.findMany({ where: { learnerId: userId, courseId } })
-  const userLogs = await prisma.chineseReviewLog.findMany({
-    where: { learnerId: userId },
-    select: { courseId: true, pointId: true }
-  })
-  const logPointIds = Array.from(new Set(userLogs.map(item => item.pointId)))
-  const logPoints = logPointIds.length
-    ? await prisma.chinesePublished.findMany({
-        where: { id: { in: logPointIds } },
-        select: { id: true, entryKey: true }
-      })
-    : []
-  const entryByPoint = new Map(logPoints.map(item => [item.id, item.entryKey || '']))
-  const coursesByEntry = new Map<string, Set<string>>()
-  for (const log of userLogs) {
-    const entryKey = entryByPoint.get(log.pointId)
-    if (!entryKey) continue
-    const set = coursesByEntry.get(entryKey) || new Set<string>()
-    set.add(log.courseId)
-    coursesByEntry.set(entryKey, set)
-  }
   const stateMap = new Map(states.map(item => [item.pointId, item]))
   const logByPoint = new Map<string, typeof logs>()
   for (const log of logs) {
@@ -911,38 +980,67 @@ export async function courseStats(courseId: string, userId: string) {
     list.push(log)
     logByPoint.set(log.pointId, list)
   }
-  const serialized = items.map(item => {
+  const points = items.map(item => {
     const state = stateMap.get(item.pointId)
-    const pointLogs = logByPoint.get(item.pointId) || []
-    const passCount = item.point.entryKey ? coursesByEntry.get(item.point.entryKey)?.size || 0 : 0
-    const row = {
-      id: item.point.id,
-      kind: item.point.kind,
-      level: item.point.level,
-      grade: item.point.grade,
-      difficulty: item.point.difficulty,
-      prompt: item.point.prompt,
-      source: item.point.source,
-      entry_key: item.point.entryKey,
-      lemma: item.point.lemma,
-      question_type: item.point.questionType,
-      n: state?.n || 0,
-      interval: state?.interval || 0,
-      due: asDay(state?.due) || null,
-      lapses: state?.lapses || 0,
-      last: asDay(state?.last) || null,
-      study_count: pointLogs.filter(log => log.isNew).length,
-      review_count: pointLogs.filter(log => !log.isNew).length,
-      error_count: pointLogs.filter(log => !log.correct).length,
-      passCount,
-      pass_count: passCount,
-      mastered: sm2.isMastered(state ? { n: state.n, interval: state.interval } : null)
-    }
-    return row
+    return toPointLike({
+      ...item.point,
+      n: state?.n,
+      ef: state?.ef,
+      interval: state?.interval,
+      due: state?.due,
+      lapses: state?.lapses,
+      last: state?.last
+    })
   })
-  const { points, logs: todayLogs, planned } = await planCourseToday(course, userId, today)
-  const mastery = masteryCounts(serialized)
-  let progress = buildProgress(planned, todayLogs, points.length, mastery.mastered, mastery.total)
+  const entries = sortLearningEntries(clusterEntries(points)).map(entry => {
+    const entryLogs = entry.rows.flatMap(row => logByPoint.get(String(row.id)) || [])
+    const fromLogs = masteryFromLogs(entryLogs, today)
+    const score = fromLogs.attempts ? fromLogs.score : 0
+    const practiced = fromLogs.attempts > 0 || entry.rows.some(row => row.last)
+    const masteryScore = practiced ? score : 0
+    return {
+      id: entry.entryKey,
+      entryKey: entry.entryKey,
+      lemma: entry.lemma,
+      kind: entry.kind,
+      difficulty: entry.difficulty,
+      grade: entry.grade,
+      source: entry.source,
+      prompt: entry.lemma,
+      cardCount: entry.rows.length,
+      masteryScore,
+      masteryLabel: masteryLabel(masteryScore, practiced),
+      mastered: isMasteredScore(masteryScore),
+      last: fromLogs.lastDay || entry.rows.map(row => String(row.last || '')).sort().pop() || null,
+      study_count: entryLogs.filter(log => log.isNew).length,
+      review_count: entryLogs.filter(log => !log.isNew).length,
+      error_count: fromLogs.errors,
+      interval: reviewIntervalForScore(masteryScore)
+    }
+  })
+  const mastered = entries.filter(item => item.mastered).length
+  const unseen = entries.filter(item => !item.last).length
+  const learning = Math.max(0, entries.length - mastered - unseen)
+  const kindCounts: Record<string, { attempts: number; errors: number }> = {}
+  for (const item of entries) {
+    const stats = kindCounts[item.kind] || (kindCounts[item.kind] = { attempts: 0, errors: 0 })
+    stats.attempts += item.study_count + item.review_count
+    stats.errors += item.error_count
+  }
+  const mastery = {
+    total: entries.length,
+    mastered,
+    learning,
+    unseen,
+    average: entries.length ? Math.round(entries.reduce((sum, item) => sum + item.masteryScore, 0) / entries.length) : 0,
+    weakKinds: Object.entries(kindCounts)
+      .filter(([, stats]) => stats.errors > 0)
+      .sort((a, b) => b[1].errors - a[1].errors)
+      .slice(0, 3)
+      .map(([kind, stats]) => ({ kind, label: KIND_LABEL[kind as keyof typeof KIND_LABEL] || kind, errors: stats.errors, attempts: stats.attempts }))
+  }
+  const { points: todayPoints, logs: todayLogs, planned } = await planCourseToday(course, userId, today)
+  let progress = buildProgress(planned, todayLogs, todayPoints.length, mastery.mastered, mastery.total)
   if (!progress.weakKinds.length) {
     progress = {
       ...progress,
@@ -960,13 +1058,22 @@ export async function courseStats(courseId: string, userId: string) {
     }
   }
   return {
-    items: serialized,
+    items: entries,
     today: progress,
     mastery,
     summary: progress.summary,
     courseName: course.name,
-    reviewDefaultTest: course.reviewDefaultTest
+    reviewDefaultTest: course.reviewDefaultTest,
+    masteryScale: '0-100'
   }
+}
+
+function reviewIntervalForScore(score: number) {
+  if (score < 30) return 1
+  if (score < 50) return 2
+  if (score < 65) return 4
+  if (score < MASTERY_KNOWN) return 7
+  return 21 + Math.max(0, Math.floor((score - MASTERY_KNOWN) / 2))
 }
 
 export async function libraryCoverage(userId: string) {
