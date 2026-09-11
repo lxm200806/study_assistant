@@ -4,7 +4,7 @@ export type ChineseKind = (typeof KINDS)[number]
 export const KIND_LABEL: Record<ChineseKind, string> = {
   poem: '古诗',
   wenyan: '文言文',
-  idiom: '词语',
+  idiom: '成语',
   saying: '俗语名句',
   sentence: '优美句子',
   zi: '易错字'
@@ -87,6 +87,15 @@ export const PAGE_DEFAULT = 200
 export const PAGE_MAX = 500
 export const PLAN_QUALITY = 5
 export const PLAN_MAX_DAYS = 240
+export const PLAN_CALENDAR_DAYS = 90
+export const PLAN_WARN_DAYS = 480
+export const PLAN_WARN_POINT_COUNT = 1500
+export const PLAN_WARN_ENTRY_COUNT = 2500
+export const DEFAULT_NEW_ENTRIES_PER_DAY = 5
+export const FILTER_BATCH_SIZE = 12
+export const MASTERY_KNOWN = 80
+export const MASTERY_HIGH = 85
+export const MASTERY_DECAY_HALF_LIFE_DAYS = 21
 export const DEFAULT_COURSE_NAME = '默认课程'
 
 export interface PointLike {

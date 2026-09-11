@@ -121,6 +121,7 @@ import { requireSubject } from '@/utils/subject'
 const FALLBACK_MODES = [
   { id: 'learn', label: '学一学', hint: '新题＋提示' },
   { id: 'test', label: '复习测验', hint: '只测到期' },
+  { id: 'filter', label: '快速筛选', hint: '标出会的词' },
   { id: 'recite', label: '朗读背诵', hint: '不计成绩' }
 ]
 
@@ -168,8 +169,9 @@ const reciteLines = computed(() => {
 const modeLocked = computed(() => loading.value || busy.value || !!result.value || !!answer.value.trim() || revealedCount.value > 0)
 const modeHint = computed(() => {
   if (mode.value === 'test') return '复习测验只检查到期内容：不显示词条和来源，提交前不能看答案。'
+  if (mode.value === 'filter') return '快速筛选：每题一个成语，选对就标成会，之后仍会偶尔抽查；选错则留在新学里。'
   if (mode.value === 'recite') return '朗读背诵包含成语、诗文和名句，不计成绩，不改变复习日期。'
-  return `本课程每天约 ${dailyMinutes.value} 分钟，系统先安排复习，再学习新内容；不会时可以看答案。`
+  return `本课程每天约 ${dailyMinutes.value} 分钟，按词条安排：先复习到期的，再学大约几个新成语；不会时可以看答案。`
 })
 const cheerText = computed(() => {
   const parts = []
@@ -181,11 +183,13 @@ const cheerText = computed(() => {
 })
 const statusTitle = computed(() => {
   if (mode.value === 'test') return queue.value.length ? `到期复习 ${queue.value.length} 张` : '今天没有到期复习'
+  if (mode.value === 'filter') return queue.value.length ? `本轮筛选 ${queue.value.length} 个词条` : '没有可筛选的新词条'
   if (mode.value === 'recite') return queue.value.length ? `本组朗读背诵 ${queue.value.length} 项` : '本轮读背完成'
   return progress.value.title || '今日学习'
 })
 const statusHint = computed(() => {
   if (mode.value === 'test') return queue.value.length ? '独立完成后再核对答案。' : '可以切到「学一学」练新卡。'
+  if (mode.value === 'filter') return queue.value.length ? '会的直接选对，不会的放进后续新学。已会的词仍会隔一段时间再抽查。' : '可以切到「学一学」按计划学习。'
   if (mode.value === 'recite') return queue.value.length ? `本课共有 ${modeCounts.value.recite || queue.value.length} 项可读背内容，不计入学习时长。` : '可以继续下一组或返回首页。'
   return progress.value.hint || ''
 })
@@ -339,8 +343,8 @@ onLoad(async (query) => {
 </script>
 
 <style lang="scss" scoped>
-.mode-switch { display: flex; gap: 12rpx; margin-bottom: 16rpx; }
-.mode-btn { flex: 1; background: #fff; border-radius: 16rpx; padding: 16rpx; text-align: center; }
+.mode-switch { display: flex; flex-wrap: wrap; gap: 12rpx; margin-bottom: 16rpx; }
+.mode-btn { flex: 1 1 40%; background: #fff; border-radius: 16rpx; padding: 16rpx; text-align: center; }
 .mode-btn.active { background: #667eea; }
 .mode-btn.active .mode-label, .mode-btn.active .mode-hint { color: #fff; }
 .mode-label { display: block; font-weight: 700; font-size: 28rpx; }

@@ -110,6 +110,12 @@ export function kidFeedback(mode: string, gradeResult: { chars?: Array<{ char?: 
     }
     return { title: '再读一读', hint: '对照原文读顺就好，不必着急手写。', next: '继续下一题。', wrongChars: wrong }
   }
+  if (mode === 'filter') {
+    if (correct) {
+      return { title: '先记成会', hint: '这个词条会从新学里拿掉，以后仍会偶尔抽查，不会永远不练。', next: '继续筛选下一题。', wrongChars: [] as string[] }
+    }
+    return { title: '放进新学', hint: '先当不会，后面按计划学。', next: '继续筛选下一题。', wrongChars: wrong }
+  }
   if (revealed) {
     return {
       title: '看过答案了',

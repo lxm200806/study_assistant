@@ -2,7 +2,7 @@
   <view class="container">
     <view class="header">
       <text class="title">{{ data.courseName || '课程掌握' }}</text>
-      <text class="subtitle">间隔是下次再见到大约隔几天。「学过几遍」是这个词条进过几门课并练过。</text>
+      <text class="subtitle">掌握度 0–100：做对会升高，隔天不练会慢慢降。跳过几天或一天多练几组都按实际练习算，不按课表日历扣分。80 分以上仍会偶尔抽查。</text>
     </view>
     <view v-if="today.status === 'empty'" class="card">
       <text>这门课还没有知识点。请回课程页点「同步新词」，或去组课重新生成。</text>
@@ -16,6 +16,7 @@
           <view class="stat"><text class="num">{{ accuracyText }}</text><text>正确率</text></view>
           <view class="stat"><text class="num">{{ remainingText }}</text><text>还差</text></view>
           <view class="stat"><text class="num">{{ mastery.mastered || 0 }}/{{ mastery.total || 0 }}</text><text>已掌握</text></view>
+          <view class="stat"><text class="num">{{ mastery.average || 0 }}</text><text>平均掌握</text></view>
         </view>
         <text v-if="weakText" class="hint">相对容易错：{{ weakText }}</text>
         <text v-if="today.todayDoneCount" class="cheer">
@@ -35,12 +36,14 @@
         <text class="muted">
           <template v-if="item.kind === 'idiom'">{{ difficultyLabel(item.difficulty) }}</template>
           <template v-else>{{ item.grade || '未分年级' }}</template>
-          · {{ kindLabel(item.kind) }} · {{ item.mastered ? '已掌握' : item.last ? '学习中' : '未学' }}
+          · {{ kindLabel(item.kind) }} · {{ item.masteryLabel || (item.mastered ? '已掌握' : item.last ? '学习中' : '未学') }}
+          · {{ item.masteryScore || 0 }}/100
         </text>
+        <view class="bar"><view class="fill" :style="{ width: masteryWidth(item) }"></view></view>
         <text class="muted">
           学 {{ item.study_count || 0 }} / 复习 {{ item.review_count || 0 }} / 错 {{ item.error_count || 0 }}
-          · 学过几遍 {{ item.passCount || item.pass_count || 0 }}
-          · 间隔 {{ item.interval || 0 }} 天
+          · 题卡 {{ item.cardCount || 1 }}
+          · 约 {{ item.interval || 0 }} 天后复测
         </text>
       </view>
     </template>
@@ -69,6 +72,10 @@ const weakText = computed(() => {
   const rows = today.value.weakKinds || mastery.value.weakKinds || []
   return rows.map((item: any) => item.label || item.kind).join('、')
 })
+
+function masteryWidth(item: { masteryScore?: number }) {
+  return `${Math.min(100, Math.max(0, Number(item.masteryScore || 0)))}%`
+}
 
 async function loadStats() {
   data.value = await chineseAPI.stats(courseId.value)
@@ -106,4 +113,6 @@ onLoad(async query => {
 .cheer { display: block; margin-top: 12rpx; color: #667eea; }
 .pref { display: flex; align-items: center; gap: 12rpx; margin-top: 16rpx; }
 .check { color: #667eea; font-size: 32rpx; }
+.bar { height: 10rpx; margin-top: 12rpx; background: #eee; border-radius: 999rpx; overflow: hidden; }
+.fill { height: 100%; background: #667eea; }
 </style>
