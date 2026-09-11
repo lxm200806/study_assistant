@@ -14,6 +14,8 @@ import {
   PAGE_MAX,
   PLAN_MAX_DAYS,
   PLAN_QUALITY,
+  PLAN_WARN_DAYS,
+  PLAN_WARN_POINT_COUNT,
   SOLO_KINDS,
   isKind,
   isLevel,
@@ -66,7 +68,7 @@ export function validateCard(kind: string, prompt: unknown, answer: unknown, que
   if (['pinyin_choice', 'spelling_choice', 'meaning_choice', 'context_choice'].includes(qtype)) return null
   const compact = normalize(answer)
   if (kind === 'zi' && compact.length !== 1) return '易错字答案必须是一个字'
-  if (kind === 'idiom' && (compact.length < 3 || compact.length > 8)) return '词语过长，请拆成一条'
+  if (kind === 'idiom' && (compact.length < 3 || compact.length > 8)) return '成语过长，请拆成一条'
   if (kind === 'saying' && compact.length > 40) return '俗语名句过长，请拆成一条'
   if (kind === 'poem' && compact.length > 80) return '古诗卡片过大，请拆成名句或短篇'
   if (kind === 'wenyan' && compact.length > 160) return '文言文卡片过大，请拆成一段'
@@ -478,6 +480,59 @@ function serializePlanDays(days: Array<{ day?: number; sessions: StudySession[];
   })
 }
 
+export function estimateCourseDuration(input: {
+  calendarDays: number
+  dailyEnergy: number
+  totalEnergy: number
+  remainingNewEnergy: number
+  introducedNewEnergy: number
+  remainingNewCount: number
+  hasUnmastered: boolean
+}) {
+  const {
+    calendarDays,
+    dailyEnergy,
+    totalEnergy,
+    remainingNewEnergy,
+    introducedNewEnergy,
+    remainingNewCount,
+    hasUnmastered
+  } = input
+  const truncated = remainingNewCount > 0 || (calendarDays >= PLAN_MAX_DAYS && hasUnmastered)
+  const energyFloor = dailyEnergy > 0 ? Math.ceil(totalEnergy / Math.max(1, dailyEnergy)) : 0
+  const introRate = calendarDays > 0 && introducedNewEnergy > 0
+    ? introducedNewEnergy / calendarDays
+    : dailyEnergy
+  let estimatedDays = calendarDays
+  if (remainingNewEnergy > 0 && introRate > 0) {
+    estimatedDays = calendarDays + Math.ceil(remainingNewEnergy / introRate)
+  } else if (truncated && hasUnmastered) {
+    estimatedDays = calendarDays + 21
+  }
+  estimatedDays = Math.max(estimatedDays, energyFloor, calendarDays)
+  return { estimatedDays, truncated, energyDays: energyFloor }
+}
+
+export function courseSizeWarning(input: {
+  estimatedDays: number
+  calendarDays: number
+  dailyMinutes: number
+  pointCount: number
+  energyDays: number
+  truncated: boolean
+}) {
+  const oversized =
+    input.truncated ||
+    input.estimatedDays > PLAN_WARN_DAYS ||
+    input.energyDays > PLAN_WARN_DAYS ||
+    input.pointCount > PLAN_WARN_POINT_COUNT
+  if (!oversized) return ''
+  const head = input.truncated
+    ? `课表最多排出 ${PLAN_MAX_DAYS} 天，按当前每天 ${input.dailyMinutes} 分钟估算实际约需 ${input.estimatedDays} 天。`
+    : `课程规模较大，按当前每天 ${input.dailyMinutes} 分钟预计约 ${input.estimatedDays} 天。`
+  return `${head}建议按难度分层组课，或缩小年级/类型范围后再生成。`
+}
+
 export function planCourseDays(rows: PointLike[], dailyMinutes: unknown = DEFAULT_DAILY_MINUTES) {
   const minutes = parseDailyMinutes(dailyMinutes)
   const dailyBudget = minutesToEnergy(minutes)
@@ -526,6 +581,27 @@ export function planCourseDays(rows: PointLike[], dailyMinutes: unknown = DEFAUL
       review_energy: reviewUsed
     })
   }
+  const calendarDays = days.length ? days[days.length - 1].day : 0
+  const remainingNewEnergy = remainingNew.reduce((sum, session) => sum + session.energy, 0)
+  const introducedNewEnergy = days.reduce((sum, day) => sum + day.new_energy, 0)
+  const hasUnmastered = [...states.values()].some(state => state && !sm2.isMastered(state))
+  const duration = estimateCourseDuration({
+    calendarDays,
+    dailyEnergy: dailyBudget,
+    totalEnergy: rowsEnergy(rows),
+    remainingNewEnergy,
+    introducedNewEnergy,
+    remainingNewCount: remainingNew.length,
+    hasUnmastered
+  })
+  const warning = courseSizeWarning({
+    estimatedDays: duration.estimatedDays,
+    calendarDays,
+    dailyMinutes: minutes,
+    pointCount: rows.length,
+    energyDays: duration.energyDays,
+    truncated: duration.truncated
+  })
   return {
     dailyMinutes: minutes,
     dailyEnergy: dailyBudget,
@@ -536,7 +612,11 @@ export function planCourseDays(rows: PointLike[], dailyMinutes: unknown = DEFAUL
     totalEnergy: rowsEnergy(rows),
     dayCount: days.length,
     newDayCount,
-    calendarDays: days.length ? days[days.length - 1].day : 0,
+    calendarDays,
+    estimatedDays: duration.estimatedDays,
+    rawDayCount: duration.estimatedDays,
+    truncated: duration.truncated,
+    warning,
     days: serializePlanDays(days)
   }
 }

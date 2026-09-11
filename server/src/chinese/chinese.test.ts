@@ -2,9 +2,20 @@ import { describe, expect, it } from 'vitest'
 import { gradeAnswer, gradeCard, gradeCharJudge, gradeChoice, normalize } from './grade'
 import { addDays, isMastered, schedule } from './sm2'
 import { applyTodayMode, isRecitable, normalizeMode, resolveDefaultMode, reviewOutcome } from './study-modes'
-import { energyToMinutes, fillGroupFields, minutesToEnergy, planCourseDays, planTodayGroups, pointEnergy, validateCard } from './cards'
+import {
+  courseSizeWarning,
+  energyToMinutes,
+  estimateCourseDuration,
+  fillGroupFields,
+  minutesToEnergy,
+  planCourseDays,
+  planTodayGroups,
+  pointEnergy,
+  validateCard
+} from './cards'
+import { KIND_LABEL, PLAN_MAX_DAYS, PLAN_WARN_DAYS } from './constants'
 import { looksLikeMeaning, makeCharJudgeCard } from './entries'
-import { kidFeedback, progressStatus } from './progress'
+import { kidFeedback, progressStatus, weakKindRows } from './progress'
 
 describe('chinese grade', () => {
   it('strips punctuation', () => {
@@ -174,6 +185,8 @@ describe('chinese cards', () => {
   it('validates kinds and zi length', () => {
     expect(validateCard('zi', '写这个字', '己')).toBeNull()
     expect(validateCard('zi', '写这个字', '已经')).toContain('一个字')
+    expect(validateCard('idiom', '提示', '一丝不苟', 'dictation', '一丝不苟')).toBeNull()
+    expect(validateCard('idiom', '提示', '过', 'dictation', '过')).toContain('成语')
   })
 
   it('validates new exam-style card answers', () => {
@@ -213,6 +226,62 @@ describe('chinese cards', () => {
     )
     expect(planned.groups[0].role).toBe('review')
     expect(planned.reviewEnergy).toBeGreaterThan(0)
+  })
+
+  it('does not silently cap a small course estimate', () => {
+    const plan = planCourseDays([
+      { id: 'idiom', group_key: 'idiom:阿谀奉承', kind: 'idiom', lemma: '阿谀奉承', prompt: '用好听的话讨好别人（四字）', question_type: 'recite' }
+    ], 10)
+    expect(plan.truncated).toBe(false)
+    expect(plan.estimatedDays).toBe(plan.calendarDays)
+    expect(plan.rawDayCount).toBe(plan.estimatedDays)
+    expect(plan.warning).toBe('')
+  })
+
+  it('exposes an uncapped estimate and warning when the calendar is truncated', () => {
+    const rows = Array.from({ length: 80 }, (_, index) => ({
+      id: `w${index}`,
+      kind: 'wenyan',
+      question_type: 'recite',
+      prompt: `文言${index}`,
+      answer: '甲'.repeat(130)
+    }))
+    const plan = planCourseDays(rows, 5)
+    expect(plan.truncated).toBe(true)
+    expect(plan.estimatedDays).toBeGreaterThan(PLAN_MAX_DAYS)
+    expect(plan.rawDayCount).toBe(plan.estimatedDays)
+    expect(plan.calendarDays).toBeLessThanOrEqual(PLAN_MAX_DAYS)
+    expect(plan.warning).toMatch(/实际约需/)
+    expect(plan.warning).toMatch(/难度/)
+  })
+
+  it('warns when energy alone implies more than the soft day threshold', () => {
+    const duration = estimateCourseDuration({
+      calendarDays: 40,
+      dailyEnergy: 20,
+      totalEnergy: 20 * (PLAN_WARN_DAYS + 10),
+      remainingNewEnergy: 0,
+      introducedNewEnergy: 800,
+      remainingNewCount: 0,
+      hasUnmastered: false
+    })
+    expect(duration.truncated).toBe(false)
+    expect(duration.estimatedDays).toBeGreaterThan(PLAN_WARN_DAYS)
+    const warning = courseSizeWarning({
+      estimatedDays: duration.estimatedDays,
+      calendarDays: 40,
+      dailyMinutes: 5,
+      pointCount: 80,
+      energyDays: duration.energyDays,
+      truncated: false
+    })
+    expect(warning).toMatch(/课程规模较大/)
+    expect(warning).toMatch(/难度/)
+  })
+
+  it('labels idiom as 成语 for parents and meta', () => {
+    expect(KIND_LABEL.idiom).toBe('成语')
+    expect(weakKindRows({ idiom: { errors: 3, attempts: 4 } })[0].label).toBe('成语')
   })
 })
 

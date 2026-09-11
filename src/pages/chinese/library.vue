@@ -62,6 +62,7 @@
       <text class="muted">
         {{ loading ? '正在预览…' : previewText }}
       </text>
+      <text v-if="!loading && sizeWarning" class="warning">{{ sizeWarning }}</text>
       <button class="btn-primary" :disabled="busy || loading || total === 0" @tap="createCourse">
         {{ busy ? '正在生成…' : '生成课程' }}
       </button>
@@ -85,14 +86,29 @@ const name = ref('三年级上册默写')
 const note = ref('部编三年级上册必背与日积月累')
 const total = ref(0)
 const entryCount = ref(0)
-const preview = ref<{ dayCount?: number; estimatedDays?: number }>({})
+const preview = ref<{
+  dayCount?: number
+  estimatedDays?: number
+  rawDayCount?: number
+  calendarDays?: number
+  truncated?: boolean
+  warning?: string
+}>({})
 const loading = ref(false)
 const busy = ref(false)
 let ticket = 0
 
+const sizeWarning = computed(() => String(preview.value.warning || ''))
+
 const previewText = computed(() => {
-  const days = preview.value.estimatedDays || preview.value.dayCount
-  return `当前筛选 ${entryCount.value} 个词条、${total.value} 张题卡 · 每天 ${dailyMinutes.value} 分钟${days ? ` · 预计 ${days} 天` : ''}`
+  const days = preview.value.estimatedDays || preview.value.rawDayCount || preview.value.dayCount
+  const calendar = preview.value.calendarDays
+  let text = `当前筛选 ${entryCount.value} 个词条、${total.value} 张题卡 · 每天 ${dailyMinutes.value} 分钟`
+  if (days) text += ` · 预计 ${days} 天`
+  if (preview.value.truncated && calendar && calendar !== days) {
+    text += `（课表仅排出前 ${calendar} 天）`
+  }
+  return text
 })
 
 function toggle(list: string[], item: string) {
@@ -182,4 +198,14 @@ onMounted(async () => {
 .chip { padding: 10rpx 18rpx; border-radius: 999rpx; background: #f3f3f3; font-size: 24rpx; color: #555; }
 .chip.active { background: #667eea; color: #fff; }
 .muted { display: block; margin: 16rpx 0; color: #888; font-size: 24rpx; }
+.warning {
+  display: block;
+  margin: 0 0 16rpx;
+  padding: 16rpx 18rpx;
+  border-radius: 12rpx;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 24rpx;
+  line-height: 1.55;
+}
 </style>

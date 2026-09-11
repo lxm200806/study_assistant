@@ -4,7 +4,11 @@
       <text class="title">学习计划</text>
       <text class="subtitle">
         {{ plan.course && plan.course.name }} · 每天约 {{ dailyMinutes }} 分钟 · 预计 {{ estimatedDays }} 天
+        <template v-if="plan.truncated && plan.calendarDays && plan.calendarDays !== estimatedDays">
+          （课表仅排出前 {{ plan.calendarDays }} 天）
+        </template>
       </text>
+      <text v-if="plan.warning" class="warning">{{ plan.warning }}</text>
     </view>
     <text v-if="loading" class="muted">正在生成计划…</text>
     <view v-for="item in visibleDays" :key="item.day.day" class="card plan-day">
@@ -65,7 +69,7 @@ const dailyMinutes = computed(() =>
 )
 
 const estimatedDays = computed(() =>
-  Number(plan.value.estimatedDays || plan.value.dayCount || (plan.value.days || []).length || 0)
+  Number(plan.value.estimatedDays || plan.value.rawDayCount || plan.value.dayCount || (plan.value.days || []).length || 0)
 )
 
 const visibleDays = computed(() =>
@@ -144,6 +148,16 @@ onReachBottom(() => {
 .header { padding: 4rpx 4rpx 16rpx; }
 .title { display: block; font-size: 40rpx; font-weight: 700; }
 .subtitle, .muted, .day { display: block; color: #666; font-size: 26rpx; margin-top: 8rpx; }
+.warning {
+  display: block;
+  margin-top: 12rpx;
+  padding: 16rpx 18rpx;
+  border-radius: 12rpx;
+  background: #fff7ed;
+  color: #9a3412;
+  font-size: 24rpx;
+  line-height: 1.55;
+}
 .plan-day { margin-bottom: 14rpx; padding: 18rpx 20rpx; }
 .day { margin-top: 0; font-weight: 700; color: #222; font-size: 28rpx; }
 .counts-row { display: flex; align-items: center; gap: 10rpx; margin-top: 10rpx; color: #555; font-size: 22rpx; white-space: nowrap; }
