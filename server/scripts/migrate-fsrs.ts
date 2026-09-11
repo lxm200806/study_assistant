@@ -9,14 +9,14 @@ async function main() {
   console.log('Starting FSRS migration...')
 
   const stats = await prisma.vocabularyStat.findMany({
-    orderBy: [{ userId: 'asc' }, { wordId: 'asc' }, { type: 'asc' }]
+    orderBy: [{ learnerId: 'asc' }, { wordId: 'asc' }, { type: 'asc' }]
   })
 
   let migrated = 0
   for (const stat of stats) {
     const records = await prisma.trainingRecord.findMany({
       where: {
-        userId: stat.userId,
+        learnerId: stat.learnerId,
         wordId: stat.wordId,
         type: stat.type
       },

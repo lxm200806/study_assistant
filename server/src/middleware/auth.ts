@@ -13,6 +13,19 @@ declare global {
   }
 }
 
+function todayKey(d = new Date()): string {
+  return d.toISOString().slice(0, 10)
+}
+
+async function recordAccountActive(userId: string) {
+  const date = todayKey()
+  await prisma.accountDailyActive.upsert({
+    where: { userId_date: { userId, date } },
+    create: { userId, date },
+    update: { lastSeenAt: new Date() }
+  })
+}
+
 export function authMiddleware(req: Request, res: Response, next: NextFunction) {
   const authHeader = req.headers.authorization
   
@@ -29,6 +42,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
   
   req.userId = decoded.userId
   req.username = decoded.username
+  req.accountType = 'parent'
 
   void (async () => {
     try {
@@ -36,41 +50,34 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
         where: { id: decoded.userId },
         select: {
           id: true,
-          accountType: true,
-          activeLearnerId: true,
-          parentId: true,
-          archivedAt: true
+          activeLearnerId: true
         }
       })
-      if (!user || user.archivedAt) {
+      if (!user) {
         return res.status(401).json({ error: 'Unauthorized' })
       }
-      req.accountType = user.parentId ? 'student' : 'parent'
-      if (req.accountType === 'parent') {
-        if (user.activeLearnerId) {
-          const child = await prisma.user.findFirst({
-            where: { id: user.activeLearnerId, parentId: user.id, archivedAt: null },
-            select: { id: true }
-          })
-          if (child) req.learnerId = child.id
-        }
-        if (!req.learnerId) {
-          const first = await prisma.user.findFirst({
-            where: { parentId: user.id, archivedAt: null },
-            orderBy: { createdAt: 'asc' },
-            select: { id: true }
-          })
-          if (first) {
-            req.learnerId = first.id
-            await prisma.user.update({
-              where: { id: user.id },
-              data: { activeLearnerId: first.id }
-            })
-          }
-        }
-      } else {
-        req.learnerId = user.id
+      if (user.activeLearnerId) {
+        const child = await prisma.learner.findFirst({
+          where: { id: user.activeLearnerId, accountId: user.id, archivedAt: null },
+          select: { id: true }
+        })
+        if (child) req.learnerId = child.id
       }
+      if (!req.learnerId) {
+        const first = await prisma.learner.findFirst({
+          where: { accountId: user.id, archivedAt: null },
+          orderBy: { createdAt: 'asc' },
+          select: { id: true }
+        })
+        if (first) {
+          req.learnerId = first.id
+          await prisma.user.update({
+            where: { id: user.id },
+            data: { activeLearnerId: first.id }
+          })
+        }
+      }
+      await recordAccountActive(user.id)
       next()
     } catch {
       res.status(401).json({ error: 'Unauthorized' })

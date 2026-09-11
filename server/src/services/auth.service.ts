@@ -19,7 +19,6 @@ function toUserResponse(user: {
   hasOnboarded?: boolean
   plan?: string
   activeSubject?: string
-  accountType?: string
   displayName?: string | null
   activeLearnerId?: string | null
   activeRole?: string | null
@@ -40,27 +39,6 @@ function toUserResponse(user: {
   }
 }
 
-async function ensureFamilyAccount(user: {
-  id: string
-  username: string
-  isAdmin: boolean
-  hasOnboarded?: boolean
-  plan?: string
-  activeSubject?: string
-  accountType?: string
-  displayName?: string | null
-  activeLearnerId?: string | null
-  activeRole?: string | null
-  parentId?: string | null
-}) {
-  if (user.parentId) return user
-  if (user.accountType === 'parent') return user
-  return prisma.user.update({
-    where: { id: user.id },
-    data: { accountType: 'parent', activeRole: normalizeRole(user.activeRole) }
-  })
-}
-
 async function withFamily(user: {
   id: string
   username: string
@@ -68,15 +46,12 @@ async function withFamily(user: {
   hasOnboarded?: boolean
   plan?: string
   activeSubject?: string
-  accountType?: string
   displayName?: string | null
   activeLearnerId?: string | null
   activeRole?: string | null
-  parentId?: string | null
 }) {
-  const familyUser = await ensureFamilyAccount(user)
-  const family = await ensureActiveLearner(familyUser.id, familyUser.activeLearnerId)
-  return toUserResponse({ ...familyUser, activeLearnerId: family.activeLearnerId }, family)
+  const family = await ensureActiveLearner(user.id, user.activeLearnerId)
+  return toUserResponse({ ...user, activeLearnerId: family.activeLearnerId }, family)
 }
 
 export async function register(dto: RegisterDto): Promise<TokenResponse> {
@@ -95,7 +70,6 @@ export async function register(dto: RegisterDto): Promise<TokenResponse> {
       username: dto.username,
       passwordHash,
       isAdmin: false,
-      accountType: 'parent',
       activeRole: 'parent',
       displayName: dto.username
     }
@@ -116,12 +90,8 @@ export async function login(dto: LoginDto): Promise<TokenResponse> {
     where: { username: dto.username }
   })
 
-  if (!user || user.archivedAt) {
+  if (!user) {
     throw new Error('Invalid credentials')
-  }
-
-  if (user.parentId) {
-    throw new Error('请使用家庭账号登录')
   }
 
   const isPasswordValid = await comparePassword(dto.password, user.passwordHash)
@@ -178,7 +148,6 @@ export async function completeOnboarding(userId: string, subject?: string) {
     where: { id: userId },
     data: {
       hasOnboarded: true,
-      accountType: 'parent',
       ...(activeSubject ? { activeSubject } : {})
     }
   })
@@ -191,19 +160,25 @@ export async function setActiveSubject(userId: string, subject: string) {
     where: { id: userId },
     data: { activeSubject }
   })
+  if (user.activeLearnerId) {
+    await prisma.learner.updateMany({
+      where: { id: user.activeLearnerId, accountId: userId },
+      data: { activeSubject }
+    })
+  }
   return withFamily(user)
 }
 
 export async function setActiveRole(userId: string, role?: string, studentId?: string) {
   const user = await prisma.user.findUnique({ where: { id: userId } })
-  if (!user || user.parentId) {
+  if (!user) {
     throw new Error('无法切换角色')
   }
 
   if (role === 'parent') {
     const updated = await prisma.user.update({
       where: { id: userId },
-      data: { activeRole: 'parent', accountType: 'parent' }
+      data: { activeRole: 'parent' }
     })
     return withFamily(updated)
   }
@@ -217,7 +192,7 @@ export async function setActiveRole(userId: string, role?: string, studentId?: s
     await setActiveLearner(userId, targetId)
     const updated = await prisma.user.update({
       where: { id: userId },
-      data: { activeRole: 'student', activeLearnerId: targetId, accountType: 'parent' }
+      data: { activeRole: 'student', activeLearnerId: targetId }
     })
     return withFamily(updated)
   }
@@ -235,7 +210,6 @@ export async function wechatLoginStub(code: string) {
         username: `wx_${openId.slice(-8)}`,
         passwordHash: await hashPassword(openId),
         wxOpenId: openId,
-        accountType: 'parent',
         activeRole: 'parent'
       }
     })

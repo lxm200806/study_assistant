@@ -77,7 +77,7 @@ export interface GroupedMapWordEntry extends MapWordEntry {
 
 async function loadStatsMap(userId: string, wordIds: string[]): Promise<Map<string, WordStatEntry[]>> {
   const stats = await prisma.vocabularyStat.findMany({
-    where: { userId, wordId: { in: wordIds } }
+    where: { learnerId: userId, wordId: { in: wordIds } }
   })
   const map = new Map<string, WordStatEntry[]>()
   for (const stat of stats) {
@@ -242,7 +242,7 @@ export async function getBookMap(userId: string, bookCode: string) {
 export async function getGlobalMap(userId: string, limit = 500) {
   // Step 1: fetch all stats with word data (no bookVocabulary include since no relation exists)
   const allStats = await prisma.vocabularyStat.findMany({
-    where: { userId },
+    where: { learnerId: userId },
     include: { word: true },
     orderBy: { wordId: 'asc' }
   })

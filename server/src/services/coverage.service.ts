@@ -35,7 +35,7 @@ export async function getBookProgress(userId: string, bookCode: string): Promise
 
   const practicedCount = [...aggregated.values()].filter(m => m.practiced).length
   const progress = await prisma.bookStudyProgress.findUnique({
-    where: { userId_bookId: { userId, bookId: book.id } }
+    where: { learnerId_bookId: { learnerId: userId, bookId: book.id } }
   })
   const cyclePracticed = progress?.practicedWordIds.length || 0
 
@@ -51,7 +51,7 @@ export async function getBookProgress(userId: string, bookCode: string): Promise
 
 async function loadUserWordStats(userId: string, wordIds: string[]): Promise<Map<string, WordStatEntry[]>> {
   const stats = await prisma.vocabularyStat.findMany({
-    where: { userId, wordId: { in: wordIds } }
+    where: { learnerId: userId, wordId: { in: wordIds } }
   })
 
   const map = new Map<string, WordStatEntry[]>()
@@ -157,12 +157,12 @@ export async function getSessionWords(
   const now = new Date()
 
   let progress = await prisma.bookStudyProgress.findUnique({
-    where: { userId_bookId: { userId, bookId: book.id } }
+    where: { learnerId_bookId: { learnerId: userId, bookId: book.id } }
   })
 
   if (!progress) {
     progress = await prisma.bookStudyProgress.create({
-      data: { userId, bookId: book.id, practicedWordIds: [] }
+      data: { learnerId: userId, bookId: book.id, practicedWordIds: [] }
     })
   }
 
@@ -260,12 +260,12 @@ export async function markWordsPracticed(userId: string, bookCode: string, wordI
   if (!book) return
 
   let progress = await prisma.bookStudyProgress.findUnique({
-    where: { userId_bookId: { userId, bookId: book.id } }
+    where: { learnerId_bookId: { learnerId: userId, bookId: book.id } }
   })
 
   if (!progress) {
     progress = await prisma.bookStudyProgress.create({
-      data: { userId, bookId: book.id, practicedWordIds: wordIds }
+      data: { learnerId: userId, bookId: book.id, practicedWordIds: wordIds }
     })
     return progress
   }
@@ -298,7 +298,7 @@ export async function getNewlyCoveredCount(
   if (!book) return 0
 
   const progress = await prisma.bookStudyProgress.findUnique({
-    where: { userId_bookId: { userId, bookId: book.id } }
+    where: { learnerId_bookId: { learnerId: userId, bookId: book.id } }
   })
 
   const previous = new Set(progress?.practicedWordIds || [])

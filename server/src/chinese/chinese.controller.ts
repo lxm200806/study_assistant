@@ -30,13 +30,13 @@ import { getResource, seedChineseIfEmpty, summarizeSync, syncAllOfficial, syncRe
 async function withUser(req: Request) {
   const user = await prisma.user.findUnique({
     where: { id: req.userId },
-    select: { id: true, username: true, isAdmin: true, accountType: true }
+    select: { id: true, username: true, isAdmin: true }
   })
   if (!user) throw new HttpError(401, 'Unauthorized')
   return { ...user, learnerId: req.learnerId }
 }
 
-function studyId(user: { id: string; accountType?: string | null; learnerId?: string }) {
+function studyId(user: { id: string; learnerId?: string }) {
   if (!user.learnerId) throw new HttpError(409, '请先添加学生')
   return user.learnerId
 }

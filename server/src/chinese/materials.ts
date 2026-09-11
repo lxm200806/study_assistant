@@ -4,7 +4,7 @@ import path from 'path'
 import prisma from '../prisma/client'
 import { fillGroupFields, parseImport } from './cards'
 import { DEFAULT_COURSE_NAME } from './constants'
-import { GRADE_ORDER, LEVEL_ORDER, joinLabels, maybeExpandPackCards, mergeLabels } from './entries'
+import { GRADE_ORDER, LEVEL_ORDER, joinLabels, maybeExpandPackCards, mergeLabels, parseOptions } from './entries'
 import type { PointLike } from './constants'
 import { HttpError } from './http'
 
@@ -201,11 +201,14 @@ async function ensureResource(relPath: string, filename: string, slug: string, m
 export async function upsertEntry(point: PointLike) {
   const key = String(point.entry_key || '').trim()
   if (!key) return
-  const existing = await prisma.chineseEntry.findUnique({ where: { entryKey: key } })
+  const existing = await prisma.chineseEntry.findUnique({
+    where: { entryKey: key },
+    include: { gradeLinks: true, levelLinks: true }
+  })
   const kind = String(point.kind || existing?.kind || '')
   const idiom = kind === 'idiom'
-  const grades = idiom ? [] : mergeLabels(existing?.grades || existing?.grade, point.grade, GRADE_ORDER)
-  const levels = idiom ? [] : mergeLabels(existing?.levels, point.level, LEVEL_ORDER)
+  const grades = idiom ? [] : mergeLabels(joinLabels(existing?.gradeLinks.map(item => item.grade) || []), point.grade, GRADE_ORDER)
+  const levels = idiom ? [] : mergeLabels(joinLabels(existing?.levelLinks.map(item => item.level) || []), point.level, LEVEL_ORDER)
   const sources = mergeLabels(existing?.source, point.source)
   const tags = mergeLabels(existing?.tags, point.tags)
   const lemma = String(point.lemma || existing?.lemma || '').trim()
@@ -215,18 +218,12 @@ export async function upsertEntry(point: PointLike) {
       entryKey: key,
       kind,
       lemma,
-      grade: grades[0] || '',
-      grades: joinLabels(grades),
-      levels: joinLabels(levels),
       tags: joinLabels(tags),
       source: joinLabels(sources)
     },
     update: {
       kind,
       lemma: lemma || undefined,
-      grade: grades[0] || '',
-      grades: joinLabels(grades),
-      levels: joinLabels(levels),
       tags: joinLabels(tags),
       source: joinLabels(sources)
     }
@@ -252,7 +249,7 @@ export async function upsertEntry(point: PointLike) {
   }
 }
 
-function pointUnchanged(row: { kind: string; level: string; grade: string; prompt: string; answer: string; tags: string; source: string; pointKey: string | null; groupKey: string; subGroupKey: string; entryKey: string; lemma: string; questionType: string; audience: string; difficulty: string; isActive: boolean; options: string; sourceResourceId: string | null }, point: PointLike, resourceId: string | null, key: string) {
+function pointUnchanged(row: { kind: string; level: string; grade: string; prompt: string; answer: string; tags: string; source: string; pointKey: string | null; groupKey: string; subGroupKey: string; entryKey: string; lemma: string; questionType: string; audience: string; difficulty: string; isActive: boolean; options: unknown; sourceResourceId: string | null; status?: string }, point: PointLike, resourceId: string | null, key: string) {
   return (
     row.kind === point.kind &&
     row.level === point.level &&
@@ -270,8 +267,9 @@ function pointUnchanged(row: { kind: string; level: string; grade: string; promp
     (row.audience || 'all') === (point.audience || 'all') &&
     (row.difficulty || '') === (point.difficulty || '') &&
     row.isActive === (point.active !== false && point.isActive !== false) &&
-    (row.options || '') === (point.options || '') &&
-    (row.sourceResourceId === resourceId || resourceId == null)
+    JSON.stringify(parseOptions(row.options)) === JSON.stringify(parseOptions(point.options)) &&
+    (row.sourceResourceId === resourceId || resourceId == null) &&
+    (row.status || 'published') === 'published'
   )
 }
 
@@ -314,7 +312,9 @@ export async function upsertPublished(pointInput: PointLike, resourceId: string 
     audience: String(point.audience || 'all'),
     difficulty: String(point.difficulty || ''),
     isActive: point.active !== false && point.isActive !== false,
-    options: String(point.options || '')
+    options: parseOptions(point.options) as object,
+    status: 'published',
+    publishedAt: new Date()
   }
   if (existing) {
     if (!force && pointUnchanged(existing, point, resourceId, key || '')) return [existing.id, 'unchanged']

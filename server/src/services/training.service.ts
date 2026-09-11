@@ -38,8 +38,8 @@ export async function practice(userId: string, dto: PracticeDto): Promise<Practi
   const now = new Date()
   const existingStat = await prisma.vocabularyStat.findUnique({
     where: {
-      userId_wordId_type: {
-        userId,
+      learnerId_wordId_type: {
+        learnerId: userId,
         wordId: dto.wordId,
         type: dto.type
       }
@@ -79,7 +79,7 @@ export async function practice(userId: string, dto: PracticeDto): Promise<Practi
       })
     : await prisma.vocabularyStat.create({
         data: {
-          userId,
+          learnerId: userId,
           wordId: dto.wordId,
           type: dto.type,
           practiceCount: fields.practiceCount,
@@ -101,7 +101,7 @@ export async function practice(userId: string, dto: PracticeDto): Promise<Practi
 
   await prisma.trainingRecord.create({
     data: {
-      userId,
+      learnerId: userId,
       wordId: dto.wordId,
       type: dto.type,
       isCorrect: dto.isCorrect
@@ -126,7 +126,7 @@ async function fetchDueStatsByType(
 
   return prisma.vocabularyStat.findMany({
     where: {
-      userId,
+      learnerId: userId,
       practiceCount: { gt: 0 },
       due: { lte: now },
       type,
@@ -213,7 +213,7 @@ export async function getDueCount(userId: string, bookCode: string, trainingType
   const dueCount = trainingType
     ? await prisma.vocabularyStat.count({
         where: {
-          userId,
+          learnerId: userId,
           wordId: { in: book.vocabulary.map(bv => bv.wordId) },
           practiceCount: { gt: 0 },
           due: { lte: now },
@@ -229,7 +229,7 @@ export async function getTrainingHistory(userId: string, page: number = 1, limit
   const skip = (page - 1) * limit
 
   return prisma.trainingRecord.findMany({
-    where: { userId },
+    where: { learnerId: userId },
     include: { word: true },
     orderBy: { createdAt: 'desc' },
     skip,

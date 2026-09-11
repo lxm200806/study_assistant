@@ -7,7 +7,7 @@ function dateKey(d = new Date()): string {
 export async function recordDailyStudy(userId: string, wordCount: number) {
   const today = dateKey()
   const existing = await prisma.dailyStudyLog.findUnique({
-    where: { userId_date: { userId, date: today } }
+    where: { learnerId_date: { learnerId: userId, date: today } }
   })
 
   if (existing) {
@@ -19,20 +19,20 @@ export async function recordDailyStudy(userId: string, wordCount: number) {
 
   const yesterday = dateKey(new Date(Date.now() - 86400000))
   const prev = await prisma.dailyStudyLog.findUnique({
-    where: { userId_date: { userId, date: yesterday } }
+    where: { learnerId_date: { learnerId: userId, date: yesterday } }
   })
 
   const streak = prev && prev.wordCount > 0 ? prev.streak + 1 : 1
 
   return prisma.dailyStudyLog.create({
-    data: { userId, date: today, wordCount, streak }
+    data: { learnerId: userId, date: today, wordCount, streak }
   })
 }
 
 export async function getDailyStats(userId: string) {
   const today = dateKey()
   const todayLog = await prisma.dailyStudyLog.findUnique({
-    where: { userId_date: { userId, date: today } }
+    where: { learnerId_date: { learnerId: userId, date: today } }
   })
 
   const goal = 30
@@ -50,7 +50,7 @@ export async function getDailyStats(userId: string) {
 
 async function computeStreak(userId: string): Promise<number> {
   const logs = await prisma.dailyStudyLog.findMany({
-    where: { userId },
+    where: { learnerId: userId },
     orderBy: { date: 'desc' },
     take: 60
   })
@@ -69,7 +69,7 @@ async function computeStreak(userId: string): Promise<number> {
 export async function getWeeklyReport(userId: string) {
   const since = dateKey(new Date(Date.now() - 7 * 86400000))
   const logs = await prisma.dailyStudyLog.findMany({
-    where: { userId, date: { gte: since } },
+    where: { learnerId: userId, date: { gte: since } },
     orderBy: { date: 'asc' }
   })
 
@@ -78,7 +78,7 @@ export async function getWeeklyReport(userId: string) {
   const streak = logs.length ? logs[logs.length - 1].streak : 0
 
   const records = await prisma.trainingRecord.findMany({
-    where: { userId, createdAt: { gte: new Date(Date.now() - 7 * 86400000) } }
+    where: { learnerId: userId, createdAt: { gte: new Date(Date.now() - 7 * 86400000) } }
   })
   const correct = records.filter(r => r.isCorrect).length
   const accuracy = records.length ? Math.round((correct / records.length) * 100) : 0

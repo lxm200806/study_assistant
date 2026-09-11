@@ -13,7 +13,6 @@ import {
   normalizeGrade,
   pageArgs,
   parseDailyMinutes,
-  parseEnergyLimit,
   parseResourceFilter,
   planCourseDays,
   planTodayGroups,
@@ -25,8 +24,6 @@ import {
   AUDIENCE_LABEL,
   DEFAULT_COURSE_NAME,
   DEFAULT_DAILY_MINUTES,
-  DEFAULT_NEW_ENERGY,
-  DEFAULT_REVIEW_ENERGY,
   DIFFICULTIES,
   DIFFICULTY_LABEL,
   KIND_LABEL,
@@ -38,7 +35,7 @@ import {
   normalizeQuestionType,
   type PointLike
 } from './constants'
-import { audiencesForGrades, pickCourseCards, parseOptions } from './entries'
+import { audiencesForGrades, joinLabels, pickCourseCards, parseOptions } from './entries'
 import { HttpError } from './http'
 import { decorateResource, findPack, packStatus, PACKS, upsertEntry } from './materials'
 import { buildProgress, kidFeedback, masteryCounts, parentCopy } from './progress'
@@ -69,7 +66,7 @@ function toPointLike(row: {
   audience?: string
   difficulty?: string
   isActive?: boolean
-  options?: string
+  options?: unknown
   n?: number | null
   ef?: number | null
   interval?: number | null
@@ -95,7 +92,7 @@ function toPointLike(row: {
     audience: row.audience || 'all',
     difficulty: row.difficulty || '',
     active: row.isActive !== false,
-    options: row.options || '',
+    options: parseOptions(row.options),
     n: row.n,
     ef: row.ef,
     interval: row.interval,
@@ -157,6 +154,10 @@ function isDefaultCourse(course: { name: string }) {
   return course.name === DEFAULT_COURSE_NAME
 }
 
+function courseEnergyBudget(dailyMinutes: number) {
+  return Math.max(8, Math.round(minutesToEnergy(dailyMinutes || DEFAULT_DAILY_MINUTES) / 2))
+}
+
 export function serializeCourse(
   row: {
     id: string
@@ -166,8 +167,6 @@ export function serializeCourse(
     levels: string
     grades: string
     difficulties: string
-    newEnergy: number
-    reviewEnergy: number
     dailyMinutes: number
     reviewDefaultTest: boolean
     createdAt?: Date
@@ -183,8 +182,8 @@ export function serializeCourse(
     levels: decodeFilters(row.levels, LEVELS),
     grades: decodeFilters(row.grades, GRADES),
     difficulties: decodeFilters(row.difficulties, DIFFICULTIES),
-    newEnergy: row.newEnergy || 30,
-    reviewEnergy: row.reviewEnergy || 30,
+    newEnergy: courseEnergyBudget(row.dailyMinutes),
+    reviewEnergy: courseEnergyBudget(row.dailyMinutes),
     dailyMinutes: parseDailyMinutes(row.dailyMinutes),
     reviewDefaultTest: Boolean(row.reviewDefaultTest),
     isDefault: isDefaultCourse(row)
@@ -229,7 +228,7 @@ function serializePoint(point: PointLike, extra?: Record<string, unknown>) {
 }
 
 async function pendingDraftMatcher() {
-  const drafts = await prisma.chineseDraft.findMany({
+  const drafts = await prisma.chinesePublished.findMany({
     where: { status: 'draft' },
     select: { pointKey: true, prompt: true, answer: true }
   })
@@ -253,6 +252,7 @@ async function candidatePoints(kinds: string[], levels: string[], grades: string
   const rows = await withoutPendingDrafts(
     await prisma.chinesePublished.findMany({
       where: {
+        status: 'published',
         isActive: true,
         kind: { in: kinds },
         AND: [
@@ -289,13 +289,13 @@ async function candidatePoints(kinds: string[], levels: string[], grades: string
 }
 
 export async function ensureUserDefaultCourse(userId: string) {
-  const existing = await prisma.chineseCourse.count({ where: { userId } })
+  const existing = await prisma.chineseCourse.count({ where: { learnerId: userId } })
   if (existing) return null
   const points = await candidatePoints([...KINDS], [...LEVELS], [], [...DIFFICULTIES])
   if (!points.length) return null
   const course = await prisma.chineseCourse.create({
     data: {
-      userId,
+      learnerId: userId,
       name: DEFAULT_COURSE_NAME,
       note: '系统预置，含已发布知识点',
       kinds: encodeFilters([...KINDS], KINDS),
@@ -376,7 +376,7 @@ async function syncCourseItems(course: { id: string; kinds: string; levels: stri
 }
 
 async function ownCourse(courseId: string, userId: string) {
-  const course = await prisma.chineseCourse.findFirst({ where: { id: courseId, userId } })
+  const course = await prisma.chineseCourse.findFirst({ where: { id: courseId, learnerId: userId } })
   if (!course) throw new HttpError(404, '课程不存在')
   return course
 }
@@ -387,7 +387,7 @@ async function loadTodayPoints(courseId: string, userId: string) {
     include: { point: true },
     orderBy: [{ sort: 'asc' }]
   })
-  const states = await prisma.chineseReviewState.findMany({ where: { courseId, userId } })
+  const states = await prisma.chineseReviewState.findMany({ where: { courseId, learnerId: userId } })
   const stateMap = new Map(states.map(item => [item.pointId, item]))
   return items.map(item => {
     const state = stateMap.get(item.pointId)
@@ -407,7 +407,7 @@ async function loadTodayLogs(courseId: string, userId: string, today: string) {
   const start = new Date(`${today}T00:00:00`)
   const end = new Date(`${today}T23:59:59.999`)
   const logs = await prisma.chineseReviewLog.findMany({
-    where: { courseId, userId, createdAt: { gte: start, lte: end } },
+    where: { courseId, learnerId: userId, createdAt: { gte: start, lte: end } },
     include: {
       point: {
         select: {
@@ -445,7 +445,7 @@ function failedIdsFromLogs(logs: Array<{ point_id: string; quality: number }>) {
 }
 
 async function planCourseToday(
-  course: { id: string; dailyMinutes: number; newEnergy: number; reviewEnergy: number },
+  course: { id: string; dailyMinutes: number },
   userId: string,
   today: string,
   extraMinutes = 0
@@ -472,8 +472,6 @@ async function ensureDefaultSynced(course: {
   levels: string
   grades: string
   difficulties: string
-  newEnergy: number
-  reviewEnergy: number
   dailyMinutes: number
   reviewDefaultTest: boolean
 }) {
@@ -495,7 +493,7 @@ export async function listLibrary(query: Record<string, unknown>, isAdmin: boole
       : []
   const hideAnswer = !isAdmin && !query.answers
   const [limit, offset] = pageArgs(query.limit, query.offset)
-  const where: any = {}
+  const where: any = { status: 'published' }
   if (!(isAdmin && query.includeInactive)) where.isActive = true
   if (kinds.length) where.kind = { in: kinds }
   if (levels.length) where.level = { in: levels }
@@ -523,7 +521,8 @@ export async function listLibrary(query: Record<string, unknown>, isAdmin: boole
     })
   )
   const entries = await prisma.chineseEntry.findMany({
-    where: { entryKey: { in: Array.from(new Set(rows.map(row => row.entryKey).filter(Boolean))) } }
+    where: { entryKey: { in: Array.from(new Set(rows.map(row => row.entryKey).filter(Boolean))) } },
+    include: { gradeLinks: true, levelLinks: true }
   })
   const entryMap = new Map(entries.map(item => [item.entryKey, item]))
   let mapped = rows.map(row => {
@@ -533,8 +532,8 @@ export async function listLibrary(query: Record<string, unknown>, isAdmin: boole
       source_resource_id: row.sourceResourceId,
       resource_filename: row.sourceResource?.filename,
       resource_slug: row.sourceResource?.slug,
-      entry_grades: entry?.grades || '',
-      entry_levels: entry?.levels || ''
+      entry_grades: joinLabels(entry?.gradeLinks.map(item => item.grade) || []),
+      entry_levels: joinLabels(entry?.levelLinks.map(item => item.level) || [])
     }
   })
   if (useEntryGrades && grades.length) {
@@ -577,22 +576,17 @@ export async function createCourse(userId: string, body: { name?: string; note?:
     ? Math.round((Number(body.newEnergy || 0) + Number(body.reviewEnergy || 0)) / 4)
     : body.dailyMinutes
   const dailyMinutes = parseDailyMinutes(legacyMinutes)
-  const legacyHalfBudget = Math.max(8, Math.round(minutesToEnergy(dailyMinutes) / 2))
-  const newEnergy = body.newEnergy == null ? legacyHalfBudget : parseEnergyLimit(body.newEnergy) || legacyHalfBudget
-  const reviewEnergy = body.reviewEnergy == null ? legacyHalfBudget : parseEnergyLimit(body.reviewEnergy) || legacyHalfBudget
   const points = await candidatePoints(useKinds, useLevels, grades, useDifficulties)
   if (!points.length) throw new HttpError(400, '没有符合条件的已发布知识点')
   const course = await prisma.chineseCourse.create({
     data: {
-      userId,
+      learnerId: userId,
       name,
       note: String(body.note || '').trim(),
       kinds: encodeFilters(useKinds, KINDS),
       levels: encodeFilters(useLevels, LEVELS),
       grades: encodeFilters(grades, GRADES),
       difficulties: encodeFilters(useDifficulties, DIFFICULTIES),
-      newEnergy,
-      reviewEnergy,
       dailyMinutes,
       reviewDefaultTest: Boolean(body.reviewDefaultTest)
     }
@@ -625,7 +619,7 @@ export async function listCourses(userId: string) {
   await ensureUserDefaultCourse(userId)
   const today = sm2.todayText()
   const rows = await prisma.chineseCourse.findMany({
-    where: { userId },
+    where: { learnerId: userId },
     include: { _count: { select: { items: true } } },
     orderBy: { createdAt: 'desc' }
   })
@@ -652,7 +646,7 @@ export async function listCourses(userId: string) {
 
 export async function patchCourse(courseId: string, userId: string, body: { name?: string; note?: string; difficulties?: string[]; dailyMinutes?: number; newEnergy?: number; reviewEnergy?: number; reviewDefaultTest?: boolean }) {
   const course = await ownCourse(courseId, userId)
-  const data: { name?: string; note?: string; difficulties?: string; dailyMinutes?: number; newEnergy?: number; reviewEnergy?: number; reviewDefaultTest?: boolean } = {}
+  const data: { name?: string; note?: string; difficulties?: string; dailyMinutes?: number; reviewDefaultTest?: boolean } = {}
   if (body.name != null) {
     const name = String(body.name).trim()
     if (!name) throw new HttpError(400, '请填写课程名称')
@@ -663,13 +657,13 @@ export async function patchCourse(courseId: string, userId: string, body: { name
     const difficulties = body.difficulties.filter(item => (DIFFICULTIES as readonly string[]).includes(item))
     data.difficulties = encodeFilters(difficulties.length ? difficulties : [...DIFFICULTIES], DIFFICULTIES)
   }
-  if (body.newEnergy != null) data.newEnergy = parseEnergyLimit(body.newEnergy) || course.newEnergy
-  if (body.reviewEnergy != null) data.reviewEnergy = parseEnergyLimit(body.reviewEnergy) || course.reviewEnergy
   if (body.dailyMinutes != null) {
     data.dailyMinutes = parseDailyMinutes(body.dailyMinutes, course.dailyMinutes)
-    const halfBudget = Math.max(8, Math.round(minutesToEnergy(data.dailyMinutes) / 2))
-    data.newEnergy = halfBudget
-    data.reviewEnergy = halfBudget
+  } else if (body.newEnergy != null || body.reviewEnergy != null) {
+    data.dailyMinutes = parseDailyMinutes(
+      Math.round((Number(body.newEnergy || 0) + Number(body.reviewEnergy || 0)) / 4),
+      course.dailyMinutes
+    )
   }
   if (body.reviewDefaultTest != null) data.reviewDefaultTest = Boolean(body.reviewDefaultTest)
   if (!Object.keys(data).length) throw new HttpError(400, '没有要修改的字段')
@@ -687,8 +681,8 @@ export async function patchCourse(courseId: string, userId: string, body: { name
 
 export async function deleteCourse(courseId: string, userId: string) {
   await ownCourse(courseId, userId)
-  await prisma.chineseReviewLog.deleteMany({ where: { userId, courseId } })
-  await prisma.chineseReviewState.deleteMany({ where: { userId, courseId } })
+  await prisma.chineseReviewLog.deleteMany({ where: { learnerId: userId, courseId } })
+  await prisma.chineseReviewState.deleteMany({ where: { learnerId: userId, courseId } })
   await prisma.chineseCourse.delete({ where: { id: courseId } })
   return { ok: true }
 }
@@ -818,7 +812,7 @@ export async function reviewPoint(courseId: string, userId: string, body: { poin
   })
   if (!item) throw new HttpError(404, '该课程没有这个知识点')
   const state = await prisma.chineseReviewState.findUnique({
-    where: { userId_courseId_pointId: { userId, courseId, pointId: item.pointId } }
+    where: { learnerId_courseId_pointId: { learnerId: userId, courseId, pointId: item.pointId } }
   })
   const point = toPointLike({ ...item.point, ...state })
   const isNew = !point.last
@@ -835,9 +829,9 @@ export async function reviewPoint(courseId: string, userId: string, body: { poin
   if (outcome.update_sm2) {
     nextState = sm2.schedule(prevState, result.quality, today)
     await prisma.chineseReviewState.upsert({
-      where: { userId_courseId_pointId: { userId, courseId, pointId: item.pointId } },
+      where: { learnerId_courseId_pointId: { learnerId: userId, courseId, pointId: item.pointId } },
       create: {
-        userId,
+        learnerId: userId,
         courseId,
         pointId: item.pointId,
         n: nextState.n,
@@ -858,7 +852,7 @@ export async function reviewPoint(courseId: string, userId: string, body: { poin
     })
     await prisma.chineseReviewLog.create({
       data: {
-        userId,
+        learnerId: userId,
         courseId,
         pointId: item.pointId,
         quality: result.quality,
@@ -888,10 +882,10 @@ export async function courseStats(courseId: string, userId: string) {
     include: { point: true },
     orderBy: [{ sort: 'asc' }]
   })
-  const states = await prisma.chineseReviewState.findMany({ where: { userId, courseId } })
-  const logs = await prisma.chineseReviewLog.findMany({ where: { userId, courseId } })
+  const states = await prisma.chineseReviewState.findMany({ where: { learnerId: userId, courseId } })
+  const logs = await prisma.chineseReviewLog.findMany({ where: { learnerId: userId, courseId } })
   const userLogs = await prisma.chineseReviewLog.findMany({
-    where: { userId },
+    where: { learnerId: userId },
     select: { courseId: true, pointId: true }
   })
   const logPointIds = Array.from(new Set(userLogs.map(item => item.pointId)))
@@ -977,16 +971,16 @@ export async function courseStats(courseId: string, userId: string) {
 
 export async function libraryCoverage(userId: string) {
   const [total, entries, inCourse, studied, mastered, byKindRaw, byGradeRaw, gradeLinks] = await Promise.all([
-    prisma.chinesePublished.count(),
-    prisma.chinesePublished.findMany({ select: { id: true, entryKey: true, kind: true, grade: true } }),
+    prisma.chinesePublished.count({ where: { status: 'published' } }),
+    prisma.chinesePublished.findMany({ where: { status: 'published' }, select: { id: true, entryKey: true, kind: true, grade: true } }),
     prisma.chineseCourseItem.findMany({
-      where: { course: { userId } },
+      where: { course: { learnerId: userId } },
       select: { pointId: true }
     }),
-    prisma.chineseReviewLog.findMany({ where: { userId }, select: { pointId: true } }),
-    prisma.chineseReviewState.findMany({ where: { userId } }),
-    prisma.chinesePublished.groupBy({ by: ['kind'], _count: { id: true } }),
-    prisma.chinesePublished.groupBy({ by: ['grade'], _count: { id: true } }),
+    prisma.chineseReviewLog.findMany({ where: { learnerId: userId }, select: { pointId: true } }),
+    prisma.chineseReviewState.findMany({ where: { learnerId: userId } }),
+    prisma.chinesePublished.groupBy({ by: ['kind'], where: { status: 'published' }, _count: { id: true } }),
+    prisma.chinesePublished.groupBy({ by: ['grade'], where: { status: 'published' }, _count: { id: true } }),
     prisma.chineseEntryGrade.findMany()
   ])
   const entryCount = new Set(entries.map(item => item.entryKey || `id:${item.id}`)).size
@@ -1111,7 +1105,7 @@ export async function patchPublished(pointId: string, body: Record<string, unkno
       audience: String(grouped.audience || 'all'),
       difficulty: String(grouped.difficulty || ''),
       isActive: grouped.active !== false,
-      options: String(grouped.options || '')
+      options: parseOptions(grouped.options) as object
     }
   })
   return updated

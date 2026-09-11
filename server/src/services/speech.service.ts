@@ -113,7 +113,7 @@ async function checkSpeechQuota(userId: string): Promise<void> {
   const todayStart = new Date()
   todayStart.setHours(0, 0, 0, 0)
   const count = await prisma.speechUsageLog.count({
-    where: { userId, createdAt: { gte: todayStart } }
+    where: { learnerId: userId, createdAt: { gte: todayStart } }
   })
   if (count >= FREE_DAILY_SPEECH) {
     throw new Error('SPEECH_LIMIT')
@@ -121,7 +121,7 @@ async function checkSpeechQuota(userId: string): Promise<void> {
 }
 
 async function recordSpeechUsage(userId: string, kind: string): Promise<void> {
-  await prisma.speechUsageLog.create({ data: { userId, kind } })
+  await prisma.speechUsageLog.create({ data: { learnerId: userId, kind } })
 }
 
 export async function transcribeAudio(userId: string, audioBase64: string, mimeType = 'audio/mp3'): Promise<TranscribeResult> {

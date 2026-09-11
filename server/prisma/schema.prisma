@@ -7,6 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// 能登录的家庭账号。用户数、付费、日活、留存都统计这张表。
 model User {
   id              String    @id @default(uuid())
   username        String    @unique
@@ -17,33 +18,54 @@ model User {
   wxOpenId        String?   @unique
   hasOnboarded    Boolean   @default(false)
   activeSubject   String    @default("english")
-  accountType     String    @default("parent")
   displayName     String?
-  parentId        String?
-  activeLearnerId String?
+  activeLearnerId String?   @unique
   activeRole      String    @default("parent")
-  archivedAt      DateTime?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 
-  parent   User?  @relation("ParentChildren", fields: [parentId], references: [id])
-  children User[] @relation("ParentChildren")
+  activeLearner Learner?            @relation("ActiveLearner", fields: [activeLearnerId], references: [id], onDelete: SetNull)
+  learners      Learner[]           @relation("AccountLearners")
+  bookUnlocks   UserBookUnlock[]
+  dailyActives  AccountDailyActive[]
+  chineseUploads ChineseResource[]  @relation("ChineseResourceUploader")
+  chineseCards  ChinesePublished[]  @relation("ChineseCardCreator")
+}
 
+// 学习者（孩子）。学习进度、课程、掌握度都挂在这里；一个账号下多个孩子仍在本表。
+model Learner {
+  id            String    @id @default(uuid())
+  accountId     String
+  name          String
+  activeSubject String    @default("english")
+  archivedAt    DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  account             User                  @relation("AccountLearners", fields: [accountId], references: [id], onDelete: Cascade)
+  selectedBy          User?                 @relation("ActiveLearner")
   vocabularyStats     VocabularyStat[]
   trainingRecords     TrainingRecord[]
   chatRecords         ChatRecord[]
   speechUsageLogs     SpeechUsageLog[]
   bookStudyProgress   BookStudyProgress[]
   dailyStudyLogs      DailyStudyLog[]
-  bookUnlocks         UserBookUnlock[]
-  orgMembers          OrgMember[]
   chineseCourses      ChineseCourse[]
   chineseReviewStates ChineseReviewState[]
   chineseReviewLogs   ChineseReviewLog[]
-  chineseDrafts       ChineseDraft[]
-  chineseUploads      ChineseResource[]    @relation("ChineseResourceUploader")
 
-  @@index([parentId])
+  @@index([accountId])
+}
+
+model AccountDailyActive {
+  userId     String
+  date       String
+  lastSeenAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, date])
+  @@map("account_daily_actives")
 }
 
 model Book {
@@ -93,20 +115,21 @@ model Vocabulary {
 
 model BookStudyProgress {
   id               String   @id @default(uuid())
-  userId           String
+  learnerId        String
   bookId           String
   cycleStartedAt   DateTime @default(now())
   practicedWordIds String[] @default([])
 
-  user User @relation(fields: [userId], references: [id])
-  book Book @relation(fields: [bookId], references: [id])
+  learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  book    Book    @relation(fields: [bookId], references: [id])
 
-  @@unique([userId, bookId])
+  @@unique([learnerId, bookId])
 }
 
+// FSRS 状态；practiceCount/correctCount/mastery 是随练习更新的展示缓存，流水以 TrainingRecord 为准。
 model VocabularyStat {
   id             String    @id @default(uuid())
-  userId         String
+  learnerId      String
   wordId         String
   type           String
   practiceCount  Int       @default(0)
@@ -123,59 +146,59 @@ model VocabularyStat {
   retrievability Float     @default(0)
   recentLapse    Boolean   @default(false)
 
-  user User       @relation(fields: [userId], references: [id])
-  word Vocabulary @relation(fields: [wordId], references: [id])
+  learner Learner    @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  word    Vocabulary @relation(fields: [wordId], references: [id])
 
-  @@unique([userId, wordId, type])
-  @@index([userId, type, due])
+  @@unique([learnerId, wordId, type])
+  @@index([learnerId, type, due])
 }
 
 model TrainingRecord {
   id        String   @id @default(uuid())
-  userId    String
+  learnerId String
   wordId    String
   type      String
   isCorrect Boolean
   createdAt DateTime @default(now())
 
-  user User       @relation(fields: [userId], references: [id])
-  word Vocabulary @relation(fields: [wordId], references: [id])
+  learner Learner    @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  word    Vocabulary @relation(fields: [wordId], references: [id])
 }
 
 model ChatRecord {
   id        String   @id @default(uuid())
-  userId    String
+  learnerId String
   role      String
   content   String
   mode      String?
   createdAt DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id])
+  learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
 }
 
 model SpeechUsageLog {
   id        String   @id @default(uuid())
-  userId    String
+  learnerId String
   kind      String
   createdAt DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id])
+  learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
 
-  @@index([userId, createdAt])
+  @@index([learnerId, createdAt])
 }
 
 model DailyStudyLog {
   id        String   @id @default(uuid())
-  userId    String
+  learnerId String
   date      String
   wordCount Int      @default(0)
   streak    Int      @default(0)
   createdAt DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id])
+  learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, date])
-  @@index([userId, date])
+  @@unique([learnerId, date])
+  @@index([learnerId, date])
 }
 
 model UserBookUnlock {
@@ -184,43 +207,10 @@ model UserBookUnlock {
   bookId    String
   createdAt DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   book Book @relation(fields: [bookId], references: [id])
 
   @@unique([userId, bookId])
-}
-
-model Organization {
-  id        String   @id @default(uuid())
-  name      String
-  createdAt DateTime @default(now())
-
-  members OrgMember[]
-  classes OrgClass[]
-}
-
-model OrgMember {
-  id        String   @id @default(uuid())
-  orgId     String
-  userId    String
-  role      String   @default("student")
-  createdAt DateTime @default(now())
-
-  org  Organization @relation(fields: [orgId], references: [id])
-  user User         @relation(fields: [userId], references: [id])
-
-  @@unique([orgId, userId])
-}
-
-model OrgClass {
-  id        String   @id @default(uuid())
-  orgId     String
-  name      String
-  bookCode  String?
-  dailyGoal Int      @default(20)
-  createdAt DateTime @default(now())
-
-  org Organization @relation(fields: [orgId], references: [id])
 }
 
 model ChineseResource {
@@ -244,58 +234,34 @@ model ChineseResource {
   @@map("chinese_resources")
 }
 
-model ChineseDraft {
-  id               String   @id @default(uuid())
-  kind             String
-  level            String
-  grade            String   @default("")
-  prompt           String
-  answer           String
-  tags             String   @default("")
-  source           String   @default("")
-  sourceResourceId String?
-  createdBy        String?
-  pointKey         String   @default("")
-  groupKey         String   @default("")
-  subGroupKey      String   @default("")
-  entryKey         String   @default("")
-  lemma            String   @default("")
-  questionType     String   @default("dictation")
-  audience         String   @default("all")
-  options          String   @default("")
-  status           String   @default("draft")
-  createdAt        DateTime @default(now())
-
-  creator User? @relation(fields: [createdBy], references: [id])
-
-  @@index([status, pointKey])
-  @@map("chinese_drafts")
-}
-
 model ChinesePublished {
-  id               String   @id @default(uuid())
+  id               String    @id @default(uuid())
   kind             String
   level            String
-  grade            String   @default("")
+  grade            String    @default("")
   prompt           String
   answer           String
-  tags             String   @default("")
-  source           String   @default("")
+  tags             String    @default("")
+  source           String    @default("")
   sourceResourceId String?
   draftId          String?
-  pointKey         String?  @unique
-  groupKey         String   @default("")
-  subGroupKey      String   @default("")
-  entryKey         String   @default("")
-  lemma            String   @default("")
-  questionType     String   @default("dictation")
-  audience         String   @default("all")
-  difficulty       String   @default("")
-  isActive         Boolean  @default(true)
-  options          String   @default("")
-  publishedAt      DateTime @default(now())
+  pointKey         String?   @unique
+  groupKey         String    @default("")
+  subGroupKey      String    @default("")
+  entryKey         String    @default("")
+  lemma            String    @default("")
+  questionType     String    @default("dictation")
+  audience         String    @default("all")
+  difficulty       String    @default("")
+  isActive         Boolean   @default(true)
+  options          Json      @default("{}")
+  status           String    @default("published")
+  createdBy        String?
+  createdAt        DateTime  @default(now())
+  publishedAt      DateTime?
 
   sourceResource ChineseResource?     @relation(fields: [sourceResourceId], references: [id])
+  creator        User?                @relation("ChineseCardCreator", fields: [createdBy], references: [id])
   courseItems    ChineseCourseItem[]
   reviewStates   ChineseReviewState[]
   reviewLogs     ChineseReviewLog[]
@@ -306,6 +272,7 @@ model ChinesePublished {
   @@index([questionType])
   @@index([difficulty])
   @@index([isActive])
+  @@index([status])
   @@map("chinese_published")
 }
 
@@ -314,9 +281,6 @@ model ChineseEntry {
   entryKey  String   @unique
   kind      String
   lemma     String   @default("")
-  grade     String   @default("")
-  grades    String   @default("")
-  levels    String   @default("")
   tags      String   @default("")
   source    String   @default("")
   updatedAt DateTime @updatedAt
@@ -348,25 +312,23 @@ model ChineseEntryLevel {
 
 model ChineseCourse {
   id                String   @id @default(uuid())
-  userId            String
+  learnerId         String
   name              String
   note              String   @default("")
   kinds             String   @default("")
   levels            String   @default("")
   grades            String   @default("")
   difficulties      String   @default("")
-  newEnergy         Int      @default(30)
-  reviewEnergy      Int      @default(30)
   dailyMinutes      Int      @default(15)
   reviewDefaultTest Boolean  @default(false)
   createdAt         DateTime @default(now())
 
-  user         User                 @relation(fields: [userId], references: [id])
+  learner      Learner              @relation(fields: [learnerId], references: [id], onDelete: Cascade)
   items        ChineseCourseItem[]
   reviewStates ChineseReviewState[]
   reviewLogs   ChineseReviewLog[]
 
-  @@index([userId])
+  @@index([learnerId])
   @@map("chinese_courses")
 }
 
@@ -383,28 +345,28 @@ model ChineseCourseItem {
 }
 
 model ChineseReviewState {
-  userId   String
-  courseId String
-  pointId  String
-  n        Int       @default(0)
-  ef       Float     @default(2.5)
-  interval Int       @default(0)
-  due      DateTime? @db.Date
-  lapses   Int       @default(0)
-  last     DateTime? @db.Date
+  learnerId String
+  courseId  String
+  pointId   String
+  n         Int       @default(0)
+  ef        Float     @default(2.5)
+  interval  Int       @default(0)
+  due       DateTime? @db.Date
+  lapses    Int       @default(0)
+  last      DateTime? @db.Date
 
-  user   User             @relation(fields: [userId], references: [id])
-  course ChineseCourse    @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  point  ChinesePublished @relation(fields: [pointId], references: [id])
+  learner Learner          @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  course  ChineseCourse    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  point   ChinesePublished @relation(fields: [pointId], references: [id])
 
-  @@id([userId, courseId, pointId])
-  @@index([userId, courseId, due])
+  @@id([learnerId, courseId, pointId])
+  @@index([learnerId, courseId, due])
   @@map("chinese_review_states")
 }
 
 model ChineseReviewLog {
   id        String   @id @default(uuid())
-  userId    String
+  learnerId String
   courseId  String
   pointId   String
   quality   Int
@@ -412,10 +374,10 @@ model ChineseReviewLog {
   correct   Boolean
   createdAt DateTime @default(now())
 
-  user   User             @relation(fields: [userId], references: [id])
-  course ChineseCourse    @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  point  ChinesePublished @relation(fields: [pointId], references: [id])
+  learner Learner          @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  course  ChineseCourse    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  point   ChinesePublished @relation(fields: [pointId], references: [id])
 
-  @@index([userId, courseId, createdAt])
+  @@index([learnerId, courseId, createdAt])
   @@map("chinese_review_logs")
 }

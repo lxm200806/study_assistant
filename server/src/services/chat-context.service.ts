@@ -17,7 +17,7 @@ export async function assertChatQuota(userId: string): Promise<void> {
   const todayStart = new Date()
   todayStart.setHours(0, 0, 0, 0)
   const todayCount = await prisma.chatRecord.count({
-    where: { userId, role: 'user', createdAt: { gte: todayStart } }
+    where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
   })
   if (todayCount >= FREE_DAILY_CHAT) {
     throw new Error('CHAT_LIMIT')
@@ -26,13 +26,13 @@ export async function assertChatQuota(userId: string): Promise<void> {
 
 export async function saveUserChatMessage(userId: string, content: string, mode?: ChatMode): Promise<void> {
   await prisma.chatRecord.create({
-    data: { userId, role: 'user', content, mode }
+    data: { learnerId: userId, role: 'user', content, mode }
   })
 }
 
 export async function saveAiChatMessage(userId: string, content: string, mode?: ChatMode): Promise<void> {
   await prisma.chatRecord.create({
-    data: { userId, role: 'ai', content, mode }
+    data: { learnerId: userId, role: 'ai', content, mode }
   })
 }
 
@@ -42,7 +42,7 @@ export async function loadRecentChatHistory(
 ): Promise<Array<{ role: string; content: string }>> {
   const records = await prisma.chatRecord.findMany({
     where: {
-      userId,
+      learnerId: userId,
       ...(mode
         ? { OR: mode === 'free' ? [{ mode: 'free' }, { mode: null }] : [{ mode }] }
         : {})

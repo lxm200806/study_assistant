@@ -34,7 +34,7 @@ export async function sendChatMessage(
     const todayStart = new Date()
     todayStart.setHours(0, 0, 0, 0)
     const todayCount = await prisma.chatRecord.count({
-      where: { userId, role: 'user', createdAt: { gte: todayStart } }
+      where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
     })
     if (todayCount >= FREE_DAILY_CHAT) {
       throw new Error('CHAT_LIMIT')
@@ -42,7 +42,7 @@ export async function sendChatMessage(
   }
 
   await prisma.chatRecord.create({
-    data: { userId, role: 'user', content, mode }
+    data: { learnerId: userId, role: 'user', content, mode }
   })
 
   const history = await loadRecentChatHistory(userId, mode)
@@ -50,7 +50,7 @@ export async function sendChatMessage(
   const aiResponse = await generateAIResponse(content, history, learnerContext, mode, scenario)
 
   await prisma.chatRecord.create({
-    data: { userId, role: 'ai', content: aiResponse, mode }
+    data: { learnerId: userId, role: 'ai', content: aiResponse, mode }
   })
 
   const matchedWords = mode === 'challenge'
@@ -62,7 +62,7 @@ export async function sendChatMessage(
     const todayStart = new Date()
     todayStart.setHours(0, 0, 0, 0)
     const todayCount = await prisma.chatRecord.count({
-      where: { userId, role: 'user', createdAt: { gte: todayStart } }
+      where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
     })
     remainingFree = Math.max(0, FREE_DAILY_CHAT - todayCount)
   }
@@ -102,7 +102,7 @@ export async function getChatRemaining(userId: string): Promise<{ remaining: num
   const todayStart = new Date()
   todayStart.setHours(0, 0, 0, 0)
   const todayCount = await prisma.chatRecord.count({
-    where: { userId, role: 'user', createdAt: { gte: todayStart } }
+    where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
   })
   return { remaining: Math.max(0, FREE_DAILY_CHAT - todayCount), isPremium: false }
 }
@@ -110,7 +110,7 @@ export async function getChatRemaining(userId: string): Promise<{ remaining: num
 export async function getChatHistory(userId: string, page = 1, limit = 20) {
   const skip = (page - 1) * limit
   const records = await prisma.chatRecord.findMany({
-    where: { userId },
+    where: { learnerId: userId },
     orderBy: { createdAt: 'desc' },
     skip,
     take: limit

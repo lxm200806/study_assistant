@@ -24,7 +24,7 @@ export async function getRandomVocabulary(count: number = 10) {
 }
 
 export async function getVocabularyStats(userId: string, type?: WordType) {
-  const where: any = { userId }
+  const where: any = { learnerId: userId }
   if (type) {
     where.type = type
   }
@@ -37,7 +37,7 @@ export async function getVocabularyStats(userId: string, type?: WordType) {
 
 export async function getTrainingStats(userId: string) {
   const stats = await prisma.vocabularyStat.findMany({
-    where: { userId },
+    where: { learnerId: userId },
     select: { type: true, practiceCount: true, mastery: true }
   })
 
