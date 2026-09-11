@@ -12,8 +12,6 @@ import {
   LEVELS,
   PAGE_DEFAULT,
   PAGE_MAX,
-  PLAN_MAX_DAYS,
-  PLAN_QUALITY,
   SOLO_KINDS,
   isKind,
   isLevel,
@@ -22,7 +20,6 @@ import {
 } from './constants'
 import { fillEntryFields, lemmaOf, normalizeAudience, normalizeDifficulty, normalizeQuestionType as nq } from './entries'
 import { normalize } from './grade'
-import * as sm2 from './sm2'
 
 const CITATION_SUFFIX = /·《[^》]+》$/
 const UNLINKED_RESOURCE_TOKENS = new Set(['0', 'unlinked', 'none'])
@@ -66,7 +63,7 @@ export function validateCard(kind: string, prompt: unknown, answer: unknown, que
   if (['pinyin_choice', 'spelling_choice', 'meaning_choice', 'context_choice'].includes(qtype)) return null
   const compact = normalize(answer)
   if (kind === 'zi' && compact.length !== 1) return '易错字答案必须是一个字'
-  if (kind === 'idiom' && (compact.length < 3 || compact.length > 8)) return '词语过长，请拆成一条'
+  if (kind === 'idiom' && (compact.length < 3 || compact.length > 8)) return '成语过长，请拆成一条'
   if (kind === 'saying' && compact.length > 40) return '俗语名句过长，请拆成一条'
   if (kind === 'poem' && compact.length > 80) return '古诗卡片过大，请拆成名句或短篇'
   if (kind === 'wenyan' && compact.length > 160) return '文言文卡片过大，请拆成一段'
@@ -416,187 +413,6 @@ export function sessionCompletesPoints(session: StudySession): boolean {
   return true
 }
 
-function serializePlanDays(days: Array<{ day?: number; sessions: StudySession[]; energy?: number; new_energy?: number; review_energy?: number }>) {
-  return days.map((day, index) => {
-    const cards = day.sessions.map(session => {
-      const count = session.rows.length
-      const role = session.role || 'new'
-      const first = session.rows[0] || {}
-      const recite = session.rows.find(row => String(row.question_type || row.questionType) === 'recite')
-      const knowledgePoint = String(
-        first.kind === 'idiom'
-          ? first.lemma || first.answer || first.prompt || session.title
-          : first.prompt || first.lemma || first.answer || session.title
-      )
-      const summary = String(
-        first.kind === 'idiom'
-          ? recite?.prompt || first.prompt || ''
-          : session.source || first.lemma || ''
-      ).replace(/（四字）$/, '')
-      return {
-        title: session.title,
-        knowledgePoint,
-        summary,
-        groupKey: session.group_key,
-        kind: session.kind,
-        grade: session.grade,
-        source: session.source,
-        energy: session.energy,
-        estimatedMinutes: energyToMinutes(session.energy),
-        pointCount: count,
-        questionCount: count,
-        part: session.part,
-        parts: session.parts,
-        role,
-        prompts: session.rows.slice(0, 8).map(row => String(row.prompt || '')),
-        entries: session.rows.slice(0, 8).map(row => ({
-          prompt: String(row.prompt || ''),
-          lemma: String(row.lemma || ''),
-          questionType: String(row.question_type || row.questionType || 'dictation')
-        }))
-      }
-    })
-    let newEnergy = day.new_energy
-    let reviewEnergy = day.review_energy
-    if (newEnergy == null) newEnergy = cards.filter(item => item.role !== 'review').reduce((sum, item) => sum + item.energy, 0)
-    if (reviewEnergy == null) reviewEnergy = cards.filter(item => item.role === 'review').reduce((sum, item) => sum + item.energy, 0)
-    const mode = reviewEnergy && newEnergy ? 'mixed' : reviewEnergy ? 'review' : 'new'
-    const pointCount = cards.reduce((sum, item) => sum + item.pointCount, 0)
-    return {
-      day: day.day || index + 1,
-      mode,
-      energy: day.energy != null ? day.energy : newEnergy + reviewEnergy,
-      estimatedMinutes: energyToMinutes(day.energy != null ? day.energy : newEnergy + reviewEnergy),
-      newEnergy,
-      reviewEnergy,
-      pointCount,
-      newPointCount: cards.filter(item => item.role !== 'review').reduce((sum, item) => sum + item.pointCount, 0),
-      reviewPointCount: cards.filter(item => item.role === 'review').reduce((sum, item) => sum + item.pointCount, 0),
-      cardCount: day.sessions.length,
-      cards
-    }
-  })
-}
-
-export function planCourseDays(rows: PointLike[], dailyMinutes: unknown = DEFAULT_DAILY_MINUTES) {
-  const minutes = parseDailyMinutes(dailyMinutes)
-  const dailyBudget = minutesToEnergy(minutes)
-  const dailyLimit = dailyBudget
-  let remainingNew = expandSessions(clusterGroups(rows), dailyBudget)
-  const states = new Map<string, ReturnType<typeof sm2.schedule>>()
-  const days: Array<{ day: number; sessions: StudySession[]; energy: number; new_energy: number; review_energy: number }> = []
-  let newDayCount = 0
-  const start = '2000-01-01'
-  for (let offset = 0; offset < PLAN_MAX_DAYS; offset++) {
-    const today = sm2.addDays(start, offset)
-    const dueRows = rows.filter(row => {
-      const state = states.get(rowId(row))
-      if (!state || sm2.isMastered(state)) return false
-      return String(state.due || '') <= today
-    })
-    const reviewSessions = expandSessions(clusterGroups(dueRows), dailyBudget)
-    for (const session of reviewSessions) session.role = 'review'
-    const [reviewToday, reviewUsed] = packWithin(reviewSessions, dailyLimit)
-    let newToday: StudySession[] = []
-    let newUsed = 0
-    if (remainingNew.length) {
-      remainingNew = remainingNew.filter(session => !session.rows.every(row => states.has(rowId(row))))
-      ;[newToday, newUsed] = packWithin(remainingNew, Math.max(0, dailyLimit - reviewUsed))
-      remainingNew = remainingNew.slice(newToday.length)
-      for (const session of newToday) session.role = 'new'
-    }
-    if (!reviewToday.length && !newToday.length) {
-      if (remainingNew.length) continue
-      if ([...states.values()].some(state => state && !sm2.isMastered(state))) continue
-      break
-    }
-    for (const session of [...reviewToday, ...newToday]) {
-      if (session.role === 'new' && !sessionCompletesPoints(session)) continue
-      for (const row of session.rows) {
-        const key = rowId(row)
-        states.set(key, sm2.schedule(states.get(key), PLAN_QUALITY, today))
-      }
-    }
-    if (newToday.length) newDayCount += 1
-    days.push({
-      day: offset + 1,
-      sessions: [...reviewToday, ...newToday],
-      energy: reviewUsed + newUsed,
-      new_energy: newUsed,
-      review_energy: reviewUsed
-    })
-  }
-  return {
-    dailyMinutes: minutes,
-    dailyEnergy: dailyBudget,
-    newEnergy: dailyBudget,
-    reviewEnergy: dailyBudget,
-    groupCount: clusterGroups(rows).length,
-    pointCount: rows.length,
-    totalEnergy: rowsEnergy(rows),
-    dayCount: days.length,
-    newDayCount,
-    calendarDays: days.length ? days[days.length - 1].day : 0,
-    days: serializePlanDays(days)
-  }
-}
-
-export function planTodayGroups(
-  rows: PointLike[],
-  failedIds: Set<unknown>,
-  today: string,
-  dailyMinutes: unknown = DEFAULT_DAILY_MINUTES,
-  spentEnergy: unknown = 0,
-  extraMinutes: unknown = 0
-) {
-  const baseMinutes = parseDailyMinutes(dailyMinutes)
-  const extensionMinutes = Math.max(0, Math.min(Number(extraMinutes) || 0, DAILY_MINUTES_MAX))
-  const targetMinutes = baseMinutes + extensionMinutes
-  const dailyBudget = targetMinutes * ENERGY_PER_MINUTE
-  const spent = Math.max(0, Number(spentEnergy) || 0)
-  const available = Math.max(0, dailyBudget - spent)
-  const limit = available
-  const dueRows: PointLike[] = []
-  const failedRows: PointLike[] = []
-  const freshRows: PointLike[] = []
-  for (const row of rows) {
-    if (!row.last) freshRows.push(row)
-    else if (String(row.due || '') <= today) dueRows.push(row)
-    else if (failedIds.has(row.id)) failedRows.push(row)
-  }
-  const reviewSessions = expandSessions([...clusterGroups(dueRows), ...clusterGroups(failedRows)], dailyBudget)
-  const freshSessions = expandSessions(clusterGroups(freshRows), dailyBudget)
-  const allowOversized = spent <= 0 || extensionMinutes > 0
-  const [reviewToday, reviewUsed] = packWithin(reviewSessions, limit, allowOversized)
-  const [freshToday, freshUsed] = packWithin(
-    freshSessions,
-    Math.max(0, limit - reviewUsed),
-    allowOversized && reviewUsed <= 0
-  )
-  for (const session of reviewToday) session.role = 'review'
-  for (const session of freshToday) session.role = 'new'
-  const picked = [...reviewToday, ...freshToday]
-  return {
-    groups: picked,
-    due: clusterGroups(dueRows).length,
-    failed: clusterGroups(failedRows).length,
-    fresh: clusterGroups(freshRows).length,
-    tasks: picked.length,
-    cards: picked.reduce((sum, session) => sum + session.rows.length, 0),
-    newEnergy: freshUsed,
-    reviewEnergy: reviewUsed,
-    newBudget: dailyBudget,
-    reviewBudget: dailyBudget,
-    dailyMinutes: baseMinutes,
-    targetMinutes,
-    extraMinutes: extensionMinutes,
-    spentMinutes: energyToMinutes(spent),
-    remainingMinutes: Math.min(
-      Math.max(0, targetMinutes - energyToMinutes(spent)),
-      energyToMinutes(reviewUsed + freshUsed)
-    )
-  }
-}
 
 export function flattenTodayGroups(groups: StudySession[]) {
   const items: Array<{

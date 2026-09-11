@@ -76,6 +76,14 @@
         </view>
         <text class="menu-arrow">›</text>
       </view>
+      <view class="menu-item" @tap="goChineseMaterials">
+        <text class="menu-icon">📗</text>
+        <view class="menu-text">
+          <text class="menu-label">语文教材</text>
+          <text class="menu-desc">{{ userStore.isAdmin ? '同步官方册' : '查看已同步教材' }}</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
     </view>
 
     <view v-else class="menu-section">
@@ -114,13 +122,6 @@
         <text class="menu-icon">⚙️</text>
         <view class="menu-text">
           <text class="menu-label">词库管理</text>
-        </view>
-        <text class="menu-arrow">›</text>
-      </view>
-      <view v-if="userStore.isChinese" class="menu-item" @tap="goChineseMaterials">
-        <text class="menu-icon">📗</text>
-        <view class="menu-text">
-          <text class="menu-label">语文教材同步</text>
         </view>
         <text class="menu-arrow">›</text>
       </view>
