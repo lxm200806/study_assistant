@@ -42,6 +42,30 @@ const BOOKS: BookMeta[] = [
     description: '高考英语考纲词汇',
     level: '高中',
     wordCount: 3690
+  },
+  {
+    id: 'kew1',
+    code: 'kew1',
+    name: '1200高频词 1',
+    description: 'Seed Learning 单元主题词（New Words）',
+    level: 'A1',
+    wordCount: 400
+  },
+  {
+    id: 'kew2',
+    code: 'kew2',
+    name: '1200高频词 2',
+    description: 'Seed Learning 单元主题词（New Words）',
+    level: 'A1+',
+    wordCount: 400
+  },
+  {
+    id: 'kew3',
+    code: 'kew3',
+    name: '1200高频词 3',
+    description: 'Seed Learning 单元主题词（New Words）',
+    level: 'A2',
+    wordCount: 400
   }
 ]
 

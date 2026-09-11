@@ -10,7 +10,7 @@
       <text class="plan-name">Premium 会员</text>
       <text class="plan-price">¥29.9 / 月</text>
       <view class="plan-features">
-        <text>✓ 四本考纲词书全部解锁</text>
+        <text>✓ 全部英语词书解锁</text>
         <text>✓ AI 陪聊不限次数</text>
         <text>✓ 阶段模拟小测报告</text>
         <text>✓ 家长周报分享</text>

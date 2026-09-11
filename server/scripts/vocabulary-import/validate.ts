@@ -13,7 +13,10 @@ export function isMissingMeaning(meaning: string, englishMeaning?: string | null
   return false
 }
 
-export function validateBookWords(words: EnrichedWord[]): {
+export function validateBookWords(
+  words: EnrichedWord[],
+  options: { skipArtifactFilter?: boolean } = {}
+): {
   valid: EnrichedWord[]
   issues: ValidationIssue[]
 } {
@@ -22,9 +25,9 @@ export function validateBookWords(words: EnrichedWord[]): {
   const draft: EnrichedWord[] = []
 
   for (const w of words) {
-    const key = w.word.toLowerCase()
+    const key = `${w.word.toLowerCase()}::${w.senseKey || ''}`
 
-    if (isParseArtifact(key)) {
+    if (!options.skipArtifactFilter && isParseArtifact(w.word.toLowerCase())) {
       issues.push({ word: key, reason: 'PDF 解析错误（非有效词条）' })
       continue
     }

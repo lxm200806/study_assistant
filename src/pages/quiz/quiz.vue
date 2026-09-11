@@ -24,7 +24,7 @@
           :class="['option', selected === i ? 'selected' : '', showAnswer ? getOptionClass(i) : '']"
           @tap="selectOption(i)"
         >
-          <text>{{ opt }}</text>
+          <text>{{ opt.label }}</text>
         </view>
       </view>
       <button v-if="showAnswer" class="btn-next" @tap="nextQuestion">下一题</button>
@@ -44,8 +44,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import type { Vocabulary } from '@/types'
-import { getWordMeaning } from '@/utils/vocabulary'
-import { buildUniqueOptions } from '@/utils/quiz-options'
+import { getWordMeaning, buildWordChoices } from '@/utils/vocabulary'
 import { quizAPI } from '@/utils/api'
 import { openMapTab } from '@/utils/navigation'
 import { requireSubject } from '@/utils/subject'
@@ -57,7 +56,7 @@ const started = ref(false)
 const finished = ref(false)
 const words = ref<Vocabulary[]>([])
 const currentIndex = ref(0)
-const options = ref<string[]>([])
+const options = ref<Array<{ id: string; label: string }>>([])
 const selected = ref(-1)
 const showAnswer = ref(false)
 const answers = ref<{ wordId: string; isCorrect: boolean }[]>([])
@@ -69,24 +68,22 @@ let timer: ReturnType<typeof setInterval> | null = null
 const currentWord = computed(() => words.value[currentIndex.value])
 
 const getOptionClass = (i: number) => {
-  const correct = currentWord.value?.word || ''
-  if (options.value[i] === correct) return 'correct'
+  const correctId = currentWord.value?.id || ''
+  if (options.value[i]?.id === correctId) return 'correct'
   if (i === selected.value) return 'wrong'
   return ''
 }
 
 const buildOptions = () => {
   if (!currentWord.value) return
-  const correct = currentWord.value.word
-  const candidates = words.value.map(w => w.word).filter(w => w !== correct)
-  options.value = buildUniqueOptions(correct, candidates, 4)
+  options.value = buildWordChoices(currentWord.value, words.value, 4)
 }
 
 const selectOption = (i: number) => {
   if (showAnswer.value) return
   selected.value = i
   showAnswer.value = true
-  const correct = options.value[i] === currentWord.value?.word
+  const correct = options.value[i]?.id === currentWord.value?.id
   answers.value.push({ wordId: currentWord.value!.id, isCorrect: correct })
 }
 

@@ -12,6 +12,8 @@ export interface Vocabulary {
   contentType?: string
   topic?: string
   tags?: string[]
+  senseKey?: string
+  senseLabel?: string
 }
 
 export interface WordStats {

@@ -65,4 +65,6 @@ export interface Vocabulary {
   visual?: boolean
   example?: string
   englishMeaning?: string
+  senseKey?: string
+  senseLabel?: string
 }

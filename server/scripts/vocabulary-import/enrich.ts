@@ -15,6 +15,8 @@ export interface EnrichedWord {
   phonetic: string
   englishMeaning: string
   emoji?: string
+  senseKey?: string
+  senseLabel?: string
 }
 
 let cache: Record<string, { phonetic?: string; definition?: string; failed?: boolean }> = {}

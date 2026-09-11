@@ -38,19 +38,12 @@ export async function initBooks() {
 
       for (let i = 0; i < bookData.words.length; i++) {
         const wordData = bookData.words[i]
+        const senseKey = wordData.senseKey || ''
+        const senseLabel = wordData.senseLabel || ''
         const taxonomy = resolveWordTaxonomy(wordData.word, {
           contentType: wordData.contentType,
           topic: wordData.topic,
           tags: wordData.tags
-        })
-
-        const linked = await prisma.bookVocabulary.findFirst({
-          where: {
-            bookId: book.id,
-            word: { word: wordData.word }
-          },
-          include: { word: true },
-          orderBy: { sortOrder: 'asc' }
         })
 
         const existingWords = await prisma.vocabulary.findMany({
@@ -58,35 +51,32 @@ export async function initBooks() {
           orderBy: { createdAt: 'asc' }
         })
 
-        let word = linked?.word ?? existingWords[0]
+        let word = existingWords.find(item => (item.senseKey || '') === senseKey)
+
+        const wordFields = {
+          meaning: wordData.meaning,
+          phonetic: wordData.phonetic,
+          englishMeaning: wordData.englishMeaning,
+          exampleSentence: wordData.exampleSentence,
+          imageUrl: wordData.emoji || word?.imageUrl || null,
+          contentType: taxonomy.contentType,
+          topic: taxonomy.topic,
+          tags: [...new Set([...(taxonomy.tags || []), ...(wordData.tags || [])])],
+          senseKey,
+          senseLabel
+        }
 
         if (!word) {
           word = await prisma.vocabulary.create({
             data: {
               word: wordData.word,
-              meaning: wordData.meaning,
-              phonetic: wordData.phonetic,
-              englishMeaning: wordData.englishMeaning,
-              exampleSentence: wordData.exampleSentence,
-              imageUrl: wordData.emoji || null,
-              contentType: taxonomy.contentType,
-              topic: taxonomy.topic,
-              tags: taxonomy.tags || []
+              ...wordFields
             }
           })
         } else {
           word = await prisma.vocabulary.update({
             where: { id: word.id },
-            data: {
-              meaning: wordData.meaning,
-              phonetic: wordData.phonetic,
-              englishMeaning: wordData.englishMeaning,
-              exampleSentence: wordData.exampleSentence,
-              imageUrl: wordData.emoji || word.imageUrl,
-              contentType: taxonomy.contentType,
-              topic: taxonomy.topic,
-              tags: taxonomy.tags || []
-            }
+            data: wordFields
           })
         }
 

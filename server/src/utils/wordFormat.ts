@@ -29,7 +29,9 @@ export function formatWordForClient(word: {
   contentType?: string | null
   topic?: string | null
   tags?: string[]
-}): Vocabulary & { contentType?: string; topic?: string; tags?: string[] } {
+  senseKey?: string | null
+  senseLabel?: string | null
+}): Vocabulary & { contentType?: string; topic?: string; tags?: string[]; senseKey?: string; senseLabel?: string } {
   const image = word.imageUrl || undefined
   return {
     id: word.id,
@@ -42,6 +44,8 @@ export function formatWordForClient(word: {
     example: word.exampleSentence || undefined,
     contentType: word.contentType || undefined,
     topic: word.topic || undefined,
-    tags: word.tags || []
+    tags: word.tags || [],
+    senseKey: word.senseKey || undefined,
+    senseLabel: word.senseLabel || undefined
   }
 }

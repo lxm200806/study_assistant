@@ -13,6 +13,8 @@
     "prisma:migrate": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/prisma/build/index.js migrate dev'",
     "build:vocabulary": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/vocabulary-import/build-all.ts --api'",
     "build:vocabulary:fast": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/vocabulary-import/build-all.ts'",
+    "build:kew": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/vocabulary-import/build-kew.ts --api'",
+    "build:kew:fast": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/vocabulary-import/build-kew.ts'",
     "prisma:generate": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/prisma/build/index.js generate'",
     "migrate:fsrs": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/migrate-fsrs.ts'",
     "seed:admin": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/seed-admin.ts'",

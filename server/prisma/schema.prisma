@@ -106,11 +106,17 @@ model Vocabulary {
   contentType     String?
   topic           String?
   tags            String[] @default([])
+  /// 同形词义项，空字符串表示默认义项。与 word 组成唯一键。
+  senseKey        String   @default("")
+  /// 给学习者看的短义项，如「飞」「苍蝇」
+  senseLabel      String   @default("")
   createdAt       DateTime @default(now())
 
   vocabularyStats VocabularyStat[]
   trainingRecords TrainingRecord[]
   bookVocabulary  BookVocabulary[]
+
+  @@unique([word, senseKey])
 }
 
 model BookStudyProgress {

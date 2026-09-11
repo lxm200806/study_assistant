@@ -44,12 +44,17 @@ export const petBook: BookData = loadBook('pet')
 export const zhongkaoBook: BookData = loadBook('zhongkao')
 export const gaokaoBook: BookData = loadBook('gaokao')
 
+const kewBooks = ['kew1', 'kew2', 'kew3']
+  .map(code => loadBookJson(code))
+  .filter((book): book is BookData => !!book)
+
 /** 词汇书注册表 — 新增词书只需在此追加 */
 export const vocabularyBooks: BookData[] = [
   ketBook,
   petBook,
   zhongkaoBook,
-  gaokaoBook
+  gaokaoBook,
+  ...kewBooks
 ]
 
 export const getBookByCode = (code: string): BookData | undefined =>

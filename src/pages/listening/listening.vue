@@ -49,7 +49,7 @@
           <view class="result-header">
             <text v-if="currentWord?.image" class="result-image">{{ currentWord.image }}</text>
             <view class="result-word-info">
-              <text class="result-word">{{ currentWord?.word }}</text>
+              <text class="result-word">{{ currentWord ? getWordHeadword(currentWord) : '' }}</text>
               <text class="result-phonetic">{{ currentWord?.phonetic }}</text>
             </view>
           </view>
@@ -97,7 +97,7 @@
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import type { Vocabulary } from '@/types'
-import { getWordMeaning } from '@/utils/vocabulary'
+import { getWordMeaning, getWordHeadword } from '@/utils/vocabulary'
 import { buildUniqueOptions } from '@/utils/quiz-options'
 import TrainingSetup from '@/components/TrainingSetup.vue'
 import TrainingStartStats from '@/components/TrainingStartStats.vue'

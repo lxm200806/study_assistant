@@ -23,7 +23,7 @@
 
       <view class="word-card">
         <text v-if="currentWord?.image && practiceMode === 'word'" class="word-image">{{ currentWord.image }}</text>
-        <text v-if="practiceMode === 'word'" class="word-text">{{ currentWord?.word }}</text>
+        <text v-if="practiceMode === 'word'" class="word-text">{{ currentWord ? getWordHeadword(currentWord) : '' }}</text>
         <text v-else class="word-text example-text">{{ exampleText || currentWord?.word }}</text>
         <text v-if="practiceMode === 'word'" class="word-phonetic">{{ currentWord?.phonetic }}</text>
         <text class="word-meaning">{{ getWordMeaning(currentWord!, vocabStore.meaningType) }}</text>
@@ -83,7 +83,7 @@ import { ref, computed, onMounted } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import type { Vocabulary } from '@/types'
-import { getWordMeaning } from '@/utils/vocabulary'
+import { getWordMeaning, getWordHeadword } from '@/utils/vocabulary'
 import { speakWord, speakText } from '@/utils/tts'
 import TrainingSetup from '@/components/TrainingSetup.vue'
 import TrainingStartStats from '@/components/TrainingStartStats.vue'

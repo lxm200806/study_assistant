@@ -28,7 +28,7 @@
           :class="['option-item', selectedOption === index ? 'selected' : '', getOptionClass(index)]"
           @tap="selectOption(index)"
         >
-          <text class="option-text">{{ option }}</text>
+          <text class="option-text">{{ option.label }}</text>
           <text v-if="selectedOption === index && showResult" :class="['result-icon', isCorrect ? 'correct' : 'wrong']">
             {{ isCorrect ? '✓' : '✗' }}
           </text>
@@ -40,7 +40,7 @@
           <view class="result-header">
             <text v-if="currentWord?.image" class="result-image">{{ currentWord.image }}</text>
             <view class="result-word-info">
-              <text class="result-word">{{ currentWord?.word }}</text>
+              <text class="result-word">{{ currentWord ? getWordHeadword(currentWord) : '' }}</text>
               <text class="result-phonetic">{{ currentWord?.phonetic }}</text>
             </view>
           </view>
@@ -88,7 +88,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import type { Vocabulary } from '@/types'
-import { getWordMeaning, getWordDisplayLabel, getRecognitionHint } from '@/utils/vocabulary'
+import { getWordMeaning, getWordDisplayLabel, getRecognitionHint, buildWordChoices, getWordHeadword } from '@/utils/vocabulary'
 import TrainingSetup from '@/components/TrainingSetup.vue'
 import TrainingStartStats from '@/components/TrainingStartStats.vue'
 import BookSwitcher from '@/components/BookSwitcher.vue'
@@ -115,7 +115,7 @@ const selectedOption = ref(-1)
 const isCorrect = ref(false)
 const currentIndex = ref(0)
 const words = ref<Vocabulary[]>([])
-const options = ref<string[]>([])
+const options = ref<Array<{ id: string; label: string }>>([])
 
 const totalCorrect = ref(0)
 const totalCount = ref(0)
@@ -143,8 +143,8 @@ const isLastWord = computed(() => currentIndex.value === words.value.length - 1)
 
 const getOptionClass = (index: number) => {
   if (!showResult.value) return ''
-  const correctIndex = options.value.indexOf(currentWord.value?.word || '')
-  if (index === correctIndex) return 'correct'
+  const correctId = currentWord.value?.id || ''
+  if (options.value[index]?.id === correctId) return 'correct'
   if (index === selectedOption.value && !isCorrect.value) return 'wrong'
   return ''
 }
@@ -153,8 +153,8 @@ const selectOption = (index: number) => {
   if (showResult.value) return
   
   selectedOption.value = index
-  const correctAnswer = currentWord.value?.word || ''
-  isCorrect.value = options.value[index] === correctAnswer
+  const correctId = currentWord.value?.id || ''
+  isCorrect.value = options.value[index]?.id === correctId
   showResult.value = true
   
   vocabStore.updateWordStats(currentWord.value?.id || '', currentWord.value?.word || '', 'reading', isCorrect.value)
@@ -184,14 +184,7 @@ const nextWord = async () => {
 const generateOptions = () => {
   const current = currentWord.value
   if (!current) return
-  
-  const allWords = words.value.map(w => w.word)
-  const otherWords = allWords.filter(w => w !== current.word)
-  
-  const shuffled = otherWords.sort(() => Math.random() - 0.5)
-  const wrongOptions = shuffled.slice(0, 3)
-  
-  options.value = [current.word, ...wrongOptions].sort(() => Math.random() - 0.5)
+  options.value = buildWordChoices(current, words.value, 4)
 }
 
 const startGroup = async () => {

@@ -12,6 +12,15 @@ export type TopicCategory =
   | 'society'
   | 'business'
 
+export interface WordSources {
+  /** 词条名单来源，如 kew-toc */
+  list: string
+  meaning: string
+  phonetic: string
+  englishMeaning: string
+  example: string
+}
+
 export interface WordData {
   word: string
   meaning: string
@@ -23,6 +32,12 @@ export interface WordData {
   contentType?: ContentType
   topic?: TopicCategory
   tags?: string[]
+  /** 同形词义项键，空为默认义项 */
+  senseKey?: string
+  /** 界面展示用短义项，如「飞」「苍蝇」 */
+  senseLabel?: string
+  /** 各字段最终校验来源 */
+  sources?: WordSources
 }
 
 export interface BookData {

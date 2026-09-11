@@ -1,0 +1,2402 @@
+{
+  "actor::": {
+    "meaning": "男演员",
+    "englishMeaning": "a man who acts in a play or film",
+    "phonetic": "/ˈæktə/",
+    "exampleSentence": "The actor waves to the children."
+  },
+  "actress::": {
+    "meaning": "女演员",
+    "englishMeaning": "a woman who acts in a play or film",
+    "phonetic": "/ˈæktrəs/",
+    "exampleSentence": "The actress sings on the school stage."
+  },
+  "bank::": {
+    "meaning": "银行",
+    "englishMeaning": "a place to keep money safe",
+    "phonetic": "/bæŋk/",
+    "exampleSentence": "Mum puts money in the bank."
+  },
+  "business::": {
+    "meaning": "生意",
+    "englishMeaning": "work that sells things to people",
+    "phonetic": "/ˈbɪznəs/",
+    "exampleSentence": "Dad has a small business."
+  },
+  "church::": {
+    "meaning": "教堂",
+    "englishMeaning": "a building where people pray",
+    "phonetic": "/tʃɜːtʃ/",
+    "exampleSentence": "We visit the old church on Sunday."
+  },
+  "cross::": {
+    "meaning": "穿过",
+    "englishMeaning": "to go from one side to the other",
+    "phonetic": "/krɒs/",
+    "exampleSentence": "We cross the road with Mum."
+  },
+  "doctor::": {
+    "meaning": "医生",
+    "englishMeaning": "a person who helps sick people",
+    "phonetic": "/ˈdɒktə/",
+    "exampleSentence": "The doctor helps the sick child."
+  },
+  "exercise::": {
+    "meaning": "锻炼",
+    "englishMeaning": "moving your body to keep strong",
+    "phonetic": "/ˈeksəsaɪz/",
+    "exampleSentence": "We do exercise in the playground."
+  },
+  "glasses::": {
+    "meaning": "眼镜",
+    "englishMeaning": "a tool you wear to see better",
+    "phonetic": "/ˈɡlɑːsɪz/",
+    "exampleSentence": "She wears glasses to read books."
+  },
+  "heart::": {
+    "meaning": "心脏",
+    "englishMeaning": "the part of you that pumps blood",
+    "phonetic": "/hɑːt/",
+    "exampleSentence": "My heart beats fast after running."
+  },
+  "hit::": {
+    "meaning": "击打",
+    "englishMeaning": "to strike a ball with a hand or bat",
+    "phonetic": "/hɪt/",
+    "exampleSentence": "Hit the ball with the bat."
+  },
+  "human::": {
+    "meaning": "人类",
+    "englishMeaning": "a person, not an animal",
+    "phonetic": "/ˈhjuːmən/",
+    "exampleSentence": "A human is not a wild animal."
+  },
+  "police::": {
+    "meaning": "警察",
+    "englishMeaning": "people who keep a town safe",
+    "phonetic": "/pəˈliːs/",
+    "exampleSentence": "The police help the lost child."
+  },
+  "road::": {
+    "meaning": "马路",
+    "englishMeaning": "a hard path for cars and buses",
+    "phonetic": "/rəʊd/",
+    "exampleSentence": "We walk on the road to school."
+  },
+  "stage::": {
+    "meaning": "舞台",
+    "englishMeaning": "a raised floor for a play or show",
+    "phonetic": "/steɪdʒ/",
+    "exampleSentence": "The children stand on the stage."
+  },
+  "tomorrow::": {
+    "meaning": "明天",
+    "englishMeaning": "the day after today",
+    "phonetic": "/təˈmɒrəʊ/",
+    "exampleSentence": "We will go to the zoo tomorrow."
+  },
+  "tonight::": {
+    "meaning": "今晚",
+    "englishMeaning": "this evening after today",
+    "phonetic": "/təˈnaɪt/",
+    "exampleSentence": "We eat dumplings at home tonight."
+  },
+  "town::": {
+    "meaning": "小镇",
+    "englishMeaning": "a place with houses and shops",
+    "phonetic": "/taʊn/",
+    "exampleSentence": "Our town has a small park."
+  },
+  "voice::": {
+    "meaning": "声音",
+    "englishMeaning": "the sound you make when you speak",
+    "phonetic": "/vɔɪs/",
+    "exampleSentence": "I hear Mum's voice in the kitchen."
+  },
+  "yesterday::": {
+    "meaning": "昨天",
+    "englishMeaning": "the day before today",
+    "phonetic": "/ˈjestədeɪ/",
+    "exampleSentence": "I played football with Tom yesterday."
+  },
+  "afternoon::": {
+    "meaning": "下午",
+    "englishMeaning": "the time after lunch before evening",
+    "phonetic": "/ˌɑːftəˈnuːn/",
+    "exampleSentence": "We have art class this afternoon."
+  },
+  "art::": {
+    "meaning": "美术",
+    "englishMeaning": "drawing, painting, and making pictures",
+    "phonetic": "/ɑːt/",
+    "exampleSentence": "I like art class at school."
+  },
+  "body::": {
+    "meaning": "身体",
+    "englishMeaning": "all the parts of a person",
+    "phonetic": "/ˈbɒdi/",
+    "exampleSentence": "Wash your body after swimming."
+  },
+  "climb::": {
+    "meaning": "攀爬",
+    "englishMeaning": "to go up using your hands and feet",
+    "phonetic": "/klaɪm/",
+    "exampleSentence": "We climb the hill on Sunday."
+  },
+  "desert::": {
+    "meaning": "沙漠",
+    "englishMeaning": "a hot dry place with lots of sand",
+    "phonetic": "/ˈdezət/",
+    "exampleSentence": "A camel lives in the desert."
+  },
+  "evening::": {
+    "meaning": "傍晚",
+    "englishMeaning": "the time of day before night",
+    "phonetic": "/ˈiːvnɪŋ/",
+    "exampleSentence": "We read stories in the evening."
+  },
+  "field::": {
+    "meaning": "田野",
+    "englishMeaning": "a wide open piece of land",
+    "phonetic": "/fiːld/",
+    "exampleSentence": "Cows eat grass in the field."
+  },
+  "forest::": {
+    "meaning": "森林",
+    "englishMeaning": "a large place with many trees",
+    "phonetic": "/ˈfɒrɪst/",
+    "exampleSentence": "Many birds live in the forest."
+  },
+  "forward::": {
+    "meaning": "向前",
+    "englishMeaning": "towards the front",
+    "phonetic": "/ˈfɔːwəd/",
+    "exampleSentence": "Please come forward to the board."
+  },
+  "future::": {
+    "meaning": "将来",
+    "englishMeaning": "the time that will come later",
+    "phonetic": "/ˈfjuːtʃə/",
+    "exampleSentence": "I will be a doctor in the future."
+  },
+  "ground::": {
+    "meaning": "地面",
+    "englishMeaning": "the land under your feet",
+    "phonetic": "/ɡraʊnd/",
+    "exampleSentence": "Do not sit on the wet ground."
+  },
+  "hill::": {
+    "meaning": "小山",
+    "englishMeaning": "a small high piece of land",
+    "phonetic": "/hɪl/",
+    "exampleSentence": "We run down the green hill."
+  },
+  "husband::": {
+    "meaning": "丈夫",
+    "englishMeaning": "a man who is married",
+    "phonetic": "/ˈhʌzbənd/",
+    "exampleSentence": "Her husband cooks dinner at home."
+  },
+  "marry::": {
+    "meaning": "结婚",
+    "englishMeaning": "to become husband and wife",
+    "phonetic": "/ˈmæri/",
+    "exampleSentence": "The prince and princess marry."
+  },
+  "morning::": {
+    "meaning": "早上",
+    "englishMeaning": "the early part of the day",
+    "phonetic": "/ˈmɔːnɪŋ/",
+    "exampleSentence": "I drink milk in the morning."
+  },
+  "ring::": {
+    "meaning": "戒指",
+    "englishMeaning": "a round band you wear on a finger",
+    "phonetic": "/rɪŋ/",
+    "exampleSentence": "Mum wears a gold ring."
+  },
+  "river::": {
+    "meaning": "河流",
+    "englishMeaning": "a long body of water that flows",
+    "phonetic": "/ˈrɪvə/",
+    "exampleSentence": "Fish swim in the long river."
+  },
+  "someone::": {
+    "meaning": "有人",
+    "englishMeaning": "a person, but you do not name them",
+    "phonetic": "/ˈsʌmwʌn/",
+    "exampleSentence": "Someone left a book on my desk."
+  },
+  "stick::": {
+    "meaning": "木棍",
+    "englishMeaning": "a long thin piece of wood",
+    "phonetic": "/stɪk/",
+    "exampleSentence": "He picks up a long stick."
+  },
+  "stone::": {
+    "meaning": "石头",
+    "englishMeaning": "a small hard piece of rock",
+    "phonetic": "/stəʊn/",
+    "exampleSentence": "She skips a stone on the water."
+  },
+  "above::": {
+    "meaning": "在上面",
+    "englishMeaning": "in a higher place than something",
+    "phonetic": "/əˈbʌv/",
+    "exampleSentence": "The clock is above the door."
+  },
+  "across::": {
+    "meaning": "横过",
+    "englishMeaning": "from one side to the other side",
+    "phonetic": "/əˈkrɒs/",
+    "exampleSentence": "We walk across the old bridge."
+  },
+  "age::": {
+    "meaning": "年龄",
+    "englishMeaning": "how many years you have lived",
+    "phonetic": "/eɪdʒ/",
+    "exampleSentence": "My age is ten years old."
+  },
+  "beach::": {
+    "meaning": "海滩",
+    "englishMeaning": "sand by the sea where you play",
+    "phonetic": "/biːtʃ/",
+    "exampleSentence": "We play with sand on the beach."
+  },
+  "behind::": {
+    "meaning": "在后面",
+    "englishMeaning": "at the back of something",
+    "phonetic": "/bɪˈhaɪnd/",
+    "exampleSentence": "The cat hides behind the sofa."
+  },
+  "below::": {
+    "meaning": "在下面",
+    "englishMeaning": "in a lower place than something",
+    "phonetic": "/bɪˈləʊ/",
+    "exampleSentence": "Your shoes are below the bed."
+  },
+  "between::": {
+    "meaning": "在之间",
+    "englishMeaning": "in the middle of two things",
+    "phonetic": "/bɪˈtwiːn/",
+    "exampleSentence": "I sit between Mum and Dad."
+  },
+  "cost::": {
+    "meaning": "花费",
+    "englishMeaning": "how much money you pay",
+    "phonetic": "/kɒst/",
+    "exampleSentence": "The toys cost ten yuan today."
+  },
+  "earth::": {
+    "meaning": "地球",
+    "englishMeaning": "the world we live on",
+    "phonetic": "/ɜːθ/",
+    "exampleSentence": "The earth goes around the sun."
+  },
+  "grass::": {
+    "meaning": "草地",
+    "englishMeaning": "the green plants that cover the ground",
+    "phonetic": "/ɡrɑːs/",
+    "exampleSentence": "Do not walk on the new grass."
+  },
+  "inside::": {
+    "meaning": "在里面",
+    "englishMeaning": "in the inner part of a place",
+    "phonetic": "/ˌɪnˈsaɪd/",
+    "exampleSentence": "Please wait inside the classroom."
+  },
+  "island::": {
+    "meaning": "小岛",
+    "englishMeaning": "land with water all around it",
+    "phonetic": "/ˈaɪlənd/",
+    "exampleSentence": "We take a boat to the island."
+  },
+  "lady::": {
+    "meaning": "女士",
+    "englishMeaning": "a polite word for a woman",
+    "phonetic": "/ˈleɪdi/",
+    "exampleSentence": "The kind lady helps the child."
+  },
+  "moon::": {
+    "meaning": "月亮",
+    "englishMeaning": "the big light we see at night",
+    "phonetic": "/muːn/",
+    "exampleSentence": "The moon is bright at night."
+  },
+  "mountain::": {
+    "meaning": "大山",
+    "englishMeaning": "a very high piece of land",
+    "phonetic": "/ˈmaʊntɪn/",
+    "exampleSentence": "Snow sits on the high mountain."
+  },
+  "something::": {
+    "meaning": "某物",
+    "englishMeaning": "a thing, but you do not name it",
+    "phonetic": "/ˈsʌmθɪŋ/",
+    "exampleSentence": "I want something to drink."
+  },
+  "space::": {
+    "meaning": "太空",
+    "englishMeaning": "the sky far above the earth",
+    "phonetic": "/speɪs/",
+    "exampleSentence": "The rocket flies in space."
+  },
+  "sport::": {
+    "meaning": "运动",
+    "englishMeaning": "a game that makes your body move",
+    "phonetic": "/spɔːt/",
+    "exampleSentence": "Football is my favourite sport."
+  },
+  "star::": {
+    "meaning": "星星",
+    "englishMeaning": "a small bright light in the night sky",
+    "phonetic": "/stɑː/",
+    "exampleSentence": "I see a bright star at night."
+  },
+  "sunshine::": {
+    "meaning": "阳光",
+    "englishMeaning": "light and warmth from the sun",
+    "phonetic": "/ˈsʌnʃaɪn/",
+    "exampleSentence": "We play outside in the sunshine."
+  },
+  "add::": {
+    "meaning": "加上",
+    "englishMeaning": "to put numbers or things together",
+    "phonetic": "/æd/",
+    "exampleSentence": "Add some milk to the tea."
+  },
+  "camera::": {
+    "meaning": "相机",
+    "englishMeaning": "a tool that takes photos",
+    "phonetic": "/ˈkæmərə/",
+    "exampleSentence": "Dad takes a photo with his camera."
+  },
+  "case::": {
+    "meaning": "盒子",
+    "englishMeaning": "a small box that holds things",
+    "phonetic": "/keɪs/",
+    "exampleSentence": "Put the glasses in the case."
+  },
+  "cheap::": {
+    "meaning": "便宜的",
+    "englishMeaning": "costing little money",
+    "phonetic": "/tʃiːp/",
+    "exampleSentence": "These apples are cheap today."
+  },
+  "computer::": {
+    "meaning": "电脑",
+    "englishMeaning": "a machine for writing, games, and learning",
+    "phonetic": "/kəmˈpjuːtə/",
+    "exampleSentence": "I do homework on the computer."
+  },
+  "expensive::": {
+    "meaning": "昂贵的",
+    "englishMeaning": "costing a lot of money",
+    "phonetic": "/ɪkˈspensɪv/",
+    "exampleSentence": "That toy is too expensive."
+  },
+  "finish::": {
+    "meaning": "完成",
+    "englishMeaning": "to come to the end of a job",
+    "phonetic": "/ˈfɪnɪʃ/",
+    "exampleSentence": "Please finish your homework first."
+  },
+  "free::": {
+    "meaning": "免费的",
+    "englishMeaning": "costing no money",
+    "phonetic": "/friː/",
+    "exampleSentence": "The water here is free."
+  },
+  "guess::": {
+    "meaning": "猜测",
+    "englishMeaning": "to try to give an answer without knowing",
+    "phonetic": "/ˈɡes/",
+    "exampleSentence": "Guess what is in the box."
+  },
+  "hate::": {
+    "meaning": "讨厌",
+    "englishMeaning": "to really not like something",
+    "phonetic": "/heɪt/",
+    "exampleSentence": "I hate getting up too early."
+  },
+  "less::": {
+    "meaning": "更少",
+    "englishMeaning": "a smaller amount",
+    "phonetic": "/ˈles/",
+    "exampleSentence": "Please eat less candy today."
+  },
+  "middle::": {
+    "meaning": "中间",
+    "englishMeaning": "the centre part of something",
+    "phonetic": "/ˈmɪdl/",
+    "exampleSentence": "I sit in the middle of the row."
+  },
+  "price::": {
+    "meaning": "价格",
+    "englishMeaning": "how much something costs",
+    "phonetic": "/praɪs/",
+    "exampleSentence": "The price of the book is low."
+  },
+  "quick::": {
+    "meaning": "快的",
+    "englishMeaning": "moving or doing things fast",
+    "phonetic": "/kwɪk/",
+    "exampleSentence": "Be quick or we will be late."
+  },
+  "race::": {
+    "meaning": "赛跑",
+    "englishMeaning": "a run to see who is fastest",
+    "phonetic": "/reɪs/",
+    "exampleSentence": "We run a race in the playground."
+  },
+  "round::": {
+    "meaning": "圆形的",
+    "englishMeaning": "shaped like a ball or circle",
+    "phonetic": "/raʊnd/",
+    "exampleSentence": "The ball is round and red."
+  },
+  "sale::": {
+    "meaning": "减价",
+    "englishMeaning": "a time when shops sell things cheaper",
+    "phonetic": "/seɪl/",
+    "exampleSentence": "The shop has a big sale."
+  },
+  "slow::": {
+    "meaning": "慢的",
+    "englishMeaning": "not moving or doing things fast",
+    "phonetic": "/sləʊ/",
+    "exampleSentence": "The little snail is very slow."
+  },
+  "team::": {
+    "meaning": "队伍",
+    "englishMeaning": "a group that plays a game together",
+    "phonetic": "/tiːm/",
+    "exampleSentence": "Our team wins the football game."
+  },
+  "television::": {
+    "meaning": "电视",
+    "englishMeaning": "a box that shows films and shows",
+    "phonetic": "/ˈtelɪvɪʒn/",
+    "exampleSentence": "We watch television after dinner."
+  },
+  "avocado::": {
+    "meaning": "牛油果",
+    "englishMeaning": "a green fruit that is soft inside",
+    "phonetic": "/ˌævəˈkɑːdəʊ/",
+    "exampleSentence": "I eat avocado on my toast."
+  },
+  "cereal::": {
+    "meaning": "麦片",
+    "englishMeaning": "a breakfast food eaten with milk",
+    "phonetic": "/ˈsɪəriəl/",
+    "exampleSentence": "I have cereal with milk."
+  },
+  "cherries::": {
+    "meaning": "樱桃",
+    "englishMeaning": "small round red fruits with stones",
+    "phonetic": "/ˈtʃerɪz/",
+    "exampleSentence": "These cherries are red and sweet."
+  },
+  "grapefruit::": {
+    "meaning": "葡萄柚",
+    "englishMeaning": "a large yellow fruit that tastes a bit sour",
+    "phonetic": "/ˈɡreɪpfruːt/",
+    "exampleSentence": "The grapefruit tastes a little sour."
+  },
+  "kiwi::": {
+    "meaning": "猕猴桃",
+    "englishMeaning": "a small brown fruit with green inside",
+    "phonetic": "/ˈkiːwiː/",
+    "exampleSentence": "Cut the kiwi with a small knife."
+  },
+  "lime::": {
+    "meaning": "青柠",
+    "englishMeaning": "a small green fruit that tastes sour",
+    "phonetic": "/laɪm/",
+    "exampleSentence": "A lime is a small green fruit."
+  },
+  "mango::": {
+    "meaning": "芒果",
+    "englishMeaning": "a sweet yellow or orange fruit",
+    "phonetic": "/ˈmæŋɡəʊ/",
+    "exampleSentence": "The mango is yellow and sweet."
+  },
+  "meat::": {
+    "meaning": "肉类",
+    "englishMeaning": "food that comes from animals",
+    "phonetic": "/miːt/",
+    "exampleSentence": "We eat meat and vegetables for lunch."
+  },
+  "omelet::": {
+    "meaning": "煎蛋饼",
+    "englishMeaning": "eggs cooked flat in a pan",
+    "phonetic": "/ˈɒmlət/",
+    "exampleSentence": "Mum cooks an omelet for breakfast."
+  },
+  "pasta::": {
+    "meaning": "意面",
+    "englishMeaning": "food made from flour, like noodles",
+    "phonetic": "/ˈpæstə/",
+    "exampleSentence": "I like pasta with tomato sauce."
+  },
+  "peach::": {
+    "meaning": "桃子",
+    "englishMeaning": "a soft sweet fruit with fuzzy skin",
+    "phonetic": "/piːtʃ/",
+    "exampleSentence": "This peach is soft and sweet."
+  },
+  "persimmon::": {
+    "meaning": "柿子",
+    "englishMeaning": "an orange fruit that is sweet when soft",
+    "phonetic": "/pəˈsɪmən/",
+    "exampleSentence": "The persimmon is orange and sweet."
+  },
+  "plum::": {
+    "meaning": "李子",
+    "englishMeaning": "a small purple or red sweet fruit",
+    "phonetic": "/plʌm/",
+    "exampleSentence": "A plum is a small purple fruit."
+  },
+  "sausage::": {
+    "meaning": "香肠",
+    "englishMeaning": "meat made into a long round shape",
+    "phonetic": "/ˈsɒsɪdʒ/",
+    "exampleSentence": "I eat a sausage with my eggs."
+  },
+  "snack::": {
+    "meaning": "零食",
+    "englishMeaning": "a small food you eat between meals",
+    "phonetic": "/snæk/",
+    "exampleSentence": "An apple is a healthy snack."
+  },
+  "spaghetti::": {
+    "meaning": "意大利面",
+    "englishMeaning": "long thin pasta noodles",
+    "phonetic": "/spəˈɡeti/",
+    "exampleSentence": "We eat spaghetti for dinner."
+  },
+  "toast::": {
+    "meaning": "吐司",
+    "englishMeaning": "bread that is cooked until brown",
+    "phonetic": "/təʊst/",
+    "exampleSentence": "I eat toast with jam."
+  },
+  "waffle::": {
+    "meaning": "华夫饼",
+    "englishMeaning": "a square breakfast cake with little holes",
+    "phonetic": "/ˈwɒfl/",
+    "exampleSentence": "The waffle has sweet honey on it."
+  },
+  "watermelon::": {
+    "meaning": "西瓜",
+    "englishMeaning": "a large green fruit with red juicy inside",
+    "phonetic": "/ˈwɔːtəmelən/",
+    "exampleSentence": "We share a big watermelon in summer."
+  },
+  "yogurt::": {
+    "meaning": "酸奶",
+    "englishMeaning": "a thick sour-sweet milk food",
+    "phonetic": "/ˈjɒɡət/",
+    "exampleSentence": "I eat yogurt with fruit."
+  },
+  "able::": {
+    "meaning": "能够",
+    "englishMeaning": "having the skill to do something",
+    "phonetic": "/ˈeɪbl/",
+    "exampleSentence": "She is able to ride a bike."
+  },
+  "action::": {
+    "meaning": "行动",
+    "englishMeaning": "something that a person does",
+    "phonetic": "/ˈækʃn/",
+    "exampleSentence": "His kind action helps the team."
+  },
+  "afraid::": {
+    "meaning": "害怕的",
+    "englishMeaning": "feeling scared of something",
+    "phonetic": "/əˈfreɪd/",
+    "exampleSentence": "I am not afraid of the dark."
+  },
+  "alone::": {
+    "meaning": "独自",
+    "englishMeaning": "without other people with you",
+    "phonetic": "/əˈləʊn/",
+    "exampleSentence": "The puppy is alone in the yard."
+  },
+  "blood::": {
+    "meaning": "血液",
+    "englishMeaning": "the red liquid inside your body",
+    "phonetic": "/blʌd/",
+    "exampleSentence": "There is a little blood on my knee."
+  },
+  "careful::": {
+    "meaning": "小心的",
+    "englishMeaning": "taking care not to make a mistake",
+    "phonetic": "/ˈkeəfl/",
+    "exampleSentence": "Be careful with the hot soup."
+  },
+  "clear::": {
+    "meaning": "晴朗的",
+    "englishMeaning": "easy to see, with no clouds",
+    "phonetic": "/klɪə/",
+    "exampleSentence": "The sky is clear and blue."
+  },
+  "drop::": {
+    "meaning": "掉落",
+    "englishMeaning": "to let something fall",
+    "phonetic": "/drɒp/",
+    "exampleSentence": "Do not drop the glass cup."
+  },
+  "friendly::": {
+    "meaning": "友好的",
+    "englishMeaning": "kind and nice to other people",
+    "phonetic": "/ˈfrendli/",
+    "exampleSentence": "Our new teacher is very friendly."
+  },
+  "heavy::": {
+    "meaning": "重的",
+    "englishMeaning": "hard to lift because it weighs a lot",
+    "phonetic": "/ˈhevi/",
+    "exampleSentence": "This school bag is too heavy."
+  },
+  "instead::": {
+    "meaning": "代替",
+    "englishMeaning": "in the place of something else",
+    "phonetic": "/ɪnˈsted/",
+    "exampleSentence": "Have an apple instead of candy."
+  },
+  "roll::": {
+    "meaning": "滚动",
+    "englishMeaning": "to turn over and over like a ball",
+    "phonetic": "/rəʊl/",
+    "exampleSentence": "Roll the ball to me."
+  },
+  "save::": {
+    "meaning": "节约",
+    "englishMeaning": "to keep something and not waste it",
+    "phonetic": "/seɪv/",
+    "exampleSentence": "Please save water at home."
+  },
+  "secret::": {
+    "meaning": "秘密",
+    "englishMeaning": "something you do not tell others",
+    "phonetic": "/ˈsiːkrət/",
+    "exampleSentence": "Please keep my secret safe."
+  },
+  "share::": {
+    "meaning": "分享",
+    "englishMeaning": "to let others use or have some too",
+    "phonetic": "/ʃeə/",
+    "exampleSentence": "Please share the crayons with me."
+  },
+  "smell::": {
+    "meaning": "闻一闻",
+    "englishMeaning": "to notice a smell with your nose",
+    "phonetic": "/ˈsmel/",
+    "exampleSentence": "Smell the fresh flowers."
+  },
+  "soft::": {
+    "meaning": "柔软的",
+    "englishMeaning": "easy to press, not hard",
+    "phonetic": "/sɒft/",
+    "exampleSentence": "The kitten has soft fur."
+  },
+  "surprise::": {
+    "meaning": "惊喜",
+    "englishMeaning": "something you did not know would happen",
+    "phonetic": "/səˈpraɪz/",
+    "exampleSentence": "Mum plans a surprise for me."
+  },
+  "throw::": {
+    "meaning": "投掷",
+    "englishMeaning": "to send something through the air",
+    "phonetic": "/θrəʊ/",
+    "exampleSentence": "Throw the ball to your friend."
+  },
+  "touch::": {
+    "meaning": "触摸",
+    "englishMeaning": "to put your hand on something",
+    "phonetic": "/tʌtʃ/",
+    "exampleSentence": "Do not touch the hot stove."
+  },
+  "agree::": {
+    "meaning": "同意",
+    "englishMeaning": "to have the same idea as someone",
+    "phonetic": "/əˈɡriː/",
+    "exampleSentence": "We all agree to play football."
+  },
+  "birthday::": {
+    "meaning": "生日",
+    "englishMeaning": "the day you were born each year",
+    "phonetic": "/ˈbɜːθdeɪ/",
+    "exampleSentence": "Today is my birthday party."
+  },
+  "bright::": {
+    "meaning": "明亮的",
+    "englishMeaning": "giving a lot of light",
+    "phonetic": "/braɪt/",
+    "exampleSentence": "The sun is bright this morning."
+  },
+  "card::": {
+    "meaning": "卡片",
+    "englishMeaning": "a folded paper with a kind message",
+    "phonetic": "/kɑːd/",
+    "exampleSentence": "I make a card for Grandma."
+  },
+  "count::": {
+    "meaning": "数数",
+    "englishMeaning": "to say numbers in order",
+    "phonetic": "/kaʊnt/",
+    "exampleSentence": "Count the apples on the plate."
+  },
+  "dark::": {
+    "meaning": "黑暗的",
+    "englishMeaning": "with little or no light",
+    "phonetic": "/dɑːk/",
+    "exampleSentence": "It is dark after dinner time."
+  },
+  "difficult::": {
+    "meaning": "困难的",
+    "englishMeaning": "not easy to do",
+    "phonetic": "/ˈdɪfɪkəlt/",
+    "exampleSentence": "This maths problem is difficult."
+  },
+  "fight::": {
+    "meaning": "打架",
+    "englishMeaning": "to hit or argue in an angry way",
+    "phonetic": "/faɪt/",
+    "exampleSentence": "Do not fight in the playground."
+  },
+  "glad::": {
+    "meaning": "高兴的",
+    "englishMeaning": "feeling happy about something",
+    "phonetic": "/ɡlæd/",
+    "exampleSentence": "I am glad you can come."
+  },
+  "glass::": {
+    "meaning": "玻璃杯",
+    "englishMeaning": "a cup made of glass for drinks",
+    "phonetic": "/ɡlɑːs/",
+    "exampleSentence": "Please fill the glass with water."
+  },
+  "interview::": {
+    "meaning": "采访",
+    "englishMeaning": "asking someone questions to learn more",
+    "phonetic": "/ˈɪntəvjuː/",
+    "exampleSentence": "We interview our teacher at school."
+  },
+  "mind::": {
+    "meaning": "介意",
+    "englishMeaning": "to feel unhappy about something",
+    "phonetic": "/maɪnd/",
+    "exampleSentence": "I do not mind the rain."
+  },
+  "office::": {
+    "meaning": "办公室",
+    "englishMeaning": "a room where people work",
+    "phonetic": "/ˈɒfɪs/",
+    "exampleSentence": "Mum works in an office."
+  },
+  "partner::": {
+    "meaning": "搭档",
+    "englishMeaning": "a person you work or play with",
+    "phonetic": "/ˈpɑːtnə/",
+    "exampleSentence": "My partner helps me in class."
+  },
+  "quiet::": {
+    "meaning": "安静的",
+    "englishMeaning": "with little or no sound",
+    "phonetic": "/ˈkwaɪət/",
+    "exampleSentence": "Please be quiet in the library."
+  },
+  "rich::": {
+    "meaning": "富有的",
+    "englishMeaning": "having a lot of money",
+    "phonetic": "/rɪtʃ/",
+    "exampleSentence": "The king in the story is rich."
+  },
+  "several::": {
+    "meaning": "几个",
+    "englishMeaning": "more than two but not many",
+    "phonetic": "/ˈsevrəl/",
+    "exampleSentence": "I have several books about cats."
+  },
+  "sky::": {
+    "meaning": "天空",
+    "englishMeaning": "the space high above the ground",
+    "phonetic": "/skaɪ/",
+    "exampleSentence": "Birds fly high in the sky."
+  },
+  "sweet::": {
+    "meaning": "甜的",
+    "englishMeaning": "tasting like sugar or honey",
+    "phonetic": "/swiːt/",
+    "exampleSentence": "This peach tastes very sweet."
+  },
+  "wood::": {
+    "meaning": "木头",
+    "englishMeaning": "the hard material that trees are made of",
+    "phonetic": "/wʊd/",
+    "exampleSentence": "Dad makes a box from wood."
+  },
+  "blow::": {
+    "meaning": "吹气",
+    "englishMeaning": "to push air from your mouth",
+    "phonetic": "/bləʊ/",
+    "exampleSentence": "Blow out the birthday candles."
+  },
+  "bottom::": {
+    "meaning": "底部",
+    "englishMeaning": "the lowest part of something",
+    "phonetic": "/ˈbɒtəm/",
+    "exampleSentence": "The keys are at the bottom."
+  },
+  "capital::": {
+    "meaning": "首都",
+    "englishMeaning": "the main city of a country",
+    "phonetic": "/ˈkæpɪtl/",
+    "exampleSentence": "London is the capital of England."
+  },
+  "clock::": {
+    "meaning": "时钟",
+    "englishMeaning": "a tool that shows the time",
+    "phonetic": "/klɒk/",
+    "exampleSentence": "Look at the clock on the wall."
+  },
+  "closed::": {
+    "meaning": "关闭的",
+    "englishMeaning": "not open",
+    "phonetic": "/kləʊzd/",
+    "exampleSentence": "The shop is closed on Sunday."
+  },
+  "exciting::": {
+    "meaning": "精彩的",
+    "englishMeaning": "making you feel very happy and awake",
+    "phonetic": "/ɪkˈsaɪtɪŋ/",
+    "exampleSentence": "The football game is so exciting."
+  },
+  "fix::": {
+    "meaning": "修理",
+    "englishMeaning": "to make something work again",
+    "phonetic": "/fɪks/",
+    "exampleSentence": "Dad can fix my broken bike."
+  },
+  "forget::": {
+    "meaning": "忘记",
+    "englishMeaning": "to not remember something",
+    "phonetic": "/fəˈɡet/",
+    "exampleSentence": "Do not forget your homework today."
+  },
+  "hotel::": {
+    "meaning": "旅馆",
+    "englishMeaning": "a building where visitors sleep",
+    "phonetic": "/həʊˈtel/",
+    "exampleSentence": "We stay in a hotel by the sea."
+  },
+  "list::": {
+    "meaning": "清单",
+    "englishMeaning": "words written one under another",
+    "phonetic": "/lɪst/",
+    "exampleSentence": "Mum writes a shopping list."
+  },
+  "machine::": {
+    "meaning": "机器",
+    "englishMeaning": "a tool with parts that work together",
+    "phonetic": "/məˈʃiːn/",
+    "exampleSentence": "This machine washes our clothes."
+  },
+  "map::": {
+    "meaning": "地图",
+    "englishMeaning": "a drawing that shows streets and places",
+    "phonetic": "/mæp/",
+    "exampleSentence": "We find our street on the map."
+  },
+  "newspaper::": {
+    "meaning": "报纸",
+    "englishMeaning": "large paper with news to read",
+    "phonetic": "/ˈnjuːzpeɪpə/",
+    "exampleSentence": "Grandpa reads the newspaper every morning."
+  },
+  "page::": {
+    "meaning": "书页",
+    "englishMeaning": "one side of a piece of paper in a book",
+    "phonetic": "/peɪdʒ/",
+    "exampleSentence": "Please open your book to page ten."
+  },
+  "provide::": {
+    "meaning": "提供",
+    "englishMeaning": "to give something that people need",
+    "phonetic": "/prəˈvaɪd/",
+    "exampleSentence": "The school will provide lunch for us."
+  },
+  "shake::": {
+    "meaning": "摇晃",
+    "englishMeaning": "to move something quickly from side to side",
+    "phonetic": "/ʃeɪk/",
+    "exampleSentence": "Shake the juice before you drink."
+  },
+  "size::": {
+    "meaning": "尺码",
+    "englishMeaning": "how big or small something is",
+    "phonetic": "/saɪz/",
+    "exampleSentence": "My shoe size is thirty two."
+  },
+  "song::": {
+    "meaning": "歌曲",
+    "englishMeaning": "words and music that you sing",
+    "phonetic": "/sɒŋ/",
+    "exampleSentence": "We sing a song in music class."
+  },
+  "travel::": {
+    "meaning": "旅行",
+    "englishMeaning": "to go from one place to another",
+    "phonetic": "/ˈtrævl/",
+    "exampleSentence": "We travel to the sea in summer."
+  },
+  "vacation::": {
+    "meaning": "假期",
+    "englishMeaning": "time away from school to rest and play",
+    "phonetic": "/vəˈkeɪʃn/",
+    "exampleSentence": "Our vacation is at Grandma's house."
+  },
+  "board::": {
+    "meaning": "黑板",
+    "englishMeaning": "the writing surface at the front of class",
+    "phonetic": "/bɔːd/",
+    "exampleSentence": "Write your name on the board."
+  },
+  "decide::": {
+    "meaning": "决定",
+    "englishMeaning": "to choose what you will do",
+    "phonetic": "/dɪˈsaɪd/",
+    "exampleSentence": "We decide to play in the park."
+  },
+  "fact::": {
+    "meaning": "事实",
+    "englishMeaning": "something that is true",
+    "phonetic": "/fækt/",
+    "exampleSentence": "It is a fact that ice is cold."
+  },
+  "floor::": {
+    "meaning": "地板",
+    "englishMeaning": "the part of a room you walk on",
+    "phonetic": "/flɔː/",
+    "exampleSentence": "Please sit on the floor now."
+  },
+  "hang::": {
+    "meaning": "悬挂",
+    "englishMeaning": "to put something up so it stays there",
+    "phonetic": "/hæŋ/",
+    "exampleSentence": "Hang your coat on the hook."
+  },
+  "key::": {
+    "meaning": "钥匙",
+    "englishMeaning": "a small metal tool that opens a door",
+    "phonetic": "/kiː/",
+    "exampleSentence": "I cannot find my room key."
+  },
+  "music::": {
+    "meaning": "音乐",
+    "englishMeaning": "sounds that are nice to hear and sing",
+    "phonetic": "/ˈmjuːzɪk/",
+    "exampleSentence": "I like the music in this film."
+  },
+  "poor::": {
+    "meaning": "可怜的",
+    "englishMeaning": "looking sad and needing care",
+    "phonetic": "/pɔː/",
+    "exampleSentence": "The poor kitten is wet and cold."
+  },
+  "power::": {
+    "meaning": "电力",
+    "englishMeaning": "the energy that makes lights work",
+    "phonetic": "/ˈpaʊə/",
+    "exampleSentence": "The power is off in our house."
+  },
+  "reason::": {
+    "meaning": "原因",
+    "englishMeaning": "why something happens",
+    "phonetic": "/ˈriːzn/",
+    "exampleSentence": "Give me a reason for being late."
+  },
+  "simple::": {
+    "meaning": "简单的",
+    "englishMeaning": "easy to do or understand",
+    "phonetic": "/ˈsɪmpl/",
+    "exampleSentence": "This game is simple and fun."
+  },
+  "snow::": {
+    "meaning": "雪花",
+    "englishMeaning": "soft white ice that falls from the sky",
+    "phonetic": "/snəʊ/",
+    "exampleSentence": "Soft snow covers the school yard."
+  },
+  "snowball::": {
+    "meaning": "雪球",
+    "englishMeaning": "a ball made of snow for play",
+    "phonetic": "/ˈsnəʊbɔːl/",
+    "exampleSentence": "We throw a snowball in the yard."
+  },
+  "spring::": {
+    "meaning": "春天",
+    "englishMeaning": "the season when flowers start to grow",
+    "phonetic": "/sprɪŋ/",
+    "exampleSentence": "Flowers grow in spring at school."
+  },
+  "track::": {
+    "meaning": "轨道",
+    "englishMeaning": "the metal path a train runs on",
+    "phonetic": "/træk/",
+    "exampleSentence": "The train runs on the track."
+  },
+  "train::": {
+    "meaning": "火车",
+    "englishMeaning": "a long vehicle that runs on tracks",
+    "phonetic": "/treɪn/",
+    "exampleSentence": "We take the train to see Grandma."
+  },
+  "wall::": {
+    "meaning": "墙壁",
+    "englishMeaning": "the side of a room or building",
+    "phonetic": "/wɔːl/",
+    "exampleSentence": "Hang the picture on the wall."
+  },
+  "weather::": {
+    "meaning": "天气",
+    "englishMeaning": "if it is sunny, rainy, hot, or cold",
+    "phonetic": "/ˈweðə/",
+    "exampleSentence": "The weather is warm and sunny."
+  },
+  "wind::": {
+    "meaning": "风",
+    "englishMeaning": "moving air that you can feel",
+    "phonetic": "/wɪnd/",
+    "exampleSentence": "The wind blows my hat away."
+  },
+  "winter::": {
+    "meaning": "冬天",
+    "englishMeaning": "the cold season with snow",
+    "phonetic": "/ˈwɪntə/",
+    "exampleSentence": "We make a snowman in winter."
+  },
+  "apron::": {
+    "meaning": "围裙",
+    "englishMeaning": "a cloth you wear to keep clothes clean",
+    "phonetic": "/ˈeɪprən/",
+    "exampleSentence": "Mum wears an apron to cook."
+  },
+  "attic::": {
+    "meaning": "阁楼",
+    "englishMeaning": "a room at the very top of a house",
+    "phonetic": "/ˈætɪk/",
+    "exampleSentence": "Old toys are in the attic."
+  },
+  "basement::": {
+    "meaning": "地下室",
+    "englishMeaning": "a room under the ground floor",
+    "phonetic": "/ˈbeɪsmənt/",
+    "exampleSentence": "Dad keeps tools in the basement."
+  },
+  "belt::": {
+    "meaning": "皮带",
+    "englishMeaning": "a band you wear around your waist",
+    "phonetic": "/ˈbelt/",
+    "exampleSentence": "This belt keeps my trousers up."
+  },
+  "cupboard::": {
+    "meaning": "橱柜",
+    "englishMeaning": "a small closet for cups and plates",
+    "phonetic": "/ˈkʌbəd/",
+    "exampleSentence": "Cups are in the kitchen cupboard."
+  },
+  "curtains::": {
+    "meaning": "窗帘",
+    "englishMeaning": "cloth that covers a window",
+    "phonetic": "/ˈkɜːtnz/",
+    "exampleSentence": "Please close the curtains at night."
+  },
+  "desk::": {
+    "meaning": "书桌",
+    "englishMeaning": "a table where you read and write",
+    "phonetic": "/ˈdesk/",
+    "exampleSentence": "My books are on the desk."
+  },
+  "fireplace::": {
+    "meaning": "壁炉",
+    "englishMeaning": "a place in a wall for a warm fire",
+    "phonetic": "/ˈfaɪəpleɪs/",
+    "exampleSentence": "We sit by the fireplace and read."
+  },
+  "gown::": {
+    "meaning": "长裙",
+    "englishMeaning": "a long dress for a special day",
+    "phonetic": "/ɡaʊn/",
+    "exampleSentence": "The princess wears a long gown."
+  },
+  "handkerchief::": {
+    "meaning": "手帕",
+    "englishMeaning": "a small cloth for your nose",
+    "phonetic": "/ˈhæŋkətʃɪf/",
+    "exampleSentence": "Use a handkerchief for your nose."
+  },
+  "lamp::": {
+    "meaning": "台灯",
+    "englishMeaning": "a light you can turn on at home",
+    "phonetic": "/læmp/",
+    "exampleSentence": "Turn on the lamp to read."
+  },
+  "pajamas::": {
+    "meaning": "睡衣",
+    "englishMeaning": "soft clothes you wear to sleep",
+    "phonetic": "/pəˈdʒɑːməz/",
+    "exampleSentence": "I put on my pajamas at night."
+  },
+  "refrigerator::": {
+    "meaning": "冰箱",
+    "englishMeaning": "a cold box that keeps food fresh",
+    "phonetic": "/rɪˈfrɪdʒəreɪtə/",
+    "exampleSentence": "Milk is in the refrigerator."
+  },
+  "robe::": {
+    "meaning": "浴袍",
+    "englishMeaning": "a long soft coat worn at home",
+    "phonetic": "/rəʊb/",
+    "exampleSentence": "She wears a soft robe after her bath."
+  },
+  "sandals::": {
+    "meaning": "凉鞋",
+    "englishMeaning": "open shoes for hot days",
+    "phonetic": "/ˈsændlz/",
+    "exampleSentence": "I wear sandals in the hot summer."
+  },
+  "shorts::": {
+    "meaning": "短裤",
+    "englishMeaning": "short trousers for play or sport",
+    "phonetic": "/ʃɔːts/",
+    "exampleSentence": "He wears shorts to play football."
+  },
+  "stove::": {
+    "meaning": "炉子",
+    "englishMeaning": "a kitchen cooker that makes food hot",
+    "phonetic": "/stəʊv/",
+    "exampleSentence": "Mum cooks rice on the stove."
+  },
+  "tie::": {
+    "meaning": "领带",
+    "englishMeaning": "a long cloth worn around the neck",
+    "phonetic": "/taɪ/",
+    "exampleSentence": "Dad puts on a tie for work."
+  },
+  "toilet::": {
+    "meaning": "马桶",
+    "englishMeaning": "the bowl you sit on in the bathroom",
+    "phonetic": "/ˈtɔɪlət/",
+    "exampleSentence": "Please flush the toilet after use."
+  },
+  "wig::": {
+    "meaning": "假发",
+    "englishMeaning": "hair that is not your real hair",
+    "phonetic": "/wɪɡ/",
+    "exampleSentence": "He wears a funny wig in the play."
+  },
+  "air::": {
+    "meaning": "空气",
+    "englishMeaning": "the gas we breathe around us",
+    "phonetic": "/eə/",
+    "exampleSentence": "Open the window for fresh air."
+  },
+  "angry::": {
+    "meaning": "生气的",
+    "englishMeaning": "feeling mad about something",
+    "phonetic": "/ˈæŋɡri/",
+    "exampleSentence": "Do not be angry with your friend."
+  },
+  "boring::": {
+    "meaning": "无聊的",
+    "englishMeaning": "not interesting or fun",
+    "phonetic": "/ˈbɔːrɪŋ/",
+    "exampleSentence": "This film is a bit boring."
+  },
+  "cool::": {
+    "meaning": "凉爽的",
+    "englishMeaning": "a little cold in a nice way",
+    "phonetic": "/kuːl/",
+    "exampleSentence": "The water in the pool is cool."
+  },
+  "create::": {
+    "meaning": "创造",
+    "englishMeaning": "to make something new",
+    "phonetic": "/kriˈeɪt/",
+    "exampleSentence": "We create a card for Teacher."
+  },
+  "hospital::": {
+    "meaning": "医院",
+    "englishMeaning": "a place where doctors help sick people",
+    "phonetic": "/ˈhɒspɪtl/",
+    "exampleSentence": "The doctor works in a hospital."
+  },
+  "hurt::": {
+    "meaning": "疼痛",
+    "englishMeaning": "to feel pain in your body",
+    "phonetic": "/hɜːt/",
+    "exampleSentence": "I hurt my knee in the yard."
+  },
+  "lay::": {
+    "meaning": "放置",
+    "englishMeaning": "to put something down carefully",
+    "phonetic": "/leɪ/",
+    "exampleSentence": "Lay the book on the desk."
+  },
+  "matter::": {
+    "meaning": "要紧",
+    "englishMeaning": "to be important",
+    "phonetic": "/ˈmætə/",
+    "exampleSentence": "The little mistake does not matter."
+  },
+  "perfect::": {
+    "meaning": "完美的",
+    "englishMeaning": "as good as it can be",
+    "phonetic": "/ˈpɜːfɪkt/",
+    "exampleSentence": "Your handwriting looks perfect today."
+  },
+  "pet::": {
+    "meaning": "宠物",
+    "englishMeaning": "an animal you keep at home",
+    "phonetic": "/ˈpet/",
+    "exampleSentence": "My pet cat sleeps on the sofa."
+  },
+  "protect::": {
+    "meaning": "保护",
+    "englishMeaning": "to keep someone or something safe",
+    "phonetic": "/prəˈtekt/",
+    "exampleSentence": "Hats protect us from the sun."
+  },
+  "quite::": {
+    "meaning": "相当",
+    "englishMeaning": "more than a little, but not fully",
+    "phonetic": "/kwaɪt/",
+    "exampleSentence": "This bag is quite heavy for me."
+  },
+  "raise::": {
+    "meaning": "举起",
+    "englishMeaning": "to lift something up",
+    "phonetic": "/reɪz/",
+    "exampleSentence": "Raise your hand to ask a question."
+  },
+  "rest::": {
+    "meaning": "休息",
+    "englishMeaning": "to stop work and be still",
+    "phonetic": "/ˈrest/",
+    "exampleSentence": "Have a rest after the long walk."
+  },
+  "sick::": {
+    "meaning": "生病的",
+    "englishMeaning": "not feeling well",
+    "phonetic": "/sɪk/",
+    "exampleSentence": "I stay in bed when I am sick."
+  },
+  "step::": {
+    "meaning": "台阶",
+    "englishMeaning": "one stair, or one move of your foot",
+    "phonetic": "/ˈstep/",
+    "exampleSentence": "Watch the last step on the stairs."
+  },
+  "strange::": {
+    "meaning": "奇怪的",
+    "englishMeaning": "not usual or not known",
+    "phonetic": "/streɪndʒ/",
+    "exampleSentence": "A strange noise comes from outside."
+  },
+  "tear::n": {
+    "meaning": "眼泪",
+    "englishMeaning": "a drop of water from your eye",
+    "phonetic": "/tɪə/",
+    "exampleSentence": "A tear falls from her eye."
+  },
+  "yet::": {
+    "meaning": "尚未",
+    "englishMeaning": "until now; still not",
+    "phonetic": "/ˈjet/",
+    "exampleSentence": "The school bus has not come yet."
+  },
+  "castle::": {
+    "meaning": "城堡",
+    "englishMeaning": "a big old home for a king or queen",
+    "phonetic": "/ˈkɑːsl/",
+    "exampleSentence": "The king lives in a big castle."
+  },
+  "cause::": {
+    "meaning": "导致",
+    "englishMeaning": "to make something happen",
+    "phonetic": "/kɔːz/",
+    "exampleSentence": "The wind can cause the door to close."
+  },
+  "describe::": {
+    "meaning": "描述",
+    "englishMeaning": "to say what something is like",
+    "phonetic": "/dɪˈskraɪb/",
+    "exampleSentence": "Describe your pet to the class."
+  },
+  "dragon::": {
+    "meaning": "巨龙",
+    "englishMeaning": "a big story animal that can breathe fire",
+    "phonetic": "/ˈdræɡən/",
+    "exampleSentence": "The story has a kind green dragon."
+  },
+  "famous::": {
+    "meaning": "出名的",
+    "englishMeaning": "known by many people",
+    "phonetic": "/ˈfeɪməs/",
+    "exampleSentence": "This football player is very famous."
+  },
+  "final::": {
+    "meaning": "最后的",
+    "englishMeaning": "last in a line or test",
+    "phonetic": "/ˈfaɪnl/",
+    "exampleSentence": "This is the final question today."
+  },
+  "language::": {
+    "meaning": "语言",
+    "englishMeaning": "the words people speak or write",
+    "phonetic": "/ˈlæŋɡwɪdʒ/",
+    "exampleSentence": "English is a fun language to learn."
+  },
+  "mark::": {
+    "meaning": "分数",
+    "englishMeaning": "a score a teacher gives you",
+    "phonetic": "/mɑːk/",
+    "exampleSentence": "The teacher gives me a good mark."
+  },
+  "prince::": {
+    "meaning": "王子",
+    "englishMeaning": "the son of a king or queen",
+    "phonetic": "/prɪns/",
+    "exampleSentence": "The prince helps the lost child."
+  },
+  "princess::": {
+    "meaning": "公主",
+    "englishMeaning": "the daughter of a king or queen",
+    "phonetic": "/ˌprɪnˈses/",
+    "exampleSentence": "The princess sings in the garden."
+  },
+  "pull::": {
+    "meaning": "拉动",
+    "englishMeaning": "to move something towards you",
+    "phonetic": "/pʊl/",
+    "exampleSentence": "Pull the door to open it."
+  },
+  "push::": {
+    "meaning": "推动",
+    "englishMeaning": "to move something away from you",
+    "phonetic": "/pʊʃ/",
+    "exampleSentence": "Push the box under the bed."
+  },
+  "queen::": {
+    "meaning": "女王",
+    "englishMeaning": "a woman who rules a country in stories",
+    "phonetic": "/kwiːn/",
+    "exampleSentence": "The queen waves to the children."
+  },
+  "restaurant::": {
+    "meaning": "餐馆",
+    "englishMeaning": "a place where you sit and eat a meal",
+    "phonetic": "/ˈrestrɒnt/",
+    "exampleSentence": "We eat noodles in a restaurant."
+  },
+  "return::": {
+    "meaning": "归还",
+    "englishMeaning": "to give something back",
+    "phonetic": "/rɪˈtɜːn/",
+    "exampleSentence": "Please return the book to the library."
+  },
+  "rule::": {
+    "meaning": "规则",
+    "englishMeaning": "something you must follow",
+    "phonetic": "/ruːl/",
+    "exampleSentence": "The first rule is be kind."
+  },
+  "speech::": {
+    "meaning": "演讲",
+    "englishMeaning": "talking to a group of people",
+    "phonetic": "/spiːtʃ/",
+    "exampleSentence": "She gives a short speech at school."
+  },
+  "subject::": {
+    "meaning": "学科",
+    "englishMeaning": "something you learn at school",
+    "phonetic": "/ˈsʌbdʒɪkt/",
+    "exampleSentence": "Maths is my favourite subject."
+  },
+  "terrible::": {
+    "meaning": "糟糕的",
+    "englishMeaning": "very bad",
+    "phonetic": "/ˈterəbl/",
+    "exampleSentence": "The burnt toast tastes terrible."
+  },
+  "though::": {
+    "meaning": "虽然",
+    "englishMeaning": "even if another thing is true",
+    "phonetic": "/ðəʊ/",
+    "exampleSentence": "It is raining, though we still play."
+  },
+  "almost::": {
+    "meaning": "几乎",
+    "englishMeaning": "very near but not fully",
+    "phonetic": "/ˈɔːlməʊst/",
+    "exampleSentence": "I almost missed the school bus."
+  },
+  "beautiful::": {
+    "meaning": "美丽的",
+    "englishMeaning": "very nice to look at",
+    "phonetic": "/ˈbjuːtɪfl/",
+    "exampleSentence": "The garden looks beautiful in spring."
+  },
+  "breakfast::": {
+    "meaning": "早餐",
+    "englishMeaning": "the first meal of the day",
+    "phonetic": "/ˈbrekfəst/",
+    "exampleSentence": "I eat eggs for breakfast."
+  },
+  "captain::": {
+    "meaning": "队长",
+    "englishMeaning": "the leader of a team",
+    "phonetic": "/ˈkæptɪn/",
+    "exampleSentence": "The captain leads our football team."
+  },
+  "dear::": {
+    "meaning": "亲爱的",
+    "englishMeaning": "a kind word at the start of a letter",
+    "phonetic": "/dɪə/",
+    "exampleSentence": "Dear Mum, I had a happy day."
+  },
+  "deep::": {
+    "meaning": "深的",
+    "englishMeaning": "going far down from the top",
+    "phonetic": "/diːp/",
+    "exampleSentence": "Do not swim in the deep water."
+  },
+  "design::": {
+    "meaning": "设计",
+    "englishMeaning": "to draw a plan for something new",
+    "phonetic": "/dɪˈzaɪn/",
+    "exampleSentence": "I design a card for my teacher."
+  },
+  "detail::": {
+    "meaning": "细节",
+    "englishMeaning": "a small part of a picture or story",
+    "phonetic": "/ˈdiːteɪl/",
+    "exampleSentence": "Look at every detail in the picture."
+  },
+  "excuse::": {
+    "meaning": "原谅",
+    "englishMeaning": "to forgive someone for a small mistake",
+    "phonetic": "/ɪkˈskjuːz/",
+    "exampleSentence": "Please excuse me for being late."
+  },
+  "hide::": {
+    "meaning": "躲藏",
+    "englishMeaning": "to go where others cannot see you",
+    "phonetic": "/haɪd/",
+    "exampleSentence": "Hide behind the door in our game."
+  },
+  "history::": {
+    "meaning": "历史",
+    "englishMeaning": "true stories of things in the past",
+    "phonetic": "/ˈhɪstri/",
+    "exampleSentence": "We learn history at school today."
+  },
+  "safe::": {
+    "meaning": "安全的",
+    "englishMeaning": "not in danger",
+    "phonetic": "/seɪf/",
+    "exampleSentence": "Keep your money in a safe place."
+  },
+  "science::": {
+    "meaning": "科学",
+    "englishMeaning": "learning about animals, plants, and the world",
+    "phonetic": "/ˈsaɪəns/",
+    "exampleSentence": "We do a science test in class."
+  },
+  "such::": {
+    "meaning": "这样的",
+    "englishMeaning": "of that kind; like that",
+    "phonetic": "/sʌtʃ/",
+    "exampleSentence": "I have never seen such a big dog."
+  },
+  "tooth::": {
+    "meaning": "牙齿",
+    "englishMeaning": "one of the hard white parts in your mouth",
+    "phonetic": "/tuːθ/",
+    "exampleSentence": "The baby has a new tooth."
+  },
+  "toothbrush::": {
+    "meaning": "牙刷",
+    "englishMeaning": "a small brush for cleaning teeth",
+    "phonetic": "/ˈtuːθbrʌʃ/",
+    "exampleSentence": "Brush your teeth with a toothbrush."
+  },
+  "toothpaste::": {
+    "meaning": "牙膏",
+    "englishMeaning": "the paste you put on a toothbrush",
+    "phonetic": "/ˈtuːθpeɪst/",
+    "exampleSentence": "Put toothpaste on your toothbrush."
+  },
+  "trip::": {
+    "meaning": "短途游",
+    "englishMeaning": "a short journey to another place",
+    "phonetic": "/trɪp/",
+    "exampleSentence": "Our class trip is to the zoo."
+  },
+  "trouble::": {
+    "meaning": "麻烦",
+    "englishMeaning": "a problem that makes people unhappy",
+    "phonetic": "/ˈtrʌbl/",
+    "exampleSentence": "Do not make trouble in class."
+  },
+  "wish::": {
+    "meaning": "希望",
+    "englishMeaning": "to hope for something you want",
+    "phonetic": "/wɪʃ/",
+    "exampleSentence": "I wish for a new book."
+  },
+  "already::": {
+    "meaning": "已经",
+    "englishMeaning": "before now; sooner than you think",
+    "phonetic": "/ɔːlˈredi/",
+    "exampleSentence": "I have already finished my homework."
+  },
+  "bake::": {
+    "meaning": "烘烤",
+    "englishMeaning": "to cook food in a hot oven",
+    "phonetic": "/beɪk/",
+    "exampleSentence": "We bake a cake with Mum."
+  },
+  "burn::": {
+    "meaning": "燃烧",
+    "englishMeaning": "to be hurt or damaged by fire",
+    "phonetic": "/bɜːn/",
+    "exampleSentence": "Do not burn the toast, please."
+  },
+  "busy::": {
+    "meaning": "忙碌的",
+    "englishMeaning": "having a lot of things to do",
+    "phonetic": "/ˈbɪzi/",
+    "exampleSentence": "Mum is busy in the kitchen."
+  },
+  "camp::": {
+    "meaning": "露营",
+    "englishMeaning": "to sleep outside in a tent",
+    "phonetic": "/kæmp/",
+    "exampleSentence": "We camp by the lake in summer."
+  },
+  "circle::": {
+    "meaning": "圆形",
+    "englishMeaning": "a round shape like a ring",
+    "phonetic": "/ˈsɜːkl/",
+    "exampleSentence": "Draw a big circle on the paper."
+  },
+  "dessert::": {
+    "meaning": "甜点",
+    "englishMeaning": "sweet food eaten after a meal",
+    "phonetic": "/dɪˈzɜːt/",
+    "exampleSentence": "Ice cream is my favourite dessert."
+  },
+  "dry::": {
+    "meaning": "干燥的",
+    "englishMeaning": "not wet; with no water",
+    "phonetic": "/draɪ/",
+    "exampleSentence": "The clothes are dry now."
+  },
+  "else::": {
+    "meaning": "其他",
+    "englishMeaning": "other; different from this",
+    "phonetic": "/ˈels/",
+    "exampleSentence": "I do not want anything else."
+  },
+  "fire::": {
+    "meaning": "火焰",
+    "englishMeaning": "the hot bright flames that burn",
+    "phonetic": "/ˈfaɪə/",
+    "exampleSentence": "Dad makes a small fire at camp."
+  },
+  "heat::": {
+    "meaning": "热量",
+    "englishMeaning": "the feeling of being hot",
+    "phonetic": "/hiːt/",
+    "exampleSentence": "The sun gives heat to the earth."
+  },
+  "introduce::": {
+    "meaning": "介绍",
+    "englishMeaning": "to tell people each other's names",
+    "phonetic": "/ˌɪntrəˈdjuːs/",
+    "exampleSentence": "Let me introduce my best friend."
+  },
+  "join::": {
+    "meaning": "加入",
+    "englishMeaning": "to become part of a group",
+    "phonetic": "/dʒɔɪn/",
+    "exampleSentence": "Please join our game after class."
+  },
+  "lie::": {
+    "meaning": "躺下",
+    "englishMeaning": "to rest your body flat on something",
+    "phonetic": "/laɪ/",
+    "exampleSentence": "The children lie on the grass."
+  },
+  "match::": {
+    "meaning": "火柴",
+    "englishMeaning": "a small stick used to start a fire",
+    "phonetic": "/mætʃ/",
+    "exampleSentence": "Dad lights the fire with a match."
+  },
+  "maximum::": {
+    "meaning": "最大值",
+    "englishMeaning": "the largest number or amount",
+    "phonetic": "/ˈmæksɪməm/",
+    "exampleSentence": "The maximum score is one hundred."
+  },
+  "nature::": {
+    "meaning": "自然",
+    "englishMeaning": "trees, rivers, animals, and the outdoor world",
+    "phonetic": "/ˈneɪtʃə/",
+    "exampleSentence": "We love nature in the green park."
+  },
+  "shape::": {
+    "meaning": "形状",
+    "englishMeaning": "the form of something, like round or square",
+    "phonetic": "/ʃeɪp/",
+    "exampleSentence": "A ball has a round shape."
+  },
+  "smoke::": {
+    "meaning": "烟雾",
+    "englishMeaning": "the grey cloud that comes from a fire",
+    "phonetic": "/sməʊk/",
+    "exampleSentence": "The camp fire makes white smoke."
+  },
+  "unit::": {
+    "meaning": "单元",
+    "englishMeaning": "one part of a school book",
+    "phonetic": "/ˈjuːnɪt/",
+    "exampleSentence": "This is unit five in our book."
+  },
+  "bear::": {
+    "meaning": "大熊",
+    "englishMeaning": "a big wild animal with thick fur",
+    "phonetic": "/beə/",
+    "exampleSentence": "The bear eats honey in the story."
+  },
+  "coffee::": {
+    "meaning": "咖啡",
+    "englishMeaning": "a hot brown drink that grown-ups like",
+    "phonetic": "/ˈkɒfi/",
+    "exampleSentence": "Dad drinks coffee in the morning."
+  },
+  "elephant::": {
+    "meaning": "大象",
+    "englishMeaning": "a very large grey animal with a long nose",
+    "phonetic": "/ˈelɪfənt/",
+    "exampleSentence": "The elephant has a long nose."
+  },
+  "giraffe::": {
+    "meaning": "长颈鹿",
+    "englishMeaning": "a tall animal with a very long neck",
+    "phonetic": "/dʒəˈrɑːf/",
+    "exampleSentence": "The giraffe eats leaves from trees."
+  },
+  "gorilla::": {
+    "meaning": "大猩猩",
+    "englishMeaning": "a large strong ape with dark fur",
+    "phonetic": "/ɡəˈrɪlə/",
+    "exampleSentence": "The gorilla sits in the zoo."
+  },
+  "hot chocolate::": {
+    "meaning": "热巧克力",
+    "englishMeaning": "a hot sweet chocolate drink",
+    "phonetic": "/ˌhɒt ˈtʃɒklət/",
+    "exampleSentence": "Mum makes hot chocolate for us."
+  },
+  "iced tea::": {
+    "meaning": "冰茶",
+    "englishMeaning": "cold tea with ice in it",
+    "phonetic": "/ˌaɪst ˈtiː/",
+    "exampleSentence": "Dad drinks iced tea in summer."
+  },
+  "juice::": {
+    "meaning": "果汁",
+    "englishMeaning": "the drink that comes from fruit",
+    "phonetic": "/dʒuːs/",
+    "exampleSentence": "I drink orange juice at breakfast."
+  },
+  "kangaroo::": {
+    "meaning": "袋鼠",
+    "englishMeaning": "an animal that jumps and has a pouch",
+    "phonetic": "/ˌkæŋɡəˈruː/",
+    "exampleSentence": "The kangaroo jumps with its baby."
+  },
+  "koala::": {
+    "meaning": "考拉",
+    "englishMeaning": "a grey animal that lives in trees",
+    "phonetic": "/kəʊˈɑːlə/",
+    "exampleSentence": "The koala sleeps in the tree."
+  },
+  "lemonade::": {
+    "meaning": "柠檬水",
+    "englishMeaning": "a sweet sour drink made from lemons",
+    "phonetic": "/ˌleməˈneɪd/",
+    "exampleSentence": "We make lemonade on a hot day."
+  },
+  "leopard::": {
+    "meaning": "豹子",
+    "englishMeaning": "a big wild cat with black spots",
+    "phonetic": "/ˈlepəd/",
+    "exampleSentence": "The leopard has many black spots."
+  },
+  "milk::": {
+    "meaning": "牛奶",
+    "englishMeaning": "a white drink that comes from cows",
+    "phonetic": "/mɪlk/",
+    "exampleSentence": "Drink your milk before you sleep."
+  },
+  "milkshake::": {
+    "meaning": "奶昔",
+    "englishMeaning": "a cold sweet drink made with milk",
+    "phonetic": "/ˈmɪlkʃeɪk/",
+    "exampleSentence": "I drink a banana milkshake after school."
+  },
+  "panda::": {
+    "meaning": "熊猫",
+    "englishMeaning": "a black and white bear that eats bamboo",
+    "phonetic": "/ˈpændə/",
+    "exampleSentence": "The panda eats bamboo at the zoo."
+  },
+  "soda::": {
+    "meaning": "汽水",
+    "englishMeaning": "a sweet bubbly drink",
+    "phonetic": "/ˈsəʊdə/",
+    "exampleSentence": "Please drink water, not soda."
+  },
+  "sports drink::": {
+    "meaning": "运动饮料",
+    "englishMeaning": "a drink that helps you after sport",
+    "phonetic": "/ˈspɔːts drɪŋk/",
+    "exampleSentence": "The team drinks a sports drink."
+  },
+  "tea::": {
+    "meaning": "茶水",
+    "englishMeaning": "a hot drink made from leaves",
+    "phonetic": "/tiː/",
+    "exampleSentence": "Grandma drinks tea in the afternoon."
+  },
+  "wolf::": {
+    "meaning": "灰狼",
+    "englishMeaning": "a wild animal that looks like a dog",
+    "phonetic": "/wʊlf/",
+    "exampleSentence": "The wolf lives in the forest story."
+  },
+  "zebra::": {
+    "meaning": "斑马",
+    "englishMeaning": "a horse-like animal with black and white lines",
+    "phonetic": "/ˈzebrə/",
+    "exampleSentence": "The zebra has black and white lines."
+  },
+  "colorful::": {
+    "meaning": "五彩的",
+    "englishMeaning": "having many bright colours",
+    "phonetic": "/ˈkʌləfl/",
+    "exampleSentence": "She wears a colorful dress today."
+  },
+  "continue::": {
+    "meaning": "继续",
+    "englishMeaning": "to keep doing something",
+    "phonetic": "/kənˈtɪnjuː/",
+    "exampleSentence": "Please continue reading the story."
+  },
+  "dead::": {
+    "meaning": "枯死的",
+    "englishMeaning": "no longer living",
+    "phonetic": "/ˈded/",
+    "exampleSentence": "The old tree in the yard is dead."
+  },
+  "doll::": {
+    "meaning": "玩偶",
+    "englishMeaning": "a toy that looks like a person",
+    "phonetic": "/dɒl/",
+    "exampleSentence": "The little girl hugs her doll."
+  },
+  "dream::": {
+    "meaning": "睡梦",
+    "englishMeaning": "pictures you see in your mind while asleep",
+    "phonetic": "/driːm/",
+    "exampleSentence": "I have a sweet dream at night."
+  },
+  "early::": {
+    "meaning": "早的",
+    "englishMeaning": "before the usual time",
+    "phonetic": "/ˈɜːli/",
+    "exampleSentence": "We get up early for school."
+  },
+  "everyone::": {
+    "meaning": "人人",
+    "englishMeaning": "every person in a group",
+    "phonetic": "/ˈevriwʌn/",
+    "exampleSentence": "Everyone in class sings the song."
+  },
+  "feed::": {
+    "meaning": "喂食",
+    "englishMeaning": "to give food to a person or animal",
+    "phonetic": "/fiːd/",
+    "exampleSentence": "We feed the ducks in the park."
+  },
+  "gun::": {
+    "meaning": "枪",
+    "englishMeaning": "a weapon the police hold in a story",
+    "phonetic": "/ɡʌn/",
+    "exampleSentence": "The police take away the gun."
+  },
+  "little::": {
+    "meaning": "小的",
+    "englishMeaning": "small in size",
+    "phonetic": "/ˈlɪtl/",
+    "exampleSentence": "The little cat plays with yarn."
+  },
+  "lucky::": {
+    "meaning": "幸运的",
+    "englishMeaning": "having good things happen to you",
+    "phonetic": "/ˈlʌki/",
+    "exampleSentence": "I am lucky to find my key."
+  },
+  "model::": {
+    "meaning": "模型",
+    "englishMeaning": "a small copy of a real thing",
+    "phonetic": "/ˈmɒdl/",
+    "exampleSentence": "I make a paper plane model."
+  },
+  "noon::": {
+    "meaning": "中午",
+    "englishMeaning": "twelve o'clock in the middle of the day",
+    "phonetic": "/nuːn/",
+    "exampleSentence": "We eat lunch at noon."
+  },
+  "quarter::": {
+    "meaning": "一刻钟",
+    "englishMeaning": "fifteen minutes; a fourth of an hour",
+    "phonetic": "/ˈkwɔːtə/",
+    "exampleSentence": "It is a quarter past three now."
+  },
+  "straight::": {
+    "meaning": "笔直的",
+    "englishMeaning": "not bending; in a line",
+    "phonetic": "/streɪt/",
+    "exampleSentence": "Walk straight to the school gate."
+  },
+  "suddenly::": {
+    "meaning": "突然",
+    "englishMeaning": "happening very quickly, with no warning",
+    "phonetic": "/ˈsʌdənli/",
+    "exampleSentence": "Suddenly the lights go off."
+  },
+  "support::": {
+    "meaning": "支持",
+    "englishMeaning": "to help a person or team",
+    "phonetic": "/səˈpɔːt/",
+    "exampleSentence": "We support our school football team."
+  },
+  "treat::": {
+    "meaning": "请客",
+    "englishMeaning": "a special snack given as a kind gift",
+    "phonetic": "/triːt/",
+    "exampleSentence": "Mum buys us a sweet treat."
+  },
+  "unlucky::": {
+    "meaning": "不走运",
+    "englishMeaning": "having bad things happen to you",
+    "phonetic": "/ʌnˈlʌki/",
+    "exampleSentence": "I am unlucky to miss the bus."
+  },
+  "worse::": {
+    "meaning": "更差",
+    "englishMeaning": "more bad than before",
+    "phonetic": "/wɜːs/",
+    "exampleSentence": "The rain is worse this afternoon."
+  },
+  "allow::": {
+    "meaning": "允许",
+    "englishMeaning": "to say that someone may do something",
+    "phonetic": "/əˈlaʊ/",
+    "exampleSentence": "Mum will allow me to play outside."
+  },
+  "character::": {
+    "meaning": "角色",
+    "englishMeaning": "a person or animal in a story",
+    "phonetic": "/ˈkærəktə/",
+    "exampleSentence": "My favourite character is the cat."
+  },
+  "chopsticks::": {
+    "meaning": "筷子",
+    "englishMeaning": "two sticks used to pick up food",
+    "phonetic": "/ˈtʃɒpstɪks/",
+    "exampleSentence": "I eat rice with chopsticks."
+  },
+  "dangerous::": {
+    "meaning": "危险的",
+    "englishMeaning": "able to hurt you",
+    "phonetic": "/ˈdeɪndʒərəs/",
+    "exampleSentence": "Playing in the street is dangerous."
+  },
+  "effect::": {
+    "meaning": "影响",
+    "englishMeaning": "a change that happens because of something",
+    "phonetic": "/ɪˈfekt/",
+    "exampleSentence": "The sun has a good effect on plants."
+  },
+  "explain::": {
+    "meaning": "解释",
+    "englishMeaning": "to make something easy to understand",
+    "phonetic": "/ɪkˈspleɪn/",
+    "exampleSentence": "Please explain this word to me."
+  },
+  "extra::": {
+    "meaning": "额外的",
+    "englishMeaning": "more than you usually need",
+    "phonetic": "/ˈekstrə/",
+    "exampleSentence": "I need an extra pencil for class."
+  },
+  "half::": {
+    "meaning": "一半",
+    "englishMeaning": "one of two equal parts",
+    "phonetic": "/hɑːf/",
+    "exampleSentence": "I eat half of the apple."
+  },
+  "include::": {
+    "meaning": "包括",
+    "englishMeaning": "to have something as a part",
+    "phonetic": "/ɪnˈkluːd/",
+    "exampleSentence": "Lunch will include rice and soup."
+  },
+  "kitten::": {
+    "meaning": "小猫",
+    "englishMeaning": "a baby cat",
+    "phonetic": "/ˈkɪtn/",
+    "exampleSentence": "The kitten drinks milk from a bowl."
+  },
+  "mistake::": {
+    "meaning": "错误",
+    "englishMeaning": "something that is wrong",
+    "phonetic": "/mɪˈsteɪk/",
+    "exampleSentence": "I made a mistake in the test."
+  },
+  "radio::": {
+    "meaning": "收音机",
+    "englishMeaning": "a machine that plays songs and talk",
+    "phonetic": "/ˈreɪdiəʊ/",
+    "exampleSentence": "Grandpa listens to the radio."
+  },
+  "ready::": {
+    "meaning": "准备好",
+    "englishMeaning": "prepared to start",
+    "phonetic": "/ˈredi/",
+    "exampleSentence": "I am ready for school now."
+  },
+  "rock::": {
+    "meaning": "岩石",
+    "englishMeaning": "a large hard piece of stone",
+    "phonetic": "/rɒk/",
+    "exampleSentence": "We sit on a big rock by the river."
+  },
+  "skill::": {
+    "meaning": "技能",
+    "englishMeaning": "something you can do well",
+    "phonetic": "/skɪl/",
+    "exampleSentence": "Swimming is a useful skill."
+  },
+  "thankful::": {
+    "meaning": "感激的",
+    "englishMeaning": "feeling glad for what you have",
+    "phonetic": "/ˈθæŋkfl/",
+    "exampleSentence": "I am thankful for my family."
+  },
+  "upside down::": {
+    "meaning": "倒过来",
+    "englishMeaning": "with the top turned to the bottom",
+    "phonetic": "/ˌʌpsaɪd ˈdaʊn/",
+    "exampleSentence": "The picture hangs upside down on the wall."
+  },
+  "video::": {
+    "meaning": "视频",
+    "englishMeaning": "a short film you watch on a screen",
+    "phonetic": "/ˈvɪdiəʊ/",
+    "exampleSentence": "We watch a short video in class."
+  },
+  "whole::": {
+    "meaning": "整个",
+    "englishMeaning": "all of something, not just a part",
+    "phonetic": "/həʊl/",
+    "exampleSentence": "I eat the whole apple at lunch."
+  },
+  "worry::": {
+    "meaning": "担心",
+    "englishMeaning": "to feel uneasy about something",
+    "phonetic": "/ˈwʌri/",
+    "exampleSentence": "Do not worry about the little test."
+  },
+  "badminton::": {
+    "meaning": "羽毛球",
+    "englishMeaning": "a game hitting a shuttle over a net",
+    "phonetic": "/ˈbædmɪntən/",
+    "exampleSentence": "We play badminton in the gym."
+  },
+  "bit::": {
+    "meaning": "一点儿",
+    "englishMeaning": "a small amount of something",
+    "phonetic": "/bɪt/",
+    "exampleSentence": "I eat a bit of the cake."
+  },
+  "collect::": {
+    "meaning": "收集",
+    "englishMeaning": "to bring things of one kind together",
+    "phonetic": "/kəˈlekt/",
+    "exampleSentence": "I collect pretty stamps at home."
+  },
+  "conversation::": {
+    "meaning": "交谈",
+    "englishMeaning": "talking with another person",
+    "phonetic": "/ˌkɒnvəˈseɪʃn/",
+    "exampleSentence": "We have a short conversation after class."
+  },
+  "event::": {
+    "meaning": "活动",
+    "englishMeaning": "a planned happening, like sports day",
+    "phonetic": "/ɪˈvent/",
+    "exampleSentence": "Sports day is a big event."
+  },
+  "football::": {
+    "meaning": "足球",
+    "englishMeaning": "a game where you kick a round ball",
+    "phonetic": "/ˈfʊtbɔːl/",
+    "exampleSentence": "The boys play football after school."
+  },
+  "health::": {
+    "meaning": "健康",
+    "englishMeaning": "how well your body feels",
+    "phonetic": "/helθ/",
+    "exampleSentence": "Sleep is good for your health."
+  },
+  "hockey::": {
+    "meaning": "曲棍球",
+    "englishMeaning": "a game played with sticks and a puck",
+    "phonetic": "/ˈhɒki/",
+    "exampleSentence": "They play hockey on the ice."
+  },
+  "hunt::": {
+    "meaning": "搜寻",
+    "englishMeaning": "to look carefully for something",
+    "phonetic": "/hʌnt/",
+    "exampleSentence": "We hunt for eggs in the garden."
+  },
+  "main::": {
+    "meaning": "主要的",
+    "englishMeaning": "the most important",
+    "phonetic": "/meɪn/",
+    "exampleSentence": "The main door of the school is open."
+  },
+  "meaning::": {
+    "meaning": "意思",
+    "englishMeaning": "what a word or sign tells you",
+    "phonetic": "/ˈmiːnɪŋ/",
+    "exampleSentence": "The meaning of this word is cat."
+  },
+  "rugby::": {
+    "meaning": "橄榄球",
+    "englishMeaning": "a game where you run with an oval ball",
+    "phonetic": "/ˈrʌɡbi/",
+    "exampleSentence": "The children play rugby on the field."
+  },
+  "seem::": {
+    "meaning": "似乎",
+    "englishMeaning": "to look or feel a certain way",
+    "phonetic": "/siːm/",
+    "exampleSentence": "You seem happy this morning."
+  },
+  "sign::": {
+    "meaning": "标志",
+    "englishMeaning": "a board with words or pictures to help you",
+    "phonetic": "/saɪn/",
+    "exampleSentence": "Look at the stop sign, please."
+  },
+  "ski::": {
+    "meaning": "滑雪",
+    "englishMeaning": "to move on snow with long boards",
+    "phonetic": "/skiː/",
+    "exampleSentence": "We ski on the white snow."
+  },
+  "stranger::": {
+    "meaning": "陌生人",
+    "englishMeaning": "a person you do not know",
+    "phonetic": "/ˈstreɪndʒə/",
+    "exampleSentence": "Do not talk to a stranger."
+  },
+  "tired::": {
+    "meaning": "累的",
+    "englishMeaning": "needing rest after work or play",
+    "phonetic": "/ˈtaɪəd/",
+    "exampleSentence": "I am tired after the long walk."
+  },
+  "type::": {
+    "meaning": "种类",
+    "englishMeaning": "a kind of something",
+    "phonetic": "/taɪp/",
+    "exampleSentence": "This type of fruit is sweet."
+  },
+  "volleyball::": {
+    "meaning": "排球",
+    "englishMeaning": "a game hitting a ball over a high net",
+    "phonetic": "/ˈvɒlibɔːl/",
+    "exampleSentence": "The girls play volleyball at school."
+  },
+  "yoga::": {
+    "meaning": "瑜伽",
+    "englishMeaning": "slow stretches that make the body calm",
+    "phonetic": "/ˈjəʊɡə/",
+    "exampleSentence": "Mum does yoga in the morning."
+  },
+  "according to::": {
+    "meaning": "根据",
+    "englishMeaning": "as someone or something says",
+    "phonetic": "/əˈkɔːdɪŋ tə/",
+    "exampleSentence": "According to the map, we turn left."
+  },
+  "appear::": {
+    "meaning": "出现",
+    "englishMeaning": "to come into sight",
+    "phonetic": "/əˈpɪə/",
+    "exampleSentence": "Stars appear in the sky at night."
+  },
+  "arrive::": {
+    "meaning": "到达",
+    "englishMeaning": "to get to a place",
+    "phonetic": "/əˈraɪv/",
+    "exampleSentence": "We arrive at school before eight."
+  },
+  "base::": {
+    "meaning": "底部",
+    "englishMeaning": "the bottom part that holds something up",
+    "phonetic": "/beɪs/",
+    "exampleSentence": "The lamp has a wide base."
+  },
+  "beard::": {
+    "meaning": "胡须",
+    "englishMeaning": "hair that grows on a man's chin",
+    "phonetic": "/bɪəd/",
+    "exampleSentence": "Santa has a long white beard."
+  },
+  "corner::": {
+    "meaning": "角落",
+    "englishMeaning": "the place where two walls or sides meet",
+    "phonetic": "/ˈkɔːnə/",
+    "exampleSentence": "The cat sits in the corner."
+  },
+  "experience::": {
+    "meaning": "经历",
+    "englishMeaning": "something that happens to you",
+    "phonetic": "/ɪkˈspɪəriəns/",
+    "exampleSentence": "Camping is a fun experience for us."
+  },
+  "god::": {
+    "meaning": "神仙",
+    "englishMeaning": "a powerful being in a story or tale",
+    "phonetic": "/ɡɒd/",
+    "exampleSentence": "The fairy tale has a kind god."
+  },
+  "loud::": {
+    "meaning": "大声的",
+    "englishMeaning": "making a lot of sound",
+    "phonetic": "/laʊd/",
+    "exampleSentence": "The music is too loud for me."
+  },
+  "magic::": {
+    "meaning": "魔法",
+    "englishMeaning": "tricks that look impossible",
+    "phonetic": "/ˈmædʒɪk/",
+    "exampleSentence": "The magician does a magic trick."
+  },
+  "mustache::": {
+    "meaning": "小胡子",
+    "englishMeaning": "hair that grows above a man's mouth",
+    "phonetic": "/məˈstɑːʃ/",
+    "exampleSentence": "Dad draws a big mustache on me."
+  },
+  "noise::": {
+    "meaning": "响声",
+    "englishMeaning": "a sound, often a loud one",
+    "phonetic": "/nɔɪz/",
+    "exampleSentence": "Please do not make noise in class."
+  },
+  "paragraph::": {
+    "meaning": "段落",
+    "englishMeaning": "a group of sentences about one idea",
+    "phonetic": "/ˈpærəɡrɑːf/",
+    "exampleSentence": "Read the first paragraph, please."
+  },
+  "rise::": {
+    "meaning": "升起",
+    "englishMeaning": "to go up, like the sun in the morning",
+    "phonetic": "/raɪz/",
+    "exampleSentence": "The sun will rise in the morning."
+  },
+  "scared::": {
+    "meaning": "害怕的",
+    "englishMeaning": "feeling afraid",
+    "phonetic": "/skeəd/",
+    "exampleSentence": "I am not scared of the dark."
+  },
+  "seat::": {
+    "meaning": "座位",
+    "englishMeaning": "a place where you sit",
+    "phonetic": "/siːt/",
+    "exampleSentence": "Please take a seat near the window."
+  },
+  "shoot::": {
+    "meaning": "开枪",
+    "englishMeaning": "to fire a gun, as police do in a story",
+    "phonetic": "/ʃuːt/",
+    "exampleSentence": "In the story police never shoot."
+  },
+  "shout::": {
+    "meaning": "喊叫",
+    "englishMeaning": "to speak very loudly",
+    "phonetic": "/ʃaʊt/",
+    "exampleSentence": "Do not shout in the library."
+  },
+  "suggest::": {
+    "meaning": "建议",
+    "englishMeaning": "to give an idea about what to do",
+    "phonetic": "/səˈdʒest/",
+    "exampleSentence": "I suggest we play in the park."
+  },
+  "tear::v": {
+    "meaning": "撕",
+    "englishMeaning": "to pull paper or cloth so it rips",
+    "phonetic": "/teə/",
+    "exampleSentence": "Do not tear the page of the book."
+  },
+  "bookcase::": {
+    "meaning": "书柜",
+    "englishMeaning": "a tall piece of furniture for books",
+    "phonetic": "/ˈbʊkkeɪs/",
+    "exampleSentence": "The books are in the bookcase."
+  },
+  "chair::": {
+    "meaning": "椅子",
+    "englishMeaning": "a seat for one person",
+    "phonetic": "/tʃeə/",
+    "exampleSentence": "Please sit on the chair."
+  },
+  "crow::": {
+    "meaning": "乌鸦",
+    "englishMeaning": "a large black bird that cries loudly",
+    "phonetic": "/krəʊ/",
+    "exampleSentence": "A black crow sits on the tree."
+  },
+  "dove::": {
+    "meaning": "鸽子",
+    "englishMeaning": "a white bird often seen as gentle",
+    "phonetic": "/dʌv/",
+    "exampleSentence": "A white dove flies over the park."
+  },
+  "drawer::": {
+    "meaning": "抽屉",
+    "englishMeaning": "a box that slides in and out of furniture",
+    "phonetic": "/drɔː/",
+    "exampleSentence": "My socks are in the drawer."
+  },
+  "eagle::": {
+    "meaning": "老鹰",
+    "englishMeaning": "a large bird with strong wings",
+    "phonetic": "/ˈiːɡl/",
+    "exampleSentence": "The eagle flies high in the sky."
+  },
+  "fan::": {
+    "meaning": "风扇",
+    "englishMeaning": "a machine that blows air to make you cool",
+    "phonetic": "/fæn/",
+    "exampleSentence": "Turn on the fan on a hot day."
+  },
+  "flamingo::": {
+    "meaning": "火烈鸟",
+    "englishMeaning": "a tall pink bird with long legs",
+    "phonetic": "/fləˈmɪŋɡəʊ/",
+    "exampleSentence": "The flamingo stands on one leg."
+  },
+  "goose::": {
+    "meaning": "大鹅",
+    "englishMeaning": "a large bird that lives near water",
+    "phonetic": "/ɡuːs/",
+    "exampleSentence": "The goose walks by the lake."
+  },
+  "magpie::": {
+    "meaning": "喜鹊",
+    "englishMeaning": "a black and white bird that chatters",
+    "phonetic": "/ˈmæɡpaɪ/",
+    "exampleSentence": "A magpie sings outside my window."
+  },
+  "mirror::": {
+    "meaning": "镜子",
+    "englishMeaning": "a glass you look in to see your face",
+    "phonetic": "/ˈmɪrə/",
+    "exampleSentence": "I wash my face and look in the mirror."
+  },
+  "ostrich::": {
+    "meaning": "鸵鸟",
+    "englishMeaning": "a very large bird that runs but cannot fly",
+    "phonetic": "/ˈɒstrɪtʃ/",
+    "exampleSentence": "The ostrich runs fast on the sand."
+  },
+  "peacock::": {
+    "meaning": "孔雀",
+    "englishMeaning": "a bird with a big pretty tail",
+    "phonetic": "/ˈpiːkɒk/",
+    "exampleSentence": "The peacock opens its pretty tail."
+  },
+  "pelican::": {
+    "meaning": "鹈鹕",
+    "englishMeaning": "a water bird with a big bill for fish",
+    "phonetic": "/ˈpelɪkən/",
+    "exampleSentence": "The pelican catches fish with its bill."
+  },
+  "rug::": {
+    "meaning": "小地毯",
+    "englishMeaning": "a small carpet on the floor",
+    "phonetic": "/rʌɡ/",
+    "exampleSentence": "The cat sleeps on the rug."
+  },
+  "shelf::": {
+    "meaning": "架子",
+    "englishMeaning": "a flat board on a wall for putting things",
+    "phonetic": "/ʃelf/",
+    "exampleSentence": "Put the book on the shelf."
+  },
+  "sofa::": {
+    "meaning": "沙发",
+    "englishMeaning": "a long soft seat for two or more people",
+    "phonetic": "/ˈsəʊfə/",
+    "exampleSentence": "Dad sits on the sofa to read."
+  },
+  "sparrow::": {
+    "meaning": "麻雀",
+    "englishMeaning": "a small brown bird often seen near homes",
+    "phonetic": "/ˈspærəʊ/",
+    "exampleSentence": "A little sparrow eats bread crumbs."
+  },
+  "vacuum::": {
+    "meaning": "吸尘器",
+    "englishMeaning": "a machine that sucks dirt from the floor",
+    "phonetic": "/ˈvækjuːm/",
+    "exampleSentence": "Mum uses the vacuum on the floor."
+  },
+  "vase::": {
+    "meaning": "花瓶",
+    "englishMeaning": "a jar for holding flowers",
+    "phonetic": "/vɑːz/",
+    "exampleSentence": "Put the flowers in the vase."
+  }
+}
