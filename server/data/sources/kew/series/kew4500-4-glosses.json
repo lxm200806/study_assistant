@@ -1,0 +1,4802 @@
+{
+  "aboard::": {
+    "meaning": "在船上",
+    "englishMeaning": "on or in a boat or airplane",
+    "phonetic": "/ɐbˈɔːd/",
+    "exampleSentence": "We climbed aboard the ship at dawn."
+  },
+  "admiral::": {
+    "meaning": "海军上将",
+    "englishMeaning": "an officer with a high rank in the navy",
+    "phonetic": "/ˈædmɜːɹəl/",
+    "exampleSentence": "The admiral gave orders to the fleet."
+  },
+  "binoculars::": {
+    "meaning": "双筒望远镜",
+    "englishMeaning": "an instrument for seeing things that are far away",
+    "phonetic": "/bɪnˈɒkjʊləz/",
+    "exampleSentence": "She used binoculars to watch the birds."
+  },
+  "darken::": {
+    "meaning": "变暗",
+    "englishMeaning": "to become dark or darker",
+    "phonetic": "/dˈɑːkən/",
+    "exampleSentence": "The sky began to darken before the storm."
+  },
+  "grip::": {
+    "meaning": "抓紧",
+    "englishMeaning": "to take firmly and hold tightly",
+    "phonetic": "/ɡɹˈɪp/",
+    "exampleSentence": "Please grip the rope with both hands."
+  },
+  "knot::": {
+    "meaning": "绳结",
+    "englishMeaning": "a join made by tying together the ends of a string, rope, thread, etc.",
+    "phonetic": "/nˈɒt/",
+    "exampleSentence": "He tied a knot in the thick rope."
+  },
+  "minimum::": {
+    "meaning": "最小值",
+    "englishMeaning": "the smallest possible amount, degree, etc.",
+    "phonetic": "/mˈɪnɪməm/",
+    "exampleSentence": "Ten dollars is the minimum you must pay."
+  },
+  "navigate::": {
+    "meaning": "导航",
+    "englishMeaning": "to direct a vehicle, ship, or aircraft",
+    "phonetic": "/nˈævɪɡˌeɪt/",
+    "exampleSentence": "Pilots navigate the plane across the ocean."
+  },
+  "precaution::": {
+    "meaning": "预防措施",
+    "englishMeaning": "an action taken to prevent a possible problem",
+    "phonetic": "/pɹɪkˈɔːʃən/",
+    "exampleSentence": "Wear a helmet as a precaution on the bike."
+  },
+  "slippery::": {
+    "meaning": "滑的",
+    "englishMeaning": "smooth, wet, or oily and difficult to walk on",
+    "phonetic": "/slˈɪpəɹi/",
+    "exampleSentence": "The wet floor is very slippery today."
+  },
+  "anchor::": {
+    "meaning": "锚",
+    "englishMeaning": "a heavy object that prevents a vessel from moving",
+    "phonetic": "/ˈænkɐ/",
+    "exampleSentence": "The heavy anchor kept the boat still."
+  },
+  "ashore::": {
+    "meaning": "上岸",
+    "englishMeaning": "to the land; to the shore",
+    "phonetic": "/ɐʃˈɔː/",
+    "exampleSentence": "The sailors walked ashore after the trip."
+  },
+  "drift::": {
+    "meaning": "漂流",
+    "englishMeaning": "to slowly move on water, without control of direction",
+    "phonetic": "/dɹˈɪft/",
+    "exampleSentence": "Empty bottles drift slowly down the river."
+  },
+  "immigrate::": {
+    "meaning": "移居入境",
+    "englishMeaning": "to come to a different country and live there",
+    "phonetic": "/ˈɪmɪɡɹˌeɪt/",
+    "exampleSentence": "Many families immigrate to a new country."
+  },
+  "manual::": {
+    "meaning": "手工的",
+    "englishMeaning": "of or related to using the hands",
+    "phonetic": "/mˈænjuːəl/",
+    "exampleSentence": "This old clock needs manual winding each day."
+  },
+  "mist::": {
+    "meaning": "薄雾",
+    "englishMeaning": "a large number of tiny drops of water in the air",
+    "phonetic": "/mˈɪst/",
+    "exampleSentence": "A light mist covered the quiet lake."
+  },
+  "nationality::": {
+    "meaning": "国籍",
+    "englishMeaning": "the status of belonging to a particular nation",
+    "phonetic": "/nˌæʃənˈælɪti/",
+    "exampleSentence": "Her nationality is written on the passport."
+  },
+  "rust::": {
+    "meaning": "铁锈",
+    "englishMeaning": "a reddish-brown powder that forms on iron",
+    "phonetic": "/ɹˈʌst/",
+    "exampleSentence": "Orange rust covered the old iron gate."
+  },
+  "salmon::": {
+    "meaning": "鲑鱼",
+    "englishMeaning": "a medium-sized fish with pink flesh",
+    "phonetic": "/sˈæmən/",
+    "exampleSentence": "We cooked fresh salmon for dinner tonight."
+  },
+  "wreck::": {
+    "meaning": "毁坏",
+    "englishMeaning": "to destroy or badly damage",
+    "phonetic": "/ɹˈɛk/",
+    "exampleSentence": "Strong waves can wreck a small wooden boat."
+  },
+  "dose::": {
+    "meaning": "剂量",
+    "englishMeaning": "an amount of medicine to take at a certain time",
+    "phonetic": "/dˈəʊs/",
+    "exampleSentence": "Take one dose of medicine after meals."
+  },
+  "famine::": {
+    "meaning": "饥荒",
+    "englishMeaning": "a period in which people do not have food",
+    "phonetic": "/fˈæmɪn/",
+    "exampleSentence": "The long famine left many people hungry."
+  },
+  "gratitude::": {
+    "meaning": "感激",
+    "englishMeaning": "a feeling of being thankful",
+    "phonetic": "/ɡɹˈætɪtjˌuːd/",
+    "exampleSentence": "She showed gratitude for their kind help."
+  },
+  "injection::": {
+    "meaning": "注射",
+    "englishMeaning": "the act of putting a liquid in your body via a needle",
+    "phonetic": "/ɪndʒˈɛkʃən/",
+    "exampleSentence": "The nurse gave an injection in his arm."
+  },
+  "literate::": {
+    "meaning": "有读写能力的",
+    "englishMeaning": "able to read and write",
+    "phonetic": "/lˈɪtəɹət/",
+    "exampleSentence": "Most adults here are literate in two languages."
+  },
+  "prescription::": {
+    "meaning": "处方",
+    "englishMeaning": "written instructions from a doctor for medication",
+    "phonetic": "/pɹɪskɹˈɪpʃən/",
+    "exampleSentence": "The doctor wrote a prescription for the pills."
+  },
+  "sociology::": {
+    "meaning": "社会学",
+    "englishMeaning": "the study of society",
+    "phonetic": "/sˌəʊsɪˈɒlədʒi/",
+    "exampleSentence": "She studies sociology at the city college."
+  },
+  "tendency::": {
+    "meaning": "倾向",
+    "englishMeaning": "a habit or action that keeps occurring",
+    "phonetic": "/tˈɛndənsi/",
+    "exampleSentence": "He has a tendency to talk too fast."
+  },
+  "vein::": {
+    "meaning": "静脉",
+    "englishMeaning": "a tube in the body through which blood travels to the heart",
+    "phonetic": "/vˈeɪn/",
+    "exampleSentence": "The nurse found a vein in her arm."
+  },
+  "vulnerable::": {
+    "meaning": "易受伤的",
+    "englishMeaning": "weak and easily hurt",
+    "phonetic": "/vˈʌlnəɹəbəl/",
+    "exampleSentence": "Young birds are vulnerable to cold weather."
+  },
+  "foster::": {
+    "meaning": "培养",
+    "englishMeaning": "to care for in order to encourage growth",
+    "phonetic": "/fˈɒstɐ/",
+    "exampleSentence": "Good teachers foster a love of reading."
+  },
+  "immunity::": {
+    "meaning": "免疫力",
+    "englishMeaning": "the ability to resist disease",
+    "phonetic": "/ɪmjˈuːnɪti/",
+    "exampleSentence": "The vaccine gives immunity against the disease."
+  },
+  "intestine::": {
+    "meaning": "肠",
+    "englishMeaning": "the tubes through which food passes after it leaves the stomach",
+    "phonetic": "/ɪntˈɛstɪn/",
+    "exampleSentence": "Food moves through the intestine after the stomach."
+  },
+  "malaria::": {
+    "meaning": "疟疾",
+    "englishMeaning": "a disease carried by mosquitoes",
+    "phonetic": "/mælˈeəɹiə/",
+    "exampleSentence": "Mosquitoes can spread malaria in hot countries."
+  },
+  "neglected::": {
+    "meaning": "被忽视的",
+    "englishMeaning": "suffering from a lack of care",
+    "phonetic": "/nɪɡlˈɛktɪd/",
+    "exampleSentence": "The neglected garden was full of weeds."
+  },
+  "parasite::": {
+    "meaning": "寄生虫",
+    "englishMeaning": "a small animal or plant that lives off another",
+    "phonetic": "/pˈæɹəsˌaɪt/",
+    "exampleSentence": "A parasite lives on another animal."
+  },
+  "surgeon::": {
+    "meaning": "外科医生",
+    "englishMeaning": "a kind of doctor who performs operations",
+    "phonetic": "/sˈɜːdʒən/",
+    "exampleSentence": "The surgeon operated on his broken knee."
+  },
+  "tolerate::": {
+    "meaning": "容忍",
+    "englishMeaning": "to accept a situation, even if you don't like it",
+    "phonetic": "/tˈɒləɹˌeɪt/",
+    "exampleSentence": "I cannot tolerate loud noise at night."
+  },
+  "undergo::": {
+    "meaning": "经历",
+    "englishMeaning": "to experience something unpleasant",
+    "phonetic": "/ˌʌndəɡˈəʊ/",
+    "exampleSentence": "She will undergo a small operation tomorrow."
+  },
+  "welfare::": {
+    "meaning": "福利",
+    "englishMeaning": "the state of well-being",
+    "phonetic": "/wˈɛlfeə/",
+    "exampleSentence": "The school cares about student welfare."
+  },
+  "antibiotic::": {
+    "meaning": "抗生素",
+    "englishMeaning": "a drug used to kill bacteria",
+    "phonetic": "/ˌæntɪbaɪˈɒtɪk/",
+    "exampleSentence": "The doctor gave her an antibiotic for infection."
+  },
+  "belly::": {
+    "meaning": "肚子",
+    "englishMeaning": "the front of the body below the chest",
+    "phonetic": "/bˈɛli/",
+    "exampleSentence": "The baby laughed and touched his belly."
+  },
+  "bruise::": {
+    "meaning": "淤伤",
+    "englishMeaning": "an injury that causes the skin to become dark",
+    "phonetic": "/bɹˈuːz/",
+    "exampleSentence": "A dark bruise appeared on her knee."
+  },
+  "cellular::": {
+    "meaning": "细胞的",
+    "englishMeaning": "relating to cells",
+    "phonetic": "/sˈɛljʊlɐ/",
+    "exampleSentence": "The book explains cellular structure in plants."
+  },
+  "decay::": {
+    "meaning": "腐烂",
+    "englishMeaning": "to slowly break down; to rot",
+    "phonetic": "/dɪkˈeɪ/",
+    "exampleSentence": "Fallen leaves decay on the forest floor."
+  },
+  "dental::": {
+    "meaning": "牙科的",
+    "englishMeaning": "relating to the teeth",
+    "phonetic": "/dˈɛntəl/",
+    "exampleSentence": "She has a dental appointment this morning."
+  },
+  "fatal::": {
+    "meaning": "致命的",
+    "englishMeaning": "causing death",
+    "phonetic": "/fˈeɪtəl/",
+    "exampleSentence": "The crash caused a fatal injury to him."
+  },
+  "graze::": {
+    "meaning": "擦伤",
+    "englishMeaning": "to scratch and break the skin",
+    "phonetic": "/ɡɹˈeɪz/",
+    "exampleSentence": "I graze my knee when I fall down."
+  },
+  "limb::": {
+    "meaning": "肢体",
+    "englishMeaning": "an arm or leg",
+    "phonetic": "/lˈɪm/",
+    "exampleSentence": "He broke a limb during the football game."
+  },
+  "lump::": {
+    "meaning": "肿块",
+    "englishMeaning": "a solid mass",
+    "phonetic": "/lˈʌmp/",
+    "exampleSentence": "The doctor felt a small lump on her neck."
+  },
+  "artery::": {
+    "meaning": "动脉",
+    "englishMeaning": "a tube that carries blood away from the heart",
+    "phonetic": "/ˈɑːtəɹi/",
+    "exampleSentence": "Blood leaves the heart through an artery."
+  },
+  "blink::": {
+    "meaning": "眨眼",
+    "englishMeaning": "to shut and open the eyes very quickly",
+    "phonetic": "/blˈɪŋk/",
+    "exampleSentence": "Bright lights make me blink my eyes."
+  },
+  "blush::": {
+    "meaning": "脸红",
+    "englishMeaning": "to become red in the face",
+    "phonetic": "/blˈʌʃ/",
+    "exampleSentence": "She began to blush at the kind words."
+  },
+  "breast::": {
+    "meaning": "胸部",
+    "englishMeaning": "the upper part of a person's chest",
+    "phonetic": "/bɹˈɛst/",
+    "exampleSentence": "The runner felt pain in his breast."
+  },
+  "consult::": {
+    "meaning": "请教",
+    "englishMeaning": "to seek an opinion from someone",
+    "phonetic": "/kənˈsʌlt/",
+    "exampleSentence": "Please consult a doctor about that cough."
+  },
+  "diagnose::": {
+    "meaning": "诊断",
+    "englishMeaning": "to identify a disease or problem",
+    "phonetic": "/dˌaɪəɡnˈəʊz/",
+    "exampleSentence": "Doctors diagnose the illness with a blood test."
+  },
+  "fluid::": {
+    "meaning": "液体",
+    "englishMeaning": "a liquid that can flow",
+    "phonetic": "/flˈuːɪd/",
+    "exampleSentence": "Drink plenty of fluid when you have a fever."
+  },
+  "grief::": {
+    "meaning": "悲痛",
+    "englishMeaning": "great sadness, usually due to a loss",
+    "phonetic": "/ɡɹˈiːf/",
+    "exampleSentence": "Her grief after the loss was very deep."
+  },
+  "limp::": {
+    "meaning": "跛行",
+    "englishMeaning": "to walk with difficulty or in an uneven way",
+    "phonetic": "/lˈɪmp/",
+    "exampleSentence": "He had to limp home after hurting his foot."
+  },
+  "outcome::": {
+    "meaning": "结果",
+    "englishMeaning": "a result of an action or event",
+    "phonetic": "/ˈaʊtkʌm/",
+    "exampleSentence": "We waited to hear the outcome of the test."
+  },
+  "abstract::": {
+    "meaning": "抽象的",
+    "englishMeaning": "based on ideas rather than real things",
+    "phonetic": "/ˈæbstrækt/",
+    "exampleSentence": "The painting is abstract and hard to explain."
+  },
+  "canvas::": {
+    "meaning": "画布",
+    "englishMeaning": "a piece of material on which a painting can be done",
+    "phonetic": "/kˈænvəs/",
+    "exampleSentence": "The artist painted a tree on the canvas."
+  },
+  "contemporary::": {
+    "meaning": "当代的",
+    "englishMeaning": "modern or belonging to the present time",
+    "phonetic": "/kəntˈɛmpəɹəɹi/",
+    "exampleSentence": "She likes contemporary music and modern art."
+  },
+  "depict::": {
+    "meaning": "描绘",
+    "englishMeaning": "to show or represent",
+    "phonetic": "/dɪpˈɪkt/",
+    "exampleSentence": "The mural will depict life in the village."
+  },
+  "fabulous::": {
+    "meaning": "极好的",
+    "englishMeaning": "wonderful and very pleasing",
+    "phonetic": "/fˈæbjʊləs/",
+    "exampleSentence": "We had a fabulous day at the beach."
+  },
+  "genuine::": {
+    "meaning": "真正的",
+    "englishMeaning": "real; not false",
+    "phonetic": "/dʒˈɛnjuːɪn/",
+    "exampleSentence": "This gold ring is genuine, not fake."
+  },
+  "hardship::": {
+    "meaning": "艰辛",
+    "englishMeaning": "a difficult circumstance",
+    "phonetic": "/hˈɑːdʃɪp/",
+    "exampleSentence": "The family faced hardship during the long winter."
+  },
+  "medieval::": {
+    "meaning": "中世纪的",
+    "englishMeaning": "relating to the European Middle Ages",
+    "phonetic": "/mˈɛdɪˌiːvəl/",
+    "exampleSentence": "We visited a medieval castle on the hill."
+  },
+  "portray::": {
+    "meaning": "扮演",
+    "englishMeaning": "to play the part of, as in a play or film",
+    "phonetic": "/pɔːtɹˈeɪ/",
+    "exampleSentence": "She will portray the queen in the play."
+  },
+  "skull::": {
+    "meaning": "头骨",
+    "englishMeaning": "the bones of the head",
+    "phonetic": "/skˈʌl/",
+    "exampleSentence": "The museum shows a human skull in glass."
+  },
+  "accessory::": {
+    "meaning": "配饰",
+    "englishMeaning": "something decorative worn to complete an outfit",
+    "phonetic": "/ɐksˈɛsəɹˌi/",
+    "exampleSentence": "A red scarf is a nice accessory with that coat."
+  },
+  "carnival::": {
+    "meaning": "狂欢节",
+    "englishMeaning": "a public festival",
+    "phonetic": "/kˈɑːnɪvəl/",
+    "exampleSentence": "The carnival filled the streets with music."
+  },
+  "commission::": {
+    "meaning": "委托制作",
+    "englishMeaning": "to give an order and pay money for a thing to be done or made",
+    "phonetic": "/kəmˈɪʃən/",
+    "exampleSentence": "They commission an artist to paint the hall."
+  },
+  "enthusiastic::": {
+    "meaning": "热情的",
+    "englishMeaning": "happy and excited",
+    "phonetic": "/ɛnθjˌuːzɪˈæstɪk/",
+    "exampleSentence": "The class was enthusiastic about the school trip."
+  },
+  "multicultural::": {
+    "meaning": "多元文化的",
+    "englishMeaning": "including many different cultures",
+    "phonetic": "/mˌʌltɪkˈʌltʃəɹəl/",
+    "exampleSentence": "Our city is a multicultural place with many foods."
+  },
+  "outfit::": {
+    "meaning": "套装",
+    "englishMeaning": "a set of clothes",
+    "phonetic": "/ˈaʊtfɪt/",
+    "exampleSentence": "She wore a blue outfit to the party."
+  },
+  "pedestrian::": {
+    "meaning": "行人",
+    "englishMeaning": "a person who is walking, not riding in a vehicle",
+    "phonetic": "/pədˈɛstɹiən/",
+    "exampleSentence": "A pedestrian waited at the busy crossing."
+  },
+  "pony::": {
+    "meaning": "小马",
+    "englishMeaning": "a type of small horse",
+    "phonetic": "/pˈəʊni/",
+    "exampleSentence": "The child rode a small pony in the field."
+  },
+  "sparkle::": {
+    "meaning": "闪耀",
+    "englishMeaning": "to shine; to reflect light",
+    "phonetic": "/spˈɑːkəl/",
+    "exampleSentence": "Stars sparkle in the dark night sky."
+  },
+  "veil::": {
+    "meaning": "面纱",
+    "englishMeaning": "a thin covering for the head and face",
+    "phonetic": "/vˈeɪl/",
+    "exampleSentence": "The bride wore a white veil over her hair."
+  },
+  "abundant::": {
+    "meaning": "丰富的",
+    "englishMeaning": "existing or available in large quantities",
+    "phonetic": "/ɐbˈʌndənt/",
+    "exampleSentence": "Fresh fruit is abundant in the market."
+  },
+  "consistent::": {
+    "meaning": "一致的",
+    "englishMeaning": "always behaving or happening in a similar way",
+    "phonetic": "/kənsˈɪstənt/",
+    "exampleSentence": "Her consistent work earned the teacher's praise."
+  },
+  "maple::": {
+    "meaning": "枫树",
+    "englishMeaning": "a tree with five-pointed leaves, or related to such a tree",
+    "phonetic": "/mˈeɪpəl/",
+    "exampleSentence": "Red leaves fell from the maple in autumn."
+  },
+  "pest::": {
+    "meaning": "害虫",
+    "englishMeaning": "an animal or insect that damages plants or buildings",
+    "phonetic": "/pˈɛst/",
+    "exampleSentence": "A garden pest ate the young tomato plants."
+  },
+  "plow::": {
+    "meaning": "犁地",
+    "englishMeaning": "to cut up and turn soil",
+    "phonetic": "/plaʊ/",
+    "exampleSentence": "Farmers plow the fields before they plant."
+  },
+  "shovel::": {
+    "meaning": "铲子",
+    "englishMeaning": "a tool with a broad, deep scoop and a long handle",
+    "phonetic": "/ʃˈʌvəl/",
+    "exampleSentence": "He used a shovel to move the snow."
+  },
+  "sprinkler::": {
+    "meaning": "喷水器",
+    "englishMeaning": "a device used to spray waterable to continue over a period of time",
+    "phonetic": "/spɹˈɪŋklɐ/",
+    "exampleSentence": "The sprinkler watered the dry green lawn."
+  },
+  "sustainable::": {
+    "meaning": "可持续的",
+    "englishMeaning": "able to continue over a period of time",
+    "phonetic": "/səstˈeɪnəbəl/",
+    "exampleSentence": "We need sustainable ways to grow food."
+  },
+  "vegetation::": {
+    "meaning": "植被",
+    "englishMeaning": "plants, trees, grasses, etc.",
+    "phonetic": "/vˌɛdʒɪtˈeɪʃən/",
+    "exampleSentence": "Thick vegetation covered the warm wet island."
+  },
+  "vital::": {
+    "meaning": "必不可少的",
+    "englishMeaning": "essential or necessary",
+    "phonetic": "/vˈaɪtəl/",
+    "exampleSentence": "Clean water is vital for every living person."
+  },
+  "bud::": {
+    "meaning": "芽",
+    "englishMeaning": "a small part of a plant that develops into a flower or leaf",
+    "phonetic": "/bˈʌd/",
+    "exampleSentence": "A small green bud opened on the rose."
+  },
+  "estate::": {
+    "meaning": "地产",
+    "englishMeaning": "an area of land owned by a person or organization",
+    "phonetic": "/ɪstˈeɪt/",
+    "exampleSentence": "The large estate has a house and gardens."
+  },
+  "pesticide::": {
+    "meaning": "杀虫剂",
+    "englishMeaning": "a chemical put on a plant to kill pests",
+    "phonetic": "/pˈɛstɪsˌaɪd/",
+    "exampleSentence": "Farmers spray pesticide to protect the crops."
+  },
+  "plain::": {
+    "meaning": "朴素的",
+    "englishMeaning": "simple and with nothing added",
+    "phonetic": "/plˈeɪn/",
+    "exampleSentence": "She wore a plain white dress to school."
+  },
+  "rake::": {
+    "meaning": "耙子",
+    "englishMeaning": "a garden tool with a long handle that has pointed metal teeth attached",
+    "phonetic": "/ɹˈeɪk/",
+    "exampleSentence": "Use the rake to gather the fallen leaves."
+  },
+  "rotate::": {
+    "meaning": "旋转",
+    "englishMeaning": "to spin; to turn in a circular motion",
+    "phonetic": "/ɹəʊtˈeɪt/",
+    "exampleSentence": "The Earth and the other planets rotate slowly."
+  },
+  "stack::": {
+    "meaning": "堆放",
+    "englishMeaning": "to pile things up on top of each other",
+    "phonetic": "/stˈæk/",
+    "exampleSentence": "Please stack the books on the table."
+  },
+  "upgrade::": {
+    "meaning": "升级",
+    "englishMeaning": "to improve the quality or usefulness of something",
+    "phonetic": "/ʌpˈɡreɪd/",
+    "exampleSentence": "We will upgrade the old computer this year."
+  },
+  "utilize::": {
+    "meaning": "利用",
+    "englishMeaning": "to use something in a practical way",
+    "phonetic": "/ˈjuːtɪlaɪz/",
+    "exampleSentence": "Students utilize the library after class."
+  },
+  "warehouse::": {
+    "meaning": "仓库",
+    "englishMeaning": "a large building where goods are stored",
+    "phonetic": "/wˈeəhaʊs/",
+    "exampleSentence": "Boxes of food filled the large warehouse."
+  },
+  "accountant::": {
+    "meaning": "会计师",
+    "englishMeaning": "someone whose job is to look after the financial records of a business",
+    "phonetic": "/ɐkˈaʊntənt/",
+    "exampleSentence": "The accountant checked the company's money records."
+  },
+  "deadline::": {
+    "meaning": "截止日期",
+    "englishMeaning": "the date and/or time by which something must be finished",
+    "phonetic": "/dˈɛdlaɪn/",
+    "exampleSentence": "The homework deadline is Friday at noon."
+  },
+  "economical::": {
+    "meaning": "省钱的",
+    "englishMeaning": "related to saving money",
+    "phonetic": "/ˌiːkənˈɒmɪkəl/",
+    "exampleSentence": "This small car is economical to drive."
+  },
+  "finance::": {
+    "meaning": "金融",
+    "englishMeaning": "the management of money",
+    "phonetic": "/fˈaɪnæns/",
+    "exampleSentence": "She works in finance at a city bank."
+  },
+  "investment::": {
+    "meaning": "投资",
+    "englishMeaning": "the activity of using money to make more money",
+    "phonetic": "/ɪnvˈɛstmənt/",
+    "exampleSentence": "Buying the shop was a smart investment."
+  },
+  "prestige::": {
+    "meaning": "威望",
+    "englishMeaning": "reputation or respect because of success or wealth",
+    "phonetic": "/pɹɛstˈiːʒ/",
+    "exampleSentence": "Winning the prize brought her great prestige."
+  },
+  "repay::": {
+    "meaning": "偿还",
+    "englishMeaning": "to pay back money that you have borrowed",
+    "phonetic": "/ɹɪpˈeɪ/",
+    "exampleSentence": "He will repay the bank loan next month."
+  },
+  "revenue::": {
+    "meaning": "收入",
+    "englishMeaning": "money that is made by a business",
+    "phonetic": "/ɹˈɛvənjˌuː/",
+    "exampleSentence": "The shop's revenue rose during the holiday."
+  },
+  "scandal::": {
+    "meaning": "丑闻",
+    "englishMeaning": "an event reported to the public that shocks or offends people",
+    "phonetic": "/skˈændəl/",
+    "exampleSentence": "The newspaper reported a scandal about the mayor."
+  },
+  "withdraw::": {
+    "meaning": "取款",
+    "englishMeaning": "to remove money from a bank account",
+    "phonetic": "/wɪðdɹˈɔː/",
+    "exampleSentence": "I need to withdraw money from the bank."
+  },
+  "administration::": {
+    "meaning": "管理",
+    "englishMeaning": "the management or control of an organization or business",
+    "phonetic": "/ɐdmˌɪnɪstɹˈeɪʃən/",
+    "exampleSentence": "School administration makes the daily rules."
+  },
+  "assembly::": {
+    "meaning": "装配",
+    "englishMeaning": "the act of putting parts together",
+    "phonetic": "/ɐsˈɛmbli/",
+    "exampleSentence": "The factory assembly puts the car parts together."
+  },
+  "criticism::": {
+    "meaning": "批评",
+    "englishMeaning": "expressing the problems and faults of a person or thing",
+    "phonetic": "/kɹˈɪtɪsˌɪzəm/",
+    "exampleSentence": "Her criticism of the plan was fair and clear."
+  },
+  "exceed::": {
+    "meaning": "超过",
+    "englishMeaning": "to be greater than or more than",
+    "phonetic": "/ɛksˈiːd/",
+    "exampleSentence": "Do not exceed the speed limit on this road."
+  },
+  "feedback::": {
+    "meaning": "反馈",
+    "englishMeaning": "information given in response to a survey, experiment, etc.",
+    "phonetic": "/fˈiːdbæk/",
+    "exampleSentence": "Teachers give feedback after every writing test."
+  },
+  "govern::": {
+    "meaning": "治理",
+    "englishMeaning": "to exercise authority over; to control or manage",
+    "phonetic": "/ɡˈʌvən/",
+    "exampleSentence": "Elected leaders govern the city with new laws."
+  },
+  "interfere::": {
+    "meaning": "干涉",
+    "englishMeaning": "to get involved in a situation that does not concern you",
+    "phonetic": "/ˌɪntəfˈiə/",
+    "exampleSentence": "Please do not interfere in their private talk."
+  },
+  "meantime::": {
+    "meaning": "与此同时",
+    "englishMeaning": "while something else is happening",
+    "phonetic": "/mˈiːntaɪm/",
+    "exampleSentence": "I will cook; meantime, please set the table."
+  },
+  "objection::": {
+    "meaning": "反对",
+    "englishMeaning": "a feeling or expression of disapproval or dislike",
+    "phonetic": "/ɒbdʒˈɛkʃən/",
+    "exampleSentence": "Nobody raised an objection to the simple plan."
+  },
+  "widespread::": {
+    "meaning": "广泛的",
+    "englishMeaning": "happening over a large area or to a great extent",
+    "phonetic": "/wˈaɪdspɹɛd/",
+    "exampleSentence": "The flu became widespread across the whole country."
+  },
+  "chemist::": {
+    "meaning": "化学家",
+    "englishMeaning": "an expert in chemistry",
+    "phonetic": "/kˈɛmɪst/",
+    "exampleSentence": "The chemist mixed two liquids in the lab."
+  },
+  "hypothesis::": {
+    "meaning": "假说",
+    "englishMeaning": "an explanation for something that has not been proved",
+    "phonetic": "/haɪpˈɒθəsˌɪs/",
+    "exampleSentence": "Scientists tested the hypothesis with a new experiment."
+  },
+  "inquire::": {
+    "meaning": "询问",
+    "englishMeaning": "to ask for information",
+    "phonetic": "/ɪnkwˈaɪə/",
+    "exampleSentence": "I will inquire about the train times today."
+  },
+  "intention::": {
+    "meaning": "意图",
+    "englishMeaning": "a purpose or planned action",
+    "phonetic": "/ɪntˈɛnʃən/",
+    "exampleSentence": "His intention was to finish the work early."
+  },
+  "machinery::": {
+    "meaning": "机器",
+    "englishMeaning": "mechanical equipment",
+    "phonetic": "/məʃˈiːnəɹi/",
+    "exampleSentence": "Loud machinery filled the busy factory floor."
+  },
+  "overflow::": {
+    "meaning": "溢出",
+    "englishMeaning": "to pour over the edges of a container",
+    "phonetic": "/ˌəʊvəˈfləʊ/",
+    "exampleSentence": "Hot soup will overflow if you fill the bowl."
+  },
+  "satisfactory::": {
+    "meaning": "令人满意的",
+    "englishMeaning": "good enough for a particular purpose",
+    "phonetic": "/sˌætɪsfˈæktəɹˌi/",
+    "exampleSentence": "Her test result was satisfactory but not perfect."
+  },
+  "simulate::": {
+    "meaning": "模拟",
+    "englishMeaning": "to do or make something that looks real",
+    "phonetic": "/sˈɪmjʊlˌeɪt/",
+    "exampleSentence": "Pilots simulate a storm during flight practice."
+  },
+  "vinegar::": {
+    "meaning": "醋",
+    "englishMeaning": "a sour liquid used in cooking",
+    "phonetic": "/vˈɪnɪɡɐ/",
+    "exampleSentence": "Add a little vinegar to the salad dressing."
+  },
+  "worthwhile::": {
+    "meaning": "值得做的",
+    "englishMeaning": "worth the time, money, or effort that is spent on it",
+    "phonetic": "/wˈɜːθwaɪl/",
+    "exampleSentence": "Helping at the shelter is a worthwhile job."
+  },
+  "excess::": {
+    "meaning": "过量",
+    "englishMeaning": "an amount that is more than is needed",
+    "phonetic": "/ɪkˈses/",
+    "exampleSentence": "An excess of sugar is bad for your teeth."
+  },
+  "formation::": {
+    "meaning": "形成",
+    "englishMeaning": "the way something is made or has been arranged",
+    "phonetic": "/fɔːmˈeɪʃən/",
+    "exampleSentence": "Cloud formation often happens before heavy rain."
+  },
+  "humble::": {
+    "meaning": "谦卑的",
+    "englishMeaning": "not proud or arrogant",
+    "phonetic": "/hˈʌmbəl/",
+    "exampleSentence": "The humble winner thanked the whole team."
+  },
+  "ignorant::": {
+    "meaning": "无知的",
+    "englishMeaning": "lacking knowledge",
+    "phonetic": "/ˈɪɡnəɹənt/",
+    "exampleSentence": "He felt ignorant about the history of art."
+  },
+  "initiate::": {
+    "meaning": "发起",
+    "englishMeaning": "to start or cause to start",
+    "phonetic": "/ɪˈnɪʃieɪt/",
+    "exampleSentence": "They initiate a new reading club at school."
+  },
+  "miniature::": {
+    "meaning": "微型的",
+    "englishMeaning": "reduced in size",
+    "phonetic": "/mˈɪnɪtʃɐ/",
+    "exampleSentence": "The child played with a miniature wooden train."
+  },
+  "significance::": {
+    "meaning": "重要性",
+    "englishMeaning": "importance; meaning",
+    "phonetic": "/sɪɡnˈɪfɪkəns/",
+    "exampleSentence": "The old letter has great historical significance."
+  },
+  "tilt::": {
+    "meaning": "倾斜",
+    "englishMeaning": "to move to or be in a leaning position",
+    "phonetic": "/tˈɪlt/",
+    "exampleSentence": "Do not tilt the glass or the water will spill."
+  },
+  "upright::": {
+    "meaning": "直立的",
+    "englishMeaning": "standing or pointing straight up",
+    "phonetic": "/ˈʌpɹaɪt/",
+    "exampleSentence": "Keep the bottle upright on the table."
+  },
+  "yield::": {
+    "meaning": "出产",
+    "englishMeaning": "to produce a crop, result, or profit",
+    "phonetic": "/jˈiːld/",
+    "exampleSentence": "These fields yield wheat every summer."
+  },
+  "approval::": {
+    "meaning": "批准",
+    "englishMeaning": "permission and acceptance to do something",
+    "phonetic": "/ɐpɹˈuːvəl/",
+    "exampleSentence": "We need the teacher's approval for the trip."
+  },
+  "clarify::": {
+    "meaning": "澄清",
+    "englishMeaning": "to make something easier to understand",
+    "phonetic": "/klˈæɹɪfˌaɪ/",
+    "exampleSentence": "Please clarify the last question for the class."
+  },
+  "correction::": {
+    "meaning": "改正",
+    "englishMeaning": "a change that fixes a mistake",
+    "phonetic": "/kəɹˈɛkʃən/",
+    "exampleSentence": "The teacher made a correction on my paper."
+  },
+  "defect::": {
+    "meaning": "缺陷",
+    "englishMeaning": "a problem or fault",
+    "phonetic": "/ˈdiːfekt/",
+    "exampleSentence": "A small defect made the phone screen dark."
+  },
+  "ditch::": {
+    "meaning": "沟渠",
+    "englishMeaning": "a long, narrow channel cut into the ground at the side of a road or field",
+    "phonetic": "/dˈɪtʃ/",
+    "exampleSentence": "Rain water ran into the ditch by the road."
+  },
+  "drip::": {
+    "meaning": "滴下",
+    "englishMeaning": "(of liquid) to fall in small drops",
+    "phonetic": "/dɹˈɪp/",
+    "exampleSentence": "Water began to drip from the kitchen tap."
+  },
+  "enclose::": {
+    "meaning": "随信附上",
+    "englishMeaning": "to include something in a letter or package",
+    "phonetic": "/ɛnklˈəʊz/",
+    "exampleSentence": "Please enclose a photo with your letter."
+  },
+  "lessen::": {
+    "meaning": "减轻",
+    "englishMeaning": "to reduce in size, amount, or degree",
+    "phonetic": "/lˈɛsən/",
+    "exampleSentence": "Rest will lessen the pain in your back."
+  },
+  "overlook::": {
+    "meaning": "忽略",
+    "englishMeaning": "to fail to notice or do something",
+    "phonetic": "/ˌəʊvəˈlʊk/",
+    "exampleSentence": "Do not overlook the date on the form."
+  },
+  "pierce::": {
+    "meaning": "刺穿",
+    "englishMeaning": "to make a hole in something",
+    "phonetic": "/pˈiəs/",
+    "exampleSentence": "A sharp needle can pierce the thick cloth."
+  },
+  "apprentice::": {
+    "meaning": "学徒",
+    "englishMeaning": "a person who is learning a job or skill",
+    "phonetic": "/ɐpɹˈɛntɪs/",
+    "exampleSentence": "The young apprentice learned to make bread."
+  },
+  "cautious::": {
+    "meaning": "谨慎的",
+    "englishMeaning": "careful (in order to avoid danger)",
+    "phonetic": "/kˈɔːʃəs/",
+    "exampleSentence": "Be cautious when you cross the icy road."
+  },
+  "damp::": {
+    "meaning": "潮湿的",
+    "englishMeaning": "slightly wet",
+    "phonetic": "/dˈæmp/",
+    "exampleSentence": "The towel still felt damp after an hour."
+  },
+  "debris::": {
+    "meaning": "碎片",
+    "englishMeaning": "pieces left after something has been destroyed",
+    "phonetic": "/dˈɛbɹiː/",
+    "exampleSentence": "Storm debris covered the street after the wind."
+  },
+  "diameter::": {
+    "meaning": "直径",
+    "englishMeaning": "the distance through the center of something from one side to the other",
+    "phonetic": "/daɪˈæmɪtɐ/",
+    "exampleSentence": "Measure the diameter of this round table."
+  },
+  "extensive::": {
+    "meaning": "广泛的",
+    "englishMeaning": "covering a wide range of ideas, details, or items",
+    "phonetic": "/ɛkstˈɛnsɪv/",
+    "exampleSentence": "She has extensive knowledge of world history."
+  },
+  "handy::": {
+    "meaning": "方便的",
+    "englishMeaning": "very useful or helpful",
+    "phonetic": "/hˈændi/",
+    "exampleSentence": "A small torch is handy on a dark path."
+  },
+  "overwhelm::": {
+    "meaning": "使不知所措",
+    "englishMeaning": "to cause to feel helpless",
+    "phonetic": "/ˌəʊvəwˈɛlm/",
+    "exampleSentence": "Too much homework can overwhelm a tired student."
+  },
+  "scrape::": {
+    "meaning": "刮擦",
+    "englishMeaning": "to rub against a surface, often causing damage",
+    "phonetic": "/skɹˈeɪp/",
+    "exampleSentence": "Do not scrape the paint off the wooden door."
+  },
+  "strengthen::": {
+    "meaning": "加强",
+    "englishMeaning": "to make or become stronger",
+    "phonetic": "/stɹˈɛŋθən/",
+    "exampleSentence": "Daily exercise will strengthen your legs."
+  },
+  "accommodation::": {
+    "meaning": "住处",
+    "englishMeaning": "lodgings; a place to stay while traveling",
+    "phonetic": "/ɐkˌɒmədˈeɪʃən/",
+    "exampleSentence": "We booked accommodation near the train station."
+  },
+  "booking::": {
+    "meaning": "预订",
+    "englishMeaning": "a reservation of a room, seat, table, etc.",
+    "phonetic": "/bˈʊkɪŋ/",
+    "exampleSentence": "I made a booking for a table at six."
+  },
+  "brochure::": {
+    "meaning": "小册子",
+    "englishMeaning": "a booklet with information about a product, place, etc.",
+    "phonetic": "/bɹˈəʊʃɐ/",
+    "exampleSentence": "The travel brochure shows hotels by the sea."
+  },
+  "criterion::": {
+    "meaning": "标准",
+    "englishMeaning": "an item or standard used for making a decision",
+    "phonetic": "/kɹaɪtˈiəɹɪən/",
+    "exampleSentence": "Price was the main criterion for our choice."
+  },
+  "gorgeous::": {
+    "meaning": "极美的",
+    "englishMeaning": "very beautiful",
+    "phonetic": "/ɡˈɔːdʒəs/",
+    "exampleSentence": "The sunset over the lake was gorgeous."
+  },
+  "porch::": {
+    "meaning": "门廊",
+    "englishMeaning": "a covered entrance to a building; a veranda",
+    "phonetic": "/pˈɔːtʃ/",
+    "exampleSentence": "They sat on the porch and drank tea."
+  },
+  "reluctant::": {
+    "meaning": "不情愿的",
+    "englishMeaning": "not willing; hesitant",
+    "phonetic": "/ɹɪlˈʌktənt/",
+    "exampleSentence": "He was reluctant to leave the warm house."
+  },
+  "sandcastle::": {
+    "meaning": "沙堡",
+    "englishMeaning": "a model of a castle made with wet sand on a beach",
+    "phonetic": "/sˈændkɑːsəl/",
+    "exampleSentence": "The children built a sandcastle on the beach."
+  },
+  "spade::": {
+    "meaning": "铲子",
+    "englishMeaning": "a tool with a flat blade used for digging; a small shovel",
+    "phonetic": "/spˈeɪd/",
+    "exampleSentence": "She dug a hole with a garden spade."
+  },
+  "terrace::": {
+    "meaning": "露台",
+    "englishMeaning": "a paved area next to a house, often by a garden",
+    "phonetic": "/tˈɛɹɪs/",
+    "exampleSentence": "We ate lunch on the sunny terrace."
+  },
+  "adequate::": {
+    "meaning": "足够的",
+    "englishMeaning": "enough; sufficient",
+    "phonetic": "/ˈædɪkwət/",
+    "exampleSentence": "Bring adequate water for the long walk."
+  },
+  "browse::": {
+    "meaning": "浏览",
+    "englishMeaning": "to look at casually",
+    "phonetic": "/bɹˈaʊz/",
+    "exampleSentence": "Shoppers browse the books without buying any."
+  },
+  "idly::": {
+    "meaning": "懒散地",
+    "englishMeaning": "without much thought or concern; lazily",
+    "phonetic": "/ˈaɪdli/",
+    "exampleSentence": "He sat idly and watched the rain fall."
+  },
+  "massage::": {
+    "meaning": "按摩",
+    "englishMeaning": "the action of rubbing parts of the body to help muscles relax",
+    "phonetic": "/mˈæsɑːʒ/",
+    "exampleSentence": "A back massage helped her tired muscles."
+  },
+  "paradise::": {
+    "meaning": "乐园",
+    "englishMeaning": "a place of great beauty; a place that seems perfect",
+    "phonetic": "/pˈæɹədˌaɪs/",
+    "exampleSentence": "The quiet island felt like a paradise."
+  },
+  "province::": {
+    "meaning": "省",
+    "englishMeaning": "an administrative division of a country",
+    "phonetic": "/pɹˈɒvɪns/",
+    "exampleSentence": "They live in a northern province of China."
+  },
+  "reunion::": {
+    "meaning": "重聚",
+    "englishMeaning": "a party for people who have not seen each other for a long time",
+    "phonetic": "/ɹˌiːjˈuːniən/",
+    "exampleSentence": "The family reunion brought cousins together again."
+  },
+  "simplicity::": {
+    "meaning": "简单",
+    "englishMeaning": "the quality of being simple",
+    "phonetic": "/sɪmplˈɪsɪti/",
+    "exampleSentence": "I like the simplicity of this short story."
+  },
+  "tray::": {
+    "meaning": "托盘",
+    "englishMeaning": "a thin, flat object used for carrying things",
+    "phonetic": "/tɹˈeɪ/",
+    "exampleSentence": "She carried tea on a wooden tray."
+  },
+  "upcoming::": {
+    "meaning": "即将到来的",
+    "englishMeaning": "happening or appearing soon",
+    "phonetic": "/ʌpkˈʌmɪŋ/",
+    "exampleSentence": "We prepared for the upcoming school concert."
+  },
+  "admission::": {
+    "meaning": "准许进入",
+    "englishMeaning": "the right or permission to enter a place",
+    "phonetic": "/ɐdmˈɪʃən/",
+    "exampleSentence": "Admission to the museum is free today."
+  },
+  "ambition::": {
+    "meaning": "志向",
+    "englishMeaning": "a goal; a strong desire for success",
+    "phonetic": "/æmbˈɪʃən/",
+    "exampleSentence": "His ambition is to become a good doctor."
+  },
+  "bias::": {
+    "meaning": "偏见",
+    "englishMeaning": "a tendency, often subconscious, to prefer one thing over another",
+    "phonetic": "/bˈaɪəs/",
+    "exampleSentence": "A fair judge must not show bias."
+  },
+  "censor::": {
+    "meaning": "审查",
+    "englishMeaning": "to remove anything offensive from books, movies, etc.",
+    "phonetic": "/sˈɛnsɐ/",
+    "exampleSentence": "They censor violent scenes from the film."
+  },
+  "contradict::": {
+    "meaning": "反驳",
+    "englishMeaning": "to say the opposite of what someone else said",
+    "phonetic": "/kˌɒntɹədˈɪkt/",
+    "exampleSentence": "The two reports contradict each other clearly."
+  },
+  "division::": {
+    "meaning": "分割",
+    "englishMeaning": "the act of separating one unit into two or more parts",
+    "phonetic": "/dɪvˈɪʒən/",
+    "exampleSentence": "The division of the land caused a long argument."
+  },
+  "fundamental::": {
+    "meaning": "基本的",
+    "englishMeaning": "forming the most important part",
+    "phonetic": "/fˌʌndəmˈɛntəl/",
+    "exampleSentence": "Reading is a fundamental skill for every child."
+  },
+  "hatred::": {
+    "meaning": "仇恨",
+    "englishMeaning": "a very strong feeling of dislike",
+    "phonetic": "/hˈeɪtɹɪd/",
+    "exampleSentence": "Hatred only makes a bad situation worse."
+  },
+  "mankind::": {
+    "meaning": "人类",
+    "englishMeaning": "all human beings",
+    "phonetic": "/mæŋkˈaɪnd/",
+    "exampleSentence": "Clean air is important for all mankind."
+  },
+  "mercy::": {
+    "meaning": "怜悯",
+    "englishMeaning": "kind or compassionate treatment",
+    "phonetic": "/mˈɜːsi/",
+    "exampleSentence": "The king showed mercy to the young prisoner."
+  },
+  "catholic::": {
+    "meaning": "天主教的",
+    "englishMeaning": "of a type of Christian religion",
+    "phonetic": "/kˈæθlɪk/",
+    "exampleSentence": "They attended a catholic church on Sunday."
+  },
+  "chapel::": {
+    "meaning": "小教堂",
+    "englishMeaning": "a small church",
+    "phonetic": "/tʃˈæpəl/",
+    "exampleSentence": "A quiet chapel stood beside the old school."
+  },
+  "dim::": {
+    "meaning": "昏暗的",
+    "englishMeaning": "not bright or clear",
+    "phonetic": "/dˈɪm/",
+    "exampleSentence": "We could hardly see in the dim room."
+  },
+  "impulsively::": {
+    "meaning": "冲动地",
+    "englishMeaning": "suddenly; without careful thought",
+    "phonetic": "/ɪmpˈʌlsɪvli/",
+    "exampleSentence": "She impulsively bought a ticket for the trip."
+  },
+  "ministry::": {
+    "meaning": "神职",
+    "englishMeaning": "the profession of a minister of religion",
+    "phonetic": "/mˈɪnɪstɹi/",
+    "exampleSentence": "He entered the ministry after years of study."
+  },
+  "monastery::": {
+    "meaning": "修道院",
+    "englishMeaning": "a place where monks live and work together",
+    "phonetic": "/mˈɒnɑːstəɹi/",
+    "exampleSentence": "Monks live and work in the old monastery."
+  },
+  "nun::": {
+    "meaning": "修女",
+    "englishMeaning": "a member of a women's religious community",
+    "phonetic": "/nʌn/",
+    "exampleSentence": "The nun taught children at the village school."
+  },
+  "pope::": {
+    "meaning": "教皇",
+    "englishMeaning": "the head of the Roman Catholic Church",
+    "phonetic": "/pˈəʊp/",
+    "exampleSentence": "The pope spoke to a large crowd in Rome."
+  },
+  "privilege::": {
+    "meaning": "特权",
+    "englishMeaning": "a right or advantage",
+    "phonetic": "/pɹˈɪvɪlɪdʒ/",
+    "exampleSentence": "Free travel is a privilege of that job."
+  },
+  "tremendous::": {
+    "meaning": "巨大的",
+    "englishMeaning": "very large or great; wonderful",
+    "phonetic": "/tɹəmˈɛndəs/",
+    "exampleSentence": "The storm caused tremendous damage to the town."
+  },
+  "alternate::": {
+    "meaning": "轮流",
+    "englishMeaning": "to do or use by turns",
+    "phonetic": "/ˈɔːltəneɪt/",
+    "exampleSentence": "The two teams alternate every other week."
+  },
+  "await::": {
+    "meaning": "等候",
+    "englishMeaning": "to wait for something",
+    "phonetic": "/ɐwˈeɪt/",
+    "exampleSentence": "We await the train on the cold platform."
+  },
+  "beloved::": {
+    "meaning": "心爱的",
+    "englishMeaning": "dear; much loved",
+    "phonetic": "/bɪˈlʌvɪd/",
+    "exampleSentence": "She read a letter from her beloved friend."
+  },
+  "continually::": {
+    "meaning": "不断地",
+    "englishMeaning": "happening over and over again",
+    "phonetic": "/kəntˈɪnjuːəli/",
+    "exampleSentence": "The baby cried continually through the night."
+  },
+  "corridor::": {
+    "meaning": "走廊",
+    "englishMeaning": "a long passageway in a building",
+    "phonetic": "/kˈɒɹɪdˌɔː/",
+    "exampleSentence": "Footsteps echoed down the long corridor."
+  },
+  "cushion::": {
+    "meaning": "垫子",
+    "englishMeaning": "a pillow or soft pad for sitting or kneeling on",
+    "phonetic": "/kˈʊʃən/",
+    "exampleSentence": "She sat on a soft cushion by the window."
+  },
+  "dilemma::": {
+    "meaning": "两难",
+    "englishMeaning": "a situation in which you must make a difficult choice",
+    "phonetic": "/daɪlˈɛmɐ/",
+    "exampleSentence": "Choosing a school put him in a dilemma."
+  },
+  "dwell::": {
+    "meaning": "居住",
+    "englishMeaning": "to live; to make one's home",
+    "phonetic": "/dwˈɛl/",
+    "exampleSentence": "Many families dwell in the quiet valley."
+  },
+  "embrace::": {
+    "meaning": "拥抱",
+    "englishMeaning": "to hold someone in your arms to express love or sympathy, or as a greeting",
+    "phonetic": "/ɛmbɹˈeɪs/",
+    "exampleSentence": "The mother and child embrace at the gate."
+  },
+  "farewell::": {
+    "meaning": "告别",
+    "englishMeaning": "an occasion or statement of goodbye",
+    "phonetic": "/feəwˈɛl/",
+    "exampleSentence": "They said a sad farewell at the station."
+  },
+  "alongside::": {
+    "meaning": "在旁边",
+    "englishMeaning": "at or by the side",
+    "phonetic": "/ɐlˈɒŋsaɪd/",
+    "exampleSentence": "The dog ran alongside the moving bicycle."
+  },
+  "amphibian::": {
+    "meaning": "两栖动物",
+    "englishMeaning": "a class of animals that can live in water and on land",
+    "phonetic": "/æmfˈɪbiən/",
+    "exampleSentence": "A frog is an amphibian that lives near water."
+  },
+  "breeze::": {
+    "meaning": "微风",
+    "englishMeaning": "a gentle wind",
+    "phonetic": "/bɹˈiːz/",
+    "exampleSentence": "A cool breeze came in from the sea."
+  },
+  "buzz::": {
+    "meaning": "嗡嗡声",
+    "englishMeaning": "a continuous low sound",
+    "phonetic": "/bˈʌz/",
+    "exampleSentence": "A low buzz came from the busy bees."
+  },
+  "classification::": {
+    "meaning": "分类",
+    "englishMeaning": "a division or category",
+    "phonetic": "/klˌæsɪfɪkˈeɪʃən/",
+    "exampleSentence": "This book explains the classification of plants."
+  },
+  "fragile::": {
+    "meaning": "易碎的",
+    "englishMeaning": "easily broken or damaged",
+    "phonetic": "/fɹˈædʒaɪl/",
+    "exampleSentence": "The glass bowl is fragile, so hold it carefully."
+  },
+  "gulf::": {
+    "meaning": "鸿沟",
+    "englishMeaning": "a wide gap or difference between people or things",
+    "phonetic": "/ɡˈʌlf/",
+    "exampleSentence": "A wide gulf stood between their two opinions."
+  },
+  "incline::": {
+    "meaning": "倾斜",
+    "englishMeaning": "to (cause to) slope at an angle",
+    "phonetic": "/ɪnˈklaɪn/",
+    "exampleSentence": "Please incline the board a little to the left."
+  },
+  "ivory::": {
+    "meaning": "象牙",
+    "englishMeaning": "a hard, white substance that makes up an elephant's tusks",
+    "phonetic": "/ˈaɪvəɹˌi/",
+    "exampleSentence": "The old box was made of white ivory."
+  },
+  "optimistic::": {
+    "meaning": "乐观的",
+    "englishMeaning": "hopeful and positive",
+    "phonetic": "/ˌɒptɪmˈɪstɪk/",
+    "exampleSentence": "She stayed optimistic even after the bad news."
+  },
+  "cord::": {
+    "meaning": "电线",
+    "englishMeaning": "a cable that connects an appliance to electricity",
+    "phonetic": "/kˈɔːd/",
+    "exampleSentence": "Plug the lamp cord into the wall socket."
+  },
+  "evident::": {
+    "meaning": "明显的",
+    "englishMeaning": "easily and clearly seen",
+    "phonetic": "/ˈɛvɪdənt/",
+    "exampleSentence": "It was evident that he had worked very hard."
+  },
+  "internal::": {
+    "meaning": "内部的",
+    "englishMeaning": "positioned on the inside of something",
+    "phonetic": "/ɪntˈɜːnəl/",
+    "exampleSentence": "The doctor checked her internal organs carefully."
+  },
+  "microphone::": {
+    "meaning": "麦克风",
+    "englishMeaning": "a tool spoken into in order to magnify sound",
+    "phonetic": "/mˈaɪkɹəfˌəʊn/",
+    "exampleSentence": "Speak into the microphone so everyone can hear."
+  },
+  "prior::": {
+    "meaning": "先前的",
+    "englishMeaning": "earlier; previous",
+    "phonetic": "/pɹˈaɪɐ/",
+    "exampleSentence": "She had no prior experience in this job."
+  },
+  "recruit::": {
+    "meaning": "招募",
+    "englishMeaning": "to encourage someone to take a position or role",
+    "phonetic": "/ɹɪkɹˈuːt/",
+    "exampleSentence": "The company will recruit new staff next month."
+  },
+  "specialty::": {
+    "meaning": "专长",
+    "englishMeaning": "a special interest, field of study, or work, etc.",
+    "phonetic": "/ˈspeʃəlti/",
+    "exampleSentence": "Heart surgery is the doctor's specialty."
+  },
+  "sufficient::": {
+    "meaning": "足够的",
+    "englishMeaning": "enough for what is needed",
+    "phonetic": "/səfˈɪʃənt/",
+    "exampleSentence": "We have sufficient food for the whole trip."
+  },
+  "technician::": {
+    "meaning": "技术员",
+    "englishMeaning": "someone whose job involves skilled work with machines or technology",
+    "phonetic": "/tɛknˈɪʃən/",
+    "exampleSentence": "A technician fixed the broken computer quickly."
+  },
+  "tuition::": {
+    "meaning": "学费",
+    "englishMeaning": "a fee paid in exchange for education",
+    "phonetic": "/tjuːˈɪʃən/",
+    "exampleSentence": "Her parents paid the tuition for college."
+  },
+  "gunpowder::": {
+    "meaning": "火药",
+    "englishMeaning": "an explosive powder used in fireworks and shotgun shells",
+    "phonetic": "/ɡˈʌnpaʊdɐ/",
+    "exampleSentence": "Fireworks use gunpowder to make a loud bang."
+  },
+  "insight::": {
+    "meaning": "洞察力",
+    "englishMeaning": "a deep understanding",
+    "phonetic": "/ˈɪnsaɪt/",
+    "exampleSentence": "The book gives insight into animal behavior."
+  },
+  "motive::": {
+    "meaning": "动机",
+    "englishMeaning": "the reason for doing something",
+    "phonetic": "/mˈəʊtɪv/",
+    "exampleSentence": "Police asked about his motive for the crime."
+  },
+  "profile::": {
+    "meaning": "简介",
+    "englishMeaning": "a description of a person or a business",
+    "phonetic": "/pɹˈəʊfaɪl/",
+    "exampleSentence": "The website shows a profile of each teacher."
+  },
+  "raid::": {
+    "meaning": "突袭",
+    "englishMeaning": "to attack and enter suddenly and quickly",
+    "phonetic": "/ɹˈeɪd/",
+    "exampleSentence": "Police raid the house early in the morning."
+  },
+  "seize::": {
+    "meaning": "抓住",
+    "englishMeaning": "to take and hold with force",
+    "phonetic": "/sˈiːz/",
+    "exampleSentence": "The officer will seize the stolen bag."
+  },
+  "sheriff::": {
+    "meaning": "治安官",
+    "englishMeaning": "an elected official who leads a police department",
+    "phonetic": "/ʃˈɛɹɪf/",
+    "exampleSentence": "The sheriff led the local police team."
+  },
+  "stereo::": {
+    "meaning": "立体声的",
+    "englishMeaning": "originating from more than one source",
+    "phonetic": "/stˈɛɹɪˌəʊ/",
+    "exampleSentence": "The stereo recording used two microphones."
+  },
+  "terminal::": {
+    "meaning": "致命的",
+    "englishMeaning": "causing death",
+    "phonetic": "/tˈɜːmɪnəl/",
+    "exampleSentence": "The patient has a terminal illness."
+  },
+  "vain::": {
+    "meaning": "自负的",
+    "englishMeaning": "having a very high opinion of oneself",
+    "phonetic": "/vˈeɪn/",
+    "exampleSentence": "The vain actor looked at himself all day."
+  },
+  "amazement::": {
+    "meaning": "惊异",
+    "englishMeaning": "great surprise",
+    "phonetic": "/ɐmˈeɪzmənt/",
+    "exampleSentence": "The children watched in amazement at the show."
+  },
+  "banner::": {
+    "meaning": "横幅",
+    "englishMeaning": "a piece of cloth with a design or statement",
+    "phonetic": "/bˈænɐ/",
+    "exampleSentence": "A welcome banner hung over the school gate."
+  },
+  "cellar::": {
+    "meaning": "地窖",
+    "englishMeaning": "a storage room under a building",
+    "phonetic": "/sˈɛlɐ/",
+    "exampleSentence": "They stored wine in the dark cellar."
+  },
+  "eclipse::": {
+    "meaning": "日食或月食",
+    "englishMeaning": "a short period when all or part of the sun or moon becomes dark",
+    "phonetic": "/ɪklˈɪps/",
+    "exampleSentence": "We watched a solar eclipse with special glasses."
+  },
+  "furnish::": {
+    "meaning": "布置家具",
+    "englishMeaning": "to provide (often used for furniture)",
+    "phonetic": "/fˈɜːnɪʃ/",
+    "exampleSentence": "They furnish the new flat with simple chairs."
+  },
+  "nasty::": {
+    "meaning": "令人讨厌的",
+    "englishMeaning": "unpleasant, unkind, or nasty",
+    "phonetic": "/nˈɑːsti/",
+    "exampleSentence": "A nasty smell came from the old fridge."
+  },
+  "obsession::": {
+    "meaning": "痴迷",
+    "englishMeaning": "someone or something you can't stop thinking about",
+    "phonetic": "/ɒbsˈɛʃən/",
+    "exampleSentence": "Football became an obsession for the young boy."
+  },
+  "plead::": {
+    "meaning": "恳求",
+    "englishMeaning": "to make an emotional request",
+    "phonetic": "/plˈiːd/",
+    "exampleSentence": "The children plead for more time to play."
+  },
+  "random::": {
+    "meaning": "随机的",
+    "englishMeaning": "happening by chance",
+    "phonetic": "/ɹˈændəm/",
+    "exampleSentence": "The teacher asked a random student a question."
+  },
+  "scrub::": {
+    "meaning": "擦洗",
+    "englishMeaning": "to wash or clean by rubbing hard",
+    "phonetic": "/skɹˈʌb/",
+    "exampleSentence": "Please scrub the dirty pan after dinner."
+  },
+  "ambitious::": {
+    "meaning": "有雄心的",
+    "englishMeaning": "having a strong desire to be successful",
+    "phonetic": "/æmbˈɪʃəs/",
+    "exampleSentence": "The ambitious student wants to study abroad."
+  },
+  "captive::": {
+    "meaning": "被俘的",
+    "englishMeaning": "kept imprisoned; unable to escape",
+    "phonetic": "/kˈæptɪv/",
+    "exampleSentence": "The captive bird could not leave the cage."
+  },
+  "dart::": {
+    "meaning": "飞镖",
+    "englishMeaning": "a small, thin object with a sharp point",
+    "phonetic": "/dˈɑːt/",
+    "exampleSentence": "He threw a dart at the round board."
+  },
+  "fort::": {
+    "meaning": "堡垒",
+    "englishMeaning": "a military building with strong walls",
+    "phonetic": "/fˈɔːt/",
+    "exampleSentence": "Soldiers guarded the old stone fort."
+  },
+  "gasp::": {
+    "meaning": "喘气",
+    "englishMeaning": "to breathe in suddenly, often with difficulty",
+    "phonetic": "/ɡˈɑːsp/",
+    "exampleSentence": "She began to gasp after the long run."
+  },
+  "gloomy::": {
+    "meaning": "忧郁的",
+    "englishMeaning": "unhappy and lacking hope",
+    "phonetic": "/ɡlˈuːmi/",
+    "exampleSentence": "He felt gloomy on the cold rainy day."
+  },
+  "lace::": {
+    "meaning": "蕾丝",
+    "englishMeaning": "a delicate cloth made with lots of holes in it",
+    "phonetic": "/lˈeɪs/",
+    "exampleSentence": "The white dress was made of fine lace."
+  },
+  "offensive::": {
+    "meaning": "冒犯的",
+    "englishMeaning": "unpleasant or causing anger",
+    "phonetic": "/əfˈɛnsɪv/",
+    "exampleSentence": "That joke was offensive to many people."
+  },
+  "tile::": {
+    "meaning": "瓷砖",
+    "englishMeaning": "a thin piece of stone, concrete, or clay, used for roofing or flooring",
+    "phonetic": "/tˈaɪl/",
+    "exampleSentence": "A broken tile fell from the kitchen floor."
+  },
+  "via::": {
+    "meaning": "经由",
+    "englishMeaning": "through; by means of",
+    "phonetic": "/vˈaɪɐ/",
+    "exampleSentence": "We flew to Paris via London yesterday."
+  },
+  "carbohydrate::": {
+    "meaning": "碳水化合物",
+    "englishMeaning": "a substance, such as sugar or starch, that provides the body with energy",
+    "phonetic": "/kˌɑːbəʊhˈaɪdɹeɪt/",
+    "exampleSentence": "Bread is a carbohydrate that gives you energy."
+  },
+  "component::": {
+    "meaning": "组成部分",
+    "englishMeaning": "a part of a whole",
+    "phonetic": "/kəmpˈəʊnənt/",
+    "exampleSentence": "The engine is a key component of the car."
+  },
+  "compress::": {
+    "meaning": "压缩",
+    "englishMeaning": "to press into a smaller space",
+    "phonetic": "/kəmˈpres/",
+    "exampleSentence": "Workers compress the clothes into a small box."
+  },
+  "diaper::": {
+    "meaning": "尿布",
+    "englishMeaning": "a square of soft, thick paper or cloth that is fastened around a baby's bottom",
+    "phonetic": "/dˈaɪpɐ/",
+    "exampleSentence": "The baby needs a clean diaper after lunch."
+  },
+  "dissolve::": {
+    "meaning": "溶解",
+    "englishMeaning": "to break down in liquid",
+    "phonetic": "/dɪsˈɒlv/",
+    "exampleSentence": "Sugar will dissolve quickly in hot tea."
+  },
+  "expire::": {
+    "meaning": "到期",
+    "englishMeaning": "to come to an end; to go bad",
+    "phonetic": "/ɛkspˈaɪə/",
+    "exampleSentence": "This milk will expire in three days."
+  },
+  "grind::": {
+    "meaning": "磨碎",
+    "englishMeaning": "to crush into small pieces",
+    "phonetic": "/ɡɹˈaɪnd/",
+    "exampleSentence": "Please grind the coffee beans this morning."
+  },
+  "kindergarten::": {
+    "meaning": "幼儿园",
+    "englishMeaning": "a school or class for small children",
+    "phonetic": "/kˈɪndəɡˌɑːtən/",
+    "exampleSentence": "My little sister starts kindergarten next week."
+  },
+  "loaf::": {
+    "meaning": "一条面包",
+    "englishMeaning": "a piece of bread which can be cut into slices",
+    "phonetic": "/lˈəʊf/",
+    "exampleSentence": "She bought a loaf of fresh brown bread."
+  },
+  "sob::": {
+    "meaning": "抽泣",
+    "englishMeaning": "to cry aloud",
+    "phonetic": "/sˈɒb/",
+    "exampleSentence": "The lost child began to sob in the shop."
+  },
+  "awkward::": {
+    "meaning": "难处理的",
+    "englishMeaning": "difficult to use or deal with",
+    "phonetic": "/ˈɔːkwəd/",
+    "exampleSentence": "The heavy box was awkward to carry upstairs."
+  },
+  "crisp::": {
+    "meaning": "酥脆的",
+    "englishMeaning": "cooked until dry and slightly hard",
+    "phonetic": "/kɹˈɪsp/",
+    "exampleSentence": "The potatoes were crisp and golden brown."
+  },
+  "crumb::": {
+    "meaning": "碎屑",
+    "englishMeaning": "a small particle or bit of bread, cake, etc.",
+    "phonetic": "/kɹˈʌm/",
+    "exampleSentence": "A bread crumb fell onto the clean table."
+  },
+  "crunchy::": {
+    "meaning": "松脆的",
+    "englishMeaning": "pleasantly hard and making a noise when you bite it",
+    "phonetic": "/kɹˈʌntʃi/",
+    "exampleSentence": "The apple was fresh, sweet, and crunchy."
+  },
+  "essence::": {
+    "meaning": "本质",
+    "englishMeaning": "the basic and most important characteristic of something",
+    "phonetic": "/ˈɛsəns/",
+    "exampleSentence": "Kindness is the essence of a good friend."
+  },
+  "fluffy::": {
+    "meaning": "蓬松的",
+    "englishMeaning": "very soft and containing lots of air",
+    "phonetic": "/flˈʌfi/",
+    "exampleSentence": "The kitten has soft fluffy white fur."
+  },
+  "idiot::": {
+    "meaning": "傻瓜",
+    "englishMeaning": "a foolish or stupid person",
+    "phonetic": "/ˈɪdɪət/",
+    "exampleSentence": "Don't call your brother an idiot at home."
+  },
+  "mug::": {
+    "meaning": "大杯子",
+    "englishMeaning": "a heavy cup, usually for hot drinks",
+    "phonetic": "/mˈʌɡ/",
+    "exampleSentence": "He drank hot coffee from a large mug."
+  },
+  "portion::": {
+    "meaning": "一份",
+    "englishMeaning": "a part of something (allotted to a person)",
+    "phonetic": "/pˈɔːʃən/",
+    "exampleSentence": "Each child received a portion of the cake."
+  },
+  "scout::": {
+    "meaning": "星探",
+    "englishMeaning": "a person employed to look for people with strong skills in sports or entertainment",
+    "phonetic": "/skˈaʊt/",
+    "exampleSentence": "A football scout watched the young player."
+  },
+  "encyclopedia::": {
+    "meaning": "百科全书",
+    "englishMeaning": "a book or set of books giving information on many areas of knowledge",
+    "phonetic": "/ɛnsˌaɪkləʊpˈiːdiə/",
+    "exampleSentence": "I looked up whales in the encyclopedia."
+  },
+  "impair::": {
+    "meaning": "损害",
+    "englishMeaning": "to weaken or make worse",
+    "phonetic": "/ɪmpˈeə/",
+    "exampleSentence": "Loud music can impair your hearing over time."
+  },
+  "literacy::": {
+    "meaning": "读写能力",
+    "englishMeaning": "the ability to read and write",
+    "phonetic": "/lˈɪtəɹəsi/",
+    "exampleSentence": "The school program improves literacy in children."
+  },
+  "manuscript::": {
+    "meaning": "手稿",
+    "englishMeaning": "a handwritten or typed document",
+    "phonetic": "/mˈænjuːskɹˌɪpt/",
+    "exampleSentence": "The writer sent her manuscript to the editor."
+  },
+  "neutral::": {
+    "meaning": "中立的",
+    "englishMeaning": "not taking either side in a fight or argument",
+    "phonetic": "/njˈuːtɹəl/",
+    "exampleSentence": "The judge stayed neutral during the argument."
+  },
+  "pregnant::": {
+    "meaning": "怀孕的",
+    "englishMeaning": "having a baby developing inside",
+    "phonetic": "/pɹˈɛɡnənt/",
+    "exampleSentence": "The pregnant woman rested on the park bench."
+  },
+  "reverse::": {
+    "meaning": "反转",
+    "englishMeaning": "to change to the opposite direction, order, position, etc.",
+    "phonetic": "/ɹɪvˈɜːs/",
+    "exampleSentence": "Please reverse the car into the parking space."
+  },
+  "stroll::": {
+    "meaning": "散步",
+    "englishMeaning": "to walk idly for pleasure",
+    "phonetic": "/stɹˈəʊl/",
+    "exampleSentence": "We stroll along the beach after dinner."
+  },
+  "stun::": {
+    "meaning": "使震惊",
+    "englishMeaning": "to shock or overwhelm",
+    "phonetic": "/stˈʌn/",
+    "exampleSentence": "The sudden news will stun the whole class."
+  },
+  "verse::": {
+    "meaning": "诗节",
+    "englishMeaning": "one of the parts that a poem or song is divided into",
+    "phonetic": "/vˈɜːs/",
+    "exampleSentence": "She learned the first verse of the song."
+  },
+  "geometry::": {
+    "meaning": "几何学",
+    "englishMeaning": "a type of math that studies lines, shapes, and angles",
+    "phonetic": "/dʒiˈɒmətɹˌi/",
+    "exampleSentence": "We study geometry and draw many triangles."
+  },
+  "horizontal::": {
+    "meaning": "水平的",
+    "englishMeaning": "straight and level with the ground",
+    "phonetic": "/hˌɒɹɪzˈɒntəl/",
+    "exampleSentence": "Draw a horizontal line across the page."
+  },
+  "intimate::": {
+    "meaning": "亲密的",
+    "englishMeaning": "being close or having a close, personal relationship",
+    "phonetic": "/ˈɪntɪmət/",
+    "exampleSentence": "They have an intimate friendship after many years."
+  },
+  "jealousy::": {
+    "meaning": "嫉妒",
+    "englishMeaning": "a feeling of unhappiness and anger because someone has something that you want",
+    "phonetic": "/dʒˈɛləsi/",
+    "exampleSentence": "Jealousy can hurt a close friendship quickly."
+  },
+  "mode::": {
+    "meaning": "方式",
+    "englishMeaning": "a manner or way of doing something",
+    "phonetic": "/mˈəʊd/",
+    "exampleSentence": "The phone is in silent mode during class."
+  },
+  "parcel::": {
+    "meaning": "包裹",
+    "englishMeaning": "a small wrapped package sent in the mail",
+    "phonetic": "/pˈɑːsəl/",
+    "exampleSentence": "A brown parcel arrived in the morning post."
+  },
+  "questionnaire::": {
+    "meaning": "问卷",
+    "englishMeaning": "a written set of questions designed to gather information",
+    "phonetic": "/kwˌɛstʃənˈeə/",
+    "exampleSentence": "Please fill in this questionnaire after the talk."
+  },
+  "skim::": {
+    "meaning": "略读",
+    "englishMeaning": "to read quickly to understand the main points; to go over the surface of",
+    "phonetic": "/skˈɪm/",
+    "exampleSentence": "I skim the article to find the main idea."
+  },
+  "swiftly::": {
+    "meaning": "迅速地",
+    "englishMeaning": "in a quick and rapid way",
+    "phonetic": "/swˈɪftli/",
+    "exampleSentence": "The fox ran swiftly across the open field."
+  },
+  "unity::": {
+    "meaning": "团结",
+    "englishMeaning": "the state of being joined or in agreement",
+    "phonetic": "/jˈuːnɪti/",
+    "exampleSentence": "The team showed unity during the hard game."
+  },
+  "arise::": {
+    "meaning": "出现",
+    "englishMeaning": "to happen or begin to exist",
+    "phonetic": "/ɐɹˈaɪz/",
+    "exampleSentence": "New problems arise when the plan changes."
+  },
+  "blurry::": {
+    "meaning": "模糊的",
+    "englishMeaning": "having an unclear outline",
+    "phonetic": "/blˈɜːɹi/",
+    "exampleSentence": "The photo is blurry because I moved."
+  },
+  "catalog::": {
+    "meaning": "商品目录",
+    "englishMeaning": "a list of things you can buy from a company",
+    "phonetic": "/ˈkætəlɒɡ/",
+    "exampleSentence": "She ordered shoes from a clothing catalog."
+  },
+  "darling::": {
+    "meaning": "心爱的人",
+    "englishMeaning": "someone or something that is very much loved",
+    "phonetic": "/dˈɑːlɪŋ/",
+    "exampleSentence": "The little girl is her grandmother's darling."
+  },
+  "enroll::": {
+    "meaning": "注册",
+    "englishMeaning": "to register; to become a member",
+    "phonetic": "/ɛnɹˈəʊl/",
+    "exampleSentence": "Students enroll in the art class each autumn."
+  },
+  "forum::": {
+    "meaning": "论坛",
+    "englishMeaning": "a place or situation for open discussion",
+    "phonetic": "/fˈɔːɹəm/",
+    "exampleSentence": "Parents met at a forum about school meals."
+  },
+  "glory::": {
+    "meaning": "光荣",
+    "englishMeaning": "admiration and praise attained by doing something great",
+    "phonetic": "/ɡlˈɔːɹi/",
+    "exampleSentence": "The team brought glory to their small town."
+  },
+  "icon::": {
+    "meaning": "偶像",
+    "englishMeaning": "a very famous person or thing considered as representing a set of beliefs or a way of life",
+    "phonetic": "/ˈaɪkɒn/",
+    "exampleSentence": "The singer became an icon of modern music."
+  },
+  "leash::": {
+    "meaning": "狗绳",
+    "englishMeaning": "a long cord used to control a dog during a walk",
+    "phonetic": "/lˈiːʃ/",
+    "exampleSentence": "Keep the dog on a leash in the park."
+  },
+  "mint::": {
+    "meaning": "薄荷",
+    "englishMeaning": "a green herb with a strong taste",
+    "phonetic": "/mˈɪnt/",
+    "exampleSentence": "Fresh mint leaves went into the cold drink."
+  },
+  "bid::": {
+    "meaning": "出价",
+    "englishMeaning": "to offer an amount as a price or fee",
+    "phonetic": "/bˈɪd/",
+    "exampleSentence": "Buyers bid a high price for the old painting."
+  },
+  "cassette::": {
+    "meaning": "磁带盒",
+    "englishMeaning": "a device containing material that can record sound or pictures",
+    "phonetic": "/kɐsˈɛt/",
+    "exampleSentence": "Dad played an old cassette in the car."
+  },
+  "descendant::": {
+    "meaning": "后裔",
+    "englishMeaning": "a person who is related to you and who lives after you",
+    "phonetic": "/dɪsˈɛndənt/",
+    "exampleSentence": "She is a descendant of the first settlers."
+  },
+  "destiny::": {
+    "meaning": "命运",
+    "englishMeaning": "the seemingly inevitable events of life",
+    "phonetic": "/dˈɛstɪni/",
+    "exampleSentence": "He believed hard work would shape his destiny."
+  },
+  "episode::": {
+    "meaning": "一集",
+    "englishMeaning": "an installment of a TV series",
+    "phonetic": "/ˈɛpɪsˌəʊd/",
+    "exampleSentence": "We watched one episode of the new series."
+  },
+  "godchild::": {
+    "meaning": "教子",
+    "englishMeaning": "a child who has godparents (in the Christian religion)",
+    "phonetic": "/ɡˈɒdtʃaɪld/",
+    "exampleSentence": "She sent a gift to her godchild at Christmas."
+  },
+  "godfather::": {
+    "meaning": "教父",
+    "englishMeaning": "a man chosen by Christian parents to act as a spiritual advisor for their baby",
+    "phonetic": "/ɡˈɒdfɑːðɐ/",
+    "exampleSentence": "His godfather came to the baby's naming day."
+  },
+  "longing::": {
+    "meaning": "渴望",
+    "englishMeaning": "a strong desire",
+    "phonetic": "/lˈɒŋɪŋ/",
+    "exampleSentence": "She felt a longing for her faraway home."
+  },
+  "mock::": {
+    "meaning": "嘲笑",
+    "englishMeaning": "to laugh at and unkindly make fun of",
+    "phonetic": "/mˈɒk/",
+    "exampleSentence": "Do not mock people who make a mistake."
+  },
+  "naked::": {
+    "meaning": "裸体的",
+    "englishMeaning": "not wearing clothes",
+    "phonetic": "/nˈeɪkɪd/",
+    "exampleSentence": "The baby was naked after his warm bath."
+  },
+  "bolt::": {
+    "meaning": "门闩",
+    "englishMeaning": "a metal bar that you slide across a door to lock it",
+    "phonetic": "/bˈəʊlt/",
+    "exampleSentence": "Slide the bolt across the door at night."
+  },
+  "compact::": {
+    "meaning": "紧凑的",
+    "englishMeaning": "small and taking up little space",
+    "phonetic": "/ˈkɒmpækt/",
+    "exampleSentence": "This compact camera fits in a small bag."
+  },
+  "dissatisfy::": {
+    "meaning": "使不满",
+    "englishMeaning": "to make someone feel disappointed",
+    "phonetic": "/dɪsˈsætɪsfaɪ/",
+    "exampleSentence": "Long delays dissatisfy many waiting passengers."
+  },
+  "grasp::": {
+    "meaning": "抓紧",
+    "englishMeaning": "to firmly take hold of",
+    "phonetic": "/ɡɹˈɑːsp/",
+    "exampleSentence": "Grasp the handle tightly before you jump."
+  },
+  "handicap::": {
+    "meaning": "障碍",
+    "englishMeaning": "something that makes another thing more difficult to do",
+    "phonetic": "/hˈændɪkˌæp/",
+    "exampleSentence": "Poor light is a handicap when you read."
+  },
+  "inferior::": {
+    "meaning": "较差的",
+    "englishMeaning": "lower in quality or value",
+    "phonetic": "/ɪnfˈiəɹɪɐ/",
+    "exampleSentence": "This cheap cloth is inferior to the other."
+  },
+  "lobby::": {
+    "meaning": "大厅",
+    "englishMeaning": "a large, open room found near the entrance to a big building",
+    "phonetic": "/lˈɒbi/",
+    "exampleSentence": "Guests waited in the hotel lobby for keys."
+  },
+  "parallel::": {
+    "meaning": "平行的",
+    "englishMeaning": "positioned always at the same distance from another",
+    "phonetic": "/pˈæɹəlˌɛl/",
+    "exampleSentence": "The two roads run parallel to the river."
+  },
+  "spectacular::": {
+    "meaning": "壮观的",
+    "englishMeaning": "wonderful; amazing",
+    "phonetic": "/spɛktˈækjʊlɐ/",
+    "exampleSentence": "The mountain view at sunrise was spectacular."
+  },
+  "squeak::": {
+    "meaning": "发出短促尖声",
+    "englishMeaning": "to make a short, sharp sound or cry",
+    "phonetic": "/skwˈiːk/",
+    "exampleSentence": "Old doors squeak when you open them slowly."
+  },
+  "confront::": {
+    "meaning": "勇敢面对",
+    "englishMeaning": "to face or oppose boldly",
+    "phonetic": "/kənfɹˈʌnt/",
+    "exampleSentence": "She will confront the problem after class."
+  },
+  "dominate::": {
+    "meaning": "支配",
+    "englishMeaning": "to have control over someone or something else",
+    "phonetic": "/dˈɒmɪnˌeɪt/",
+    "exampleSentence": "One large company can dominate the whole market."
+  },
+  "equality::": {
+    "meaning": "平等",
+    "englishMeaning": "the condition of having the same rights",
+    "phonetic": "/iːkwˈɒlɪti/",
+    "exampleSentence": "The law protects equality between all people."
+  },
+  "horrified::": {
+    "meaning": "惊恐的",
+    "englishMeaning": "very shocked",
+    "phonetic": "/hˈɒɹɪfˌaɪd/",
+    "exampleSentence": "We were horrified by the sudden loud crash."
+  },
+  "intent::": {
+    "meaning": "意图",
+    "englishMeaning": "a purpose, plan, or design",
+    "phonetic": "/ɪntˈɛnt/",
+    "exampleSentence": "His intent was to finish the work today."
+  },
+  "misdiagnose::": {
+    "meaning": "误诊",
+    "englishMeaning": "to incorrectly diagnose an illness",
+    "phonetic": "/mɪsdˌaɪəɡnˈəʊz/",
+    "exampleSentence": "Doctors may misdiagnose a rare illness at first."
+  },
+  "nanny::": {
+    "meaning": "保姆",
+    "englishMeaning": "a person paid to take care of a child in that child's home",
+    "phonetic": "/nˈæni/",
+    "exampleSentence": "The nanny reads stories to the children."
+  },
+  "peck::": {
+    "meaning": "啄",
+    "englishMeaning": "to strike or pierce repeatedly",
+    "phonetic": "/pˈɛk/",
+    "exampleSentence": "The hens peck the grain on the ground."
+  },
+  "prejudice::": {
+    "meaning": "偏见",
+    "englishMeaning": "an unreasonable dislike of a particular group of people or things",
+    "phonetic": "/pɹˈɛdʒuːdɪs/",
+    "exampleSentence": "We must fight prejudice against other groups."
+  },
+  "strain::": {
+    "meaning": "紧张",
+    "englishMeaning": "a great effort or tension",
+    "phonetic": "/stɹˈeɪn/",
+    "exampleSentence": "The long wait put a strain on everyone."
+  },
+  "bilingual::": {
+    "meaning": "双语的",
+    "englishMeaning": "using two languages fluently",
+    "phonetic": "/baɪlˈɪŋɡwəl/",
+    "exampleSentence": "The bilingual guide spoke English and French."
+  },
+  "dump::": {
+    "meaning": "倾倒",
+    "englishMeaning": "to put something somewhere quickly and carelessly",
+    "phonetic": "/dˈʌmp/",
+    "exampleSentence": "Do not dump rubbish into the river."
+  },
+  "equivalent::": {
+    "meaning": "相等的",
+    "englishMeaning": "equal in quantity, value, or meaning",
+    "phonetic": "/ɪkwˈɪvələnt/",
+    "exampleSentence": "One dollar is equivalent to this local coin."
+  },
+  "iron::appliance": {
+    "meaning": "熨斗",
+    "englishMeaning": "a heated electrical device used to smooth clothes",
+    "phonetic": "/ˈaɪən/",
+    "exampleSentence": "She used the iron to smooth her shirt."
+  },
+  "offense::": {
+    "meaning": "违法行为",
+    "englishMeaning": "the act of breaking a law",
+    "phonetic": "/əˈfens/",
+    "exampleSentence": "Parking here is an offense against the law."
+  },
+  "peasant::": {
+    "meaning": "农民",
+    "englishMeaning": "a poor person who works on the land (often used to talk about the past)",
+    "phonetic": "/pˈɛzənt/",
+    "exampleSentence": "The peasant worked in the fields all day."
+  },
+  "rail::": {
+    "meaning": "横杆",
+    "englishMeaning": "a horizontal bar used for support, as a barrier, or to hang things from",
+    "phonetic": "/ɹˈeɪl/",
+    "exampleSentence": "Hold the rail when you climb the stairs."
+  },
+  "sane::": {
+    "meaning": "神志清醒的",
+    "englishMeaning": "able to think and behave reasonably",
+    "phonetic": "/sˈeɪn/",
+    "exampleSentence": "A sane person would not jump from there."
+  },
+  "secondary::": {
+    "meaning": "次要的",
+    "englishMeaning": "second in rank or importance",
+    "phonetic": "/sˈɛkəndəɹi/",
+    "exampleSentence": "Cost is a secondary concern after safety."
+  },
+  "settlement::": {
+    "meaning": "和解协议",
+    "englishMeaning": "an official agreement that ends an argument",
+    "phonetic": "/sˈɛtəlmənt/",
+    "exampleSentence": "Both sides signed a settlement after the talk."
+  },
+  "extent::": {
+    "meaning": "程度",
+    "englishMeaning": "the range over which something extends",
+    "phonetic": "/ɛkstˈɛnt/",
+    "exampleSentence": "We do not know the extent of the damage."
+  },
+  "ivy::": {
+    "meaning": "常春藤",
+    "englishMeaning": "a green climbing plant",
+    "phonetic": "/ˈaɪvi/",
+    "exampleSentence": "Green ivy grew up the old stone wall."
+  },
+  "jug::": {
+    "meaning": "壶",
+    "englishMeaning": "a container for liquids",
+    "phonetic": "/dʒˈʌɡ/",
+    "exampleSentence": "She poured water from a large jug."
+  },
+  "moss::": {
+    "meaning": "苔藓",
+    "englishMeaning": "a soft green plant that grows on damp soil, wood, or stone",
+    "phonetic": "/mˈɒs/",
+    "exampleSentence": "Soft green moss covered the wet stones."
+  },
+  "orient::": {
+    "meaning": "确定方位",
+    "englishMeaning": "to discover the position of yourself in relation to your surroundings",
+    "phonetic": "/ˈɔːɹiənt/",
+    "exampleSentence": "Use the map to orient yourself in town."
+  },
+  "pave::": {
+    "meaning": "铺路",
+    "englishMeaning": "to cover an area with stone, concrete, or brick",
+    "phonetic": "/pˈeɪv/",
+    "exampleSentence": "Workers pave the street with new gray stones."
+  },
+  "primitive::": {
+    "meaning": "原始的",
+    "englishMeaning": "at a very simple stage of development, before modern technology",
+    "phonetic": "/pɹˈɪmɪtˌɪv/",
+    "exampleSentence": "They used primitive tools made of stone."
+  },
+  "rear::": {
+    "meaning": "后部",
+    "englishMeaning": "the back part of something",
+    "phonetic": "/ɹˈiə/",
+    "exampleSentence": "The kitchen is at the rear of the house."
+  },
+  "signature::": {
+    "meaning": "签名",
+    "englishMeaning": "the written form of one's name",
+    "phonetic": "/sˈɪɡnɪtʃɐ/",
+    "exampleSentence": "Please write your signature at the bottom."
+  },
+  "socialize::": {
+    "meaning": "社交",
+    "englishMeaning": "to spend time with others for pleasure",
+    "phonetic": "/ˈsəʊʃəlaɪz/",
+    "exampleSentence": "Students socialize in the park after school."
+  },
+  "consideration::": {
+    "meaning": "考虑",
+    "englishMeaning": "careful thought",
+    "phonetic": "/kənsˌɪdəɹˈeɪʃən/",
+    "exampleSentence": "After careful consideration, she accepted the job."
+  },
+  "fright::": {
+    "meaning": "惊吓",
+    "englishMeaning": "a sudden feeling of fear",
+    "phonetic": "/fɹˈaɪt/",
+    "exampleSentence": "The loud bang gave the cat a fright."
+  },
+  "gross::": {
+    "meaning": "令人厌恶的",
+    "englishMeaning": "extremely unpleasant; disgusting",
+    "phonetic": "/ɡɹˈəʊs/",
+    "exampleSentence": "The old food had a gross smell."
+  },
+  "jury::": {
+    "meaning": "陪审团",
+    "englishMeaning": "a group of people chosen to decide guilt or innocence in a court case",
+    "phonetic": "/dʒˈɔːɹi/",
+    "exampleSentence": "The jury listened to the case in court."
+  },
+  "perceive::": {
+    "meaning": "察觉",
+    "englishMeaning": "to see or notice, especially when something is not obvious",
+    "phonetic": "/pəsˈiːv/",
+    "exampleSentence": "I could perceive a change in her voice."
+  },
+  "rage::": {
+    "meaning": "狂怒",
+    "englishMeaning": "a strong, uncontrolled anger",
+    "phonetic": "/ɹˈeɪdʒ/",
+    "exampleSentence": "He felt a sudden rage after the unfair call."
+  },
+  "scoop::": {
+    "meaning": "舀起",
+    "englishMeaning": "to pick up something using a spoon or curved hands",
+    "phonetic": "/skˈuːp/",
+    "exampleSentence": "Scoop the ice cream into a small bowl."
+  },
+  "slap::": {
+    "meaning": "掌掴",
+    "englishMeaning": "to strike with a flat hand",
+    "phonetic": "/slˈæp/",
+    "exampleSentence": "Do not slap the table during the meeting."
+  },
+  "spectacle::": {
+    "meaning": "壮观景象",
+    "englishMeaning": "something strange or remarkable to look at",
+    "phonetic": "/spˈɛktəkəl/",
+    "exampleSentence": "The fireworks were a spectacle in the sky."
+  },
+  "vice::": {
+    "meaning": "恶习",
+    "englishMeaning": "a weakness in your character",
+    "phonetic": "/vaɪs/",
+    "exampleSentence": "Lying was a vice he tried to stop."
+  },
+  "bundle::": {
+    "meaning": "捆在一起",
+    "englishMeaning": "to put things together (often for sale at a discount)",
+    "phonetic": "/bˈʌndəl/",
+    "exampleSentence": "Shops bundle the pens and sell them cheaply."
+  },
+  "copyright::": {
+    "meaning": "版权",
+    "englishMeaning": "the exclusive right to produce something",
+    "phonetic": "/kˈɒpɪɹˌaɪt/",
+    "exampleSentence": "The book is protected by copyright law."
+  },
+  "elaborate::": {
+    "meaning": "精巧复杂的",
+    "englishMeaning": "complicated and detailed",
+    "phonetic": "/ɪˈlæbərət/",
+    "exampleSentence": "They built an elaborate model of the city."
+  },
+  "phase::": {
+    "meaning": "阶段",
+    "englishMeaning": "a stage in a process of change",
+    "phonetic": "/fˈeɪz/",
+    "exampleSentence": "The project is in its final phase now."
+  },
+  "primate::": {
+    "meaning": "灵长类动物",
+    "englishMeaning": "a animal belonging to the same group as humans, which includes monkeys",
+    "phonetic": "/pɹˈaɪmeɪt/",
+    "exampleSentence": "A monkey is a primate, like humans are."
+  },
+  "rock::": {
+    "meaning": "摇动",
+    "englishMeaning": "to move slowly back and forth or from side to side",
+    "phonetic": "/ɹˈɒk/",
+    "exampleSentence": "Mothers rock the baby to help him sleep."
+  },
+  "segment::": {
+    "meaning": "部分",
+    "englishMeaning": "one part of something",
+    "phonetic": "/ˈseɡmənt/",
+    "exampleSentence": "This segment of the road is under repair."
+  },
+  "supplement::": {
+    "meaning": "补充",
+    "englishMeaning": "to add something in order to improve another thing",
+    "phonetic": "/ˈsʌplɪmənt/",
+    "exampleSentence": "You can supplement the meal with fresh fruit."
+  },
+  "voluntary::": {
+    "meaning": "自愿的",
+    "englishMeaning": "done by free choice",
+    "phonetic": "/vˈɒləntəɹi/",
+    "exampleSentence": "The club is a voluntary group of students."
+  },
+  "wilderness::": {
+    "meaning": "荒野",
+    "englishMeaning": "an uninhabited, wild area of land",
+    "phonetic": "/wˈɪldənəs/",
+    "exampleSentence": "They camped in the wilderness far from town."
+  },
+  "contrary::": {
+    "meaning": "相反的",
+    "englishMeaning": "completely different or opposed to something else",
+    "phonetic": "/ˈkɒntrəri/",
+    "exampleSentence": "His view is contrary to the official report."
+  },
+  "correspond::": {
+    "meaning": "通信",
+    "englishMeaning": "to communicate by exchanging emails or letters",
+    "phonetic": "/kˌɒɹɪspˈɒnd/",
+    "exampleSentence": "The two friends correspond by email each week."
+  },
+  "exceedingly::": {
+    "meaning": "非常地",
+    "englishMeaning": "to a very great degree",
+    "phonetic": "/ɛksˈiːdɪŋli/",
+    "exampleSentence": "The test was exceedingly hard for the class."
+  },
+  "irreversible::": {
+    "meaning": "不可逆的",
+    "englishMeaning": "impossible to change back to an earlier condition",
+    "phonetic": "/ɪɹɪvˈɜːsəbəl/",
+    "exampleSentence": "The damage to the forest was irreversible."
+  },
+  "persist::": {
+    "meaning": "坚持",
+    "englishMeaning": "to refuse to give up",
+    "phonetic": "/pəsˈɪst/",
+    "exampleSentence": "If you persist, you will learn the skill."
+  },
+  "proposition::": {
+    "meaning": "提议",
+    "englishMeaning": "an offer or suggestion",
+    "phonetic": "/pɹˌɒpəzˈɪʃən/",
+    "exampleSentence": "The company made a proposition to buy the land."
+  },
+  "stab::": {
+    "meaning": "刺",
+    "englishMeaning": "to push a sharp object into something",
+    "phonetic": "/stˈæb/",
+    "exampleSentence": "Do not stab the meat with that dirty knife."
+  },
+  "stalk::": {
+    "meaning": "跟踪",
+    "englishMeaning": "to follow a person in an annoying and frightening way",
+    "phonetic": "/stˈɔːk/",
+    "exampleSentence": "A stranger began to stalk her after school."
+  },
+  "summit::": {
+    "meaning": "山顶",
+    "englishMeaning": "the highest point of a mountain",
+    "phonetic": "/sˈʌmɪt/",
+    "exampleSentence": "They reached the summit after a long climb."
+  },
+  "tempered::": {
+    "meaning": "经回火的",
+    "englishMeaning": "treated to make harder or stronger",
+    "phonetic": "/tˈɛmpəd/",
+    "exampleSentence": "The tempered steel is hard and very strong."
+  },
+  "correspondence::": {
+    "meaning": "往来信件",
+    "englishMeaning": "letters received or written",
+    "phonetic": "/kˌɒɹɪspˈɒndəns/",
+    "exampleSentence": "Their correspondence lasted for many years."
+  },
+  "pavement::": {
+    "meaning": "路面",
+    "englishMeaning": "a paved street or road",
+    "phonetic": "/pˈeɪvmənt/",
+    "exampleSentence": "Rain made the pavement wet and shiny."
+  },
+  "peep::": {
+    "meaning": "偷看",
+    "englishMeaning": "to look at something quickly, often secretly",
+    "phonetic": "/pˈiːp/",
+    "exampleSentence": "The child tried to peep through the door."
+  },
+  "perception::": {
+    "meaning": "看法",
+    "englishMeaning": "the way you think about something or the impression you have of it",
+    "phonetic": "/pəsˈɛpʃən/",
+    "exampleSentence": "Public perception of the plan has changed."
+  },
+  "pound::": {
+    "meaning": "猛击",
+    "englishMeaning": "to hit with great force, often repeatedly",
+    "phonetic": "/pˈaʊnd/",
+    "exampleSentence": "Waves pound the rocks during a big storm."
+  },
+  "soar::": {
+    "meaning": "猛升",
+    "englishMeaning": "to rise quickly",
+    "phonetic": "/sˈɔː/",
+    "exampleSentence": "Prices soar when food becomes hard to find."
+  },
+  "startle::": {
+    "meaning": "使吃惊",
+    "englishMeaning": "to surprise or frighten",
+    "phonetic": "/stˈɑːtəl/",
+    "exampleSentence": "Loud thunder can startle the sleeping baby."
+  },
+  "supreme::": {
+    "meaning": "最高的",
+    "englishMeaning": "highest in rank or importance",
+    "phonetic": "/suːpɹˈiːm/",
+    "exampleSentence": "The king held supreme power over the land."
+  },
+  "torch::": {
+    "meaning": "火把",
+    "englishMeaning": "a piece of wood with a flame at one end that is used to give light",
+    "phonetic": "/tˈɔːtʃ/",
+    "exampleSentence": "He held a torch to light the dark path."
+  },
+  "venture::": {
+    "meaning": "冒险事业",
+    "englishMeaning": "a new and possibly risky activity",
+    "phonetic": "/vˈɛntʃɐ/",
+    "exampleSentence": "The new shop is a risky business venture."
+  },
+  "abnormal::": {
+    "meaning": "反常的",
+    "englishMeaning": "not usual, often to a worrying degree",
+    "phonetic": "/ɐbnˈɔːməl/",
+    "exampleSentence": "The doctor found an abnormal result in the test."
+  },
+  "acknowledge::": {
+    "meaning": "承认",
+    "englishMeaning": "to accept, admit, or recognize something",
+    "phonetic": "/ɐknˈɒlɪdʒ/",
+    "exampleSentence": "I acknowledge that I made a mistake."
+  },
+  "botany::": {
+    "meaning": "植物学",
+    "englishMeaning": "the scientific study of plants",
+    "phonetic": "/bˈɒtəni/",
+    "exampleSentence": "She studies botany and draws many plants."
+  },
+  "compile::": {
+    "meaning": "汇编",
+    "englishMeaning": "to collect and put together information",
+    "phonetic": "/kəmpˈaɪl/",
+    "exampleSentence": "Researchers compile facts from many old books."
+  },
+  "cultivate::": {
+    "meaning": "种植",
+    "englishMeaning": "to grow plants, crops, fish, etc.",
+    "phonetic": "/kˈʌltɪvˌeɪt/",
+    "exampleSentence": "Farmers cultivate rice in the wet fields."
+  },
+  "hardy::": {
+    "meaning": "耐寒的",
+    "englishMeaning": "strong and able to cope with difficult conditions",
+    "phonetic": "/hˈɑːdi/",
+    "exampleSentence": "These hardy plants survive the cold winter."
+  },
+  "inland::": {
+    "meaning": "内陆的",
+    "englishMeaning": "not near a coast",
+    "phonetic": "/ˈɪnlənd/",
+    "exampleSentence": "They live in an inland town far from the sea."
+  },
+  "nursery::": {
+    "meaning": "苗圃",
+    "englishMeaning": "a place where plants and young trees are grown and sold",
+    "phonetic": "/nˈɜːsəɹi/",
+    "exampleSentence": "We bought young trees at the plant nursery."
+  },
+  "odor::": {
+    "meaning": "气味",
+    "englishMeaning": "a smell, usually unpleasant",
+    "phonetic": "/ˈəʊdə/",
+    "exampleSentence": "A strong odor came from the kitchen bin."
+  },
+  "reservoir::": {
+    "meaning": "水库",
+    "englishMeaning": "a lake used for storing water for humans' use",
+    "phonetic": "/ɹˈɛzəvwˌɑː/",
+    "exampleSentence": "The city stores water in a large reservoir."
+  },
+  "decompose::": {
+    "meaning": "腐烂",
+    "englishMeaning": "to decay; to rot",
+    "phonetic": "/dˌiːkəmpˈəʊz/",
+    "exampleSentence": "Dead leaves decompose and feed the soil."
+  },
+  "enrich::": {
+    "meaning": "使更丰富",
+    "englishMeaning": "to make better in quality",
+    "phonetic": "/ɛnɹˈɪtʃ/",
+    "exampleSentence": "Travel can enrich your knowledge of the world."
+  },
+  "hose::": {
+    "meaning": "软管",
+    "englishMeaning": "a flexible tube used to carry water",
+    "phonetic": "/hˈəʊz/",
+    "exampleSentence": "He used a garden hose to water the flowers."
+  },
+  "moist::": {
+    "meaning": "微湿的",
+    "englishMeaning": "slightly wet",
+    "phonetic": "/mˈɔɪst/",
+    "exampleSentence": "Keep the soil moist but not too wet."
+  },
+  "nurture::": {
+    "meaning": "培育",
+    "englishMeaning": "to care for something while it is growing and developing",
+    "phonetic": "/nˈɜːtʃɐ/",
+    "exampleSentence": "Good teachers nurture young children's talents."
+  },
+  "plantation::": {
+    "meaning": "种植园",
+    "englishMeaning": "a large area of land where crops are grown",
+    "phonetic": "/plɑːntˈeɪʃən/",
+    "exampleSentence": "Tea grows on a large plantation in the hills."
+  },
+  "shrub::": {
+    "meaning": "灌木",
+    "englishMeaning": "a low woody plant like a small bush",
+    "phonetic": "/ʃɹˈʌb/",
+    "exampleSentence": "A small shrub grew beside the garden path."
+  },
+  "twig::": {
+    "meaning": "小枝",
+    "englishMeaning": "a very small, thin branch",
+    "phonetic": "/twˈɪɡ/",
+    "exampleSentence": "A bird sat on a thin twig in the tree."
+  },
+  "vocation::": {
+    "meaning": "天职",
+    "englishMeaning": "a job that you do because you feel it is your purpose in life",
+    "phonetic": "/vəʊkˈeɪʃən/",
+    "exampleSentence": "Teaching felt like a true vocation to her."
+  },
+  "worsen::": {
+    "meaning": "恶化",
+    "englishMeaning": "to make or become worse",
+    "phonetic": "/wˈɜːsən/",
+    "exampleSentence": "Cold weather can worsen a bad cough."
+  },
+  "abort::": {
+    "meaning": "中止",
+    "englishMeaning": "to cause something to stop before it is complete",
+    "phonetic": "/ɐbˈɔːt/",
+    "exampleSentence": "They abort the test when the machine fails."
+  },
+  "accelerate::": {
+    "meaning": "加速",
+    "englishMeaning": "to increase speed",
+    "phonetic": "/ɐksˈɛləɹˌeɪt/",
+    "exampleSentence": "The car will accelerate on the empty road."
+  },
+  "blast::": {
+    "meaning": "猛击",
+    "englishMeaning": "to hit or shoot something with great energy",
+    "phonetic": "/blˈɑːst/",
+    "exampleSentence": "Waves blast the rocks during a heavy storm."
+  },
+  "caution::": {
+    "meaning": "谨慎",
+    "englishMeaning": "great care and attention",
+    "phonetic": "/kˈɔːʃən/",
+    "exampleSentence": "Cross the icy road with great caution."
+  },
+  "deliberately::": {
+    "meaning": "故意地",
+    "englishMeaning": "done on purpose",
+    "phonetic": "/dɪlˈɪbəɹətli/",
+    "exampleSentence": "He deliberately left the door open for us."
+  },
+  "disrupt::": {
+    "meaning": "打断",
+    "englishMeaning": "to interrupt",
+    "phonetic": "/dɪsɹˈʌpt/",
+    "exampleSentence": "Loud phones disrupt the quiet class."
+  },
+  "fragment::": {
+    "meaning": "碎片",
+    "englishMeaning": "an incomplete piece of a larger object",
+    "phonetic": "/ˈfræɡmənt/",
+    "exampleSentence": "A glass fragment lay on the kitchen floor."
+  },
+  "immense::": {
+    "meaning": "巨大的",
+    "englishMeaning": "extremely large",
+    "phonetic": "/ɪmˈɛns/",
+    "exampleSentence": "The desert is an immense sea of sand."
+  },
+  "lieutenant::": {
+    "meaning": "中尉",
+    "englishMeaning": "an officer in the military or American police",
+    "phonetic": "/lɛftˈɛnənt/",
+    "exampleSentence": "The lieutenant gave orders to the soldiers."
+  },
+  "omit::": {
+    "meaning": "遗漏",
+    "englishMeaning": "to fail to include",
+    "phonetic": "/əʊmˈɪt/",
+    "exampleSentence": "Do not omit your name on the form."
+  },
+  "activate::": {
+    "meaning": "启动",
+    "englishMeaning": "to cause to start working",
+    "phonetic": "/ˈæktɪvˌeɪt/",
+    "exampleSentence": "Press this button to activate the alarm."
+  },
+  "boost::": {
+    "meaning": "提高",
+    "englishMeaning": "to increase or improve",
+    "phonetic": "/bˈuːst/",
+    "exampleSentence": "Extra practice will boost your English score."
+  },
+  "database::": {
+    "meaning": "数据库",
+    "englishMeaning": "a collection of data stored on a computer",
+    "phonetic": "/dˈeɪtəbˌeɪs/",
+    "exampleSentence": "The school stores names in a database."
+  },
+  "flaw::": {
+    "meaning": "缺点",
+    "englishMeaning": "a mistake or undesirable quality",
+    "phonetic": "/flˈɔː/",
+    "exampleSentence": "A small flaw made the glass vase cheaper."
+  },
+  "halt::": {
+    "meaning": "停止",
+    "englishMeaning": "to stop moving or happening",
+    "phonetic": "/hˈɒlt/",
+    "exampleSentence": "The driver had to halt at the red light."
+  },
+  "inspect::": {
+    "meaning": "检查",
+    "englishMeaning": "to check carefully",
+    "phonetic": "/ɪnspˈɛkt/",
+    "exampleSentence": "Officers inspect the bags at the airport."
+  },
+  "obligation::": {
+    "meaning": "义务",
+    "englishMeaning": "something that you must do",
+    "phonetic": "/ˌɒblɪɡˈeɪʃən/",
+    "exampleSentence": "Paying tax is an obligation for every worker."
+  },
+  "patriot::": {
+    "meaning": "爱国者",
+    "englishMeaning": "someone who loves his or her country",
+    "phonetic": "/pˈætɹɪət/",
+    "exampleSentence": "The patriot loved his country very much."
+  },
+  "patrol::": {
+    "meaning": "巡逻",
+    "englishMeaning": "to move regularly around a place in order to prevent trouble or crime",
+    "phonetic": "/pɐtɹˈəʊl/",
+    "exampleSentence": "Guards patrol the museum at night."
+  },
+  "rifle::": {
+    "meaning": "步枪",
+    "englishMeaning": "a gun with a long barrel",
+    "phonetic": "/ɹˈaɪfəl/",
+    "exampleSentence": "The soldier carried a long rifle on his back."
+  },
+  "abolish::": {
+    "meaning": "废除",
+    "englishMeaning": "to formally bring an end to something",
+    "phonetic": "/ɐbˈɒlɪʃ/",
+    "exampleSentence": "The king will abolish the unfair old law."
+  },
+  "betray::": {
+    "meaning": "背叛",
+    "englishMeaning": "to break trust by not upholding your obligations to others",
+    "phonetic": "/bɪtɹˈeɪ/",
+    "exampleSentence": "A true friend would never betray your secret."
+  },
+  "conceal::": {
+    "meaning": "隐藏",
+    "englishMeaning": "to hide or keep secret",
+    "phonetic": "/kənsˈiːl/",
+    "exampleSentence": "She tried to conceal the gift behind her."
+  },
+  "deter::": {
+    "meaning": "阻止",
+    "englishMeaning": "to discourage someone from doing something",
+    "phonetic": "/dɪtˈɜː/",
+    "exampleSentence": "High prices deter people from buying the car."
+  },
+  "fraud::": {
+    "meaning": "诈骗",
+    "englishMeaning": "the crime of gaining money by tricking someone",
+    "phonetic": "/fɹˈɔːd/",
+    "exampleSentence": "The man was sent to prison for fraud."
+  },
+  "hinder::": {
+    "meaning": "妨碍",
+    "englishMeaning": "to make it more difficult to do something",
+    "phonetic": "/ˈhɪndə/",
+    "exampleSentence": "Heavy rain can hinder work on the road."
+  },
+  "monarch::": {
+    "meaning": "君主",
+    "englishMeaning": "a king or queen",
+    "phonetic": "/mˈɒnək/",
+    "exampleSentence": "The monarch ruled the country for many years."
+  },
+  "oath::": {
+    "meaning": "誓言",
+    "englishMeaning": "a formal promise",
+    "phonetic": "/ˈəʊθ/",
+    "exampleSentence": "The witness took an oath to tell the truth."
+  },
+  "physician::": {
+    "meaning": "医生",
+    "englishMeaning": "a doctor who treats illness",
+    "phonetic": "/fɪzˈɪʃən/",
+    "exampleSentence": "A physician checked the child's high fever."
+  },
+  "reign::": {
+    "meaning": "统治",
+    "englishMeaning": "to rule a country",
+    "phonetic": "/ɹˈeɪn/",
+    "exampleSentence": "Queens reign over the land in that story."
+  },
+  "bribe::": {
+    "meaning": "贿赂",
+    "englishMeaning": "to give money or presents to someone so that they will do something for you",
+    "phonetic": "/bɹˈaɪb/",
+    "exampleSentence": "It is a crime to bribe a police officer."
+  },
+  "cease::": {
+    "meaning": "停止",
+    "englishMeaning": "to stop moving or happening",
+    "phonetic": "/sˈiːs/",
+    "exampleSentence": "The rain will cease before we walk home."
+  },
+  "conspiracy::": {
+    "meaning": "密谋",
+    "englishMeaning": "a secret plan to do something bad or illegal",
+    "phonetic": "/kənspˈɪɹəsi/",
+    "exampleSentence": "Police stopped a conspiracy to rob the bank."
+  },
+  "diplomat::": {
+    "meaning": "外交官",
+    "englishMeaning": "an official whose job is to represent their government in a foreign country",
+    "phonetic": "/dˈɪpləmˌæt/",
+    "exampleSentence": "The diplomat spoke for his country abroad."
+  },
+  "embassy::": {
+    "meaning": "大使馆",
+    "englishMeaning": "a building where diplomats work",
+    "phonetic": "/ˈɛmbəsˌi/",
+    "exampleSentence": "We waited at the embassy for our visas."
+  },
+  "metropolitan::": {
+    "meaning": "大都市的",
+    "englishMeaning": "typical of or belonging to a large, busy city",
+    "phonetic": "/mˌɛtɹəpˈɒlɪtən/",
+    "exampleSentence": "She enjoys metropolitan life in the big city."
+  },
+  "negotiate::": {
+    "meaning": "谈判",
+    "englishMeaning": "to discuss and bargain to reach an agreement",
+    "phonetic": "/nɪɡˈəʊʃɪˌeɪt/",
+    "exampleSentence": "The two sides negotiate a new trade deal."
+  },
+  "provoke::": {
+    "meaning": "激怒",
+    "englishMeaning": "to deliberately cause a reaction",
+    "phonetic": "/pɹəvˈəʊk/",
+    "exampleSentence": "Do not provoke the dog with a stick."
+  },
+  "scheme::": {
+    "meaning": "计划",
+    "englishMeaning": "a plan or arrangement",
+    "phonetic": "/skˈiːm/",
+    "exampleSentence": "The city has a scheme to plant more trees."
+  },
+  "succession::": {
+    "meaning": "一连串",
+    "englishMeaning": "a series of people or things of the same type",
+    "phonetic": "/səksˈɛʃən/",
+    "exampleSentence": "A succession of storms hit the coast."
+  },
+  "contemplate::": {
+    "meaning": "沉思",
+    "englishMeaning": "to think carefully for a long time",
+    "phonetic": "/kˈɒntɪmplˌeɪt/",
+    "exampleSentence": "He sat to contemplate the hard choice."
+  },
+  "entrepreneur::": {
+    "meaning": "企业家",
+    "englishMeaning": "a person who sets up businesses",
+    "phonetic": "/ˌɒntɹɪpɹɪnˈɜː/",
+    "exampleSentence": "The young entrepreneur opened a small shop."
+  },
+  "ethical::": {
+    "meaning": "道德的",
+    "englishMeaning": "relating to beliefs about what is morally right or wrong",
+    "phonetic": "/ˈɛθɪkəl/",
+    "exampleSentence": "Doctors follow ethical rules in their work."
+  },
+  "input::": {
+    "meaning": "意见",
+    "englishMeaning": "feedback and ideas that a person gives",
+    "phonetic": "/ˈɪnpʊt/",
+    "exampleSentence": "The teacher asked for input from the class."
+  },
+  "mentor::": {
+    "meaning": "导师",
+    "englishMeaning": "an experienced person who advises a younger or less experienced person",
+    "phonetic": "/mˈɛntɔː/",
+    "exampleSentence": "Her mentor helped her start the new job."
+  },
+  "proofread::": {
+    "meaning": "校对",
+    "englishMeaning": "to read and check for errors",
+    "phonetic": "/pɹˈuːfɹiːd/",
+    "exampleSentence": "Please proofread the letter before you send it."
+  },
+  "refine::": {
+    "meaning": "精炼",
+    "englishMeaning": "to improve something by removing unwanted material",
+    "phonetic": "/ɹɪfˈaɪn/",
+    "exampleSentence": "Workers refine oil at the large factory."
+  },
+  "simplify::": {
+    "meaning": "简化",
+    "englishMeaning": "to make simpler or less complex",
+    "phonetic": "/sˈɪmplɪfˌaɪ/",
+    "exampleSentence": "Teachers simplify the rules for young children."
+  },
+  "suspicion::": {
+    "meaning": "怀疑",
+    "englishMeaning": "a belief or feeling that someone has done something bad",
+    "phonetic": "/səspˈɪʃən/",
+    "exampleSentence": "Police had a suspicion about the missing money."
+  },
+  "transparent::": {
+    "meaning": "透明的",
+    "englishMeaning": "able to be clearly seen through",
+    "phonetic": "/tɹænspˈæɹənt/",
+    "exampleSentence": "The glass bottle is clear and transparent."
+  },
+  "factual::": {
+    "meaning": "事实的",
+    "englishMeaning": "true; consisting of facts",
+    "phonetic": "/fˈæktʃuːəl/",
+    "exampleSentence": "The report is factual and easy to check."
+  },
+  "linguistics::": {
+    "meaning": "语言学",
+    "englishMeaning": "the study of language",
+    "phonetic": "/lɪŋɡwˈɪstɪks/",
+    "exampleSentence": "She studies linguistics and how people speak."
+  },
+  "minimize::": {
+    "meaning": "减到最少",
+    "englishMeaning": "to reduce to the lowest possible level",
+    "phonetic": "/ˈmɪnɪmaɪz/",
+    "exampleSentence": "We must minimize waste in the school kitchen."
+  },
+  "overview::": {
+    "meaning": "概述",
+    "englishMeaning": "a general summary of something",
+    "phonetic": "/ˈəʊvəvjˌuː/",
+    "exampleSentence": "This page gives an overview of the course."
+  },
+  "retain::": {
+    "meaning": "保留",
+    "englishMeaning": "to keep something and not lose it",
+    "phonetic": "/ɹɪtˈeɪn/",
+    "exampleSentence": "Please retain your ticket until the trip ends."
+  },
+  "shatter::": {
+    "meaning": "粉碎",
+    "englishMeaning": "to break into small pieces",
+    "phonetic": "/ʃˈætɐ/",
+    "exampleSentence": "A hard ball can shatter the glass window."
+  },
+  "sue::": {
+    "meaning": "起诉",
+    "englishMeaning": "to start a legal case against someone",
+    "phonetic": "/suː/",
+    "exampleSentence": "The company will sue him for stolen ideas."
+  },
+  "triumph::": {
+    "meaning": "巨大成功",
+    "englishMeaning": "a great success",
+    "phonetic": "/tɹˈaɪʌmf/",
+    "exampleSentence": "Winning the cup was a great triumph."
+  },
+  "villain::": {
+    "meaning": "恶棍",
+    "englishMeaning": "a wicked person",
+    "phonetic": "/vˈɪlən/",
+    "exampleSentence": "The villain in the story stole the gold."
+  },
+  "witty::": {
+    "meaning": "机智的",
+    "englishMeaning": "amusing in a clever way",
+    "phonetic": "/wˈɪti/",
+    "exampleSentence": "Her witty reply made the whole class laugh."
+  },
+  "accustomed::": {
+    "meaning": "习惯的",
+    "englishMeaning": "used to; in the habit of",
+    "phonetic": "/ɐkˈʌstəmd/",
+    "exampleSentence": "I am accustomed to getting up very early."
+  },
+  "applaud::": {
+    "meaning": "鼓掌",
+    "englishMeaning": "to clap to show approval or enjoyment",
+    "phonetic": "/ɐplˈɔːd/",
+    "exampleSentence": "The crowd began to applaud after the song."
+  },
+  "behalf::": {
+    "meaning": "代表",
+    "englishMeaning": "interest; support",
+    "phonetic": "/bɪhˈɑːf/",
+    "exampleSentence": "She spoke on behalf of the whole class."
+  },
+  "chaos::": {
+    "meaning": "混乱",
+    "englishMeaning": "complete disorder",
+    "phonetic": "/kˈeɪɒs/",
+    "exampleSentence": "The broken traffic lights caused chaos."
+  },
+  "designate::": {
+    "meaning": "指定",
+    "englishMeaning": "to formally choose for a specific purpose",
+    "phonetic": "/dˈɛzɪɡnˌeɪt/",
+    "exampleSentence": "They designate this room as a quiet study."
+  },
+  "federal::": {
+    "meaning": "联邦的",
+    "englishMeaning": "relating to control by a central government",
+    "phonetic": "/fˈɛdəɹəl/",
+    "exampleSentence": "The federal government made a new tax law."
+  },
+  "hostile::": {
+    "meaning": "敌对的",
+    "englishMeaning": "unfriendly and aggressive",
+    "phonetic": "/hˈɒstaɪl/",
+    "exampleSentence": "The crowd became hostile after the unfair call."
+  },
+  "impose::": {
+    "meaning": "强加",
+    "englishMeaning": "to force on others",
+    "phonetic": "/ɪmpˈəʊz/",
+    "exampleSentence": "Do not impose your views on other people."
+  },
+  "outrage::": {
+    "meaning": "愤慨",
+    "englishMeaning": "great anger or offense",
+    "phonetic": "/ˈaʊtɹeɪdʒ/",
+    "exampleSentence": "The cruel act caused public outrage."
+  },
+  "ratio::": {
+    "meaning": "比率",
+    "englishMeaning": "a proportion",
+    "phonetic": "/ɹˈeɪʃɪˌəʊ/",
+    "exampleSentence": "The ratio of boys to girls is even."
+  },
+  "bonus::": {
+    "meaning": "奖金",
+    "englishMeaning": "extra money paid in addition to your salary",
+    "phonetic": "/bˈəʊnəs/",
+    "exampleSentence": "Workers received a bonus at the end of year."
+  },
+  "collaborate::": {
+    "meaning": "合作",
+    "englishMeaning": "to work together",
+    "phonetic": "/kəlˈæbəɹˌeɪt/",
+    "exampleSentence": "Two classes collaborate on the science project."
+  },
+  "enforce::": {
+    "meaning": "执行",
+    "englishMeaning": "to force people to obey",
+    "phonetic": "/ɛnfˈɔːs/",
+    "exampleSentence": "Police enforce the speed limit on this road."
+  },
+  "grumble::": {
+    "meaning": "发牢骚",
+    "englishMeaning": "to complain in a quiet unhappy way",
+    "phonetic": "/ɡɹˈʌmbəl/",
+    "exampleSentence": "People grumble when the bus is late again."
+  },
+  "insure::": {
+    "meaning": "给…保险",
+    "englishMeaning": "to guarantee against loss or harm",
+    "phonetic": "/ɪnʃˈɔː/",
+    "exampleSentence": "You should insure the car against accidents."
+  },
+  "minority::": {
+    "meaning": "少数",
+    "englishMeaning": "the smallest number of; less than half of a total",
+    "phonetic": "/maɪnˈɒɹɪti/",
+    "exampleSentence": "Only a minority of students missed the test."
+  },
+  "partnership::": {
+    "meaning": "伙伴关系",
+    "englishMeaning": "a relationship in which two people or groups work together",
+    "phonetic": "/pˈɑːtnəʃˌɪp/",
+    "exampleSentence": "The two shops formed a business partnership."
+  },
+  "poll::": {
+    "meaning": "民意调查",
+    "englishMeaning": "a survey of people's opinions",
+    "phonetic": "/pəʊl/",
+    "exampleSentence": "A poll showed most people liked the plan."
+  },
+  "remainder::": {
+    "meaning": "剩余部分",
+    "englishMeaning": "the part that is left over",
+    "phonetic": "/ɹɪmˈeɪndɐ/",
+    "exampleSentence": "Eat the remainder of the soup tomorrow."
+  },
+  "strand::": {
+    "meaning": "使滞留",
+    "englishMeaning": "to leave or put in a difficult situation",
+    "phonetic": "/stɹˈænd/",
+    "exampleSentence": "The storm will strand travelers at the airport."
+  },
+  "crumble::": {
+    "meaning": "碎裂",
+    "englishMeaning": "to break into small pieces",
+    "phonetic": "/kɹˈʌmbəl/",
+    "exampleSentence": "Old walls crumble after many years of rain."
+  },
+  "gobble::": {
+    "meaning": "狼吞虎咽",
+    "englishMeaning": "to eat quickly and greedily",
+    "phonetic": "/ɡˈɒbəl/",
+    "exampleSentence": "Hungry children gobble the warm bread quickly."
+  },
+  "keen::": {
+    "meaning": "热切的",
+    "englishMeaning": "eager; wanting to do something",
+    "phonetic": "/kˈiːn/",
+    "exampleSentence": "She is keen to join the school choir."
+  },
+  "pastry::": {
+    "meaning": "酥皮点心",
+    "englishMeaning": "a sweet food made of baked dough",
+    "phonetic": "/pˈeɪstɹi/",
+    "exampleSentence": "The bakery sells sweet pastry every morning."
+  },
+  "rib::": {
+    "meaning": "肋骨",
+    "englishMeaning": "one of the curved bones that surround the chest",
+    "phonetic": "/ɹˈɪb/",
+    "exampleSentence": "He hurt a rib when he fell off the bike."
+  },
+  "seasoning::": {
+    "meaning": "调料",
+    "englishMeaning": "a spice added to give flavor",
+    "phonetic": "/sˈiːzənɪŋ/",
+    "exampleSentence": "Add a little seasoning to the soup."
+  },
+  "staple::": {
+    "meaning": "主食的",
+    "englishMeaning": "produced or consumed as a key part of a people's diet",
+    "phonetic": "/stˈeɪpəl/",
+    "exampleSentence": "Rice is a staple food in this country."
+  },
+  "tender::": {
+    "meaning": "嫩的",
+    "englishMeaning": "(of food) easy to cut or chew",
+    "phonetic": "/tˈɛndɐ/",
+    "exampleSentence": "The meat was tender and easy to cut."
+  },
+  "utility::": {
+    "meaning": "公用事业",
+    "englishMeaning": "a service such as water, electricity, gas, etc.",
+    "phonetic": "/juːtˈɪlɪti/",
+    "exampleSentence": "Water is a utility that every home needs."
+  },
+  "variation::": {
+    "meaning": "差异",
+    "englishMeaning": "a difference",
+    "phonetic": "/vˌeəɹɪˈeɪʃən/",
+    "exampleSentence": "There is little variation in the test scores."
+  },
+  "appetite::": {
+    "meaning": "食欲",
+    "englishMeaning": "the desire to eat",
+    "phonetic": "/ˈæpɪtˌaɪt/",
+    "exampleSentence": "A long walk gave him a good appetite."
+  },
+  "core::": {
+    "meaning": "核心",
+    "englishMeaning": "the central part",
+    "phonetic": "/kˈɔː/",
+    "exampleSentence": "The core of the apple is not eaten."
+  },
+  "grate::": {
+    "meaning": "擦碎",
+    "englishMeaning": "to grind into shreds by rubbing",
+    "phonetic": "/ɡɹˈeɪt/",
+    "exampleSentence": "Please grate the cheese over the hot pasta."
+  },
+  "grease::": {
+    "meaning": "油脂",
+    "englishMeaning": "a thick, oily substance",
+    "phonetic": "/ɡɹˈiːs/",
+    "exampleSentence": "Wash the grease off the dirty pan."
+  },
+  "output::": {
+    "meaning": "产量",
+    "englishMeaning": "the amount of something a person or business produces",
+    "phonetic": "/ˈaʊtpʊt/",
+    "exampleSentence": "The factory's output rose last month."
+  },
+  "overhead::": {
+    "meaning": "在头顶",
+    "englishMeaning": "above one's head",
+    "phonetic": "/ˌəʊvəˈhed/",
+    "exampleSentence": "Birds flew overhead above the open field."
+  },
+  "patron::": {
+    "meaning": "顾客",
+    "englishMeaning": "a customer of a bar, hotel, etc.",
+    "phonetic": "/pˈeɪtɹən/",
+    "exampleSentence": "A regular patron sat at the same table."
+  },
+  "rack::": {
+    "meaning": "架子",
+    "englishMeaning": "a frame or shelf with bars",
+    "phonetic": "/ɹˈæk/",
+    "exampleSentence": "Hang your coat on the wooden rack."
+  },
+  "substantial::": {
+    "meaning": "大量的",
+    "englishMeaning": "large in amount or degree",
+    "phonetic": "/səbstˈænʃəl/",
+    "exampleSentence": "She won a substantial prize for the story."
+  },
+  "texture::": {
+    "meaning": "质地",
+    "englishMeaning": "the way something feels to the touch",
+    "phonetic": "/tˈɛkstʃɐ/",
+    "exampleSentence": "I like the smooth texture of this cloth."
+  },
+  "anticipate::": {
+    "meaning": "预料",
+    "englishMeaning": "to expect something and get ready for it",
+    "phonetic": "/æntˈɪsɪpˌeɪt/",
+    "exampleSentence": "We anticipate rain later in the afternoon."
+  },
+  "curriculum::": {
+    "meaning": "课程",
+    "englishMeaning": "a program of study taught in a school",
+    "phonetic": "/kʌɹˈɪkjʊləm/",
+    "exampleSentence": "Science is part of the school curriculum."
+  },
+  "derive::": {
+    "meaning": "源自",
+    "englishMeaning": "to get something from something else",
+    "phonetic": "/dɪɹˈaɪv/",
+    "exampleSentence": "Many English words derive from old Latin."
+  },
+  "electron::": {
+    "meaning": "电子",
+    "englishMeaning": "a tiny particle of matter",
+    "phonetic": "/ɪlˈɛktɹɒn/",
+    "exampleSentence": "An electron is a tiny part of an atom."
+  },
+  "fraction::": {
+    "meaning": "一小部分",
+    "englishMeaning": "a portion of something",
+    "phonetic": "/fɹˈækʃən/",
+    "exampleSentence": "Only a fraction of the class was late."
+  },
+  "innovation::": {
+    "meaning": "创新",
+    "englishMeaning": "a new thing or new way of doing something",
+    "phonetic": "/ˌɪnəvˈeɪʃən/",
+    "exampleSentence": "The new phone is an exciting innovation."
+  },
+  "nucleus::": {
+    "meaning": "原子核",
+    "englishMeaning": "the central part of an atom or cell",
+    "phonetic": "/njˈuːklɪəs/",
+    "exampleSentence": "The nucleus lies at the center of an atom."
+  },
+  "psychiatrist::": {
+    "meaning": "精神科医生",
+    "englishMeaning": "a doctor who treats mental illnesses",
+    "phonetic": "/saɪkˈaɪətɹɪst/",
+    "exampleSentence": "A psychiatrist helps people with mental illness."
+  },
+  "radioactive::": {
+    "meaning": "放射性的",
+    "englishMeaning": "able to release or emit energy through atomic decay",
+    "phonetic": "/ɹˌeɪdɪəʊˈæktɪv/",
+    "exampleSentence": "The waste from the plant is radioactive."
+  },
+  "seminar::": {
+    "meaning": "研讨会",
+    "englishMeaning": "a meeting in which people discuss a problem or topic",
+    "phonetic": "/sˈɛmɪnˌɑː/",
+    "exampleSentence": "Students discussed the book at a seminar."
+  },
+  "constellation::": {
+    "meaning": "星座",
+    "englishMeaning": "a group of stars in a certain arrangement",
+    "phonetic": "/kɒnstɪlˈeɪʃən/",
+    "exampleSentence": "We saw a bright constellation in the sky."
+  },
+  "deduct::": {
+    "meaning": "扣除",
+    "englishMeaning": "to subtract a quantity",
+    "phonetic": "/dɪdˈʌkt/",
+    "exampleSentence": "The shop will deduct ten dollars from the bill."
+  },
+  "improvise::": {
+    "meaning": "即兴做",
+    "englishMeaning": "to make or do without planning",
+    "phonetic": "/ˈɪmpɹəvˌaɪz/",
+    "exampleSentence": "The actors improvise a short funny scene."
+  },
+  "notion::": {
+    "meaning": "观念",
+    "englishMeaning": "an idea or belief",
+    "phonetic": "/nˈəʊʃən/",
+    "exampleSentence": "He had a notion that the plan would fail."
+  },
+  "ponder::": {
+    "meaning": "仔细思考",
+    "englishMeaning": "to think carefully",
+    "phonetic": "/pˈɒndɐ/",
+    "exampleSentence": "She sat to ponder the difficult question."
+  },
+  "pulse::": {
+    "meaning": "脉搏",
+    "englishMeaning": "the regular beating of blood in the arteries",
+    "phonetic": "/pˈʌls/",
+    "exampleSentence": "The nurse checked the patient's pulse."
+  },
+  "refrain::": {
+    "meaning": "克制",
+    "englishMeaning": "to hold back; to not do something",
+    "phonetic": "/ɹɪfɹˈeɪn/",
+    "exampleSentence": "Please refrain from talking during the test."
+  },
+  "sphere::": {
+    "meaning": "领域",
+    "englishMeaning": "an area of activity or interest",
+    "phonetic": "/sfˈiə/",
+    "exampleSentence": "Art is her main sphere of interest."
+  },
+  "syndrome::": {
+    "meaning": "综合征",
+    "englishMeaning": "a medical condition",
+    "phonetic": "/sˈɪndɹəʊm/",
+    "exampleSentence": "The doctor explained the rare syndrome clearly."
+  },
+  "vivid::": {
+    "meaning": "鲜明的",
+    "englishMeaning": "very clear and bright",
+    "phonetic": "/vˈɪvɪd/",
+    "exampleSentence": "She painted the sky in vivid blue."
+  },
+  "acquaintance::": {
+    "meaning": "熟人",
+    "englishMeaning": "a person you have met before but you do not know well",
+    "phonetic": "/ɐkwˈeɪntəns/",
+    "exampleSentence": "He is only an acquaintance, not a close friend."
+  },
+  "arrogant::": {
+    "meaning": "傲慢的",
+    "englishMeaning": "behaving as if you are more important than others",
+    "phonetic": "/ˈæɹəɡənt/",
+    "exampleSentence": "The arrogant boy would not listen to anyone."
+  },
+  "butler::": {
+    "meaning": "男管家",
+    "englishMeaning": "the head male servant in a house",
+    "phonetic": "/bˈʌtlɐ/",
+    "exampleSentence": "The butler opened the door for the guests."
+  },
+  "cabinet::": {
+    "meaning": "橱柜",
+    "englishMeaning": "a cupboard used for storing things",
+    "phonetic": "/kˈæbɪnət/",
+    "exampleSentence": "Cups are kept in the kitchen cabinet."
+  },
+  "chatter::": {
+    "meaning": "啁啾",
+    "englishMeaning": "to make quick noises like speaking",
+    "phonetic": "/tʃˈætɐ/",
+    "exampleSentence": "Small birds chatter in the trees at dawn."
+  },
+  "courtyard::": {
+    "meaning": "庭院",
+    "englishMeaning": "an area of land surrounded by buildings",
+    "phonetic": "/kˈɔːtjɑːd/",
+    "exampleSentence": "Children played games in the quiet courtyard."
+  },
+  "distress::": {
+    "meaning": "痛苦",
+    "englishMeaning": "a state of extreme sadness or pain",
+    "phonetic": "/dɪstɹˈɛs/",
+    "exampleSentence": "The lost child was in great distress."
+  },
+  "elite::": {
+    "meaning": "精英的",
+    "englishMeaning": "of superior status",
+    "phonetic": "/ɪlˈiːt/",
+    "exampleSentence": "She joined an elite sports team at school."
+  },
+  "exclusive::": {
+    "meaning": "专属的",
+    "englishMeaning": "used or owned by one particular person or group",
+    "phonetic": "/ɛksklˈuːsɪv/",
+    "exampleSentence": "This club is exclusive to its paid members."
+  },
+  "giggle::": {
+    "meaning": "咯咯笑",
+    "englishMeaning": "to laugh in a high-pitched sound",
+    "phonetic": "/ɡˈɪɡəl/",
+    "exampleSentence": "The girls giggle at the funny story."
+  },
+  "accord::": {
+    "meaning": "协议",
+    "englishMeaning": "an official agreement",
+    "phonetic": "/ɐkˈɔːd/",
+    "exampleSentence": "The two countries signed a peace accord."
+  },
+  "bachelor::": {
+    "meaning": "单身男子",
+    "englishMeaning": "a man who has never married",
+    "phonetic": "/bˈætʃəlɐ/",
+    "exampleSentence": "Her uncle is still a bachelor at forty."
+  },
+  "chairperson::": {
+    "meaning": "主席",
+    "englishMeaning": "the head of a meeting or debate",
+    "phonetic": "/tʃˈeəpəsən/",
+    "exampleSentence": "The chairperson opened the long meeting."
+  },
+  "dominant::": {
+    "meaning": "占优势的",
+    "englishMeaning": "having more power or influence than others",
+    "phonetic": "/dˈɒmɪnənt/",
+    "exampleSentence": "English is the dominant language in that city."
+  },
+  "heir::": {
+    "meaning": "继承人",
+    "englishMeaning": "someone with the right to have a person's property when that person dies",
+    "phonetic": "/ˈeə/",
+    "exampleSentence": "The oldest son is the heir to the farm."
+  },
+  "indifferent::": {
+    "meaning": "漠不关心的",
+    "englishMeaning": "having a complete lack of interest",
+    "phonetic": "/ɪndˈɪfɹənt/",
+    "exampleSentence": "He seemed indifferent to the bad news."
+  },
+  "legacy::": {
+    "meaning": "遗产",
+    "englishMeaning": "anything left when someone dies",
+    "phonetic": "/lˈɛɡəsi/",
+    "exampleSentence": "The old house was her grandfather's legacy."
+  },
+  "mourn::": {
+    "meaning": "哀悼",
+    "englishMeaning": "to feel sadness for someone who has died",
+    "phonetic": "/mˈɔːn/",
+    "exampleSentence": "Friends mourn the loss of the kind teacher."
+  },
+  "offspring::": {
+    "meaning": "后代",
+    "englishMeaning": "a person's or an animal's children",
+    "phonetic": "/ˈɒfspɹɪŋ/",
+    "exampleSentence": "The bird feeds its offspring in the nest."
+  },
+  "recipient::": {
+    "meaning": "接受者",
+    "englishMeaning": "the person who receives something",
+    "phonetic": "/ɹɪsˈɪpiənt/",
+    "exampleSentence": "She was the recipient of a school prize."
+  },
+  "ally::": {
+    "meaning": "盟友",
+    "englishMeaning": "someone who supports and helps another",
+    "phonetic": "/ˈælaɪ/",
+    "exampleSentence": "Canada is a close ally of that country."
+  },
+  "altitude::": {
+    "meaning": "海拔",
+    "englishMeaning": "height (above the earth's surface)",
+    "phonetic": "/ˈæltɪtjˌuːd/",
+    "exampleSentence": "The plane flew at a high altitude."
+  },
+  "bait::": {
+    "meaning": "诱饵",
+    "englishMeaning": "something offered to attract or interest others",
+    "phonetic": "/bˈeɪt/",
+    "exampleSentence": "The fisherman put bait on the hook."
+  },
+  "brook::": {
+    "meaning": "小溪",
+    "englishMeaning": "a small stream",
+    "phonetic": "/bɹˈʊk/",
+    "exampleSentence": "A clear brook ran through the green field."
+  },
+  "lag::": {
+    "meaning": "落后",
+    "englishMeaning": "to fall behind; to be slow to respond or progress",
+    "phonetic": "/lˈæɡ/",
+    "exampleSentence": "Tired runners lag behind the rest of the group."
+  },
+  "perch::": {
+    "meaning": "栖息",
+    "englishMeaning": "to sit on or near the edge of something",
+    "phonetic": "/pˈɜːtʃ/",
+    "exampleSentence": "Birds perch on the roof in the evening."
+  },
+  "sole::": {
+    "meaning": "鞋底",
+    "englishMeaning": "the bottom surface of a shoe",
+    "phonetic": "/sˈəʊl/",
+    "exampleSentence": "The sole of my shoe has a hole."
+  },
+  "strap::": {
+    "meaning": "带子",
+    "englishMeaning": "a narrow piece of leather or cloth",
+    "phonetic": "/stɹˈæp/",
+    "exampleSentence": "The bag strap broke on the way home."
+  },
+  "tumble::": {
+    "meaning": "摔倒",
+    "englishMeaning": "to fall with a rolling movement",
+    "phonetic": "/tˈʌmbəl/",
+    "exampleSentence": "Children tumble on the grass and laugh."
+  },
+  "vague::": {
+    "meaning": "含糊的",
+    "englishMeaning": "not clear or precise",
+    "phonetic": "/vˈeɪɡ/",
+    "exampleSentence": "His answer was too vague to be useful."
+  },
+  "caravan::": {
+    "meaning": "旅行队",
+    "englishMeaning": "a group of people or animals traveling together",
+    "phonetic": "/kˈæɹɐvˌæn/",
+    "exampleSentence": "A caravan of camels crossed the desert."
+  },
+  "fern::": {
+    "meaning": "蕨类植物",
+    "englishMeaning": "a plant with long stems and feathery leaves",
+    "phonetic": "/fˈɜːn/",
+    "exampleSentence": "A green fern grew in the wet forest."
+  },
+  "hedgehog::": {
+    "meaning": "刺猬",
+    "englishMeaning": "a small animal with spines",
+    "phonetic": "/hˈɛdʒhɒɡ/",
+    "exampleSentence": "A hedgehog rolled into a ball of spines."
+  },
+  "mound::": {
+    "meaning": "土堆",
+    "englishMeaning": "a large, rounded pile",
+    "phonetic": "/mˈaʊnd/",
+    "exampleSentence": "Ants built a mound of earth by the path."
+  },
+  "ranger::": {
+    "meaning": "护林员",
+    "englishMeaning": "a person who looks after a park or forest",
+    "phonetic": "/ɹˈeɪndʒɐ/",
+    "exampleSentence": "The ranger showed us the forest trails."
+  },
+  "sprint::": {
+    "meaning": "短跑冲刺",
+    "englishMeaning": "to run very fast over a short distance",
+    "phonetic": "/spɹˈɪnt/",
+    "exampleSentence": "Athletes sprint the last fifty meters."
+  },
+  "surveillance::": {
+    "meaning": "监视",
+    "englishMeaning": "the careful watching of a person or place",
+    "phonetic": "/səvˈeɪləns/",
+    "exampleSentence": "Cameras provide surveillance of the shop."
+  },
+  "trek::": {
+    "meaning": "长途跋涉",
+    "englishMeaning": "to walk a long distance",
+    "phonetic": "/tɹˈɛk/",
+    "exampleSentence": "We trek through the hills for many hours."
+  },
+  "vapor::": {
+    "meaning": "蒸气",
+    "englishMeaning": "a gas that escapes from a liquid or solid",
+    "phonetic": "/vˈeɪpɐ/",
+    "exampleSentence": "Hot vapor rose from the boiling water."
+  },
+  "warren::": {
+    "meaning": "洞穴群",
+    "englishMeaning": "a group of underground holes and passages",
+    "phonetic": "/wˈɒɹən/",
+    "exampleSentence": "Rabbits live in a warren under the field."
+  },
+  "assassin::": {
+    "meaning": "刺客",
+    "englishMeaning": "a person who kills an important person",
+    "phonetic": "/ɐsˈæsɪn/",
+    "exampleSentence": "The assassin was caught before the attack."
+  },
+  "assemble::": {
+    "meaning": "组装",
+    "englishMeaning": "to fit or join together",
+    "phonetic": "/ɐsˈɛmbəl/",
+    "exampleSentence": "Students assemble the model car from parts."
+  },
+  "brute::": {
+    "meaning": "粗暴的人",
+    "englishMeaning": "a rough, insensitive person",
+    "phonetic": "/bɹˈuːt/",
+    "exampleSentence": "The brute pushed people out of his way."
+  },
+  "cemetery::": {
+    "meaning": "墓地",
+    "englishMeaning": "a place for the dead or their ashes",
+    "phonetic": "/sˈɛmɪtəɹi/",
+    "exampleSentence": "Flowers grew around the quiet cemetery."
+  },
+  "convict::": {
+    "meaning": "囚犯",
+    "englishMeaning": "someone who has been sent to prison",
+    "phonetic": "/ˈkɒnvɪkt/",
+    "exampleSentence": "The convict was sent to a far prison."
+  },
+  "corpse::": {
+    "meaning": "尸体",
+    "englishMeaning": "a dead body of a person",
+    "phonetic": "/kˈɔːps/",
+    "exampleSentence": "Police found a corpse in the river."
+  },
+  "devise::": {
+    "meaning": "想出",
+    "englishMeaning": "to work out a plan in your mind",
+    "phonetic": "/dɪvˈaɪz/",
+    "exampleSentence": "Engineers devise a plan to clean the river."
+  },
+  "evacuate::": {
+    "meaning": "撤离",
+    "englishMeaning": "to exit or send away to a place of safety",
+    "phonetic": "/ɪvˈækjuːˌeɪt/",
+    "exampleSentence": "People evacuate the town before the flood."
+  },
+  "haste::": {
+    "meaning": "匆忙",
+    "englishMeaning": "the act of hurrying",
+    "phonetic": "/hˈeɪst/",
+    "exampleSentence": "In her haste she left the keys at home."
+  },
+  "modest::": {
+    "meaning": "不大的",
+    "englishMeaning": "not large in size or expense; humble",
+    "phonetic": "/mˈɒdəst/",
+    "exampleSentence": "They live in a modest house near school."
+  },
+  "conscience::": {
+    "meaning": "良心",
+    "englishMeaning": "the sense of right and wrong that controls your",
+    "phonetic": "/kˈɒnʃəns/",
+    "exampleSentence": "His conscience told him to tell the truth."
+  },
+  "corrupt::": {
+    "meaning": "腐败的",
+    "englishMeaning": "behaving in a way that is morally wrong",
+    "phonetic": "/kəɹˈʌpt/",
+    "exampleSentence": "The corrupt official took money from shops."
+  },
+  "emerge::": {
+    "meaning": "出来",
+    "englishMeaning": "to come out from an enclosed space",
+    "phonetic": "/ɪmˈɜːdʒ/",
+    "exampleSentence": "Rabbits emerge from the hole at night."
+  },
+  "intrigue::": {
+    "meaning": "使感兴趣",
+    "englishMeaning": "to interest someone in a curious way",
+    "phonetic": "/ɪnˈtriːɡ/",
+    "exampleSentence": "Old maps intrigue the young history student."
+  },
+  "mutter::": {
+    "meaning": "咕哝",
+    "englishMeaning": "to speak quietly and unclearly",
+    "phonetic": "/mˈʌtɐ/",
+    "exampleSentence": "He began to mutter when he lost the key."
+  },
+  "opt::": {
+    "meaning": "选择",
+    "englishMeaning": "to choose one thing from several options",
+    "phonetic": "/ˈɒpt/",
+    "exampleSentence": "Many students opt for the shorter course."
+  },
+  "pursuit::": {
+    "meaning": "追赶",
+    "englishMeaning": "the act of following someone to try to catch that person",
+    "phonetic": "/pəsˈuːt/",
+    "exampleSentence": "Police began a pursuit of the stolen car."
+  },
+  "situated::": {
+    "meaning": "位于…的",
+    "englishMeaning": "in a certain location",
+    "phonetic": "/sˈɪtʃuːˌeɪtɪd/",
+    "exampleSentence": "The hotel is situated near the river."
+  },
+  "staircase::": {
+    "meaning": "楼梯",
+    "englishMeaning": "a set of stairs in a building",
+    "phonetic": "/stˈeəkeɪs/",
+    "exampleSentence": "A wooden staircase leads to the top floor."
+  },
+  "trigger::": {
+    "meaning": "引发",
+    "englishMeaning": "to cause to happen",
+    "phonetic": "/tɹˈɪɡɐ/",
+    "exampleSentence": "A small spark can trigger a large fire."
+  },
+  "dispute::": {
+    "meaning": "争执",
+    "englishMeaning": "a serious disagreement",
+    "phonetic": "/dɪspjˈuːt/",
+    "exampleSentence": "The two neighbors had a dispute about the wall."
+  },
+  "introductory::": {
+    "meaning": "入门的",
+    "englishMeaning": "used as an introduction",
+    "phonetic": "/ˌɪntɹədˈʌktəɹˌi/",
+    "exampleSentence": "This is an introductory class for new students."
+  },
+  "latter::": {
+    "meaning": "后者",
+    "englishMeaning": "the last mentioned of two things",
+    "phonetic": "/lˈætɐ/",
+    "exampleSentence": "Of tea and coffee, I prefer the latter."
+  },
+  "mend::": {
+    "meaning": "修理",
+    "englishMeaning": "to repair something that is broken",
+    "phonetic": "/mˈɛnd/",
+    "exampleSentence": "Can you mend the hole in this sock?"
+  },
+  "pinch::": {
+    "meaning": "捏",
+    "englishMeaning": "to squeeze between a finger and a thumb",
+    "phonetic": "/pˈɪntʃ/",
+    "exampleSentence": "Do not pinch your little brother's arm."
+  },
+  "prospect::": {
+    "meaning": "前景",
+    "englishMeaning": "a probability or chance for future success",
+    "phonetic": "/ˈprɒspekt/",
+    "exampleSentence": "She has a good prospect of getting the job."
+  },
+  "stern::": {
+    "meaning": "严厉的",
+    "englishMeaning": "serious and strict",
+    "phonetic": "/stˈɜːn/",
+    "exampleSentence": "The stern teacher asked for complete silence."
+  },
+  "strive::": {
+    "meaning": "努力",
+    "englishMeaning": "to make great effort",
+    "phonetic": "/stɹˈaɪv/",
+    "exampleSentence": "We strive to finish the work on time."
+  },
+  "suspend::": {
+    "meaning": "暂停",
+    "englishMeaning": "to delay or stop from happening",
+    "phonetic": "/səspˈɛnd/",
+    "exampleSentence": "Heavy rain will suspend the outdoor match."
+  },
+  "vent::": {
+    "meaning": "发泄",
+    "englishMeaning": "to express feelings forcefully",
+    "phonetic": "/vˈɛnt/",
+    "exampleSentence": "He needed to vent his anger after the game."
+  },
+  "flatter::": {
+    "meaning": "奉承",
+    "englishMeaning": "to give insincere praise",
+    "phonetic": "/flˈætɐ/",
+    "exampleSentence": "Do not flatter the teacher just for marks."
+  },
+  "intermediate::": {
+    "meaning": "中级的",
+    "englishMeaning": "having a more than basic but less than advanced level of ability",
+    "phonetic": "/ˌɪntəˈmiːdiət/",
+    "exampleSentence": "She is in an intermediate English class."
+  },
+  "misery::": {
+    "meaning": "痛苦",
+    "englishMeaning": "great unhappiness",
+    "phonetic": "/mˈɪzəɹˌi/",
+    "exampleSentence": "The long war brought misery to the town."
+  },
+  "mutual::": {
+    "meaning": "相互的",
+    "englishMeaning": "common to two or more people; reciprocal",
+    "phonetic": "/mjˈuːtʃuːəl/",
+    "exampleSentence": "They have mutual respect for each other."
+  },
+  "racial::": {
+    "meaning": "种族的",
+    "englishMeaning": "of or characteristic of a race",
+    "phonetic": "/ɹˈeɪʃəl/",
+    "exampleSentence": "The law forbids racial unfairness at work."
+  },
+  "spouse::": {
+    "meaning": "配偶",
+    "englishMeaning": "a husband or wife",
+    "phonetic": "/spˈaʊs/",
+    "exampleSentence": "Please write the name of your spouse here."
+  },
+  "stepmother::": {
+    "meaning": "继母",
+    "englishMeaning": "a woman who is married to your father but who is not your biological mother",
+    "phonetic": "/stˈɛpmʌðɐ/",
+    "exampleSentence": "Her stepmother helped her with homework."
+  },
+  "timid::": {
+    "meaning": "胆怯的",
+    "englishMeaning": "shy; lacking self-confidence",
+    "phonetic": "/tˈɪmɪd/",
+    "exampleSentence": "The timid child hid behind her mother."
+  },
+  "tribute::": {
+    "meaning": "致敬",
+    "englishMeaning": "a gift, gesture, or statement made in gratitude or admiration",
+    "phonetic": "/tɹˈɪbjuːt/",
+    "exampleSentence": "The city paid tribute to the brave nurses."
+  },
+  "virtue::": {
+    "meaning": "美德",
+    "englishMeaning": "a good quality or way of behaving",
+    "phonetic": "/vˈɜːtʃuː/",
+    "exampleSentence": "Honesty is a virtue that people respect."
+  },
+  "ailment::": {
+    "meaning": "小病",
+    "englishMeaning": "an illness, usually not serious",
+    "phonetic": "/ˈeɪlmənt/",
+    "exampleSentence": "A cold is a common ailment in winter."
+  },
+  "assertive::": {
+    "meaning": "自信果断的",
+    "englishMeaning": "confident and direct",
+    "phonetic": "/ɐsˈɜːtɪv/",
+    "exampleSentence": "An assertive speaker stated her views clearly."
+  },
+  "basin::": {
+    "meaning": "盆",
+    "englishMeaning": "a round, wide, shallow container",
+    "phonetic": "/bˈeɪsən/",
+    "exampleSentence": "Wash your hands in the small basin."
+  },
+  "capacity::": {
+    "meaning": "容量",
+    "englishMeaning": "the total amount that can be contained or produced",
+    "phonetic": "/kəpˈæsɪti/",
+    "exampleSentence": "This bottle has a capacity of two liters."
+  },
+  "epidemic::": {
+    "meaning": "流行病",
+    "englishMeaning": "a widespread occurrence of a disease",
+    "phonetic": "/ˌɛpɪdˈɛmɪk/",
+    "exampleSentence": "The flu epidemic spread through the city."
+  },
+  "faucet::": {
+    "meaning": "水龙头",
+    "englishMeaning": "a tap that water comes out of",
+    "phonetic": "/fˈɔːsɪt/",
+    "exampleSentence": "Turn off the faucet after you wash."
+  },
+  "lame::": {
+    "meaning": "跛的",
+    "englishMeaning": "unable to walk properly",
+    "phonetic": "/leɪm/",
+    "exampleSentence": "The lame horse could not run fast."
+  },
+  "optic::": {
+    "meaning": "视觉的",
+    "englishMeaning": "related to the eyes",
+    "phonetic": "/ˈɒptɪk/",
+    "exampleSentence": "The optic nerve carries messages from the eye."
+  },
+  "partial::": {
+    "meaning": "部分的",
+    "englishMeaning": "not complete",
+    "phonetic": "/pˈɑːʃəl/",
+    "exampleSentence": "We have only a partial list of names."
+  },
+  "prescribe::": {
+    "meaning": "开处方",
+    "englishMeaning": "to order or advise as a medical treatment",
+    "phonetic": "/pɹɪskɹˈaɪb/",
+    "exampleSentence": "Doctors prescribe medicine for a bad cough."
+  },
+  "amendment::": {
+    "meaning": "修正案",
+    "englishMeaning": "a change (often to a law or rule)",
+    "phonetic": "/ɐmˈɛndmənt/",
+    "exampleSentence": "Parliament passed an amendment to the old law."
+  },
+  "attain::": {
+    "meaning": "达到",
+    "englishMeaning": "to gain; to accomplish",
+    "phonetic": "/ɐtˈeɪn/",
+    "exampleSentence": "She will attain her goal with hard work."
+  },
+  "chronic::": {
+    "meaning": "慢性的",
+    "englishMeaning": "lasting a long time or recurring often",
+    "phonetic": "/kɹˈɒnɪk/",
+    "exampleSentence": "He has a chronic pain in his back."
+  },
+  "deplete::": {
+    "meaning": "耗尽",
+    "englishMeaning": "to gradually make less",
+    "phonetic": "/dɪplˈiːt/",
+    "exampleSentence": "Long droughts deplete the water in the lake."
+  },
+  "groan::": {
+    "meaning": "呻吟",
+    "englishMeaning": "a long, dull cry of pain or disapproval",
+    "phonetic": "/ɡɹˈəʊn/",
+    "exampleSentence": "A groan came from the tired old man."
+  },
+  "meditate::": {
+    "meaning": "冥想",
+    "englishMeaning": "to reflect deeply on spiritual matters",
+    "phonetic": "/mˈɛdɪtˌeɪt/",
+    "exampleSentence": "She likes to meditate in a quiet room."
+  },
+  "peculiar::": {
+    "meaning": "奇怪的",
+    "englishMeaning": "strange or unusual in some way",
+    "phonetic": "/pɪkjˈuːliə/",
+    "exampleSentence": "There was a peculiar smell in the kitchen."
+  },
+  "regain::": {
+    "meaning": "重新获得",
+    "englishMeaning": "to get something back after losing it",
+    "phonetic": "/ɹɪɡˈeɪn/",
+    "exampleSentence": "He hopes to regain his strength after rest."
+  },
+  "soothe::": {
+    "meaning": "使平静",
+    "englishMeaning": "to make someone feel calm and relaxed",
+    "phonetic": "/sˈuːð/",
+    "exampleSentence": "Soft music can soothe a crying baby."
+  },
+  "transplant::": {
+    "meaning": "器官移植",
+    "englishMeaning": "a medical operation in which a body part is replaced",
+    "phonetic": "/ˈtrænsplɑːnt/",
+    "exampleSentence": "He needs a heart transplant to stay alive."
+  },
+  "apt::": {
+    "meaning": "恰当的",
+    "englishMeaning": "suitable or right for a purpose",
+    "phonetic": "/ˈæpt/",
+    "exampleSentence": "That was an apt word for the situation."
+  },
+  "bleak::": {
+    "meaning": "荒凉的",
+    "englishMeaning": "depressing; bare and desolate",
+    "phonetic": "/blˈiːk/",
+    "exampleSentence": "The bleak hill had no trees or houses."
+  },
+  "drastic::": {
+    "meaning": "激烈的",
+    "englishMeaning": "severe or excessive",
+    "phonetic": "/dɹˈɑːstɪk/",
+    "exampleSentence": "The school made a drastic change to the rules."
+  },
+  "duration::": {
+    "meaning": "持续时间",
+    "englishMeaning": "the length of time something lasts",
+    "phonetic": "/djɔːɹˈeɪʃən/",
+    "exampleSentence": "The duration of the film is two hours."
+  },
+  "engrave::": {
+    "meaning": "雕刻",
+    "englishMeaning": "to cut words or a design into a surface",
+    "phonetic": "/ɛnɡɹˈeɪv/",
+    "exampleSentence": "Artists engrave a name on the metal cup."
+  },
+  "erosion::": {
+    "meaning": "侵蚀",
+    "englishMeaning": "the gradual wearing away of something",
+    "phonetic": "/ɪɹˈəʊʒən/",
+    "exampleSentence": "Rain causes erosion of the soft hillside."
+  },
+  "heap::": {
+    "meaning": "一堆",
+    "englishMeaning": "a pile; a mound",
+    "phonetic": "/hˈiːp/",
+    "exampleSentence": "A heap of leaves lay under the tree."
+  },
+  "merit::": {
+    "meaning": "价值",
+    "englishMeaning": "worth; value",
+    "phonetic": "/mˈɛɹɪt/",
+    "exampleSentence": "The idea has real merit and should be tried."
+  },
+  "pillar::": {
+    "meaning": "柱子",
+    "englishMeaning": "a tall column that supports a building",
+    "phonetic": "/pˈɪlɐ/",
+    "exampleSentence": "A stone pillar holds up the old roof."
+  },
+  "ridge::": {
+    "meaning": "山脊",
+    "englishMeaning": "a raised, narrow strip",
+    "phonetic": "/ɹˈɪdʒ/",
+    "exampleSentence": "They walked along the ridge of the hill."
+  },
+  "arch::": {
+    "meaning": "拱形结构",
+    "englishMeaning": "a curved structure",
+    "phonetic": "/ˈɑːtʃ/",
+    "exampleSentence": "An arch of stone stood over the gate."
+  },
+  "curb::": {
+    "meaning": "抑制",
+    "englishMeaning": "to restrain or keep something under control",
+    "phonetic": "/kˈɜːb/",
+    "exampleSentence": "New laws curb the sale of cheap cigarettes."
+  },
+  "descend::": {
+    "meaning": "下降",
+    "englishMeaning": "to move from a higher to a lower place",
+    "phonetic": "/dɪsˈɛnd/",
+    "exampleSentence": "We descend the mountain before it gets dark."
+  },
+  "enlarge::": {
+    "meaning": "扩大",
+    "englishMeaning": "to make or become bigger",
+    "phonetic": "/ɛnlˈɑːdʒ/",
+    "exampleSentence": "They enlarge the photo to show more detail."
+  },
+  "excavate::": {
+    "meaning": "发掘",
+    "englishMeaning": "to dig in order to find things",
+    "phonetic": "/ˈɛkskəvˌeɪt/",
+    "exampleSentence": "Workers excavate the ground to find old pots."
+  },
+  "hound::": {
+    "meaning": "猎犬",
+    "englishMeaning": "a type of dog",
+    "phonetic": "/hˈaʊnd/",
+    "exampleSentence": "The hound followed the rabbit through the field."
+  },
+  "moan::": {
+    "meaning": "呻吟",
+    "englishMeaning": "make a low sound, usually because you are unhappy or in pain",
+    "phonetic": "/mˈəʊn/",
+    "exampleSentence": "Injured players moan when they fall hard."
+  },
+  "plaster::": {
+    "meaning": "灰泥",
+    "englishMeaning": "a smooth paste used to cover walls and ceilings",
+    "phonetic": "/plˈɑːstɐ/",
+    "exampleSentence": "Wet plaster covered the new bedroom wall."
+  },
+  "savage::": {
+    "meaning": "凶残的",
+    "englishMeaning": "cruel, violent, and wild",
+    "phonetic": "/sˈævɪdʒ/",
+    "exampleSentence": "A savage storm destroyed the wooden boats."
+  },
+  "stumble::": {
+    "meaning": "绊倒",
+    "englishMeaning": "to trip and almost fall",
+    "phonetic": "/stˈʌmbəl/",
+    "exampleSentence": "Do not stumble on the dark garden path."
+  },
+  "attribute::": {
+    "meaning": "特质",
+    "englishMeaning": "a particular quality or feature",
+    "phonetic": "/ˈætrɪbjuːt/",
+    "exampleSentence": "Honesty is an attribute of a good friend."
+  },
+  "brew::": {
+    "meaning": "冲泡",
+    "englishMeaning": "to prepare a drink by pouring hot water over coffee grounds or tea leaves",
+    "phonetic": "/bɹˈuː/",
+    "exampleSentence": "I brew a cup of tea every morning."
+  },
+  "console::": {
+    "meaning": "安慰",
+    "englishMeaning": "to try to make a sad person feel happier",
+    "phonetic": "/kənˈsəʊl/",
+    "exampleSentence": "Friends console her after the sad news."
+  },
+  "cozy::": {
+    "meaning": "舒适的",
+    "englishMeaning": "warm and comfortable",
+    "phonetic": "/ˈkəʊzi/",
+    "exampleSentence": "We sat in a cozy room by the fire."
+  },
+  "crook::": {
+    "meaning": "骗子",
+    "englishMeaning": "a criminal who cheats or steals",
+    "phonetic": "/kɹˈʊk/",
+    "exampleSentence": "The crook stole money from the old shop."
+  },
+  "decent::": {
+    "meaning": "像样的",
+    "englishMeaning": "of an acceptable standard or quality",
+    "phonetic": "/dˈiːsənt/",
+    "exampleSentence": "He found a decent job in the city."
+  },
+  "dent::": {
+    "meaning": "凹痕",
+    "englishMeaning": "a dip in a surface caused by something hitting it",
+    "phonetic": "/dˈɛnt/",
+    "exampleSentence": "The car door has a small dent."
+  },
+  "eternal::": {
+    "meaning": "永恒的",
+    "englishMeaning": "lasting forever",
+    "phonetic": "/ɪtˈɜːnəl/",
+    "exampleSentence": "They promised eternal friendship to each other."
+  },
+  "extract::": {
+    "meaning": "提取",
+    "englishMeaning": "to obtain one substance from another",
+    "phonetic": "/ɪkˈstrækt/",
+    "exampleSentence": "Factories extract oil from the tiny seeds."
+  },
+  "freight::": {
+    "meaning": "货运",
+    "englishMeaning": "the movement of goods by truck, train, etc.",
+    "phonetic": "/fɹˈeɪt/",
+    "exampleSentence": "The train carries freight across the country."
+  },
+  "auction::": {
+    "meaning": "拍卖",
+    "englishMeaning": "a sale where goods are sold to the person who bids the highest amount",
+    "phonetic": "/ˈɔːkʃən/",
+    "exampleSentence": "The painting was sold at an auction."
+  },
+  "crucial::": {
+    "meaning": "至关重要的",
+    "englishMeaning": "extremely important",
+    "phonetic": "/kɹˈuːʃəl/",
+    "exampleSentence": "Sleep is crucial for a healthy body."
+  },
+  "dash::": {
+    "meaning": "猛冲",
+    "englishMeaning": "to go somewhere suddenly and quickly",
+    "phonetic": "/dˈæʃ/",
+    "exampleSentence": "Children dash inside when the rain starts."
+  },
+  "doom::": {
+    "meaning": "厄运",
+    "englishMeaning": "a bad situation that can't be avoided",
+    "phonetic": "/dˈuːm/",
+    "exampleSentence": "The village feared doom after the flood."
+  },
+  "exclude::": {
+    "meaning": "排除",
+    "englishMeaning": "to keep someone or something out",
+    "phonetic": "/ɛksklˈuːd/",
+    "exampleSentence": "Do not exclude shy children from the game."
+  },
+  "reckless::": {
+    "meaning": "鲁莽的",
+    "englishMeaning": "careless; taking unnecessary risks",
+    "phonetic": "/ɹˈɛkləs/",
+    "exampleSentence": "A reckless driver caused the car crash."
+  },
+  "span::": {
+    "meaning": "宽度",
+    "englishMeaning": "the width of something",
+    "phonetic": "/spˈæn/",
+    "exampleSentence": "The span of the bridge is one hundred meters."
+  },
+  "speculate::": {
+    "meaning": "推测",
+    "englishMeaning": "to guess without knowing the facts",
+    "phonetic": "/spˈɛkjʊlˌeɪt/",
+    "exampleSentence": "People speculate about the team's next coach."
+  },
+  "toll::": {
+    "meaning": "伤亡",
+    "englishMeaning": "the total amount of harm or damage",
+    "phonetic": "/tˈəʊl/",
+    "exampleSentence": "The storm's toll on the town was huge."
+  },
+  "tow::": {
+    "meaning": "拖走",
+    "englishMeaning": "to pull or drag behind",
+    "phonetic": "/tˈəʊ/",
+    "exampleSentence": "A truck will tow the broken car away."
+  },
+  "brace::": {
+    "meaning": "支撑",
+    "englishMeaning": "to strengthen by supporting the weight of something",
+    "phonetic": "/bɹˈeɪs/",
+    "exampleSentence": "Workers brace the wall with strong wood."
+  },
+  "confine::": {
+    "meaning": "限制",
+    "englishMeaning": "to restrict someone to a limited place",
+    "phonetic": "/kənˈfaɪn/",
+    "exampleSentence": "Illness can confine her to the house."
+  },
+  "conservative::": {
+    "meaning": "保守的",
+    "englishMeaning": "unwilling to accept change and new ideas",
+    "phonetic": "/kənsˈɜːvətˌɪv/",
+    "exampleSentence": "His conservative views do not like change."
+  },
+  "dependence::": {
+    "meaning": "依赖",
+    "englishMeaning": "the condition of relying on",
+    "phonetic": "/dɪpˈɛndəns/",
+    "exampleSentence": "The town's dependence on fishing is clear."
+  },
+  "dock::": {
+    "meaning": "码头",
+    "englishMeaning": "an area where ships load and unload",
+    "phonetic": "/dˈɒk/",
+    "exampleSentence": "The ship waited at the dock to unload."
+  },
+  "escort::": {
+    "meaning": "护送者",
+    "englishMeaning": "someone who accompanies another person",
+    "phonetic": "/ˈeskɔːt/",
+    "exampleSentence": "An escort walked the visitor to the hall."
+  },
+  "expansion::": {
+    "meaning": "扩大",
+    "englishMeaning": "an increase in size or amount",
+    "phonetic": "/ɛkspˈænʃən/",
+    "exampleSentence": "The expansion of the school needs more rooms."
+  },
+  "lining::": {
+    "meaning": "衬里",
+    "englishMeaning": "material used on the inside of clothing, a bag, etc.",
+    "phonetic": "/lˈaɪnɪŋ/",
+    "exampleSentence": "The coat has a warm lining inside."
+  },
+  "sophisticated::": {
+    "meaning": "有品位的",
+    "englishMeaning": "having refined or cultured tastes or habits",
+    "phonetic": "/səfˈɪstɪkˌeɪtɪd/",
+    "exampleSentence": "She has sophisticated taste in music and art."
+  },
+  "specify::": {
+    "meaning": "详细说明",
+    "englishMeaning": "to state in precise detail",
+    "phonetic": "/spˈɛsɪfˌaɪ/",
+    "exampleSentence": "Please specify the time and place clearly."
+  },
+  "brass::": {
+    "meaning": "黄铜",
+    "englishMeaning": "a yellow metal",
+    "phonetic": "/bɹˈɑːs/",
+    "exampleSentence": "The old key was made of yellow brass."
+  },
+  "conditional::": {
+    "meaning": "有条件的",
+    "englishMeaning": "depending on other factors",
+    "phonetic": "/kəndˈɪʃənəl/",
+    "exampleSentence": "The offer is conditional on a medical test."
+  },
+  "deprive::": {
+    "meaning": "剥夺",
+    "englishMeaning": "to prevent from possessing or enjoying",
+    "phonetic": "/dɪpɹˈaɪv/",
+    "exampleSentence": "Do not deprive children of a good education."
+  },
+  "equation::": {
+    "meaning": "方程式",
+    "englishMeaning": "a mathematical statement that two expressions are equal",
+    "phonetic": "/ɪkwˈeɪʒən/",
+    "exampleSentence": "Solve this equation on the board, please."
+  },
+  "flush::": {
+    "meaning": "冲洗",
+    "englishMeaning": "to send a volume of water quickly through",
+    "phonetic": "/flˈʌʃ/",
+    "exampleSentence": "Flush the dirty water down the pipe."
+  },
+  "hardware::": {
+    "meaning": "五金工具",
+    "englishMeaning": "machines, tools, and equipment",
+    "phonetic": "/hˈɑːdweə/",
+    "exampleSentence": "The shop sells tools and other hardware."
+  },
+  "mansion::": {
+    "meaning": "宅邸",
+    "englishMeaning": "a very large house",
+    "phonetic": "/mˈænʃən/",
+    "exampleSentence": "The rich family lived in a large mansion."
+  },
+  "outlet::": {
+    "meaning": "电源插座",
+    "englishMeaning": "a place where you can access the electricity supply",
+    "phonetic": "/ˈaʊtlɛt/",
+    "exampleSentence": "Plug the lamp into the wall outlet."
+  },
+  "packet::": {
+    "meaning": "小包",
+    "englishMeaning": "a small package",
+    "phonetic": "/pˈækɪt/",
+    "exampleSentence": "She bought a packet of sugar at the shop."
+  },
+  "slogan::": {
+    "meaning": "口号",
+    "englishMeaning": "a short, easy phrase to remember",
+    "phonetic": "/slˈəʊɡən/",
+    "exampleSentence": "The team's slogan is short and easy."
+  },
+  "bulk::": {
+    "meaning": "大部分",
+    "englishMeaning": "the largest portion",
+    "phonetic": "/bˈʌlk/",
+    "exampleSentence": "The bulk of the work is already done."
+  },
+  "ceramic::": {
+    "meaning": "陶瓷的",
+    "englishMeaning": "of or made of baked clay",
+    "phonetic": "/sɪɹˈæmɪk/",
+    "exampleSentence": "She put flowers in a ceramic pot."
+  },
+  "collective::": {
+    "meaning": "集体的",
+    "englishMeaning": "of or shared by every member of a group",
+    "phonetic": "/kəlˈɛktɪv/",
+    "exampleSentence": "Cleaning the park is a collective job."
+  },
+  "congestion::": {
+    "meaning": "拥堵",
+    "englishMeaning": "the state of being blocked or crowded",
+    "phonetic": "/kəndʒˈɛstʃən/",
+    "exampleSentence": "Traffic congestion made us late for school."
+  },
+  "expel::": {
+    "meaning": "驱逐",
+    "englishMeaning": "to force someone or something to leave a place",
+    "phonetic": "/ɛkspˈɛl/",
+    "exampleSentence": "The school may expel a student for fighting."
+  },
+  "lure::": {
+    "meaning": "引诱",
+    "englishMeaning": "to attract by the promise of a reward",
+    "phonetic": "/lˈɔː/",
+    "exampleSentence": "Shops lure buyers with bright cheap signs."
+  },
+  "overcrowded::": {
+    "meaning": "过于拥挤的",
+    "englishMeaning": "filled with too many people or things",
+    "phonetic": "/ˌəʊvəkɹˈaʊdɪd/",
+    "exampleSentence": "The overcrowded bus had no empty seats."
+  },
+  "plea::": {
+    "meaning": "恳求",
+    "englishMeaning": "an intense appeal or request",
+    "phonetic": "/plˈiː/",
+    "exampleSentence": "Parents made a plea for safer roads."
+  },
+  "procession::": {
+    "meaning": "游行队伍",
+    "englishMeaning": "an organized line of people who are all walking together",
+    "phonetic": "/pɹəsˈɛʃən/",
+    "exampleSentence": "A long procession walked through the town."
+  },
+  "stool::": {
+    "meaning": "凳子",
+    "englishMeaning": "a seat with no arms or back",
+    "phonetic": "/stˈuːl/",
+    "exampleSentence": "He sat on a wooden stool by the bar."
+  },
+  "chalk::": {
+    "meaning": "白垩",
+    "englishMeaning": "a type of soft white rock",
+    "phonetic": "/tʃˈɔːk/",
+    "exampleSentence": "The white cliffs are made of chalk."
+  },
+  "communism::": {
+    "meaning": "共产主义",
+    "englishMeaning": "a political belief that property should be shared by all people",
+    "phonetic": "/kˈɒmjuːnˌɪzəm/",
+    "exampleSentence": "They discussed communism in the history class."
+  },
+  "dignity::": {
+    "meaning": "尊严",
+    "englishMeaning": "calm, controlled behavior that people respect",
+    "phonetic": "/dˈɪɡnɪti/",
+    "exampleSentence": "She spoke with quiet dignity in court."
+  },
+  "foul::": {
+    "meaning": "难闻的",
+    "englishMeaning": "disgusting; offensive",
+    "phonetic": "/fˈaʊl/",
+    "exampleSentence": "A foul smell came from the old fridge."
+  },
+  "polo::": {
+    "meaning": "马球",
+    "englishMeaning": "a team sport played on horses",
+    "phonetic": "/pˈəʊləʊ/",
+    "exampleSentence": "Players ride horses in a game of polo."
+  },
+  "retail::": {
+    "meaning": "零售",
+    "englishMeaning": "the activity of selling goods to the public",
+    "phonetic": "/ɹˈiːteɪl/",
+    "exampleSentence": "She works in retail at a clothing shop."
+  },
+  "stable::": {
+    "meaning": "稳定的",
+    "englishMeaning": "steady and not likely to change",
+    "phonetic": "/stˈeɪbəl/",
+    "exampleSentence": "The table is stable on the flat floor."
+  },
+  "suite::": {
+    "meaning": "套房",
+    "englishMeaning": "a set of connected rooms, especially in a hotel",
+    "phonetic": "/swiːt/",
+    "exampleSentence": "They booked a suite at the large hotel."
+  },
+  "sway::": {
+    "meaning": "摇摆",
+    "englishMeaning": "to move slowly from side to side",
+    "phonetic": "/swˈeɪ/",
+    "exampleSentence": "Tall trees sway in the strong wind."
+  },
+  "tub::": {
+    "meaning": "盆",
+    "englishMeaning": "a container with a flat base and an open top",
+    "phonetic": "/tˈʌb/",
+    "exampleSentence": "She washed clothes in a round tub."
+  },
+  "bulletin::": {
+    "meaning": "公告",
+    "englishMeaning": "a short official announcement",
+    "phonetic": "/bˈʊlɪtˌɪn/",
+    "exampleSentence": "A weather bulletin warned of heavy rain."
+  },
+  "dice::": {
+    "meaning": "切丁",
+    "englishMeaning": "to cut into small cubes",
+    "phonetic": "/dˈaɪs/",
+    "exampleSentence": "Please dice the onions into small cubes."
+  },
+  "disgrace::": {
+    "meaning": "耻辱",
+    "englishMeaning": "a condition of shame or dishonor",
+    "phonetic": "/dɪsɡɹˈeɪs/",
+    "exampleSentence": "Cheating in the test is a disgrace."
+  },
+  "external::": {
+    "meaning": "外部的",
+    "englishMeaning": "on or having to do with the outside",
+    "phonetic": "/ɛkstˈɜːnəl/",
+    "exampleSentence": "The external wall of the house is white."
+  },
+  "irony::": {
+    "meaning": "讽刺",
+    "englishMeaning": "a situation in which things happen in the opposite way to what you would expect",
+    "phonetic": "/ˈaɪrəni/",
+    "exampleSentence": "The irony is that the fire station burned."
+  },
+  "mast::": {
+    "meaning": "桅杆",
+    "englishMeaning": "a tall pole, especially on a ship",
+    "phonetic": "/mˈɑːst/",
+    "exampleSentence": "A tall mast stood on the sailing ship."
+  },
+  "precedent::": {
+    "meaning": "先例",
+    "englishMeaning": "something that has happened before",
+    "phonetic": "/ˈpresɪdənt/",
+    "exampleSentence": "This court case may set a new precedent."
+  },
+  "radical::": {
+    "meaning": "激进的",
+    "englishMeaning": "new and different from the usual way",
+    "phonetic": "/ɹˈædɪkəl/",
+    "exampleSentence": "The group wanted a radical change in the law."
+  },
+  "sip::": {
+    "meaning": "小口喝",
+    "englishMeaning": "to drink a little at a time",
+    "phonetic": "/sˈɪp/",
+    "exampleSentence": "She likes to sip hot tea very slowly."
+  },
+  "tackle::": {
+    "meaning": "处理",
+    "englishMeaning": "to undertake a task or problem",
+    "phonetic": "/tˈækəl/",
+    "exampleSentence": "We must tackle this problem before Friday."
+  },
+  "bunny::": {
+    "meaning": "小兔子",
+    "englishMeaning": "a rabbit, especially a small one",
+    "phonetic": "/bˈʌni/",
+    "exampleSentence": "A white bunny sat in the green grass."
+  },
+  "burrow::": {
+    "meaning": "掘洞",
+    "englishMeaning": "to dig into or through",
+    "phonetic": "/bˈʌɹəʊ/",
+    "exampleSentence": "Rabbits burrow under the ground to hide."
+  },
+  "chunk::": {
+    "meaning": "大块",
+    "englishMeaning": "a thick, solid piece of something",
+    "phonetic": "/tʃˈʌŋk/",
+    "exampleSentence": "He ate a chunk of bread with cheese."
+  },
+  "divine::": {
+    "meaning": "神的",
+    "englishMeaning": "of or related to a god",
+    "phonetic": "/dɪvˈaɪn/",
+    "exampleSentence": "The temple is a place of divine power."
+  },
+  "loom::": {
+    "meaning": "逼近",
+    "englishMeaning": "to seem ominously close",
+    "phonetic": "/lˈuːm/",
+    "exampleSentence": "Dark storm clouds loom over the hills."
+  },
+  "moderate::": {
+    "meaning": "适度的",
+    "englishMeaning": "within reasonable limits",
+    "phonetic": "/ˈmɒdərət/",
+    "exampleSentence": "Eat a moderate amount of sweet food."
+  },
+  "revolve::": {
+    "meaning": "绕转",
+    "englishMeaning": "to turn or spin around a central point",
+    "phonetic": "/ɹɪvˈɒlv/",
+    "exampleSentence": "The Earth and planets revolve around the sun."
+  },
+  "snatch::": {
+    "meaning": "抢夺",
+    "englishMeaning": "to take or pull away quickly",
+    "phonetic": "/snˈætʃ/",
+    "exampleSentence": "A thief tried to snatch her small bag."
+  },
+  "tactic::": {
+    "meaning": "策略",
+    "englishMeaning": "a method for achieving something",
+    "phonetic": "/tˈæktɪk/",
+    "exampleSentence": "Waiting quietly was a smart tactic."
+  },
+  "tar::": {
+    "meaning": "柏油",
+    "englishMeaning": "a sticky black substance",
+    "phonetic": "/tˈɑː/",
+    "exampleSentence": "Workers spread black tar on the road."
+  },
+  "census::": {
+    "meaning": "人口普查",
+    "englishMeaning": "an official survey to find out about the population",
+    "phonetic": "/sˈɛnsəs/",
+    "exampleSentence": "The census counted every person in the town."
+  },
+  "characterize::": {
+    "meaning": "是…的特征",
+    "englishMeaning": "to be typical of",
+    "phonetic": "/ˈkærəktəraɪz/",
+    "exampleSentence": "Long winters characterize this cold country."
+  },
+  "conform::": {
+    "meaning": "遵从",
+    "englishMeaning": "to behave in a way that is expected of you",
+    "phonetic": "/kənfˈɔːm/",
+    "exampleSentence": "Students must conform to the school rules."
+  },
+  "dialect::": {
+    "meaning": "方言",
+    "englishMeaning": "a local form of a language",
+    "phonetic": "/dˈaɪəlɛkt/",
+    "exampleSentence": "Her grandmother speaks a local dialect."
+  },
+  "duplicate::": {
+    "meaning": "副本",
+    "englishMeaning": "an exact copy",
+    "phonetic": "/ˈdjuːplɪkət/",
+    "exampleSentence": "Please keep a duplicate of the important letter."
+  },
+  "foremost::": {
+    "meaning": "最重要的",
+    "englishMeaning": "first in time, rank, place, etc.",
+    "phonetic": "/fˈɔːməʊst/",
+    "exampleSentence": "Safety is the foremost concern on this trip."
+  },
+  "innocence::": {
+    "meaning": "天真",
+    "englishMeaning": "the state of lacking life experience; a naive state",
+    "phonetic": "/ˈɪnəsəns/",
+    "exampleSentence": "The child's innocence made her trust everyone."
+  },
+  "proportion::": {
+    "meaning": "比例",
+    "englishMeaning": "a part considered in relation to the whole",
+    "phonetic": "/pɹəpˈɔːʃən/",
+    "exampleSentence": "A large proportion of students walk to school."
+  },
+  "resolution::decision": {
+    "meaning": "决心/决议",
+    "englishMeaning": "a serious decision to do something",
+    "phonetic": "/ɹˌɛzəlˈuːʃən/",
+    "exampleSentence": "Her New Year resolution was to read more."
+  },
+  "retreat::": {
+    "meaning": "撤退",
+    "englishMeaning": "to move away from; to step back",
+    "phonetic": "/ɹɪtɹˈiːt/",
+    "exampleSentence": "The tired army had to retreat from the hill."
+  },
+  "cite::": {
+    "meaning": "引用",
+    "englishMeaning": "to quote or refer to (a book, author, etc.)",
+    "phonetic": "/sˈaɪt/",
+    "exampleSentence": "Please cite the book in your report."
+  },
+  "den::": {
+    "meaning": "休息室",
+    "englishMeaning": "a room in a house where you go to relax",
+    "phonetic": "/dˈɛn/",
+    "exampleSentence": "Dad reads the paper in the small den."
+  },
+  "illusion::": {
+    "meaning": "错觉",
+    "englishMeaning": "an unreal or misleading appearance",
+    "phonetic": "/ɪlˈuːʒən/",
+    "exampleSentence": "The magician created an illusion of a bird."
+  },
+  "revered::": {
+    "meaning": "受敬重的",
+    "englishMeaning": "well-loved and highly respected",
+    "phonetic": "/ɹɪvˈiəd/",
+    "exampleSentence": "The revered teacher taught here for years."
+  },
+  "sake::": {
+    "meaning": "利益",
+    "englishMeaning": "benefit or interest",
+    "phonetic": "/seɪk/",
+    "exampleSentence": "He stayed for the sake of his family."
+  },
+  "saucer::": {
+    "meaning": "茶碟",
+    "englishMeaning": "a small plate that holds a cup",
+    "phonetic": "/sˈɔːsɐ/",
+    "exampleSentence": "Put the cup on the small saucer."
+  },
+  "scarlet::": {
+    "meaning": "鲜红色的",
+    "englishMeaning": "having a bright red color",
+    "phonetic": "/skˈɑːlət/",
+    "exampleSentence": "She wore a scarlet coat in the snow."
+  },
+  "screw::": {
+    "meaning": "螺丝钉",
+    "englishMeaning": "a small pointed piece of metal that can be turned to hold things together",
+    "phonetic": "/skɹˈuː/",
+    "exampleSentence": "Turn the screw to hold the wood together."
+  },
+  "shrine::": {
+    "meaning": "神龛",
+    "englishMeaning": "a place of worship associated with a holy person or object",
+    "phonetic": "/ʃɹˈaɪn/",
+    "exampleSentence": "People left flowers at the old shrine."
+  },
+  "triumphant::": {
+    "meaning": "胜利的",
+    "englishMeaning": "successful; victorious",
+    "phonetic": "/tɹaɪˈʌmfənt/",
+    "exampleSentence": "The triumphant team held the gold cup."
+  },
+  "arc::": {
+    "meaning": "弧",
+    "englishMeaning": "a curved line; part of a circle",
+    "phonetic": "/ˈɑːk/",
+    "exampleSentence": "The rainbow formed an arc across the sky."
+  },
+  "civilian::": {
+    "meaning": "平民的",
+    "englishMeaning": "of a person who is not a member of the military or police",
+    "phonetic": "/sɪvˈɪliən/",
+    "exampleSentence": "He wore civilian clothes, not a uniform."
+  },
+  "combat::": {
+    "meaning": "战斗",
+    "englishMeaning": "a fight, especially during a war",
+    "phonetic": "/ˈkɒmbæt/",
+    "exampleSentence": "Soldiers trained for combat in the desert."
+  },
+  "comprise::": {
+    "meaning": "组成",
+    "englishMeaning": "to make up; to be composed of",
+    "phonetic": "/kəmpɹˈaɪz/",
+    "exampleSentence": "Ten short chapters comprise the whole book."
+  },
+  "conceive::": {
+    "meaning": "构想",
+    "englishMeaning": "to develop in the mind; to imagine",
+    "phonetic": "/kənsˈiːv/",
+    "exampleSentence": "Artists conceive a new idea for the show."
+  },
+  "crude::": {
+    "meaning": "未提炼的",
+    "englishMeaning": "in a natural or unrefined state",
+    "phonetic": "/kɹˈuːd/",
+    "exampleSentence": "The factory turns crude oil into petrol."
+  },
+  "disgraceful::": {
+    "meaning": "可耻的",
+    "englishMeaning": "shameful and very bad",
+    "phonetic": "/dɪsɡɹˈeɪsfəl/",
+    "exampleSentence": "Cheating in the exam is disgraceful."
+  },
+  "dumb::": {
+    "meaning": "愚蠢的",
+    "englishMeaning": "foolish or not clever",
+    "phonetic": "/dˈʌm/",
+    "exampleSentence": "It was a dumb idea to swim in the storm."
+  },
+  "highland::": {
+    "meaning": "高地",
+    "englishMeaning": "an area of land with mountains",
+    "phonetic": "/hˈaɪlənd/",
+    "exampleSentence": "Sheep live on the cold highland hills."
+  },
+  "marshal::": {
+    "meaning": "整顿",
+    "englishMeaning": "to arrange (troops, things, ideas, etc.) in order",
+    "phonetic": "/mˈɑːʃəl/",
+    "exampleSentence": "Teachers marshal the children into two lines."
+  },
+  "lance::": {
+    "meaning": "长矛",
+    "englishMeaning": "a long weapon with a pointed head",
+    "phonetic": "/lˈɑːns/",
+    "exampleSentence": "The soldier carried a long lance on horseback."
+  },
+  "odorless::": {
+    "meaning": "无味的",
+    "englishMeaning": "having no smell",
+    "phonetic": "/ˈəʊdələs/",
+    "exampleSentence": "This gas is odorless and hard to notice."
+  },
+  "refinery::": {
+    "meaning": "精炼厂",
+    "englishMeaning": "a factory for the purification of crude materials",
+    "phonetic": "/ɹɪfˈaɪnəɹˌi/",
+    "exampleSentence": "The oil refinery stands beside the river."
+  },
+  "sergeant::": {
+    "meaning": "中士",
+    "englishMeaning": "a low rank in the army or police",
+    "phonetic": "/sˈɑːdʒənt/",
+    "exampleSentence": "The sergeant trained the new police officers."
+  },
+  "shrug::": {
+    "meaning": "耸肩",
+    "englishMeaning": "to draw up and drop the shoulders",
+    "phonetic": "/ʃɹˈʌɡ/",
+    "exampleSentence": "He can only shrug when he does not know."
+  },
+  "silicon::": {
+    "meaning": "硅",
+    "englishMeaning": "a nonmetallic chemical element",
+    "phonetic": "/sˈɪlɪkən/",
+    "exampleSentence": "Computer chips are made from silicon."
+  },
+  "simultaneous::": {
+    "meaning": "同时的",
+    "englishMeaning": "occurring or existing at the same time",
+    "phonetic": "/sˌɪməltˈeɪniəs/",
+    "exampleSentence": "The two shows are simultaneous on different channels."
+  },
+  "suspenseful::": {
+    "meaning": "悬疑的",
+    "englishMeaning": "causing a feeling of excitement or nervousness about what is going to happen",
+    "phonetic": "/səspˈɛnsfəl/",
+    "exampleSentence": "The suspenseful film kept us watching late."
+  },
+  "tumbler::": {
+    "meaning": "平底杯",
+    "englishMeaning": "a drinking glass with straight sides",
+    "phonetic": "/tˈʌmblɐ/",
+    "exampleSentence": "He poured water into a clear tumbler."
+  },
+  "unethical::": {
+    "meaning": "不道德的",
+    "englishMeaning": "not morally acceptable",
+    "phonetic": "/ʌnˈɛθɪkəl/",
+    "exampleSentence": "Lying to customers is unethical and wrong."
+  },
+  "bass::": {
+    "meaning": "鲈鱼",
+    "englishMeaning": "a type of fish found in rivers or the sea",
+    "phonetic": "/bæs/",
+    "exampleSentence": "They caught a bass in the quiet river."
+  },
+  "coherent::": {
+    "meaning": "条理清楚的",
+    "englishMeaning": "logical and consistent",
+    "phonetic": "/kəʊhˈiəɹənt/",
+    "exampleSentence": "Please give a coherent answer to the question."
+  },
+  "compassion::": {
+    "meaning": "同情",
+    "englishMeaning": "a feeling of pity and sympathy for another",
+    "phonetic": "/kəmpˈæʃən/",
+    "exampleSentence": "She showed compassion for the lost child."
+  },
+  "contaminate::": {
+    "meaning": "污染",
+    "englishMeaning": "to make dirty and impure",
+    "phonetic": "/kəntˈæmɪnˌeɪt/",
+    "exampleSentence": "Dirty water can contaminate the whole river."
+  },
+  "counterpart::": {
+    "meaning": "对应的人或物",
+    "englishMeaning": "a person or thing identical to or closely resembling another",
+    "phonetic": "/kˈaʊntəpˌɑːt/",
+    "exampleSentence": "She met her counterpart from the other school."
+  },
+  "deliberate::": {
+    "meaning": "仔细考虑",
+    "englishMeaning": "to consider carefully two or more options",
+    "phonetic": "/dɪˈlɪbəreɪt/",
+    "exampleSentence": "The jury will deliberate before they decide."
+  },
+  "distorted::": {
+    "meaning": "扭曲的",
+    "englishMeaning": "altered; deformed",
+    "phonetic": "/dɪstˈɔːtɪd/",
+    "exampleSentence": "The broken mirror showed a distorted face."
+  },
+  "optician::": {
+    "meaning": "配镜师",
+    "englishMeaning": "someone who tests eyesight and makes glasses and contact lenses",
+    "phonetic": "/ɒptˈɪʃən/",
+    "exampleSentence": "The optician made new glasses for my mother."
+  },
+  "prone::": {
+    "meaning": "易于…的",
+    "englishMeaning": "having a tendency",
+    "phonetic": "/pɹˈəʊn/",
+    "exampleSentence": "Young children are prone to colds in winter."
+  },
+  "respective::": {
+    "meaning": "各自的",
+    "englishMeaning": "belonging or relating separately to each of several people or things",
+    "phonetic": "/ɹɪspˈɛktɪv/",
+    "exampleSentence": "The players went to their respective rooms."
+  },
+  "conception::": {
+    "meaning": "概念",
+    "englishMeaning": "an idea or understanding of what something is like",
+    "phonetic": "/kənsˈɛpʃən/",
+    "exampleSentence": "His conception of fairness is very simple."
+  },
+  "dynamic::": {
+    "meaning": "有活力的",
+    "englishMeaning": "energetic; relating to activity",
+    "phonetic": "/daɪnˈæmɪk/",
+    "exampleSentence": "She is a dynamic leader of the club."
+  },
+  "grove::": {
+    "meaning": "小树林",
+    "englishMeaning": "a group of trees close to each other",
+    "phonetic": "/ɡɹˈəʊv/",
+    "exampleSentence": "We walked through a grove of olive trees."
+  },
+  "innovative::": {
+    "meaning": "创新的",
+    "englishMeaning": "new and original",
+    "phonetic": "/ˈɪnəvˌeɪtɪv/",
+    "exampleSentence": "The class tried an innovative way to learn."
+  },
+  "major::adj": {
+    "meaning": "重大的",
+    "englishMeaning": "great in importance, size, or degree",
+    "phonetic": "/mˈeɪdʒɐ/",
+    "exampleSentence": "The storm caused major damage to the town."
+  },
+  "stake::": {
+    "meaning": "利害关系",
+    "englishMeaning": "a personal involvement or interest",
+    "phonetic": "/stˈeɪk/",
+    "exampleSentence": "She has a stake in the family shop."
+  },
+  "tuck::": {
+    "meaning": "塞进",
+    "englishMeaning": "to push or fold into a small, confined space",
+    "phonetic": "/tˈʌk/",
+    "exampleSentence": "Tuck the sheet under the side of the bed."
+  },
+  "unflattering::": {
+    "meaning": "不讨喜的",
+    "englishMeaning": "making someone seem less attractive than usual",
+    "phonetic": "/ʌnflˈætəɹɪŋ/",
+    "exampleSentence": "The unflattering photo made her look tired."
+  },
+  "unprecedented::": {
+    "meaning": "前所未有的",
+    "englishMeaning": "not having happened before",
+    "phonetic": "/ʌnpɹˈɛsɪdəntɪd/",
+    "exampleSentence": "The heat this summer is unprecedented."
+  },
+  "unscrew::": {
+    "meaning": "拧开",
+    "englishMeaning": "to loosen (a screw, lid, etc.) by rotating continuously",
+    "phonetic": "/ʌnskɹˈuː/",
+    "exampleSentence": "Please unscrew the lid of the jam jar."
+  }
+}

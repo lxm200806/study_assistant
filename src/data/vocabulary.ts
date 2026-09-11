@@ -44,28 +44,84 @@ const BOOKS: BookMeta[] = [
     wordCount: 3690
   },
   {
-    id: 'kew1',
-    code: 'kew1',
+    id: 'kew1200-1',
+    code: 'kew1200-1',
     name: '1200高频词 1',
     description: 'Seed Learning 单元主题词（New Words）',
     level: 'A1',
     wordCount: 400
   },
   {
-    id: 'kew2',
-    code: 'kew2',
+    id: 'kew1200-2',
+    code: 'kew1200-2',
     name: '1200高频词 2',
     description: 'Seed Learning 单元主题词（New Words）',
     level: 'A1+',
     wordCount: 400
   },
   {
-    id: 'kew3',
-    code: 'kew3',
+    id: 'kew1200-3',
+    code: 'kew1200-3',
     name: '1200高频词 3',
     description: 'Seed Learning 单元主题词（New Words）',
     level: 'A2',
     wordCount: 400
+  },
+  {
+    id: 'kew4500-1',
+    code: 'kew4500-1',
+    name: '4500高频词 1',
+    description: 'Seed Learning 单元主题词（New Words）',
+    level: 'A2+',
+    wordCount: 800
+  },
+  {
+    id: 'kew4500-2',
+    code: 'kew4500-2',
+    name: '4500高频词 2',
+    description: 'Seed Learning 单元主题词（New Words）',
+    level: 'B1',
+    wordCount: 800
+  },
+  {
+    id: 'kew4500-3',
+    code: 'kew4500-3',
+    name: '4500高频词 3',
+    description: 'Seed Learning 单元主题词（New Words）',
+    level: 'B1+',
+    wordCount: 800
+  },
+  {
+    id: 'kew4500-4',
+    code: 'kew4500-4',
+    name: '4500高频词 4',
+    description: 'Seed Learning 单元主题词（New Words）',
+    level: 'B2',
+    wordCount: 800
+  },
+  {
+    id: 'kew7200-1',
+    code: 'kew7200-1',
+    name: '7200高频词 1',
+    description: 'Seed Learning 单元主题词（New Words）',
+    level: 'B2+',
+    wordCount: 800
+  },
+  {
+    id: 'kew7200-2',
+    code: 'kew7200-2',
+    name: '7200高频词 2',
+    description: 'Seed Learning 单元主题词（New Words）',
+    level: 'C1',
+    wordCount: 800
+  },
+  {
+    id: 'kew7200-3',
+    code: 'kew7200-3',
+    name: '7200高频词 3',
+    description: 'Seed Learning 单元主题词（New Words）',
+    level: 'C1+',
+    wordCount: 800
   }
 ]
 

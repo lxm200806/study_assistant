@@ -44,7 +44,18 @@ export const petBook: BookData = loadBook('pet')
 export const zhongkaoBook: BookData = loadBook('zhongkao')
 export const gaokaoBook: BookData = loadBook('gaokao')
 
-const kewBooks = ['kew1', 'kew2', 'kew3']
+const kewBooks = [
+  'kew1200-1',
+  'kew1200-2',
+  'kew1200-3',
+  'kew4500-1',
+  'kew4500-2',
+  'kew4500-3',
+  'kew4500-4',
+  'kew7200-1',
+  'kew7200-2',
+  'kew7200-3'
+]
   .map(code => loadBookJson(code))
   .filter((book): book is BookData => !!book)
 

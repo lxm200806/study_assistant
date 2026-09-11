@@ -1,6 +1,6 @@
 #!/usr/bin/env ts-node
 /**
- * 用小学生义项覆盖 kew1/2/3 的汉语、音标、英语解释、例句，并写入校验来源。
+ * 用小学生义项覆盖 kew1200-1/2/3 的汉语、音标、英语解释、例句，并写入校验来源。
  * 用法: node ./node_modules/ts-node/dist/bin.js --transpile-only scripts/vocabulary-import/polish-kew-elementary.ts
  */
 import fs from 'fs'
@@ -143,7 +143,7 @@ function polishBook(code: string) {
 
 function main() {
   const report: Record<string, unknown> = {}
-  for (const code of ['kew1', 'kew2', 'kew3']) {
+  for (const code of ['kew1200-1', 'kew1200-2', 'kew1200-3']) {
     const result = polishBook(code)
     report[code] = result
     console.log(`${code}: ${result.count} 词, 问题 ${result.issues.length} 条`)

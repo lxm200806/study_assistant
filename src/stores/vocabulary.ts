@@ -175,9 +175,18 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     }
   }
 
+  const BOOK_CODE_ALIASES: Record<string, string> = {
+    kew1: 'kew1200-1',
+    kew2: 'kew1200-2',
+    kew3: 'kew1200-3'
+  }
+
+  const canonicalBookCode = (code: string) => BOOK_CODE_ALIASES[code] || code
+
   const setCurrentBook = (code: string) => {
-    currentBookCode.value = code
-    uni.setStorageSync('currentBookCode', code)
+    const next = canonicalBookCode(code)
+    currentBookCode.value = next
+    uni.setStorageSync('currentBookCode', next)
   }
 
   const setMeaningType = (type: MeaningType) => {
@@ -197,7 +206,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     const savedSettings = unwrapStorage<StudySettings>(uni.getStorageSync('studySettings'))
 
     if (savedBook) {
-      currentBookCode.value = savedBook
+      currentBookCode.value = canonicalBookCode(savedBook)
     } else if (!currentBookCode.value) {
       currentBookCode.value = DEFAULT_BOOK_CODE
     }

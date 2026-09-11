@@ -5,7 +5,7 @@
   "source": "Table of Contents — unit target words only (not passage running words)",
   "books": [
     {
-      "code": "kew1",
+      "code": "kew1200-1",
       "name": "1200高频词 1",
       "description": "Seed Learning《1200 Key English Words 1》。从目录提取每单元 New Words 主题词，不含课文句子用词。",
       "level": "A1",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "code": "kew2",
+      "code": "kew1200-2",
       "name": "1200高频词 2",
       "description": "Seed Learning《1200 Key English Words 2》。从目录提取每单元 New Words 主题词，不含课文句子用词。",
       "level": "A1+",
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "code": "kew3",
+      "code": "kew1200-3",
       "name": "1200高频词 3",
       "description": "Seed Learning《1200 Key English Words 3》。从目录提取每单元 New Words 主题词，不含课文句子用词。",
       "level": "A2",

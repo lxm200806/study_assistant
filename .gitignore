@@ -14,6 +14,9 @@ server/.env
 server/data/sources/ecdict.csv
 server/data/sources/ecdict.mini.csv
 server/data/sources/en-dict-cache.json
+server/data/sources/kew/_toc_extract/
+server/data/sources/kew/reports/
+server/materials/
 server/data/tts-cache/
 server/data/chinese/official/
 

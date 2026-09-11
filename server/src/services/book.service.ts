@@ -2,8 +2,29 @@ import prisma from '../prisma/client'
 import { vocabularyBooks } from '../data/vocabulary'
 import { resolveWordTaxonomy } from '../data/taxonomy/word-tags'
 
+const BOOK_CODE_RENAMES: Record<string, string> = {
+  kew1: 'kew1200-1',
+  kew2: 'kew1200-2',
+  kew3: 'kew1200-3'
+}
+
+async function migrateLegacyBookCodes() {
+  for (const [from, to] of Object.entries(BOOK_CODE_RENAMES)) {
+    const oldBook = await prisma.book.findUnique({ where: { code: from } })
+    if (!oldBook) continue
+    const taken = await prisma.book.findUnique({ where: { code: to } })
+    if (taken) {
+      console.warn(`Skip renaming ${from} → ${to}: target code already exists`)
+      continue
+    }
+    await prisma.book.update({ where: { id: oldBook.id }, data: { code: to } })
+    console.log(`Renamed book code ${from} → ${to}`)
+  }
+}
+
 export async function initBooks() {
   try {
+    await migrateLegacyBookCodes()
     for (const bookData of vocabularyBooks) {
       let book = await prisma.book.findUnique({
         where: { code: bookData.code }
@@ -74,9 +95,20 @@ export async function initBooks() {
             }
           })
         } else {
+          const keepElementary = (word.tags || []).some(tag =>
+            String(tag).includes('editor-elementary')
+          )
           word = await prisma.vocabulary.update({
             where: { id: word.id },
-            data: wordFields
+            data: keepElementary
+              ? {
+                  tags: [...new Set([...(word.tags || []), ...wordFields.tags])],
+                  contentType: word.contentType || wordFields.contentType,
+                  topic: word.topic || wordFields.topic,
+                  senseKey,
+                  senseLabel: word.senseLabel || senseLabel
+                }
+              : wordFields
           })
         }
 

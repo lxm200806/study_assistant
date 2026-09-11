@@ -50,7 +50,8 @@ export async function fetchEnglishDefinition(
 async function requestDictionary(word: string): Promise<{ phonetic: string; definition: string } | null> {
   try {
     const res = await fetch(
-      `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`
+      `https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`,
+      { signal: AbortSignal.timeout(8000) }
     )
     if (!res.ok) return null
 
@@ -78,7 +79,7 @@ export async function translateEnToZh(text: string): Promise<string | null> {
     const url = new URL('https://api.mymemory.translated.net/get')
     url.searchParams.set('q', trimmed)
     url.searchParams.set('langpair', 'en|zh-CN')
-    const res = await fetch(url.toString())
+    const res = await fetch(url.toString(), { signal: AbortSignal.timeout(8000) })
     if (!res.ok) return null
 
     const data = (await res.json()) as {

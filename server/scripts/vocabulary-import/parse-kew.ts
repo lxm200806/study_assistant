@@ -1,11 +1,18 @@
 import fs from 'fs'
 import path from 'path'
 
+export interface KewUnitEntry {
+  word: string
+  pos?: string
+  englishMeaning?: string
+}
+
 export interface KewUnit {
   id: string
   title: string
   theme?: string
   words: string[]
+  entries?: KewUnitEntry[]
 }
 
 export interface KewBookSource {
@@ -40,6 +47,7 @@ export interface KewWordRef {
   meaning?: string
   englishMeaning?: string
   phonetic?: string
+  pos?: string
   unitId: string
   unitTitle: string
   theme?: string
@@ -50,47 +58,103 @@ const SOURCE_PATH = path.join(__dirname, '../../data/sources/kew/kew-units.json'
 
 /** 教材明确分义项教的同形词。键：bookCode:unitId:word */
 export const KEW_SENSE_OVERRIDES: Record<string, KewSenseOverride> = {
-  'kew1:u1:fly': {
+  'kew1200-1:u1:fly': {
     senseKey: 'v',
     senseLabel: '飞',
     meaning: '飞；飞行',
     englishMeaning: 'to move through the air',
     phonetic: '/flaɪ/'
   },
-  'kew1:b4:fly': {
+  'kew1200-1:b4:fly': {
     senseKey: 'insect',
     senseLabel: '苍蝇',
     meaning: '苍蝇',
     englishMeaning: 'a small flying insect',
     phonetic: '/flaɪ/'
   },
-  'kew2:u9:tear': {
+  'kew1200-2:u9:tear': {
     senseKey: 'n',
     senseLabel: '眼泪',
     meaning: '眼泪',
     englishMeaning: 'a drop of liquid from the eye',
     phonetic: '/tɪə/'
   },
-  'kew2:u16:tear': {
+  'kew1200-2:u16:tear': {
     senseKey: 'v',
     senseLabel: '撕',
     meaning: '撕开；撕裂',
     englishMeaning: 'to pull something apart',
     phonetic: '/teə/'
   },
-  'kew1:u7:watch': {
+  'kew1200-1:u7:watch': {
     senseKey: 'v',
     senseLabel: '观看',
     meaning: '观看；注视',
     englishMeaning: 'to look at for a period of time',
     phonetic: '/wɒtʃ/'
   },
-  'kew3:b3:watch': {
+  'kew1200-3:b3:watch': {
     senseKey: 'n',
     senseLabel: '手表',
     meaning: '手表',
     englishMeaning: 'a small clock worn on the wrist',
     phonetic: '/wɒtʃ/'
+  },
+  'kew4500-1:u31:iron': {
+    senseKey: 'metal',
+    senseLabel: '铁',
+    meaning: '铁',
+    englishMeaning: 'a metal often used to make tools',
+    phonetic: '/ˈaɪən/'
+  },
+  'kew4500-4:u18:iron': {
+    senseKey: 'appliance',
+    senseLabel: '熨斗',
+    meaning: '熨斗',
+    englishMeaning: 'a heated electrical device used to smooth clothes',
+    phonetic: '/ˈaɪən/'
+  },
+  'kew4500-1:u14:major': {
+    senseKey: 'n',
+    senseLabel: '专业',
+    meaning: '大学主修专业',
+    englishMeaning: 'the main subject one studies at college',
+    phonetic: '/ˈmeɪdʒə/'
+  },
+  'kew4500-4:u40:major': {
+    senseKey: 'adj',
+    senseLabel: '重大的',
+    meaning: '重大的；主要的',
+    englishMeaning: 'great in importance, size, or degree',
+    phonetic: '/ˈmeɪdʒə/'
+  },
+  'kew4500-3:u40:resolution': {
+    senseKey: 'solution',
+    senseLabel: '解决',
+    meaning: '解决办法',
+    englishMeaning: 'a solution to a problem or difficulty',
+    phonetic: '/ˌrezəˈluːʃn/'
+  },
+  'kew4500-4:u38:resolution': {
+    senseKey: 'decision',
+    senseLabel: '决心',
+    meaning: '决心；决议',
+    englishMeaning: 'a serious decision to do something',
+    phonetic: '/ˌrezəˈluːʃn/'
+  },
+  'kew4500-1:u24:sense': {
+    senseKey: 'feeling',
+    senseLabel: '感觉',
+    meaning: '感觉；意识',
+    englishMeaning: 'a feeling about something important',
+    phonetic: '/sens/'
+  },
+  'kew4500-2:u38:sense': {
+    senseKey: 'perception',
+    senseLabel: '感官',
+    meaning: '视觉、听觉等感官',
+    englishMeaning: 'an ability to see, hear, smell, taste, or feel',
+    phonetic: '/sens/'
   }
 }
 
@@ -106,13 +170,19 @@ export function kewSenseLookupKey(bookCode: string, unitId: string, word: string
   return `${bookCode}:${unitId}:${normalizeKewWord(word)}`
 }
 
+export function unitItems(unit: KewUnit): KewUnitEntry[] {
+  if (unit.entries?.length) return unit.entries
+  return (unit.words || []).map(word => ({ word }))
+}
+
 export function validateKewBook(book: KewBookSource): string[] {
   const errors: string[] = []
   for (const unit of book.units) {
-    if (unit.words.length !== 20) {
-      errors.push(`${book.code} ${unit.title}: ${unit.words.length} words (expected 20)`)
+    const items = unitItems(unit)
+    if (items.length !== 20) {
+      errors.push(`${book.code} ${unit.title}: ${items.length} words (expected 20)`)
     }
-    const empty = unit.words.filter(w => !normalizeKewWord(w))
+    const empty = items.filter(item => !normalizeKewWord(item.word))
     if (empty.length) {
       errors.push(`${book.code} ${unit.title}: empty word entries`)
     }
@@ -134,8 +204,8 @@ export function flattenKewBook(book: KewBookSource): {
   const duplicates: Array<{ word: string; firstUnit: string; skippedUnit: string }> = []
 
   for (const unit of book.units) {
-    for (const raw of unit.words) {
-      const word = normalizeKewWord(raw)
+    for (const item of unitItems(unit)) {
+      const word = normalizeKewWord(item.word)
       if (!word) continue
       const override = KEW_SENSE_OVERRIDES[kewSenseLookupKey(book.code, unit.id, word)]
       const senseKey = override?.senseKey || ''
@@ -149,13 +219,16 @@ export function flattenKewBook(book: KewBookSource): {
       const tags = [`kew-unit:${unit.id}`]
       if (unit.theme) tags.push(`theme:${unit.theme}`)
       if (senseKey) tags.push(`sense:${senseKey}`)
+      const pos = item.pos?.trim()
+      if (pos) tags.push(`pos:${pos.replace(/\s+/g, '')}`)
       words.push({
         word,
         senseKey,
         senseLabel: override?.senseLabel || '',
         meaning: override?.meaning,
-        englishMeaning: override?.englishMeaning,
+        englishMeaning: override?.englishMeaning || item.englishMeaning,
         phonetic: override?.phonetic,
+        pos,
         unitId: unit.id,
         unitTitle: unit.title,
         theme: unit.theme,
