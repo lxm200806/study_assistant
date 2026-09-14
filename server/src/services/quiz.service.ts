@@ -1,5 +1,4 @@
 import prisma from '../prisma/client'
-import { formatWordForClient } from '../utils/wordFormat'
 import { getSessionWords, type SessionMode } from './coverage.service'
 
 export interface QuizSubmitItem {
@@ -27,5 +26,5 @@ export async function submitQuiz(
 
 export async function getQuizWords(userId: string, bookCode: string, count = 30) {
   const result = await getSessionWords(userId, bookCode, count, 'smart' as SessionMode)
-  return result.words.map(w => formatWordForClient(w as any))
+  return result.words
 }

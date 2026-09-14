@@ -14,6 +14,7 @@ export interface EnrichedWord {
   meaning: string
   phonetic: string
   englishMeaning: string
+  exampleSentence?: string
   emoji?: string
   senseKey?: string
   senseLabel?: string

@@ -12,20 +12,20 @@ export interface BookMeta {
 /** 词书元数据（不含词条，词条一律从 API 获取） */
 const BOOKS: BookMeta[] = [
   {
-    id: 'ket',
-    code: 'ket',
-    name: 'KET词汇',
-    description: '剑桥 A2 Key 官方词表（2025）',
+    id: 'mse-ket',
+    code: 'mse-ket',
+    name: 'MSE KET',
+    description: '剑桥通用英语 A2 Key 官方词表（2025年8月）',
     level: 'A2',
-    wordCount: 1571
+    wordCount: 1746
   },
   {
-    id: 'pet',
-    code: 'pet',
-    name: 'PET词汇',
-    description: '剑桥 B1 Preliminary 官方词表（2025）',
+    id: 'mse-pet',
+    code: 'mse-pet',
+    name: 'MSE PET',
+    description: '剑桥通用英语 B1 Preliminary 官方词表（2025年8月）',
     level: 'B1',
-    wordCount: 2834
+    wordCount: 3142
   },
   {
     id: 'zhongkao',
@@ -41,7 +41,7 @@ const BOOKS: BookMeta[] = [
     name: '高中词汇',
     description: '高考英语考纲词汇',
     level: '高中',
-    wordCount: 3690
+    wordCount: 3685
   },
   {
     id: 'kew1200-1',
@@ -49,7 +49,7 @@ const BOOKS: BookMeta[] = [
     name: '1200高频词 1',
     description: 'Seed Learning 单元主题词（New Words）',
     level: 'A1',
-    wordCount: 400
+    wordCount: 399
   },
   {
     id: 'kew1200-2',
@@ -57,7 +57,7 @@ const BOOKS: BookMeta[] = [
     name: '1200高频词 2',
     description: 'Seed Learning 单元主题词（New Words）',
     level: 'A1+',
-    wordCount: 400
+    wordCount: 399
   },
   {
     id: 'kew1200-3',

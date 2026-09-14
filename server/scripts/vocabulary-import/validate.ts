@@ -25,7 +25,7 @@ export function validateBookWords(
   const draft: EnrichedWord[] = []
 
   for (const w of words) {
-    const key = `${w.word.toLowerCase()}::${w.senseKey || ''}`
+    const key = `${w.word.toLowerCase()}`
 
     if (!options.skipArtifactFilter && isParseArtifact(w.word.toLowerCase())) {
       issues.push({ word: key, reason: 'PDF 解析错误（非有效词条）' })
@@ -50,6 +50,10 @@ export function validateBookWords(
 
     if (w.meaning.startsWith('[待校对]')) {
       issues.push({ word: key, reason: '中文释义待校对' })
+    }
+
+    if (!w.exampleSentence || w.exampleSentence.trim().length < 4) {
+      issues.push({ word: key, reason: '缺少例句' })
     }
 
     draft.push(w)

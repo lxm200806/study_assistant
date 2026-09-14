@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { buildSystemPrompt, type LearnerChatContext } from './chat-learner-context.service'
 
 const sampleContext: LearnerChatContext = {
-  bookCode: 'ket',
+  bookCode: 'mse-ket',
   bookLevel: 'A2',
   coverageRate: 25,
   practicedCount: 50,

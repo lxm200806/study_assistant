@@ -26,7 +26,11 @@ export async function getMissingMeaningSummary() {
   })
 
   return books.map(book => {
-    const words = book.vocabulary.map(bv => bv.word)
+    const words = book.vocabulary.map(bv => ({
+      word: bv.word.word,
+      meaning: bv.meaning?.trim() || bv.word.meaning,
+      englishMeaning: bv.englishMeaning?.trim() || bv.word.englishMeaning
+    }))
     const { missingCount, parseErrorCount } = countIssues(words)
     return {
       bookCode: book.code,
@@ -61,7 +65,13 @@ export async function getMissingMeaningWords(
     }
 
     const all = book.vocabulary
-      .map(bv => bv.word)
+      .map(bv => ({
+        id: bv.word.id,
+        word: bv.word.word,
+        meaning: bv.meaning?.trim() || bv.word.meaning,
+        englishMeaning: bv.englishMeaning?.trim() || bv.word.englishMeaning,
+        phonetic: bv.word.phonetic
+      }))
       .filter(filterWord)
       .sort((a, b) => a.word.localeCompare(b.word))
 
@@ -95,17 +105,24 @@ export async function getMissingMeaningWords(
 
   const allMissing = books.flatMap(book =>
     book.vocabulary
-      .filter(bv => filterWord(bv.word))
-      .map(bv => ({
+      .filter(bv => filterWord({
+        word: bv.word.word,
+        meaning: bv.meaning?.trim() || bv.word.meaning,
+        englishMeaning: bv.englishMeaning?.trim() || bv.word.englishMeaning
+      }))
+      .map(bv => {
+        const meaning = bv.meaning?.trim() || bv.word.meaning
+        const englishMeaning = bv.englishMeaning?.trim() || bv.word.englishMeaning
+        return {
         bookCode: book.code,
         bookName: book.name,
         id: bv.word.id,
         word: bv.word.word,
-        meaning: bv.word.meaning,
-        englishMeaning: bv.word.englishMeaning,
+        meaning,
+        englishMeaning,
         phonetic: bv.word.phonetic,
-        issueType: classifyVocabularyIssue(bv.word.word, bv.word.meaning, bv.word.englishMeaning)
-      }))
+        issueType: classifyVocabularyIssue(bv.word.word, meaning, englishMeaning)
+      }})
   )
 
   const slice = allMissing.slice(skip, skip + limit)

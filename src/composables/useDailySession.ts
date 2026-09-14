@@ -23,7 +23,7 @@ export function useDailySession() {
     if (book && isBookAccessible(book.code, book.isFree)) {
       return true
     }
-    vocabStore.setCurrentBook('ket')
+    vocabStore.setCurrentBook('mse-ket')
     uni.showToast({ title: '已切换到免费 KET 词书', icon: 'none' })
     return true
   }

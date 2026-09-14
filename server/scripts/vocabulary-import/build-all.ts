@@ -1,21 +1,23 @@
 #!/usr/bin/env ts-node
 /**
- * 从权威词表构建四本书 JSON 并校验释义
+ * 从国内考试词表构建中考/高考词书 JSON 并校验释义
  * 用法: npx ts-node scripts/vocabulary-import/build-all.ts [--api]
  */
 import fs from 'fs'
 import path from 'path'
-import { parseCambridgePdfText } from './parse-cambridge'
-import { parseKyleBingTxt } from './parse-kylebing'
 import { loadEcdictCsv, ecdictToKyleBingMap } from './parse-ecdict'
 import { enrichWord, loadEnCache, saveEnCache } from './enrich'
 import { validateBookWords } from './validate'
 import { resolveWordTaxonomy } from '../../src/data/taxonomy/word-tags'
 import { emojiMap } from '../../src/utils/emojiMap'
+import { completeWordData } from './book-word'
+import { BOOKS_DIR, TMP_DIR } from './kew-layout'
+import { loadCnexamMeaningLookup, cnexamGlossWords } from './cnexam-layout'
 
 const ROOT = path.join(__dirname, '../..')
 const SOURCES = path.join(ROOT, 'data/sources')
-const OUT = path.join(ROOT, 'data/vocabulary/books')
+const OUT = BOOKS_DIR
+const REPORT_DIR = path.join(TMP_DIR, 'vocabulary')
 
 const useApi = process.argv.includes('--api')
 
@@ -29,22 +31,6 @@ interface BookMeta {
 }
 
 const BOOKS: BookMeta[] = [
-  {
-    code: 'ket',
-    name: 'KET词汇',
-    description: '剑桥 A2 Key 官方词表（2025）',
-    level: 'A2',
-    targetWordCount: 1599,
-    source: 'cambridge-a2-key-2025'
-  },
-  {
-    code: 'pet',
-    name: 'PET词汇',
-    description: '剑桥 B1 Preliminary 官方词表（2025）',
-    level: 'B1',
-    targetWordCount: 3046,
-    source: 'cambridge-b1-preliminary-2025'
-  },
   {
     code: 'zhongkao',
     name: '初中词汇',
@@ -67,39 +53,21 @@ async function main() {
   fs.mkdirSync(OUT, { recursive: true })
   loadEnCache()
 
-  const cet4Txt = fs.readFileSync(path.join(SOURCES, 'cet4.txt'), 'utf-8')
-  const cet6Txt = fs.readFileSync(path.join(SOURCES, 'cet6.txt'), 'utf-8')
-  const toeflTxt = fs.readFileSync(path.join(SOURCES, 'toefl.txt'), 'utf-8')
-  const zhongkaoTxt = fs.readFileSync(path.join(SOURCES, 'zhongkao.txt'), 'utf-8')
-  const gaokaoTxt = fs.readFileSync(path.join(SOURCES, 'gaokao.txt'), 'utf-8')
-  const ketTxt = fs.readFileSync(path.join(SOURCES, 'ket-vocabulary-pdf.txt'), 'utf-8')
-  const petTxt = fs.readFileSync(path.join(SOURCES, 'pet-vocabulary-pdf.txt'), 'utf-8')
-
   const ecdict = await loadEcdictCsv(path.join(SOURCES, 'ecdict.csv'))
 
-  // 释义优先级：ECDICT/托福/六级/四级 < 高中 < 初中（后者覆盖前者）
+  // 释义优先级：ECDICT < 国内考试 gloss（中考覆盖高考/四六级）
   const cnLookup = new Map([
     ...ecdictToKyleBingMap(ecdict),
-    ...parseKyleBingTxt(cet4Txt),
-    ...parseKyleBingTxt(cet6Txt),
-    ...parseKyleBingTxt(toeflTxt),
-    ...parseKyleBingTxt(gaokaoTxt),
-    ...parseKyleBingTxt(zhongkaoTxt)
+    ...loadCnexamMeaningLookup()
   ])
 
-  const ketWords = parseCambridgePdfText(ketTxt)
-  const petWords = parseCambridgePdfText(petTxt)
-  const zhongkaoWords = [...parseKyleBingTxt(zhongkaoTxt).keys()]
-  const gaokaoWords = [...parseKyleBingTxt(gaokaoTxt).keys()]
+  const zhongkaoWords = cnexamGlossWords('zhongkao')
+  const gaokaoWords = cnexamGlossWords('gaokao')
 
-  console.log(`KET 解析: ${ketWords.length} 词`)
-  console.log(`PET 解析: ${petWords.length} 词`)
   console.log(`初中: ${zhongkaoWords.length} 词`)
   console.log(`高中: ${gaokaoWords.length} 词`)
 
   const wordLists: Record<string, string[]> = {
-    ket: ketWords,
-    pet: petWords,
     zhongkao: zhongkaoWords,
     gaokao: gaokaoWords
   }
@@ -112,18 +80,23 @@ async function main() {
     const parsedCount = list.length
     const enriched = []
     const droppedInEnrich: string[] = []
-    const needApi = useApi && (meta.code === 'ket' || meta.code === 'pet')
+    const needApi = useApi
 
     for (let i = 0; i < list.length; i++) {
       const w = await enrichWord(list[i], cnLookup, emojiMap, needApi)
       if (w) {
         const tax = resolveWordTaxonomy(w.word)
-        enriched.push({
-          ...w,
-          contentType: tax.contentType,
-          topic: tax.topic,
-          tags: tax.tags || []
-        })
+        enriched.push(
+          completeWordData(
+            {
+              ...w,
+              contentType: tax.contentType,
+              topic: tax.topic,
+              tags: tax.tags || []
+            },
+            meta.source
+          )
+        )
       } else {
         droppedInEnrich.push(list[i])
       }
@@ -150,11 +123,9 @@ async function main() {
     if (droppedInEnrich.length) console.log(`  enrich 丢弃: ${droppedInEnrich.length} 条`)
 
     if (missingWords.length) {
-      const missingPath = path.join(OUT, `${meta.code}-missing.txt`)
+      fs.mkdirSync(REPORT_DIR, { recursive: true })
+      const missingPath = path.join(REPORT_DIR, `${meta.code}-missing.txt`)
       fs.writeFileSync(missingPath, missingWords.map(w => w.word).join('\n'))
-    } else {
-      const missingPath = path.join(OUT, `${meta.code}-missing.txt`)
-      if (fs.existsSync(missingPath)) fs.unlinkSync(missingPath)
     }
 
     report[meta.code] = {
@@ -170,8 +141,11 @@ async function main() {
   }
 
   saveEnCache()
-  fs.writeFileSync(path.join(OUT, 'build-report.json'), JSON.stringify(report, null, 2))
-  console.log('\n完成。重启后端以同步数据库: ./start-server.sh')
+  fs.mkdirSync(REPORT_DIR, { recursive: true })
+  const reportPath = path.join(REPORT_DIR, 'build-report.json')
+  fs.writeFileSync(reportPath, JSON.stringify(report, null, 2))
+  console.log(`\n完成。报告: ${reportPath}`)
+  console.log('重启后端以同步数据库: ./restart-server.sh')
 }
 
 main().catch(err => {

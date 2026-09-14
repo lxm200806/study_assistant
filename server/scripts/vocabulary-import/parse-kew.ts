@@ -54,7 +54,7 @@ export interface KewWordRef {
   tags: string[]
 }
 
-const SOURCE_PATH = path.join(__dirname, '../../data/sources/kew/kew-units.json')
+const SOURCE_PATH = path.join(__dirname, '../../data/sources/kew/kew1200/units.json')
 
 /** 教材明确分义项教的同形词。键：bookCode:unitId:word */
 export const KEW_SENSE_OVERRIDES: Record<string, KewSenseOverride> = {
@@ -190,11 +190,11 @@ export function validateKewBook(book: KewBookSource): string[] {
   return errors
 }
 
-function identityKey(word: string, senseKey: string): string {
-  return `${word}::${senseKey}`
+function identityKey(word: string): string {
+  return word
 }
 
-/** 按单元顺序展开主题词；同形不同义保留为独立义项 */
+/** 按单元顺序展开主题词；同一拼写只保留第一次出现。 */
 export function flattenKewBook(book: KewBookSource): {
   words: KewWordRef[]
   duplicates: Array<{ word: string; firstUnit: string; skippedUnit: string }>
@@ -209,7 +209,7 @@ export function flattenKewBook(book: KewBookSource): {
       if (!word) continue
       const override = KEW_SENSE_OVERRIDES[kewSenseLookupKey(book.code, unit.id, word)]
       const senseKey = override?.senseKey || ''
-      const id = identityKey(word, senseKey)
+      const id = identityKey(word)
       const firstUnit = seen.get(id)
       if (firstUnit) {
         duplicates.push({ word, firstUnit, skippedUnit: unit.title })

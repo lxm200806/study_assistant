@@ -71,7 +71,7 @@ const focusReport = ref(false)
 
 const isUnlocked = (book: { code: string; isFree?: boolean }) => {
   if (userStore.plan === 'premium') return true
-  return book.isFree !== false || book.code === 'ket'
+  return book.isFree !== false || book.code === 'mse-ket' || book.code === 'ket'
 }
 
 const subscribe = () => {

@@ -2,10 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
 import { loadEcdictCsv, ecdictToKyleBingMap } from './vocabulary-import/parse-ecdict'
-import { parseKyleBingTxt } from './vocabulary-import/parse-kylebing'
 import { loadEnCache, saveEnCache } from './vocabulary-import/enrich'
 import { resolveMissingMeaning } from './vocabulary-import/meaning-lookup'
 import { isMissingMeaning } from '../src/utils/vocabulary-meaning'
+import { loadCnexamMeaningLookup } from './vocabulary-import/cnexam-layout'
 
 dotenv.config()
 
@@ -30,15 +30,10 @@ interface BookJson {
 
 async function buildCnLookup() {
   const ecdict = await loadEcdictCsv(path.join(SOURCES, 'ecdict.csv'))
-  const files = ['cet4.txt', 'cet6.txt', 'toefl.txt', 'zhongkao.txt', 'gaokao.txt']
-  const maps = [
+  return new Map([
     ...ecdictToKyleBingMap(ecdict),
-    ...files.flatMap(f => {
-      const p = path.join(SOURCES, f)
-      return fs.existsSync(p) ? [...parseKyleBingTxt(fs.readFileSync(p, 'utf-8'))] : []
-    })
-  ]
-  return new Map(maps)
+    ...loadCnexamMeaningLookup()
+  ])
 }
 
 async function main() {
@@ -46,7 +41,7 @@ async function main() {
   const cnLookup = await buildCnLookup()
   const cache: Record<string, { phonetic?: string; definition?: string; failed?: boolean }> = {}
 
-  const bookFiles = fs.readdirSync(BOOKS_DIR).filter(f => f.endsWith('.json') && f !== 'build-report.json')
+  const bookFiles = fs.readdirSync(BOOKS_DIR).filter(f => f.endsWith('.json') && !f.includes('report'))
   let filled = 0
   let stillMissing = 0
 

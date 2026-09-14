@@ -24,7 +24,7 @@ export interface StudySettings {
   sessionMode: SessionMode
 }
 
-const DEFAULT_BOOK_CODE = 'ket'
+const DEFAULT_BOOK_CODE = 'mse-ket'
 
 export const useVocabularyStore = defineStore('vocabulary', () => {
   const vocabularyList = ref<Vocabulary[]>([])
@@ -178,7 +178,11 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   const BOOK_CODE_ALIASES: Record<string, string> = {
     kew1: 'kew1200-1',
     kew2: 'kew1200-2',
-    kew3: 'kew1200-3'
+    kew3: 'kew1200-3',
+    ket: 'mse-ket',
+    pet: 'mse-pet',
+    MSE_KET: 'mse-ket',
+    MSE_PET: 'mse-pet'
   }
 
   const canonicalBookCode = (code: string) => BOOK_CODE_ALIASES[code] || code

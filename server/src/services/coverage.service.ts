@@ -1,5 +1,5 @@
 import prisma from '../prisma/client'
-import { formatWordForClient } from '../utils/wordFormat'
+import { formatBookWord } from '../utils/wordFormat'
 import {
   aggregateBookWordStats,
   getPriorityScore,
@@ -181,7 +181,7 @@ export async function getSessionWords(
     const selected = scored.slice(0, count).map(s => s.bv)
     const progressInfo = await getBookProgress(userId, bookCode)
     return {
-      words: selected.map(bv => formatWordForClient(bv.word)),
+      words: selected.map(bv => formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${now.toISOString().slice(0, 10)}`, rotate: true })),
       progress: progressInfo,
       mode
     }
@@ -212,7 +212,7 @@ export async function getSessionWords(
 
     const progressInfo = await getBookProgress(userId, bookCode)
     return {
-      words: selectedBookWords.map(bv => formatWordForClient(bv.word)),
+      words: selectedBookWords.map(bv => formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${now.toISOString().slice(0, 10)}`, rotate: true })),
       progress: progressInfo,
       mode
     }
@@ -249,7 +249,7 @@ export async function getSessionWords(
   const progressInfo = await getBookProgress(userId, bookCode)
 
   return {
-    words: selectedBookWords.map(bv => formatWordForClient(bv.word)),
+    words: selectedBookWords.map(bv => formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${now.toISOString().slice(0, 10)}`, rotate: true })),
     progress: progressInfo,
     mode
   }

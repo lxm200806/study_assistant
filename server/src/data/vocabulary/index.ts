@@ -21,14 +21,10 @@ function loadBookJson(code: string): BookData | null {
 }
 
 // 回退：内置 TS 词库（无 JSON 时使用）
-import { ketBook as ketFallback } from './ket'
-import { petBook as petFallback } from './pet'
 import { zhongkaoBook as zhongkaoFallback } from './zhongkao'
 import { gaokaoBook as gaokaoFallback } from './gaokao'
 
 const fallbacks: Record<string, BookData> = {
-  ket: ketFallback,
-  pet: petFallback,
   zhongkao: zhongkaoFallback,
   gaokao: gaokaoFallback
 }
@@ -39,10 +35,12 @@ function loadBook(code: string): BookData {
 
 export type { WordData, BookData } from './types'
 
-export const ketBook: BookData = loadBook('ket')
-export const petBook: BookData = loadBook('pet')
 export const zhongkaoBook: BookData = loadBook('zhongkao')
 export const gaokaoBook: BookData = loadBook('gaokao')
+
+const mseBooks = ['mse-ket', 'mse-pet']
+  .map(code => loadBookJson(code))
+  .filter((book): book is BookData => !!book)
 
 const kewBooks = [
   'kew1200-1',
@@ -61,8 +59,7 @@ const kewBooks = [
 
 /** 词汇书注册表 — 新增词书只需在此追加 */
 export const vocabularyBooks: BookData[] = [
-  ketBook,
-  petBook,
+  ...mseBooks,
   zhongkaoBook,
   gaokaoBook,
   ...kewBooks

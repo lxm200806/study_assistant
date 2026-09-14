@@ -84,10 +84,16 @@ model Book {
 }
 
 model BookVocabulary {
-  id        String @id @default(uuid())
-  bookId    String
-  wordId    String
-  sortOrder Int    @default(0) @map("sort_order")
+  id               String   @id @default(uuid())
+  bookId           String
+  wordId           String
+  sortOrder        Int      @default(0) @map("sort_order")
+  /// 这本书里该词的中文意思。
+  meaning          String   @default("")
+  /// 这本书里该词的英文释义。
+  englishMeaning   String   @default("")
+  /// 这本书里该词的例句；多条时练习按天轮换。
+  exampleSentences String[] @default([])
 
   book Book       @relation(fields: [bookId], references: [id])
   word Vocabulary @relation(fields: [wordId], references: [id])
@@ -97,7 +103,8 @@ model BookVocabulary {
 
 model Vocabulary {
   id              String   @id @default(uuid())
-  word            String
+  /// 词形唯一：多本书、多种词典意思共用一行，进度按词形记。
+  word            String   @unique
   meaning         String
   phonetic        String?
   imageUrl        String?
@@ -106,17 +113,14 @@ model Vocabulary {
   contentType     String?
   topic           String?
   tags            String[] @default([])
-  /// 同形词义项，空字符串表示默认义项。与 word 组成唯一键。
+  /// 已不再拆义项；保留空值以兼容旧数据。
   senseKey        String   @default("")
-  /// 给学习者看的短义项，如「飞」「苍蝇」
   senseLabel      String   @default("")
   createdAt       DateTime @default(now())
 
   vocabularyStats VocabularyStat[]
   trainingRecords TrainingRecord[]
   bookVocabulary  BookVocabulary[]
-
-  @@unique([word, senseKey])
 }
 
 model BookStudyProgress {

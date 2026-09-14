@@ -10,7 +10,7 @@ from openpyxl import load_workbook
 
 ROOT = Path(__file__).resolve().parents[2]
 MATERIALS = ROOT / "materials" / "reference material" / "4500 Key English Words"
-OUT = ROOT / "data" / "sources" / "kew" / "kew4500-units.json"
+OUT = ROOT / "data" / "sources" / "kew" / "kew4500" / "units.json"
 
 BOOK_META = {
     1: {"code": "kew4500-1", "name": "4500高频词 1", "level": "A2+", "targetWordCount": 800},

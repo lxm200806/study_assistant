@@ -5,7 +5,7 @@ import { useUserStore } from '@/stores/user'
 export function isBookAccessible(bookCode: string, isFree?: boolean): boolean {
   const userStore = useUserStore()
   if (userStore.isAdmin || userStore.plan === 'premium') return true
-  if (isFree === true || bookCode === 'ket') return true
+  if (isFree === true || bookCode === 'mse-ket' || bookCode === 'ket') return true
   return false
 }
 
@@ -58,11 +58,11 @@ export async function ensureTrainingWords(
             if (errorKind === 'locked' || !isBookAccessible(book?.code || '', book?.isFree)) {
               uni.navigateTo({ url: '/pages/membership/membership' })
             } else {
-              vocabStore.setCurrentBook('ket')
+              vocabStore.setCurrentBook('mse-ket')
               uni.showToast({ title: '已切换到 KET', icon: 'none' })
             }
           } else if (errorKind !== 'network') {
-            vocabStore.setCurrentBook('ket')
+            vocabStore.setCurrentBook('mse-ket')
             uni.showToast({ title: '已切换到 KET', icon: 'none' })
           }
         }

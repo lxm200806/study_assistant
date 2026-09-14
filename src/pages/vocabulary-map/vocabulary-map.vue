@@ -93,7 +93,7 @@ const vocabStore = useVocabularyStore()
 const userStore = useUserStore()
 const chineseCoverage = ref<any>({})
 const scope = ref<'book' | 'global'>('book')
-const selectedBook = ref(vocabStore.currentBookCode || 'ket')
+const selectedBook = ref(vocabStore.currentBookCode || 'mse-ket')
 const loading = ref(false)
 
 const mapData = computed<VocabularyMapData | null>(() => {

@@ -7,7 +7,8 @@ export interface Vocabulary {
   image?: string
   /** 是否有配图（简单词 true，复杂词 false） */
   visual?: boolean
-  example?: string
+    example?: string
+  examples?: string[]
   englishMeaning?: string
   contentType?: string
   topic?: string

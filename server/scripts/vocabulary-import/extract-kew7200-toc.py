@@ -6,8 +6,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-OCR_DIR = ROOT / "data" / "sources" / "kew" / "_toc_extract"
-OUT = ROOT / "data" / "sources" / "kew" / "kew7200-units.json"
+OCR_DIR = ROOT / "tmp" / "kew" / "_toc_extract"
+OUT = ROOT / "data" / "sources" / "kew" / "kew7200" / "units.json"
 ECDICT = ROOT / "data" / "sources" / "ecdict.csv"
 
 SKIP = {

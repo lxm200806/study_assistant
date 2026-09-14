@@ -3,6 +3,8 @@ import { getBookProgress } from './coverage.service'
 import { getBookMap } from './graph.service'
 import { getReviewWords } from './training.service'
 import { findScenario } from './chat-scenarios'
+import { bookWordExamples } from '../utils/wordFormat'
+
 
 export interface ChallengeWordEntry {
   word: string
@@ -57,8 +59,8 @@ export async function getLearnerChatContext(
   const wordDetailMap = new Map<string, { meaning: string; example?: string }>()
   for (const bv of book.vocabulary) {
     wordDetailMap.set(bv.word.word, {
-      meaning: bv.word.meaning,
-      example: bv.word.exampleSentence ?? undefined
+      meaning: bv.meaning?.trim() || bv.word.meaning,
+      example: bookWordExamples(bv)[0]
     })
   }
 

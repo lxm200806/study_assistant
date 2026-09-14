@@ -14,28 +14,26 @@ function book(code: string, units: KewBookSource['units']): KewBookSource {
 }
 
 describe('flattenKewBook', () => {
-  it('keeps fly as two senses in book 1', () => {
+  it('keeps fly once when it appears again later', () => {
     const result = flattenKewBook(book('kew1200-1', [
       { id: 'u1', title: 'Unit 1', words: ['ball', 'fly'] },
       { id: 'b4', title: 'Bonus 4 Insects & Flowers', theme: 'Insects & Flowers', words: ['ant', 'fly'] }
     ]))
 
     const flies = result.words.filter(item => item.word === 'fly')
-    expect(flies).toHaveLength(2)
-    expect(flies.map(item => item.senseKey).sort()).toEqual(['insect', 'v'])
-    expect(result.words).toHaveLength(4)
-    expect(result.duplicates).toHaveLength(0)
+    expect(flies).toHaveLength(1)
+    expect(result.words).toHaveLength(3)
+    expect(result.duplicates).toHaveLength(1)
   })
 
-  it('keeps tear as noun and verb in book 2', () => {
-    const result = flattenKewBook(book('kew1200-2', [)
+  it('keeps tear once when noun and verb both appear', () => {
+    const result = flattenKewBook(book('kew1200-2', [
       { id: 'u9', title: 'Unit 9', words: ['air', 'tear'] },
       { id: 'u16', title: 'Unit 16', words: ['appear', 'tear'] }
     ]))
 
-    const tears = result.words.filter(item => item.word === 'tear')
-    expect(tears).toHaveLength(2)
-    expect(tears.map(item => item.senseLabel).sort()).toEqual(['撕', '眼泪'])
+    expect(result.words.filter(item => item.word === 'tear')).toHaveLength(1)
+    expect(result.duplicates).toHaveLength(1)
   })
 
   it('splits watch across books by sense key', () => {
@@ -44,7 +42,7 @@ describe('flattenKewBook', () => {
   })
 
   it('skips true same-sense duplicates', () => {
-    const result = flattenKewBook(book('kew1200-1', [)
+    const result = flattenKewBook(book('kew1200-1', [
       { id: 'u2', title: 'Unit 2', words: ['tree', 'tree'] }
     ]))
     expect(result.words.filter(item => item.word === 'tree')).toHaveLength(1)
@@ -61,9 +59,6 @@ describe('flattenKewBook', () => {
       { id: 'u14', title: 'Unit 14', words: ['major'] },
       { id: 'u31', title: 'Unit 31', words: ['iron'] }
     ]))
-    expect(result.words.map(item => `${item.word}::${item.senseKey}`).sort()).toEqual([
-      'iron::metal',
-      'major::n'
-    ])
+    expect(result.words.map(item => item.word).sort()).toEqual(['iron', 'major'])
   })
 })

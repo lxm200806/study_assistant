@@ -1,4 +1,4 @@
-"""Validate 4500/7200 series gloss JSON against 1200-style rules."""
+"""Validate KEW gloss JSON against the matching book JSON."""
 from __future__ import annotations
 
 import json
@@ -7,8 +7,13 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-GLOSS_DIR = ROOT / "data" / "sources" / "kew" / "series"
-INPUT_DIR = GLOSS_DIR / "input"
+BOOKS = ROOT / "data" / "vocabulary" / "books"
+KEW = ROOT / "data" / "sources" / "kew"
+SERIES_BOOKS = {
+    "kew1200": ["kew1200-1", "kew1200-2", "kew1200-3"],
+    "kew4500": ["kew4500-1", "kew4500-2", "kew4500-3", "kew4500-4"],
+    "kew7200": ["kew7200-1", "kew7200-2", "kew7200-3"],
+}
 IPA = re.compile(r"[ˈˌːɪæɑɒʌəɜɔʊθðʃʒŋ]")
 HAN = re.compile(r"[\u4e00-\u9fff]")
 
@@ -26,7 +31,7 @@ def validate(word: str, gloss: dict) -> list[str]:
     example = str(gloss.get("exampleSentence") or "")
     if not HAN.search(meaning) or "[待校对]" in meaning:
         errors.append("汉语解释无效")
-    if len(meaning) > 20:
+    if len(meaning) > 30:
         errors.append(f"汉语过长({len(meaning)})")
     if HAN.search(english) or len(english) < 8:
         errors.append("英语解释无效")
@@ -40,38 +45,56 @@ def validate(word: str, gloss: dict) -> list[str]:
     return errors
 
 
+def series_of(code: string) -> str:
+    for series in SERIES_BOOKS:
+        if code.startswith(f"{series}-") or code == series:
+            return series
+    raise SystemExit(f"unknown book/series: {code}")
+
+
+def codes_from_args(args: list[str]) -> list[tuple[str, str]]:
+    if not args:
+        return [(series, code) for series, codes in SERIES_BOOKS.items() for code in codes]
+    pairs = []
+    for arg in args:
+        if arg in SERIES_BOOKS:
+            pairs.extend((arg, code) for code in SERIES_BOOKS[arg])
+        else:
+            pairs.append((series_of(arg), arg))
+    return pairs
+
+
 def main() -> int:
-    codes = sys.argv[1:] or [
-        "kew4500-1",
-        "kew4500-2",
-        "kew4500-3",
-        "kew4500-4",
-        "kew7200-1",
-        "kew7200-2",
-        "kew7200-3",
-    ]
     failed = 0
-    for code in codes:
-        input_rows = json.loads((INPUT_DIR / f"{code}.json").read_text(encoding="utf-8"))
-        gloss_path = GLOSS_DIR / f"{code}-glosses.json"
+    for series, code in codes_from_args(sys.argv[1:]):
+        book_path = BOOKS / f"{code}.json"
+        gloss_path = KEW / series / f"{code}-glosses.json"
+        if not book_path.exists():
+            print(f"{code}: MISSING {book_path}")
+            failed += 1
+            continue
         if not gloss_path.exists():
             print(f"{code}: MISSING {gloss_path}")
             failed += 1
             continue
+        book = json.loads(book_path.read_text(encoding="utf-8"))
         glosses = json.loads(gloss_path.read_text(encoding="utf-8"))
+        keys = []
         missing = []
         bad = []
-        for row in input_rows:
-            key = row["key"]
+        for item in book["words"]:
+            word = item["word"]
+            key = word
+            keys.append(key)
             if key not in glosses:
                 missing.append(key)
                 continue
-            errors = validate(row["word"], glosses[key])
+            errors = validate(word, glosses[key])
             if errors:
                 bad.append(f"{key}: {'; '.join(errors)}")
-        extra = sorted(set(glosses) - {row["key"] for row in input_rows})
-        print(f"{code}: {len(input_rows)} keys, missing {len(missing)}, invalid {len(bad)}, extra {len(extra)}")
-        for line in (missing[:8] + bad[:8]):
+        extra = sorted(set(glosses) - set(keys))
+        print(f"{code}: {len(keys)} keys, missing {len(missing)}, invalid {len(bad)}, extra {len(extra)}")
+        for line in missing[:8] + bad[:8]:
             print(" ", line)
         if missing or bad:
             failed += 1

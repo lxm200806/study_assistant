@@ -1,11 +1,16 @@
 import prisma from '../prisma/client'
 import { vocabularyBooks } from '../data/vocabulary'
+import { collectBookWordEntries } from '../data/vocabulary/book-entries'
+import { resolveSense } from '../data/vocabulary/senses'
 import { resolveWordTaxonomy } from '../data/taxonomy/word-tags'
+import { formatBookWord } from '../utils/wordFormat'
 
 const BOOK_CODE_RENAMES: Record<string, string> = {
   kew1: 'kew1200-1',
   kew2: 'kew1200-2',
-  kew3: 'kew1200-3'
+  kew3: 'kew1200-3',
+  ket: 'mse-ket',
+  pet: 'mse-pet'
 }
 
 async function migrateLegacyBookCodes() {
@@ -26,6 +31,7 @@ export async function initBooks() {
   try {
     await migrateLegacyBookCodes()
     for (const bookData of vocabularyBooks) {
+      const entries = collectBookWordEntries(bookData.words)
       let book = await prisma.book.findUnique({
         where: { code: bookData.code }
       })
@@ -38,8 +44,8 @@ export async function initBooks() {
             code: bookData.code,
             description: bookData.description,
             level: bookData.level,
-            wordCount: bookData.words.length,
-            isFree: bookData.code === 'ket'
+            wordCount: entries.length,
+            isFree: bookData.code === 'mse-ket' || bookData.code === 'ket'
           }
         })
       } else {
@@ -49,66 +55,51 @@ export async function initBooks() {
             name: bookData.name,
             description: bookData.description,
             level: bookData.level,
-            wordCount: bookData.words.length,
-            isFree: bookData.code === 'ket' ? true : book.isFree
+            wordCount: entries.length,
+            isFree: bookData.code === 'mse-ket' || bookData.code === 'ket' ? true : book.isFree
           }
         })
       }
 
       const linkedWordIds: string[] = []
 
-      for (let i = 0; i < bookData.words.length; i++) {
-        const wordData = bookData.words[i]
-        const senseKey = wordData.senseKey || ''
-        const senseLabel = wordData.senseLabel || ''
-        const taxonomy = resolveWordTaxonomy(wordData.word, {
-          contentType: wordData.contentType,
-          topic: wordData.topic,
-          tags: wordData.tags
+      for (let i = 0; i < entries.length; i++) {
+        const entry = entries[i]
+        const sense = resolveSense(entry.word, entry)
+        const taxonomy = resolveWordTaxonomy(entry.word, {
+          contentType: entry.contentType,
+          topic: entry.topic,
+          tags: entry.tags
         })
 
-        const existingWords = await prisma.vocabulary.findMany({
-          where: { word: wordData.word },
-          orderBy: { createdAt: 'asc' }
+        let word = await prisma.vocabulary.findUnique({
+          where: { word: entry.word }
         })
-
-        let word = existingWords.find(item => (item.senseKey || '') === senseKey)
 
         const wordFields = {
-          meaning: wordData.meaning,
-          phonetic: wordData.phonetic,
-          englishMeaning: wordData.englishMeaning,
-          exampleSentence: wordData.exampleSentence,
-          imageUrl: wordData.emoji || word?.imageUrl || null,
+          meaning: sense.meaning,
+          phonetic: sense.phonetic || entry.phonetic,
+          englishMeaning: sense.englishMeaning || entry.englishMeaning,
+          exampleSentence: entry.examples[0] || word?.exampleSentence || '',
+          imageUrl: entry.emoji || word?.imageUrl || null,
           contentType: taxonomy.contentType,
           topic: taxonomy.topic,
-          tags: [...new Set([...(taxonomy.tags || []), ...(wordData.tags || [])])],
-          senseKey,
-          senseLabel
+          tags: [...new Set([...(taxonomy.tags || []), ...entry.tags])],
+          senseKey: '',
+          senseLabel: ''
         }
 
         if (!word) {
           word = await prisma.vocabulary.create({
             data: {
-              word: wordData.word,
+              word: entry.word,
               ...wordFields
             }
           })
         } else {
-          const keepElementary = (word.tags || []).some(tag =>
-            String(tag).includes('editor-elementary')
-          )
           word = await prisma.vocabulary.update({
             where: { id: word.id },
-            data: keepElementary
-              ? {
-                  tags: [...new Set([...(word.tags || []), ...wordFields.tags])],
-                  contentType: word.contentType || wordFields.contentType,
-                  topic: word.topic || wordFields.topic,
-                  senseKey,
-                  senseLabel: word.senseLabel || senseLabel
-                }
-              : wordFields
+            data: wordFields
           })
         }
 
@@ -122,10 +113,16 @@ export async function initBooks() {
           create: {
             bookId: book.id,
             wordId: word.id,
-            sortOrder: i
+            sortOrder: i,
+            meaning: entry.meaning || sense.meaning,
+            englishMeaning: entry.englishMeaning || sense.englishMeaning,
+            exampleSentences: entry.examples
           },
           update: {
-            sortOrder: i
+            sortOrder: i,
+            meaning: entry.meaning || sense.meaning,
+            englishMeaning: entry.englishMeaning || sense.englishMeaning,
+            exampleSentences: entry.examples
           }
         })
 
@@ -139,7 +136,7 @@ export async function initBooks() {
         }
       })
 
-      console.log(`Book ${bookData.name} synced with ${bookData.words.length} words`)
+      console.log(`Book ${bookData.name} synced with ${entries.length} words`)
     }
   } catch (error) {
     console.error('Error initializing books:', error)
@@ -192,7 +189,6 @@ export async function getRandomWordsFromBook(bookCode: string, count: number = 1
     throw new Error('Book not found')
   }
 
-  const words = book.vocabulary.map(bv => bv.word)
-  const shuffled = words.sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, count)
+  const shuffled = [...book.vocabulary].sort(() => Math.random() - 0.5)
+  return shuffled.slice(0, count).map(bv => formatBookWord(bv))
 }

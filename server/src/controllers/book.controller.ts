@@ -3,7 +3,7 @@ import { getBooks, getBookByCode, getRandomWordsFromBook } from '../services/boo
 import { getSessionWords, getBookProgress, type SessionMode } from '../services/coverage.service'
 import { getDueCount } from '../services/training.service'
 import { assertBookAccess } from '../services/book-access.service'
-import { formatWordForClient } from '../utils/wordFormat'
+import { formatBookWord, formatWordForClient } from '../utils/wordFormat'
 
 export async function getBooksHandler(req: Request, res: Response) {
   try {
@@ -23,7 +23,7 @@ export async function getBookDetailHandler(req: Request, res: Response) {
       return res.status(404).json({ success: false, error: 'Book not found' })
     }
 
-    const formattedWords = book.vocabulary.map(bv => formatWordForClient(bv.word))
+    const formattedWords = book.vocabulary.map(bv => formatBookWord(bv))
 
     res.status(200).json({
       success: true,
