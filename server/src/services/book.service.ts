@@ -80,7 +80,7 @@ export async function initBooks() {
           meaning: sense.meaning,
           phonetic: sense.phonetic || entry.phonetic,
           englishMeaning: sense.englishMeaning || entry.englishMeaning,
-          exampleSentence: entry.examples[0] || word?.exampleSentence || '',
+          exampleSentence: sense.exampleSentence || entry.examples[0] || word?.exampleSentence || '',
           imageUrl: entry.emoji || word?.imageUrl || null,
           contentType: taxonomy.contentType,
           topic: taxonomy.topic,
