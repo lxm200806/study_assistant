@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { builtinArticles } from '../data/practice-articles'
 import {
   answersMatch,
+  aggregateLearnerHistory,
   articleKeyFor,
   liveMarks,
   mergeLexical,
@@ -10,10 +11,12 @@ import {
   partitionKnownSpellings,
   pickDueSentences,
   pickQueueIds,
+  planSentenceEdit,
   presentListMeaning,
   sentenceIsDue,
   splitPieces,
   splitSentences,
+  wordsForWrongBook,
   type QueueCandidate
 } from './typing-logic'
 
@@ -179,5 +182,94 @@ describe('article sentence reviews', () => {
       builtinKey: null,
       userId: 'article-1'
     })
+  })
+})
+
+describe('article edits', () => {
+  const cards = [
+    { sentenceIndex: 0, text: 'Cats sleep.', due: 'keep-a', stability: 4 },
+    { sentenceIndex: 1, text: 'Dogs run.', due: 'keep-b', stability: 2 },
+    { sentenceIndex: 2, text: 'Birds fly.', due: 'keep-c', stability: 9 }
+  ]
+
+  it('keeps the schedule of sentences whose text did not change', () => {
+    const plan = planSentenceEdit(cards, [
+      { text: 'Birds fly.', translation: '鸟' },
+      { text: 'Cats sleep.', translation: '猫' }
+    ])
+    expect(plan.kept.map(item => ({ text: item.card.text, due: item.card.due, stability: item.card.stability, index: item.sentenceIndex }))).toEqual([
+      { text: 'Birds fly.', due: 'keep-c', stability: 9, index: 0 },
+      { text: 'Cats sleep.', due: 'keep-a', stability: 4, index: 1 }
+    ])
+    expect(plan.reset).toEqual([])
+    expect(plan.retired.map(card => card.text)).toEqual(['Dogs run.'])
+  })
+
+  it('resets only a sentence that was edited, split, or added', () => {
+    const plan = planSentenceEdit(cards, [
+      { text: 'Cats sleep.', translation: '猫' },
+      { text: 'Dogs sprint.', translation: '狗冲' },
+      { text: 'Birds fly.', translation: '鸟' },
+      { text: 'Fish swim.', translation: '鱼' }
+    ])
+    expect(plan.kept.map(item => item.card.due)).toEqual(['keep-a', 'keep-c'])
+    expect(plan.kept[1].card.stability).toBe(9)
+    expect(plan.reset.map(item => item.text)).toEqual(['Dogs sprint.', 'Fish swim.'])
+    expect(plan.retired.map(card => card.text)).toEqual(['Dogs run.'])
+  })
+})
+
+describe('missed sentence words', () => {
+  const known = new Set(['cat', 'saw', 'the', 'and'])
+
+  it('adds each known content word once and skips words that are not in the vocabulary', () => {
+    expect(wordsForWrongBook('The cat saw the cat and a zyzzx.', known, new Set())).toEqual(['cat', 'saw'])
+  })
+
+  it('does not add a word that is already in the wrong-word book', () => {
+    expect(wordsForWrongBook('The cat saw the cat.', known, new Set(['cat']))).toEqual(['saw'])
+  })
+})
+
+describe('typing history', () => {
+  it('counts only the requested learner in the heatmap and speed chart', () => {
+    const rows = [
+      {
+        learnerId: 'learner-a',
+        date: '2026-05-01',
+        durationMs: 60000,
+        typedChars: 140,
+        correctChars: 120,
+        itemCount: 4,
+        correctCount: 3,
+        createdAt: '2026-05-01T01:00:00.000Z'
+      },
+      {
+        learnerId: 'learner-b',
+        date: '2026-05-01',
+        durationMs: 60000,
+        typedChars: 900,
+        correctChars: 800,
+        itemCount: 40,
+        correctCount: 40,
+        createdAt: '2026-05-01T02:00:00.000Z'
+      },
+      {
+        learnerId: 'learner-a',
+        date: '2026-05-02',
+        durationMs: 1000,
+        typedChars: 20,
+        correctChars: 20,
+        itemCount: 1,
+        correctCount: 1,
+        createdAt: '2026-05-02T01:00:00.000Z'
+      }
+    ]
+    const history = aggregateLearnerHistory('learner-a', rows, ['2026-05-01', '2026-05-02'])
+    expect(history.days.map(day => day.items)).toEqual([4, 1])
+    expect(history.days[0].charsPerMinute).toBe(120)
+    expect(history.speed).toEqual([
+      { at: '2026-05-01T01:00:00.000Z', charsPerMinute: 120, items: 4 }
+    ])
   })
 })

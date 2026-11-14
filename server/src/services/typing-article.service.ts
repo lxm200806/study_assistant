@@ -1,7 +1,16 @@
 import prisma from '../prisma/client'
 import { builtinArticles, findBuiltinArticle } from '../data/practice-articles'
-import { splitPieces, splitSentences, articleKeyFor, pickDueSentences, sentenceIsDue } from './typing-logic'
+import {
+  splitPieces,
+  splitSentences,
+  articleKeyFor,
+  pickDueSentences,
+  planSentenceEdit,
+  sentenceIsDue,
+  type SentenceDraft
+} from './typing-logic'
 import { cardInputFrom, scheduleCard } from './typing-schedule'
+import { markSentenceContentWrong } from './typing.service'
 
 const ARTICLE_TEXT_LIMIT = 8000
 const NAME_LIMIT = 40
@@ -16,11 +25,6 @@ export interface ArticleSentenceView {
   due: string | null
   fsrsState: string
   recentLapse: boolean
-}
-
-interface SentenceDraft {
-  text: string
-  translation: string
 }
 
 function cleanName(value: unknown, fallback: string): string {
@@ -38,63 +42,74 @@ export function pairArticleSentences(body: string, translation: string): Sentenc
   }))
 }
 
+async function writeSentencePlan(
+  learnerId: string,
+  articleKey: string,
+  plan: ReturnType<typeof planSentenceEdit<{
+    sentenceIndex: number
+    text: string
+    practiceCount: number
+    correctCount: number
+    lastPractice: Date | null
+    mastery: number
+    due: Date | null
+    stability: number
+    difficulty: number
+    reps: number
+    lapses: number
+    fsrsState: string
+    lastReview: Date | null
+    retrievability: number
+    recentLapse: boolean
+  }>>
+) {
+  await prisma.$transaction(async (tx) => {
+    await tx.articleSentenceCard.deleteMany({ where: { learnerId, articleKey } })
+    const data = [
+      ...plan.kept.map(item => ({
+        learnerId,
+        articleKey,
+        sentenceIndex: item.sentenceIndex,
+        text: item.card.text,
+        translation: item.translation,
+        practiceCount: item.card.practiceCount,
+        correctCount: item.card.correctCount,
+        lastPractice: item.card.lastPractice,
+        mastery: item.card.mastery,
+        due: item.card.due,
+        stability: item.card.stability,
+        difficulty: item.card.difficulty,
+        reps: item.card.reps,
+        lapses: item.card.lapses,
+        fsrsState: item.card.fsrsState,
+        lastReview: item.card.lastReview,
+        retrievability: item.card.retrievability,
+        recentLapse: item.card.recentLapse
+      })),
+      ...plan.reset.map(item => ({
+        learnerId,
+        articleKey,
+        sentenceIndex: item.sentenceIndex,
+        text: item.text,
+        translation: item.translation
+      }))
+    ]
+    if (data.length) await tx.articleSentenceCard.createMany({ data })
+  })
+}
+
 async function ensureSentenceCards(learnerId: string, articleKey: string, sentences: SentenceDraft[]) {
   const existing = await prisma.articleSentenceCard.findMany({
     where: { learnerId, articleKey }
   })
-  const byIndex = new Map(existing.map(row => [row.sentenceIndex, row]))
-  for (let index = 0; index < sentences.length; index++) {
-    const sentence = sentences[index]
-    const row = byIndex.get(index)
-    if (!row) {
-      await prisma.articleSentenceCard.create({
-        data: {
-          learnerId,
-          articleKey,
-          sentenceIndex: index,
-          text: sentence.text,
-          translation: sentence.translation
-        }
-      })
-      continue
-    }
-    if (row.text !== sentence.text) {
-      await prisma.articleSentenceCard.update({
-        where: {
-          learnerId_articleKey_sentenceIndex: { learnerId, articleKey, sentenceIndex: index }
-        },
-        data: {
-          text: sentence.text,
-          translation: sentence.translation,
-          practiceCount: 0,
-          correctCount: 0,
-          lastPractice: null,
-          mastery: 0,
-          due: null,
-          stability: 0,
-          difficulty: 0,
-          reps: 0,
-          lapses: 0,
-          fsrsState: 'New',
-          lastReview: null,
-          retrievability: 0,
-          recentLapse: false
-        }
-      })
-    } else if (row.translation !== sentence.translation) {
-      await prisma.articleSentenceCard.update({
-        where: {
-          learnerId_articleKey_sentenceIndex: { learnerId, articleKey, sentenceIndex: index }
-        },
-        data: { translation: sentence.translation }
-      })
-    }
+  const plan = planSentenceEdit(existing, sentences)
+  const moved = plan.kept.some(item =>
+    item.sentenceIndex !== item.card.sentenceIndex || item.translation !== item.card.translation
+  )
+  if (!existing.length || plan.reset.length || plan.retired.length || moved) {
+    await writeSentencePlan(learnerId, articleKey, plan)
   }
-  if (existing.some(row => row.sentenceIndex >= sentences.length)) {
-    await prisma.articleSentenceCard.deleteMany({
-      where: { learnerId, articleKey, sentenceIndex: { gte: sentences.length } }
-    })
-  }
+  return plan
 }
 
 function viewSentence(
@@ -244,6 +259,7 @@ export async function getPracticeArticle(learnerId: string, id: string) {
     builtin: article.builtin,
     body: article.body,
     translation: paired ? '' : article.translation,
+    sourceTranslation: article.translation,
     sentences: sentences.map((sentence, index) =>
       viewSentence(article.key, article.title, index, sentence.text, sentence.translation, byIndex.get(index))
     )
@@ -321,6 +337,7 @@ export async function submitSentenceAnswer(
   })
   if (!row) throw new Error('NOT_FOUND')
   const fields = scheduleCard(cardInputFrom(row), isCorrect)
+  const wrongWords = isCorrect ? [] : await markSentenceContentWrong(learnerId, row.text)
   const updated = await prisma.articleSentenceCard.update({
     where: {
       learnerId_articleKey_sentenceIndex: {
@@ -337,6 +354,89 @@ export async function submitSentenceAnswer(
     due: updated.due,
     fsrsState: updated.fsrsState,
     practiceCount: updated.practiceCount,
-    recentLapse: updated.recentLapse
+    recentLapse: updated.recentLapse,
+    wrongWords
+  }
+}
+
+function readArticleInput(input: { title?: unknown; body?: unknown; translation?: unknown }) {
+  const body = String(input.body || '').trim()
+  const translation = String(input.translation || '').trim()
+  if (!body || body.length > ARTICLE_TEXT_LIMIT || translation.length > ARTICLE_TEXT_LIMIT) {
+    throw new Error('BAD_INPUT')
+  }
+  const sentences = pairArticleSentences(body, translation)
+  if (!sentences.length) throw new Error('BAD_INPUT')
+  return { body, translation, sentences, title: cleanName(input.title, sentences[0].text.slice(0, NAME_LIMIT)) }
+}
+
+async function cardsForKey(learnerId: string, articleKey: string) {
+  return prisma.articleSentenceCard.findMany({ where: { learnerId, articleKey } })
+}
+
+export async function previewArticleEdit(
+  learnerId: string,
+  id: string,
+  input: { body?: unknown; translation?: unknown }
+) {
+  const article = await loadArticleBody(learnerId, id)
+  if (!article) throw new Error('NOT_FOUND')
+  const draft = readArticleInput({ ...input, title: article.title })
+  const cards = await cardsForKey(learnerId, article.key)
+  const plan = planSentenceEdit(cards, draft.sentences)
+  return {
+    kept: plan.kept.length,
+    reset: plan.reset.length,
+    retired: plan.retired.length
+  }
+}
+
+export async function updatePracticeArticle(
+  learnerId: string,
+  id: string,
+  input: { title?: unknown; body?: unknown; translation?: unknown }
+) {
+  const parsed = articleKeyFor(id)
+  const draft = readArticleInput(input)
+  if (parsed.builtinKey) {
+    if (!findBuiltinArticle(parsed.builtinKey)) throw new Error('NOT_FOUND')
+    const cards = await cardsForKey(learnerId, parsed.key)
+    const plan = planSentenceEdit(cards, draft.sentences)
+    const row = await prisma.practiceArticle.create({
+      data: {
+        learnerId,
+        title: draft.title,
+        body: draft.body,
+        translation: draft.translation
+      }
+    })
+    await writeSentencePlan(learnerId, `user:${row.id}`, plan)
+    return {
+      id: row.id,
+      title: row.title,
+      sentenceCount: draft.sentences.length,
+      copied: true,
+      kept: plan.kept.length,
+      reset: plan.reset.length,
+      retired: plan.retired.length
+    }
+  }
+  const row = await prisma.practiceArticle.findFirst({ where: { id: parsed.userId || '', learnerId } })
+  if (!row) throw new Error('NOT_FOUND')
+  const cards = await cardsForKey(learnerId, `user:${row.id}`)
+  const plan = planSentenceEdit(cards, draft.sentences)
+  await prisma.practiceArticle.update({
+    where: { id: row.id },
+    data: { title: draft.title, body: draft.body, translation: draft.translation }
+  })
+  await writeSentencePlan(learnerId, `user:${row.id}`, plan)
+  return {
+    id: row.id,
+    title: draft.title,
+    sentenceCount: draft.sentences.length,
+    copied: false,
+    kept: plan.kept.length,
+    reset: plan.reset.length,
+    retired: plan.retired.length
   }
 }

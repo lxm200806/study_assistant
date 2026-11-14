@@ -373,3 +373,145 @@ export function articleKeyFor(id: string): { key: string; builtinKey: string | n
   const userId = id.startsWith('user:') ? id.slice('user:'.length) : id
   return { key: `user:${userId}`, builtinKey: null, userId }
 }
+
+export interface SentenceDraft {
+  text: string
+  translation: string
+}
+
+export interface SentenceEditPlan<T extends { sentenceIndex: number; text: string }> {
+  kept: Array<{ card: T; sentenceIndex: number; translation: string }>
+  reset: Array<SentenceDraft & { sentenceIndex: number }>
+  retired: T[]
+}
+
+/** Match sentences by exact text so an unchanged line keeps its card, even if it moves. */
+export function planSentenceEdit<T extends { sentenceIndex: number; text: string }>(
+  existing: T[],
+  next: SentenceDraft[]
+): SentenceEditPlan<T> {
+  const unused = [...existing].sort((a, b) => a.sentenceIndex - b.sentenceIndex)
+  const kept: SentenceEditPlan<T>['kept'] = []
+  const reset: SentenceEditPlan<T>['reset'] = []
+  for (let sentenceIndex = 0; sentenceIndex < next.length; sentenceIndex++) {
+    const sentence = next[sentenceIndex]
+    const matchAt = unused.findIndex(card => card.text === sentence.text)
+    if (matchAt >= 0) {
+      const [card] = unused.splice(matchAt, 1)
+      kept.push({ card, sentenceIndex, translation: sentence.translation })
+    } else {
+      reset.push({ sentenceIndex, text: sentence.text, translation: sentence.translation })
+    }
+  }
+  return { kept, reset, retired: unused }
+}
+
+const FUNCTION_WORDS = new Set([
+  'a', 'an', 'the', 'and', 'or', 'but', 'if', 'then', 'than', 'so', 'as', 'at', 'by', 'for', 'from',
+  'in', 'into', 'of', 'on', 'onto', 'off', 'out', 'over', 'to', 'up', 'down', 'with', 'without',
+  'about', 'after', 'before', 'between', 'through', 'during', 'under', 'again', 'further', 'once',
+  'is', 'am', 'are', 'was', 'were', 'be', 'been', 'being', 'do', 'does', 'did', 'doing',
+  'have', 'has', 'had', 'having', 'will', 'would', 'shall', 'should', 'can', 'could', 'may', 'might', 'must',
+  'i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them',
+  'my', 'your', 'his', 'its', 'our', 'their', 'mine', 'yours', 'ours', 'theirs',
+  'this', 'that', 'these', 'those', 'there', 'here', 'what', 'which', 'who', 'whom', 'whose',
+  'when', 'where', 'why', 'how', 'not', 'no', 'nor', 'very', 'just', 'also', 'too'
+])
+
+export function contentWords(sentence: string): string[] {
+  return parseWordTokens(sentence, 80).filter(token => !FUNCTION_WORDS.has(token))
+}
+
+/** Spellings to add to the wrong-word book. Unknown tokens and words already listed are left out. */
+export function wordsForWrongBook(sentence: string, known: Set<string>, alreadyWrong: Set<string>): string[] {
+  const seen = new Set<string>()
+  const out: string[] = []
+  for (const token of contentWords(sentence)) {
+    if (seen.has(token) || !known.has(token) || alreadyWrong.has(token)) continue
+    seen.add(token)
+    out.push(token)
+  }
+  return out
+}
+
+export interface TypingSessionInput {
+  learnerId: string
+  date: string
+  durationMs: number
+  typedChars: number
+  correctChars: number
+  itemCount: number
+  correctCount: number
+  createdAt: string | Date
+}
+
+const MIN_SPEED_MS = 3000
+
+export function parseHistoryDate(raw: unknown): string | null {
+  const value = String(raw || '')
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null
+  const [year, month, day] = value.split('-').map(Number)
+  const date = new Date(Date.UTC(year, month - 1, day))
+  if (date.getUTCFullYear() !== year || date.getUTCMonth() !== month - 1 || date.getUTCDate() !== day) return null
+  return value
+}
+
+export function recentDateKeys(end: string, count: number): string[] {
+  const [year, month, day] = end.split('-').map(Number)
+  const cursor = new Date(Date.UTC(year, month - 1, day))
+  const dates: string[] = []
+  const total = Math.max(1, Math.floor(count))
+  for (let offset = total - 1; offset >= 0; offset--) {
+    const next = new Date(cursor)
+    next.setUTCDate(cursor.getUTCDate() - offset)
+    dates.push(next.toISOString().slice(0, 10))
+  }
+  return dates
+}
+
+export function charsPerMinute(correctChars: number, durationMs: number): number {
+  if (durationMs < MIN_SPEED_MS || correctChars <= 0) return 0
+  return Math.round(correctChars / (durationMs / 60000))
+}
+
+export function heatLevel(items: number): 0 | 1 | 2 | 3 | 4 {
+  if (items <= 0) return 0
+  if (items < 5) return 1
+  if (items < 15) return 2
+  if (items < 30) return 3
+  return 4
+}
+
+export function aggregateLearnerHistory(learnerId: string, rows: TypingSessionInput[], dates: string[]) {
+  const mine = rows.filter(row => row.learnerId === learnerId)
+  const byDate = new Map<string, { items: number; durationMs: number; correctChars: number }>()
+  for (const row of mine) {
+    const bucket = byDate.get(row.date) || { items: 0, durationMs: 0, correctChars: 0 }
+    bucket.items += row.itemCount
+    bucket.durationMs += row.durationMs
+    bucket.correctChars += row.correctChars
+    byDate.set(row.date, bucket)
+  }
+  const allowed = new Set(dates)
+  return {
+    days: dates.map(date => {
+      const bucket = byDate.get(date) || { items: 0, durationMs: 0, correctChars: 0 }
+      return {
+        date,
+        items: bucket.items,
+        minutes: Math.round(bucket.durationMs / 60000),
+        charsPerMinute: charsPerMinute(bucket.correctChars, bucket.durationMs),
+        level: heatLevel(bucket.items)
+      }
+    }),
+    speed: mine
+      .filter(row => allowed.has(row.date))
+      .map(row => ({
+        at: row.createdAt instanceof Date ? row.createdAt.toISOString() : String(row.createdAt),
+        charsPerMinute: charsPerMinute(row.correctChars, row.durationMs),
+        items: row.itemCount
+      }))
+      .filter(point => point.charsPerMinute > 0)
+      .slice(-20)
+  }
+}

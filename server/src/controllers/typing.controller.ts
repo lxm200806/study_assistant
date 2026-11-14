@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { studyUserId } from '../middleware/auth'
 import {
   clampCount,
+  parseHistoryDate,
   parseTypingMode,
   parseTypingSource,
   REJECT_TEXT,
@@ -13,15 +14,19 @@ import {
   getDueArticleSentences,
   getPracticeArticle,
   listPracticeArticles,
-  submitSentenceAnswer
+  previewArticleEdit,
+  submitSentenceAnswer,
+  updatePracticeArticle
 } from '../services/typing-article.service'
 import {
   createPracticeList,
   deletePracticeList,
+  getTypingHistory,
   getTypingQueue,
   getTypingSummary,
   listPracticeLists,
   recordTypingActivity,
+  recordTypingSession,
   submitTypingAnswer,
   updateTypingMark
 } from '../services/typing.service'
@@ -230,6 +235,54 @@ export async function typingDueArticlesHandler(req: Request, res: Response) {
     if (!learnerId) return
     const data = await getDueArticleSentences(learnerId, clampCount(req.query.count, 20))
     res.status(200).json({ success: true, data })
+  } catch (error) {
+    sendTypingError(res, error)
+  }
+}
+
+export async function typingUpdateArticleHandler(req: Request, res: Response) {
+  try {
+    const learnerId = studyOrReply(req, res)
+    if (!learnerId) return
+    const data = await updatePracticeArticle(learnerId, req.params.id, req.body || {})
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    sendTypingError(res, error)
+  }
+}
+
+export async function typingPreviewArticleHandler(req: Request, res: Response) {
+  try {
+    const learnerId = studyOrReply(req, res)
+    if (!learnerId) return
+    const data = await previewArticleEdit(learnerId, req.params.id, req.body || {})
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    sendTypingError(res, error)
+  }
+}
+
+export async function typingHistoryHandler(req: Request, res: Response) {
+  try {
+    const learnerId = studyOrReply(req, res)
+    if (!learnerId) return
+    const end = parseHistoryDate(req.query.end)
+    if (!end) return res.status(400).json({ success: false, error: '请检查练习内容' })
+    const requested = Number(req.query.days)
+    const days = Number.isFinite(requested) ? Math.min(140, Math.max(7, Math.floor(requested))) : 112
+    const data = await getTypingHistory(learnerId, end, days)
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    sendTypingError(res, error)
+  }
+}
+
+export async function typingSessionHandler(req: Request, res: Response) {
+  try {
+    const learnerId = studyOrReply(req, res)
+    if (!learnerId) return
+    const data = await recordTypingSession(learnerId, req.body || {})
+    res.status(201).json({ success: true, data })
   } catch (error) {
     sendTypingError(res, error)
   }
