@@ -11,9 +11,10 @@ const preloadStarted = new Set<string>()
 const SILENT_WAV =
   'data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA'
 
-function buildTtsUrl(word: string): string {
+function buildTtsUrl(word: string, accent: 'us' | 'uk' = 'us'): string {
   const cleaned = sanitizeForTts(word || '')
-  return `${getApiBaseUrl()}/tts?word=${encodeURIComponent(cleaned)}`
+  const base = `${getApiBaseUrl()}/tts?word=${encodeURIComponent(cleaned)}`
+  return accent === 'uk' ? `${base}&accent=uk` : base
 }
 
 export function isSpeakableForTts(text: string, minLetters = 2): boolean {
@@ -180,12 +181,25 @@ export function getWordAudioUrl(word: string): string {
   return buildTtsUrl(word)
 }
 
-export async function speakText(text: string, maxLen = MAX_TTS_LENGTH): Promise<void> {
+export async function speakText(
+  text: string,
+  maxLen = MAX_TTS_LENGTH,
+  accent: 'us' | 'uk' = 'us'
+): Promise<void> {
   const cleaned = sanitizeForTts(text || '', maxLen)
   if (!cleaned || !isSpeakableForTts(cleaned)) return Promise.reject(new Error('empty text'))
   if (!isTtsSupported()) return Promise.reject(new Error('TTS not supported'))
   stopSpeak()
-  return playUrl(buildTtsUrl(cleaned))
+  return playUrl(buildTtsUrl(cleaned, accent))
+}
+
+export async function speakPassage(text: string, accent: 'us' | 'uk' = 'us'): Promise<void> {
+  const parts = splitTextForTts(text)
+  const chunks = parts.length ? parts : []
+  if (!chunks.length) return speakText(text, MAX_TTS_LENGTH, accent)
+  for (const part of chunks) {
+    await speakText(part, MAX_TTS_LENGTH, accent)
+  }
 }
 
 /** Speak full AI reply — same path as manual 🔊 button */

@@ -278,6 +278,30 @@ export const statsAPI = {
   }
 }
 
+export const typingAPI = {
+  summary: (bookCode: string) =>
+    request(`/typing/summary?bookCode=${encodeURIComponent(bookCode)}`, 'GET'),
+  queue: (options: { bookCode?: string; source: string; count: number; listId?: string }) => {
+    const params = new URLSearchParams({ source: options.source, count: String(options.count) })
+    if (options.bookCode) params.set('bookCode', options.bookCode)
+    if (options.listId) params.set('listId', options.listId)
+    return request(`/typing/queue?${params.toString()}`, 'GET')
+  },
+  answer: (wordId: string, isCorrect: boolean) =>
+    request('/typing/answer', 'POST', { wordId, isCorrect }),
+  mark: (wordId: string, patch: { favorite?: boolean; skipMastered?: boolean }) =>
+    request('/typing/marks', 'PUT', { wordId, ...patch }),
+  activity: (count: number) => request('/typing/activity', 'POST', { count }),
+  lists: () => request('/typing/lists', 'GET'),
+  createList: (name: string, text: string) => request('/typing/lists', 'POST', { name, text }),
+  deleteList: (id: string) => request(`/typing/lists/${id}`, 'DELETE'),
+  articles: () => request('/typing/articles', 'GET'),
+  createArticle: (title: string, body: string, translation: string) =>
+    request('/typing/articles', 'POST', { title, body, translation }),
+  article: (id: string) => request(`/typing/articles/${id}`, 'GET'),
+  deleteArticle: (id: string) => request(`/typing/articles/${id}`, 'DELETE')
+}
+
 export const quizAPI = {
   words: async (bookCode: string, count: number = 30) => {
     return request(`/training/quiz/words?bookCode=${bookCode}&count=${count}`, 'GET')

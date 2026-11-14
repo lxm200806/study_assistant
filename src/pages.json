@@ -55,6 +55,13 @@
       }
     },
     {
+      "path": "pages/typing/typing",
+      "style": {
+        "navigationBarTitleText": "键盘练习",
+        "navigationBarBackgroundColor": "#f4f1ea"
+      }
+    },
+    {
       "path": "pages/speaking/speaking",
       "style": {
         "navigationBarTitleText": "口语训练"

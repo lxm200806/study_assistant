@@ -3,8 +3,8 @@ import path from 'path'
 import crypto from 'crypto'
 import { EdgeTTS } from 'edge-tts-universal'
 import { isValidTtsText, sanitizeForTts, MAX_TTS_LENGTH } from '../utils/tts-text'
+import { cacheSuffix, voiceForAccent, type TtsAccent } from './tts-accent'
 
-const DEFAULT_VOICE = process.env.TTS_VOICE || 'en-US-JennyNeural'
 const CACHE_DIR = path.join(__dirname, '../../data/tts-cache')
 
 const pendingJobs = new Map<string, Promise<string>>()
@@ -15,19 +15,21 @@ function ensureCacheDir(): void {
   }
 }
 
-function cacheFilePath(text: string): string {
+function cacheFilePath(text: string, accent: TtsAccent): string {
   const trimmed = text.trim()
+  const suffix = cacheSuffix(accent)
   if (trimmed.length <= 64 && /^[\w\s'.-]+$/i.test(trimmed)) {
     const safe = trimmed.toLowerCase().replace(/[^a-z0-9'.-]/gi, '_')
-    return path.join(CACHE_DIR, `${safe}.mp3`)
+    return path.join(CACHE_DIR, `${safe}${suffix}`)
   }
-  const hash = crypto.createHash('sha256').update(trimmed.toLowerCase()).digest('hex').slice(0, 32)
-  return path.join(CACHE_DIR, `h_${hash}.mp3`)
+  const hashSource = accent === 'us' ? trimmed.toLowerCase() : `uk\n${trimmed.toLowerCase()}`
+  const hash = crypto.createHash('sha256').update(hashSource).digest('hex').slice(0, 32)
+  return path.join(CACHE_DIR, `h_${hash}${suffix}`)
 }
 
-async function synthesizeToFile(text: string, filePath: string): Promise<void> {
+async function synthesizeToFile(text: string, filePath: string, voice: string): Promise<void> {
   try {
-    const tts = new EdgeTTS(text.trim(), DEFAULT_VOICE, { rate: '-5%' })
+    const tts = new EdgeTTS(text.trim(), voice, { rate: '-5%' })
     const result = await tts.synthesize()
     const buffer = Buffer.from(await result.audio.arrayBuffer())
     if (buffer.length === 0) {
@@ -42,14 +44,14 @@ async function synthesizeToFile(text: string, filePath: string): Promise<void> {
   }
 }
 
-export async function getWordAudioPath(word: string): Promise<string> {
+export async function getWordAudioPath(word: string, accent: TtsAccent = 'us'): Promise<string> {
   const normalized = sanitizeForTts(word)
   if (!isValidTtsText(normalized)) {
     throw new Error('INVALID_WORD')
   }
 
   ensureCacheDir()
-  const filePath = cacheFilePath(normalized)
+  const filePath = cacheFilePath(normalized, accent)
   if (fs.existsSync(filePath)) {
     return filePath
   }
@@ -58,7 +60,7 @@ export async function getWordAudioPath(word: string): Promise<string> {
   const existing = pendingJobs.get(key)
   if (existing) return existing
 
-  const job = synthesizeToFile(normalized, filePath)
+  const job = synthesizeToFile(normalized, filePath, voiceForAccent(accent))
     .then(() => filePath)
     .finally(() => pendingJobs.delete(key))
 
@@ -67,7 +69,7 @@ export async function getWordAudioPath(word: string): Promise<string> {
 }
 
 export function getTtsVoice(): string {
-  return DEFAULT_VOICE
+  return voiceForAccent('us')
 }
 
 export function getMaxTtsLength(): number {

@@ -53,6 +53,9 @@ model Learner {
   chineseCourses      ChineseCourse[]
   chineseReviewStates ChineseReviewState[]
   chineseReviewLogs   ChineseReviewLog[]
+  wordMarks           LearnerWordMark[]
+  practiceLists       PracticeList[]
+  practiceArticles    PracticeArticle[]
 
   @@index([accountId])
 }
@@ -121,6 +124,7 @@ model Vocabulary {
   vocabularyStats VocabularyStat[]
   trainingRecords TrainingRecord[]
   bookVocabulary  BookVocabulary[]
+  wordMarks       LearnerWordMark[]
 }
 
 model BookStudyProgress {
@@ -390,4 +394,51 @@ model ChineseReviewLog {
 
   @@index([learnerId, courseId, createdAt])
   @@map("chinese_review_logs")
+}
+
+// 键盘练习：收藏、主动标记已掌握（之后跳过）、错词本。调度仍走 VocabularyStat 的 FSRS。
+model LearnerWordMark {
+  learnerId    String
+  wordId       String
+  favorite     Boolean  @default(false)
+  skipMastered Boolean  @default(false)
+  inWrongBook  Boolean  @default(false)
+  updatedAt    DateTime @updatedAt
+
+  learner Learner    @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  word    Vocabulary @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@id([learnerId, wordId])
+  @@index([learnerId, inWrongBook])
+  @@index([learnerId, favorite])
+  @@map("learner_word_marks")
+}
+
+model PracticeList {
+  id        String   @id @default(uuid())
+  learnerId String
+  name      String
+  source    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+
+  @@index([learnerId])
+  @@map("practice_lists")
+}
+
+model PracticeArticle {
+  id          String   @id @default(uuid())
+  learnerId   String
+  title       String
+  body        String
+  translation String   @default("")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+
+  @@index([learnerId])
+  @@map("practice_articles")
 }

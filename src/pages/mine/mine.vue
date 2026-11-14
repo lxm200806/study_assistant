@@ -11,6 +11,14 @@
     </view>
 
     <view v-if="userStore.isStudentRole" class="menu-section">
+      <view v-if="!userStore.isChinese" class="menu-item" @tap="goTyping">
+        <text class="menu-icon">⌨️</text>
+        <view class="menu-text">
+          <text class="menu-label">键盘练习</text>
+          <text class="menu-desc">跟写、听写、自测、默写</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
       <view class="menu-item" @tap="userStore.goRoles()">
         <text class="menu-icon">🔄</text>
         <view class="menu-text">
@@ -92,6 +100,14 @@
         <view class="menu-text">
           <text class="menu-label">词汇书</text>
           <text class="menu-desc">切换与学习词书</text>
+        </view>
+        <text class="menu-arrow">›</text>
+      </view>
+      <view class="menu-item" @tap="goTyping">
+        <text class="menu-icon">⌨️</text>
+        <view class="menu-text">
+          <text class="menu-label">键盘练习</text>
+          <text class="menu-desc">进入学生角色后开始</text>
         </view>
         <text class="menu-arrow">›</text>
       </view>
@@ -185,6 +201,10 @@ async function switchSubject(subject: Subject) {
 
 const goBooks = () => {
   uni.navigateTo({ url: '/pages/books/books' })
+}
+
+const goTyping = () => {
+  uni.navigateTo({ url: '/pages/typing/typing' })
 }
 
 const goChinesePoints = () => {
