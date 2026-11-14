@@ -14,6 +14,7 @@ import statsRoutes from './routes/stats.routes'
 import adminRoutes from './routes/admin.routes'
 import ttsRoutes from './routes/tts.routes'
 import speechRoutes from './routes/speech.routes'
+import typingRoutes from './routes/typing.routes'
 import chineseRoutes from './chinese/chinese.routes'
 import { errorMiddleware } from './middleware/error'
 import { initVocabulary } from './utils/seed'
@@ -57,6 +58,7 @@ app.use('/api/stats', statsRoutes)
 app.use('/api/admin', adminRoutes)
 app.use('/api/tts', ttsRoutes)
 app.use('/api/speech', speechRoutes)
+app.use('/api/typing', typingRoutes)
 app.use('/api/chinese', chineseRoutes)
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 

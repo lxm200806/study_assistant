@@ -29,16 +29,25 @@
           <text class="action-desc">{{ courseProgressText(item) }}</text>
         </view>
       </template>
-      <view v-else class="daily-cta" @tap="startDailyLearning">
-        <view class="daily-cta-main">
-          <text class="daily-cta-title">开始今日学习</text>
-          <text class="daily-cta-desc">
-            {{ dueCount > 0 ? `${dueCount} 词待复习 · 智能推荐` : '智能推荐新词' }}
-            · 目标 {{ dailyGoal }} 词
-          </text>
+      <template v-else>
+        <view class="daily-cta" @tap="startDailyLearning">
+          <view class="daily-cta-main">
+            <text class="daily-cta-title">开始今日学习</text>
+            <text class="daily-cta-desc">
+              {{ dueCount > 0 ? `${dueCount} 词待复习 · 智能推荐` : '智能推荐新词' }}
+              · 目标 {{ dailyGoal }} 词
+            </text>
+          </view>
+          <text class="daily-cta-arrow">→</text>
         </view>
-        <text class="daily-cta-arrow">→</text>
-      </view>
+        <view class="desk-entry" @tap="goTyping">
+          <view class="daily-cta-main">
+            <text class="daily-cta-title">键盘练习</text>
+            <text class="daily-cta-desc">跟写、听写、自测、默写。错词、收藏和进度都记在这个账号</text>
+          </view>
+          <text class="daily-cta-arrow">→</text>
+        </view>
+      </template>
     </template>
 
     <template v-else>
@@ -124,6 +133,14 @@
             <text class="action-title">学习统计</text>
             <text class="action-desc">查看掌握情况</text>
           </view>
+        </view>
+
+        <view class="desk-entry" @tap="goTyping">
+          <view class="daily-cta-main">
+            <text class="daily-cta-title">键盘练习</text>
+            <text class="daily-cta-desc">电脑上跟写、听写、默写。请先进入学生角色，进度记在该学生账号</text>
+          </view>
+          <text class="daily-cta-arrow">→</text>
         </view>
 
         <view class="vocabulary-stats">
@@ -298,6 +315,10 @@ const goToBooks = () => {
   uni.navigateTo({ url: '/pages/books/books' })
 }
 
+const goTyping = () => {
+  openPage('/pages/typing/typing')
+}
+
 const goToVocabulary = () => {
   uni.switchTab({ url: '/pages/vocabulary/vocabulary' })
 }
@@ -469,6 +490,25 @@ const onBookChange = async () => {
 .daily-cta-arrow {
   font-size: 40rpx;
   color: #667eea;
+}
+
+.desk-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1f1a14;
+  border-radius: 20rpx;
+  padding: 28rpx 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.desk-entry .daily-cta-title,
+.desk-entry .daily-cta-arrow {
+  color: #f4f1ea;
+}
+
+.desk-entry .daily-cta-desc {
+  color: rgba(244, 241, 234, 0.72);
 }
 
 .stats-card {

@@ -1,6 +1,7 @@
 import fs from 'fs'
 import { Request, Response, NextFunction } from 'express'
 import { getWordAudioPath } from '../services/tts.service'
+import { parseTtsAccent } from '../services/tts-accent'
 
 export async function getTtsHandler(req: Request, res: Response, next: NextFunction) {
   try {
@@ -9,7 +10,7 @@ export async function getTtsHandler(req: Request, res: Response, next: NextFunct
       return res.status(400).json({ error: 'word is required' })
     }
 
-    const filePath = await getWordAudioPath(word)
+    const filePath = await getWordAudioPath(word, parseTtsAccent(req.query.accent))
     res.setHeader('Content-Type', 'audio/mpeg')
     res.setHeader('Cache-Control', 'public, max-age=31536000, immutable')
 
