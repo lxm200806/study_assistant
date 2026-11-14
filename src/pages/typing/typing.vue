@@ -26,7 +26,7 @@
             v-for="item in wordModes"
             :key="item.key"
             :class="['chip', wordMode === item.key ? 'on' : '']"
-            @tap="wordMode = item.key"
+            @tap="selectWordMode(item.key)"
           >{{ item.label }}</view>
         </view>
 
@@ -39,7 +39,7 @@
             @tap="source = item.key"
           >{{ item.label }}</view>
         </view>
-        <text class="hint">智能先练刚写错和到期的词，再补新词。标记已掌握的词会在智能、随机和词表里跳过。</text>
+        <text class="hint">智能先练刚写错和到期的词，再补新词。跟写、听写、自测、默写各自记到期时间。标记已掌握的词会在智能、随机和词表里跳过。</text>
 
         <text class="label">这一组</text>
         <view class="chips">
@@ -59,7 +59,7 @@
             <text class="saved-name" @tap="startList(item.id)">{{ item.name }} · {{ item.count }}</text>
             <text class="saved-delete" @tap="removeList(item.id)">删除</text>
           </view>
-          <text v-if="!lists.length" class="hint">还没有词表。粘贴已在词书里的单词即可。</text>
+          <text v-if="!lists.length" class="hint">还没有词表。词书里没有的拼写也会保存，并可以一起练习。</text>
           <input
             class="field"
             v-model="listName"
@@ -70,11 +70,12 @@
           <textarea
             class="area"
             v-model="listText"
-            placeholder="每行一个，或用逗号分隔"
+            placeholder="每行一个，或用逗号分隔。释义写成：单词 | 中文 | syn: 同义 | uk: 英音 | us: 美音"
             @focus="suspendKeys = true"
             @blur="suspendKeys = false"
           />
           <button class="ghost" @tap="saveList">保存词表</button>
+          <button class="ghost" @tap="pickListFile">从文件导入</button>
           <text v-if="listNote" class="hint">{{ listNote }}</text>
         </view>
       </template>
@@ -85,13 +86,22 @@
           <view :class="['chip', articleMode === 'follow' ? 'on' : '']" @tap="articleMode = 'follow'">跟写</view>
           <view :class="['chip', articleMode === 'dictation' ? 'on' : '']" @tap="articleMode = 'dictation'">听写</view>
         </view>
-        <text class="hint">一句一句输入。有音频时会朗读当前句。译文按句对齐时才会在每句下面出现。</text>
+        <text class="hint">一句一句输入。跟写时看着句子，听写时先听再写。能朗读的句子会出声，太长会分段读。译文和英文句数一致时，跟写直接显示，听写在提交后显示。</text>
+        <view class="summary" v-if="articleDue">
+          <text>到期句子 {{ articleDue }}</text>
+        </view>
+        <button class="start" :disabled="busy" @tap="startDueReview">复习到期句子</button>
+        <text v-if="!articleDue" class="hint">到了复习时间的句子会出现在这里，并单独记复习，不占用单词的书写记录。</text>
 
         <view class="panel">
           <text class="panel-title">短文</text>
-          <view v-for="item in articles" :key="item.id" class="saved-row">
-            <text class="saved-name" @tap="startArticle(item.id)">{{ item.title }} · {{ item.sentenceCount }} 句</text>
-            <text class="saved-delete" @tap="removeArticle(item.id)">删除</text>
+          <view v-for="item in articles" :key="item.id" class="article-block">
+            <view class="saved-row">
+              <text class="saved-name" @tap="startArticle(item.id)">{{ articleLabel(item) }}</text>
+              <text v-if="item.builtin" class="keycap">示例</text>
+              <text v-else class="saved-delete" @tap="removeArticle(item.id)">删除</text>
+            </view>
+            <text v-if="item.source" class="hint source-line">{{ item.source }}</text>
           </view>
           <input
             class="field"
@@ -115,6 +125,7 @@
             @blur="suspendKeys = false"
           />
           <button class="ghost" @tap="saveArticle">保存短文</button>
+          <button class="ghost" @tap="pickArticleFile">从文件导入</button>
         </view>
       </template>
 
@@ -154,7 +165,7 @@
           <text class="listen-copy">{{ lane === 'article' ? '听这一句，再输入' : '听发音，再输入' }}</text>
         </view>
         <text v-else class="big-word mask">{{ maskedPrompt }}</text>
-        <text v-if="showPhonetic && currentWord?.phonetic" class="phonetic">{{ currentWord.phonetic }}</text>
+        <text v-if="showPhonetic && phoneticLine" class="phonetic">{{ phoneticLine }}</text>
         <text v-if="showMeaningLine" class="meaning-line">{{ meaningLine }}</text>
         <text v-if="firstLetter" class="phonetic">首字母 {{ firstLetter }}</text>
       </view>
@@ -189,11 +200,16 @@
         </view>
       </view>
 
-      <view v-if="showExample || (showFullTranslation && fullTranslation)" class="aside">
+      <view v-if="showAside" class="aside">
         <text v-if="currentWord?.englishMeaning" class="aside-line">{{ currentWord.englishMeaning }}</text>
         <text v-if="exampleText" class="aside-line">{{ exampleText }}</text>
         <text v-if="sentenceTranslation" class="aside-line">{{ sentenceTranslation }}</text>
         <text v-else-if="showFullTranslation && fullTranslation" class="aside-line">{{ fullTranslation }}</text>
+        <text v-if="currentWord?.note" class="aside-line">注释 {{ currentWord.note }}</text>
+        <text v-if="currentWord?.synonyms" class="aside-line">同义 {{ currentWord.synonyms }}</text>
+        <text v-if="currentWord?.roots" class="aside-line">词根 {{ currentWord.roots }}</text>
+        <text v-if="currentWord?.etymology" class="aside-line">词源 {{ currentWord.etymology }}</text>
+        <text v-if="currentWord?.phrases" class="aside-line">搭配 {{ currentWord.phrases }}</text>
         <text v-if="currentWord?.topic" class="aside-line">{{ currentWord.topic }}</text>
       </view>
 
@@ -224,6 +240,7 @@ import { typingAPI } from '@/utils/api'
 import { isBrowserH5 } from '@/utils/audio-recording'
 import { requireSubject } from '@/utils/subject'
 import { speakPassage, speakText } from '@/utils/tts'
+import { splitTextForTts } from '@/utils/tts-text'
 import {
   answersMatch,
   liveMarks,
@@ -248,6 +265,13 @@ interface TypingWord {
   favorite: boolean
   skipMastered: boolean
   inWrongBook: boolean
+  phoneticUk?: string
+  phoneticUs?: string
+  synonyms?: string
+  roots?: string
+  etymology?: string
+  phrases?: string
+  note?: string
 }
 
 interface Summary {
@@ -259,8 +283,22 @@ interface Summary {
 }
 
 interface ListRow { id: string; name: string; count: number }
-interface ArticleRow { id: string; title: string; sentenceCount: number }
-interface SentenceItem { text: string; translation: string }
+interface ArticleRow {
+  id: string
+  title: string
+  sentenceCount: number
+  builtin?: boolean
+  source?: string
+  dueCount?: number
+}
+interface SentenceItem {
+  text: string
+  translation: string
+  articleKey: string
+  index: number
+  title?: string
+}
+interface RejectedToken { token: string; reason: string }
 interface Answered { id: string; label: string; ok: boolean }
 
 type WordMode = 'follow' | 'dictation' | 'self' | 'recall'
@@ -319,6 +357,7 @@ const inputArmed = ref(false)
 const accent = ref<'us' | 'uk'>('us')
 const scopedToBook = ref(false)
 const activeListId = ref('')
+const roundKind = ref<'words' | 'article' | 'due'>('words')
 const answered = ref<Answered[]>([])
 const correctCount = ref(0)
 const suspendKeys = ref(false)
@@ -370,8 +409,15 @@ const showSpelling = computed(() => {
 })
 const marks = computed(() => liveMarks(expectedText.value, userInput.value))
 const graded = computed(() => (showResult.value ? liveMarks(expectedText.value, userInput.value) : []))
+const phoneticLine = computed(() => {
+  const word = currentWord.value
+  if (!word) return ''
+  if (accent.value === 'uk' && word.phoneticUk) return word.phoneticUk
+  if (accent.value === 'us' && word.phoneticUs) return word.phoneticUs
+  return word.phonetic || ''
+})
 const showPhonetic = computed(() => {
-  if (lane.value !== 'words' || !currentWord.value?.phonetic) return false
+  if (lane.value !== 'words' || !phoneticLine.value) return false
   if (showResult.value || wordMode.value === 'follow') return true
   return hintLevel.value >= 1
 })
@@ -392,9 +438,23 @@ const firstLetter = computed(() => {
 })
 const showExample = computed(() => showResult.value || (lane.value === 'words' && wordMode.value === 'follow'))
 const exampleText = computed(() => currentWord.value?.example || currentWord.value?.examples?.[0] || '')
-const sentenceTranslation = computed(() => (showResult.value ? currentSentence.value?.translation || '' : ''))
+const sentenceTranslation = computed(() => {
+  const text = currentSentence.value?.translation || ''
+  if (!text) return ''
+  if (showResult.value || articleMode.value === 'follow') return text
+  return ''
+})
+const showAside = computed(() => (
+  showExample.value
+  || !!sentenceTranslation.value
+  || !!(showFullTranslation.value && fullTranslation.value)
+))
+const articleDue = computed(() => articles.value.reduce((sum, item) => sum + (item.dueCount || 0), 0))
 const promptKicker = computed(() => {
-  if (lane.value === 'article') return articleMode.value === 'follow' ? '跟着这一句输入' : '听写这一句'
+  if (lane.value === 'article') {
+    const title = currentSentence.value?.title ? `${currentSentence.value.title} · ` : ''
+    return title + (articleMode.value === 'follow' ? '跟着这一句输入' : '听写这一句')
+  }
   if (wordMode.value === 'self' && selfVisible.value) return '看一眼，马上遮住'
   if (wordMode.value === 'self') return '凭刚才的印象输入'
   if (wordMode.value === 'recall') return '根据释义默写'
@@ -420,7 +480,7 @@ async function loadSetup() {
 async function refreshSummary() {
   if (!vocabStore.currentBookCode) return
   try {
-    const result = await typingAPI.summary(vocabStore.currentBookCode)
+    const result = await typingAPI.summary(vocabStore.currentBookCode, wordMode.value)
     summary.value = (result.data as Summary) || null
   } catch {
     summary.value = null
@@ -447,6 +507,65 @@ async function refreshArticles() {
 
 function onBookChange() {
   void refreshSummary()
+}
+
+function selectWordMode(key: WordMode) {
+  wordMode.value = key
+  void refreshSummary()
+}
+
+function articleLabel(item: ArticleRow) {
+  const due = item.dueCount ? ` · 到期 ${item.dueCount}` : ''
+  return `${item.title} · ${item.sentenceCount} 句${due}`
+}
+
+const REJECT_LABEL: Record<string, string> = {
+  not_english: '不是可用的英文拼写',
+  too_long: '超过长度限制',
+  limit: '超过一次可导入的数量',
+  save_failed: '没能写入词库'
+}
+
+function rejectionNote(items?: RejectedToken[]) {
+  if (!items?.length) return ''
+  return items.slice(0, 6).map(item => `${item.token}（${REJECT_LABEL[item.reason] || item.reason}）`).join('、')
+}
+
+function readTextFile(limit: number, assign: (text: string) => void) {
+  if (!isH5 || typeof document === 'undefined') {
+    toast('文件导入请在电脑浏览器里使用，或直接粘贴')
+    return
+  }
+  const input = document.createElement('input')
+  input.type = 'file'
+  input.accept = '.txt,text/plain,.md'
+  input.onchange = () => {
+    const file = input.files?.[0]
+    if (!file) return
+    if (file.size > 200000) {
+      toast('文件太大')
+      return
+    }
+    const reader = new FileReader()
+    reader.onload = () => assign(String(reader.result || '').slice(0, limit))
+    reader.onerror = () => toast('没能读取文件')
+    reader.readAsText(file)
+  }
+  input.click()
+}
+
+function pickListFile() {
+  readTextFile(20000, text => {
+    listText.value = text
+    toast('已放入词表，确认后保存')
+  })
+}
+
+function pickArticleFile() {
+  readTextFile(8000, text => {
+    articleBody.value = text
+    toast('已放入短文，确认后保存')
+  })
 }
 
 function resetRound() {
@@ -501,27 +620,56 @@ async function startWords() {
       bookCode: vocabStore.currentBookCode,
       source: source.value,
       count: groupSize.value,
-      listId
+      listId,
+      mode: wordMode.value
     })
-    const data = result.data as { words: TypingWord[]; scopedToBook: boolean; missing?: string[] }
+    const data = result.data as { words: TypingWord[]; scopedToBook: boolean; missing?: string[]; rejected?: RejectedToken[] }
     words.value = data?.words || []
     sentences.value = []
     fullTranslation.value = ''
     scopedToBook.value = !!data?.scopedToBook
     if (!words.value.length) {
-      toast(source.value === 'wrong' ? '错词本是空的' : '这一组没有可练的词')
+      const why = rejectionNote(data?.rejected)
+      toast(why ? `没有可练的词：${why}` : (source.value === 'wrong' ? '错词本是空的' : '这一组没有可练的词'))
       return
     }
-    if (data?.missing?.length) {
-      toast(`有 ${data.missing.length} 个词不在词库里`)
-    }
+    const why = rejectionNote(data?.rejected)
+    if (why) toast(`有些内容不能使用：${why}`)
     lane.value = 'words'
+    roundKind.value = 'words'
     capturing.value = null
     resetRound()
     stage.value = 'practice'
     prepareCard()
   } catch (error) {
     toast((error as Error).message || '没能开始')
+  } finally {
+    busy.value = false
+  }
+}
+
+async function startDueReview() {
+  busy.value = true
+  try {
+    const result = await typingAPI.dueArticles(groupSize.value)
+    const data = result.data as { total?: number; sentences?: SentenceItem[] }
+    sentences.value = data?.sentences || []
+    fullTranslation.value = ''
+    words.value = []
+    scopedToBook.value = false
+    if (!sentences.value.length) {
+      toast('现在没有到期的句子')
+      await refreshArticles()
+      return
+    }
+    lane.value = 'article'
+    roundKind.value = 'due'
+    capturing.value = null
+    resetRound()
+    stage.value = 'practice'
+    prepareCard()
+  } catch (error) {
+    toast((error as Error).message || '没能打开复习')
   } finally {
     busy.value = false
   }
@@ -537,13 +685,14 @@ async function startArticle(id: string) {
   busy.value = true
   try {
     const result = await typingAPI.article(id)
-    const data = result.data as { sentences: SentenceItem[]; translation?: string }
-    sentences.value = data?.sentences || []
+    const data = result.data as { title?: string; sentences: SentenceItem[]; translation?: string }
+    sentences.value = (data?.sentences || []).map(item => ({ ...item, title: item.title || data?.title || '' }))
     const paired = sentences.value.some(item => item.translation)
     fullTranslation.value = paired ? '' : (data?.translation || '')
     words.value = []
     scopedToBook.value = false
     activeArticleId.value = id
+    roundKind.value = 'article'
     if (!sentences.value.length) {
       toast('这篇短文没有英文句子')
       return
@@ -567,12 +716,17 @@ async function saveList() {
   }
   try {
     const result = await typingAPI.createList(listName.value, listText.value)
-    const data = result.data as { id: string; missing: string[]; matched: number }
+    const data = result.data as {
+      id: string
+      count?: number
+      created?: string[]
+      rejected?: RejectedToken[]
+    }
     listText.value = ''
     listName.value = ''
-    listNote.value = data?.missing?.length
-      ? `已保存。未收录：${data.missing.slice(0, 8).join('、')}`
-      : '已保存，词都在词库里'
+    const created = data?.created?.length ? `新收录 ${data.created.length} 个。` : ''
+    const rejected = rejectionNote(data?.rejected)
+    listNote.value = `已保存 ${data?.count || 0} 个。${created}${rejected ? `不能使用：${rejected}` : '都能练习。'}`
     if (data?.id) activeListId.value = data.id
     await refreshLists()
   } catch (error) {
@@ -611,6 +765,10 @@ async function removeArticle(id: string) {
 async function replay() {
   const text = expectedText.value
   if (!text) return
+  if (!splitTextForTts(text).length) {
+    toast('这一句没有可朗读的英文')
+    return
+  }
   try {
     if (lane.value === 'article') await speakPassage(text, accent.value)
     else await speakText(text, 120, accent.value)
@@ -674,10 +832,19 @@ async function submit() {
     label: expectedText.value,
     ok
   })
-  if (!word) return
+  if (!word) {
+    const sentence = currentSentence.value
+    if (!sentence) return
+    try {
+      await typingAPI.articleAnswer(sentence.articleKey, sentence.index, ok)
+    } catch {
+      toast('这句的复习没保存')
+    }
+    return
+  }
   const wasWrong = word.inWrongBook
   try {
-    const result = await typingAPI.answer(word.id, ok)
+    const result = await typingAPI.answer(word.id, ok, wordMode.value)
     const data = result.data as { favorite: boolean; skipMastered: boolean; inWrongBook: boolean }
     if (data) {
       word.favorite = data.favorite
@@ -733,6 +900,10 @@ function finishEarly() {
 }
 
 function again() {
+  if (roundKind.value === 'due') {
+    void startDueReview()
+    return
+  }
   if (lane.value === 'article' && activeArticleId.value) {
     void startArticle(activeArticleId.value)
     return
@@ -748,6 +919,8 @@ function againWrong() {
 function backToSetup() {
   stage.value = 'setup'
   void refreshSummary()
+  void refreshArticles()
+  void refreshLists()
 }
 
 function toggleSound() {
@@ -1077,6 +1250,14 @@ button.slim {
   display: block;
   padding: 6px 0;
   font-size: 16px;
+}
+
+.source-line {
+  margin: 0 0 10px;
+}
+
+.article-block {
+  margin-bottom: 4px;
 }
 
 @media (max-width: 720px) {

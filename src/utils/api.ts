@@ -279,16 +279,17 @@ export const statsAPI = {
 }
 
 export const typingAPI = {
-  summary: (bookCode: string) =>
-    request(`/typing/summary?bookCode=${encodeURIComponent(bookCode)}`, 'GET'),
-  queue: (options: { bookCode?: string; source: string; count: number; listId?: string }) => {
+  summary: (bookCode: string, mode = 'follow') =>
+    request(`/typing/summary?bookCode=${encodeURIComponent(bookCode)}&mode=${encodeURIComponent(mode)}`, 'GET'),
+  queue: (options: { bookCode?: string; source: string; count: number; listId?: string; mode?: string }) => {
     const params = new URLSearchParams({ source: options.source, count: String(options.count) })
     if (options.bookCode) params.set('bookCode', options.bookCode)
     if (options.listId) params.set('listId', options.listId)
+    if (options.mode) params.set('mode', options.mode)
     return request(`/typing/queue?${params.toString()}`, 'GET')
   },
-  answer: (wordId: string, isCorrect: boolean) =>
-    request('/typing/answer', 'POST', { wordId, isCorrect }),
+  answer: (wordId: string, isCorrect: boolean, mode = 'follow') =>
+    request('/typing/answer', 'POST', { wordId, isCorrect, mode }),
   mark: (wordId: string, patch: { favorite?: boolean; skipMastered?: boolean }) =>
     request('/typing/marks', 'PUT', { wordId, ...patch }),
   activity: (count: number) => request('/typing/activity', 'POST', { count }),
@@ -298,8 +299,11 @@ export const typingAPI = {
   articles: () => request('/typing/articles', 'GET'),
   createArticle: (title: string, body: string, translation: string) =>
     request('/typing/articles', 'POST', { title, body, translation }),
-  article: (id: string) => request(`/typing/articles/${id}`, 'GET'),
-  deleteArticle: (id: string) => request(`/typing/articles/${id}`, 'DELETE')
+  article: (id: string) => request(`/typing/articles/${encodeURIComponent(id)}`, 'GET'),
+  deleteArticle: (id: string) => request(`/typing/articles/${encodeURIComponent(id)}`, 'DELETE'),
+  dueArticles: (count: number) => request(`/typing/articles/due?count=${count}`, 'GET'),
+  articleAnswer: (articleKey: string, sentenceIndex: number, isCorrect: boolean) =>
+    request('/typing/articles/answer', 'POST', { articleKey, sentenceIndex, isCorrect })
 }
 
 export const quizAPI = {

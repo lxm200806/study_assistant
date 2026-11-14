@@ -32,9 +32,10 @@ export function parseWordTokens(text: string, limit = 400): string[] {
 export function splitPieces(text: string, limit = 200): string[] {
   const cleaned = text.replace(/\r\n/g, '\n').trim()
   if (!cleaned) return []
-  return cleaned
+  const protectedText = cleaned.replace(/\b(Mr|Mrs|Ms|Dr|St|Prof)\./g, '$1\u0000')
+  return protectedText
     .split(/\n+|(?<=[.!?。！？])\s+/)
-    .map(part => part.trim())
+    .map(part => part.replace(/\u0000/g, '.').trim())
     .filter(Boolean)
     .slice(0, limit)
 }
@@ -157,4 +158,218 @@ export function parseTypingSource(raw: unknown): TypingSource | null {
     return raw
   }
   return null
+}
+
+export type TypingMode = 'follow' | 'dictation' | 'self' | 'recall'
+
+export function parseTypingMode(raw: unknown, fallback: TypingMode = 'follow'): TypingMode | null {
+  if (raw === undefined || raw === null || raw === '') return fallback
+  if (raw === 'follow' || raw === 'dictation' || raw === 'self' || raw === 'recall') return raw
+  return null
+}
+
+export type RejectReason = 'not_english' | 'too_long' | 'empty' | 'limit' | 'save_failed'
+
+export const REJECT_TEXT: Record<RejectReason, string> = {
+  not_english: '不是可用的英文拼写',
+  too_long: '超过长度限制',
+  empty: '是空的',
+  limit: '超过一次可导入的数量',
+  save_failed: '没能写入词库'
+}
+
+export interface RejectedToken {
+  token: string
+  reason: RejectReason
+}
+
+export interface ListEntry {
+  spelling: string
+  gloss: string
+  synonyms: string
+  roots: string
+  etymology: string
+  phrases: string
+  phoneticUk: string
+  phoneticUs: string
+}
+
+export interface LexicalBits {
+  phoneticUk: string
+  phoneticUs: string
+  synonyms: string
+  roots: string
+  etymology: string
+  phrases: string
+}
+
+const SPELLING = /^[a-z][a-z0-9'’-]{0,48}$/i
+const EXTRA_LABEL: Record<string, keyof ListEntry> = {
+  syn: 'synonyms',
+  synonym: 'synonyms',
+  synonyms: 'synonyms',
+  root: 'roots',
+  roots: 'roots',
+  ety: 'etymology',
+  etymology: 'etymology',
+  phrase: 'phrases',
+  phrases: 'phrases',
+  uk: 'phoneticUk',
+  us: 'phoneticUs'
+}
+
+function blankEntry(spelling: string): ListEntry {
+  return {
+    spelling,
+    gloss: '',
+    synonyms: '',
+    roots: '',
+    etymology: '',
+    phrases: '',
+    phoneticUk: '',
+    phoneticUs: ''
+  }
+}
+
+function normalizeSpelling(raw: string): { spelling: string } | { reject: RejectReason; token: string } {
+  const token = raw.trim().slice(0, 80)
+  if (!token) return { reject: 'empty', token: '' }
+  const stripped = token.replace(/^[^a-zA-Z]+|[^a-zA-Z]+$/g, '')
+  if (!stripped) return { reject: 'not_english', token }
+  if (stripped.length > 49) return { reject: 'too_long', token: stripped.slice(0, 80) }
+  if (!SPELLING.test(stripped)) return { reject: 'not_english', token: stripped.slice(0, 80) }
+  return { spelling: stripped.toLowerCase().replace(/’/g, "'") }
+}
+
+function applyExtra(entry: ListEntry, segment: string) {
+  const piece = segment.trim()
+  if (!piece) return
+  const labeled = piece.match(/^([A-Za-z]+)\s*:\s*(.+)$/)
+  if (labeled) {
+    const field = EXTRA_LABEL[labeled[1].toLowerCase()]
+    if (field && field !== 'spelling') {
+      entry[field] = labeled[2].trim().slice(0, field === 'phoneticUk' || field === 'phoneticUs' ? 80 : 300)
+      return
+    }
+  }
+  const gloss = piece.slice(0, 200)
+  entry.gloss = entry.gloss ? `${entry.gloss}；${gloss}`.slice(0, 200) : gloss
+}
+
+export function parseListDocument(
+  text: string,
+  limit = 400
+): { entries: ListEntry[]; rejected: RejectedToken[] } {
+  const entries: ListEntry[] = []
+  const rejected: RejectedToken[] = []
+  const seen = new Set<string>()
+
+  const pushSpelling = (raw: string, extras: string[]) => {
+    const parsed = normalizeSpelling(raw)
+    if ('reject' in parsed) {
+      if (parsed.reject !== 'empty' && parsed.token) rejected.push({ token: parsed.token, reason: parsed.reject })
+      return
+    }
+    if (seen.has(parsed.spelling)) return
+    if (entries.length >= limit) {
+      rejected.push({ token: parsed.spelling, reason: 'limit' })
+      return
+    }
+    seen.add(parsed.spelling)
+    const entry = blankEntry(parsed.spelling)
+    for (const extra of extras) applyExtra(entry, extra)
+    entries.push(entry)
+  }
+
+  for (const line of text.replace(/\r\n/g, '\n').split('\n')) {
+    const trimmed = line.trim()
+    if (!trimmed) continue
+    if (trimmed.includes('|') || trimmed.includes('\t')) {
+      const parts = trimmed.split(/\||\t/).map(part => part.trim())
+      pushSpelling(parts[0] || '', parts.slice(1))
+      continue
+    }
+    for (const chunk of trimmed.split(/[\s,;，；、]+/)) {
+      if (chunk) pushSpelling(chunk, [])
+    }
+  }
+
+  return { entries, rejected }
+}
+
+export function partitionKnownSpellings<T extends { spelling: string }>(
+  entries: T[],
+  knownIds: Map<string, string>
+): { linked: Array<T & { wordId: string }>; unknown: T[] } {
+  const linked: Array<T & { wordId: string }> = []
+  const unknown: T[] = []
+  for (const entry of entries) {
+    const wordId = knownIds.get(entry.spelling)
+    if (wordId) linked.push({ ...entry, wordId })
+    else unknown.push(entry)
+  }
+  return { linked, unknown }
+}
+
+export function presentListMeaning(
+  word: { meaning: string; ownerLearnerId?: string | null },
+  gloss: string
+): { meaning: string; note: string } {
+  const noteGloss = gloss.trim()
+  if (!noteGloss) return { meaning: word.meaning, note: '' }
+  if (word.ownerLearnerId || !word.meaning.trim()) {
+    return { meaning: noteGloss, note: '' }
+  }
+  if (noteGloss === word.meaning.trim()) return { meaning: word.meaning, note: '' }
+  return { meaning: word.meaning, note: noteGloss }
+}
+
+export function mergeLexical(base: Partial<LexicalBits>, extra?: Partial<LexicalBits>): LexicalBits {
+  const pick = (key: keyof LexicalBits) => (extra?.[key] || '').trim() || (base[key] || '').trim()
+  return {
+    phoneticUk: pick('phoneticUk'),
+    phoneticUs: pick('phoneticUs'),
+    synonyms: pick('synonyms'),
+    roots: pick('roots'),
+    etymology: pick('etymology'),
+    phrases: pick('phrases')
+  }
+}
+
+export interface DueSentence {
+  articleKey: string
+  sentenceIndex: number
+  practiceCount: number
+  due: Date | null
+  recentLapse: boolean
+}
+
+export function sentenceIsDue(
+  card: Pick<DueSentence, 'practiceCount' | 'due' | 'recentLapse'>,
+  now: number
+): boolean {
+  if (card.practiceCount <= 0) return false
+  if (card.recentLapse) return true
+  return card.due != null && card.due.getTime() <= now
+}
+
+export function pickDueSentences<T extends DueSentence>(cards: T[], now: number, limit: number): T[] {
+  const cap = Math.max(0, Math.floor(limit))
+  return cards
+    .filter(card => sentenceIsDue(card, now))
+    .sort((a, b) => {
+      const dueA = a.due?.getTime() ?? 0
+      const dueB = b.due?.getTime() ?? 0
+      return dueA - dueB || a.articleKey.localeCompare(b.articleKey) || a.sentenceIndex - b.sentenceIndex
+    })
+    .slice(0, cap)
+}
+
+export function articleKeyFor(id: string): { key: string; builtinKey: string | null; userId: string | null } {
+  if (id.startsWith('builtin:')) {
+    const builtinKey = id.slice('builtin:'.length)
+    return { key: id, builtinKey, userId: null }
+  }
+  const userId = id.startsWith('user:') ? id.slice('user:'.length) : id
+  return { key: `user:${userId}`, builtinKey: null, userId }
 }

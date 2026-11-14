@@ -1,9 +1,17 @@
 import { describe, expect, it } from 'vitest'
+import { builtinArticles } from '../data/practice-articles'
 import {
   answersMatch,
+  articleKeyFor,
   liveMarks,
+  mergeLexical,
+  parseListDocument,
   parseWordTokens,
+  partitionKnownSpellings,
+  pickDueSentences,
   pickQueueIds,
+  presentListMeaning,
+  sentenceIsDue,
   splitPieces,
   splitSentences,
   type QueueCandidate
@@ -63,11 +71,15 @@ describe('typing text', () => {
     ])
   })
 
-  it('splits articles into sentences', () => {
+  it('splits articles into sentences and keeps titles like Mr.', () => {
     expect(splitSentences('Cats sleep. Dogs run!\nBirds fly')).toEqual([
       'Cats sleep.',
       'Dogs run!',
       'Birds fly'
+    ])
+    expect(splitSentences('Mr. Bennet waited on Mr. Bingley. Then he went home.')).toEqual([
+      'Mr. Bennet waited on Mr. Bingley.',
+      'Then he went home.'
     ])
   })
 
@@ -87,5 +99,85 @@ describe('typing text', () => {
       { ch: 'a', kind: 'bad' },
       { ch: 't', kind: 'pending' }
     ])
+  })
+})
+
+describe('custom word lists', () => {
+  it('keeps unknown spellings and reports tokens that cannot be practiced', () => {
+    const { entries, rejected } = parseListDocument('apple\nzyzzx | 自造词 | syn: luck | uk: zyz | us: ziz\n12345\n')
+    expect(entries.map(entry => entry.spelling)).toEqual(['apple', 'zyzzx'])
+    expect(entries[1].gloss).toBe('自造词')
+    expect(entries[1].synonyms).toBe('luck')
+    expect(entries[1].phoneticUk).toBe('zyz')
+    expect(entries[1].phoneticUs).toBe('ziz')
+    expect(rejected).toEqual([{ token: '12345', reason: 'not_english' }])
+  })
+
+  it('does not drop unknown spellings when the catalog is missing them', () => {
+    const { linked, unknown } = partitionKnownSpellings(
+      [{ spelling: 'apple' }, { spelling: 'zyzzx' }],
+      new Map([['apple', 'id-apple']])
+    )
+    expect(linked).toEqual([{ spelling: 'apple', wordId: 'id-apple' }])
+    expect(unknown.map(entry => entry.spelling)).toEqual(['zyzzx'])
+  })
+
+  it('shows a learner gloss on a custom entry and keeps an official meaning', () => {
+    expect(presentListMeaning({ meaning: '', ownerLearnerId: 'learner-1' }, '自造词')).toEqual({
+      meaning: '自造词',
+      note: ''
+    })
+    expect(presentListMeaning({ meaning: '苹果', ownerLearnerId: null }, '我的注释')).toEqual({
+      meaning: '苹果',
+      note: '我的注释'
+    })
+    expect(mergeLexical(
+      { phoneticUk: '', phoneticUs: 'old', synonyms: 'book-syn' },
+      { phoneticUk: 'uk-only', synonyms: '' }
+    )).toEqual({
+      phoneticUk: 'uk-only',
+      phoneticUs: 'old',
+      synonyms: 'book-syn',
+      roots: '',
+      etymology: '',
+      phrases: ''
+    })
+  })
+})
+
+describe('article sentence reviews', () => {
+  const now = new Date('2026-05-01T00:00:00Z').getTime()
+
+  it('queues only sentences that are already due', () => {
+    const cards = [
+      { articleKey: 'builtin:library-rain', sentenceIndex: 1, practiceCount: 0, due: new Date(now - 1000), recentLapse: false },
+      { articleKey: 'builtin:library-rain', sentenceIndex: 0, practiceCount: 2, due: new Date(now - 5000), recentLapse: false },
+      { articleKey: 'user:a', sentenceIndex: 0, practiceCount: 1, due: new Date(now + 60000), recentLapse: false },
+      { articleKey: 'user:a', sentenceIndex: 1, practiceCount: 1, due: new Date(now + 60000), recentLapse: true }
+    ]
+    expect(sentenceIsDue(cards[0], now)).toBe(false)
+    expect(pickDueSentences(cards, now, 10).map(card => `${card.articleKey}#${card.sentenceIndex}`)).toEqual([
+      'builtin:library-rain#0',
+      'user:a#1'
+    ])
+  })
+
+  it('pairs every built-in sentence with one translation line', () => {
+    expect(builtinArticles.length).toBeGreaterThan(0)
+    for (const article of builtinArticles) {
+      const sentences = splitSentences(article.body)
+      const translated = splitPieces(article.translation)
+      expect(sentences.length).toBeGreaterThan(1)
+      expect(translated).toHaveLength(sentences.length)
+    }
+  })
+
+  it('keeps built-in keys separate from a learner article id', () => {
+    expect(articleKeyFor('builtin:alice-bank').key).toBe('builtin:alice-bank')
+    expect(articleKeyFor('article-1')).toEqual({
+      key: 'user:article-1',
+      builtinKey: null,
+      userId: 'article-1'
+    })
   })
 })

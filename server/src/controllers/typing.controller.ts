@@ -2,17 +2,24 @@ import { Request, Response } from 'express'
 import { studyUserId } from '../middleware/auth'
 import {
   clampCount,
-  parseTypingSource
+  parseTypingMode,
+  parseTypingSource,
+  REJECT_TEXT,
+  type RejectReason
 } from '../services/typing-logic'
 import {
   createPracticeArticle,
-  createPracticeList,
   deletePracticeArticle,
-  deletePracticeList,
+  getDueArticleSentences,
   getPracticeArticle,
+  listPracticeArticles,
+  submitSentenceAnswer
+} from '../services/typing-article.service'
+import {
+  createPracticeList,
+  deletePracticeList,
   getTypingQueue,
   getTypingSummary,
-  listPracticeArticles,
   listPracticeLists,
   recordTypingActivity,
   submitTypingAnswer,
@@ -40,7 +47,15 @@ function sendTypingError(res: Response, error: unknown) {
     return res.status(404).json({ success: false, error: '单词不存在' })
   }
   if (message === 'BOOK_REQUIRED' || message === 'LIST_REQUIRED' || message === 'BAD_INPUT') {
-    return res.status(400).json({ success: false, error: '请检查练习内容' })
+    const rejected = (error as { rejected?: Array<{ token: string; reason: RejectReason }> }).rejected
+    const detail = rejected?.length
+      ? `：${rejected.slice(0, 6).map(item => `${item.token}（${REJECT_TEXT[item.reason] || item.reason}）`).join('、')}`
+      : ''
+    return res.status(400).json({
+      success: false,
+      error: `请检查练习内容${detail}`,
+      ...(rejected ? { rejected } : {})
+    })
   }
   return res.status(500).json({ success: false, error: message })
 }
@@ -51,7 +66,9 @@ export async function typingSummaryHandler(req: Request, res: Response) {
     if (!learnerId) return
     const bookCode = String(req.query.bookCode || '')
     if (!bookCode) return res.status(400).json({ success: false, error: 'bookCode is required' })
-    const data = await getTypingSummary(learnerId, bookCode)
+    const mode = parseTypingMode(req.query.mode)
+    if (!mode) return res.status(400).json({ success: false, error: 'unknown mode' })
+    const data = await getTypingSummary(learnerId, bookCode, mode)
     res.status(200).json({ success: true, data })
   } catch (error) {
     sendTypingError(res, error)
@@ -64,9 +81,12 @@ export async function typingQueueHandler(req: Request, res: Response) {
     if (!learnerId) return
     const source = parseTypingSource(req.query.source || 'smart')
     if (!source) return res.status(400).json({ success: false, error: 'unknown source' })
+    const mode = parseTypingMode(req.query.mode)
+    if (!mode) return res.status(400).json({ success: false, error: 'unknown mode' })
     const data = await getTypingQueue(learnerId, {
       bookCode: req.query.bookCode ? String(req.query.bookCode) : undefined,
       source,
+      mode,
       count: clampCount(req.query.count, 20),
       listId: req.query.listId ? String(req.query.listId) : undefined
     })
@@ -80,11 +100,12 @@ export async function typingAnswerHandler(req: Request, res: Response) {
   try {
     const learnerId = studyOrReply(req, res)
     if (!learnerId) return
-    const { wordId, isCorrect } = req.body as { wordId?: string; isCorrect?: boolean }
-    if (!wordId || typeof isCorrect !== 'boolean') {
+    const { wordId, isCorrect, mode: rawMode } = req.body as { wordId?: string; isCorrect?: boolean; mode?: string }
+    const mode = parseTypingMode(rawMode)
+    if (!wordId || typeof isCorrect !== 'boolean' || !mode) {
       return res.status(400).json({ success: false, error: 'Invalid request body' })
     }
-    const data = await submitTypingAnswer(learnerId, wordId, isCorrect)
+    const data = await submitTypingAnswer(learnerId, wordId, isCorrect, mode)
     res.status(200).json({ success: true, data })
   } catch (error) {
     sendTypingError(res, error)
@@ -198,6 +219,36 @@ export async function typingDeleteArticleHandler(req: Request, res: Response) {
     if (!learnerId) return
     await deletePracticeArticle(learnerId, req.params.id)
     res.status(200).json({ success: true })
+  } catch (error) {
+    sendTypingError(res, error)
+  }
+}
+
+export async function typingDueArticlesHandler(req: Request, res: Response) {
+  try {
+    const learnerId = studyOrReply(req, res)
+    if (!learnerId) return
+    const data = await getDueArticleSentences(learnerId, clampCount(req.query.count, 20))
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    sendTypingError(res, error)
+  }
+}
+
+export async function typingArticleAnswerHandler(req: Request, res: Response) {
+  try {
+    const learnerId = studyOrReply(req, res)
+    if (!learnerId) return
+    const { articleKey, sentenceIndex, isCorrect } = req.body as {
+      articleKey?: string
+      sentenceIndex?: number
+      isCorrect?: boolean
+    }
+    if (!articleKey || typeof sentenceIndex !== 'number' || typeof isCorrect !== 'boolean') {
+      return res.status(400).json({ success: false, error: 'Invalid request body' })
+    }
+    const data = await submitSentenceAnswer(learnerId, articleKey, sentenceIndex, isCorrect)
+    res.status(200).json({ success: true, data })
   } catch (error) {
     sendTypingError(res, error)
   }
