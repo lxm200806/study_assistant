@@ -56,6 +56,9 @@ model Learner {
   wordMarks           LearnerWordMark[]
   practiceLists       PracticeList[]
   practiceArticles    PracticeArticle[]
+  sentenceCards       ArticleSentenceCard[]
+  typingModeStats     TypingModeStat[]
+  ownedWords          Vocabulary[]          @relation("LearnerOwnedWords")
 
   @@index([accountId])
 }
@@ -119,12 +122,25 @@ model Vocabulary {
   /// 已不再拆义项；保留空值以兼容旧数据。
   senseKey        String   @default("")
   senseLabel      String   @default("")
+  /// 学习者自建词条。词书里的词为空。同一拼写仍只有一行。
+  ownerLearnerId  String?
+  phoneticUk      String?
+  phoneticUs      String?
+  synonyms        String   @default("")
+  roots           String   @default("")
+  etymology       String   @default("")
+  phrases         String   @default("")
   createdAt       DateTime @default(now())
 
   vocabularyStats VocabularyStat[]
   trainingRecords TrainingRecord[]
   bookVocabulary  BookVocabulary[]
   wordMarks       LearnerWordMark[]
+  listItems       PracticeListItem[]
+  typingModeStats TypingModeStat[]
+  owner           Learner?             @relation("LearnerOwnedWords", fields: [ownerLearnerId], references: [id], onDelete: SetNull)
+
+  @@index([ownerLearnerId])
 }
 
 model BookStudyProgress {
@@ -396,7 +412,8 @@ model ChineseReviewLog {
   @@map("chinese_review_logs")
 }
 
-// 键盘练习：收藏、主动标记已掌握（之后跳过）、错词本。调度仍走 VocabularyStat 的 FSRS。
+// 键盘练习：收藏、主动标记已掌握（之后跳过）、错词本。
+// 键盘复习记在 TypingModeStat 和 ArticleSentenceCard。小程序拼写仍用 VocabularyStat 的 writing。
 model LearnerWordMark {
   learnerId    String
   wordId       String
@@ -422,10 +439,34 @@ model PracticeList {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  learner Learner            @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  items   PracticeListItem[]
 
   @@index([learnerId])
   @@map("practice_lists")
+}
+
+// 词表里的每一条。词书里没有的拼写会先写成学习者自建词条，再挂到这里。
+model PracticeListItem {
+  id          String @id @default(uuid())
+  listId      String
+  position    Int
+  spelling    String
+  gloss       String @default("")
+  wordId      String
+  synonyms    String @default("")
+  roots       String @default("")
+  etymology   String @default("")
+  phrases     String @default("")
+  phoneticUk  String @default("")
+  phoneticUs  String @default("")
+
+  list PracticeList @relation(fields: [listId], references: [id], onDelete: Cascade)
+  word Vocabulary   @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@unique([listId, spelling])
+  @@index([listId, position])
+  @@map("practice_list_items")
 }
 
 model PracticeArticle {
@@ -441,4 +482,60 @@ model PracticeArticle {
 
   @@index([learnerId])
   @@map("practice_articles")
+}
+
+// 短文句子的 FSRS 卡。articleKey 为 user:<文章 id> 或 builtin:<示例 id>，不写入单词的 writing 记录。
+model ArticleSentenceCard {
+  learnerId      String
+  articleKey     String
+  sentenceIndex  Int
+  text           String
+  translation    String   @default("")
+  practiceCount  Int      @default(0)
+  correctCount   Int      @default(0)
+  lastPractice   DateTime?
+  mastery        Int      @default(0)
+  due            DateTime?
+  stability      Float    @default(0)
+  difficulty     Float    @default(0)
+  reps           Int      @default(0)
+  lapses         Int      @default(0)
+  fsrsState      String   @default("New")
+  lastReview     DateTime?
+  retrievability Float    @default(0)
+  recentLapse    Boolean  @default(false)
+
+  learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+
+  @@id([learnerId, articleKey, sentenceIndex])
+  @@index([learnerId, due])
+  @@map("article_sentence_cards")
+}
+
+// 键盘练习按方式分开记复习。跟写、听写、自测、默写不共用 writing 卡片。
+model TypingModeStat {
+  id             String    @id @default(uuid())
+  learnerId      String
+  wordId         String
+  mode           String
+  practiceCount  Int       @default(0)
+  correctCount   Int       @default(0)
+  lastPractice   DateTime?
+  mastery        Int       @default(0)
+  due            DateTime?
+  stability      Float     @default(0)
+  difficulty     Float     @default(0)
+  reps           Int       @default(0)
+  lapses         Int       @default(0)
+  fsrsState      String    @default("New")
+  lastReview     DateTime?
+  retrievability Float     @default(0)
+  recentLapse    Boolean   @default(false)
+
+  learner Learner    @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  word    Vocabulary @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@unique([learnerId, wordId, mode])
+  @@index([learnerId, mode, due])
+  @@map("typing_mode_stats")
 }

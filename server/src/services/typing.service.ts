@@ -1,20 +1,24 @@
 import prisma from '../prisma/client'
 import { assertBookAccess } from './book-access.service'
 import { getBookByCode } from './book.service'
-import { practice } from './training.service'
 import { recordDailyStudy } from './daily-study.service'
 import { formatBookWord, formatWordForClient } from '../utils/wordFormat'
 import {
-  parseWordTokens,
+  mergeLexical,
+  parseListDocument,
+  partitionKnownSpellings,
   pickQueueIds,
-  splitPieces,
-  splitSentences,
+  presentListMeaning,
+  type LexicalBits,
+  type ListEntry,
   type QueueCandidate,
+  type RejectedToken,
+  type TypingMode,
   type TypingSource
 } from './typing-logic'
+import { cardInputFrom, scheduleCard } from './typing-schedule'
 
 const LIST_TEXT_LIMIT = 20000
-const ARTICLE_TEXT_LIMIT = 8000
 const NAME_LIMIT = 40
 
 export interface TypingWord {
@@ -30,6 +34,13 @@ export interface TypingWord {
   favorite: boolean
   skipMastered: boolean
   inWrongBook: boolean
+  phoneticUk?: string
+  phoneticUs?: string
+  synonyms?: string
+  roots?: string
+  etymology?: string
+  phrases?: string
+  note?: string
 }
 
 interface MarkFlags {
@@ -96,20 +107,50 @@ function candidateFrom(
   }
 }
 
+interface LexicalSource {
+  meaning?: string | null
+  ownerLearnerId?: string | null
+  phoneticUk?: string | null
+  phoneticUs?: string | null
+  synonyms?: string | null
+  roots?: string | null
+  etymology?: string | null
+  phrases?: string | null
+}
+
+function lexicalFrom(word?: LexicalSource | null): LexicalBits {
+  return {
+    phoneticUk: word?.phoneticUk || '',
+    phoneticUs: word?.phoneticUs || '',
+    synonyms: word?.synonyms || '',
+    roots: word?.roots || '',
+    etymology: word?.etymology || '',
+    phrases: word?.phrases || ''
+  }
+}
+
 function toTypingWord(
   formatted: ReturnType<typeof formatWordForClient>,
-  flags: MarkFlags
+  flags: MarkFlags,
+  word?: LexicalSource | null,
+  item?: Pick<ListEntry, 'gloss' | 'phoneticUk' | 'phoneticUs' | 'synonyms' | 'roots' | 'etymology' | 'phrases'> | null
 ): TypingWord {
+  const meaning = presentListMeaning(
+    { meaning: formatted.meaning, ownerLearnerId: word?.ownerLearnerId },
+    item?.gloss || ''
+  )
   return {
     id: formatted.id,
     word: formatted.word,
-    meaning: formatted.meaning,
+    meaning: meaning.meaning,
     phonetic: formatted.phonetic,
     englishMeaning: formatted.englishMeaning,
     example: formatted.example,
     examples: formatted.examples,
     topic: formatted.topic,
     tags: formatted.tags,
+    note: meaning.note,
+    ...mergeLexical(lexicalFrom(word), item || undefined),
     ...flags
   }
 }
@@ -127,7 +168,7 @@ async function overlayFromBook(bookCode: string | undefined, wordIds: string[]) 
   return overlays
 }
 
-export async function getTypingSummary(learnerId: string, bookCode: string) {
+export async function getTypingSummary(learnerId: string, bookCode: string, mode: TypingMode) {
   await assertBookAccess(learnerId, bookCode)
   const book = await getBookByCode(bookCode)
   if (!book) throw new Error('Book not found')
@@ -135,8 +176,8 @@ export async function getTypingSummary(learnerId: string, bookCode: string) {
   const wordIds = book.vocabulary.map(link => link.wordId)
   const now = new Date()
   const [stats, marks, wrong, favorite] = await Promise.all([
-    prisma.vocabularyStat.findMany({
-      where: { learnerId, type: 'writing', wordId: { in: wordIds } },
+    prisma.typingModeStat.findMany({
+      where: { learnerId, mode, wordId: { in: wordIds } },
       select: { wordId: true, practiceCount: true, due: true, recentLapse: true }
     }),
     prisma.learnerWordMark.findMany({
@@ -165,6 +206,7 @@ export async function getTypingSummary(learnerId: string, bookCode: string) {
 
   return {
     bookCode,
+    mode,
     bookWords: wordIds.length,
     due,
     unseen,
@@ -176,9 +218,9 @@ export async function getTypingSummary(learnerId: string, bookCode: string) {
 
 export async function getTypingQueue(
   learnerId: string,
-  options: { bookCode?: string; source: TypingSource; count: number; listId?: string }
+  options: { bookCode?: string; source: TypingSource; count: number; listId?: string; mode: TypingMode }
 ) {
-  const { source, count } = options
+  const { source, count, mode } = options
   const bookCode = options.bookCode?.trim() || undefined
   if ((source === 'smart' || source === 'random') && !bookCode) {
     throw new Error('BOOK_REQUIRED')
@@ -192,8 +234,8 @@ export async function getTypingQueue(
     if (!book) throw new Error('Book not found')
     const wordIds = book.vocabulary.map(link => link.wordId)
     const [stats, marks] = await Promise.all([
-      prisma.vocabularyStat.findMany({
-        where: { learnerId, type: 'writing', wordId: { in: wordIds } }
+      prisma.typingModeStat.findMany({
+        where: { learnerId, mode, wordId: { in: wordIds } }
       }),
       prisma.learnerWordMark.findMany({
         where: { learnerId, wordId: { in: wordIds } }
@@ -209,9 +251,9 @@ export async function getTypingQueue(
     const linkById = new Map(book.vocabulary.map(link => [link.wordId, link]))
     const words = ids.map(id => {
       const link = linkById.get(id)!
-      return toTypingWord(formatBookWord(link), markById.get(id) || emptyFlags())
+      return toTypingWord(formatBookWord(link), markById.get(id) || emptyFlags(), link.word)
     })
-    return { source, scopedToBook: true, bookCode, words, missing: [] as string[] }
+    return { source, mode, scopedToBook: true, bookCode, words, missing: [] as string[], rejected: [] as RejectedToken[] }
   }
 
   if (source === 'list') {
@@ -220,32 +262,34 @@ export async function getTypingQueue(
       where: { id: options.listId, learnerId }
     })
     if (!list) throw new Error('NOT_FOUND')
-    const tokens = parseWordTokens(list.source)
-    const found = tokens.length
-      ? await prisma.vocabulary.findMany({
-          where: { word: { in: tokens, mode: 'insensitive' } }
-        })
-      : []
-    const bySpelling = new Map(found.map(word => [word.word.toLowerCase(), word]))
-    const ordered = tokens.map(token => bySpelling.get(token)).filter((word): word is NonNullable<typeof word> => !!word)
-    const missing = tokens.filter(token => !bySpelling.has(token))
-    const ids = ordered.map(word => word.id)
+    const materialized = await ensureListItems(learnerId, list.id, list.source)
+    const ids = materialized.items.map(item => item.wordId)
     const marks = ids.length
       ? await prisma.learnerWordMark.findMany({ where: { learnerId, wordId: { in: ids } } })
       : []
     const markById = new Map(marks.map(mark => [mark.wordId, flagsFrom(mark)]))
     const overlays = await overlayFromBook(bookCode, ids)
-    const candidates = ordered.map((word, index) =>
-      candidateFrom(word.id, index, undefined, markById.get(word.id) || emptyFlags(), Date.now())
+    const candidates = materialized.items.map((item, index) =>
+      candidateFrom(item.wordId, index, undefined, markById.get(item.wordId) || emptyFlags(), Date.now())
     )
     const picked = pickQueueIds(candidates, 'list', count, { listIds: ids })
-    const wordById = new Map(ordered.map(word => [word.id, word]))
+    const itemById = new Map(materialized.items.map(item => [item.wordId, item]))
     const words = picked.map(id => {
+      const item = itemById.get(id)!
       const overlay = overlays.get(id)
-      const base = overlay || formatWordForClient(wordById.get(id)!)
-      return toTypingWord(base, markById.get(id) || emptyFlags())
+      const base = overlay || formatWordForClient(item.word)
+      const lexicalWord = overlay ? { ...item.word, ownerLearnerId: null } : item.word
+      return toTypingWord(base, markById.get(id) || emptyFlags(), lexicalWord, item)
     })
-    return { source, scopedToBook: false, bookCode: bookCode || null, words, missing }
+    return {
+      source,
+      mode,
+      scopedToBook: false,
+      bookCode: bookCode || null,
+      words,
+      missing: materialized.rejected.map(item => item.token),
+      rejected: materialized.rejected
+    }
   }
 
   const marks = await prisma.learnerWordMark.findMany({
@@ -258,8 +302,8 @@ export async function getTypingQueue(
   })
   const ids = marks.map(mark => mark.wordId)
   const stats = ids.length
-    ? await prisma.vocabularyStat.findMany({
-        where: { learnerId, type: 'writing', wordId: { in: ids } }
+    ? await prisma.typingModeStat.findMany({
+        where: { learnerId, mode, wordId: { in: ids } }
       })
     : []
   const statById = new Map(stats.map(stat => [stat.wordId, stat]))
@@ -274,14 +318,32 @@ export async function getTypingQueue(
     .map(mark => {
       const overlay = overlays.get(mark.wordId)
       const base = overlay || formatWordForClient(mark.word)
-      return toTypingWord(base, flagsFrom(mark))
+      return toTypingWord(base, flagsFrom(mark), mark.word)
     })
-  return { source, scopedToBook: false, bookCode: bookCode || null, words, missing: [] as string[] }
+  return { source, mode, scopedToBook: false, bookCode: bookCode || null, words, missing: [] as string[], rejected: [] as RejectedToken[] }
 }
 
-export async function submitTypingAnswer(learnerId: string, wordId: string, isCorrect: boolean) {
+export async function submitTypingAnswer(
+  learnerId: string,
+  wordId: string,
+  isCorrect: boolean,
+  mode: TypingMode
+) {
   await requireWord(wordId)
-  const review = await practice(learnerId, { wordId, type: 'writing', isCorrect })
+  const existingStat = await prisma.typingModeStat.findUnique({
+    where: { learnerId_wordId_mode: { learnerId, wordId, mode } }
+  })
+  const review = scheduleCard(existingStat ? cardInputFrom(existingStat) : { practiceCount: 0, correctCount: 0 }, isCorrect)
+  if (existingStat) {
+    await prisma.typingModeStat.update({
+      where: { id: existingStat.id },
+      data: review
+    })
+  } else {
+    await prisma.typingModeStat.create({
+      data: { learnerId, wordId, mode, ...review }
+    })
+  }
   const existing = await prisma.learnerWordMark.findUnique({
     where: { learnerId_wordId: { learnerId, wordId } }
   })
@@ -322,15 +384,145 @@ function cleanName(value: unknown, fallback: string): string {
   return name || fallback
 }
 
+async function fillOwnedLexical(
+  word: {
+    id: string
+    meaning: string
+    phonetic: string | null
+    phoneticUk: string | null
+    phoneticUs: string | null
+    synonyms: string
+    roots: string
+    etymology: string
+    phrases: string
+    ownerLearnerId: string | null
+  },
+  entry: ListEntry
+) {
+  if (word.ownerLearnerId !== null && word.ownerLearnerId !== undefined) {
+    const data: {
+      meaning?: string
+      phonetic?: string
+      phoneticUk?: string
+      phoneticUs?: string
+      synonyms?: string
+      roots?: string
+      etymology?: string
+      phrases?: string
+    } = {}
+    if (!word.meaning && entry.gloss) data.meaning = entry.gloss
+    if (!word.phoneticUk && entry.phoneticUk) data.phoneticUk = entry.phoneticUk
+    if (!word.phoneticUs && entry.phoneticUs) data.phoneticUs = entry.phoneticUs
+    if (!word.synonyms && entry.synonyms) data.synonyms = entry.synonyms
+    if (!word.roots && entry.roots) data.roots = entry.roots
+    if (!word.etymology && entry.etymology) data.etymology = entry.etymology
+    if (!word.phrases && entry.phrases) data.phrases = entry.phrases
+    if (Object.keys(data).length === 0) return
+    if (word.ownerLearnerId) {
+      await prisma.vocabulary.update({ where: { id: word.id }, data })
+    }
+  }
+}
+
+async function resolveListEntries(learnerId: string, entries: ListEntry[]) {
+  const spellings = entries.map(entry => entry.spelling)
+  const found = spellings.length
+    ? await prisma.vocabulary.findMany({
+        where: { word: { in: spellings, mode: 'insensitive' } }
+      })
+    : []
+  const knownIds = new Map(found.map(word => [word.word.toLowerCase(), word.id]))
+  const knownById = new Map(found.map(word => [word.id, word]))
+  const { linked, unknown } = partitionKnownSpellings(entries, knownIds)
+  const rejected: RejectedToken[] = []
+  const created: string[] = []
+  const wordIds = new Map<string, string>()
+
+  for (const entry of linked) {
+    wordIds.set(entry.spelling, entry.wordId)
+    const word = knownById.get(entry.wordId)
+    if (word?.ownerLearnerId === learnerId) await fillOwnedLexical(word, entry)
+  }
+
+  for (const entry of unknown) {
+    try {
+      const word = await prisma.vocabulary.create({
+        data: {
+          word: entry.spelling,
+          meaning: entry.gloss || '',
+          phoneticUk: entry.phoneticUk || null,
+          phoneticUs: entry.phoneticUs || null,
+          synonyms: entry.synonyms,
+          roots: entry.roots,
+          etymology: entry.etymology,
+          phrases: entry.phrases,
+          ownerLearnerId: learnerId,
+          englishMeaning: ''
+        }
+      })
+      created.push(entry.spelling)
+      wordIds.set(entry.spelling, word.id)
+    } catch {
+      const again = await prisma.vocabulary.findFirst({
+        where: { word: { equals: entry.spelling, mode: 'insensitive' } }
+      })
+      if (again) wordIds.set(entry.spelling, again.id)
+      else rejected.push({ token: entry.spelling, reason: 'save_failed' })
+    }
+  }
+
+  const items = entries.flatMap(entry => {
+    const wordId = wordIds.get(entry.spelling)
+    return wordId ? [{ ...entry, wordId }] : []
+  })
+  return { items, linked: linked.length, created, rejected }
+}
+
+async function ensureListItems(learnerId: string, listId: string, source: string) {
+  const existing = await prisma.practiceListItem.findMany({
+    where: { listId },
+    include: { word: true },
+    orderBy: { position: 'asc' }
+  })
+  if (existing.length) return { items: existing, rejected: [] as RejectedToken[] }
+  const parsed = parseListDocument(source)
+  const resolved = await resolveListEntries(learnerId, parsed.entries)
+  if (resolved.items.length) {
+    await prisma.practiceListItem.createMany({
+      skipDuplicates: true,
+      data: resolved.items.map((item, position) => ({
+        listId,
+        position,
+        spelling: item.spelling,
+        gloss: item.gloss,
+        wordId: item.wordId,
+        synonyms: item.synonyms,
+        roots: item.roots,
+        etymology: item.etymology,
+        phrases: item.phrases,
+        phoneticUk: item.phoneticUk,
+        phoneticUs: item.phoneticUs
+      }))
+    })
+  }
+  const items = await prisma.practiceListItem.findMany({
+    where: { listId },
+    include: { word: true },
+    orderBy: { position: 'asc' }
+  })
+  return { items, rejected: [...parsed.rejected, ...resolved.rejected] }
+}
+
 export async function listPracticeLists(learnerId: string) {
   const rows = await prisma.practiceList.findMany({
     where: { learnerId },
-    orderBy: { updatedAt: 'desc' }
+    orderBy: { updatedAt: 'desc' },
+    include: { _count: { select: { items: true } } }
   })
   return rows.map(row => ({
     id: row.id,
     name: row.name,
-    count: parseWordTokens(row.source).length,
+    count: row._count.items || parseListDocument(row.source).entries.length,
     createdAt: row.createdAt
   }))
 }
@@ -338,27 +530,49 @@ export async function listPracticeLists(learnerId: string) {
 export async function createPracticeList(learnerId: string, name: unknown, text: unknown) {
   const source = String(text || '').trim()
   if (!source || source.length > LIST_TEXT_LIMIT) throw new Error('BAD_INPUT')
-  const tokens = parseWordTokens(source)
-  if (!tokens.length) throw new Error('BAD_INPUT')
-  const found = await prisma.vocabulary.findMany({
-    where: { word: { in: tokens, mode: 'insensitive' } },
-    select: { word: true }
-  })
-  const known = new Set(found.map(word => word.word.toLowerCase()))
-  const missing = tokens.filter(token => !known.has(token))
+  const parsed = parseListDocument(source)
+  if (!parsed.entries.length) {
+    const error = new Error('BAD_INPUT') as Error & { rejected?: RejectedToken[] }
+    error.rejected = parsed.rejected
+    throw error
+  }
+  const resolved = await resolveListEntries(learnerId, parsed.entries)
+  const rejected = [...parsed.rejected, ...resolved.rejected]
+  if (!resolved.items.length) {
+    const error = new Error('BAD_INPUT') as Error & { rejected?: RejectedToken[] }
+    error.rejected = rejected
+    throw error
+  }
   const row = await prisma.practiceList.create({
     data: {
       learnerId,
       name: cleanName(name, '我的词表'),
-      source: tokens.join('\n')
+      source,
+      items: {
+        create: resolved.items.map((item, position) => ({
+          position,
+          spelling: item.spelling,
+          gloss: item.gloss,
+          wordId: item.wordId,
+          synonyms: item.synonyms,
+          roots: item.roots,
+          etymology: item.etymology,
+          phrases: item.phrases,
+          phoneticUk: item.phoneticUk,
+          phoneticUs: item.phoneticUs
+        }))
+      }
     }
   })
   return {
     id: row.id,
     name: row.name,
-    count: tokens.length,
-    matched: tokens.length - missing.length,
-    missing
+    count: resolved.items.length,
+    linked: resolved.linked,
+    created: resolved.created,
+    matched: resolved.linked,
+    missing: resolved.rejected.map(item => item.token),
+    rejected
   }
 }
 
@@ -366,63 +580,4 @@ export async function deletePracticeList(learnerId: string, id: string) {
   const row = await prisma.practiceList.findFirst({ where: { id, learnerId } })
   if (!row) throw new Error('NOT_FOUND')
   await prisma.practiceList.delete({ where: { id } })
-}
-
-export async function listPracticeArticles(learnerId: string) {
-  const rows = await prisma.practiceArticle.findMany({
-    where: { learnerId },
-    orderBy: { updatedAt: 'desc' }
-  })
-  return rows.map(row => ({
-    id: row.id,
-    title: row.title,
-    sentenceCount: splitSentences(row.body).length,
-    createdAt: row.createdAt
-  }))
-}
-
-export async function createPracticeArticle(
-  learnerId: string,
-  input: { title?: unknown; body?: unknown; translation?: unknown }
-) {
-  const body = String(input.body || '').trim()
-  const translation = String(input.translation || '').trim()
-  if (!body || body.length > ARTICLE_TEXT_LIMIT || translation.length > ARTICLE_TEXT_LIMIT) {
-    throw new Error('BAD_INPUT')
-  }
-  const sentences = splitSentences(body)
-  if (!sentences.length) throw new Error('BAD_INPUT')
-  const row = await prisma.practiceArticle.create({
-    data: {
-      learnerId,
-      title: cleanName(input.title, sentences[0].slice(0, NAME_LIMIT)),
-      body,
-      translation
-    }
-  })
-  return { id: row.id, title: row.title, sentenceCount: sentences.length }
-}
-
-export async function getPracticeArticle(learnerId: string, id: string) {
-  const row = await prisma.practiceArticle.findFirst({ where: { id, learnerId } })
-  if (!row) throw new Error('NOT_FOUND')
-  const sentences = splitSentences(row.body)
-  const translated = row.translation ? splitPieces(row.translation) : []
-  const paired = translated.length === sentences.length ? translated : []
-  return {
-    id: row.id,
-    title: row.title,
-    body: row.body,
-    translation: row.translation,
-    sentences: sentences.map((text, index) => ({
-      text,
-      translation: paired[index] || ''
-    }))
-  }
-}
-
-export async function deletePracticeArticle(learnerId: string, id: string) {
-  const row = await prisma.practiceArticle.findFirst({ where: { id, learnerId } })
-  if (!row) throw new Error('NOT_FOUND')
-  await prisma.practiceArticle.delete({ where: { id } })
 }

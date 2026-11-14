@@ -7,8 +7,10 @@ import {
   typingArticlesHandler,
   typingCreateArticleHandler,
   typingCreateListHandler,
+  typingArticleAnswerHandler,
   typingDeleteArticleHandler,
   typingDeleteListHandler,
+  typingDueArticlesHandler,
   typingListsHandler,
   typingMarkHandler,
   typingQueueHandler,
@@ -29,6 +31,8 @@ router.delete('/lists/:id', authMiddleware, typingDeleteListHandler)
 
 router.get('/articles', authMiddleware, typingArticlesHandler)
 router.post('/articles', authMiddleware, typingCreateArticleHandler)
+router.get('/articles/due', authMiddleware, typingDueArticlesHandler)
+router.post('/articles/answer', authMiddleware, typingArticleAnswerHandler)
 router.get('/articles/:id', authMiddleware, typingArticleHandler)
 router.delete('/articles/:id', authMiddleware, typingDeleteArticleHandler)
 
