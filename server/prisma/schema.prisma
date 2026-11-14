@@ -58,6 +58,7 @@ model Learner {
   practiceArticles    PracticeArticle[]
   sentenceCards       ArticleSentenceCard[]
   typingModeStats     TypingModeStat[]
+  typingSessions      TypingSessionLog[]
   ownedWords          Vocabulary[]          @relation("LearnerOwnedWords")
 
   @@index([accountId])
@@ -420,6 +421,8 @@ model LearnerWordMark {
   favorite     Boolean  @default(false)
   skipMastered Boolean  @default(false)
   inWrongBook  Boolean  @default(false)
+  /// word: 这个词本身写错。sentence: 来自一句没写对的短文。
+  wrongSource  String   @default("")
   updatedAt    DateTime @updatedAt
 
   learner Learner    @relation(fields: [learnerId], references: [id], onDelete: Cascade)
@@ -538,4 +541,23 @@ model TypingModeStat {
   @@unique([learnerId, wordId, mode])
   @@index([learnerId, mode, due])
   @@map("typing_mode_stats")
+}
+
+// 一组键盘练习的用时和字数，只属于当前学习者。速度图和练习热力都读这张表。
+model TypingSessionLog {
+  id            String   @id @default(uuid())
+  learnerId     String
+  date          String
+  durationMs    Int
+  typedChars    Int
+  correctChars  Int
+  itemCount     Int
+  correctCount  Int
+  kind          String
+  createdAt     DateTime @default(now())
+
+  learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+
+  @@index([learnerId, date])
+  @@map("typing_session_logs")
 }

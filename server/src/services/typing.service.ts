@@ -7,13 +7,20 @@ import {
   mergeLexical,
   parseListDocument,
   partitionKnownSpellings,
+  aggregateLearnerHistory,
+  charsPerMinute,
+  contentWords,
+  parseHistoryDate,
   pickQueueIds,
   presentListMeaning,
+  recentDateKeys,
+  wordsForWrongBook,
   type LexicalBits,
   type ListEntry,
   type QueueCandidate,
   type RejectedToken,
   type TypingMode,
+  type TypingSessionInput,
   type TypingSource
 } from './typing-logic'
 import { cardInputFrom, scheduleCard } from './typing-schedule'
@@ -41,28 +48,32 @@ export interface TypingWord {
   etymology?: string
   phrases?: string
   note?: string
+  wrongSource?: string
 }
 
 interface MarkFlags {
   favorite: boolean
   skipMastered: boolean
   inWrongBook: boolean
+  wrongSource: string
 }
 
 function emptyFlags(): MarkFlags {
-  return { favorite: false, skipMastered: false, inWrongBook: false }
+  return { favorite: false, skipMastered: false, inWrongBook: false, wrongSource: '' }
 }
 
 function flagsFrom(mark?: {
   favorite: boolean
   skipMastered: boolean
   inWrongBook: boolean
+  wrongSource?: string
 } | null): MarkFlags {
   if (!mark) return emptyFlags()
   return {
     favorite: mark.favorite,
     skipMastered: mark.skipMastered,
-    inWrongBook: mark.inWrongBook
+    inWrongBook: mark.inWrongBook,
+    wrongSource: mark.inWrongBook ? (mark.wrongSource || '') : ''
   }
 }
 
@@ -350,7 +361,8 @@ export async function submitTypingAnswer(
   const flags = await saveFlags(learnerId, wordId, {
     favorite: existing?.favorite ?? false,
     skipMastered: existing?.skipMastered ?? false,
-    inWrongBook: !isCorrect
+    inWrongBook: !isCorrect,
+    wrongSource: !isCorrect ? 'word' : ''
   })
   return { review, ...flags }
 }
@@ -367,9 +379,109 @@ export async function updateTypingMark(
   const flags = await saveFlags(learnerId, wordId, {
     favorite: patch.favorite ?? existing?.favorite ?? false,
     skipMastered: patch.skipMastered ?? existing?.skipMastered ?? false,
-    inWrongBook: existing?.inWrongBook ?? false
+    inWrongBook: existing?.inWrongBook ?? false,
+    wrongSource: existing?.inWrongBook ? (existing.wrongSource || '') : ''
   })
   return { wordId, ...flags }
+}
+
+export async function markSentenceContentWrong(learnerId: string, sentence: string): Promise<string[]> {
+  const tokens = contentWords(sentence)
+  if (!tokens.length) return []
+  const found = await prisma.vocabulary.findMany({
+    where: { word: { in: tokens, mode: 'insensitive' } },
+    select: { id: true, word: true }
+  })
+  const bySpelling = new Map(found.map(word => [word.word.toLowerCase(), word]))
+  const ids = found.map(word => word.id)
+  const marks = ids.length
+    ? await prisma.learnerWordMark.findMany({
+        where: { learnerId, wordId: { in: ids }, inWrongBook: true },
+        select: { wordId: true }
+      })
+    : []
+  const wrongIds = new Set(marks.map(mark => mark.wordId))
+  const already = new Set(
+    [...bySpelling.entries()].filter(([, word]) => wrongIds.has(word.id)).map(([spelling]) => spelling)
+  )
+  const added: string[] = []
+  for (const spelling of wordsForWrongBook(sentence, new Set(bySpelling.keys()), already)) {
+    const word = bySpelling.get(spelling)
+    if (!word) continue
+    const existing = await prisma.learnerWordMark.findUnique({
+      where: { learnerId_wordId: { learnerId, wordId: word.id } }
+    })
+    if (existing?.inWrongBook) continue
+    await prisma.learnerWordMark.upsert({
+      where: { learnerId_wordId: { learnerId, wordId: word.id } },
+      create: {
+        learnerId,
+        wordId: word.id,
+        inWrongBook: true,
+        wrongSource: 'sentence'
+      },
+      update: {
+        inWrongBook: true,
+        wrongSource: 'sentence'
+      }
+    })
+    added.push(word.word)
+  }
+  return added
+}
+
+function clampInt(raw: unknown, max: number): number {
+  const value = Number(raw)
+  if (!Number.isFinite(value)) return 0
+  return Math.min(max, Math.max(0, Math.floor(value)))
+}
+
+export async function recordTypingSession(
+  learnerId: string,
+  input: {
+    date?: unknown
+    durationMs?: unknown
+    typedChars?: unknown
+    correctChars?: unknown
+    itemCount?: unknown
+    correctCount?: unknown
+    kind?: unknown
+  }
+) {
+  const date = parseHistoryDate(input.date)
+  const kind = input.kind === 'article' ? 'article' : input.kind === 'words' ? 'words' : ''
+  const itemCount = clampInt(input.itemCount, 200)
+  if (!date || !kind || itemCount <= 0) throw new Error('BAD_INPUT')
+  const row = await prisma.typingSessionLog.create({
+    data: {
+      learnerId,
+      date,
+      durationMs: clampInt(input.durationMs, 2 * 60 * 60 * 1000),
+      typedChars: clampInt(input.typedChars, 20000),
+      correctChars: clampInt(input.correctChars, 20000),
+      itemCount,
+      correctCount: Math.min(itemCount, clampInt(input.correctCount, 200)),
+      kind
+    }
+  })
+  return {
+    id: row.id,
+    date: row.date,
+    charsPerMinute: charsPerMinute(row.correctChars, row.durationMs)
+  }
+}
+
+export async function getTypingHistory(learnerId: string, end: string, days: number) {
+  const dates = recentDateKeys(end, days)
+  const rows = await prisma.typingSessionLog.findMany({
+    where: {
+      learnerId,
+      date: { gte: dates[0], lte: dates[dates.length - 1] }
+    },
+    orderBy: { createdAt: 'asc' }
+  })
+  const history = aggregateLearnerHistory(learnerId, rows as TypingSessionInput[], dates)
+  return history
 }
 
 export async function recordTypingActivity(learnerId: string, count: number) {

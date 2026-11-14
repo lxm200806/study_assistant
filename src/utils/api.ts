@@ -300,10 +300,24 @@ export const typingAPI = {
   createArticle: (title: string, body: string, translation: string) =>
     request('/typing/articles', 'POST', { title, body, translation }),
   article: (id: string) => request(`/typing/articles/${encodeURIComponent(id)}`, 'GET'),
+  updateArticle: (id: string, title: string, body: string, translation: string) =>
+    request(`/typing/articles/${encodeURIComponent(id)}`, 'PUT', { title, body, translation }),
+  previewArticle: (id: string, body: string, translation: string) =>
+    request(`/typing/articles/${encodeURIComponent(id)}/preview`, 'POST', { body, translation }),
   deleteArticle: (id: string) => request(`/typing/articles/${encodeURIComponent(id)}`, 'DELETE'),
   dueArticles: (count: number) => request(`/typing/articles/due?count=${count}`, 'GET'),
   articleAnswer: (articleKey: string, sentenceIndex: number, isCorrect: boolean) =>
-    request('/typing/articles/answer', 'POST', { articleKey, sentenceIndex, isCorrect })
+    request('/typing/articles/answer', 'POST', { articleKey, sentenceIndex, isCorrect }),
+  history: (end: string) => request(`/typing/history?end=${encodeURIComponent(end)}&days=112`, 'GET'),
+  session: (body: {
+    date: string
+    durationMs: number
+    typedChars: number
+    correctChars: number
+    itemCount: number
+    correctCount: number
+    kind: 'words' | 'article'
+  }) => request('/typing/sessions', 'POST', body)
 }
 
 export const quizAPI = {

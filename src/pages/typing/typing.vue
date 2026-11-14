@@ -98,6 +98,7 @@
           <view v-for="item in articles" :key="item.id" class="article-block">
             <view class="saved-row">
               <text class="saved-name" @tap="startArticle(item.id)">{{ articleLabel(item) }}</text>
+              <text class="saved-edit" @tap="beginEdit(item)">{{ item.builtin ? '改编' : '编辑' }}</text>
               <text v-if="item.builtin" class="keycap">示例</text>
               <text v-else class="saved-delete" @tap="removeArticle(item.id)">删除</text>
             </view>
@@ -115,19 +116,44 @@
             v-model="articleBody"
             placeholder="粘贴英文短文"
             @focus="suspendKeys = true"
-            @blur="suspendKeys = false"
+            @blur="onArticleFieldBlur"
           />
           <textarea
             class="area"
             v-model="articleTranslation"
             placeholder="译文，可选。句数一致时会逐句对照"
             @focus="suspendKeys = true"
-            @blur="suspendKeys = false"
+            @blur="onArticleFieldBlur"
           />
-          <button class="ghost" @tap="saveArticle">保存短文</button>
+          <text v-if="editingId" class="hint">没改动的句子会留下复习进度。改过、拆开、合并或删掉的句子会重新开始。</text>
+          <text v-if="editingBuiltin" class="hint">示例原文不会改，保存后成为你自己的一篇。</text>
+          <text v-if="editImpact && editImpact.kept && (editImpact.reset || editImpact.retired)" class="hint">这次会保留 {{ editImpact.kept }} 句的进度，{{ editImpact.reset + editImpact.retired }} 句重新开始。</text>
+          <button class="ghost" @tap="saveArticle">{{ editingId ? '保存修改' : '保存短文' }}</button>
+          <button v-if="editingId" class="ghost" @tap="cancelEdit">取消编辑</button>
           <button class="ghost" @tap="pickArticleFile">从文件导入</button>
         </view>
       </template>
+
+      <view class="panel">
+        <text class="panel-title">练习记录</text>
+        <text v-if="!historyLoaded" class="hint">正在读取练习记录。</text>
+        <text v-else-if="!hasHistory" class="hint">完成一组后，这里会显示速度和每天练了多少。</text>
+        <template v-else>
+          <text class="label">速度 · 每分钟正确字符</text>
+          <view v-if="history.speed.length" class="speed-chart">
+            <view v-for="(point, pointIndex) in history.speed" :key="point.at + pointIndex" class="speed-col">
+              <view class="speed-bar" :style="{ height: barHeight(point.charsPerMinute) }"></view>
+            </view>
+          </view>
+          <text v-if="history.speed.length" class="hint">最近 {{ history.speed.length }} 组，最高 {{ maxSpeed }}。</text>
+          <text v-else class="hint">组次太短时先不画速度，天数仍会计入下面的格子。</text>
+          <text class="label">每天练习</text>
+          <view class="heat">
+            <view v-for="day in history.days" :key="day.date" :class="['heat-cell', 'lv-' + day.level]"></view>
+          </view>
+          <text class="hint">从左到右是时间先后。颜色越深，这一天完成的词或句子越多。</text>
+        </template>
+      </view>
 
       <view class="panel">
         <text class="panel-title">快捷键</text>
@@ -168,6 +194,7 @@
         <text v-if="showPhonetic && phoneticLine" class="phonetic">{{ phoneticLine }}</text>
         <text v-if="showMeaningLine" class="meaning-line">{{ meaningLine }}</text>
         <text v-if="firstLetter" class="phonetic">首字母 {{ firstLetter }}</text>
+        <text v-if="currentWord?.wrongSource === 'sentence'" class="hint">这个词来自一句没写对的短文。</text>
       </view>
 
       <input
@@ -194,6 +221,7 @@
         <text class="result-title">{{ isCorrect ? '正确' : '再看一眼' }}</text>
         <text class="result-word">{{ expectedText }}</text>
         <text v-if="!isCorrect && currentWord" class="hint">已记入错词本，之后可用「错词」复习。</text>
+        <text v-else-if="!isCorrect && sentenceWrongWords.length" class="hint">已把认识的实词放进错词本：{{ sentenceWrongWords.join('、') }}</text>
         <text v-else-if="clearedWrong" class="hint">这一题写对了，已从错词本移出。</text>
         <view v-if="graded.length" class="live-line result-line">
           <text v-for="(mark, index) in graded" :key="'g' + index" :class="['glyph', mark.kind]">{{ mark.ch }}</text>
@@ -272,6 +300,7 @@ interface TypingWord {
   etymology?: string
   phrases?: string
   note?: string
+  wrongSource?: string
 }
 
 interface Summary {
@@ -339,6 +368,18 @@ const listNote = ref('')
 const articleTitle = ref('')
 const articleBody = ref('')
 const articleTranslation = ref('')
+const editingId = ref('')
+const editingBuiltin = ref(false)
+const editImpact = ref<{ kept: number; reset: number; retired: number } | null>(null)
+const sentenceWrongWords = ref<string[]>([])
+const roundStartedAt = ref(0)
+const typedChars = ref(0)
+const correctChars = ref(0)
+const historyLoaded = ref(false)
+const history = ref<{
+  days: Array<{ date: string; items: number; level: number }>
+  speed: Array<{ at: string; charsPerMinute: number; items: number }>
+}>({ days: [], speed: [] })
 const busy = ref(false)
 const ready = ref(false)
 
@@ -450,6 +491,8 @@ const showAside = computed(() => (
   || !!(showFullTranslation.value && fullTranslation.value)
 ))
 const articleDue = computed(() => articles.value.reduce((sum, item) => sum + (item.dueCount || 0), 0))
+const hasHistory = computed(() => history.value.days.some(day => day.items > 0) || history.value.speed.length > 0)
+const maxSpeed = computed(() => history.value.speed.reduce((max, point) => Math.max(max, point.charsPerMinute), 0))
 const promptKicker = computed(() => {
   if (lane.value === 'article') {
     const title = currentSentence.value?.title ? `${currentSentence.value.title} · ` : ''
@@ -474,7 +517,7 @@ function toast(title: string) {
 async function loadSetup() {
   vocabStore.loadSettings()
   await vocabStore.loadBooks()
-  await Promise.all([refreshSummary(), refreshLists(), refreshArticles()])
+  await Promise.all([refreshSummary(), refreshLists(), refreshArticles(), refreshHistory()])
 }
 
 async function refreshSummary() {
@@ -502,6 +545,33 @@ async function refreshArticles() {
     articles.value = (result.data as ArticleRow[]) || []
   } catch {
     articles.value = []
+  }
+}
+
+function localDate() {
+  const now = new Date()
+  const month = String(now.getMonth() + 1).padStart(2, '0')
+  const day = String(now.getDate()).padStart(2, '0')
+  return `${now.getFullYear()}-${month}-${day}`
+}
+
+function barHeight(speed: number) {
+  const top = Math.max(maxSpeed.value, 1)
+  return `${Math.max(8, Math.round((speed / top) * 100))}%`
+}
+
+async function refreshHistory() {
+  try {
+    const result = await typingAPI.history(localDate())
+    const data = result.data as typeof history.value
+    history.value = {
+      days: data?.days || [],
+      speed: data?.speed || []
+    }
+  } catch {
+    history.value = { days: [], speed: [] }
+  } finally {
+    historyLoaded.value = true
   }
 }
 
@@ -564,7 +634,8 @@ function pickListFile() {
 function pickArticleFile() {
   readTextFile(8000, text => {
     articleBody.value = text
-    toast('已放入短文，确认后保存')
+    toast(editingId.value ? '已放入短文，确认后保存修改' : '已放入短文，确认后保存')
+    void refreshEditImpact()
   })
 }
 
@@ -578,6 +649,10 @@ function resetRound() {
   answered.value = []
   correctCount.value = 0
   roundSaved.value = false
+  roundStartedAt.value = Date.now()
+  typedChars.value = 0
+  correctChars.value = 0
+  sentenceWrongWords.value = []
 }
 
 function armSelf() {
@@ -740,12 +815,67 @@ async function removeList(id: string) {
   await refreshLists()
 }
 
+async function beginEdit(item: ArticleRow) {
+  try {
+    const result = await typingAPI.article(item.id)
+    const data = result.data as { title?: string; body?: string; sourceTranslation?: string; translation?: string }
+    editingId.value = item.id
+    editingBuiltin.value = !!item.builtin
+    articleTitle.value = data?.title || item.title
+    articleBody.value = data?.body || ''
+    articleTranslation.value = data?.sourceTranslation || data?.translation || ''
+    editImpact.value = null
+    await refreshEditImpact()
+  } catch (error) {
+    toast((error as Error).message || '没能打开短文')
+  }
+}
+
+function cancelEdit() {
+  editingId.value = ''
+  editingBuiltin.value = false
+  editImpact.value = null
+  articleTitle.value = ''
+  articleBody.value = ''
+  articleTranslation.value = ''
+}
+
+async function refreshEditImpact() {
+  if (!editingId.value || !articleBody.value.trim()) {
+    editImpact.value = null
+    return
+  }
+  try {
+    const result = await typingAPI.previewArticle(editingId.value, articleBody.value, articleTranslation.value)
+    editImpact.value = (result.data as { kept: number; reset: number; retired: number }) || null
+  } catch {
+    editImpact.value = null
+  }
+}
+
+function onArticleFieldBlur() {
+  suspendKeys.value = false
+  void refreshEditImpact()
+}
+
 async function saveArticle() {
   if (!articleBody.value.trim()) {
     toast('先粘贴短文')
     return
   }
   try {
+    if (editingId.value) {
+      await refreshEditImpact()
+      const result = await typingAPI.updateArticle(editingId.value, articleTitle.value, articleBody.value, articleTranslation.value)
+      const data = result.data as { kept?: number; reset?: number; retired?: number; copied?: boolean }
+      const changed = (data?.reset || 0) + (data?.retired || 0)
+      const copied = data?.copied ? '已另存为你的短文。' : ''
+      cancelEdit()
+      await refreshArticles()
+      if (changed) toast(`${copied}${data?.kept || 0} 句保留进度，${changed} 句重新开始`)
+      else toast(copied || '短文已保存')
+      return
+    }
     await typingAPI.createArticle(articleTitle.value, articleBody.value, articleTranslation.value)
     articleTitle.value = ''
     articleBody.value = ''
@@ -826,6 +956,8 @@ async function submit() {
   isCorrect.value = ok
   showResult.value = true
   if (ok) correctCount.value += 1
+  typedChars.value += userInput.value.length
+  if (ok) correctChars.value += expectedText.value.length
   const word = currentWord.value
   answered.value.push({
     id: word?.id || `s${index.value}`,
@@ -836,7 +968,9 @@ async function submit() {
     const sentence = currentSentence.value
     if (!sentence) return
     try {
-      await typingAPI.articleAnswer(sentence.articleKey, sentence.index, ok)
+      const result = await typingAPI.articleAnswer(sentence.articleKey, sentence.index, ok)
+      const data = result.data as { wrongWords?: string[] }
+      sentenceWrongWords.value = data?.wrongWords || []
     } catch {
       toast('这句的复习没保存')
     }
@@ -869,6 +1003,21 @@ async function finishRound() {
   }
   roundSaved.value = true
   const ids = lane.value === 'words' ? answered.value.map(item => item.id) : []
+  if (answered.value.length && roundStartedAt.value) {
+    try {
+      await typingAPI.session({
+        date: localDate(),
+        durationMs: Math.max(0, Date.now() - roundStartedAt.value),
+        typedChars: typedChars.value,
+        correctChars: correctChars.value,
+        itemCount: answered.value.length,
+        correctCount: correctCount.value,
+        kind: lane.value === 'article' ? 'article' : 'words'
+      })
+    } catch {
+      toast('这组速度没记上')
+    }
+  }
   try {
     if (scopedToBook.value && ids.length) {
       await vocabStore.completeSession(ids)
@@ -921,6 +1070,7 @@ function backToSetup() {
   void refreshSummary()
   void refreshArticles()
   void refreshLists()
+  void refreshHistory()
 }
 
 function toggleSound() {
@@ -1255,6 +1405,52 @@ button.slim {
 .source-line {
   margin: 0 0 10px;
 }
+
+.saved-edit {
+  color: #0f6e6a;
+  font-size: 13px;
+}
+
+.speed-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 72px;
+  margin-top: 8px;
+}
+
+.speed-col {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.speed-bar {
+  width: 100%;
+  background: #0f6e6a;
+  border-radius: 4px 4px 0 0;
+  min-height: 4px;
+}
+
+.heat {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  max-width: 364px;
+}
+
+.heat-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: #e6e0d6;
+}
+
+.lv-1 { background: #c5ddd4; }
+.lv-2 { background: #7fbfb0; }
+.lv-3 { background: #2f8f86; }
+.lv-4 { background: #0f6e6a; }
 
 .article-block {
   margin-bottom: 4px;
