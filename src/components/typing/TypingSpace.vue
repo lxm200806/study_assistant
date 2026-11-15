@@ -1,12 +1,14 @@
 <template>
-  <!-- Exact TypeWords article Space.vue behavior -->
+  <!-- Space slot: wrong=red, correct=green, wait=slate (masked placeholder) -->
   <span v-if="isWrong" class="word-space wrong" />
+  <span v-else-if="isCorrect" class="word-space correct" />
   <span v-else class="word-space wait" :class="[isWait ? 'show' : 'hide', isShake ? 'shake' : '']" />
 </template>
 
 <script setup lang="ts">
 defineProps<{
   isWrong?: boolean
+  isCorrect?: boolean
   isWait?: boolean
   isShake?: boolean
 }>()
@@ -28,8 +30,8 @@ defineProps<{
   border-bottom: 2px solid red;
 }
 
-.word-space.wait {
-  border-bottom: 2px solid #64748b;
+.word-space.correct {
+  border-bottom: 2px solid rgb(22, 163, 74);
   margin-left: 0.125rem;
   margin-right: 0.125rem;
 
@@ -39,7 +41,31 @@ defineProps<{
     position: absolute;
     width: 2px;
     height: 0.25rem;
-    background: #64748b;
+    background: rgb(22, 163, 74);
+    bottom: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+
+  &::before {
+    left: 0;
+  }
+}
+
+.word-space.wait {
+  border-bottom: 2px solid #94a3b8;
+  margin-left: 0.125rem;
+  margin-right: 0.125rem;
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 0.25rem;
+    background: #94a3b8;
     bottom: 0;
   }
 

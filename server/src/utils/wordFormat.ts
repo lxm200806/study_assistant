@@ -24,14 +24,34 @@ export function pickRotatedItem<T>(items: T[], seed: string): T {
   return items[Math.abs(hash) % items.length]
 }
 
+/** Import placeholders like "Students study the word X in this book." */
+export function isPlaceholderExample(text: string, spelling = ''): boolean {
+  const t = text.trim()
+  if (!t) return true
+  if (/^students study the word\b/i.test(t)) return true
+  if (spelling && new RegExp(`^we use the word\\s+${escapeRegExp(spelling)}\\b`, 'i').test(t)) {
+    return true
+  }
+  return false
+}
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+/** Prefer real sentences; keep placeholders only if nothing else exists. */
 export function bookWordExamples(bv: {
   exampleSentences?: string[] | null
-  word: { exampleSentence?: string | null }
+  word: { word?: string; exampleSentence?: string | null }
 }): string[] {
+  const spelling = bv.word.word || ''
   const fromBook = (bv.exampleSentences || []).map(item => item.trim()).filter(Boolean)
-  if (fromBook.length) return [...new Set(fromBook)]
   const fallback = bv.word.exampleSentence?.trim()
-  return fallback ? [fallback] : []
+  const merged = [...fromBook]
+  if (fallback && !merged.includes(fallback)) merged.push(fallback)
+  const unique = [...new Set(merged)]
+  const real = unique.filter(item => !isPlaceholderExample(item, spelling))
+  return real.length ? real : unique
 }
 
 export function formatWordForClient(word: {

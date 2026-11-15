@@ -167,6 +167,8 @@
         <view class="accent-switch">
           <view :class="['mini', accent === 'uk' ? 'on' : '']" @tap="accent = 'uk'">英音</view>
           <view :class="['mini', accent === 'us' ? 'on' : '']" @tap="accent = 'us'">美音</view>
+          <view :class="['mini', ttsGender === 'female' ? 'on' : '']" @tap="setGender('female')">女声</view>
+          <view :class="['mini', ttsGender === 'male' ? 'on' : '']" @tap="setGender('male')">男声</view>
         </view>
         <text class="top-link" @tap="finishEarly">结束</text>
       </view>
@@ -192,6 +194,13 @@
           @tap="setCascadeStyle('per-group')"
         >
           <text class="rail-label">整组再换</text>
+        </view>
+        <view class="rail-gap" aria-hidden="true" />
+        <view
+          :class="['rail-tab', 'rail-toggle', autoExample ? 'is-picked' : '']"
+          @tap="toggleAutoExample"
+        >
+          <text class="rail-label">播例句</text>
         </view>
       </view>
       <view v-else class="practice-rail">
@@ -282,6 +291,9 @@
           <button v-else class="start slim" @tap="nextItem">下一题</button>
         </template>
         <button class="ghost slim" @tap="replay">发音 <text class="btn-hotkey">{{ hotkeyLabel('replay') }}</text></button>
+        <button v-if="exampleList.length" class="ghost slim" @tap="playExample()">
+          例句 <text class="btn-hotkey">{{ hotkeyLabel('example') }}</text>
+        </button>
         <button class="ghost slim" @tap="bumpHint">提示 <text class="btn-hotkey">{{ hotkeyLabel('hint') }}</text></button>
         <button v-if="currentWord" class="ghost slim" @tap="toggleFavorite">
           {{ currentWord.favorite ? '已收藏' : '收藏' }}
@@ -292,6 +304,24 @@
           <text class="btn-hotkey">{{ hotkeyLabel('mastered') }}</text>
         </button>
         <button v-if="fullTranslation" class="ghost slim" @tap="showFullTranslation = !showFullTranslation">译文</button>
+      </view>
+
+      <view v-if="showExamplesPanel" class="examples-panel">
+        <text class="examples-title">例句</text>
+        <view
+          v-for="(ex, exIndex) in exampleList"
+          :key="'ex' + exIndex + ex"
+          :class="['example-row', activeExampleIndex === exIndex ? 'is-active' : '']"
+        >
+          <view class="example-text" @tap="playExample(ex, exIndex)">
+            <text
+              v-for="(part, partIndex) in highlightExampleParts(ex)"
+              :key="'p' + exIndex + partIndex"
+              :class="part.hit ? 'ex-hit' : ''"
+            >{{ part.text }}</text>
+          </view>
+          <text class="example-play" @tap="playExample(ex, exIndex)">听</text>
+        </view>
       </view>
 
       <view v-if="showResult && !isH5" :class="['result', isCorrect ? 'good' : 'bad']">
@@ -307,7 +337,6 @@
 
       <view v-if="showAside" class="aside">
         <text v-if="currentWord?.englishMeaning" class="aside-line">{{ currentWord.englishMeaning }}</text>
-        <text v-if="exampleText" class="aside-line">{{ exampleText }}</text>
         <text v-if="sentenceTranslation" class="aside-line">{{ sentenceTranslation }}</text>
         <text v-else-if="showFullTranslation && fullTranslation" class="aside-line">{{ fullTranslation }}</text>
         <text v-if="currentWord?.note" class="aside-line">注释 {{ currentWord.note }}</text>
@@ -350,23 +379,28 @@ import { useVocabularyStore } from '@/stores/vocabulary'
 import { typingAPI } from '@/utils/api'
 import { isBrowserH5 } from '@/utils/audio-recording'
 import { requireSubject } from '@/utils/subject'
-import { speakPassage, speakText, unlockTtsPlayback } from '@/utils/tts'
+import { setTtsGender, speakPassage, speakSentence, speakText, unlockTtsPlayback } from '@/utils/tts'
 import { splitTextForTts } from '@/utils/tts-text'
 import {
   answersMatch,
   liveMarks,
+  loadAutoExample,
   loadAutoSpeak,
   loadEnabledWordModes,
   loadKeySound,
   loadShortcuts,
+  loadTtsGender,
   loadWordCascade,
+  saveAutoExample,
   saveAutoSpeak,
   saveEnabledWordModes,
   saveKeySound,
   saveShortcuts,
+  saveTtsGender,
   saveWordCascade,
   type PersistedWordMode,
   type ShortcutAction,
+  type TtsGender,
   type WordCascadeStyle
 } from '@/utils/typing'
 import { unlockTypingAudio } from '@/typing-engine/sounds'
@@ -490,6 +524,8 @@ const hintLevel = ref(0)
 const selfVisible = ref(false)
 const inputArmed = ref(false)
 const accent = ref<'us' | 'uk'>('us')
+const ttsGender = ref<TtsGender>(loadTtsGender())
+setTtsGender(ttsGender.value)
 const scopedToBook = ref(false)
 const activeListId = ref('')
 const roundKind = ref<'words' | 'article' | 'due'>('words')
@@ -499,6 +535,8 @@ const suspendKeys = ref(false)
 const shortcuts = ref(loadShortcuts())
 const keySound = ref(loadKeySound())
 const autoSpeak = ref(loadAutoSpeak())
+const autoExample = ref(loadAutoExample())
+const activeExampleIndex = ref(-1)
 const capturing = ref<ShortcutAction | null>(null)
 const typingShowResult = ref(false)
 const typingShowFull = ref(false)
@@ -507,6 +545,7 @@ const cardKey = ref(0)
 
 const shortcutRows: Array<{ action: ShortcutAction; label: string }> = [
   { action: 'replay', label: '发音' },
+  { action: 'example', label: '例句' },
   { action: 'favorite', label: '收藏' },
   { action: 'mastered', label: '已掌握' },
   { action: 'hint', label: '提示' },
@@ -611,8 +650,24 @@ const firstLetter = computed(() => {
   if (showSpelling.value || hintLevel.value < 2) return ''
   return expectedText.value.trim().charAt(0)
 })
-const showExample = computed(() => showResult.value || (lane.value === 'words' && wordMode.value === 'follow'))
-const exampleText = computed(() => currentWord.value?.example || currentWord.value?.examples?.[0] || '')
+const exampleList = computed(() => {
+  const word = currentWord.value
+  if (!word || lane.value !== 'words') return [] as string[]
+  const list = [
+    ...(word.examples || []),
+    ...(word.example ? [word.example] : [])
+  ]
+    .map(item => item.trim())
+    .filter(Boolean)
+  return [...new Set(list)]
+})
+const showExamplesPanel = computed(() => {
+  if (!exampleList.value.length) return false
+  if (showResult.value || typingShowResult.value) return true
+  if (wordMode.value === 'follow') return true
+  if (wordMode.value === 'self' && selfVisible.value) return true
+  return hintLevel.value >= 1
+})
 const sentenceTranslation = computed(() => {
   const text = currentSentence.value?.translation || ''
   if (!text) return ''
@@ -620,9 +675,11 @@ const sentenceTranslation = computed(() => {
   return ''
 })
 const showAside = computed(() => (
-  showExample.value
+  !!currentWord.value?.englishMeaning
   || !!sentenceTranslation.value
   || !!(showFullTranslation.value && fullTranslation.value)
+  || !!(currentWord.value?.note || currentWord.value?.synonyms || currentWord.value?.roots
+    || currentWord.value?.etymology || currentWord.value?.phrases || currentWord.value?.topic)
 ))
 const articleDue = computed(() => articles.value.reduce((sum, item) => sum + (item.dueCount || 0), 0))
 const hasHistory = computed(() => history.value.days.some(day => day.items > 0) || history.value.speed.length > 0)
@@ -928,6 +985,7 @@ function prepareCard() {
   typingShowFull.value = false
   committing.value = false
   cardKey.value += 1
+  activeExampleIndex.value = -1
   armSelf()
   if (isH5) {
     unlockTypingAudio()
@@ -1151,12 +1209,53 @@ async function removeArticle(id: string) {
   await refreshArticles()
 }
 
+function highlightExampleParts(sentence: string) {
+  const spelling = (currentWord.value?.word || '').trim()
+  if (!spelling || !sentence) return [{ text: sentence, hit: false }]
+  const parts: Array<{ text: string; hit: boolean }> = []
+  const re = new RegExp(`\\b(${spelling.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})\\b`, 'gi')
+  let last = 0
+  let match: RegExpExecArray | null
+  while ((match = re.exec(sentence))) {
+    if (match.index > last) parts.push({ text: sentence.slice(last, match.index), hit: false })
+    parts.push({ text: match[0], hit: true })
+    last = match.index + match[0].length
+  }
+  if (last < sentence.length) parts.push({ text: sentence.slice(last), hit: false })
+  return parts.length ? parts : [{ text: sentence, hit: false }]
+}
+
+async function playExample(text?: string, index = 0) {
+  const list = exampleList.value
+  const line = (text || list[index] || list[0] || '').trim()
+  if (!line) {
+    toast('这个词还没有例句')
+    return
+  }
+  const token = cardKey.value
+  activeExampleIndex.value = Math.max(0, list.indexOf(line))
+  try {
+    await unlockTtsPlayback()
+    await speakSentence(line, accent.value)
+  } catch {
+    if (token === cardKey.value) toast('例句播放失败')
+  } finally {
+    if (token === cardKey.value) activeExampleIndex.value = -1
+  }
+}
+
 async function replay() {
   // Snapshot at call time — index may advance while audio loads
   const text = expectedText.value
   const speakAccent = accent.value
   const speakLane = lane.value
   const token = cardKey.value
+  // 播例句：仅跟写时自动接播；自测/默写/听写不播
+  const chainExample =
+    autoExample.value
+    && speakLane === 'words'
+    && wordMode.value === 'follow'
+    && !!exampleList.value[0]
   if (!text) return
   if (!splitTextForTts(text).length) {
     toast('这一句没有可朗读的英文')
@@ -1165,6 +1264,9 @@ async function replay() {
   try {
     if (speakLane === 'article') await speakPassage(text, speakAccent)
     else await speakText(text, 120, speakAccent)
+    if (chainExample && token === cardKey.value) {
+      await playExample(exampleList.value[0], 0)
+    }
   } catch {
     // Superseded plays resolve quietly; only toast real failures still on this card
     if (token === cardKey.value) toast('播放失败')
@@ -1363,8 +1465,21 @@ function toggleAutoSpeak() {
   saveAutoSpeak(autoSpeak.value)
 }
 
+function toggleAutoExample() {
+  autoExample.value = !autoExample.value
+  saveAutoExample(autoExample.value)
+}
+
+function setGender(gender: TtsGender) {
+  if (ttsGender.value === gender) return
+  ttsGender.value = gender
+  saveTtsGender(gender)
+  setTtsGender(gender)
+}
+
 function runShortcut(action: ShortcutAction) {
   if (action === 'replay') void replay()
+  else if (action === 'example') void playExample()
   else if (action === 'favorite') void toggleFavorite()
   else if (action === 'mastered') void toggleMastered()
   else if (action === 'hint') bumpHint()
@@ -1587,6 +1702,57 @@ onUnmounted(() => {
   letter-spacing: 0.02em;
   color: #0f6e6a;
   opacity: 0.85;
+}
+
+.examples-panel {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #e4dccf;
+  text-align: left;
+  width: 100%;
+}
+
+.examples-title {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 650;
+  color: #6d645b;
+}
+
+.example-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #efe7db;
+}
+
+.example-row.is-active .example-text {
+  color: #0f6e6a;
+}
+
+.example-text {
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #1f1a14;
+  font-family: Palatino, 'Palatino Linotype', 'Iowan Old Style', Georgia, 'Songti SC', serif;
+}
+
+.ex-hit {
+  color: #0f6e6a;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.example-play {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  font-size: 13px;
+  color: #0f6e6a;
+  font-weight: 650;
 }
 
 .panel {

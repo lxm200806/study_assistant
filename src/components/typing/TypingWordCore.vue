@@ -29,13 +29,18 @@
     <view v-else class="follow-line">
       <template v-if="wholeInputAttempt">
         <template v-for="(item, index) in inputCharacterStates" :key="'w' + index">
-          <TypingSpace v-if="item.character === ' '" :is-wrong="!item.isCorrect" />
+          <TypingSpace
+            v-if="item.character === ' '"
+            :is-wrong="!item.isCorrect"
+            :is-correct="item.isCorrect"
+          />
           <text v-else class="l" :class="item.isCorrect ? 'typed' : 'wrong-char'">{{ item.character }}</text>
         </template>
       </template>
       <template v-else>
         <template v-for="(ch, i) in [...input]" :key="'i' + i">
-          <TypingSpace v-if="ch === ' '" :is-wrong="true" />
+          <!-- Spaces already in input were accepted — never paint them red -->
+          <TypingSpace v-if="ch === ' '" :is-correct="true" />
           <text v-else class="l typed">{{ ch }}</text>
         </template>
       </template>

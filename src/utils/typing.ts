@@ -1,5 +1,5 @@
 export type LiveKind = 'ok' | 'bad' | 'pending' | 'extra'
-export type ShortcutAction = 'replay' | 'favorite' | 'mastered' | 'hint' | 'accent' | 'sound'
+export type ShortcutAction = 'replay' | 'favorite' | 'mastered' | 'hint' | 'accent' | 'sound' | 'example'
 
 export const DEFAULT_SHORTCUTS: Record<ShortcutAction, string> = {
   replay: 'r',
@@ -7,12 +7,17 @@ export const DEFAULT_SHORTCUTS: Record<ShortcutAction, string> = {
   mastered: 'm',
   hint: 'h',
   accent: 'a',
-  sound: 'k'
+  sound: 'k',
+  example: 'e'
 }
 
 const SHORTCUT_KEY = 'typingShortcuts'
 const SOUND_KEY = 'typingKeySound'
 const AUTO_SPEAK_KEY = 'typingAutoSpeak'
+const AUTO_EXAMPLE_KEY = 'typingAutoExample'
+const TTS_GENDER_KEY = 'typingTtsGender'
+
+export type TtsGender = 'female' | 'male'
 const WORD_MODES_KEY = 'typingEnabledWordModes'
 const CASCADE_KEY = 'typingWordCascade'
 
@@ -90,6 +95,28 @@ export function loadAutoSpeak(): boolean {
 
 export function saveAutoSpeak(enabled: boolean) {
   uni.setStorageSync(AUTO_SPEAK_KEY, enabled ? '1' : '0')
+}
+
+/** After word audio, also play the first example (TypeWords-style). Default on. */
+export function loadAutoExample(): boolean {
+  const saved = uni.getStorageSync(AUTO_EXAMPLE_KEY)
+  if (saved === '0' || saved === false) return false
+  if (saved === '1' || saved === true) return true
+  return true
+}
+
+export function saveAutoExample(enabled: boolean) {
+  uni.setStorageSync(AUTO_EXAMPLE_KEY, enabled ? '1' : '0')
+}
+
+/** Browser TTS voice gender for examples / unified playback. Default female. */
+export function loadTtsGender(): TtsGender {
+  const saved = uni.getStorageSync(TTS_GENDER_KEY)
+  return saved === 'male' ? 'male' : 'female'
+}
+
+export function saveTtsGender(gender: TtsGender) {
+  uni.setStorageSync(TTS_GENDER_KEY, gender)
 }
 
 /** Default: all four modes selected */

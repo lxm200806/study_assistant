@@ -42,4 +42,19 @@ describe('example rotation', () => {
     expect(formatted.example).toBe('Birds fly over the school.')
     expect(formatted.examples).toHaveLength(2)
   })
+
+  it('drops placeholder book lines when a real word example exists', () => {
+    const formatted = formatBookWord({
+      exampleSentences: ['Students study the word across in this book.'],
+      word: {
+        id: '2',
+        word: 'across',
+        meaning: '穿过',
+        phonetic: '/əˈkrɒs/',
+        exampleSentence: 'We walk across the old bridge.'
+      }
+    })
+    expect(formatted.example).toBe('We walk across the old bridge.')
+    expect(formatted.examples).toEqual(['We walk across the old bridge.'])
+  })
 })
