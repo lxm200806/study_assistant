@@ -92,6 +92,14 @@
           >
             <text class="rail-label">{{ item.label }}</text>
           </view>
+          <view class="rail-gap" aria-hidden="true" />
+          <view
+            :class="['rail-tab', 'rail-toggle', autoSkip ? 'is-picked' : '']"
+            title="答对约一秒后自动下一题；答错仍需点继续"
+            @tap="toggleAutoSkip"
+          >
+            <text class="rail-label">答对跳过</text>
+          </view>
         </view>
 
         <view class="stage quiz-stage">
@@ -129,7 +137,8 @@
             <text class="feedback-zh">{{ currentWord ? getWordMeaning(currentWord, 'chinese') : '' }}</text>
             <text v-if="currentWord?.example" class="feedback-ex">{{ currentWord.example }}</text>
           </view>
-          <button v-if="!isLastQuiz" class="next" @tap="advanceQuiz">继续</button>
+          <button v-if="!isLastQuiz && !(autoSkip && isCorrect)" class="next" @tap="advanceQuiz">继续</button>
+          <text v-else-if="!isLastQuiz && autoSkip && isCorrect" class="auto-skip-hint">答对了，马上下一题</text>
         </view>
         <view v-if="showResult && isLastQuiz" class="end-actions">
           <button class="start end-btn" @tap="completeAndNextGroup">下一组</button>
@@ -206,6 +215,22 @@ function saveEnabledRecogModes(modes: RecogMode[]) {
   }
 }
 
+function loadAutoSkip(): boolean {
+  try {
+    return localStorage.getItem('recog-auto-skip') !== '0'
+  } catch {
+    return true
+  }
+}
+
+function saveAutoSkip(on: boolean) {
+  try {
+    localStorage.setItem('recog-auto-skip', on ? '1' : '0')
+  } catch {
+    /* ignore */
+  }
+}
+
 function shuffleIndices(n: number): number[] {
   const arr = Array.from({ length: n }, (_, i) => i)
   for (let i = arr.length - 1; i > 0; i--) {
@@ -232,6 +257,21 @@ const options = ref<Array<{ id: string; label: string }>>([])
 const enabledModes = ref<RecogMode[]>(loadEnabledRecogModes())
 const quizMode = ref<RecogMode>(enabledModes.value[0] || 'zh')
 const modeCursor = ref(0)
+const autoSkip = ref(loadAutoSkip())
+let autoSkipTimer: ReturnType<typeof setTimeout> | null = null
+
+function clearAutoSkipTimer() {
+  if (autoSkipTimer) {
+    clearTimeout(autoSkipTimer)
+    autoSkipTimer = null
+  }
+}
+
+function toggleAutoSkip() {
+  autoSkip.value = !autoSkip.value
+  saveAutoSkip(autoSkip.value)
+  if (!autoSkip.value) clearAutoSkipTimer()
+}
 
 const totalCorrect = ref(0)
 const totalCount = ref(0)
@@ -391,6 +431,16 @@ const selectOption = (index: number) => {
 
   if (isCorrect.value) {
     totalCorrect.value++
+    // 答对：闪一下反馈后自动下一题；最后一题仍停住选下一组/完成
+    if (autoSkip.value && !isLastQuiz.value) {
+      clearAutoSkipTimer()
+      autoSkipTimer = setTimeout(() => {
+        autoSkipTimer = null
+        if (phase.value === 'quiz' && showResult.value && isCorrect.value && !isLastQuiz.value) {
+          advanceQuiz()
+        }
+      }, 1000)
+    }
   }
 }
 
@@ -444,6 +494,7 @@ function prepareStudyCard() {
 }
 
 function prepareQuizCard() {
+  clearAutoSkipTimer()
   selectedOption.value = -1
   showResult.value = false
   isCorrect.value = false
@@ -477,6 +528,7 @@ function startQuiz() {
 }
 
 function advanceQuiz() {
+  clearAutoSkipTimer()
   if (quizIndex.value + 1 >= words.value.length) return
   quizIndex.value += 1
   modeCursor.value += 1
@@ -633,6 +685,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
+  clearAutoSkipTimer()
   stopSpeak()
   if (isBrowserH5() && typeof window !== 'undefined') {
     window.removeEventListener('keydown', onKeyDown)
@@ -835,6 +888,31 @@ onUnmounted(() => {
   height: 3px;
   border-radius: 999px;
   background: #0f6e6a;
+}
+
+.rail-gap {
+  width: 1px;
+  align-self: stretch;
+  margin: 6px 8px;
+  background: #e0d7cb;
+  flex: 0 0 auto;
+}
+
+.rail-toggle {
+  color: #8a8175;
+  font-weight: 500;
+}
+
+.rail-toggle.is-picked {
+  color: #0f6e6a;
+  font-weight: 650;
+}
+
+.auto-skip-hint {
+  flex: 0 0 auto;
+  font-size: 13px;
+  color: #0f6e6a;
+  white-space: nowrap;
 }
 
 .stage {
