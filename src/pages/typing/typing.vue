@@ -20,16 +20,6 @@
           <text>已跳过 {{ summary.skipped }}</text>
         </view>
 
-        <text class="label">方式</text>
-        <view class="chips">
-          <view
-            v-for="item in wordModes"
-            :key="item.key"
-            :class="['chip', wordMode === item.key ? 'on' : '']"
-            @tap="selectWordMode(item.key)"
-          >{{ item.label }}</view>
-        </view>
-
         <text class="label">词从哪来</text>
         <view class="chips">
           <view
@@ -39,7 +29,7 @@
             @tap="source = item.key"
           >{{ item.label }}</view>
         </view>
-        <text class="hint">智能先练刚写错和到期的词，再补新词。跟写、听写、自测、默写各自记到期时间。标记已掌握的词会在智能、随机和词表里跳过。</text>
+        <text class="hint">点开始即可。跟写→自测→默写→听写默认全开，练的时候可随时关掉某一种或改一词/整组。智能先练错词和到期词。</text>
 
         <text class="label">这一组</text>
         <view class="chips">
@@ -81,12 +71,7 @@
       </template>
 
       <template v-else>
-        <text class="label">方式</text>
-        <view class="chips">
-          <view :class="['chip', articleMode === 'follow' ? 'on' : '']" @tap="articleMode = 'follow'">跟写</view>
-          <view :class="['chip', articleMode === 'dictation' ? 'on' : '']" @tap="articleMode = 'dictation'">听写</view>
-        </view>
-        <text class="hint">一句一句输入。跟写时看着句子，听写时先听再写。能朗读的句子会出声，太长会分段读。译文和英文句数一致时，跟写直接显示，听写在提交后显示。</text>
+        <text class="hint">一句一句输入。开始后可随时切换跟写 / 听写。能朗读的句子会出声；译文句数一致时会对照显示。</text>
         <view class="summary" v-if="articleDue">
           <text>到期句子 {{ articleDue }}</text>
         </view>
@@ -185,6 +170,38 @@
         </view>
         <text class="top-link" @tap="finishEarly">结束</text>
       </view>
+      <!-- 一行：多选方式（绿线=当前）+ 一词/整组互斥切换 -->
+      <view v-if="lane === 'words'" class="practice-rail">
+        <view
+          v-for="item in wordModes"
+          :key="item.key"
+          :class="modeChipClass(item.key)"
+          @tap="onWordModeChip(item.key)"
+        >
+          <text class="rail-label">{{ item.label }}</text>
+        </view>
+        <view class="rail-gap" aria-hidden="true" />
+        <view
+          :class="['rail-tab', 'rail-toggle', cascadeStyle === 'per-word' ? 'is-picked' : '']"
+          @tap="setCascadeStyle('per-word')"
+        >
+          <text class="rail-label">一词连练</text>
+        </view>
+        <view
+          :class="['rail-tab', 'rail-toggle', cascadeStyle === 'per-group' ? 'is-picked' : '']"
+          @tap="setCascadeStyle('per-group')"
+        >
+          <text class="rail-label">整组再换</text>
+        </view>
+      </view>
+      <view v-else class="practice-rail">
+        <view :class="['rail-tab', articleMode === 'follow' ? 'is-on is-current' : 'is-on']" @tap="switchArticleMode('follow')">
+          <text class="rail-label">跟写</text>
+        </view>
+        <view :class="['rail-tab', articleMode === 'dictation' ? 'is-on is-current' : 'is-on']" @tap="switchArticleMode('dictation')">
+          <text class="rail-label">听写</text>
+        </view>
+      </view>
 
       <view :class="['prompt', isH5 ? 'prompt-h5' : '']">
         <text v-if="promptKicker" class="kicker">{{ promptKicker }}</text>
@@ -264,10 +281,16 @@
           <button v-if="!showResult" class="start slim" @tap="submit">提交</button>
           <button v-else class="start slim" @tap="nextItem">下一题</button>
         </template>
-        <button class="ghost slim" @tap="replay">发音</button>
-        <button class="ghost slim" @tap="bumpHint">提示</button>
-        <button v-if="currentWord" class="ghost slim" @tap="toggleFavorite">{{ currentWord.favorite ? '已收藏' : '收藏' }}</button>
-        <button v-if="currentWord" class="ghost slim" @tap="toggleMastered">{{ currentWord.skipMastered ? '取消跳过' : '已掌握' }}</button>
+        <button class="ghost slim" @tap="replay">发音 <text class="btn-hotkey">{{ hotkeyLabel('replay') }}</text></button>
+        <button class="ghost slim" @tap="bumpHint">提示 <text class="btn-hotkey">{{ hotkeyLabel('hint') }}</text></button>
+        <button v-if="currentWord" class="ghost slim" @tap="toggleFavorite">
+          {{ currentWord.favorite ? '已收藏' : '收藏' }}
+          <text class="btn-hotkey">{{ hotkeyLabel('favorite') }}</text>
+        </button>
+        <button v-if="currentWord" class="ghost slim" @tap="toggleMastered">
+          {{ currentWord.skipMastered ? '取消跳过' : '已掌握' }}
+          <text class="btn-hotkey">{{ hotkeyLabel('mastered') }}</text>
+        </button>
         <button v-if="fullTranslation" class="ghost slim" @tap="showFullTranslation = !showFullTranslation">译文</button>
       </view>
 
@@ -296,8 +319,8 @@
       </view>
 
       <text class="legend">
-        <template v-if="isH5">直接键盘输入 · Backspace 回退 · ⌥/Alt+{{ shortcuts.replay.toUpperCase() }} 发音 · ⌥/Alt+{{ shortcuts.favorite.toUpperCase() }} 收藏</template>
-        <template v-else>Enter 提交 · ⌥/Alt+{{ shortcuts.replay.toUpperCase() }} 发音 · ⌥/Alt+{{ shortcuts.favorite.toUpperCase() }} 收藏</template>
+        <template v-if="isH5">直接键盘输入 · Backspace 回退 · 快捷键见上方按钮</template>
+        <template v-else>Enter 提交 · 快捷键见上方按钮</template>
       </text>
     </view>
 
@@ -333,12 +356,18 @@ import {
   answersMatch,
   liveMarks,
   loadAutoSpeak,
+  loadEnabledWordModes,
   loadKeySound,
   loadShortcuts,
+  loadWordCascade,
   saveAutoSpeak,
+  saveEnabledWordModes,
   saveKeySound,
   saveShortcuts,
-  type ShortcutAction
+  saveWordCascade,
+  type PersistedWordMode,
+  type ShortcutAction,
+  type WordCascadeStyle
 } from '@/utils/typing'
 import { unlockTypingAudio } from '@/typing-engine/sounds'
 
@@ -392,7 +421,7 @@ interface SentenceItem {
 interface RejectedToken { token: string; reason: string }
 interface Answered { id: string; label: string; ok: boolean }
 
-type WordMode = 'follow' | 'dictation' | 'self' | 'recall'
+type WordMode = PersistedWordMode
 type ArticleMode = 'follow' | 'dictation'
 type Source = 'smart' | 'wrong' | 'favorite' | 'random' | 'list'
 type Stage = 'setup' | 'practice' | 'done'
@@ -402,16 +431,19 @@ const isH5 = isBrowserH5()
 
 const stage = ref<Stage>('setup')
 const lane = ref<'words' | 'article'>('words')
-const wordMode = ref<WordMode>('follow')
+const enabledModes = ref<WordMode[]>(loadEnabledWordModes())
+const cascadeStyle = ref<WordCascadeStyle>(loadWordCascade())
+const wordMode = ref<WordMode>(enabledModes.value[0] || 'follow')
 const articleMode = ref<ArticleMode>('follow')
 const source = ref<Source>('smart')
 const groupSize = ref(20)
 const counts = [10, 20, 30]
+/** Easy → hard scaffolding order */
 const wordModes: Array<{ key: WordMode; label: string }> = [
   { key: 'follow', label: '跟写' },
-  { key: 'dictation', label: '听写' },
   { key: 'self', label: '自测' },
-  { key: 'recall', label: '默写' }
+  { key: 'recall', label: '默写' },
+  { key: 'dictation', label: '听写' }
 ]
 const sources: Array<{ key: Source; label: string }> = [
   { key: 'smart', label: '智能' },
@@ -489,22 +521,39 @@ const currentWord = computed(() => (lane.value === 'words' ? words.value[index.v
 const currentSentence = computed(() => (lane.value === 'article' ? sentences.value[index.value] : undefined))
 const expectedText = computed(() => currentWord.value?.word || currentSentence.value?.text || '')
 const total = computed(() => (lane.value === 'words' ? words.value.length : sentences.value.length))
+const activeModeChain = computed(() => {
+  const selected = enabledModes.value
+  return selected.length ? selected : (['follow'] as WordMode[])
+})
+const modeStepIndex = computed(() => {
+  const i = activeModeChain.value.indexOf(wordMode.value)
+  return i >= 0 ? i : 0
+})
 const progressLabel = computed(() => {
-  const mode = lane.value === 'words'
-    ? wordModes.find(item => item.key === wordMode.value)?.label
-    : (articleMode.value === 'follow' ? '跟写' : '听写')
+  if (lane.value === 'article') {
+    const mode = articleMode.value === 'follow' ? '跟写' : '听写'
+    return `${mode} · ${Math.min(index.value + 1, total.value)}/${total.value}`
+  }
+  const mode = wordModes.find(item => item.key === wordMode.value)?.label || '跟写'
   return `${mode} · ${Math.min(index.value + 1, total.value)}/${total.value}`
 })
 const progressPct = computed(() => {
   if (!total.value) return 0
-  return Math.min(100, Math.round(((index.value + (showResult.value || committing.value ? 1 : 0)) / total.value) * 100))
-})
-const enginePracticeType = computed((): WordPracticeType => {
-  if (dictationMode.value || (lane.value === 'words' && wordMode.value === 'recall')) {
-    return WordPracticeType.Dictation
+  if (lane.value !== 'words' || activeModeChain.value.length <= 1) {
+    return Math.min(100, Math.round(((index.value + (showResult.value || committing.value ? 1 : 0)) / total.value) * 100))
   }
-  return WordPracticeType.FollowWrite
+  const modes = activeModeChain.value.length
+  const doneCard = showResult.value || committing.value ? 1 : 0
+  let stepsDone = 0
+  if (cascadeStyle.value === 'per-word') {
+    stepsDone = index.value * modes + modeStepIndex.value + doneCard
+  } else {
+    stepsDone = modeStepIndex.value * total.value + index.value + doneCard
+  }
+  return Math.min(100, Math.round((stepsDone / (total.value * modes)) * 100))
 })
+/** 跟写/自测/默写/听写共用 FollowWrite + 下划线占位，视觉与自测对齐（不用 Dictation 单条底线） */
+const enginePracticeType = computed((): WordPracticeType => WordPracticeType.FollowWrite)
 const engineMasked = computed(() => {
   if (lane.value === 'article') return articleMode.value === 'dictation'
   if (wordMode.value === 'dictation' || wordMode.value === 'recall') return true
@@ -664,9 +713,121 @@ function onBookChange() {
   void refreshSummary()
 }
 
-function selectWordMode(key: WordMode) {
-  wordMode.value = key
-  void refreshSummary()
+function persistEnabledModes(next: WordMode[]) {
+  enabledModes.value = wordModes.map(item => item.key).filter(mode => next.includes(mode))
+  if (!enabledModes.value.length) enabledModes.value = ['follow']
+  saveEnabledWordModes(enabledModes.value)
+}
+
+function modeChipClass(key: WordMode) {
+  const classes = ['rail-tab']
+  if (enabledModes.value.includes(key)) classes.push('is-on')
+  else classes.push('is-off')
+  if (wordMode.value === key) classes.push('is-current')
+  return classes
+}
+
+/**
+ * One tap toggles whether this mode is in the playlist.
+ * Does not jump the green underline — only moves if you turn off the mode you're on.
+ */
+function onWordModeChip(key: WordMode) {
+  if (lane.value !== 'words' || committing.value) return
+  const enabled = enabledModes.value.includes(key)
+
+  if (!enabled) {
+    persistEnabledModes([...enabledModes.value, key])
+    return
+  }
+
+  if (enabledModes.value.length <= 1) {
+    toast('至少保留一种方式')
+    return
+  }
+
+  const chain = [...enabledModes.value]
+  const at = chain.indexOf(key)
+  const wasCurrent = wordMode.value === key
+  persistEnabledModes(chain.filter(mode => mode !== key))
+
+  if (!wasCurrent) return
+
+  const fallback = chain[at + 1] || chain[at - 1] || firstEnabledMode()
+  wordMode.value = enabledModes.value.includes(fallback) ? fallback : firstEnabledMode()
+  if (stage.value === 'practice') prepareCard()
+}
+
+function setCascadeStyle(style: WordCascadeStyle) {
+  if (cascadeStyle.value === style) return
+  cascadeStyle.value = style
+  saveWordCascade(style)
+}
+
+function hotkeyLabel(action: ShortcutAction) {
+  const key = (shortcuts.value[action] || '').toUpperCase()
+  return key ? `⌥${key}` : ''
+}
+
+function firstEnabledMode(): WordMode {
+  return activeModeChain.value[0] || 'follow'
+}
+
+function nextEnabledMode(from: WordMode = wordMode.value): WordMode | null {
+  const chain = activeModeChain.value
+  const i = chain.indexOf(from)
+  if (i < 0) return chain[0] || null
+  return chain[i + 1] || null
+}
+
+/** After one card: cascade to next mode or next word per cascadeStyle. */
+function advanceAfterCard() {
+  if (lane.value !== 'words') {
+    if (index.value + 1 >= total.value) {
+      void finishRound()
+      return
+    }
+    index.value += 1
+    prepareCard()
+    return
+  }
+
+  if (cascadeStyle.value === 'per-word') {
+    const nextMode = nextEnabledMode()
+    if (nextMode) {
+      wordMode.value = nextMode
+      prepareCard()
+      return
+    }
+    if (index.value + 1 >= total.value) {
+      void finishRound()
+      return
+    }
+    index.value += 1
+    wordMode.value = firstEnabledMode()
+    prepareCard()
+    return
+  }
+
+  // per-group: finish all words in current mode, then restart list in next mode
+  if (index.value + 1 < total.value) {
+    index.value += 1
+    prepareCard()
+    return
+  }
+  const nextMode = nextEnabledMode()
+  if (nextMode) {
+    wordMode.value = nextMode
+    index.value = 0
+    prepareCard()
+    return
+  }
+  void finishRound()
+}
+
+function switchArticleMode(key: ArticleMode) {
+  if (lane.value !== 'article' || articleMode.value === key || committing.value) return
+  articleMode.value = key
+  if (stage.value === 'practice') prepareCard()
 }
 
 function articleLabel(item: ArticleRow) {
@@ -746,7 +907,7 @@ function armSelf() {
   if (selfVisible.value) {
     selfTimer = setTimeout(() => {
       selfVisible.value = false
-    }, 1600)
+    }, 850)
   }
 }
 
@@ -785,6 +946,9 @@ async function startWords() {
   const listId = source.value === 'list' ? (activeListId.value || lists.value[0]?.id) : undefined
   busy.value = true
   try {
+    // Enter with all modes on; turn off only inside practice
+    persistEnabledModes(wordModes.map(item => item.key))
+    wordMode.value = firstEnabledMode()
     const result = await typingAPI.queue({
       bookCode: vocabStore.currentBookCode,
       source: source.value,
@@ -808,6 +972,7 @@ async function startWords() {
     roundKind.value = 'words'
     capturing.value = null
     resetRound()
+    wordMode.value = firstEnabledMode()
     stage.value = 'practice'
     prepareCard()
   } catch (error) {
@@ -1057,12 +1222,7 @@ async function commitTyped(typed: string, ok: boolean) {
 
 async function onTypingComplete(payload: { typed: string; correct: boolean }) {
   await commitTyped(payload.typed || expectedText.value, payload.correct)
-  if (index.value + 1 >= total.value) {
-    void finishRound()
-    return
-  }
-  index.value += 1
-  prepareCard()
+  advanceAfterCard()
 }
 
 function onTypingWrong() {
@@ -1157,12 +1317,7 @@ async function finishRound() {
 
 function nextItem() {
   if (!showResult.value) return
-  if (index.value + 1 >= total.value) {
-    void finishRound()
-    return
-  }
-  index.value += 1
-  prepareCard()
+  advanceAfterCard()
 }
 
 function finishEarly() {
@@ -1312,6 +1467,73 @@ onUnmounted(() => {
   gap: 8px;
 }
 
+.practice-rail {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 2px;
+  margin: 8px 0 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rail-tab {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 8px 12px 10px;
+  border: none;
+  background: transparent;
+  color: #8a8175;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.rail-label {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Same language as 一词连练/整组再换: muted = off but still clickable, teal = on */
+.rail-tab.is-off {
+  color: #8a8175;
+  font-weight: 500;
+}
+
+.rail-tab.is-on {
+  color: #0f6e6a;
+  font-weight: 650;
+}
+
+.rail-tab.is-current::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 2px;
+  height: 3px;
+  border-radius: 999px;
+  background: #0f6e6a;
+}
+
+.rail-gap {
+  width: 1px;
+  align-self: stretch;
+  margin: 6px 8px;
+  background: #e0d7cb;
+  flex: 0 0 auto;
+}
+
+.rail-toggle {
+  color: #8a8175;
+  font-weight: 500;
+}
+
+.rail-toggle.is-picked {
+  color: #0f6e6a;
+  font-weight: 650;
+}
+
 .seg, .chip, .mini, .keycap {
   border: 1px solid #ddd4c6;
   background: transparent;
@@ -1356,6 +1578,15 @@ onUnmounted(() => {
   margin-top: 0;
   font-size: 14px;
   padding: 0 16px;
+}
+
+.btn-hotkey {
+  margin-left: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #0f6e6a;
+  opacity: 0.85;
 }
 
 .panel {

@@ -13,6 +13,13 @@ export const DEFAULT_SHORTCUTS: Record<ShortcutAction, string> = {
 const SHORTCUT_KEY = 'typingShortcuts'
 const SOUND_KEY = 'typingKeySound'
 const AUTO_SPEAK_KEY = 'typingAutoSpeak'
+const WORD_MODES_KEY = 'typingEnabledWordModes'
+const CASCADE_KEY = 'typingWordCascade'
+
+/** Scaffolding order: easy → hard */
+export const WORD_MODE_ORDER = ['follow', 'self', 'recall', 'dictation'] as const
+export type PersistedWordMode = (typeof WORD_MODE_ORDER)[number]
+export type WordCascadeStyle = 'per-word' | 'per-group'
 
 export function normalizeTyped(text: string): string {
   return text
@@ -83,6 +90,31 @@ export function loadAutoSpeak(): boolean {
 
 export function saveAutoSpeak(enabled: boolean) {
   uni.setStorageSync(AUTO_SPEAK_KEY, enabled ? '1' : '0')
+}
+
+/** Default: all four modes selected */
+export function loadEnabledWordModes(): PersistedWordMode[] {
+  const saved = uni.getStorageSync(WORD_MODES_KEY)
+  if (Array.isArray(saved)) {
+    const picked = WORD_MODE_ORDER.filter(mode => saved.includes(mode))
+    if (picked.length) return [...picked]
+  }
+  return [...WORD_MODE_ORDER]
+}
+
+export function saveEnabledWordModes(modes: PersistedWordMode[]) {
+  const picked = WORD_MODE_ORDER.filter(mode => modes.includes(mode))
+  uni.setStorageSync(WORD_MODES_KEY, picked.length ? picked : ['follow'])
+}
+
+/** Default: one word through all selected modes, then next word */
+export function loadWordCascade(): WordCascadeStyle {
+  const saved = uni.getStorageSync(CASCADE_KEY)
+  return saved === 'per-group' ? 'per-group' : 'per-word'
+}
+
+export function saveWordCascade(style: WordCascadeStyle) {
+  uni.setStorageSync(CASCADE_KEY, style)
 }
 
 let clickContext: AudioContext | null = null
