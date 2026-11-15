@@ -14,8 +14,8 @@
       <view v-if="!userStore.isChinese" class="menu-item" @tap="goTyping">
         <text class="menu-icon">⌨️</text>
         <view class="menu-text">
-          <text class="menu-label">键盘练习</text>
-          <text class="menu-desc">跟写、听写、自测、默写</text>
+          <text class="menu-label">拼读练习</text>
+          <text class="menu-desc">有键盘时跟写、听写、自测、默写</text>
         </view>
         <text class="menu-arrow">›</text>
       </view>
@@ -106,7 +106,7 @@
       <view class="menu-item" @tap="goTyping">
         <text class="menu-icon">⌨️</text>
         <view class="menu-text">
-          <text class="menu-label">键盘练习</text>
+          <text class="menu-label">拼读练习</text>
           <text class="menu-desc">进入学生角色后开始</text>
         </view>
         <text class="menu-arrow">›</text>

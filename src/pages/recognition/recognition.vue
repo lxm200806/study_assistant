@@ -1,101 +1,171 @@
 <template>
-  <view class="container">
-    <view v-if="!started" class="start-screen">
-      <BookSwitcher compact training-type="reading" />
-      <TrainingStartStats :total="readingStats.total" :mastered="readingStats.mastered" />
-      <TrainingSetup compact training-type="reading" />
-      <button class="btn-start" @tap="startTraining">开始训练</button>
-    </view>
+  <view class="desk">
+    <view v-if="phase === 'setup'" class="setup">
+      <text class="eyebrow">认读练习</text>
+      <text class="lede">不用键盘。先学一遍认识单词，再检测一遍看会不会。检测可用汉语、英语、听音。</text>
 
-    <view v-else-if="!showFinish" class="training-screen">
-      <TrainingProgressBar
-        :current-index="currentIndex"
-        :words-in-group="words.length"
-      />
+      <BookSwitcher training-type="reading" @change="onBookChange" />
 
-      <view class="image-card">
-        <view class="image-container" :class="{ 'text-mode': questionDisplay.mode === 'text' }">
-          <text v-if="questionDisplay.mode === 'image'" class="image-emoji">{{ questionDisplay.content }}</text>
-          <text v-else class="meaning-text">{{ questionDisplay.content }}</text>
-        </view>
-        <text class="image-hint">{{ recognitionHint }}</text>
+      <view v-if="setupSummary" class="summary">
+        <text>到期 {{ setupSummary.due }}</text>
+        <text>已学 {{ setupSummary.learned }}</text>
+        <text>掌握 {{ setupSummary.mastered }}</text>
+        <text v-if="setupSummary.progress">进度 {{ setupSummary.progress }}</text>
       </view>
 
-      <view class="options-grid">
-        <view 
-          v-for="(option, index) in options" 
-          :key="index"
-          :class="['option-item', selectedOption === index ? 'selected' : '', getOptionClass(index)]"
-          @tap="selectOption(index)"
-        >
-          <text class="option-text">{{ option.label }}</text>
-          <text v-if="selectedOption === index && showResult" :class="['result-icon', isCorrect ? 'correct' : 'wrong']">
-            {{ isCorrect ? '✓' : '✗' }}
+      <text class="label">词从哪来</text>
+      <view class="chips">
+        <view
+          v-for="item in sessionModes"
+          :key="item.key"
+          :class="['chip', vocabStore.studySettings.sessionMode === item.key ? 'on' : '']"
+          @tap="setSessionMode(item.key)"
+        >{{ item.label }}</view>
+      </view>
+      <text class="hint">点开始即可。先学后测；检测题型默认全开，测的时候可随时关掉某一种。智能先练错词和到期词。</text>
+
+      <text class="label">这一组</text>
+      <view class="chips">
+        <view
+          v-for="count in groupCounts"
+          :key="count"
+          :class="['chip', vocabStore.studySettings.wordsPerGroup === count ? 'on' : '']"
+          @tap="setWordsPerGroup(count)"
+        >{{ count }}</view>
+      </view>
+      <text
+        v-if="vocabStore.getCurrentBook"
+        class="hint link"
+        @tap="setFullBookRound"
+      >全书一轮 ({{ vocabStore.getCurrentBook.wordCount }} 词)</text>
+
+      <button class="start" @tap="startTraining">开始</button>
+    </view>
+
+    <view v-else-if="phase === 'bridge'" class="setup bridge">
+      <text class="eyebrow">认读练习</text>
+      <text class="score-soft">{{ words.length }}</text>
+      <text class="lede">本组 {{ words.length }} 词已见过一面。打乱顺序检测一遍，看有没有学会。</text>
+      <button class="start" @tap="startQuiz">开始检测</button>
+    </view>
+
+    <view v-else-if="phase === 'study' || phase === 'quiz'" class="practice">
+      <view class="progress-track">
+        <view class="progress-fill" :style="{ width: progressPct + '%' }" />
+      </view>
+      <view class="topbar">
+        <text class="top-meta">{{ progressLabel }}</text>
+        <text class="top-link" @tap="endSession">结束</text>
+      </view>
+
+      <!-- 学习：初见卡 -->
+      <template v-if="phase === 'study'">
+        <view class="stage intro-stage">
+          <text class="kicker">
+            <text class="dot" /> 初次见面
           </text>
+          <image v-if="thumb" class="intro-art" :src="thumb" mode="aspectFill" />
+          <view class="intro-head">
+            <text class="big-word">{{ currentWord ? getWordHeadword(currentWord) : '' }}</text>
+            <text
+              :class="['speak-mark', isPlaying ? 'is-on' : '']"
+              @tap.stop="playAudio"
+            >听</text>
+          </view>
+          <text v-if="currentWord?.phonetic" class="phonetic">{{ currentWord.phonetic }}</text>
+          <text class="intro-zh">{{ currentWord ? getWordMeaning(currentWord, 'chinese') : '' }}</text>
+          <text v-if="currentWord?.englishMeaning" class="intro-en">{{ currentWord.englishMeaning }}</text>
+          <text v-if="ttsHint" class="hint">{{ ttsHint }}</text>
+          <text v-else class="hint">自动朗读 · 点「听」可重听 · Enter 继续</text>
         </view>
-      </view>
+        <button class="start know" @tap="advanceStudy">认识了</button>
+      </template>
 
-      <view v-if="showResult" class="result-section">
-        <view :class="['result-card', isCorrect ? 'correct' : 'wrong']">
-          <view class="result-header">
-            <text v-if="currentWord?.image" class="result-image">{{ currentWord.image }}</text>
-            <view class="result-word-info">
-              <text class="result-word">{{ currentWord ? getWordHeadword(currentWord) : '' }}</text>
-              <text class="result-phonetic">{{ currentWord?.phonetic }}</text>
-            </view>
-          </view>
-          <text class="result-meaning">{{ getWordMeaning(currentWord!, vocabStore.meaningType) }}</text>
-          <view v-if="currentWord?.example" class="result-example">
-            <text>{{ currentWord.example }}</text>
+      <!-- 检测：一题一词 -->
+      <template v-else>
+        <view class="practice-rail">
+          <view
+            v-for="item in recogModes"
+            :key="item.key"
+            :class="modeChipClass(item.key)"
+            @tap="onModeChip(item.key)"
+          >
+            <text class="rail-label">{{ item.label }}</text>
           </view>
         </view>
-        <button v-if="showResult && !isLastWord" class="btn-next" @tap="nextWord">下一题</button>
-        <TrainingGroupActions
-          v-if="showResult && isLastWord"
-          @next-group="completeAndNextGroup"
-          @finish="completeAndFinish"
-        />
-      </view>
+
+        <view class="stage quiz-stage">
+          <template v-if="quizMode === 'listen'">
+            <view class="listen-orb" @tap="playAudio">
+              <text>听</text>
+            </view>
+            <text class="hint compact">{{ ttsHint || (isPlaying ? '播放中…' : '点圆钮重听') }}</text>
+          </template>
+          <template v-else-if="quizMode === 'en'">
+            <text class="big-word">{{ currentWord ? getWordHeadword(currentWord) : '' }}</text>
+          </template>
+          <template v-else>
+            <text class="big-meaning">{{ zhPrompt }}</text>
+          </template>
+        </view>
+
+        <view class="options">
+          <view
+            v-for="(option, index) in options"
+            :key="index"
+            :class="['option', getOptionClass(index)]"
+            @tap="selectOption(index)"
+          >
+            <text class="kbd">{{ index + 1 }}</text>
+            <text :class="['option-label', quizMode === 'zh' ? 'is-word' : '']">{{ option.label }}</text>
+          </view>
+        </view>
+
+        <view v-if="showResult" :class="['feedback', isCorrect ? 'good' : 'bad']">
+          <image v-if="thumb" class="feedback-art" :src="thumb" mode="aspectFill" />
+          <view class="feedback-copy">
+            <text class="verdict">{{ isCorrect ? '答对了' : '记住它' }}</text>
+            <text class="feedback-word">{{ currentWord ? getWordHeadword(currentWord) : '' }}</text>
+            <text class="feedback-zh">{{ currentWord ? getWordMeaning(currentWord, 'chinese') : '' }}</text>
+            <text v-if="currentWord?.example" class="feedback-ex">{{ currentWord.example }}</text>
+          </view>
+          <button v-if="!isLastQuiz" class="next" @tap="advanceQuiz">继续</button>
+        </view>
+        <view v-if="showResult && isLastQuiz" class="end-actions">
+          <button class="start end-btn" @tap="completeAndNextGroup">下一组</button>
+          <button class="ghost end-btn" @tap="completeAndFinish">完成训练</button>
+        </view>
+        <text v-else-if="!showResult" class="key-hint">数字键 1–4 作答 · Enter 继续</text>
+      </template>
     </view>
 
-    <view v-else class="finish-screen">
-      <view class="finish-icon">{{ sessionAnalysis.accuracy >= 80 ? '🎉' : sessionAnalysis.accuracy >= 60 ? '👍' : '💪' }}</view>
-      <text class="finish-title">训练完成!</text>
-      <view class="finish-stats">
-        <view class="finish-stat">
-          <text class="finish-value">{{ sessionAnalysis.correct }}/{{ sessionAnalysis.total }}</text>
-          <text class="finish-label">正确</text>
-        </view>
-        <view class="finish-stat">
-          <text class="finish-value">{{ sessionAnalysis.accuracy }}%</text>
-          <text class="finish-label">正确率</text>
-        </view>
-      </view>
-
+    <view v-else class="setup done">
+      <text class="eyebrow">认读练习</text>
+      <text class="score">{{ sessionAnalysis.accuracy }}%</text>
+      <text class="lede">{{ sessionAnalysis.correct }}/{{ sessionAnalysis.total }} 正确</text>
       <TrainingAnalysis
         :analysis="sessionAnalysis"
         :newly-covered="newlyCovered"
         :due-count="finishDueCount"
         :weak-topics="weakTopicLabels"
       />
-
       <TrainingFinishActions />
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import type { Vocabulary } from '@/types'
-import { getWordMeaning, getWordDisplayLabel, getRecognitionHint, buildWordChoices, getWordHeadword } from '@/utils/vocabulary'
-import TrainingSetup from '@/components/TrainingSetup.vue'
-import TrainingStartStats from '@/components/TrainingStartStats.vue'
+import { getWordMeaning, buildWordChoices, getWordHeadword } from '@/utils/vocabulary'
+import { buildUniqueOptions } from '@/utils/quiz-options'
+import { speakWord, isTtsSupported, stopSpeak, preloadWordAudio, unlockTtsPlayback } from '@/utils/tts'
 import BookSwitcher from '@/components/BookSwitcher.vue'
+import type { SessionMode } from '@/types/map'
+import { SESSION_MODE_LABELS } from '@/types/map'
 import TrainingAnalysis from '@/components/TrainingAnalysis.vue'
-import TrainingProgressBar from '@/components/TrainingProgressBar.vue'
 import TrainingFinishActions from '@/components/TrainingFinishActions.vue'
-import TrainingGroupActions from '@/components/TrainingGroupActions.vue'
 import { useSessionAnalysis } from '@/composables/useSessionAnalysis'
 import { useTrainingFlow } from '@/composables/useTrainingFlow'
 import { ensureTrainingWords } from '@/composables/useTrainingStart'
@@ -103,19 +173,65 @@ import { useGroupComplete } from '@/composables/useGroupComplete'
 import { useDailySession } from '@/composables/useDailySession'
 import { onLoad } from '@dcloudio/uni-app'
 import { requireSubject } from '@/utils/subject'
+import { isBrowserH5 } from '@/utils/audio-recording'
+import { atlasThumbUrl, resolveAtlasId } from '@/utils/wordAtlas'
+
+type RecogMode = 'zh' | 'en' | 'listen'
+type Phase = 'setup' | 'study' | 'bridge' | 'quiz' | 'done'
+
+const RECOG_MODE_ORDER: RecogMode[] = ['zh', 'en', 'listen']
+const recogModes: Array<{ key: RecogMode; label: string }> = [
+  { key: 'zh', label: '汉语' },
+  { key: 'en', label: '英语' },
+  { key: 'listen', label: '听音' }
+]
+
+function loadEnabledRecogModes(): RecogMode[] {
+  try {
+    const raw = localStorage.getItem('recog-enabled-modes')
+    if (!raw) return [...RECOG_MODE_ORDER]
+    const parsed = JSON.parse(raw) as string[]
+    const next = RECOG_MODE_ORDER.filter((key) => parsed.includes(key))
+    return next.length ? next : [...RECOG_MODE_ORDER]
+  } catch {
+    return [...RECOG_MODE_ORDER]
+  }
+}
+
+function saveEnabledRecogModes(modes: RecogMode[]) {
+  try {
+    localStorage.setItem('recog-enabled-modes', JSON.stringify(modes))
+  } catch {
+    /* ignore */
+  }
+}
+
+function shuffleIndices(n: number): number[] {
+  const arr = Array.from({ length: n }, (_, i) => i)
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[arr[i], arr[j]] = [arr[j], arr[i]]
+  }
+  return arr
+}
 
 const vocabStore = useVocabularyStore()
 const { recordAnswer, getAnalysis, resetSession } = useSessionAnalysis('reading')
 const { newlyCovered, resetFlow, loadGroup, finishSession } = useTrainingFlow('reading')
 
-const started = ref(false)
+const phase = ref<Phase>('setup')
 const showResult = ref(false)
 const showFinish = ref(false)
 const selectedOption = ref(-1)
 const isCorrect = ref(false)
-const currentIndex = ref(0)
+const studyIndex = ref(0)
+const quizIndex = ref(0)
+const quizOrder = ref<number[]>([])
 const words = ref<Vocabulary[]>([])
 const options = ref<Array<{ id: string; label: string }>>([])
+const enabledModes = ref<RecogMode[]>(loadEnabledRecogModes())
+const quizMode = ref<RecogMode>(enabledModes.value[0] || 'zh')
+const modeCursor = ref(0)
 
 const totalCorrect = ref(0)
 const totalCount = ref(0)
@@ -124,67 +240,307 @@ const readingStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
 const finishDueCount = ref(0)
 const weakTopicLabels = ref<string[]>([])
 const autoStart = ref(false)
+const groupCounts = [5, 10, 15, 20]
+const sessionModes: Array<{ key: SessionMode; label: string }> = [
+  { key: 'smart', label: SESSION_MODE_LABELS.smart },
+  { key: 'review', label: SESSION_MODE_LABELS.review },
+  { key: 'weak', label: SESSION_MODE_LABELS.weak },
+  { key: 'coverage', label: SESSION_MODE_LABELS.coverage }
+]
 
 const sessionAnalysis = computed(() => getAnalysis())
-
-const currentWord = computed(() => words.value[currentIndex.value])
-
-const questionDisplay = computed(() => {
-  if (!currentWord.value) return { mode: 'text' as const, content: '' }
-  return getWordDisplayLabel(currentWord.value, vocabStore.meaningType)
+const setupSummary = computed(() => {
+  const progress = vocabStore.bookProgress
+  return {
+    due: vocabStore.dueCount?.dueCount ?? 0,
+    learned: readingStats.value.total,
+    mastered: readingStats.value.mastered,
+    progress: progress
+      ? `${progress.practicedCount}/${progress.wordCount}`
+      : ''
+  }
 })
 
-const recognitionHint = computed(() => {
+function setSessionMode(mode: SessionMode) {
+  vocabStore.setSessionMode(mode)
+}
+
+function setWordsPerGroup(count: number) {
+  vocabStore.setStudySettings({ wordsPerGroup: count, groupCount: 1 })
+}
+
+function setFullBookRound() {
+  vocabStore.setFullBookRound()
+  uni.showToast({ title: '已设为全书一轮', icon: 'success' })
+}
+
+async function onBookChange() {
+  await vocabStore.loadBookProgress()
+  await vocabStore.loadDueCount(vocabStore.currentBookCode, 'reading')
+  readingStats.value = vocabStore.getTypeStats('reading')
+}
+
+const currentWordIndex = computed(() => {
+  if (phase.value === 'study') return studyIndex.value
+  if (phase.value === 'quiz') return quizOrder.value[quizIndex.value] ?? 0
+  return 0
+})
+const currentWord = computed(() => words.value[currentWordIndex.value])
+const activeModeChain = computed(() => {
+  const selected = enabledModes.value
+  return selected.length ? selected : (['zh'] as RecogMode[])
+})
+const isPlaying = ref(false)
+const ttsHint = ref('')
+let playToken = 0
+const thumb = ref('')
+
+const zhPrompt = computed(() =>
+  currentWord.value ? getWordMeaning(currentWord.value, 'chinese') : ''
+)
+
+const correctChoiceId = computed(() => {
   if (!currentWord.value) return ''
-  return getRecognitionHint(currentWord.value, vocabStore.meaningType)
+  if (quizMode.value === 'zh') return currentWord.value.id || ''
+  return getWordMeaning(currentWord.value, 'chinese')
 })
 
-const isLastWord = computed(() => currentIndex.value === words.value.length - 1)
+const progressLabel = computed(() => {
+  const n = words.value.length
+  if (!n) return ''
+  if (phase.value === 'study') {
+    return `学习 · ${Math.min(studyIndex.value + 1, n)}/${n}`
+  }
+  if (phase.value === 'quiz') {
+    const mode = recogModes.find((item) => item.key === quizMode.value)?.label || '检测'
+    return `检测 · ${mode} · ${Math.min(quizIndex.value + 1, n)}/${n}`
+  }
+  return ''
+})
+
+const isLastQuiz = computed(() => {
+  if (!words.value.length) return true
+  return quizIndex.value >= words.value.length - 1
+})
+
+const progressPct = computed(() => {
+  const n = words.value.length
+  if (!n) return 0
+  const totalSteps = n * 2
+  if (phase.value === 'study') {
+    return Math.min(100, Math.round(((studyIndex.value) / totalSteps) * 100))
+  }
+  if (phase.value === 'bridge') {
+    return Math.min(100, Math.round((n / totalSteps) * 100))
+  }
+  if (phase.value === 'quiz') {
+    const done = showResult.value ? 1 : 0
+    return Math.min(100, Math.round(((n + quizIndex.value + done) / totalSteps) * 100))
+  }
+  return 100
+})
 
 const getOptionClass = (index: number) => {
   if (!showResult.value) return ''
-  const correctId = currentWord.value?.id || ''
-  if (options.value[index]?.id === correctId) return 'correct'
+  if (options.value[index]?.id === correctChoiceId.value) return 'correct'
   if (index === selectedOption.value && !isCorrect.value) return 'wrong'
   return ''
 }
 
+const playAudio = async () => {
+  const word = currentWord.value?.word
+  if (!word) return
+  const token = ++playToken
+  isPlaying.value = true
+  ttsHint.value = ''
+  stopSpeak()
+  if (!isTtsSupported()) {
+    isPlaying.value = false
+    ttsHint.value = '当前环境不支持发音，请使用 Chrome 浏览器'
+    return
+  }
+  try {
+    await unlockTtsPlayback()
+    if (token !== playToken) return
+    await speakWord(word)
+  } catch {
+    if (token === playToken) ttsHint.value = '播放失败，请再点一次'
+  } finally {
+    if (token === playToken) isPlaying.value = false
+  }
+}
+
 const selectOption = (index: number) => {
-  if (showResult.value) return
-  
+  if (phase.value !== 'quiz' || showResult.value) return
+
   selectedOption.value = index
-  const correctId = currentWord.value?.id || ''
-  isCorrect.value = options.value[index]?.id === correctId
+  const skill = quizMode.value === 'listen' ? 'listening' : 'reading'
+  isCorrect.value = options.value[index]?.id === correctChoiceId.value
   showResult.value = true
-  
-  vocabStore.updateWordStats(currentWord.value?.id || '', currentWord.value?.word || '', 'reading', isCorrect.value)
-  vocabStore.addTrainingRecord('reading', currentWord.value?.word || '', isCorrect.value)
+
+  vocabStore.updateWordStats(currentWord.value?.id || '', currentWord.value?.word || '', skill, isCorrect.value)
+  vocabStore.addTrainingRecord(skill, currentWord.value?.word || '', isCorrect.value)
   recordAnswer(
     currentWord.value!,
     isCorrect.value,
-    (w) => vocabStore.getWordStats(w, 'reading'),
-    vocabStore.meaningType
+    (w) => vocabStore.getWordStats(w, skill),
+    'chinese'
   )
 
   void vocabStore.loadBookProgress()
-  
+
   if (isCorrect.value) {
     totalCorrect.value++
   }
 }
 
-const nextWord = async () => {
-  currentIndex.value++
+function firstEnabledMode(): RecogMode {
+  return activeModeChain.value[0] || 'zh'
+}
+
+function pickQuizModeForIndex(i: number): RecogMode {
+  const chain = activeModeChain.value
+  return chain[i % chain.length] || 'zh'
+}
+
+function persistEnabledModes(next: RecogMode[]) {
+  enabledModes.value = RECOG_MODE_ORDER.filter((key) => next.includes(key))
+  if (!enabledModes.value.length) enabledModes.value = ['zh']
+  saveEnabledRecogModes(enabledModes.value)
+}
+
+function modeChipClass(key: RecogMode) {
+  const classes = ['rail-tab']
+  if (enabledModes.value.includes(key)) classes.push('is-on')
+  else classes.push('is-off')
+  if (quizMode.value === key) classes.push('is-current')
+  return classes
+}
+
+function onModeChip(key: RecogMode) {
+  if (phase.value !== 'quiz' || showResult.value) return
+  const enabled = enabledModes.value.includes(key)
+  if (!enabled) {
+    persistEnabledModes([...enabledModes.value, key])
+    quizMode.value = key
+    prepareQuizCard()
+    return
+  }
+  if (enabledModes.value.length <= 1) {
+    uni.showToast({ title: '至少保留一种方式', icon: 'none' })
+    return
+  }
+  const chain = [...enabledModes.value]
+  const wasCurrent = quizMode.value === key
+  persistEnabledModes(chain.filter((mode) => mode !== key))
+  if (!wasCurrent) return
+  quizMode.value = firstEnabledMode()
+  prepareQuizCard()
+}
+
+function prepareStudyCard() {
+  stopSpeak()
+  void playAudio()
+}
+
+function prepareQuizCard() {
   selectedOption.value = -1
   showResult.value = false
   isCorrect.value = false
   generateOptions()
+  // 汉语选题看释义选词：自动发音会泄题；听音必须播，英语看词可播
+  if (quizMode.value === 'zh') {
+    stopSpeak()
+    return
+  }
+  void playAudio()
+}
+
+function advanceStudy() {
+  stopSpeak()
+  if (studyIndex.value + 1 >= words.value.length) {
+    phase.value = 'bridge'
+    return
+  }
+  studyIndex.value += 1
+  prepareStudyCard()
+}
+
+function startQuiz() {
+  quizOrder.value = shuffleIndices(words.value.length)
+  quizIndex.value = 0
+  modeCursor.value = 0
+  quizMode.value = pickQuizModeForIndex(0)
+  phase.value = 'quiz'
+  showResult.value = false
+  prepareQuizCard()
+}
+
+function advanceQuiz() {
+  if (quizIndex.value + 1 >= words.value.length) return
+  quizIndex.value += 1
+  modeCursor.value += 1
+  quizMode.value = pickQuizModeForIndex(modeCursor.value)
+  prepareQuizCard()
 }
 
 const generateOptions = () => {
   const current = currentWord.value
   if (!current) return
-  options.value = buildWordChoices(current, words.value, 4)
+  if (current.word) preloadWordAudio(current.word)
+  if (quizMode.value === 'zh') {
+    options.value = buildWordChoices(current, words.value, 4)
+    return
+  }
+  const correctMeaning = getWordMeaning(current, 'chinese')
+  const others = words.value
+    .filter((word) => word.id !== current.id)
+    .map((word) => getWordMeaning(word, 'chinese'))
+  options.value = buildUniqueOptions(correctMeaning, others, 4).map((label) => ({ id: label, label }))
+}
+
+watch(currentWord, async (word) => {
+  thumb.value = ''
+  if (!word?.word) return
+  preloadWordAudio(word.word)
+  const id = await resolveAtlasId(word.word)
+  if (currentWord.value?.word === word.word) thumb.value = atlasThumbUrl(id) || ''
+})
+
+function onKeyDown(event: KeyboardEvent) {
+  if (!isBrowserH5() || phase.value === 'setup' || phase.value === 'done') return
+  if (event.metaKey || event.ctrlKey || event.altKey || event.isComposing) return
+  const target = event.target as HTMLElement | null
+  if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA')) return
+
+  if (phase.value === 'bridge') {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      startQuiz()
+    }
+    return
+  }
+
+  if (phase.value === 'study') {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      advanceStudy()
+    }
+    return
+  }
+
+  if (phase.value === 'quiz') {
+    if ((event.key === 'Enter' || event.key === ' ') && showResult.value && !isLastQuiz.value) {
+      event.preventDefault()
+      advanceQuiz()
+      return
+    }
+    const n = Number(event.key)
+    if (!showResult.value && n >= 1 && n <= options.value.length) {
+      event.preventDefault()
+      selectOption(n - 1)
+    }
+  }
 }
 
 const startGroup = async () => {
@@ -193,13 +549,23 @@ const startGroup = async () => {
 
 const { ensureAccessibleBook } = useDailySession()
 
+function beginStudyPhase() {
+  studyIndex.value = 0
+  quizIndex.value = 0
+  quizOrder.value = []
+  selectedOption.value = -1
+  showResult.value = false
+  showFinish.value = false
+  phase.value = 'study'
+  prepareStudyCard()
+}
+
 const startTraining = async () => {
   if (!vocabStore.ensureBookSelected()) return
   ensureAccessibleBook()
 
   totalCount.value = vocabStore.studySettings.wordsPerGroup
   totalCorrect.value = 0
-  currentIndex.value = 0
   resetSession()
   resetFlow()
 
@@ -209,12 +575,8 @@ const startTraining = async () => {
   if (!(await ensureTrainingWords(words.value))) {
     return
   }
-  
-  selectedOption.value = -1
-  showResult.value = false
-  showFinish.value = false
-  started.value = true
-  generateOptions()
+
+  beginStudyPhase()
 }
 
 const nextGroupTraining = async () => {
@@ -222,12 +584,12 @@ const nextGroupTraining = async () => {
   resetSession()
   resetFlow()
   totalCorrect.value = 0
-  currentIndex.value = 0
-  selectedOption.value = -1
-  showResult.value = false
   await startGroup()
-  if (!(await ensureTrainingWords(words.value))) return
-  generateOptions()
+  if (!(await ensureTrainingWords(words.value))) {
+    phase.value = 'setup'
+    return
+  }
+  beginStudyPhase()
 }
 
 const { completeAndNextGroup, completeAndFinish } = useGroupComplete({
@@ -239,12 +601,13 @@ const { completeAndNextGroup, completeAndFinish } = useGroupComplete({
   weakTopicLabels
 })
 
-const backToHome = () => {
-  uni.navigateBack()
-}
+watch(showFinish, (done) => {
+  if (done) phase.value = 'done'
+})
 
-const goToVocabulary = () => {
-  uni.switchTab({ url: '/pages/vocabulary/vocabulary' })
+const endSession = () => {
+  stopSpeak()
+  uni.navigateBack()
 }
 
 onLoad((query) => {
@@ -253,432 +616,517 @@ onLoad((query) => {
 })
 
 onMounted(async () => {
+  if (isBrowserH5() && typeof window !== 'undefined') {
+    window.addEventListener('keydown', onKeyDown)
+  }
   if (!(await requireSubject('english', 'student'))) return
   vocabStore.loadBooks()
   vocabStore.loadStats()
   vocabStore.loadSettings()
-  vocabStore.loadBookProgress()
+  await vocabStore.loadBookProgress()
+  await vocabStore.loadDueCount(vocabStore.currentBookCode, 'reading')
   await vocabStore.loadServerStats()
   readingStats.value = vocabStore.getTypeStats('reading')
   if (autoStart.value) {
     await startTraining()
   }
 })
+
+onUnmounted(() => {
+  stopSpeak()
+  if (isBrowserH5() && typeof window !== 'undefined') {
+    window.removeEventListener('keydown', onKeyDown)
+  }
+})
 </script>
 
 <style lang="scss" scoped>
-.container {
+.desk {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: #f4f1ea;
+  color: #1f1a14;
+  font-family: "Avenir Next", "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
 }
 
-.start-screen {
-  padding: 20rpx 24rpx 120rpx;
+.setup, .practice {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 28px 22px 80px;
+  box-sizing: border-box;
 }
 
-.btn-start {
-  width: 100%;
-  height: 88rpx;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 44rpx;
-  font-size: 32rpx;
-  font-weight: 600;
-  margin-top: 8rpx;
-}
-
-.btn-start::after {
-  border: none;
-}
-
-.settings-section {
-  background: white;
-  border-radius: 20rpx;
-  padding: 30rpx;
-  margin-bottom: 25rpx;
-}
-
-.section-header {
-  margin-bottom: 20rpx;
-}
-
-.section-title {
-  font-size: 32rpx;
-  font-weight: 600;
-  color: #333;
-}
-
-.book-options {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15rpx;
-}
-
-.book-option {
-  background: #f8f9fa;
-  border-radius: 16rpx;
-  padding: 25rpx;
-  border: 2rpx solid transparent;
-  transition: all 0.3s ease;
-  
-  &.selected {
-    border-color: #667eea;
-    background: #eef2ff;
-  }
-}
-
-.book-name {
-  font-size: 28rpx;
-  font-weight: 500;
-  color: #333;
+.eyebrow {
   display: block;
-  margin-bottom: 8rpx;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8a8175;
 }
 
-.book-level {
-  font-size: 22rpx;
-  color: #667eea;
+.lede, .hint, .key-hint {
+  display: block;
+  color: #6d645b;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 8px 0 18px;
 }
 
-.settings-grid {
+.hint.link {
+  color: #0f6e6a;
+  cursor: pointer;
+}
+
+.label {
+  display: block;
+  margin: 16px 0 8px;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.chips {
   display: flex;
-  flex-direction: column;
-  gap: 25rpx;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.setting-item {
+.chip {
+  border: 1px solid #ddd4c6;
+  background: transparent;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  color: #1f1a14;
+  cursor: pointer;
+}
+
+.chip.on {
+  background: #1f1a14;
+  color: #f4f1ea;
+  border-color: #1f1a14;
+}
+
+.summary {
   display: flex;
-  flex-direction: column;
-  gap: 15rpx;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 14px 0;
+  color: #3d4f4d;
+  font-size: 14px;
 }
 
-.setting-label {
-  font-size: 28rpx;
-  color: #666;
+.start,
+.ghost {
+  margin-top: 16px;
+  border-radius: 999px;
+  font-size: 16px;
+  padding: 12px 28px;
 }
 
-.setting-select {
+.start {
+  background: #0f6e6a;
+  color: #fff;
+  border: none;
+}
+
+.ghost {
+  background: transparent;
+  color: #1f1a14;
+  border: 1px solid #cfc6b8;
+}
+
+.start.know {
+  display: block;
+  width: fit-content;
+  margin: 8px auto 0;
+  padding: 14px 36px;
+  font-size: 17px;
+}
+
+.end-actions {
   display: flex;
-  gap: 15rpx;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  justify-content: flex-start;
 }
 
-.select-option {
-  flex: 1;
-  text-align: center;
-  padding: 20rpx;
-  background: #f8f9fa;
-  border-radius: 12rpx;
-  font-size: 28rpx;
-  color: #666;
-  border: 2rpx solid transparent;
-  transition: all 0.3s ease;
-  
-  &.selected {
-    background: #667eea;
-    color: white;
-  }
+.end-btn {
+  margin-top: 0;
+  min-width: 132px;
 }
 
-.settings-summary {
-  margin-top: 20rpx;
-  padding-top: 20rpx;
-  border-top: 1rpx solid #eee;
+.progress-track {
+  height: 8px;
+  background: #efe6d6;
+  border-radius: 999px;
+  overflow: hidden;
 }
 
-.summary-text {
-  font-size: 26rpx;
-  color: #999;
-  text-align: center;
+.progress-fill {
+  height: 100%;
+  background: #0f6e6a;
+  border-radius: inherit;
+  transition: width 0.25s ease;
 }
 
-.options-group {
-  display: flex;
-  flex-direction: column;
-  gap: 15rpx;
-}
-
-.option-item {
+.topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 25rpx;
-  background: #f8f9fa;
-  border-radius: 16rpx;
-  border: 2rpx solid transparent;
-  transition: all 0.3s ease;
-  
-  &.selected {
-    background: #eef2ff;
-    border-color: #667eea;
-  }
+  margin: 14px 0 8px;
+}
+
+.top-meta {
+  font-size: 14px;
+  color: #6d645b;
+  font-variant-numeric: tabular-nums;
+}
+
+.top-link {
+  color: #0f6e6a;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.practice-rail {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 2px;
+  margin: 8px 0 4px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rail-tab {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 8px 12px 10px;
+  border: none;
+  background: transparent;
+  color: #8a8175;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.rail-label {
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.rail-tab.is-off {
+  color: #8a8175;
+  font-weight: 500;
+}
+
+.rail-tab.is-on {
+  color: #0f6e6a;
+  font-weight: 650;
+}
+
+.rail-tab.is-current::after {
+  content: '';
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 2px;
+  height: 3px;
+  border-radius: 999px;
+  background: #0f6e6a;
+}
+
+.stage {
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px 0 8px;
+}
+
+.quiz-stage {
+  min-height: 140px;
+  padding: 8px 0 4px;
+}
+
+.intro-stage {
+  min-height: 320px;
+}
+
+.hint.compact {
+  margin: 10px 0 0;
+  font-size: 13px;
+}
+
+.kicker {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 13px;
+  font-weight: 650;
+  color: #8a8175;
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: #0f6e6a;
+  vertical-align: middle;
+}
+
+.intro-art {
+  width: 160px;
+  height: 160px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  background: #efe6d6;
+  object-fit: cover;
+}
+
+.intro-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.speak-mark {
+  flex: 0 0 auto;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(31, 26, 20, 0.18);
+  background: #fffdf8;
+  color: #6d645b;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.speak-mark.is-on {
+  border-color: #0f6e6a;
+  color: #0f6e6a;
+  background: #e7f3ef;
+}
+
+.phonetic {
+  display: block;
+  margin-top: 6px;
+  font-size: 16px;
+  color: #8a8175;
+}
+
+.intro-zh {
+  display: block;
+  margin-top: 14px;
+  max-width: 18em;
+  font-size: 22px;
+  line-height: 1.4;
+  color: #1f1a14;
+}
+
+.intro-en {
+  display: block;
+  margin-top: 6px;
+  max-width: 22em;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #6d645b;
+}
+
+.big-meaning,
+.big-word {
+  display: block;
+  max-width: 18em;
+  font-family: "Iowan Old Style", Palatino, "Songti SC", "Noto Serif SC", serif;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.25;
+  color: #1f1a14;
+}
+
+.big-word {
+  font-family: Palatino, "Iowan Old Style", "Songti SC", serif;
+}
+
+.listen-orb {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1f1a14;
+  color: #f4f1ea;
+  font-size: 28px;
+  font-weight: 650;
+  cursor: pointer;
+  box-shadow: 0 18px 40px -18px rgba(26, 32, 53, 0.7);
+}
+
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.option {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: #fffdf8;
+  border: 1.5px solid rgba(31, 26, 20, 0.14);
+  border-bottom-width: 3px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.option.correct {
+  background: #e7f3ef;
+  border-color: #0f6e6a;
+}
+
+.option.wrong {
+  background: #f8ebe6;
+  border-color: #9a3b2f;
+}
+
+.kbd {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  border: 1px solid rgba(31, 26, 20, 0.16);
+  background: #f4f1ea;
+  text-align: center;
+  line-height: 28px;
+  font-size: 13px;
+  color: #6d645b;
 }
 
 .option-label {
-  font-size: 30rpx;
-  font-weight: 500;
-  color: #333;
-}
-
-.check-mark {
-  width: 40rpx;
-  height: 40rpx;
-  background: #667eea;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 24rpx;
-}
-
-.training-screen {
-  padding: 30rpx;
-}
-
-.image-card {
-  background: white;
-  border-radius: 20rpx;
-  padding: 60rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
-}
-
-.image-container {
-  width: 300rpx;
-  min-height: 300rpx;
-  background: #f8f9fa;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20rpx;
-  padding: 30rpx;
-
-  &.text-mode {
-    border-radius: 24rpx;
-    width: 100%;
-    min-height: 200rpx;
-  }
-}
-
-.image-emoji {
-  font-size: 150rpx;
-}
-
-.meaning-text {
-  font-size: 34rpx;
-  color: #333;
-  text-align: center;
-  line-height: 1.6;
-  font-weight: 500;
-}
-
-.image-hint {
-  font-size: 28rpx;
-  color: #999;
-}
-
-.options-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20rpx;
-  margin-bottom: 30rpx;
-}
-
-.option-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  border-radius: 16rpx;
-  padding: 35rpx;
-  border: 2rpx solid transparent;
-  transition: all 0.3s ease;
-  
-  &.selected {
-    border-color: #667eea;
-    background: #f5f7ff;
-  }
-  
-  &.correct {
-    border-color: #4caf50;
-    background: #e8f5e9;
-  }
-  
-  &.wrong {
-    border-color: #f44336;
-    background: #ffebee;
-  }
-}
-
-.option-text {
-  font-size: 32rpx;
-  color: #333;
-  font-weight: 500;
-}
-
-.result-icon {
-  font-size: 36rpx;
-  margin-left: 15rpx;
-  
-  &.correct {
-    color: #4caf50;
-  }
-  
-  &.wrong {
-    color: #f44336;
-  }
-}
-
-.result-section {
-  margin-top: 20rpx;
-}
-
-.result-card {
-  background: white;
-  border-radius: 20rpx;
-  padding: 30rpx;
-  margin-bottom: 30rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
-  
-  &.correct {
-    border-left: 8rpx solid #4caf50;
-  }
-  
-  &.wrong {
-    border-left: 8rpx solid #f44336;
-  }
-}
-
-.result-header {
-  display: flex;
-  align-items: center;
-  gap: 20rpx;
-  margin-bottom: 20rpx;
-}
-
-.result-image {
-  font-size: 80rpx;
-}
-
-.result-word-info {
   flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  line-height: 1.35;
+  text-align: left;
 }
 
-.result-word {
-  font-size: 48rpx;
-  font-weight: 600;
-  color: #333;
+.option-label.is-word {
+  font-family: Palatino, "Iowan Old Style", "Songti SC", serif;
+  font-size: 22px;
+}
+
+.feedback {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: #fffdf8;
+  border: 1px solid rgba(26, 32, 53, 0.08);
+}
+
+.feedback.good { box-shadow: inset 3px 0 0 #0f6e6a; }
+.feedback.bad { box-shadow: inset 3px 0 0 #9a3b2f; }
+
+.feedback-art {
+  width: 72px;
+  height: 72px;
+  border-radius: 14px;
+  flex: 0 0 auto;
+  background: #efe6d6;
+}
+
+.feedback-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.verdict, .feedback-zh, .feedback-ex {
   display: block;
+  color: #6d645b;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
-.result-phonetic {
-  font-size: 28rpx;
-  color: #999;
-  font-style: italic;
-}
-
-.result-meaning {
-  font-size: 36rpx;
-  font-weight: 500;
-  color: #667eea;
+.feedback-word {
   display: block;
-  margin-bottom: 20rpx;
+  margin: 2px 0;
+  font-family: Palatino, "Iowan Old Style", "Songti SC", serif;
+  font-size: 28px;
+  color: #1f1a14;
 }
 
-.result-example {
-  background: #f8f9fa;
-  padding: 20rpx;
-  border-radius: 12rpx;
-  font-size: 26rpx;
-  color: #666;
-  font-style: italic;
-}
-
-.btn-next {
-  width: 100%;
-  height: 96rpx;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.next {
+  flex: 0 0 auto;
+  margin: 0;
+  background: #0f6e6a;
   color: white;
   border: none;
-  border-radius: 48rpx;
-  font-size: 34rpx;
-  font-weight: 600;
+  border-radius: 999px;
+  padding: 0 22px;
+  height: 44px;
+  line-height: 44px;
+  font-size: 15px;
 }
 
-.finish-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40rpx 30rpx 120rpx;
-  max-height: 100vh;
-  overflow-y: auto;
+.score {
+  display: block;
+  margin-top: 8px;
+  font-family: Palatino, "Songti SC", serif;
+  font-size: 72px;
+  line-height: 1;
+  color: #1f1a14;
 }
 
-.finish-icon {
-  font-size: 120rpx;
-  margin-bottom: 30rpx;
+.score-soft {
+  display: block;
+  margin-top: 12px;
+  font-family: Palatino, "Songti SC", serif;
+  font-size: 64px;
+  line-height: 1;
+  color: #1f1a14;
 }
 
-.finish-title {
-  font-size: 48rpx;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 50rpx;
+.bridge .lede {
+  max-width: 28em;
 }
 
-.finish-stats {
-  display: flex;
-  gap: 80rpx;
-  margin-bottom: 60rpx;
-}
-
-.finish-stat {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.finish-value {
-  font-size: 56rpx;
-  font-weight: 600;
-  color: #667eea;
-}
-
-.finish-label {
-  font-size: 28rpx;
-  color: #999;
-}
-
-.finish-actions {
-  width: 100%;
-  display: flex;
-  gap: 20rpx;
-  margin-top: 10rpx;
-}
-
-.btn-secondary {
-  flex: 1;
-  height: 88rpx;
-  background: #f0f0f0;
-  color: #666;
+.start::after,
+.ghost::after,
+.next::after {
   border: none;
-  border-radius: 44rpx;
-  font-size: 30rpx;
 }
 
-.btn-primary {
-  flex: 1;
-  height: 88rpx;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
-  border-radius: 44rpx;
-  font-size: 30rpx;
-  font-weight: 600;
+@media (max-width: 720px) {
+  .options {
+    grid-template-columns: 1fr;
+  }
+  .big-meaning,
+  .big-word {
+    font-size: 32px;
+  }
+  .feedback {
+    flex-wrap: wrap;
+  }
+  .intro-art {
+    width: 120px;
+    height: 120px;
+  }
 }
 </style>

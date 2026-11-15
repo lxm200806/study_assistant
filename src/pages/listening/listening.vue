@@ -358,32 +358,13 @@ const goToVocabulary = () => {
 }
 
 onLoad((query) => {
-  if (query?.autoStart === '1') autoStart.value = true
-  if (query?.topic) vocabStore.setSessionTopic(query.topic as string)
+  const suffix = query?.autoStart === '1' ? '?autoStart=1' : ''
+  uni.redirectTo({ url: `/pages/recognition/recognition${suffix}` })
 })
 
-onMounted(async () => {
-  if (!(await requireSubject('english', 'student'))) return
-  vocabStore.loadBooks()
-  vocabStore.loadStats()
-  vocabStore.loadSettings()
-  ensureAccessibleBook()
-  vocabStore.loadBookProgress()
-  await vocabStore.loadServerStats()
-  listeningStats.value = vocabStore.getTypeStats('listening')
-  if (autoStart.value) {
-    await startTraining()
-  }
-})
+onMounted(() => {})
 
-onShow(async () => {
-  if (!autoStart.value && consumeTrainingAutoStart()) {
-    autoStart.value = true
-    if (!started.value) {
-      await startTraining()
-    }
-  }
-})
+onShow(() => {})
 
 onUnmounted(() => {
   stopSpeak()

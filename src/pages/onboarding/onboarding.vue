@@ -19,7 +19,7 @@
           <text class="subject-icon">🔤</text>
           <view class="subject-copy">
             <text class="book-name">英语</text>
-            <text class="book-level">听力 · 认读 · 拼写 · 口语</text>
+            <text class="book-level">认读 · 拼读 · 口语</text>
           </view>
         </view>
       </view>

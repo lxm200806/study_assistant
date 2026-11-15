@@ -2,9 +2,12 @@
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import { useUserStore } from '@/stores/user'
 import { applyAppShell } from '@/utils/subject'
+import { isBrowserH5 } from '@/utils/audio-recording'
+import { installPcRouteSync } from '@/utils/pc-route'
 
 onLaunch(() => {
-  console.log('App Launch')
+  if (!isBrowserH5()) return
+  installPcRouteSync(() => applyAppShell())
 })
 
 onShow(async () => {
@@ -98,5 +101,28 @@ page {
 
 .bold {
   font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  html.pc-chromeless .uni-page-head,
+  html.pc-chromeless .uni-page-head ~ .uni-placeholder {
+    display: none !important;
+  }
+
+  uni-layout.uni-app--showleftwindow ~ uni-tabbar {
+    display: none !important;
+  }
+
+  uni-left-window,
+  .uni-left-window {
+    background: #f7f7f7;
+  }
+
+  html.pc-chromeless uni-main .container {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
 }
 </style>

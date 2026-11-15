@@ -1,4 +1,6 @@
 import { useUserStore } from '@/stores/user'
+import { isBrowserH5 } from '@/utils/audio-recording'
+import { isWidePc } from '@/utils/pc-route'
 
 export type Subject = 'english' | 'chinese'
 export type PageAccess = 'any' | 'parent' | 'student'
@@ -16,10 +18,11 @@ export function applySubjectTabBar(subject: Subject | string) {
 
 export function applyAppShell() {
   const userStore = useUserStore()
-  if (userStore.isStudentRole && typeof uni.hideTabBar === 'function') {
-    uni.hideTabBar({ animation: false })
+  const widePc = isBrowserH5() && isWidePc()
+  if ((widePc || userStore.isStudentRole) && typeof uni.hideTabBar === 'function') {
+    uni.hideTabBar({ animation: false, fail() {} })
   } else if (typeof uni.showTabBar === 'function') {
-    uni.showTabBar({ animation: false })
+    uni.showTabBar({ animation: false, fail() {} })
   }
   applySubjectTabBar(userStore.activeSubject)
 }

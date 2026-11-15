@@ -1,0 +1,97 @@
+import { ref } from 'vue'
+
+/** Routes that stay full-bleed, without the PC rail. */
+export const PC_BARE_PAGES = new Set([
+  '/pages/login/login',
+  '/pages/register/register',
+  '/pages/onboarding/onboarding',
+  '/pages/family/roles'
+])
+
+/** These pages already have their own title, so the mobile nav bar is hidden on PC. */
+export const PC_CHROMELESS_PAGES = new Set([
+  '/pages/home/home',
+  '/pages/typing/typing',
+  '/pages/recognition/recognition',
+  '/pages/vocabulary-map/vocabulary-map',
+  '/pages/vocabulary/vocabulary',
+  '/pages/mine/mine',
+  '/pages/books/books'
+])
+
+export const PC_RAIL_WIDE = '224px'
+export const PC_RAIL_NARROW = '72px'
+export const PC_MIN_WIDTH = 768
+
+export const pcPath = ref('')
+
+const listeners = new Set<() => void>()
+let installed = false
+
+export function isWidePc(): boolean {
+  return typeof window !== 'undefined' && window.innerWidth >= PC_MIN_WIDTH
+}
+
+export function readPcPath(): string {
+  if (typeof location !== 'undefined') {
+    let raw = location.hash || ''
+    if (raw.startsWith('#')) raw = raw.slice(1)
+    const path = raw.split('?')[0]
+    if (path && path !== '/') return path.startsWith('/') ? path : `/${path}`
+  }
+  try {
+    const pages = getCurrentPages()
+    const last = pages[pages.length - 1] as { route?: string } | undefined
+    if (last?.route) return last.route.startsWith('/') ? last.route : `/${last.route}`
+  } catch {
+    /* getCurrentPages is unavailable before the first page mounts */
+  }
+  return ''
+}
+
+export function isBarePath(path = pcPath.value): boolean {
+  return !path || PC_BARE_PAGES.has(path)
+}
+
+export function syncPcRoute() {
+  if (typeof document === 'undefined') return
+  const path = readPcPath()
+  pcPath.value = path
+  const chromeless = isWidePc() && !!path && PC_CHROMELESS_PAGES.has(path)
+  document.documentElement.classList.toggle('pc-chromeless', chromeless)
+}
+
+export function applyRailWidth(wide: boolean) {
+  if (typeof document === 'undefined') return
+  if (!isWidePc() || isBarePath()) return
+  const width = wide ? PC_RAIL_WIDE : PC_RAIL_NARROW
+  const api = uni as typeof uni & {
+    setLeftWindowStyle?: (style: { width: string }) => void
+  }
+  api.setLeftWindowStyle?.({ width })
+  document.documentElement.style.setProperty('--window-left', width)
+}
+
+export function installPcRouteSync(onChange?: () => void) {
+  if (typeof window === 'undefined') return
+  if (onChange) listeners.add(onChange)
+  const run = () => {
+    syncPcRoute()
+    listeners.forEach((fn) => fn())
+  }
+  if (!installed) {
+    installed = true
+    window.addEventListener('hashchange', run)
+    window.addEventListener('popstate', run)
+    window.addEventListener('resize', run)
+    const methods = ['navigateTo', 'redirectTo', 'reLaunch', 'switchTab', 'navigateBack'] as const
+    methods.forEach((name) => {
+      uni.addInterceptor(name, {
+        complete() {
+          setTimeout(run, 0)
+        }
+      })
+    })
+  }
+  run()
+}

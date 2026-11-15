@@ -30,22 +30,15 @@
         </view>
       </template>
       <template v-else>
-        <view class="daily-cta" @tap="startDailyLearning">
-          <view class="daily-cta-main">
-            <text class="daily-cta-title">开始今日学习</text>
-            <text class="daily-cta-desc">
-              {{ dueCount > 0 ? `${dueCount} 词待复习 · 智能推荐` : '智能推荐新词' }}
-              · 目标 {{ dailyGoal }} 词
-            </text>
+        <view class="stats-card">
+          <view class="stats-header">
+            <text class="stats-title">今日进度</text>
+            <text class="stats-subtitle">{{ dailyWordCount }}/{{ dailyGoal }} 词 · 🔥 {{ streak }} 天</text>
           </view>
-          <text class="daily-cta-arrow">→</text>
-        </view>
-        <view class="desk-entry" @tap="goTyping">
-          <view class="daily-cta-main">
-            <text class="daily-cta-title">键盘练习</text>
-            <text class="daily-cta-desc">跟写、听写、自测、默写。错词、收藏和进度都记在这个账号</text>
+          <view class="progress-bar">
+            <view class="progress-fill" :style="{ width: dailyProgress + '%' }"></view>
           </view>
-          <text class="daily-cta-arrow">→</text>
+          <text class="rail-hint">从左侧进入认读或拼读</text>
         </view>
       </template>
     </template>
@@ -135,14 +128,6 @@
           </view>
         </view>
 
-        <view class="desk-entry" @tap="goTyping">
-          <view class="daily-cta-main">
-            <text class="daily-cta-title">键盘练习</text>
-            <text class="daily-cta-desc">电脑上跟写、听写、默写。请先进入学生角色，进度记在该学生账号</text>
-          </view>
-          <text class="daily-cta-arrow">→</text>
-        </view>
-
         <view class="vocabulary-stats">
           <view class="section-header">
             <text class="section-title">词汇掌握</text>
@@ -209,10 +194,9 @@ import { applyAppShell, requireReadySession } from '@/utils/subject'
 
 const userStore = useUserStore()
 const vocabStore = useVocabularyStore()
-const { startDailyTraining, getDailyGoal, ensureAccessibleBook } = useDailySession()
+const { getDailyGoal, ensureAccessibleBook } = useDailySession()
 
 const currentDate = ref('')
-const dueCount = ref(0)
 const dailyGoal = ref(30)
 const dailyWordCount = ref(0)
 const streak = ref(0)
@@ -261,7 +245,6 @@ const loadStats = async () => {
   await vocabStore.loadDueCount()
   await vocabStore.loadDailyStats()
   
-  dueCount.value = vocabStore.dueCount.dueCount
   dailyGoal.value = getDailyGoal()
   dailyWordCount.value = vocabStore.dailyStats.wordCount
   streak.value = vocabStore.dailyStats.streak
@@ -273,10 +256,6 @@ const loadStats = async () => {
   speakingStats.value = vocabStore.getTypeStats('speaking')
   readingStats.value = vocabStore.getTypeStats('reading')
   writingStats.value = vocabStore.getTypeStats('writing')
-}
-
-const startDailyLearning = () => {
-  void startDailyTraining('reading')
 }
 
 const goToMine = () => {
@@ -313,10 +292,6 @@ async function enterCurrentStudent() {
 
 const goToBooks = () => {
   uni.navigateTo({ url: '/pages/books/books' })
-}
-
-const goTyping = () => {
-  openPage('/pages/typing/typing')
 }
 
 const goToVocabulary = () => {
@@ -457,58 +432,11 @@ const onBookChange = async () => {
 }
 
 
-.daily-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: white;
-  border-radius: 20rpx;
-  padding: 28rpx 32rpx;
-  margin-bottom: 24rpx;
-  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.15);
-  border: 2rpx solid #eef2ff;
-}
-
-.daily-cta-main {
-  flex: 1;
-}
-
-.daily-cta-title {
-  font-size: 34rpx;
-  font-weight: 600;
-  color: #333;
+.rail-hint {
   display: block;
-}
-
-.daily-cta-desc {
+  margin-top: 8rpx;
   font-size: 24rpx;
-  color: #999;
-  margin-top: 6rpx;
-  display: block;
-}
-
-.daily-cta-arrow {
-  font-size: 40rpx;
-  color: #667eea;
-}
-
-.desk-entry {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #1f1a14;
-  border-radius: 20rpx;
-  padding: 28rpx 32rpx;
-  margin-bottom: 24rpx;
-}
-
-.desk-entry .daily-cta-title,
-.desk-entry .daily-cta-arrow {
-  color: #f4f1ea;
-}
-
-.desk-entry .daily-cta-desc {
-  color: rgba(244, 241, 234, 0.72);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .stats-card {

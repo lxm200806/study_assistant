@@ -3,13 +3,15 @@
     {
       "path": "pages/login/login",
       "style": {
-        "navigationBarTitleText": "登录"
+        "navigationBarTitleText": "登录",
+        "leftWindow": false
       }
     },
     {
       "path": "pages/register/register",
       "style": {
-        "navigationBarTitleText": "注册"
+        "navigationBarTitleText": "注册",
+        "leftWindow": false
       }
     },
     {
@@ -48,7 +50,7 @@
     {
       "path": "pages/recognition/recognition",
       "style": {
-        "navigationBarTitleText": "认读训练"
+        "navigationBarTitleText": "认读练习"
       }
     },
     {
@@ -60,7 +62,7 @@
     {
       "path": "pages/typing/typing",
       "style": {
-        "navigationBarTitleText": "键盘练习",
+        "navigationBarTitleText": "拼读练习",
         "navigationBarBackgroundColor": "#f4f1ea"
       }
     },
@@ -73,13 +75,15 @@
       {
       "path": "pages/onboarding/onboarding",
       "style": {
-        "navigationBarTitleText": "新手引导"
+        "navigationBarTitleText": "新手引导",
+        "leftWindow": false
       }
     },
     {
       "path": "pages/family/roles",
       "style": {
-        "navigationBarTitleText": "选择角色"
+        "navigationBarTitleText": "选择角色",
+        "leftWindow": false
       }
     },
     {
@@ -173,6 +177,15 @@
       }
     }
   ],
+  "leftWindow": {
+    "path": "windows/left-window.vue",
+    "style": {
+      "width": "224px"
+    },
+    "matchMedia": {
+      "minWidth": 768
+    }
+  },
   "globalStyle": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "学习助手",

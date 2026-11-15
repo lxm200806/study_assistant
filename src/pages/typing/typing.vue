@@ -1,8 +1,8 @@
 <template>
   <view class="desk">
     <view v-if="stage === 'setup'" class="setup">
-      <text class="eyebrow">键盘练习</text>
-      <text class="lede">电脑端跟打对齐 TypeWords：有空格时词间单独按空格；小程序仍用输入框。</text>
+      <text class="eyebrow">拼读练习</text>
+      <text class="lede">有键盘时跟写、听写、自测、默写。有空格时词间单独按空格；小程序仍用输入框。</text>
 
       <BookSwitcher training-type="writing" @change="onBookChange" />
 
