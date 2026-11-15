@@ -29,20 +29,14 @@ const fallbacks: Record<string, BookData> = {
   gaokao: gaokaoFallback
 }
 
-function loadBook(code: string): BookData {
-  return loadBookJson(code) || fallbacks[code]
-}
-
-export type { WordData, BookData } from './types'
-
-export const zhongkaoBook: BookData = loadBook('zhongkao')
-export const gaokaoBook: BookData = loadBook('gaokao')
-
-const mseBooks = ['mse-ket', 'mse-pet']
-  .map(code => loadBookJson(code))
-  .filter((book): book is BookData => !!book)
-
-const kewBooks = [
+/** 注册顺序：MSE → 中高考 → 四六级 → KEW */
+export const VOCABULARY_BOOK_CODES = [
+  'mse-ket',
+  'mse-pet',
+  'zhongkao',
+  'gaokao',
+  'cet4',
+  'cet6',
   'kew1200-1',
   'kew1200-2',
   'kew1200-3',
@@ -53,22 +47,42 @@ const kewBooks = [
   'kew7200-1',
   'kew7200-2',
   'kew7200-3'
-]
-  .map(code => loadBookJson(code))
-  .filter((book): book is BookData => !!book)
+] as const
 
-/** 词汇书注册表 — 新增词书只需在此追加 */
-export const vocabularyBooks: BookData[] = [
-  ...mseBooks,
-  zhongkaoBook,
-  gaokaoBook,
-  ...kewBooks
-]
+const bookCache = new Map<string, BookData>()
 
-export const getBookByCode = (code: string): BookData | undefined =>
-  vocabularyBooks.find(book => book.code === code)
+export function loadBook(code: string): BookData | undefined {
+  if (bookCache.has(code)) return bookCache.get(code)
+  const book = loadBookJson(code) || fallbacks[code]
+  if (book) bookCache.set(code, book)
+  return book
+}
+
+/** 按需加载，避免启动时一次性把全部成品 JSON 塞进内存 */
+export function getVocabularyBooks(): BookData[] {
+  return VOCABULARY_BOOK_CODES.map(code => loadBook(code)).filter((b): b is BookData => !!b)
+}
+
+/** @deprecated 兼容旧引用；请优先用 getVocabularyBooks() / loadBook() */
+export const vocabularyBooks: BookData[] = new Proxy([] as BookData[], {
+  get(_target, prop, receiver) {
+    const books = getVocabularyBooks()
+    if (prop === 'length') return books.length
+    if (prop === Symbol.iterator) return books[Symbol.iterator].bind(books)
+    if (typeof prop === 'string' && /^\d+$/.test(prop)) return books[Number(prop)]
+    const value = Reflect.get(books, prop, receiver)
+    return typeof value === 'function' ? value.bind(books) : value
+  }
+})
+
+export type { WordData, BookData } from './types'
+
+export const zhongkaoBook: BookData = loadBook('zhongkao')!
+export const gaokaoBook: BookData = loadBook('gaokao')!
+
+export const getBookByCode = (code: string): BookData | undefined => loadBook(code)
 
 export const getAllWords = (): Array<WordData & { bookCode: string }> =>
-  vocabularyBooks.flatMap(book =>
+  getVocabularyBooks().flatMap(book =>
     book.words.map(word => ({ ...word, bookCode: book.code }))
   )

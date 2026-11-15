@@ -133,6 +133,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
       bookMapData.value = (result.data as VocabularyMapData) || null
     } catch (error) {
       console.error('Failed to load book map:', error)
+      bookMapData.value = null
+      throw error
     }
   }
 
@@ -142,6 +144,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
       globalMapData.value = (result.data as VocabularyMapData) || null
     } catch (error) {
       console.error('Failed to load global map:', error)
+      globalMapData.value = null
+      throw error
     }
   }
 

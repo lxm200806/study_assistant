@@ -55,6 +55,9 @@ export interface MapWordEntry {
   wordId: string
   word: string
   meaning: string
+  phonetic?: string | null
+  phoneticUk?: string | null
+  phoneticUs?: string | null
   contentType: string | null
   topic: string | null
   tags: string[]
@@ -111,14 +114,30 @@ export const CONTENT_TYPE_COLORS: Record<string, string> = {
 }
 
 export const TOPIC_LABELS: Record<string, string> = {
-  'daily-life': '日常生活',
-  school: '学校学习',
+  daily: '日常生活',
+  education: '教育学习',
+  work: '工作职场',
   nature: '自然动物',
-  science: '科学技术',
+  science: '科学',
+  technology: '科技',
   travel: '旅行交通',
   health: '健康医疗',
-  entertainment: '娱乐文艺',
-  abstract: '抽象概念',
-  society: '社会政治',
-  business: '商业经济'
+  emotion: '情感心理',
+  thinking: '思维认知',
+  society: '社会',
+  government: '政治政府',
+  economy: '经济商业',
+  arts: '艺术娱乐',
+  media: '媒体传播',
+  city: '城市生活',
+  environment: '环境',
+  history: '历史',
+  sport: '体育运动',
+  uncategorized: '未分类',
+  // legacy
+  'daily-life': '日常生活',
+  school: '学校学习',
+  entertainment: '艺术娱乐',
+  abstract: '思维认知',
+  business: '经济商业'
 }

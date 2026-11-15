@@ -37,7 +37,12 @@ export async function getBookProgress(userId: string, bookCode: string): Promise
   const progress = await prisma.bookStudyProgress.findUnique({
     where: { learnerId_bookId: { learnerId: userId, bookId: book.id } }
   })
-  const cyclePracticed = progress?.practicedWordIds.length || 0
+  const cycleSet = new Set(progress?.practicedWordIds || [])
+  // 全局已练过的词视为本书也已覆盖，避免 KET→PET 重复「新学」
+  for (const [wordId, mastery] of aggregated) {
+    if (mastery.practiced) cycleSet.add(wordId)
+  }
+  const cyclePracticed = cycleSet.size
 
   return {
     bookCode,
@@ -120,13 +125,19 @@ function computeSmartScore(
   const typeStat = getTypeStat(statsMap, bvWordId, trainingType)
   const now = new Date()
   let score = getPriorityScore(aggregated, inCycle, typeStat)
+  const due = typeStat?.due != null && typeStat.due.getTime() <= now.getTime()
 
-  if (typeStat?.due && typeStat.due.getTime() <= now.getTime()) {
-    score += 2000 + Math.min(500, (now.getTime() - typeStat.due.getTime()) / 3600000)
+  if (due) {
+    score += 2000 + Math.min(500, (now.getTime() - typeStat!.due!.getTime()) / 3600000)
   }
 
-  if (!inCycle) score += 800
-  if (!aggregated.practiced) score += 600
+  // 生词优先；其它书已学过且未到期 → 大幅降权，不当新学刷
+  if (!aggregated.practiced) {
+    score += 600
+    if (!inCycle) score += 800
+  } else if (!due) {
+    score -= 1500
+  }
 
   return score + Math.random() * 10
 }
@@ -167,11 +178,16 @@ export async function getSessionWords(
   }
 
   const cycleSet = new Set(progress.practicedWordIds)
+  // 全局已练 = 跨书已学过，覆盖/新学时视同本轮已勾选
+  const coveredSet = new Set(cycleSet)
+  for (const [wordId, mastery] of aggregated) {
+    if (mastery.practiced) coveredSet.add(wordId)
+  }
 
   if (mode === 'smart') {
     const scored = bookWords.map(bv => {
       const mastery = aggregated.get(bv.wordId)!
-      const inCycle = cycleSet.has(bv.wordId)
+      const inCycle = coveredSet.has(bv.wordId)
       return {
         bv,
         score: computeSmartScore(bv.wordId, statsMap, mastery, inCycle, trainingType)
@@ -201,7 +217,7 @@ export async function getSessionWords(
         .filter(bv => !dueIds.has(bv.wordId))
         .map(bv => ({
           bv,
-          score: computeScore(bv.wordId, statsMap, aggregated.get(bv.wordId)!, cycleSet.has(bv.wordId), 'weak', trainingType)
+          score: computeScore(bv.wordId, statsMap, aggregated.get(bv.wordId)!, coveredSet.has(bv.wordId), 'weak', trainingType)
         }))
         .sort((a, b) => b.score - a.score)
       selectedBookWords = [
@@ -218,32 +234,66 @@ export async function getSessionWords(
     }
   }
 
-  const scored = bookWords.map(bv => {
-    const mastery = aggregated.get(bv.wordId)!
-    const inCycle = cycleSet.has(bv.wordId)
-    let score = computeScore(bv.wordId, statsMap, mastery, inCycle, mode, trainingType)
-
-    if (mode === 'coverage' && inCycle) {
-      score -= 500
-    }
-
-    return { bv, score, mastery }
+  // coverage：新学只抽「全局未练」；缺口再用到期复习补，避免 KET 词在 PET 当生词
+  const newLearning = bookWords.filter(bv => !aggregated.get(bv.wordId)!.practiced)
+  const dueReview = bookWords.filter(bv => {
+    if (!aggregated.get(bv.wordId)!.practiced) return false
+    const typeStat = getTypeStat(statsMap, bv.wordId, trainingType)
+    return typeStat?.due != null && typeStat.due.getTime() <= now.getTime()
   })
 
-  scored.sort((a, b) => b.score - a.score)
+  const scoredNew = newLearning
+    .map(bv => ({
+      bv,
+      score: computeScore(
+        bv.wordId,
+        statsMap,
+        aggregated.get(bv.wordId)!,
+        coveredSet.has(bv.wordId),
+        mode,
+        trainingType
+      ) + (coveredSet.has(bv.wordId) ? -500 : 800)
+    }))
+    .sort((a, b) => b.score - a.score)
 
-  const unpracticedInCycle = bookWords.filter(bv => !cycleSet.has(bv.wordId))
-  let selectedBookWords = scored.slice(0, count).map(s => s.bv)
+  let selectedBookWords = scoredNew.slice(0, count).map(s => s.bv)
 
-  if (mode === 'coverage' && unpracticedInCycle.length > 0) {
-    const needFromCycle = Math.min(count, unpracticedInCycle.length)
-    const cycleWords = unpracticedInCycle.slice(0, needFromCycle)
-    const cycleIds = new Set(cycleWords.map(bv => bv.wordId))
-    const rest = scored
-      .filter(s => !cycleIds.has(s.bv.wordId))
-      .slice(0, count - needFromCycle)
-      .map(s => s.bv)
-    selectedBookWords = [...cycleWords, ...rest]
+  if (selectedBookWords.length < count && dueReview.length > 0) {
+    const taken = new Set(selectedBookWords.map(bv => bv.wordId))
+    const scoredDue = dueReview
+      .filter(bv => !taken.has(bv.wordId))
+      .map(bv => ({
+        bv,
+        score: computeScore(bv.wordId, statsMap, aggregated.get(bv.wordId)!, true, 'review', trainingType)
+      }))
+      .sort((a, b) => b.score - a.score)
+    selectedBookWords = [
+      ...selectedBookWords,
+      ...scoredDue.slice(0, count - selectedBookWords.length).map(s => s.bv)
+    ]
+  }
+
+  // 全书几乎都学过且没有 due：才回落到弱词，避免空场
+  if (selectedBookWords.length < count) {
+    const taken = new Set(selectedBookWords.map(bv => bv.wordId))
+    const scoredRest = bookWords
+      .filter(bv => !taken.has(bv.wordId))
+      .map(bv => ({
+        bv,
+        score: computeScore(
+          bv.wordId,
+          statsMap,
+          aggregated.get(bv.wordId)!,
+          coveredSet.has(bv.wordId),
+          'weak',
+          trainingType
+        )
+      }))
+      .sort((a, b) => b.score - a.score)
+    selectedBookWords = [
+      ...selectedBookWords,
+      ...scoredRest.slice(0, count - selectedBookWords.length).map(s => s.bv)
+    ]
   }
 
   const progressInfo = await getBookProgress(userId, bookCode)

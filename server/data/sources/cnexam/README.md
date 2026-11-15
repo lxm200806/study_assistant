@@ -7,8 +7,8 @@
 | --- | --- | --- | --- |
 | `zhongkao` | 初中 | `zhongkao-glosses.json` | `books/zhongkao.json` |
 | `gaokao` | 高中 | `gaokao-glosses.json` | `books/gaokao.json` |
-| `cet4` | 四级 | `cet4-glosses.json` | 释义词典，未单独出书 |
-| `cet6` | 六级 | `cet6-glosses.json` | 释义词典，未单独出书 |
+| `cet4` | 四级 | `cet4-glosses.json` | `books/cet4.json`（`npm run build:cet-books`） |
+| `cet6` | 六级 | `cet6-glosses.json` | `books/cet6.json`（`npm run build:cet-books`） |
 
 四本词表都在对应 `*-glosses.json`（中文、音标、英文释义、例句），不再保留 txt。
 

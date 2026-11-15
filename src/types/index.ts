@@ -1,3 +1,11 @@
+export interface VocabularyExampleItem {
+  en: string
+  zh?: string
+  role: 'basic' | 'exam' | 'sense'
+  senseKey?: string
+  source?: string
+}
+
 export interface Vocabulary {
   id: string
   word: string
@@ -7,11 +15,15 @@ export interface Vocabulary {
   image?: string
   /** 是否有配图（简单词 true，复杂词 false） */
   visual?: boolean
-    example?: string
+  example?: string
   examples?: string[]
+  /** 带角色的例句：basic / exam / sense */
+  exampleItems?: VocabularyExampleItem[]
   englishMeaning?: string
   contentType?: string
   topic?: string
+  topics?: string[]
+  cefr?: string
   tags?: string[]
   senseKey?: string
   senseLabel?: string

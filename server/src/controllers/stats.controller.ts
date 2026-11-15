@@ -23,7 +23,8 @@ export async function getGlobalMapHandler(req: Request, res: Response) {
   try {
     const userId = req.learnerId
     if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
-    const limit = Math.min(Math.max(parseInt(req.query.limit as string) || 500, 1), 2000)
+    // Global atlas = all books' unique words; allow a large page for desktop 图鉴
+    const limit = Math.min(Math.max(parseInt(req.query.limit as string) || 8000, 1), 12000)
     const data = await getGlobalMap(userId, limit)
     res.status(200).json({ success: true, data })
   } catch (error) {

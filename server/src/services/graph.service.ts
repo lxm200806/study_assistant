@@ -18,6 +18,9 @@ export interface MapWordEntry {
   wordId: string
   word: string
   meaning: string
+  phonetic?: string | null
+  phoneticUk?: string | null
+  phoneticUs?: string | null
   contentType: ContentType | null
   topic: TopicCategory | null
   tags: string[]
@@ -76,10 +79,11 @@ export interface GroupedMapWordEntry extends MapWordEntry {
 /* ─── Helpers ─── */
 
 async function loadStatsMap(userId: string, wordIds: string[]): Promise<Map<string, WordStatEntry[]>> {
+  const map = new Map<string, WordStatEntry[]>()
+  if (!wordIds.length) return map
   const stats = await prisma.vocabularyStat.findMany({
     where: { learnerId: userId, wordId: { in: wordIds } }
   })
-  const map = new Map<string, WordStatEntry[]>()
   for (const stat of stats) {
     const list = map.get(stat.wordId) || []
     list.push(statToWordEntry(stat))
@@ -176,9 +180,47 @@ interface WordRow {
   id: string
   word: string
   meaning: string
+  phonetic?: string | null
+  phoneticUk?: string | null
+  phoneticUs?: string | null
   contentType: string | null
   topic: string | null
   tags: string[]
+}
+
+function emptyAggregated(wordId: string): NonNullable<ReturnType<typeof aggregateWordMastery>> {
+  return {
+    wordId,
+    mastery: 0,
+    practiced: false,
+    practiceCount: 0,
+    byType: {},
+    lastPractice: null
+  }
+}
+
+function toWordRow(word: {
+  id: string
+  word: string
+  meaning: string
+  phonetic?: string | null
+  phoneticUk?: string | null
+  phoneticUs?: string | null
+  contentType?: string | null
+  topic?: string | null
+  tags?: string[] | null
+}): WordRow {
+  return {
+    id: word.id,
+    word: word.word,
+    meaning: word.meaning,
+    phonetic: word.phonetic || null,
+    phoneticUk: word.phoneticUk || null,
+    phoneticUs: word.phoneticUs || null,
+    contentType: word.contentType || null,
+    topic: word.topic || null,
+    tags: word.tags || []
+  }
 }
 
 function toMapWord(word: WordRow, aggregated: NonNullable<ReturnType<typeof aggregateWordMastery>>): MapWordEntry {
@@ -187,6 +229,9 @@ function toMapWord(word: WordRow, aggregated: NonNullable<ReturnType<typeof aggr
     wordId: word.id,
     word: word.word,
     meaning: word.meaning,
+    phonetic: word.phonetic || null,
+    phoneticUk: word.phoneticUk || null,
+    phoneticUs: word.phoneticUs || null,
     contentType: (word.contentType as ContentType) || null,
     topic: (word.topic as TopicCategory) || null,
     tags: word.tags || [],
@@ -214,7 +259,7 @@ export async function getBookMap(userId: string, bookCode: string) {
   const aggregated = aggregateBookWordStats(wordIds, statsMap)
 
   const words: MapWordEntry[] = bookWords.map(bv =>
-    toMapWord(bv.word, aggregated.get(bv.wordId)!)
+    toMapWord(toWordRow(bv.word), aggregated.get(bv.wordId) || emptyAggregated(bv.wordId))
   )
 
   const byTopic = buildTopicStats(words)
@@ -234,124 +279,61 @@ export async function getBookMap(userId: string, bookCode: string) {
 }
 
 /**
- * Global vocabulary map with multi-book grouping.
- * Each word can belong to multiple books; `groups` shows per-book mastery.
- * @param userId   - user identifier
- * @param limit    - max words returned (default: 500)
+ * Global vocabulary map = union of all books' words (deduped by wordId).
+ * Mastery comes from learner stats when present; otherwise unpracticed.
+ * `groups` lists which books contain each word.
  */
-export async function getGlobalMap(userId: string, limit = 500) {
-  // Step 1: fetch all stats with word data (no bookVocabulary include since no relation exists)
-  const allStats = await prisma.vocabularyStat.findMany({
-    where: { learnerId: userId },
-    include: { word: true },
-    orderBy: { wordId: 'asc' }
+export async function getGlobalMap(userId: string, limit = 8000) {
+  const bvRows = await prisma.bookVocabulary.findMany({
+    include: {
+      word: true,
+      book: { select: { code: true, name: true } }
+    },
+    orderBy: [{ bookId: 'asc' }, { sortOrder: 'asc' }]
   })
 
-  // Step 2: collect unique wordIds for book lookup
-  const uniqueWordIds = [...new Set(allStats.map(s => s.wordId))]
-
-  // Step 3: fetch book associations for these words (one additional query)
-  let bookAssociations: Array<{ wordId: string; bookCode: string; bookName: string }> = []
-  if (uniqueWordIds.length > 0) {
-    const bvRows = await prisma.bookVocabulary.findMany({
-      where: { wordId: { in: uniqueWordIds } },
-      include: { book: { select: { code: true, name: true } } }
-    })
-    bookAssociations = bvRows.map(bv => ({
-      wordId: bv.wordId,
-      bookCode: bv.book.code,
-      bookName: bv.book.name
-    }))
-  }
-
-  // Step 4: build lookup maps
+  const wordDataMap = new Map<string, WordRow>()
   const wordGroupMap = new Map<string, WordBookGroup[]>()
-  for (const assoc of bookAssociations) {
-    if (!wordGroupMap.has(assoc.wordId)) wordGroupMap.set(assoc.wordId, [])
-    // deduplicate by bookCode
-    const groups = wordGroupMap.get(assoc.wordId)!
-    if (!groups.find(g => g.bookCode === assoc.bookCode)) {
+
+  for (const bv of bvRows) {
+    if (!bv.word) continue
+    const wid = bv.wordId
+    if (!wordDataMap.has(wid)) {
+      wordDataMap.set(wid, toWordRow(bv.word))
+    }
+    const groups = wordGroupMap.get(wid) || []
+    if (!groups.find(g => g.bookCode === bv.book.code)) {
       groups.push({
-        bookCode: assoc.bookCode,
-        bookName: assoc.bookName,
-        mastery: 0, // will be filled below from stats
+        bookCode: bv.book.code,
+        bookName: bv.book.name,
+        mastery: 0,
         practiced: false,
         practiceCount: 0
       })
+      wordGroupMap.set(wid, groups)
     }
   }
 
-  // Step 5: aggregate by wordId (single O(n) pass over allStats)
-  const wordStatsAll = new Map<string, WordStatEntry[]>()
-  const wordDataMap = new Map<string, WordRow>()
-  const statsToBookGroup = new Map<string, { mastery: number; practiced: boolean; practiceCount: number }>()
+  const uniqueWordIds = [...wordDataMap.keys()]
+  const statsMap = await loadStatsMap(userId, uniqueWordIds)
+  const aggregatedMap = aggregateBookWordStats(uniqueWordIds, statsMap)
 
-  for (const stat of allStats) {
-    const wid = stat.wordId
-
-    // collect all stats entries per word
-    const entries = wordStatsAll.get(wid) || []
-    entries.push(statToWordEntry(stat))
-    wordStatsAll.set(wid, entries)
-
-    // store word data (first occurrence wins)
-    if (!wordDataMap.has(wid) && stat.word) {
-      wordDataMap.set(wid, {
-        id: stat.word.id,
-        word: stat.word.word,
-        meaning: stat.word.meaning,
-        contentType: stat.word.contentType,
-        topic: stat.word.topic,
-        tags: stat.word.tags || []
-      })
-    }
-
-    // Track the "best" book group for this stat (highest mastery)
-    const bestGroup = wordGroupMap.get(wid)?.[0]
-    if (bestGroup) {
-      const key = `${wid}:${bestGroup.bookCode}`
-      const existing = statsToBookGroup.get(key)
-      if (!existing || stat.mastery > existing.mastery) {
-        statsToBookGroup.set(key, {
-          mastery: stat.mastery,
-          practiced: stat.practiceCount > 0,
-          practiceCount: stat.practiceCount
-        })
-      }
+  // Fill per-book group mastery from the learner's overall word mastery
+  // (stats are per word, not per book — same mastery shared across books)
+  for (const [wid, groups] of wordGroupMap) {
+    const agg = aggregatedMap.get(wid) || emptyAggregated(wid)
+    for (const g of groups) {
+      g.mastery = agg.mastery
+      g.practiced = agg.practiced
+      g.practiceCount = agg.practiceCount
     }
   }
 
-  // Update book groups with actual mastery values from stats
-  for (const [key, val] of statsToBookGroup) {
-    const [wid, bookCode] = key.split(':')
-    const groups = wordGroupMap.get(wid)
-    if (groups) {
-      const g = groups.find(bg => bg.bookCode === bookCode)
-      if (g) { Object.assign(g, val) }
-    }
-  }
-
-  // Step 6: aggregate mastery per-word (O(n) single pass)
-  interface WordEntry {
-    wordData: WordRow
-    aggregated: NonNullable<ReturnType<typeof aggregateWordMastery>>
-  }
-  const wordsMap = new Map<string, WordEntry>()
-
-  for (const [wordId, entries] of wordStatsAll) {
-    const agg = aggregateWordMastery(entries)
-    if (!agg || !wordDataMap.has(wordId)) continue
-
-    const existing = wordsMap.get(wordId)
-    if (!existing || agg.mastery > existing.aggregated.mastery) {
-      wordsMap.set(wordId, { wordData: wordDataMap.get(wordId)!, aggregated: agg })
-    }
-  }
-
-  // Step 7: build output array (with groups, truncated to limit)
-  const words: GroupedMapWordEntry[] = [...wordsMap.entries()]
-    .slice(0, limit)
-    .map(([wordId, { wordData: wd, aggregated }]) => {
+  const words: GroupedMapWordEntry[] = uniqueWordIds
+    .slice(0, Math.max(1, limit))
+    .map((wordId) => {
+      const wd = wordDataMap.get(wordId)!
+      const aggregated = aggregatedMap.get(wordId) || emptyAggregated(wordId)
       const entry = toMapWord(wd, aggregated)
       const groups = wordGroupMap.get(wordId)?.sort((a, b) => b.mastery - a.mastery)
       return { ...entry, groups } as GroupedMapWordEntry

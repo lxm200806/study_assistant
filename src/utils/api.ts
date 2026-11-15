@@ -265,10 +265,11 @@ export const bookAPI = {
 export const statsAPI = {
   bookMap: async (code: string, type?: string) => {
     const typeQuery = type ? `?type=${type}` : ''
-    return request(`/stats/book/${code}/map${typeQuery}`, 'GET')
+    // Mounted on /api/vocab (see server vocab.routes + app.ts)
+    return request(`/vocab/maps/book/${encodeURIComponent(code)}${typeQuery}`, 'GET')
   },
   globalMap: async () => {
-    return request('/stats/global/map', 'GET')
+    return request('/vocab/maps/global?limit=8000', 'GET')
   },
   daily: async () => {
     return request('/stats/daily', 'GET')

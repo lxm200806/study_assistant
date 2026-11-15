@@ -44,6 +44,22 @@ const BOOKS: BookMeta[] = [
     wordCount: 3685
   },
   {
+    id: 'cet4',
+    code: 'cet4',
+    name: '大学英语四级',
+    description: '大学英语四级词汇',
+    level: 'CET-4',
+    wordCount: 4543
+  },
+  {
+    id: 'cet6',
+    code: 'cet6',
+    name: '大学英语六级',
+    description: '大学英语六级词汇',
+    level: 'CET-6',
+    wordCount: 3991
+  },
+  {
     id: 'kew1200-1',
     code: 'kew1200-1',
     name: '1200高频词 1',

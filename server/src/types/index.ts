@@ -56,6 +56,14 @@ export interface TokenResponse {
   }
 }
 
+export interface VocabularyExampleItem {
+  en: string
+  zh?: string
+  role: 'basic' | 'exam' | 'sense'
+  senseKey?: string
+  source?: string
+}
+
 export interface Vocabulary {
   id: string
   word: string
@@ -65,7 +73,13 @@ export interface Vocabulary {
   visual?: boolean
   example?: string
   examples?: string[]
+  exampleItems?: VocabularyExampleItem[]
   englishMeaning?: string
+  contentType?: string
+  topic?: string
+  topics?: string[]
+  cefr?: string
+  tags?: string[]
   senseKey?: string
   senseLabel?: string
 }

@@ -1,4 +1,5 @@
 import type { ContentType, TopicCategory } from '../vocabulary/types'
+import { normalizeTopic } from './index'
 
 export interface WordTaxonomy {
   contentType: ContentType
@@ -172,26 +173,19 @@ export function resolveWordTaxonomy(
   word: string,
   overrides?: Partial<WordTaxonomy>
 ): WordTaxonomy {
-  if (overrides?.contentType && overrides?.topic) {
-    return {
-      contentType: overrides.contentType,
-      topic: overrides.topic,
-      tags: overrides.tags || []
-    }
-  }
-
   const key = word.toLowerCase()
-  if (WORD_TAGS[key]) {
-    return { ...WORD_TAGS[key], tags: overrides?.tags || WORD_TAGS[key].tags }
-  }
+  const fromTable = WORD_TAGS[key]
 
-  if (FUNCTION_WORDS.has(key)) {
-    return { contentType: 'function', topic: 'abstract', tags: overrides?.tags }
-  }
+  let contentType: ContentType =
+    overrides?.contentType ||
+    fromTable?.contentType ||
+    (FUNCTION_WORDS.has(key) ? 'function' : 'non-fiction')
 
-  return {
-    contentType: overrides?.contentType || 'non-fiction',
-    topic: overrides?.topic || 'abstract',
-    tags: overrides?.tags
-  }
+  let topic: TopicCategory = normalizeTopic(
+    overrides?.topic || fromTable?.topic || (FUNCTION_WORDS.has(key) ? 'thinking' : 'uncategorized')
+  )
+
+  const tags = overrides?.tags || fromTable?.tags
+
+  return { contentType, topic, tags }
 }

@@ -27,7 +27,10 @@
     {
       "path": "pages/vocabulary-map/vocabulary-map",
       "style": {
-        "navigationBarTitleText": "图谱"
+        "navigationBarTitleText": "图鉴",
+        "navigationBarBackgroundColor": "#f6f1e7",
+        "backgroundColor": "#f6f1e7",
+        "navigationBarTextStyle": "black"
       }
     },
     {

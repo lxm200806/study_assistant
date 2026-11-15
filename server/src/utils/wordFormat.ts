@@ -1,4 +1,6 @@
 import type { Vocabulary } from '../types'
+import type { WordExample } from '../data/vocabulary/types'
+import { normalizeTopic } from '../data/taxonomy'
 
 export type MeaningType = 'chinese' | 'english'
 
@@ -54,6 +56,11 @@ export function bookWordExamples(bv: {
   return real.length ? real : unique
 }
 
+function cefrFromTags(tags?: string[]): string | undefined {
+  const hit = (tags || []).find(t => t.startsWith('cefr:'))
+  return hit ? hit.slice(5) : undefined
+}
+
 export function formatWordForClient(word: {
   id: string
   word: string
@@ -64,18 +71,26 @@ export function formatWordForClient(word: {
   exampleSentence?: string | null
   example?: string
   examples?: string[]
+  exampleItems?: WordExample[]
   contentType?: string | null
   topic?: string | null
+  topics?: string[]
+  cefr?: string | null
   tags?: string[]
   senseKey?: string | null
   senseLabel?: string | null
-}): Vocabulary & { contentType?: string; topic?: string; tags?: string[]; senseKey?: string; senseLabel?: string; examples?: string[] } {
+}): Vocabulary {
   const image = word.imageUrl || undefined
+  const exampleItems = word.exampleItems
   const examples = word.examples?.length
     ? word.examples
-    : word.exampleSentence
-      ? [word.exampleSentence]
-      : undefined
+    : exampleItems?.length
+      ? exampleItems.map(e => e.en).filter(Boolean)
+      : word.exampleSentence
+        ? [word.exampleSentence]
+        : undefined
+  const topic = word.topic ? normalizeTopic(word.topic) : undefined
+  const topics = (word.topics?.length ? word.topics : topic ? [topic] : undefined)?.map(normalizeTopic)
   return {
     id: word.id,
     word: word.word,
@@ -86,8 +101,11 @@ export function formatWordForClient(word: {
     visual: !!image,
     example: word.example || word.exampleSentence || examples?.[0] || undefined,
     examples,
+    exampleItems,
     contentType: word.contentType || undefined,
-    topic: word.topic || undefined,
+    topic,
+    topics,
+    cefr: word.cefr || cefrFromTags(word.tags) || undefined,
     tags: word.tags || [],
     senseKey: word.senseKey || undefined,
     senseLabel: word.senseLabel || undefined
@@ -114,17 +132,27 @@ export function formatBookWord(
       senseLabel?: string | null
     }
   },
-  options?: { seed?: string; rotate?: boolean }
+  options?: { seed?: string; rotate?: boolean; exampleItems?: WordExample[]; topics?: string[]; cefr?: string }
 ) {
   const examples = bookWordExamples(bv)
   const example = options?.rotate && examples.length && options.seed
     ? pickRotatedItem(examples, options.seed)
     : examples[0]
+  const exampleItems =
+    options?.exampleItems ||
+    examples.map((en, index) => ({
+      en,
+      role: (index === 0 ? 'basic' : 'exam') as WordExample['role'],
+      source: index === 0 ? 'book' : 'book'
+    }))
   return formatWordForClient({
     ...bv.word,
     meaning: bv.meaning?.trim() || bv.word.meaning,
     englishMeaning: bv.englishMeaning?.trim() || bv.word.englishMeaning,
     example,
-    examples
+    examples,
+    exampleItems,
+    topics: options?.topics || (bv.word.topic ? [bv.word.topic] : undefined),
+    cefr: options?.cefr
   })
 }
