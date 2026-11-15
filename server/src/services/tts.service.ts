@@ -27,19 +27,53 @@ function cacheFilePath(text: string, accent: TtsAccent): string {
   return path.join(CACHE_DIR, `h_${hash}${suffix}`)
 }
 
-async function synthesizeToFile(text: string, filePath: string, voice: string): Promise<void> {
+async function fetchYoudaoAudio(text: string, accent: TtsAccent): Promise<Buffer> {
+  const type = accent === 'uk' ? 1 : 2
+  const url = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(text.trim())}&type=${type}`
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 8000)
   try {
-    const tts = new EdgeTTS(text.trim(), voice, { rate: '-5%' })
-    const result = await tts.synthesize()
-    const buffer = Buffer.from(await result.audio.arrayBuffer())
-    if (buffer.length === 0) {
-      throw new Error('TTS_SYNTHESIS_FAILED')
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        Referer: 'https://www.youdao.com/'
+      }
+    })
+    if (!res.ok) throw new Error('TTS_SYNTHESIS_FAILED')
+    const buffer = Buffer.from(await res.arrayBuffer())
+    if (buffer.length < 200) throw new Error('TTS_SYNTHESIS_FAILED')
+    return buffer
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+async function synthesizeEdge(text: string, voice: string): Promise<Buffer> {
+  const tts = new EdgeTTS(text.trim(), voice, { rate: '-5%' })
+  const result = await Promise.race([
+    tts.synthesize(),
+    new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error('TTS_SYNTHESIS_FAILED')), 10000)
+    )
+  ])
+  const buffer = Buffer.from(await result.audio.arrayBuffer())
+  if (buffer.length === 0) throw new Error('TTS_SYNTHESIS_FAILED')
+  return buffer
+}
+
+async function synthesizeToFile(text: string, filePath: string, voice: string, accent: TtsAccent): Promise<void> {
+  try {
+    let buffer: Buffer
+    try {
+      // Prefer Youdao (same as TypeWords) — Edge TTS often hangs when blocked
+      buffer = await fetchYoudaoAudio(text, accent)
+    } catch {
+      buffer = await synthesizeEdge(text, voice)
     }
     await fs.promises.writeFile(filePath, buffer)
-  } catch (error) {
-    if (error instanceof Error && error.message === 'TTS_SYNTHESIS_FAILED') {
-      throw error
-    }
+  } catch {
     throw new Error('TTS_SYNTHESIS_FAILED')
   }
 }
@@ -60,7 +94,7 @@ export async function getWordAudioPath(word: string, accent: TtsAccent = 'us'): 
   const existing = pendingJobs.get(key)
   if (existing) return existing
 
-  const job = synthesizeToFile(normalized, filePath, voiceForAccent(accent))
+  const job = synthesizeToFile(normalized, filePath, voiceForAccent(accent), accent)
     .then(() => filePath)
     .finally(() => pendingJobs.delete(key))
 

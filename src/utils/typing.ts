@@ -12,6 +12,7 @@ export const DEFAULT_SHORTCUTS: Record<ShortcutAction, string> = {
 
 const SHORTCUT_KEY = 'typingShortcuts'
 const SOUND_KEY = 'typingKeySound'
+const AUTO_SPEAK_KEY = 'typingAutoSpeak'
 
 export function normalizeTyped(text: string): string {
   return text
@@ -70,6 +71,18 @@ export function loadKeySound(): boolean {
 
 export function saveKeySound(enabled: boolean) {
   uni.setStorageSync(SOUND_KEY, enabled ? '1' : '0')
+}
+
+/** Default on — speak each new word/sentence like TypeWords wordSound */
+export function loadAutoSpeak(): boolean {
+  const saved = uni.getStorageSync(AUTO_SPEAK_KEY)
+  if (saved === '0' || saved === false) return false
+  if (saved === '1' || saved === true) return true
+  return true
+}
+
+export function saveAutoSpeak(enabled: boolean) {
+  uni.setStorageSync(AUTO_SPEAK_KEY, enabled ? '1' : '0')
 }
 
 let clickContext: AudioContext | null = null

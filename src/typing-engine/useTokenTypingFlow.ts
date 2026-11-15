@@ -13,6 +13,7 @@ export interface TokenTypingFlowOptions {
   /** TypeWords default: true — skip symbols/numbers */
   ignoreSymbol?: boolean
   keySound?: boolean
+  getKeySound?: () => boolean
   onComplete: (payload: { typed: string; correct: boolean }) => void
   onWrong?: () => void
 }
@@ -49,7 +50,11 @@ export function useTokenTypingFlow(options: TokenTypingFlowOptions) {
   }
 
   function playKey() {
-    if (options.keySound !== false) playTypingKeyboard()
+    const on =
+      typeof options.getKeySound === 'function'
+        ? options.getKeySound() !== false
+        : options.keySound !== false
+    if (on) playTypingKeyboard()
   }
 
   function fillPrevious(endIndex: number) {
@@ -174,6 +179,7 @@ export function useTokenTypingFlow(options: TokenTypingFlowOptions) {
       if (state.isSpace) {
         if (e.code === 'Space') {
           next()
+          playKey()
         } else {
           // TypeWords: skip required space and feed this key into next word
           next()
@@ -191,7 +197,10 @@ export function useTokenTypingFlow(options: TokenTypingFlowOptions) {
         if (!isRight) {
           if (word.type === TokenType.Word) options.onWrong?.()
           state.wrong = letter
+          // Wrong = beep only (TypeWords word mode). Do not also play key click.
           playTypingBeep()
+        } else {
+          playKey()
         }
 
         // TypeWords：错字（含空格）也写入并前进，空格用红色 Space 占位
@@ -206,7 +215,6 @@ export function useTokenTypingFlow(options: TokenTypingFlowOptions) {
         }
       }
 
-      playKey()
       e.preventDefault()
     } finally {
       busy = false

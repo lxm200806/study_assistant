@@ -47,6 +47,7 @@ import { computed, onUnmounted, watch } from 'vue'
 import TypingSpace from './TypingSpace.vue'
 import { useTokenTypingFlow } from '@/typing-engine/useTokenTypingFlow'
 import type { TypingToken } from '@/typing-engine/parse-tokens'
+import { unlockTypingAudio } from '@/typing-engine/sounds'
 import { isBrowserH5 } from '@/utils/audio-recording'
 
 const props = withDefaults(
@@ -74,7 +75,8 @@ const flow = useTokenTypingFlow({
   getTarget: () => props.target,
   ignoreCase: true,
   ignoreSymbol: true,
-  keySound: props.keySound,
+  // getter so settings toggle stays live (do not snapshot at setup)
+  getKeySound: () => props.keySound,
   onComplete: payload => emit('complete', payload),
   onWrong: () => emit('wrong')
 })
@@ -137,6 +139,7 @@ function currentSegments(word: TypingToken) {
 function onKeyDown(event: KeyboardEvent) {
   if (!props.active || !isBrowserH5()) return
   if (event.isComposing || event.altKey || event.ctrlKey || event.metaKey) return
+  unlockTypingAudio()
   onTyping(event)
 }
 

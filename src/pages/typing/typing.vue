@@ -157,14 +157,18 @@
 
       <view class="panel">
         <text class="panel-title">快捷键</text>
-        <text class="hint">练习时按住 Alt。点按某一项后按一个字母即可更换。</text>
+        <text class="hint">Mac 用 Option ⌥（或 Control）；Windows 用 Alt。点按某一项后按一个字母即可更换。</text>
         <view v-for="item in shortcutRows" :key="item.action" class="saved-row" @tap="capturing = item.action">
           <text>{{ item.label }}</text>
-          <text class="keycap">{{ capturing === item.action ? '按一个键' : 'Alt+' + shortcuts[item.action].toUpperCase() }}</text>
+          <text class="keycap">{{ capturing === item.action ? '按一个键' : '⌥/Ctrl/Alt+' + shortcuts[item.action].toUpperCase() }}</text>
         </view>
         <view class="saved-row" @tap="toggleSound">
           <text>按键轻响</text>
           <text class="keycap">{{ keySound ? '开' : '关' }}</text>
+        </view>
+        <view class="saved-row" @tap="toggleAutoSpeak">
+          <text>自动发音</text>
+          <text class="keycap">{{ autoSpeak ? '开' : '关' }}</text>
         </view>
       </view>
     </view>
@@ -194,19 +198,19 @@
             v-if="lane === 'words' && wordMode === 'recall' && !typingShowResult"
             class="big-word meaning"
           >{{ currentWord?.meaning }}</text>
-          <!-- 有空格：TypeWords 文章逻辑（词 + nextSpace 等空格） -->
+          <!-- 短文/句子：词间等空格（passage 逻辑） -->
           <TypingPassageCore
             v-if="usePassageTyping"
             :key="'p' + cardKey"
             :target="expectedText"
-            :font-size="lane === 'article' ? 32 : 44"
+            :font-size="32"
             :active="stage === 'practice' && !committing"
             :key-sound="keySound"
-            :is-dictation="dictationMode || (lane === 'words' && wordMode === 'recall')"
+            :is-dictation="dictationMode"
             @complete="onTypingComplete"
             @wrong="onTypingWrong"
           />
-          <!-- 无空格单词：TypeWords 单词跟打 -->
+          <!-- 单词练习（含短语）：整段跟打，空格当字符，不等词间空格 -->
           <TypingWordCore
             v-else
             :key="'w' + cardKey"
@@ -215,7 +219,7 @@
             :is-word-masked="engineMasked"
             :show-word-result="typingShowResult"
             :show-full-word="typingShowFull"
-            :font-size="52"
+            :font-size="expectedText.includes(' ') ? 40 : 52"
             :active="stage === 'practice' && !committing"
             :key-sound="keySound"
             @update:show-word-result="typingShowResult = $event"
@@ -292,8 +296,8 @@
       </view>
 
       <text class="legend">
-        <template v-if="isH5">直接键盘输入 · Backspace 回退 · 听写完成后空格核对 · Alt+{{ shortcuts.replay.toUpperCase() }} 发音 · Alt+{{ shortcuts.favorite.toUpperCase() }} 收藏</template>
-        <template v-else>Enter 提交或下一题 · Alt+{{ shortcuts.replay.toUpperCase() }} 发音 · Alt+{{ shortcuts.favorite.toUpperCase() }} 收藏 · Alt+{{ shortcuts.mastered.toUpperCase() }} 已掌握 · Alt+{{ shortcuts.hint.toUpperCase() }} 提示 · Alt+{{ shortcuts.accent.toUpperCase() }} 英美</template>
+        <template v-if="isH5">直接键盘输入 · Backspace 回退 · ⌥/Alt+{{ shortcuts.replay.toUpperCase() }} 发音 · ⌥/Alt+{{ shortcuts.favorite.toUpperCase() }} 收藏</template>
+        <template v-else>Enter 提交 · ⌥/Alt+{{ shortcuts.replay.toUpperCase() }} 发音 · ⌥/Alt+{{ shortcuts.favorite.toUpperCase() }} 收藏</template>
       </text>
     </view>
 
@@ -319,23 +323,24 @@ import BookSwitcher from '@/components/BookSwitcher.vue'
 import TypingWordCore from '@/components/typing/TypingWordCore.vue'
 import TypingPassageCore from '@/components/typing/TypingPassageCore.vue'
 import { WordPracticeType } from '@/typing-engine/types'
-import { targetNeedsTokenFlow } from '@/typing-engine/parse-tokens'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { typingAPI } from '@/utils/api'
 import { isBrowserH5 } from '@/utils/audio-recording'
 import { requireSubject } from '@/utils/subject'
-import { speakPassage, speakText } from '@/utils/tts'
+import { speakPassage, speakText, unlockTtsPlayback } from '@/utils/tts'
 import { splitTextForTts } from '@/utils/tts-text'
 import {
   answersMatch,
   liveMarks,
+  loadAutoSpeak,
   loadKeySound,
   loadShortcuts,
-  playKeyClick,
+  saveAutoSpeak,
   saveKeySound,
   saveShortcuts,
   type ShortcutAction
 } from '@/utils/typing'
+import { unlockTypingAudio } from '@/typing-engine/sounds'
 
 interface TypingWord {
   id: string
@@ -461,6 +466,7 @@ const correctCount = ref(0)
 const suspendKeys = ref(false)
 const shortcuts = ref(loadShortcuts())
 const keySound = ref(loadKeySound())
+const autoSpeak = ref(loadAutoSpeak())
 const capturing = ref<ShortcutAction | null>(null)
 const typingShowResult = ref(false)
 const typingShowFull = ref(false)
@@ -505,9 +511,8 @@ const engineMasked = computed(() => {
   if (wordMode.value === 'self') return !selfVisible.value
   return false
 })
-const usePassageTyping = computed(() => (
-  lane.value === 'article' || targetNeedsTokenFlow(expectedText.value)
-))
+/** Only article/sentence uses passage (wait-for-space). Word-lane phrases stay on word engine. */
+const usePassageTyping = computed(() => lane.value === 'article')
 const activeArticleId = ref('')
 const roundSaved = ref(false)
 const dictationMode = computed(() => (
@@ -763,8 +768,13 @@ function prepareCard() {
   committing.value = false
   cardKey.value += 1
   armSelf()
+  if (isH5) {
+    unlockTypingAudio()
+    void unlockTtsPlayback()
+  }
   if (!isH5) void focusInput()
-  if (dictationMode.value) void replay()
+  // Default: auto-speak every new card (TypeWords wordSound). Dictation always speaks.
+  if (autoSpeak.value || dictationMode.value) void replay()
 }
 
 async function startWords() {
@@ -977,17 +987,22 @@ async function removeArticle(id: string) {
 }
 
 async function replay() {
+  // Snapshot at call time — index may advance while audio loads
   const text = expectedText.value
+  const speakAccent = accent.value
+  const speakLane = lane.value
+  const token = cardKey.value
   if (!text) return
   if (!splitTextForTts(text).length) {
     toast('这一句没有可朗读的英文')
     return
   }
   try {
-    if (lane.value === 'article') await speakPassage(text, accent.value)
-    else await speakText(text, 120, accent.value)
+    if (speakLane === 'article') await speakPassage(text, speakAccent)
+    else await speakText(text, 120, speakAccent)
   } catch {
-    toast('播放失败')
+    // Superseded plays resolve quietly; only toast real failures still on this card
+    if (token === cardKey.value) toast('播放失败')
   }
 }
 
@@ -1188,6 +1203,11 @@ function toggleSound() {
   saveKeySound(keySound.value)
 }
 
+function toggleAutoSpeak() {
+  autoSpeak.value = !autoSpeak.value
+  saveAutoSpeak(autoSpeak.value)
+}
+
 function runShortcut(action: ShortcutAction) {
   if (action === 'replay') void replay()
   else if (action === 'favorite') void toggleFavorite()
@@ -1197,18 +1217,31 @@ function runShortcut(action: ShortcutAction) {
   else if (action === 'sound') toggleSound()
 }
 
+/** Mac Option produces symbols in event.key; use event.code (KeyR → r). */
+function letterFromEvent(event: KeyboardEvent): string | null {
+  if (event.code.startsWith('Key') && event.code.length === 4) {
+    return event.code.slice(3).toLowerCase()
+  }
+  if (event.code.startsWith('Digit') && event.code.length === 6) {
+    return event.code.slice(5)
+  }
+  if (/^[a-z0-9]$/i.test(event.key)) return event.key.toLowerCase()
+  return null
+}
+
 function onKeyDown(event: KeyboardEvent) {
   if (!isH5 || suspendKeys.value || event.isComposing) return
-  if (capturing.value && /^[a-z0-9]$/i.test(event.key)) {
+  const letter = letterFromEvent(event)
+  if (capturing.value && letter) {
     event.preventDefault()
-    shortcuts.value = { ...shortcuts.value, [capturing.value]: event.key.toLowerCase() }
+    shortcuts.value = { ...shortcuts.value, [capturing.value]: letter }
     saveShortcuts(shortcuts.value)
     capturing.value = null
     return
   }
-  if (event.altKey && !event.repeat && stage.value === 'practice') {
-    const key = event.key.toLowerCase()
-    const action = (Object.keys(shortcuts.value) as ShortcutAction[]).find(name => shortcuts.value[name] === key)
+  // Mac: Option = altKey. Ctrl also accepted for convenience.
+  if ((event.altKey || event.ctrlKey) && !event.metaKey && !event.repeat && stage.value === 'practice' && letter) {
+    const action = (Object.keys(shortcuts.value) as ShortcutAction[]).find(name => shortcuts.value[name] === letter)
     if (action) {
       event.preventDefault()
       runShortcut(action)
@@ -1224,13 +1257,14 @@ onShow(async () => {
 })
 
 if (isH5 && typeof window !== 'undefined') {
-  window.addEventListener('keydown', onKeyDown)
+  // capture so Option/Ctrl shortcuts work even if children listen first
+  window.addEventListener('keydown', onKeyDown, true)
 }
 
 onUnmounted(() => {
   if (selfTimer) clearTimeout(selfTimer)
   if (isH5 && typeof window !== 'undefined') {
-    window.removeEventListener('keydown', onKeyDown)
+    window.removeEventListener('keydown', onKeyDown, true)
   }
 })
 </script>

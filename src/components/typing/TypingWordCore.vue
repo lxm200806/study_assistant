@@ -66,7 +66,7 @@ import { computed, onUnmounted, ref, watch } from 'vue'
 import TypingSpace from './TypingSpace.vue'
 import { usePracticeWordTyping, type PracticeTypingSettings } from '@/typing-engine/usePracticeWordTyping'
 import { WordPlayTrigger, WordPracticeType } from '@/typing-engine/types'
-import { playTypingBeep, playTypingCorrect, playTypingKeyboard } from '@/typing-engine/sounds'
+import { playTypingBeep, playTypingCorrect, playTypingKeyboard, unlockTypingAudio } from '@/typing-engine/sounds'
 import { isBrowserH5 } from '@/utils/audio-recording'
 
 const props = withDefaults(
@@ -175,6 +175,7 @@ const tip = computed(() => {
 function onKeyDown(event: KeyboardEvent) {
   if (!props.active || !isBrowserH5()) return
   if (event.isComposing || event.altKey || event.ctrlKey || event.metaKey) return
+  unlockTypingAudio()
   if (event.key === 'Backspace') {
     event.preventDefault()
     backspace()
