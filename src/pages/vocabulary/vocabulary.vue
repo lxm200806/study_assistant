@@ -76,7 +76,7 @@
               <view class="word-title-row">
                 <text class="word-text">{{ item.word }}</text>
                 <text :class="['level-badge', `level-${getMasteryLevel(item.mastery)}`]">
-                  {{ getMasteryLabel(item.mastery) }}
+                  {{ activeTab === 'overall' ? (item.skillLabel || getMasteryLabel(item.mastery)) : getMasteryLabel(item.mastery) }}
                 </text>
               </view>
               <view class="word-stars">
@@ -92,7 +92,7 @@
               <text v-if="item.dueText" class="due-text">{{ item.dueText }}</text>
             </view>
             <view class="word-footer">
-              <text class="practice-count">练习 {{ item.count }} 次 · 正确率 {{ item.accuracy }}%</text>
+              <text class="practice-count">认识 {{ item.recognize == null ? '未练' : item.recognize + '/5' }} · 会写 {{ item.write == null ? '未练' : item.write + '/5' }}</text>
               <text class="last-practice">{{ item.lastPracticeText }}</text>
             </view>
           </view>
@@ -144,10 +144,9 @@ const userStore = useUserStore()
 const chineseCoverage = ref<any>({})
 
 const tabs = [
-  { key: 'listening', label: '听力', icon: '🎧' },
-  { key: 'speaking', label: '口语', icon: '👄' },
-  { key: 'reading', label: '认读', icon: '📖' },
-  { key: 'writing', label: '拼写', icon: '✏️' }
+  { key: 'overall', label: '总览', icon: '◎' },
+  { key: 'recognize', label: '认识', icon: '读' },
+  { key: 'write', label: '会写', icon: '写' }
 ] as const
 
 const filters = [
@@ -161,34 +160,40 @@ const filters = [
 type TabKey = typeof tabs[number]['key']
 type FilterKey = typeof filters[number]['key']
 
-const activeTab = ref<TabKey>('listening')
+const activeTab = ref<TabKey>('overall')
 const activeFilter = ref<FilterKey>('all')
 const currentPage = ref(1)
 
 const currentStats = computed(() => {
-  if (vocabStore.bookMapData) {
-    const s = vocabStore.bookMapData.summary
+  const words = vocabStore.bookMapData?.words || []
+  const rows = words.map(w => {
+    const practiced = activeTab.value === 'recognize'
+      ? w.recognize != null
+      : activeTab.value === 'write'
+        ? w.write != null
+        : w.status !== 'unpracticed'
+    const mastery = activeTab.value === 'recognize'
+      ? (w.recognize ?? 0)
+      : activeTab.value === 'write'
+        ? (w.write ?? 0)
+        : w.mastery
+    return { practiced, mastery, status: w.status }
+  })
+  if (activeTab.value === 'overall') {
     return {
-      total: s.practiced ?? (s.mastered + s.learning + s.unfamiliar),
-      mastered: s.mastered,
-      learning: s.learning,
-      weak: s.unfamiliar,
-      unpracticed: s.unpracticed
+      total: rows.filter(s => s.practiced).length,
+      mastered: rows.filter(s => s.status === 'mastered').length,
+      learning: rows.filter(s => s.status === 'learning').length,
+      weak: rows.filter(s => s.status === 'unfamiliar').length,
+      unpracticed: rows.filter(s => !s.practiced).length
     }
   }
-
-  const words = vocabStore.stats[activeTab.value]
-  const list = Object.values(words)
-  const total = list.length
-  const mastered = list.filter(w => w.mastery >= 4).length
-  const learning = list.filter(w => w.mastery >= 2 && w.mastery < 4).length
-  const weak = list.filter(w => w.mastery > 0 && w.mastery < 2).length
   return {
-    total,
-    mastered,
-    learning,
-    weak,
-    unpracticed: 0
+    total: rows.filter(s => s.practiced).length,
+    mastered: rows.filter(s => s.mastery >= 4).length,
+    learning: rows.filter(s => s.practiced && s.mastery >= 2 && s.mastery < 4).length,
+    weak: rows.filter(s => s.practiced && s.mastery < 2).length,
+    unpracticed: rows.filter(s => !s.practiced).length
   }
 })
 
@@ -198,6 +203,9 @@ interface WordListItem {
   phonetic: string
   example?: string
   mastery: number
+  recognize: number | null
+  write: number | null
+  skillLabel: string
   count: number
   accuracy: number
   lastPracticeText: string
@@ -206,34 +214,36 @@ interface WordListItem {
   weakReason: string
 }
 
+function skillScore(word: { recognize?: number | null; write?: number | null; mastery: number }, tab: TabKey) {
+  if (tab === 'recognize') return word.recognize ?? 0
+  if (tab === 'write') return word.write ?? 0
+  return word.mastery
+}
+
+function skillPracticed(word: { recognize?: number | null; write?: number | null; status: MasteryStatus }, tab: TabKey) {
+  if (tab === 'recognize') return word.recognize != null
+  if (tab === 'write') return word.write != null
+  return word.status !== 'unpracticed'
+}
+
 const allWordList = computed<WordListItem[]>(() => {
   if (!vocabStore.bookMapData?.words.length) return []
 
   return vocabStore.bookMapData.words.map(w => {
-    const localStat = vocabStore.stats[activeTab.value][w.word]
-    const apiStats = w.typeStats
-    const mastery = apiStats?.practiceCount
-      ? apiStats.mastery
-      : (w.byType[activeTab.value] ?? w.mastery)
-    const count = apiStats?.practiceCount ?? localStat?.count ?? 0
-    const accuracy = apiStats?.practiceCount
-      ? apiStats.accuracy
-      : (localStat && localStat.count > 0
-        ? Math.round((localStat.correctCount / localStat.count) * 100)
-        : 0)
+    const mastery = skillScore(w, activeTab.value)
+    const count = (w.byType.reading || 0) + (w.byType.writing || 0)
+    const accuracy = 0
 
-    let lastPracticeText = STATUS_LABELS[w.status]
+    let lastPracticeText = w.skillLabel || STATUS_LABELS[w.status]
     if (w.status === 'unpracticed') {
       lastPracticeText = '未练习'
     } else if (w.lastPractice) {
       lastPracticeText = formatTimeAgo(new Date(w.lastPractice).getTime())
-    } else if (localStat?.lastPractice) {
-      lastPracticeText = formatTimeAgo(localStat.lastPractice)
     }
 
-    const dueText = apiStats?.due ? formatDueDate(apiStats.due) : ''
-    const weakReasonLabel = apiStats?.weakReason
-      ? WEAK_REASON_LABELS[apiStats.weakReason as WeakReason]
+    const dueText = w.typeStats?.due ? formatDueDate(w.typeStats.due) : ''
+    const weakReasonLabel = w.typeStats?.weakReason
+      ? WEAK_REASON_LABELS[w.typeStats.weakReason as WeakReason]
       : ''
 
     return {
@@ -241,6 +251,9 @@ const allWordList = computed<WordListItem[]>(() => {
       meaning: w.meaning,
       phonetic: '',
       mastery,
+      recognize: w.recognize ?? null,
+      write: w.write ?? null,
+      skillLabel: w.skillLabel || '',
       count,
       accuracy,
       lastPracticeText,
@@ -252,20 +265,20 @@ const allWordList = computed<WordListItem[]>(() => {
 })
 
 const filteredList = computed(() => {
-  if (activeFilter.value === 'all') return allWordList.value
-  if (activeFilter.value === 'unpracticed') {
-    return allWordList.value.filter(item => item.status === 'unpracticed')
+  const list = allWordList.value
+  if (activeFilter.value === 'all') return list
+  if (activeTab.value === 'overall') {
+    if (activeFilter.value === 'unpracticed') return list.filter(item => item.status === 'unpracticed')
+    if (activeFilter.value === 'weak') return list.filter(item => item.status === 'unfamiliar')
+    if (activeFilter.value === 'mastered') return list.filter(item => item.status === 'mastered')
+    if (activeFilter.value === 'learning') return list.filter(item => item.status === 'learning')
+    return list
   }
-  if (activeFilter.value === 'weak') {
-    return allWordList.value.filter(item => item.status === 'unfamiliar')
-  }
-  if (activeFilter.value === 'mastered') {
-    return allWordList.value.filter(item => item.status === 'mastered')
-  }
-  if (activeFilter.value === 'learning') {
-    return allWordList.value.filter(item => item.status === 'learning')
-  }
-  return allWordList.value
+  if (activeFilter.value === 'unpracticed') return list.filter(item => !skillPracticed(item, activeTab.value))
+  if (activeFilter.value === 'mastered') return list.filter(item => item.mastery >= 4)
+  if (activeFilter.value === 'learning') return list.filter(item => skillPracticed(item, activeTab.value) && item.mastery >= 2 && item.mastery < 4)
+  if (activeFilter.value === 'weak') return list.filter(item => skillPracticed(item, activeTab.value) && item.mastery < 2)
+  return list
 })
 
 const totalPages = computed(() =>
@@ -286,14 +299,10 @@ const emptyText = computed(() => {
 })
 
 const getTypeCount = (type: string) => {
-  if (vocabStore.bookMapData) {
-    return vocabStore.bookMapData.words.filter(w => {
-      const ts = w.typeStats
-      if (ts?.practiceCount) return true
-      return (w.byType[type] ?? 0) > 0
-    }).length
-  }
-  return Object.keys(vocabStore.stats[type as TabKey]).length
+  const words = vocabStore.bookMapData?.words || []
+  if (type === 'recognize') return words.filter(w => w.recognize != null).length
+  if (type === 'write') return words.filter(w => w.write != null).length
+  return words.filter(w => w.status !== 'unpracticed').length
 }
 
 const goPage = (page: number) => {
@@ -311,12 +320,11 @@ const onBookChange = async () => {
 }
 
 const reloadMap = async () => {
-  await vocabStore.loadBookMap(vocabStore.currentBookCode, activeTab.value)
+  await vocabStore.loadBookMap(vocabStore.currentBookCode)
 }
 
 watch(activeTab, () => {
   resetPage()
-  reloadMap()
 })
 
 watch(activeFilter, () => {
@@ -331,26 +339,18 @@ const showWordDetail = (item: WordListItem) => {
 
   uni.showModal({
     title: item.word,
-    content: `${item.phonetic}\n\n${item.meaning}\n\n掌握程度: ${getMasteryLabel(item.mastery)}\n练习 ${item.count} 次，正确率 ${item.accuracy}%\n${extra ? extra + '\n\n' : ''}${item.example || ''}`,
+    content: `${item.meaning}\n\n认识 ${item.recognize == null ? '未练' : item.recognize + '/5'}\n会写 ${item.write == null ? '未练' : item.write + '/5'}\n${item.skillLabel || getMasteryLabel(item.mastery)}\n${extra ? extra + '\n' : ''}`,
     showCancel: false
   })
 }
 
 onShow(async () => {
   if (!(await requireReadySession())) return
-  if (userStore.isStudentRole) {
-    uni.switchTab({ url: '/pages/home/home' })
-    return
-  }
   applyAppShell()
 })
 
 onMounted(async () => {
   if (!(await requireReadySession())) return
-  if (userStore.isStudentRole) {
-    uni.switchTab({ url: '/pages/home/home' })
-    return
-  }
   applyAppShell()
   uni.setNavigationBarTitle({ title: userStore.isChinese ? '掌握' : '统计' })
   if (userStore.isChinese) {

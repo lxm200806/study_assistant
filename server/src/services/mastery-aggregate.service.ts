@@ -53,25 +53,73 @@ export interface WordStatEntry {
   weakReason?: WeakReason
 }
 
+export type SkillView = 'none' | 'recognize' | 'write' | 'partial' | 'mastered'
+
 export interface AggregatedWordMastery {
   wordId: string
   mastery: number
   practiced: boolean
   practiceCount: number
-  byType: Partial<Record<WordType, number>>
+  byType: Partial<Record<WordType | 'recognize' | 'write', number>>
+  recognize: number | null
+  write: number | null
+  skill: SkillView
+  skillLabel: string
   lastPractice: Date | null
   retrievability?: number
   due?: Date | null
   fsrsState?: string
 }
 
+function practicedMastery(stat: WordStatEntry | undefined): number | null {
+  if (!stat || stat.practiceCount <= 0) return null
+  return stat.mastery
+}
+
+/** 认识 = 认读（没有认读记录时用听力兜底）。会写 = 拼写。总览取更弱的一项。 */
+export function skillSnapshot(stats: WordStatEntry[]) {
+  const reading = practicedMastery(stats.find(s => s.type === 'reading'))
+  const listening = practicedMastery(stats.find(s => s.type === 'listening'))
+  const writing = practicedMastery(stats.find(s => s.type === 'writing'))
+  const recognize = reading ?? listening
+  const write = writing
+  const recognizeOk = recognize != null && recognize >= 4
+  const writeOk = write != null && write >= 4
+
+  if (recognize == null && write == null) {
+    return { recognize, write, mastery: 0, practiced: false, skill: 'none' as SkillView, skillLabel: '未练习' }
+  }
+  if (recognizeOk && writeOk) {
+    return {
+      recognize,
+      write,
+      mastery: Math.min(recognize!, write!),
+      practiced: true,
+      skill: 'mastered' as SkillView,
+      skillLabel: '认识且会写'
+    }
+  }
+  if (recognize != null && write != null) {
+    return {
+      recognize,
+      write,
+      mastery: Math.min(recognize, write),
+      practiced: true,
+      skill: 'partial' as SkillView,
+      skillLabel: '两项都练过'
+    }
+  }
+  if (recognize != null) {
+    return { recognize, write, mastery: recognize, practiced: true, skill: 'recognize' as SkillView, skillLabel: '只会认' }
+  }
+  return { recognize, write, mastery: write!, practiced: true, skill: 'write' as SkillView, skillLabel: '只会写' }
+}
+
 export function aggregateWordMastery(stats: WordStatEntry[]): AggregatedWordMastery | null {
   if (stats.length === 0) return null
 
   const wordId = stats[0].wordId
-  const byType: Partial<Record<WordType, number>> = {}
-  let totalMastery = 0
-  let typeCount = 0
+  const byType: Partial<Record<WordType | 'recognize' | 'write', number>> = {}
   let totalPractice = 0
   let lastPractice: Date | null = null
   let lowestRetrievability = 1
@@ -80,8 +128,6 @@ export function aggregateWordMastery(stats: WordStatEntry[]): AggregatedWordMast
 
   for (const stat of stats) {
     byType[stat.type] = stat.mastery
-    totalMastery += stat.mastery
-    typeCount++
     totalPractice += stat.practiceCount
     if (stat.lastPractice && (!lastPractice || stat.lastPractice > lastPractice)) {
       lastPractice = stat.lastPractice
@@ -93,17 +139,22 @@ export function aggregateWordMastery(stats: WordStatEntry[]): AggregatedWordMast
     }
   }
 
-  const practiced = totalPractice > 0
-  const mastery = typeCount > 0 ? Math.round(totalMastery / typeCount) : 0
+  const skill = skillSnapshot(stats)
+  if (skill.recognize != null) byType.recognize = skill.recognize
+  if (skill.write != null) byType.write = skill.write
 
   return {
     wordId,
-    mastery,
-    practiced,
+    mastery: skill.mastery,
+    practiced: skill.practiced,
     practiceCount: totalPractice,
     byType,
+    recognize: skill.recognize,
+    write: skill.write,
+    skill: skill.skill,
+    skillLabel: skill.skillLabel,
     lastPractice,
-    retrievability: practiced ? lowestRetrievability : 0,
+    retrievability: skill.practiced ? lowestRetrievability : 0,
     due: earliestDue,
     fsrsState: primaryState
   }
@@ -124,6 +175,10 @@ export function aggregateBookWordStats(
       practiced: false,
       practiceCount: 0,
       byType: {},
+      recognize: null,
+      write: null,
+      skill: 'none',
+      skillLabel: '未练习',
       lastPractice: null
     })
   }

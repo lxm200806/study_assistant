@@ -414,16 +414,22 @@ const selectOption = (index: number) => {
   if (phase.value !== 'quiz' || showResult.value) return
 
   selectedOption.value = index
-  const skill = quizMode.value === 'listen' ? 'listening' : 'reading'
   isCorrect.value = options.value[index]?.id === correctChoiceId.value
   showResult.value = true
 
-  vocabStore.updateWordStats(currentWord.value?.id || '', currentWord.value?.word || '', skill, isCorrect.value)
-  vocabStore.addTrainingRecord(skill, currentWord.value?.word || '', isCorrect.value)
+  const wordId = currentWord.value?.id || ''
+  const wordText = currentWord.value?.word || ''
+  // 汉语、英语、听音都计入「认识」。听音另外留一条听力记录。
+  vocabStore.updateWordStats(wordId, wordText, 'reading', isCorrect.value)
+  vocabStore.addTrainingRecord('reading', wordText, isCorrect.value)
+  if (quizMode.value === 'listen') {
+    vocabStore.updateWordStats(wordId, wordText, 'listening', isCorrect.value)
+    vocabStore.addTrainingRecord('listening', wordText, isCorrect.value)
+  }
   recordAnswer(
     currentWord.value!,
     isCorrect.value,
-    (w) => vocabStore.getWordStats(w, skill),
+    (w) => vocabStore.getWordStats(w, 'reading'),
     'chinese'
   )
 

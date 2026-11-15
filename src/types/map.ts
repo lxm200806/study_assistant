@@ -63,6 +63,9 @@ export interface MapWordEntry {
   tags: string[]
   mastery: number
   status: MasteryStatus
+  recognize?: number | null
+  write?: number | null
+  skillLabel?: string
   lastPractice: string | null
   byType: Record<string, number>
   typeStats?: WordTypeStats

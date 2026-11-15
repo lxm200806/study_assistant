@@ -263,12 +263,11 @@ const onBookChange = async (code?: string) => {
 }
 
 const showWord = (word: MapWordEntry) => {
-  const typeDetail = Object.entries(word.byType)
-    .map(([type, score]) => `${type}: ${score}/5`)
-    .join('\n')
+  const recognize = word.recognize == null ? '未练' : `${word.recognize}/5`
+  const write = word.write == null ? '未练' : `${word.write}/5`
   uni.showModal({
     title: word.word,
-    content: `${word.meaning}\n\n掌握: ${word.mastery}/5 (${STATUS_LABELS[word.status as MasteryStatus]})\n${typeDetail || '尚未练习'}`,
+    content: `${word.meaning}\n\n认识 ${recognize}\n会写 ${write}\n${word.skillLabel || STATUS_LABELS[word.status as MasteryStatus]}`,
     showCancel: false
   })
 }
@@ -294,10 +293,6 @@ onLoad((queryParams) => {
 
 onShow(async () => {
   if (!(await requireReadySession())) return
-  if (userStore.isStudentRole) {
-    uni.switchTab({ url: '/pages/home/home' })
-    return
-  }
   enterDesktopChrome()
   uni.setNavigationBarTitle({ title: userStore.isChinese ? '覆盖' : '图鉴' })
   if (userStore.isChinese) {

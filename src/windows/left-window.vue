@@ -113,11 +113,7 @@ const mainItems = computed<RailItem[]>(() => {
         icon: 'keyboard',
         show: () => true,
         match: (path) => path.startsWith('/pages/typing/')
-      }
-    )
-  }
-  if (!student && !chinese) {
-    items.push(
+      },
       {
         key: 'atlas',
         label: '图鉴',

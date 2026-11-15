@@ -26,6 +26,9 @@ export interface MapWordEntry {
   tags: string[]
   mastery: number
   status: string
+  recognize: number | null
+  write: number | null
+  skillLabel: string
   lastPractice: string | null
   byType: Record<string, number>
   typeStats?: {
@@ -195,8 +198,19 @@ function emptyAggregated(wordId: string): NonNullable<ReturnType<typeof aggregat
     practiced: false,
     practiceCount: 0,
     byType: {},
+    recognize: null,
+    write: null,
+    skill: 'none',
+    skillLabel: '未练习',
     lastPractice: null
   }
+}
+
+function combinedStatus(aggregated: NonNullable<ReturnType<typeof aggregateWordMastery>>): string {
+  if (aggregated.skill === 'none' || !aggregated.practiced) return 'unpracticed'
+  if (aggregated.skill === 'mastered') return 'mastered'
+  if (aggregated.skill === 'partial' && aggregated.mastery < 2) return 'unfamiliar'
+  return 'learning'
 }
 
 function toWordRow(word: {
@@ -224,7 +238,6 @@ function toWordRow(word: {
 }
 
 function toMapWord(word: WordRow, aggregated: NonNullable<ReturnType<typeof aggregateWordMastery>>): MapWordEntry {
-  const status = getMasteryStatus(aggregated.mastery, aggregated.practiced)
   return {
     wordId: word.id,
     word: word.word,
@@ -236,9 +249,12 @@ function toMapWord(word: WordRow, aggregated: NonNullable<ReturnType<typeof aggr
     topic: (word.topic as TopicCategory) || null,
     tags: word.tags || [],
     mastery: aggregated.mastery,
-    status,
+    status: combinedStatus(aggregated),
     lastPractice: aggregated.lastPractice?.toISOString() || null,
-    byType: aggregated.byType as Record<string, number>
+    byType: aggregated.byType as Record<string, number>,
+    recognize: aggregated.recognize,
+    write: aggregated.write,
+    skillLabel: aggregated.skillLabel
   }
 }
 

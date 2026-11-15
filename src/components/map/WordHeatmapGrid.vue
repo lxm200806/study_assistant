@@ -56,6 +56,7 @@
         <text class="row-word">{{ word.word }}</text>
         <text class="row-ipa">{{ phoneticOf(word) }}</text>
         <text class="row-zh">{{ word.meaning || '—' }}</text>
+        <text class="row-skill">{{ word.skillLabel || '' }}</text>
         <view :class="['row-dot', statusClass(word.status)]" />
         <view
           class="speak"
@@ -309,7 +310,7 @@ onMounted(async () => {
 
 .row {
   display: grid;
-  grid-template-columns: 48px minmax(90px, 200px) minmax(0, 160px) 1fr 12px 36px;
+  grid-template-columns: 48px minmax(90px, 180px) minmax(0, 140px) 1fr auto 12px 36px;
   align-items: center;
   gap: 14px;
   padding: 6px 10px;
@@ -373,6 +374,12 @@ onMounted(async () => {
   white-space: nowrap;
 }
 
+.row-skill {
+  font-size: 12px;
+  color: #0f6e6a;
+  white-space: nowrap;
+}
+
 .row-dot {
   width: 10px;
   height: 10px;
@@ -413,7 +420,7 @@ onMounted(async () => {
 
 @media (max-width: 720px) {
   .row {
-    grid-template-columns: 44px minmax(70px, 1fr) minmax(0, 1.2fr) 10px 34px;
+    grid-template-columns: 44px minmax(70px, 1fr) minmax(0, 1.2fr) auto 10px 34px;
   }
   .row-ipa {
     display: none;

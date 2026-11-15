@@ -24,6 +24,7 @@ import {
   type TypingSource
 } from './typing-logic'
 import { cardInputFrom, scheduleCard } from './typing-schedule'
+import { practice } from './training.service'
 
 const LIST_TEXT_LIMIT = 20000
 const NAME_LIMIT = 40
@@ -364,6 +365,10 @@ export async function submitTypingAnswer(
     inWrongBook: !isCorrect,
     wrongSource: !isCorrect ? 'word' : ''
   })
+  // 跟写、自测只记在拼读方式里。默写和听写才计入「会写」。
+  if (mode === 'recall' || mode === 'dictation') {
+    await practice(learnerId, { wordId, type: 'writing', isCorrect })
+  }
   return { review, ...flags }
 }
 
