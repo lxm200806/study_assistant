@@ -2,7 +2,7 @@
   <view class="desk">
     <view v-if="stage === 'setup'" class="setup">
       <text class="eyebrow">键盘练习</text>
-      <text class="lede">在电脑上连续输入。Enter 提交，Alt 加字母做发音、收藏和提示。</text>
+      <text class="lede">电脑端跟打对齐 TypeWords：有空格时词间单独按空格；小程序仍用输入框。</text>
 
       <BookSwitcher training-type="writing" @change="onBookChange" />
 
@@ -169,7 +169,10 @@
       </view>
     </view>
 
-    <view v-else-if="stage === 'practice'" class="practice">
+    <view v-else-if="stage === 'practice'" :class="['practice', isH5 ? 'practice-h5' : '']">
+      <view class="progress-track" v-if="isH5">
+        <view class="progress-fill" :style="{ width: progressPct + '%' }" />
+      </view>
       <view class="topbar">
         <text class="top-meta">{{ progressLabel }}</text>
         <view class="accent-switch">
@@ -179,25 +182,70 @@
         <text class="top-link" @tap="finishEarly">结束</text>
       </view>
 
-      <view class="prompt">
+      <view :class="['prompt', isH5 ? 'prompt-h5' : '']">
         <text v-if="promptKicker" class="kicker">{{ promptKicker }}</text>
-        <view v-if="showSpelling && followLive" :class="['live-line', lane === 'article' ? 'sentence' : '']">
-          <text v-for="(mark, markIndex) in marks" :key="markIndex" :class="['glyph', mark.kind]">{{ mark.ch }}</text>
-        </view>
-        <text v-else-if="showSpelling" :class="['big-word', lane === 'article' ? 'sentence' : '']">{{ expectedText }}</text>
-        <text v-else-if="lane === 'words' && wordMode === 'recall'" class="big-word meaning">{{ currentWord?.meaning }}</text>
-        <view v-else-if="dictationMode" class="listen-mark" @tap="replay">
-          <text class="listen-icon">听</text>
-          <text class="listen-copy">{{ lane === 'article' ? '听这一句，再输入' : '听发音，再输入' }}</text>
-        </view>
-        <text v-else class="big-word mask">{{ maskedPrompt }}</text>
+
+        <template v-if="isH5 && expectedText">
+          <view v-if="dictationMode && !typingShowResult" class="listen-mark" @tap="replay">
+            <text class="listen-icon">听</text>
+            <text class="listen-copy">{{ lane === 'article' ? '听这一句，再键盘输入' : '听发音，再键盘输入' }}</text>
+          </view>
+          <text
+            v-if="lane === 'words' && wordMode === 'recall' && !typingShowResult"
+            class="big-word meaning"
+          >{{ currentWord?.meaning }}</text>
+          <!-- 有空格：TypeWords 文章逻辑（词 + nextSpace 等空格） -->
+          <TypingPassageCore
+            v-if="usePassageTyping"
+            :key="'p' + cardKey"
+            :target="expectedText"
+            :font-size="lane === 'article' ? 32 : 44"
+            :active="stage === 'practice' && !committing"
+            :key-sound="keySound"
+            :is-dictation="dictationMode || (lane === 'words' && wordMode === 'recall')"
+            @complete="onTypingComplete"
+            @wrong="onTypingWrong"
+          />
+          <!-- 无空格单词：TypeWords 单词跟打 -->
+          <TypingWordCore
+            v-else
+            :key="'w' + cardKey"
+            :target="expectedText"
+            :practice-type="enginePracticeType"
+            :is-word-masked="engineMasked"
+            :show-word-result="typingShowResult"
+            :show-full-word="typingShowFull"
+            :font-size="52"
+            :active="stage === 'practice' && !committing"
+            :key-sound="keySound"
+            @update:show-word-result="typingShowResult = $event"
+            @complete="onTypingComplete"
+            @wrong="onTypingWrong"
+            @notice="toast"
+          />
+        </template>
+
+        <template v-else>
+          <view v-if="showSpelling && followLive" :class="['live-line', lane === 'article' ? 'sentence' : '']">
+            <text v-for="(mark, markIndex) in marks" :key="markIndex" :class="['glyph', mark.kind]">{{ mark.ch }}</text>
+          </view>
+          <text v-else-if="showSpelling" :class="['big-word', lane === 'article' ? 'sentence' : '']">{{ expectedText }}</text>
+          <text v-else-if="lane === 'words' && wordMode === 'recall'" class="big-word meaning">{{ currentWord?.meaning }}</text>
+          <view v-else-if="dictationMode" class="listen-mark" @tap="replay">
+            <text class="listen-icon">听</text>
+            <text class="listen-copy">{{ lane === 'article' ? '听这一句，再输入' : '听发音，再输入' }}</text>
+          </view>
+          <text v-else class="big-word mask">{{ maskedPrompt }}</text>
+        </template>
+
         <text v-if="showPhonetic && phoneticLine" class="phonetic">{{ phoneticLine }}</text>
-        <text v-if="showMeaningLine" class="meaning-line">{{ meaningLine }}</text>
-        <text v-if="firstLetter" class="phonetic">首字母 {{ firstLetter }}</text>
+        <text v-if="showMeaningLine && !(isH5 && wordMode === 'recall' && !typingShowResult)" class="meaning-line">{{ meaningLine }}</text>
+        <text v-if="firstLetter && !isH5" class="phonetic">首字母 {{ firstLetter }}</text>
         <text v-if="currentWord?.wrongSource === 'sentence'" class="hint">这个词来自一句没写对的短文。</text>
       </view>
 
       <input
+        v-if="!isH5"
         class="answer"
         v-model="userInput"
         :focus="inputArmed"
@@ -208,8 +256,10 @@
       />
 
       <view class="actions">
-        <button v-if="!showResult" class="start slim" @tap="submit">提交</button>
-        <button v-else class="start slim" @tap="nextItem">下一题</button>
+        <template v-if="!isH5">
+          <button v-if="!showResult" class="start slim" @tap="submit">提交</button>
+          <button v-else class="start slim" @tap="nextItem">下一题</button>
+        </template>
         <button class="ghost slim" @tap="replay">发音</button>
         <button class="ghost slim" @tap="bumpHint">提示</button>
         <button v-if="currentWord" class="ghost slim" @tap="toggleFavorite">{{ currentWord.favorite ? '已收藏' : '收藏' }}</button>
@@ -217,7 +267,7 @@
         <button v-if="fullTranslation" class="ghost slim" @tap="showFullTranslation = !showFullTranslation">译文</button>
       </view>
 
-      <view v-if="showResult" :class="['result', isCorrect ? 'good' : 'bad']">
+      <view v-if="showResult && !isH5" :class="['result', isCorrect ? 'good' : 'bad']">
         <text class="result-title">{{ isCorrect ? '正确' : '再看一眼' }}</text>
         <text class="result-word">{{ expectedText }}</text>
         <text v-if="!isCorrect && currentWord" class="hint">已记入错词本，之后可用「错词」复习。</text>
@@ -241,7 +291,10 @@
         <text v-if="currentWord?.topic" class="aside-line">{{ currentWord.topic }}</text>
       </view>
 
-      <text class="legend">Enter 提交或下一题 · Alt+{{ shortcuts.replay.toUpperCase() }} 发音 · Alt+{{ shortcuts.favorite.toUpperCase() }} 收藏 · Alt+{{ shortcuts.mastered.toUpperCase() }} 已掌握 · Alt+{{ shortcuts.hint.toUpperCase() }} 提示 · Alt+{{ shortcuts.accent.toUpperCase() }} 英美</text>
+      <text class="legend">
+        <template v-if="isH5">直接键盘输入 · Backspace 回退 · 听写完成后空格核对 · Alt+{{ shortcuts.replay.toUpperCase() }} 发音 · Alt+{{ shortcuts.favorite.toUpperCase() }} 收藏</template>
+        <template v-else>Enter 提交或下一题 · Alt+{{ shortcuts.replay.toUpperCase() }} 发音 · Alt+{{ shortcuts.favorite.toUpperCase() }} 收藏 · Alt+{{ shortcuts.mastered.toUpperCase() }} 已掌握 · Alt+{{ shortcuts.hint.toUpperCase() }} 提示 · Alt+{{ shortcuts.accent.toUpperCase() }} 英美</template>
+      </text>
     </view>
 
     <view v-else class="setup done">
@@ -263,6 +316,10 @@
 import { computed, onUnmounted, ref } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import BookSwitcher from '@/components/BookSwitcher.vue'
+import TypingWordCore from '@/components/typing/TypingWordCore.vue'
+import TypingPassageCore from '@/components/typing/TypingPassageCore.vue'
+import { WordPracticeType } from '@/typing-engine/types'
+import { targetNeedsTokenFlow } from '@/typing-engine/parse-tokens'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { typingAPI } from '@/utils/api'
 import { isBrowserH5 } from '@/utils/audio-recording'
@@ -405,6 +462,10 @@ const suspendKeys = ref(false)
 const shortcuts = ref(loadShortcuts())
 const keySound = ref(loadKeySound())
 const capturing = ref<ShortcutAction | null>(null)
+const typingShowResult = ref(false)
+const typingShowFull = ref(false)
+const committing = ref(false)
+const cardKey = ref(0)
 
 const shortcutRows: Array<{ action: ShortcutAction; label: string }> = [
   { action: 'replay', label: '发音' },
@@ -428,6 +489,25 @@ const progressLabel = computed(() => {
     : (articleMode.value === 'follow' ? '跟写' : '听写')
   return `${mode} · ${Math.min(index.value + 1, total.value)}/${total.value}`
 })
+const progressPct = computed(() => {
+  if (!total.value) return 0
+  return Math.min(100, Math.round(((index.value + (showResult.value || committing.value ? 1 : 0)) / total.value) * 100))
+})
+const enginePracticeType = computed((): WordPracticeType => {
+  if (dictationMode.value || (lane.value === 'words' && wordMode.value === 'recall')) {
+    return WordPracticeType.Dictation
+  }
+  return WordPracticeType.FollowWrite
+})
+const engineMasked = computed(() => {
+  if (lane.value === 'article') return articleMode.value === 'dictation'
+  if (wordMode.value === 'dictation' || wordMode.value === 'recall') return true
+  if (wordMode.value === 'self') return !selfVisible.value
+  return false
+})
+const usePassageTyping = computed(() => (
+  lane.value === 'article' || targetNeedsTokenFlow(expectedText.value)
+))
 const activeArticleId = ref('')
 const roundSaved = ref(false)
 const dictationMode = computed(() => (
@@ -678,8 +758,12 @@ function prepareCard() {
   clearedWrong.value = false
   hintLevel.value = 0
   showFullTranslation.value = false
+  typingShowResult.value = false
+  typingShowFull.value = false
+  committing.value = false
+  cardKey.value += 1
   armSelf()
-  void focusInput()
+  if (!isH5) void focusInput()
   if (dictationMode.value) void replay()
 }
 
@@ -909,6 +993,65 @@ async function replay() {
 
 function bumpHint() {
   hintLevel.value = Math.min(2, hintLevel.value + 1)
+  if (isH5 && hintLevel.value >= 2) typingShowFull.value = true
+}
+
+async function commitTyped(typed: string, ok: boolean) {
+  if (committing.value || stage.value !== 'practice' || !expectedText.value) return
+  committing.value = true
+  isCorrect.value = ok
+  if (!isH5) showResult.value = true
+  if (ok) correctCount.value += 1
+  typedChars.value += typed.length
+  if (ok) correctChars.value += expectedText.value.length
+  const word = currentWord.value
+  answered.value.push({
+    id: word?.id || `s${index.value}`,
+    label: expectedText.value,
+    ok
+  })
+  if (!word) {
+    const sentence = currentSentence.value
+    if (sentence) {
+      try {
+        const result = await typingAPI.articleAnswer(sentence.articleKey, sentence.index, ok)
+        const data = result.data as { wrongWords?: string[] }
+        sentenceWrongWords.value = data?.wrongWords || []
+      } catch {
+        toast('这句的复习没保存')
+      }
+    }
+    committing.value = false
+    return
+  }
+  const wasWrong = word.inWrongBook
+  try {
+    const result = await typingAPI.answer(word.id, ok, wordMode.value)
+    const data = result.data as { favorite: boolean; skipMastered: boolean; inWrongBook: boolean }
+    if (data) {
+      word.favorite = data.favorite
+      word.skipMastered = data.skipMastered
+      word.inWrongBook = data.inWrongBook
+      clearedWrong.value = ok && wasWrong && !data.inWrongBook
+    }
+  } catch {
+    toast('这题的进度没保存')
+  }
+  committing.value = false
+}
+
+async function onTypingComplete(payload: { typed: string; correct: boolean }) {
+  await commitTyped(payload.typed || expectedText.value, payload.correct)
+  if (index.value + 1 >= total.value) {
+    void finishRound()
+    return
+  }
+  index.value += 1
+  prepareCard()
+}
+
+function onTypingWrong() {
+  // visual/audio handled inside TypingWordCore; keep for future analytics
 }
 
 async function toggleFavorite() {
@@ -946,6 +1089,7 @@ function guardAction() {
 }
 
 async function submit() {
+  if (isH5) return
   if (stage.value !== 'practice' || showResult.value || !expectedText.value) return
   if (!guardAction()) return
   if (!userInput.value.trim()) {
@@ -953,42 +1097,8 @@ async function submit() {
     return
   }
   const ok = answersMatch(expectedText.value, userInput.value, lane.value === 'words' ? 'word' : 'sentence')
-  isCorrect.value = ok
+  await commitTyped(userInput.value, ok)
   showResult.value = true
-  if (ok) correctCount.value += 1
-  typedChars.value += userInput.value.length
-  if (ok) correctChars.value += expectedText.value.length
-  const word = currentWord.value
-  answered.value.push({
-    id: word?.id || `s${index.value}`,
-    label: expectedText.value,
-    ok
-  })
-  if (!word) {
-    const sentence = currentSentence.value
-    if (!sentence) return
-    try {
-      const result = await typingAPI.articleAnswer(sentence.articleKey, sentence.index, ok)
-      const data = result.data as { wrongWords?: string[] }
-      sentenceWrongWords.value = data?.wrongWords || []
-    } catch {
-      toast('这句的复习没保存')
-    }
-    return
-  }
-  const wasWrong = word.inWrongBook
-  try {
-    const result = await typingAPI.answer(word.id, ok, wordMode.value)
-    const data = result.data as { favorite: boolean; skipMastered: boolean; inWrongBook: boolean }
-    if (data) {
-      word.favorite = data.favorite
-      word.skipMastered = data.skipMastered
-      word.inWrongBook = data.inWrongBook
-      clearedWrong.value = ok && wasWrong && !data.inWrongBook
-    }
-  } catch {
-    toast('这题的进度没保存')
-  }
 }
 
 function onInputConfirm() {
@@ -1103,23 +1213,6 @@ function onKeyDown(event: KeyboardEvent) {
       event.preventDefault()
       runShortcut(action)
     }
-    return
-  }
-  if (
-    keySound.value
-    && stage.value === 'practice'
-    && !showResult.value
-    && event.key.length === 1
-    && !event.altKey
-    && !event.ctrlKey
-    && !event.metaKey
-  ) {
-    playKeyClick()
-  }
-  if (event.key === 'Enter' && !event.shiftKey && stage.value === 'practice') {
-    event.preventDefault()
-    if (showResult.value) nextItem()
-    else void submit()
   }
 }
 
@@ -1285,6 +1378,24 @@ onUnmounted(() => {
   color: #0f6e6a;
 }
 
+.progress-track {
+  height: 4px;
+  background: #e7dfd3;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #0f6e6a;
+  transition: width 0.2s ease;
+}
+
+.practice-h5 {
+  max-width: 960px;
+}
+
 .prompt {
   min-height: 180px;
   display: flex;
@@ -1292,6 +1403,20 @@ onUnmounted(() => {
   align-items: flex-start;
   justify-content: center;
   margin: 28px 0 12px;
+}
+
+.prompt-h5 {
+  min-height: 280px;
+  align-items: center;
+  text-align: center;
+}
+
+.prompt-h5 .kicker,
+.prompt-h5 .phonetic,
+.prompt-h5 .meaning-line,
+.prompt-h5 .hint {
+  width: 100%;
+  text-align: center;
 }
 
 .big-word, .live-line {
