@@ -30,6 +30,8 @@ export function normalizeTyped(text: string): string {
   return text
     .replace(/[\u2018\u2019\u2032]/g, "'")
     .replace(/[\u201C\u201D]/g, '"')
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
     .replace(/\s+/g, ' ')
     .trim()
     .toLowerCase()
@@ -49,7 +51,8 @@ export function liveMarks(expected: string, typed: string): Array<{ ch: string; 
   const got = [...typed]
   const marks: Array<{ ch: string; kind: LiveKind }> = exp.map((ch, index) => {
     if (index >= got.length) return { ch, kind: 'pending' as const }
-    const same = ch.toLowerCase() === got[index].toLowerCase()
+    const same =
+      ch.localeCompare(got[index], undefined, { sensitivity: 'base', usage: 'search' }) === 0
     return { ch, kind: same ? 'ok' as const : 'bad' as const }
   })
   if (got.length > exp.length) {

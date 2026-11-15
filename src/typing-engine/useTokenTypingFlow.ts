@@ -42,7 +42,8 @@ export function useTokenTypingFlow(options: TokenTypingFlowOptions) {
   }
 
   function compareText(a: string, b: string) {
-    return ignoreCase() ? a.toLowerCase() === b.toLowerCase() : a === b
+    if (!ignoreCase()) return a === b
+    return a.localeCompare(b, undefined, { sensitivity: 'base', usage: 'search' }) === 0
   }
 
   function isSkippable(word?: TypingToken | null) {
