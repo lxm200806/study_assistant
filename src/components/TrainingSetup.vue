@@ -41,7 +41,7 @@
         <text class="section-title">本轮词汇数</text>
         <view class="setting-select">
           <text
-            v-for="num in [5, 10, 15, 20]"
+            v-for="num in [5, 10, 15, 20, 30, 40, 50]"
             :key="num"
             :class="['select-option', vocabStore.studySettings.wordsPerGroup === num ? 'selected' : '']"
             @tap="setWordsPerGroup(num)"

@@ -2,7 +2,7 @@
   <view class="desk">
     <view v-if="stage === 'setup'" class="setup">
       <text class="eyebrow">拼读练习</text>
-      <text class="lede">有键盘时跟写、听写、自测、默写。有空格时词间单独按空格；小程序仍用输入框。</text>
+      <text class="lede">有键盘时先学后考：跟写→自测学一遍，再默写或听写检测。有空格时词间单独按空格；小程序仍用输入框。</text>
 
       <BookSwitcher training-type="writing" @change="onBookChange" />
 
@@ -29,7 +29,7 @@
             @tap="source = item.key"
           >{{ item.label }}</view>
         </view>
-        <text class="hint">点开始即可。跟写→自测→默写→听写默认全开，练的时候可随时关掉某一种或改一词/整组。智能先练错词和到期词。</text>
+        <text class="hint">点开始即可。先跟写再自测，把这一组学完；再默写或听写检测，可关掉其中一种。只有检测计入会写。智能先练错词和到期词。</text>
 
         <text class="label">这一组</text>
         <view class="chips">
@@ -172,28 +172,23 @@
         </view>
         <text class="top-link" @tap="finishEarly">结束</text>
       </view>
-      <!-- 一行：多选方式（绿线=当前）+ 一词/整组互斥切换 -->
+      <!-- 学习固定跟写+自测；检测默写/听写可关 -->
       <view v-if="lane === 'words'" class="practice-rail">
         <view
-          v-for="item in wordModes"
+          v-for="item in learnModes"
           :key="item.key"
-          :class="modeChipClass(item.key)"
-          @tap="onWordModeChip(item.key)"
+          :class="['rail-tab', 'is-on', wordMode === item.key ? 'is-current' : '']"
         >
           <text class="rail-label">{{ item.label }}</text>
         </view>
         <view class="rail-gap" aria-hidden="true" />
         <view
-          :class="['rail-tab', 'rail-toggle', cascadeStyle === 'per-word' ? 'is-picked' : '']"
-          @tap="setCascadeStyle('per-word')"
+          v-for="item in examModeOptions"
+          :key="item.key"
+          :class="modeChipClass(item.key)"
+          @tap="onWordModeChip(item.key)"
         >
-          <text class="rail-label">一词连练</text>
-        </view>
-        <view
-          :class="['rail-tab', 'rail-toggle', cascadeStyle === 'per-group' ? 'is-picked' : '']"
-          @tap="setCascadeStyle('per-group')"
-        >
-          <text class="rail-label">整组再换</text>
+          <text class="rail-label">{{ item.label }}</text>
         </view>
         <view class="rail-gap" aria-hidden="true" />
         <view
@@ -353,6 +348,16 @@
       </text>
     </view>
 
+    <view v-else-if="stage === 'bridge'" class="setup bridge">
+      <text class="eyebrow">拼读练习</text>
+      <text class="score-soft">{{ words.length }}</text>
+      <text class="lede">这一组已跟写、自测学过一遍。接下来先默写再听写（词序各自打乱；可只开一种），会计入会写。</text>
+      <text v-if="!examModes.length" class="hint">默写和听写都关了，直接结束这一组。</text>
+      <button v-if="examModes.length" class="start" @tap="startExam">开始检测</button>
+      <button v-else class="start" @tap="finishRound">完成</button>
+      <button class="ghost" @tap="backToSetup">返回选择</button>
+    </view>
+
     <view v-else class="setup done">
       <text class="eyebrow">这一组完成</text>
       <text class="score">{{ correctCount }}/{{ answered.length }}</text>
@@ -390,18 +395,15 @@ import {
   loadKeySound,
   loadShortcuts,
   loadTtsGender,
-  loadWordCascade,
   saveAutoExample,
   saveAutoSpeak,
   saveEnabledWordModes,
   saveKeySound,
   saveShortcuts,
   saveTtsGender,
-  saveWordCascade,
   type PersistedWordMode,
   type ShortcutAction,
-  type TtsGender,
-  type WordCascadeStyle
+  type TtsGender
 } from '@/utils/typing'
 import { unlockTypingAudio } from '@/typing-engine/sounds'
 
@@ -458,26 +460,72 @@ interface Answered { id: string; label: string; ok: boolean }
 type WordMode = PersistedWordMode
 type ArticleMode = 'follow' | 'dictation'
 type Source = 'smart' | 'wrong' | 'favorite' | 'random' | 'list'
-type Stage = 'setup' | 'practice' | 'done'
+type Stage = 'setup' | 'practice' | 'bridge' | 'done'
+type WordPhase = 'learn' | 'exam'
+type ExamMode = 'recall' | 'dictation'
+
+const LEARN_MODE_ORDER: WordMode[] = ['follow', 'self']
+const EXAM_MODE_ORDER: ExamMode[] = ['recall', 'dictation']
+
+type ExamCard = { wordIndex: number; mode: ExamMode }
+
+function loadExamModes(): ExamMode[] {
+  const saved = loadEnabledWordModes().filter((mode): mode is ExamMode =>
+    mode === 'recall' || mode === 'dictation'
+  )
+  return saved.length ? saved : [...EXAM_MODE_ORDER]
+}
+
+function shuffleInPlace<T>(list: T[]) {
+  for (let i = list.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[list[i], list[j]] = [list[j], list[i]]
+  }
+  return list
+}
+
+/**
+ * 检测题卡：默写相对易、听写更难。
+ * 两种都开时，先整组默写（词序打乱），再整组听写（词序再打乱）；
+ * 只开一种则只出该种并打乱词序。
+ */
+function buildExamQueue(wordCount: number, modes: ExamMode[]): ExamCard[] {
+  const ordered = EXAM_MODE_ORDER.filter((mode) => modes.includes(mode))
+  const cards: ExamCard[] = []
+  for (const mode of ordered) {
+    const block: ExamCard[] = []
+    for (let wordIndex = 0; wordIndex < wordCount; wordIndex++) {
+      block.push({ wordIndex, mode })
+    }
+    shuffleInPlace(block)
+    cards.push(...block)
+  }
+  return cards
+}
 
 const vocabStore = useVocabularyStore()
 const isH5 = isBrowserH5()
 
 const stage = ref<Stage>('setup')
 const lane = ref<'words' | 'article'>('words')
-const enabledModes = ref<WordMode[]>(loadEnabledWordModes())
-const cascadeStyle = ref<WordCascadeStyle>(loadWordCascade())
-const wordMode = ref<WordMode>(enabledModes.value[0] || 'follow')
+const wordPhase = ref<WordPhase>('learn')
+const enabledExamModes = ref<ExamMode[]>(loadExamModes())
+const wordMode = ref<WordMode>('follow')
 const articleMode = ref<ArticleMode>('follow')
 const source = ref<Source>('smart')
 const groupSize = ref(20)
-const counts = [10, 20, 30]
-/** Easy → hard scaffolding order */
-const wordModes: Array<{ key: WordMode; label: string }> = [
+const counts = [5, 10, 15, 20, 30, 40, 50]
+const learnModes: Array<{ key: WordMode; label: string }> = [
   { key: 'follow', label: '跟写' },
-  { key: 'self', label: '自测' },
+  { key: 'self', label: '自测' }
+]
+const examModeOptions: Array<{ key: ExamMode; label: string }> = [
   { key: 'recall', label: '默写' },
   { key: 'dictation', label: '听写' }
+]
+const wordModes: Array<{ key: WordMode; label: string }> = [
+  ...learnModes,
+  ...examModeOptions
 ]
 const sources: Array<{ key: Source; label: string }> = [
   { key: 'smart', label: '智能' },
@@ -516,6 +564,9 @@ const sentences = ref<SentenceItem[]>([])
 const fullTranslation = ref('')
 const showFullTranslation = ref(false)
 const index = ref(0)
+/** 检测阶段：词×模式打散成一题一卡，避免一词先默写再听写 */
+const examQueue = ref<ExamCard[]>([])
+const examCursor = ref(0)
 const userInput = ref('')
 const showResult = ref(false)
 const isCorrect = ref(false)
@@ -556,13 +607,24 @@ const shortcutRows: Array<{ action: ShortcutAction; label: string }> = [
 let selfTimer: ReturnType<typeof setTimeout> | null = null
 let lastAction = 0
 
-const currentWord = computed(() => (lane.value === 'words' ? words.value[index.value] : undefined))
+const currentWord = computed(() => {
+  if (lane.value !== 'words') return undefined
+  if (wordPhase.value === 'exam' && examQueue.value.length) {
+    const card = examQueue.value[examCursor.value]
+    return card ? words.value[card.wordIndex] : undefined
+  }
+  return words.value[index.value]
+})
 const currentSentence = computed(() => (lane.value === 'article' ? sentences.value[index.value] : undefined))
 const expectedText = computed(() => currentWord.value?.word || currentSentence.value?.text || '')
 const total = computed(() => (lane.value === 'words' ? words.value.length : sentences.value.length))
+const examModes = computed(() =>
+  EXAM_MODE_ORDER.filter((mode) => enabledExamModes.value.includes(mode))
+)
 const activeModeChain = computed(() => {
-  const selected = enabledModes.value
-  return selected.length ? selected : (['follow'] as WordMode[])
+  if (lane.value !== 'words') return [] as WordMode[]
+  if (wordPhase.value === 'learn') return [...LEARN_MODE_ORDER]
+  return examModes.value.length ? [...examModes.value] : ([] as WordMode[])
 })
 const modeStepIndex = computed(() => {
   const i = activeModeChain.value.indexOf(wordMode.value)
@@ -573,23 +635,31 @@ const progressLabel = computed(() => {
     const mode = articleMode.value === 'follow' ? '跟写' : '听写'
     return `${mode} · ${Math.min(index.value + 1, total.value)}/${total.value}`
   }
+  const phaseLabel = wordPhase.value === 'learn' ? '学习' : '检测'
   const mode = wordModes.find(item => item.key === wordMode.value)?.label || '跟写'
-  return `${mode} · ${Math.min(index.value + 1, total.value)}/${total.value}`
+  if (wordPhase.value === 'exam' && examQueue.value.length) {
+    const n = Math.min(examCursor.value + 1, examQueue.value.length)
+    return `${phaseLabel} · ${mode} · ${n}/${examQueue.value.length}`
+  }
+  return `${phaseLabel} · ${mode} · ${Math.min(index.value + 1, total.value)}/${total.value}`
 })
 const progressPct = computed(() => {
   if (!total.value) return 0
-  if (lane.value !== 'words' || activeModeChain.value.length <= 1) {
+  if (lane.value !== 'words') {
     return Math.min(100, Math.round(((index.value + (showResult.value || committing.value ? 1 : 0)) / total.value) * 100))
   }
-  const modes = activeModeChain.value.length
+  const learnModesCount = LEARN_MODE_ORDER.length
+  const examModesCount = examModes.value.length
+  const totalSteps = total.value * learnModesCount + Math.max(examQueue.value.length, total.value * examModesCount)
+  if (!totalSteps) return 0
   const doneCard = showResult.value || committing.value ? 1 : 0
   let stepsDone = 0
-  if (cascadeStyle.value === 'per-word') {
-    stepsDone = index.value * modes + modeStepIndex.value + doneCard
+  if (wordPhase.value === 'learn') {
+    stepsDone = index.value * learnModesCount + modeStepIndex.value + doneCard
   } else {
-    stepsDone = modeStepIndex.value * total.value + index.value + doneCard
+    stepsDone = total.value * learnModesCount + examCursor.value + doneCard
   }
-  return Math.min(100, Math.round((stepsDone / (total.value * modes)) * 100))
+  return Math.min(100, Math.round((stepsDone / totalSteps) * 100))
 })
 /** 跟写/自测/默写/听写共用 FollowWrite + 下划线占位，视觉与自测对齐（不用 Dictation 单条底线） */
 const enginePracticeType = computed((): WordPracticeType => WordPracticeType.FollowWrite)
@@ -770,54 +840,72 @@ function onBookChange() {
   void refreshSummary()
 }
 
-function persistEnabledModes(next: WordMode[]) {
-  enabledModes.value = wordModes.map(item => item.key).filter(mode => next.includes(mode))
-  if (!enabledModes.value.length) enabledModes.value = ['follow']
-  saveEnabledWordModes(enabledModes.value)
+function persistExamModes(next: ExamMode[]) {
+  enabledExamModes.value = EXAM_MODE_ORDER.filter((mode) => next.includes(mode))
+  saveEnabledWordModes([...LEARN_MODE_ORDER, ...enabledExamModes.value] as PersistedWordMode[])
 }
 
 function modeChipClass(key: WordMode) {
   const classes = ['rail-tab']
-  if (enabledModes.value.includes(key)) classes.push('is-on')
+  const examOn = key === 'recall' || key === 'dictation'
+    ? enabledExamModes.value.includes(key)
+    : true
+  if (examOn) classes.push('is-on')
   else classes.push('is-off')
   if (wordMode.value === key) classes.push('is-current')
   return classes
 }
 
-/**
- * One tap toggles whether this mode is in the playlist.
- * Does not jump the green underline — only moves if you turn off the mode you're on.
- */
+/** 默写 / 听写可关。跟写、自测固定在学习阶段。检测中途开关会改后续题队列。 */
 function onWordModeChip(key: WordMode) {
   if (lane.value !== 'words' || committing.value) return
-  const enabled = enabledModes.value.includes(key)
+  if (key !== 'recall' && key !== 'dictation') return
+  const examKey = key as ExamMode
+  const enabled = enabledExamModes.value.includes(examKey)
 
   if (!enabled) {
-    persistEnabledModes([...enabledModes.value, key])
+    persistExamModes([...enabledExamModes.value, examKey])
+    if (wordPhase.value === 'exam' && stage.value === 'practice' && examQueue.value.length) {
+      const done = examQueue.value.slice(0, examCursor.value + 1)
+      const rest = examQueue.value.slice(examCursor.value + 1)
+      const extra = shuffleInPlace(
+        words.value.map((_, wordIndex) => ({ wordIndex, mode: examKey }))
+      )
+      // 仍保持先默写、后听写
+      if (examKey === 'recall') {
+        const restRecall = rest.filter((card) => card.mode === 'recall')
+        const restDictation = rest.filter((card) => card.mode === 'dictation')
+        examQueue.value = [...done, ...restRecall, ...extra, ...restDictation]
+      } else {
+        examQueue.value = [...done, ...rest, ...extra]
+      }
+      return
+    }
     return
   }
 
-  if (enabledModes.value.length <= 1) {
-    toast('至少保留一种方式')
+  if (enabledExamModes.value.length <= 1 && wordPhase.value === 'exam') {
+    toast('检测至少保留一种方式')
     return
   }
 
-  const chain = [...enabledModes.value]
-  const at = chain.indexOf(key)
-  const wasCurrent = wordMode.value === key
-  persistEnabledModes(chain.filter(mode => mode !== key))
-
-  if (!wasCurrent) return
-
-  const fallback = chain[at + 1] || chain[at - 1] || firstEnabledMode()
-  wordMode.value = enabledModes.value.includes(fallback) ? fallback : firstEnabledMode()
-  if (stage.value === 'practice') prepareCard()
-}
-
-function setCascadeStyle(style: WordCascadeStyle) {
-  if (cascadeStyle.value === style) return
-  cascadeStyle.value = style
-  saveWordCascade(style)
+  const next = enabledExamModes.value.filter((mode) => mode !== examKey)
+  persistExamModes(next)
+  if (wordPhase.value !== 'exam' || stage.value !== 'practice') return
+  const current = examQueue.value[examCursor.value]
+  const done = examQueue.value.slice(0, examCursor.value)
+  const rest = examQueue.value
+    .slice(examCursor.value)
+    .filter((card) => card.mode !== examKey)
+  if (!rest.length) {
+    examQueue.value = done
+    void finishRound()
+    return
+  }
+  examQueue.value = [...done, ...rest]
+  if (current?.mode === examKey) {
+    applyExamCard()
+  }
 }
 
 function hotkeyLabel(action: ShortcutAction) {
@@ -836,7 +924,38 @@ function nextEnabledMode(from: WordMode = wordMode.value): WordMode | null {
   return chain[i + 1] || null
 }
 
-/** After one card: cascade to next mode or next word per cascadeStyle. */
+function enterBridgeOrFinish() {
+  if (examModes.value.length) {
+    stage.value = 'bridge'
+    return
+  }
+  void finishRound()
+}
+
+function applyExamCard() {
+  const card = examQueue.value[examCursor.value]
+  if (!card) {
+    void finishRound()
+    return
+  }
+  index.value = card.wordIndex
+  wordMode.value = card.mode
+  prepareCard()
+}
+
+function startExam() {
+  if (!examModes.value.length) {
+    void finishRound()
+    return
+  }
+  wordPhase.value = 'exam'
+  examQueue.value = buildExamQueue(words.value.length, examModes.value)
+  examCursor.value = 0
+  stage.value = 'practice'
+  applyExamCard()
+}
+
+/** 单词：学习阶段一词跟写→自测；检测阶段题卡（词×模式）整组打乱。短文保持原逻辑。 */
 function advanceAfterCard() {
   if (lane.value !== 'words') {
     if (index.value + 1 >= total.value) {
@@ -848,37 +967,31 @@ function advanceAfterCard() {
     return
   }
 
-  if (cascadeStyle.value === 'per-word') {
-    const nextMode = nextEnabledMode()
-    if (nextMode) {
-      wordMode.value = nextMode
-      prepareCard()
+  if (wordPhase.value === 'exam') {
+    if (examCursor.value + 1 < examQueue.value.length) {
+      examCursor.value += 1
+      applyExamCard()
       return
     }
-    if (index.value + 1 >= total.value) {
-      void finishRound()
-      return
-    }
+    void finishRound()
+    return
+  }
+
+  const nextMode = nextEnabledMode()
+  if (nextMode) {
+    wordMode.value = nextMode
+    prepareCard()
+    return
+  }
+
+  if (index.value + 1 < total.value) {
     index.value += 1
     wordMode.value = firstEnabledMode()
     prepareCard()
     return
   }
 
-  // per-group: finish all words in current mode, then restart list in next mode
-  if (index.value + 1 < total.value) {
-    index.value += 1
-    prepareCard()
-    return
-  }
-  const nextMode = nextEnabledMode()
-  if (nextMode) {
-    wordMode.value = nextMode
-    index.value = 0
-    prepareCard()
-    return
-  }
-  void finishRound()
+  enterBridgeOrFinish()
 }
 
 function switchArticleMode(key: ArticleMode) {
@@ -944,6 +1057,8 @@ function pickArticleFile() {
 
 function resetRound() {
   index.value = 0
+  examQueue.value = []
+  examCursor.value = 0
   userInput.value = ''
   showResult.value = false
   isCorrect.value = false
@@ -1004,9 +1119,8 @@ async function startWords() {
   const listId = source.value === 'list' ? (activeListId.value || lists.value[0]?.id) : undefined
   busy.value = true
   try {
-    // Enter with all modes on; turn off only inside practice
-    persistEnabledModes(wordModes.map(item => item.key))
-    wordMode.value = firstEnabledMode()
+    wordPhase.value = 'learn'
+    wordMode.value = 'follow'
     const result = await typingAPI.queue({
       bookCode: vocabStore.currentBookCode,
       source: source.value,
@@ -1030,7 +1144,8 @@ async function startWords() {
     roundKind.value = 'words'
     capturing.value = null
     resetRound()
-    wordMode.value = firstEnabledMode()
+    wordPhase.value = 'learn'
+    wordMode.value = 'follow'
     stage.value = 'practice'
     prepareCard()
   } catch (error) {
@@ -1945,11 +2060,20 @@ button.slim {
   margin-top: 28px;
 }
 
-.done .score {
+.done .score,
+.score-soft {
   display: block;
   font-family: Palatino, "Palatino Linotype", "Songti SC", serif;
   font-size: 72px;
   margin-top: 12px;
+}
+
+.score-soft {
+  font-size: 64px;
+}
+
+.bridge .lede {
+  max-width: 28em;
 }
 
 .missed {

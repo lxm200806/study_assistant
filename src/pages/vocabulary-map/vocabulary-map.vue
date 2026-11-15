@@ -67,6 +67,16 @@
             >{{ t.label }}</text>
           </view>
 
+          <view class="coverage" v-if="scopeSummary.total">
+            <text class="coverage-title">{{ scopeSummary.title }}</text>
+            <text>共 {{ scopeSummary.total }} 词</text>
+            <text>认识掌握 {{ scopeSummary.recognize }}（{{ scopeSummary.recognizeRate }}%）</text>
+            <text>会写掌握 {{ scopeSummary.write }}（{{ scopeSummary.writeRate }}%）</text>
+            <text>两项都掌握 {{ scopeSummary.both }}（{{ scopeSummary.bothRate }}%）</text>
+            <text>在学 {{ scopeSummary.learning }}</text>
+            <text>未练 {{ scopeSummary.fresh }}</text>
+          </view>
+
           <view class="filters-row">
             <view class="segmented">
               <text
@@ -162,12 +172,10 @@ const wordCountLabel = computed(() => {
 const ledeText = computed(() => {
   const book = mapData.value?.book?.name
   const topics = topicOptions.value.length
-  const covered = mapData.value?.summary?.coverageRate
   const bits = [
     book ? `当前词书「${book}」` : '全部词书',
     topics ? `${topics} 个主题` : '',
-    covered != null ? `覆盖率 ${covered}%` : '',
-    '插画来自词光'
+    '下面一行数字跟着当前词书或主题变'
   ].filter(Boolean)
   return bits.join(' · ')
 })
@@ -179,6 +187,42 @@ const topicOptions = computed(() => {
     key,
     label: TOPIC_LABELS[key] || key
   }))
+})
+
+const scopeWords = computed(() => {
+  const words = mapData.value?.words || []
+  if (!topic.value) return words
+  return words.filter((w) => w.topic === topic.value)
+})
+
+function rate(part: number, total: number) {
+  if (!total) return 0
+  return Math.round((part / total) * 100)
+}
+
+const scopeSummary = computed(() => {
+  const words = scopeWords.value
+  const total = words.length
+  const recognize = words.filter((w) => (w.recognize ?? 0) >= 4).length
+  const write = words.filter((w) => (w.write ?? 0) >= 4).length
+  const both = words.filter((w) => w.status === 'mastered').length
+  const learning = words.filter((w) => w.status === 'learning' || w.status === 'unfamiliar').length
+  const fresh = words.filter((w) => w.status === 'unpracticed').length
+  const topicLabel = topic.value ? (TOPIC_LABELS[topic.value] || topic.value) : ''
+  const bookName = mapData.value?.book?.name
+  const title = topicLabel || bookName || (scope.value === 'global' ? '全部词书' : '当前词书')
+  return {
+    title,
+    total,
+    recognize,
+    write,
+    both,
+    learning,
+    fresh,
+    recognizeRate: rate(recognize, total),
+    writeRate: rate(write, total),
+    bothRate: rate(both, total)
+  }
 })
 
 const filteredWords = computed(() => {
@@ -564,6 +608,25 @@ onMounted(async () => {
   background: var(--atlas-ink);
   border-color: var(--atlas-ink);
   color: var(--atlas-paper);
+}
+
+.coverage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--atlas-card, #fffdf8);
+  border: 1px solid var(--atlas-line, rgba(31, 26, 20, 0.08));
+  color: var(--atlas-ink-2, #3d4f4d);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.coverage-title {
+  font-weight: 650;
+  color: var(--atlas-ink, #1f1a14);
 }
 
 .filters-row {

@@ -346,11 +346,19 @@ const showWordDetail = (item: WordListItem) => {
 
 onShow(async () => {
   if (!(await requireReadySession())) return
+  if (!userStore.isChinese) {
+    uni.switchTab({ url: '/pages/vocabulary-map/vocabulary-map' })
+    return
+  }
   applyAppShell()
 })
 
 onMounted(async () => {
   if (!(await requireReadySession())) return
+  if (!userStore.isChinese) {
+    uni.switchTab({ url: '/pages/vocabulary-map/vocabulary-map' })
+    return
+  }
   applyAppShell()
   uni.setNavigationBarTitle({ title: userStore.isChinese ? '掌握' : '统计' })
   if (userStore.isChinese) {

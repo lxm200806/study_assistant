@@ -280,7 +280,7 @@ const readingStats = ref({ total: 0, mastered: 0, avgMastery: 0 })
 const finishDueCount = ref(0)
 const weakTopicLabels = ref<string[]>([])
 const autoStart = ref(false)
-const groupCounts = [5, 10, 15, 20]
+const groupCounts = [5, 10, 15, 20, 30, 40, 50]
 const sessionModes: Array<{ key: SessionMode; label: string }> = [
   { key: 'smart', label: SESSION_MODE_LABELS.smart },
   { key: 'review', label: SESSION_MODE_LABELS.review },

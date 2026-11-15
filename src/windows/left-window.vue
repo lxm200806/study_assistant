@@ -120,15 +120,9 @@ const mainItems = computed<RailItem[]>(() => {
         url: '/pages/vocabulary-map/vocabulary-map',
         icon: 'atlas',
         show: () => true,
-        match: (path) => path === '/pages/vocabulary-map/vocabulary-map'
-      },
-      {
-        key: 'stats',
-        label: '统计',
-        url: '/pages/vocabulary/vocabulary',
-        icon: 'chart',
-        show: () => true,
-        match: (path) => path === '/pages/vocabulary/vocabulary'
+        match: (path) =>
+          path === '/pages/vocabulary-map/vocabulary-map' ||
+          path === '/pages/vocabulary/vocabulary'
       }
     )
   }
