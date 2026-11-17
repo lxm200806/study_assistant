@@ -20,5 +20,10 @@ server/materials/
 server/data/tts-cache/
 server/data/chinese/official/
 
+# 词光插画缩略图（约 84MB，从同级 word-atlas 拷入，不进仓库）
+# 保留 word-to-id.json；本地准备：cp -R ../word-atlas/public/atlas/thumb/. src/static/atlas/thumb/
+src/static/atlas/thumb/
+public/atlas/
+
 # 编译产物
 server/dist/

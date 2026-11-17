@@ -1,4 +1,8 @@
-/** Word Atlas (词光) illustration lookup — thumbs live at /static/atlas/thumb/{id}.webp */
+/**
+ * Word Atlas (词光) illustration lookup.
+ * Files live in this repo at src/static/atlas/ (served as /static/atlas/...).
+ * Only thumbs + word-to-id are vendored; full img/audio stay in word-atlas if needed later.
+ */
 
 let wordToId: Record<string, string> | null = null
 let loading: Promise<Record<string, string>> | null = null

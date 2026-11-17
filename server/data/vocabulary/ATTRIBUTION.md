@@ -13,6 +13,9 @@
 授权说明：https://creativecommons.org/licenses/by/4.0/  
 来源仓库：本地 `word-atlas`（与 `study_assistant` 同级）或 `WORD_ATLAS_PATH`
 
+插画缩略图已拷入本仓库：`src/static/atlas/thumb/` + `word-to-id.json`（不再用软链接）。  
+词光的大图 `img/`、预录音频 `audio/`、界面音效 `sfx/` 当前未引入——发音走本项目 TTS。
+
 **不覆盖** KEW / 已 polish 词书中的中文释义、音标、英文释义与简单句（`basic`）。
 
 词条 `tags` 含 `src:atlas=CC-BY-4.0` 表示该词使用了词光字段。
