@@ -1,9 +1,9 @@
 <template>
-  <view class="container">
-    <view class="header">
-      <text class="title">词库管理</text>
-      <text class="subtitle">词汇问题排查 · 管理员 {{ userStore.username }}</text>
-    </view>
+  <view class="desk">
+    <view class="setup">
+    <text class="eyebrow">账号</text>
+    <text class="title">词库</text>
+    <text class="lede">词汇问题排查 · 管理员 {{ userStore.username }}</text>
 
     <view class="filter-row">
       <view
@@ -63,9 +63,6 @@
       </view>
     </view>
 
-    <view class="footer-actions">
-      <button class="btn-secondary" @tap="goHome">返回首页</button>
-      <button class="btn-logout" @tap="userStore.logout">退出登录</button>
     </view>
   </view>
 </template>
@@ -74,7 +71,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import { adminAPI } from '@/utils/api'
-import { requireSubject } from '@/utils/subject'
+import { requireReadySession } from '@/utils/subject'
 
 const userStore = useUserStore()
 
@@ -163,12 +160,15 @@ const goPage = async (p: number) => {
   await loadWords()
 }
 
-const goHome = () => {
-  uni.switchTab({ url: '/pages/home/home' })
-}
-
 onMounted(async () => {
-  if (!(await requireSubject('english', 'parent'))) return
+  if (!(await requireReadySession({ allowNoStudents: true, allowMissingRole: true }))) return
+  if (!userStore.isParent) {
+    try {
+      await userStore.chooseParentRole()
+    } catch {
+      return
+    }
+  }
   if (!userStore.isAdmin) {
     uni.showToast({ title: '需要管理员账号', icon: 'none' })
     setTimeout(() => uni.reLaunch({ url: '/pages/login/login' }), 800)
@@ -180,27 +180,39 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding: 24rpx;
-  padding-bottom: 120rpx;
+.desk {
+  min-height: 100vh;
+  background: #f4f1ea;
+  color: #1f1a14;
+  font-family: "Avenir Next", "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
 }
 
-.header {
-  margin-bottom: 24rpx;
+.setup {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 28px 22px 80px;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: #8a8175;
 }
 
 .title {
-  font-size: 40rpx;
-  font-weight: 600;
-  color: #333;
   display: block;
+  margin-top: 8px;
+  font-family: Palatino, "Palatino Linotype", "Songti SC", serif;
+  font-size: 40px;
 }
 
-.subtitle {
-  font-size: 24rpx;
-  color: #999;
-  margin-top: 8rpx;
+.lede {
   display: block;
+  margin: 10px 0 22px;
+  color: #6d645b;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .filter-row {
@@ -360,27 +372,4 @@ onMounted(async () => {
   color: #666;
 }
 
-.footer-actions {
-  display: flex;
-  gap: 16rpx;
-  margin-top: 32rpx;
-}
-
-.btn-secondary, .btn-logout {
-  flex: 1;
-  height: 80rpx;
-  line-height: 80rpx;
-  border-radius: 40rpx;
-  font-size: 28rpx;
-}
-
-.btn-secondary {
-  background: #eef2ff;
-  color: #667eea;
-}
-
-.btn-logout {
-  background: #f5f5f5;
-  color: #666;
-}
 </style>

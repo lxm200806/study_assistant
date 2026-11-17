@@ -1,61 +1,37 @@
 <template>
-  <view class="container">
-    <view class="logo-section">
-      <view class="logo">
-        <text class="logo-text">学</text>
-      </view>
-      <text class="app-title">学习助手</text>
-      <text class="app-subtitle">让学习更高效</text>
-    </view>
+  <view class="desk">
+    <view class="panel">
+      <text class="eyebrow">学习助手</text>
+      <text class="title">登录</text>
+      <text class="lede">一个账号，多个角色。登录后从左下角进入。</text>
 
-    <view class="form-card">
-      <text class="mode-hint">一个家庭账号。登录后选择家长或某个学生进入。</text>
-      <view class="form-item">
-        <text class="form-label">用户名</text>
-        <input 
-          class="form-input" 
-          v-model="username" 
-          placeholder="请输入用户名"
+      <view class="form">
+        <text class="label">用户名</text>
+        <input
+          class="field"
+          type="text"
+          :value="username"
+          placeholder="用户名"
           placeholder-class="placeholder"
+          :adjust-position="true"
+          :hold-keyboard="true"
+          @input="onUsername"
         />
-      </view>
-      <view class="form-item">
-        <text class="form-label">密码</text>
-        <input 
-          class="form-input" 
-          v-model="password" 
+        <text class="label">密码</text>
+        <input
+          class="field"
           type="password"
-          placeholder="请输入密码"
+          :value="password"
+          placeholder="密码"
           placeholder-class="placeholder"
+          :adjust-position="true"
+          :hold-keyboard="true"
+          confirm-type="done"
+          @input="onPassword"
+          @confirm="handleLogin"
         />
-      </view>
-      
-      <view class="form-actions">
-        <view class="remember-me">
-          <checkbox :checked="rememberMe" @change="rememberMe = !rememberMe" />
-          <text>记住我</text>
-        </view>
-        <text class="forgot-password" @tap="showForgotPassword">忘记密码?</text>
-      </view>
-
-      <button class="btn-login" @tap="handleLogin">登 录</button>
-      
-      <view class="register-link">
-        <text>还没有账号? </text>
-        <text class="link" @tap="showRegister">立即注册</text>
-      </view>
-      <text class="admin-hint">管理员账号：admin（默认密码见服务端配置）</text>
-    </view>
-
-    <view class="quick-login">
-      <text class="divider">其他登录方式</text>
-      <view class="social-buttons">
-        <view class="social-btn" @tap="loginWithWechat">
-          <text class="social-icon">微信</text>
-        </view>
-        <view class="social-btn" @tap="loginWithPhone">
-          <text class="social-icon">手机</text>
-        </view>
+        <button class="start" @tap="handleLogin">登录</button>
+        <button class="ghost" @tap="showRegister">注册账号</button>
       </view>
     </view>
   </view>
@@ -69,198 +45,133 @@ const userStore = useUserStore()
 
 const username = ref('')
 const password = ref('')
-const rememberMe = ref(false)
+
+function onUsername(e: { detail?: { value?: string } }) {
+  username.value = String(e?.detail?.value ?? '')
+}
+
+function onPassword(e: { detail?: { value?: string } }) {
+  password.value = String(e?.detail?.value ?? '')
+}
 
 const handleLogin = () => {
   if (!username.value || !password.value) {
     uni.showToast({ title: '请输入用户名和密码', icon: 'none' })
     return
   }
-  
   userStore.login(username.value, password.value)
 }
 
 const showRegister = () => {
   uni.navigateTo({ url: '/pages/register/register' })
 }
-
-const showForgotPassword = () => {
-  uni.showToast({ title: '忘记密码功能开发中', icon: 'none' })
-}
-
-const loginWithWechat = () => {
-  userStore.wechatLogin(`demo_${Date.now()}`)
-}
-
-const loginWithPhone = () => {
-  uni.showToast({ title: '手机登录开发中', icon: 'none' })
-}
 </script>
 
 <style lang="scss" scoped>
-.container {
+.desk {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 40rpx;
   box-sizing: border-box;
-}
-
-.logo-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 100rpx 0 60rpx;
-}
-
-.logo {
-  width: 160rpx;
-  height: 160rpx;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30rpx;
+  padding: 48px 24px;
+  background: #f4f1ea;
+  color: #1f1a14;
+  font-family: "Avenir Next", "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
 }
 
-.logo-text {
-  font-size: 72rpx;
-  color: white;
-  font-weight: bold;
-}
-
-.app-title {
-  font-size: 48rpx;
-  color: white;
-  font-weight: 600;
-  margin-bottom: 10rpx;
-}
-
-.app-subtitle {
-  font-size: 28rpx;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.form-card {
-  background: white;
-  border-radius: 24rpx;
-  padding: 40rpx;
-  margin-bottom: 30rpx;
-}
-
-.mode-hint {
-  display: block;
-  color: #888;
-  font-size: 24rpx;
-  margin-bottom: 28rpx;
-}
-
-.form-item {
-  margin-bottom: 30rpx;
-}
-
-.form-label {
-  font-size: 28rpx;
-  color: #333;
-  margin-bottom: 15rpx;
-  display: block;
-}
-
-.form-input {
+.panel {
   width: 100%;
-  height: 80rpx;
-  border: 2rpx solid #e8e8e8;
-  border-radius: 12rpx;
-  padding: 0 20rpx;
-  font-size: 30rpx;
+  max-width: 420px;
+}
+
+.eyebrow,
+.title,
+.lede {
+  display: block;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  color: #8a8175;
+}
+
+.title {
+  margin-top: 14px;
+  font-family: Palatino, "Palatino Linotype", "Songti SC", serif;
+  font-size: 56px;
+  line-height: 1.05;
+}
+
+.lede {
+  margin: 14px auto 0;
+  max-width: 22em;
+  color: #6d645b;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.form {
+  margin-top: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.label {
+  display: block;
+  margin: 28px 0 8px;
+  font-size: 13px;
+  font-weight: 650;
+  color: #1f1a14;
+}
+
+.field {
+  display: block;
+  width: 100%;
+  height: 48px;
   box-sizing: border-box;
+  border: 1px solid #e0d7cb;
+  background: #fff;
+  border-radius: 12px;
+  padding: 0 16px;
+  font-size: 16px;
+  color: #1f1a14;
+  line-height: 48px;
+  pointer-events: auto;
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 .placeholder {
-  color: #ccc;
+  color: #b3a89a;
 }
 
-.form-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 40rpx;
-}
-
-.remember-me {
-  display: flex;
-  align-items: center;
-  font-size: 26rpx;
-  color: #666;
-}
-
-.forgot-password {
-  font-size: 26rpx;
-  color: #667eea;
-}
-
-.btn-login {
+.start,
+.ghost {
+  display: block;
   width: 100%;
-  height: 88rpx;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  margin-top: 14px;
+  line-height: 46px;
+  border-radius: 999px;
+  font-size: 16px;
+}
+
+.start {
+  margin-top: 28px;
+  background: #0f6e6a;
+  color: #fff;
+}
+
+.ghost {
+  background: transparent;
+  color: #1f1a14;
+  border: 1px solid #e0d7cb;
+}
+
+.start::after,
+.ghost::after {
   border: none;
-  border-radius: 44rpx;
-  font-size: 32rpx;
-  font-weight: 600;
-  margin-bottom: 30rpx;
-}
-
-.register-link {
-  text-align: center;
-  font-size: 26rpx;
-  color: #666;
-}
-
-.link {
-  color: #667eea;
-}
-
-.admin-hint {
-  display: block;
-  text-align: center;
-  font-size: 22rpx;
-  color: #999;
-  margin-top: 20rpx;
-}
-
-.quick-login {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 24rpx;
-  padding: 40rpx;
-}
-
-.divider {
-  display: block;
-  text-align: center;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 26rpx;
-  margin-bottom: 30rpx;
-}
-
-.social-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 40rpx;
-}
-
-.social-btn {
-  width: 120rpx;
-  height: 120rpx;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-icon {
-  font-size: 24rpx;
-  color: white;
 }
 </style>

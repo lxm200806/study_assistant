@@ -10,14 +10,14 @@
           <text class="date-text">{{ roleLabel }} · {{ userStore.isChinese ? '语文' : '英语' }} · {{ currentDate }}</text>
         </view>
       </view>
-      <text class="header-link">{{ userStore.isStudentRole ? '切换角色 ›' : '我的 ›' }}</text>
+      <text class="header-link">切换 ›</text>
     </view>
 
     <template v-if="userStore.isStudentRole">
       <template v-if="userStore.isChinese">
         <view v-if="!studentChineseCourses.length" class="card">
           <text class="action-title">还没有课程</text>
-          <text class="action-desc">请让家长先组课。组好后会出现在这里。</text>
+          <text class="action-desc">还没有课程。请先在账号里组好，之后会出现在这里。</text>
         </view>
         <view
           v-for="item in studentChineseCourses"
@@ -56,7 +56,7 @@
         <view class="student-chip add" @tap="goStudents">+ 添加</view>
       </view>
       <view v-if="userStore.learner" class="let-study" @tap="enterCurrentStudent">
-        让 {{ userStore.learnerName }} 去学习
+        进入 {{ userStore.learnerName }}
       </view>
 
       <template v-if="userStore.isChinese">
@@ -217,7 +217,7 @@ const chineseCourses = ref<any[]>([])
 const headerName = computed(() =>
   userStore.isStudentRole ? userStore.learnerName : (userStore.displayName || userStore.username)
 )
-const roleLabel = computed(() => (userStore.isStudentRole ? '学生' : '家长'))
+const roleLabel = computed(() => (userStore.isStudentRole ? '角色' : '账号'))
 
 const studentChineseCourses = computed(() => {
   const rows = chineseCourses.value
@@ -258,16 +258,8 @@ const loadStats = async () => {
   writingStats.value = vocabStore.getTypeStats('writing')
 }
 
-const goToMine = () => {
-  uni.switchTab({ url: '/pages/mine/mine' })
-}
-
 const onHeaderTap = () => {
-  if (userStore.isStudentRole) {
-    userStore.goRoles()
-    return
-  }
-  goToMine()
+  userStore.goRoles()
 }
 
 const goStudents = () => {
@@ -315,8 +307,8 @@ async function loadChineseHome() {
 
 onShow(async () => {
   if (!(await requireReadySession({ allowNoStudents: true }))) return
-  if (userStore.isStudentRole && !userStore.children.length) {
-    userStore.goRoles()
+  if (!(userStore.isStudentRole && userStore.isChinese)) {
+    userStore.goHome()
     return
   }
   applyAppShell()
@@ -339,8 +331,13 @@ const onBookChange = async () => {
 
 <style lang="scss" scoped>
 .container {
-  padding: 20rpx;
-  padding-bottom: 120rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 28px 22px 80px;
+  background: #f4f1ea;
+  color: #1f1a14;
 }
 
 .header {
@@ -357,9 +354,9 @@ const onBookChange = async () => {
 }
 
 .avatar {
-  width: 80rpx;
-  height: 80rpx;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 44px;
+  height: 44px;
+  background: #1f1a14;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -367,8 +364,8 @@ const onBookChange = async () => {
 }
 
 .avatar-text {
-  font-size: 36rpx;
-  color: white;
+  font-size: 18px;
+  color: #f4f1ea;
   font-weight: 600;
 }
 
@@ -378,20 +375,20 @@ const onBookChange = async () => {
 }
 
 .greeting-text {
-  font-size: 36rpx;
-  font-weight: 600;
-  color: #333;
+  font-size: 22px;
+  font-weight: 650;
+  color: #1f1a14;
 }
 
 .date-text {
-  font-size: 24rpx;
-  color: #999;
-  margin-top: 5rpx;
+  font-size: 13px;
+  color: #8a8175;
+  margin-top: 4px;
 }
 
 .header-link {
   font-size: 26rpx;
-  color: #667eea;
+  color: #0f6e6a;
   flex-shrink: 0;
 }
 
@@ -411,19 +408,19 @@ const onBookChange = async () => {
   border: 2rpx solid transparent;
 
   &.active {
-    border-color: #667eea;
-    color: #667eea;
-    background: #eef2ff;
+    border-color: #1f1a14;
+    color: #f4f1ea;
+    background: #1f1a14;
   }
 
   &.add {
-    color: #667eea;
+    color: #0f6e6a;
   }
 }
 
 .let-study {
-  background: #eef2ff;
-  color: #4c51bf;
+  background: #0f6e6a;
+  color: #fff;
   text-align: center;
   border-radius: 16rpx;
   padding: 20rpx;
@@ -436,14 +433,16 @@ const onBookChange = async () => {
   display: block;
   margin-top: 8rpx;
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.85);
+  color: #6d645b;
 }
 
 .stats-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20rpx;
-  padding: 30rpx;
-  margin-bottom: 30rpx;
+  background: #fff;
+  border: 1px solid #e0d7cb;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  color: #1f1a14;
 }
 
 .stats-header {
@@ -455,25 +454,25 @@ const onBookChange = async () => {
 
 .stats-title {
   font-size: 32rpx;
-  color: white;
+  color: #1f1a14;
   font-weight: 600;
 }
 
 .stats-subtitle {
   font-size: 28rpx;
-  color: rgba(255, 255, 255, 0.8);
+  color: #6d645b;
 }
 
 .progress-bar {
   height: 12rpx;
-  background: rgba(255, 255, 255, 0.3);
+  background: #efe7da;
   border-radius: 6rpx;
   margin-bottom: 25rpx;
 }
 
 .progress-fill {
   height: 100%;
-  background: white;
+  background: #0f6e6a;
   border-radius: 6rpx;
   transition: width 0.3s ease;
 }
@@ -491,13 +490,13 @@ const onBookChange = async () => {
 
 .stat-value {
   font-size: 40rpx;
-  color: white;
+  color: #1f1a14;
   font-weight: 600;
 }
 
 .stat-label {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.8);
+  color: #6d645b;
   margin-top: 5rpx;
 }
 
@@ -515,7 +514,8 @@ const onBookChange = async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+  border: 1px solid #e0d7cb;
+  box-shadow: none;
 }
 
 .action-icon {
@@ -554,13 +554,14 @@ const onBookChange = async () => {
 
 .section-link {
   font-size: 26rpx;
-  color: #667eea;
+  color: #0f6e6a;
 }
 
 .vocab-cards {
-  background: white;
-  border-radius: 16rpx;
-  padding: 20rpx;
+  background: #fff;
+  border: 1px solid #e0d7cb;
+  border-radius: 16px;
+  padding: 8px 16px;
 }
 
 .vocab-item {
@@ -604,7 +605,7 @@ const onBookChange = async () => {
   color: #ddd;
   
   &.active {
-    color: #ffc107;
+    color: #0f6e6a;
   }
 }
 

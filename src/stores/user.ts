@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import { authAPI, getAuthToken } from '@/utils/api'
 import { unwrapStorage } from '@/utils/storage'
-import { applyAppShell, type Subject } from '@/utils/subject'
+import { applyAppShell, goToLanding, type Subject } from '@/utils/subject'
 
 export type AccountType = 'parent' | 'student'
 export type ActiveRole = 'parent' | 'student'
@@ -157,21 +157,40 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const goHome = () => {
-    uni.switchTab({ url: '/pages/home/home' })
+    goToLanding()
   }
 
   const goRoles = () => {
-    uni.reLaunch({ url: '/pages/family/roles' })
+    uni.reLaunch({ url: '/pages/family/students' })
+  }
+
+  /** 新用户跳过引导页：默认英语 + 进账号角色页新建角色 */
+  const ensureAccountReady = async () => {
+    if (!hasOnboarded.value) {
+      try {
+        const result = await authAPI.onboard('english')
+        if (result.user) persistUser(result.user as StoredUser)
+        else setOnboarded(true)
+      } catch {
+        setOnboarded(true)
+      }
+      await setSubject('english', false)
+    }
+    try {
+      await chooseParentRole()
+    } catch {
+      markRoleChosen()
+      activeRole.value = 'parent'
+    }
   }
 
   const navigateAfterAuth = () => {
     setTimeout(() => {
-      if (!hasOnboarded.value) {
-        uni.reLaunch({ url: '/pages/onboarding/onboarding' })
-      } else {
+      void (async () => {
+        await ensureAccountReady()
         goRoles()
-      }
-    }, 800)
+      })()
+    }, 400)
   }
 
   const login = async (user: string, password: string) => {
@@ -317,6 +336,7 @@ export const useUserStore = defineStore('user', () => {
     checkLogin,
     setOnboarded,
     setSubject,
+    ensureAccountReady,
     createStudent,
     switchStudent,
     chooseParentRole,

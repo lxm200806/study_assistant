@@ -16,7 +16,10 @@ export const PC_CHROMELESS_PAGES = new Set([
   '/pages/vocabulary-map/vocabulary-map',
   '/pages/vocabulary/vocabulary',
   '/pages/mine/mine',
-  '/pages/books/books'
+  '/pages/books/books',
+  '/pages/family/students',
+  '/pages/membership/membership',
+  '/pages/admin/admin'
 ])
 
 export const PC_RAIL_WIDE = '224px'

@@ -38,7 +38,7 @@
     {
       "path": "pages/mine/mine",
       "style": {
-        "navigationBarTitleText": "我的"
+        "navigationBarTitleText": "账号"
       }
     },
     {
@@ -82,14 +82,16 @@
     {
       "path": "pages/family/roles",
       "style": {
-        "navigationBarTitleText": "选择角色",
+        "navigationBarTitleText": "切换",
         "leftWindow": false
       }
     },
     {
       "path": "pages/family/students",
       "style": {
-        "navigationBarTitleText": "学生角色"
+        "navigationBarTitleText": "角色",
+        "navigationBarBackgroundColor": "#f4f1ea",
+        "backgroundColor": "#f4f1ea"
       }
     },
     {
@@ -101,7 +103,9 @@
     {
       "path": "pages/membership/membership",
       "style": {
-        "navigationBarTitleText": "会员"
+        "navigationBarTitleText": "会员",
+        "navigationBarBackgroundColor": "#f4f1ea",
+        "backgroundColor": "#f4f1ea"
       }
     },
     {
@@ -119,7 +123,9 @@
     {
       "path": "pages/admin/admin",
       "style": {
-        "navigationBarTitleText": "词库管理"
+        "navigationBarTitleText": "词库",
+        "navigationBarBackgroundColor": "#f4f1ea",
+        "backgroundColor": "#f4f1ea"
       }
     },
     {
@@ -218,7 +224,7 @@
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "我的",
+        "text": "账号",
         "iconPath": "static/icons/chat.png",
         "selectedIconPath": "static/icons/chat-active.png"
       }

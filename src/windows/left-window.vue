@@ -2,7 +2,7 @@
   <view :class="['rail', expanded ? '' : 'is-narrow']" @mouseenter="hovering = true" @mouseleave="hovering = false">
     <view class="rail-top">
       <view v-if="expanded" class="brand">
-        <text class="brand-name" @tap="open('/pages/home/home')">学习助手</text>
+        <text class="brand-name" @tap="userStore.goHome()">学习助手</text>
         <view class="pin" :title="pinned ? '取消固定' : '固定侧栏'" @tap="togglePin">
           <PcRailIcon name="pin" />
         </view>
@@ -49,7 +49,22 @@
         <text :class="['subject-btn', !userStore.isChinese ? 'is-on' : '']" @tap="switchSubject('english')">英语</text>
         <text :class="['subject-btn', userStore.isChinese ? 'is-on' : '']" @tap="switchSubject('chinese')">语文</text>
       </view>
-      <view :class="['row', isMine ? 'is-on' : '']" title="我的" @tap="open('/pages/mine/mine')">
+      <view v-if="switchOpen" class="switch-pop" @tap.stop>
+        <view class="switch-item" @tap="enterAccount">
+          <text class="switch-name">{{ accountName }}</text>
+          <text class="switch-note">账号</text>
+        </view>
+        <view
+          v-for="item in userStore.children"
+          :key="item.id"
+          class="switch-item"
+          @tap="enterRole(item.id)"
+        >
+          <text class="switch-name">{{ item.name }}</text>
+        </view>
+        <text v-if="!userStore.children.length" class="switch-empty">还没有角色</text>
+      </view>
+      <view :class="['row', switchOpen ? 'is-on' : '']" title="切换" @tap.stop="switchOpen = !switchOpen">
         <PcRailIcon name="mine" />
         <text class="label">{{ footLabel }}</text>
       </view>
@@ -79,14 +94,25 @@ const userStore = useUserStore()
 const pinned = ref(readPinned())
 const hovering = ref(false)
 const moreOpen = ref(false)
+const switchOpen = ref(false)
+const accountName = computed(() => userStore.displayName || userStore.username || '账号')
 const expanded = computed(() => pinned.value || hovering.value)
 
 const mainItems = computed<RailItem[]>(() => {
   const chinese = userStore.isChinese
   const student = userStore.isStudentRole
+  const parent = userStore.isParent
   const items: RailItem[] = []
+  if (parent) {
+    items.push(
+      item('students', '角色', '/pages/family/students', 'users'),
+      item('member', '会员', '/pages/membership/membership', 'crown')
+    )
+    if (userStore.isAdmin) items.push(item('admin', '词库', '/pages/admin/admin', 'gear'))
+    return items
+  }
   // 英语：侧栏直接进认读/拼读，不再放今日。语文仍用今日看课程。
-  if (chinese) {
+  if (chinese && student) {
     items.push({
       key: 'home',
       label: '今日',
@@ -96,7 +122,7 @@ const mainItems = computed<RailItem[]>(() => {
       match: (path) => path === '/pages/home/home'
     })
   }
-  if (!chinese) {
+  if (!chinese && student) {
     items.push(
       {
         key: 'recognition',
@@ -126,78 +152,24 @@ const mainItems = computed<RailItem[]>(() => {
       }
     )
   }
-  if (!student && chinese) {
-    items.push(
-      {
-        key: 'courses',
-        label: '课程',
-        url: '/pages/chinese/courses',
-        icon: 'courses',
-        show: () => true,
-        match: (path) =>
-          path === '/pages/chinese/courses' ||
-          path.startsWith('/pages/chinese/plan') ||
-          path.startsWith('/pages/chinese/stats') ||
-          path.startsWith('/pages/chinese/drill')
-      },
-      {
-        key: 'mastery',
-        label: '掌握',
-        url: '/pages/vocabulary/vocabulary',
-        icon: 'chart',
-        show: () => true,
-        match: (path) => path === '/pages/vocabulary/vocabulary'
-      },
-      {
-        key: 'cover',
-        label: '覆盖',
-        url: '/pages/vocabulary-map/vocabulary-map',
-        icon: 'coverage',
-        show: () => true,
-        match: (path) => path === '/pages/vocabulary-map/vocabulary-map'
-      }
-    )
-  }
   return items.filter((item) => item.show())
 })
 
 const moreItems = computed<RailItem[]>(() => {
   const chinese = userStore.isChinese
   const student = userStore.isStudentRole
-  const parent = userStore.isParent
-  const admin = userStore.isAdmin
   const items: RailItem[] = []
 
   if (!chinese && student) {
     items.push(item('speak', '口语', '/pages/speaking/speaking', 'speak'))
   }
-  if (!chinese && parent) {
-    items.push(
-      item('books', '词书', '/pages/books/books', 'book'),
-      item('chat', '陪聊', '/pages/chat/chat', 'chat'),
-      item('quiz', '小测', '/pages/quiz/quiz', 'quiz'),
-      item('member', '会员', '/pages/membership/membership', 'crown'),
-      item('students', '学生', '/pages/family/students', 'users')
-    )
-    if (admin) items.push(item('admin', '词库', '/pages/admin/admin', 'gear'))
-  }
-  if (chinese && parent) {
-    items.push(
-      item('library', '组课', '/pages/chinese/library', 'library'),
-      item('points', '知识点', '/pages/chinese/points', 'points'),
-      item('materials', '教材', '/pages/chinese/materials', 'materials'),
-      item('coverage', '全库', '/pages/chinese/coverage', 'coverage')
-    )
-    if (admin) items.push(item('drafts', '草稿', '/pages/chinese/drafts', 'gear'))
-  }
   return items
 })
 
 const moreCurrent = computed(() => moreItems.value.some((item) => item.match(pcPath.value)))
-const isMine = computed(() => pcPath.value === '/pages/mine/mine')
 const footLabel = computed(() => {
-  if (userStore.isStudentRole) return userStore.learnerName || '我的'
-  return userStore.displayName || '我的'
+  if (userStore.isStudentRole) return userStore.learnerName || '角色'
+  return '账号'
 })
 
 watch(expanded, (open) => applyRailWidth(open))
@@ -246,10 +218,31 @@ function togglePin() {
   if (!pinned.value) hovering.value = true
 }
 
+async function enterAccount() {
+  switchOpen.value = false
+  try {
+    if (!userStore.isParent) await userStore.chooseParentRole()
+    userStore.goHome()
+  } catch (error: any) {
+    uni.showToast({ title: error.message || '进入失败', icon: 'none' })
+  }
+}
+
+async function enterRole(id: string) {
+  switchOpen.value = false
+  try {
+    if (!(userStore.isStudentRole && userStore.activeLearnerId === id)) {
+      await userStore.chooseStudentRole(id)
+    }
+    userStore.goHome()
+  } catch (error: any) {
+    uni.showToast({ title: error.message || '进入失败', icon: 'none' })
+  }
+}
+
 async function switchSubject(subject: Subject) {
   if (userStore.activeSubject === subject) return
   await userStore.setSubject(subject)
-  uni.switchTab({ url: '/pages/home/home' })
 }
 
 function readPinned() {
@@ -283,8 +276,56 @@ function readPinned() {
 }
 
 .rail-foot {
+  position: relative;
   padding: 8px 12px 14px;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.switch-pop {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  bottom: calc(100% - 4px);
+  max-height: 280px;
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #e0d7cb;
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 8px 24px rgba(31, 26, 20, 0.08);
+  z-index: 4;
+}
+
+.switch-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.switch-item:hover {
+  background: #eceef0;
+}
+
+.switch-name {
+  font-size: 14px;
+  color: #1f1a14;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.switch-note, .switch-empty {
+  font-size: 12px;
+  color: #8a8175;
+}
+
+.switch-empty {
+  display: block;
+  padding: 8px 10px;
 }
 
 .brand {

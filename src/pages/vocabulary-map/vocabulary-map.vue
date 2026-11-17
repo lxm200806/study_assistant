@@ -114,7 +114,7 @@
       </template>
 
       <view v-else class="state">
-        <text>{{ loadError || '暂无数据，请先登录并选择学生' }}</text>
+        <text>{{ loadError || '暂无数据，请先登录并选择角色' }}</text>
         <text class="retry" @tap="loadMap">重试</text>
       </view>
     </view>
@@ -283,7 +283,7 @@ const loadMap = async () => {
       await vocabStore.loadBookMap(selectedBook.value)
     }
     const data = scope.value === 'global' ? vocabStore.globalMapData : vocabStore.bookMapData
-    if (!data) loadError.value = '图谱加载失败，请确认已选择学生账号'
+    if (!data) loadError.value = '图谱加载失败，请确认已选择角色'
   } catch (err) {
     loadError.value = err instanceof Error ? err.message : '图谱加载失败'
   } finally {
@@ -361,10 +361,6 @@ onHide(() => {
 
 onMounted(async () => {
   if (!(await requireReadySession())) return
-  if (userStore.isStudentRole) {
-    uni.switchTab({ url: '/pages/home/home' })
-    return
-  }
   enterDesktopChrome()
   if (userStore.isChinese) {
     try {

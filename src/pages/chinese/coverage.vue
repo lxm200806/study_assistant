@@ -14,7 +14,7 @@
     </view>
     <view class="card">
       <text class="section">按类型</text>
-      <text v-if="emptyLibrary" class="muted">知识库还是空的。管理员请到语文教材同步；学生可先打开默认课程。</text>
+      <text v-if="emptyLibrary" class="muted">知识库还是空的。管理员请到语文教材同步；角色可先打开默认课程。</text>
       <text v-else-if="emptyCourses" class="muted">词库已有内容，但还没有组进课程。去组课，或打开默认课程开始默写。</text>
       <view v-for="item in data.byKind || []" :key="item.kind" class="row">
         <text>{{ kindLabel(item.kind) }} · 词条 {{ item.entries || item.total }} · 卡片 {{ item.total }} · 已组课 {{ item.in_course || item.inCourse || 0 }}</text>

@@ -1,133 +1,47 @@
 <template>
-  <view class="container">
-    <view class="profile-card">
-      <view class="avatar">
-        <text class="avatar-text">{{ displayName.charAt(0) }}</text>
-      </view>
-      <view class="profile-info">
-        <text class="username">{{ displayName }}</text>
-        <text class="plan-tag">{{ planLabel }}</text>
-      </view>
-    </view>
+  <view class="desk">
+    <text class="eyebrow">{{ userStore.isStudentRole ? '角色' : '账号' }}</text>
+    <text class="title">{{ displayName }}</text>
+    <text class="lede">{{ planLabel }}</text>
 
     <view v-if="userStore.isStudentRole" class="menu-section">
-      <view v-if="!userStore.isChinese" class="menu-item" @tap="goTyping">
-        <text class="menu-icon">⌨️</text>
+      <view class="menu-item">
         <view class="menu-text">
-          <text class="menu-label">拼读练习</text>
-          <text class="menu-desc">有键盘时跟写、听写、自测、默写</text>
+          <text class="menu-label">当前角色</text>
+          <text class="menu-desc">这里只显示这个角色自己的信息</text>
         </view>
-        <text class="menu-arrow">›</text>
       </view>
       <view class="menu-item" @tap="userStore.goRoles()">
-        <text class="menu-icon">🔄</text>
         <view class="menu-text">
-          <text class="menu-label">切换角色</text>
-          <text class="menu-desc">返回选择家长或学生</text>
+          <text class="menu-label">切换</text>
+          <text class="menu-desc">回到账号或其他角色</text>
         </view>
         <text class="menu-arrow">›</text>
       </view>
     </view>
 
     <template v-else>
-    <view class="subject-switch">
-      <view :class="['subject-btn', userStore.isChinese ? 'active' : '']" @tap="switchSubject('chinese')">
-        <text>语文</text>
-      </view>
-      <view :class="['subject-btn', !userStore.isChinese ? 'active' : '']" @tap="switchSubject('english')">
-        <text>英语</text>
-      </view>
-    </view>
-    <text class="switch-hint">当前在{{ userStore.isChinese ? '语文' : '英语' }}。两个学科分开学，互不影响。</text>
-
     <view class="menu-section">
-      <view class="menu-item" @tap="userStore.goRoles()">
-        <text class="menu-icon">🔄</text>
-        <view class="menu-text">
-          <text class="menu-label">切换角色</text>
-          <text class="menu-desc">家长 / 学生进入方式</text>
-        </view>
-        <text class="menu-arrow">›</text>
-      </view>
       <view class="menu-item" @tap="goStudents">
-        <text class="menu-icon">👨‍🎓</text>
         <view class="menu-text">
-          <text class="menu-label">学生角色</text>
-          <text class="menu-desc">{{ studentHint }}</text>
+          <text class="menu-label">管理角色</text>
+          <text class="menu-desc">{{ roleHint }}</text>
         </view>
         <text class="menu-arrow">›</text>
       </view>
-      <view v-for="item in userStore.children" :key="item.id" class="menu-item" @tap="pickStudent(item.id)">
-        <text class="menu-icon">{{ item.id === userStore.activeLearnerId ? '✅' : '👤' }}</text>
+      <view v-for="item in userStore.children" :key="item.id" class="menu-item">
         <view class="menu-text">
           <text class="menu-label">{{ item.name }}</text>
-          <text class="menu-desc">{{ item.id === userStore.activeLearnerId ? '当前查看的学生' : '点按切换查看' }}</text>
         </view>
-        <text class="menu-arrow">›</text>
       </view>
+      <text v-if="!userStore.children.length" class="menu-item">还没有角色</text>
     </view>
 
-    <view v-if="userStore.isChinese" class="menu-section">
-      <view class="menu-item" @tap="goChinese">
-        <text class="menu-icon">📖</text>
-        <view class="menu-text">
-          <text class="menu-label">语文课程</text>
-          <text class="menu-desc">组课、计划、掌握</text>
-        </view>
-        <text class="menu-arrow">›</text>
-      </view>
-      <view class="menu-item" @tap="goChinesePoints">
-        <text class="menu-icon">📚</text>
-        <view class="menu-text">
-          <text class="menu-label">知识点</text>
-          <text class="menu-desc">浏览已发布库</text>
-        </view>
-        <text class="menu-arrow">›</text>
-      </view>
-      <view class="menu-item" @tap="goChineseMaterials">
-        <text class="menu-icon">📗</text>
-        <view class="menu-text">
-          <text class="menu-label">语文教材</text>
-          <text class="menu-desc">{{ userStore.isAdmin ? '同步官方册' : '查看已同步教材' }}</text>
-        </view>
-        <text class="menu-arrow">›</text>
-      </view>
-    </view>
-
-    <view v-else class="menu-section">
-      <view class="menu-item" @tap="goBooks">
-        <text class="menu-icon">📚</text>
-        <view class="menu-text">
-          <text class="menu-label">词汇书</text>
-          <text class="menu-desc">切换与学习词书</text>
-        </view>
-        <text class="menu-arrow">›</text>
-      </view>
-      <view class="menu-item" @tap="goTyping">
-        <text class="menu-icon">⌨️</text>
-        <view class="menu-text">
-          <text class="menu-label">拼读练习</text>
-          <text class="menu-desc">进入学生角色后开始</text>
-        </view>
-        <text class="menu-arrow">›</text>
-      </view>
-    </view>
-
-    <view v-if="!userStore.isChinese" class="menu-section">
-      <text class="section-label">会员与服务</text>
+    <view class="menu-section">
       <view class="menu-item" @tap="goMembership">
-        <text class="menu-icon">👑</text>
         <view class="menu-text">
-          <text class="menu-label">会员中心</text>
-          <text class="menu-desc">解锁词书 · 开通 Premium</text>
-        </view>
-        <text class="menu-arrow">›</text>
-      </view>
-      <view class="menu-item" @tap="goParentReport">
-        <text class="menu-icon">📊</text>
-        <view class="menu-text">
-          <text class="menu-label">学习周报</text>
-          <text class="menu-desc">当前学生本周概况</text>
+          <text class="menu-label">会员</text>
+          <text class="menu-desc">开通后，这个账号下的角色都可以用</text>
         </view>
         <text class="menu-arrow">›</text>
       </view>
@@ -159,72 +73,37 @@
 import { computed, onMounted } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import { useUserStore } from '@/stores/user'
-import { applyAppShell, requireReadySession, type Subject } from '@/utils/subject'
+import { applyAppShell, requireReadySession } from '@/utils/subject'
 
 const userStore = useUserStore()
 
 const displayName = computed(() =>
   userStore.isStudentRole
-    ? (userStore.learnerName || '学生')
-    : (userStore.displayName || userStore.username || '家长')
+    ? (userStore.learnerName || '角色')
+    : (userStore.displayName || userStore.username || '账号')
 )
 
 const planLabel = computed(() => {
-  if (userStore.isAdmin && userStore.isParent) return '管理员'
-  const mode = userStore.isStudentRole ? '学生' : '家长'
-  if (userStore.plan === 'premium') return `${mode} · Premium`
-  return `${mode} · ${userStore.isChinese ? '语文' : '英语'}`
+  if (userStore.isStudentRole) return '角色'
+  const mode = userStore.isAdmin ? '账号 · 管理' : '账号'
+  return userStore.plan === 'premium' ? `${mode} · Premium` : mode
 })
 
-const studentHint = computed(() => {
-  if (!userStore.children.length) return '添加学生后才能开始学习'
-  return `当前：${userStore.learnerName}，共 ${userStore.children.length} 人`
+const roleHint = computed(() => {
+  if (!userStore.children.length) return '添加角色后，选中角色再开始学习'
+  return `共 ${userStore.children.length} 个角色`
 })
-
-async function pickStudent(id: string) {
-  if (id === userStore.activeLearnerId) return
-  await userStore.switchStudent(id)
-  uni.showToast({ title: `已切换到 ${userStore.learnerName}`, icon: 'none' })
-  uni.switchTab({ url: '/pages/home/home' })
-}
 
 const goStudents = () => {
   uni.navigateTo({ url: '/pages/family/students' })
-}
-
-async function switchSubject(subject: Subject) {
-  if (userStore.activeSubject === subject) return
-  await userStore.setSubject(subject)
-  uni.showToast({ title: subject === 'chinese' ? '已切换到语文' : '已切换到英语', icon: 'none' })
-  uni.switchTab({ url: '/pages/home/home' })
-}
-
-const goBooks = () => {
-  uni.navigateTo({ url: '/pages/books/books' })
-}
-
-const goTyping = () => {
-  uni.navigateTo({ url: '/pages/typing/typing' })
-}
-
-const goChinesePoints = () => {
-  uni.navigateTo({ url: '/pages/chinese/points' })
 }
 
 const goMembership = () => {
   uni.navigateTo({ url: '/pages/membership/membership' })
 }
 
-const goParentReport = () => {
-  uni.navigateTo({ url: '/pages/membership/membership?focus=report' })
-}
-
 const goAdmin = () => {
   uni.navigateTo({ url: '/pages/admin/admin' })
-}
-
-const goChineseMaterials = () => {
-  uni.navigateTo({ url: '/pages/chinese/materials' })
 }
 
 const goChineseDrafts = () => {
@@ -242,8 +121,8 @@ const handleLogout = () => {
 }
 
 onShow(async () => {
-  if (!(await requireReadySession({ allowNoStudents: true }))) return
-  applyAppShell()
+  if (!(await requireReadySession({ allowNoStudents: true, allowMissingRole: true }))) return
+  userStore.goHome()
 })
 
 onMounted(async () => {
@@ -253,49 +132,35 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  padding: 24rpx;
-  padding-bottom: 80rpx;
+.desk {
+  min-height: 100vh;
+  box-sizing: border-box;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 36px 22px 80px;
+  background: #f4f1ea;
+  color: #1f1a14;
 }
 
-.profile-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 24rpx;
-  padding: 36rpx;
-  display: flex;
-  align-items: center;
-  gap: 24rpx;
-  margin-bottom: 24rpx;
-}
-
-.avatar {
-  width: 96rpx;
-  height: 96rpx;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.avatar-text {
-  color: #fff;
-  font-size: 40rpx;
-  font-weight: 700;
-}
-
-.username {
+.eyebrow {
   display: block;
-  color: #fff;
-  font-size: 36rpx;
-  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  color: #8a8175;
 }
 
-.plan-tag {
+.title {
   display: block;
-  margin-top: 8rpx;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 24rpx;
+  margin-top: 8px;
+  font-family: Palatino, "Palatino Linotype", "Songti SC", serif;
+  font-size: 40px;
+}
+
+.lede {
+  display: block;
+  margin: 8px 0 22px;
+  color: #6d645b;
+  font-size: 14px;
 }
 
 .subject-switch {
@@ -330,9 +195,10 @@ onMounted(async () => {
 }
 
 .menu-section {
-  background: #fff;
-  border-radius: 20rpx;
-  margin-bottom: 24rpx;
+  background: transparent;
+  border: 1px solid #e0d7cb;
+  border-radius: 16px;
+  margin-bottom: 16px;
   overflow: hidden;
 }
 
@@ -346,8 +212,8 @@ onMounted(async () => {
 .menu-item {
   display: flex;
   align-items: center;
-  padding: 28rpx;
-  border-bottom: 1rpx solid #f5f5f5;
+  padding: 16px 18px;
+  border-bottom: 1px solid #efe7da;
 }
 
 .menu-item:last-child {
@@ -365,26 +231,27 @@ onMounted(async () => {
 
 .menu-label {
   display: block;
-  font-size: 30rpx;
-  color: #222;
+  font-size: 16px;
+  color: #1f1a14;
 }
 
 .menu-desc {
   display: block;
-  margin-top: 6rpx;
-  font-size: 24rpx;
-  color: #999;
+  margin-top: 4px;
+  font-size: 13px;
+  color: #6d645b;
 }
 
 .menu-arrow {
-  color: #ccc;
-  font-size: 36rpx;
+  color: #8a8175;
+  font-size: 20px;
 }
 
 .btn-logout {
-  margin-top: 20rpx;
-  background: #fff;
+  margin-top: 8px;
+  background: transparent;
   color: #b91c1c;
-  border-radius: 40rpx;
+  border: 1px solid #e0d7cb;
+  border-radius: 999px;
 }
 </style>
