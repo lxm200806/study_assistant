@@ -1,11 +1,19 @@
 import fs from 'fs'
+import type { CefrLevel, ContentType, TopicCategory } from '../../src/data/vocabulary/types'
 
 export interface KewGloss {
   meaning: string
   englishMeaning: string
   phonetic: string
   exampleSentence: string
+  exampleSentenceZh?: string
   exampleSentences?: string[]
+  /** 可选：本书覆盖或补洞 */
+  examExample?: string
+  examExampleZh?: string
+  topic?: TopicCategory | string
+  cefr?: CefrLevel | string
+  contentType?: ContentType | string
 }
 
 /** 义项表键就是单词本身。仍接受旧的 word::sense 写法。 */
@@ -31,19 +39,44 @@ function joinText(current: string, next: string, sep: string): string {
   return `${current}${sep}${extra}`
 }
 
+function pickOptional(
+  current: string | undefined,
+  extra: string | undefined
+): string | undefined {
+  const a = current?.trim()
+  const b = extra?.trim()
+  return a || b || undefined
+}
+
 export function mergeGloss(current: KewGloss, extra: KewGloss): KewGloss {
   const examples: string[] = []
   pushExample(examples, current.exampleSentence)
   for (const item of current.exampleSentences || []) pushExample(examples, item)
   pushExample(examples, extra.exampleSentence)
   for (const item of extra.exampleSentences || []) pushExample(examples, item)
-  return {
+  const merged: KewGloss = {
     meaning: joinText(current.meaning, extra.meaning, '；'),
     englishMeaning: joinText(current.englishMeaning, extra.englishMeaning, '; '),
     phonetic: current.phonetic || extra.phonetic,
     exampleSentence: examples[0] || current.exampleSentence,
     ...(examples.length > 1 ? { exampleSentences: examples } : {})
   }
+  const exampleSentenceZh = pickOptional(current.exampleSentenceZh, extra.exampleSentenceZh)
+  const examExample = pickOptional(current.examExample, extra.examExample)
+  const examExampleZh = pickOptional(current.examExampleZh, extra.examExampleZh)
+  const topic = pickOptional(current.topic as string | undefined, extra.topic as string | undefined)
+  const cefr = pickOptional(current.cefr as string | undefined, extra.cefr as string | undefined)
+  const contentType = pickOptional(
+    current.contentType as string | undefined,
+    extra.contentType as string | undefined
+  )
+  if (exampleSentenceZh) merged.exampleSentenceZh = exampleSentenceZh
+  if (examExample) merged.examExample = examExample
+  if (examExampleZh) merged.examExampleZh = examExampleZh
+  if (topic) merged.topic = topic
+  if (cefr) merged.cefr = cefr
+  if (contentType) merged.contentType = contentType
+  return merged
 }
 
 /** 把 word::sense 旧键收成单词键；同一单词多条则合并释义和例句。 */
@@ -52,7 +85,7 @@ export function normalizeGlossMap(raw: Record<string, KewGloss>): Record<string,
   for (const [key, gloss] of Object.entries(raw)) {
     const word = glossWord(key)
     if (!word) continue
-    merged[word] = merged[word] ? mergeGloss(merged[word], gloss) : gloss
+    merged[word] = merged[word] ? mergeGloss(merged[word], gloss) : { ...gloss }
   }
   const out: Record<string, KewGloss> = {}
   for (const word of Object.keys(merged).sort()) out[word] = merged[word]

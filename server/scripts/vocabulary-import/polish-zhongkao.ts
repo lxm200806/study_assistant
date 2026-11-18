@@ -24,21 +24,14 @@ interface SourcedGloss extends KewGloss {
   origin: Origin
 }
 
-function loadKewGlosses(series: 'kew1200' | 'kew4500', count: number): Record<string, KewGloss> {
-  const map: Record<string, KewGloss> = {}
-  for (let i = 1; i <= count; i++) {
-    const file = path.join(KEW_ROOT, series, `${series}-${i}-glosses.json`)
-    const data = loadNormalizedGlosses(file)
-    for (const [word, gloss] of Object.entries(data)) {
-      if (!map[word]) map[word] = gloss
-    }
-  }
-  return map
+function loadKewGlosses(series: 'kew1200' | 'kew4500'): Record<string, KewGloss> {
+  const file = path.join(KEW_ROOT, series, `${series}-glosses.json`)
+  return loadNormalizedGlosses(file)
 }
 
 function buildGlossMap(words: string[]): Record<string, SourcedGloss> {
-  const kew1200 = loadKewGlosses('kew1200', 3)
-  const kew4500 = loadKewGlosses('kew4500', 4)
+  const kew1200 = loadKewGlosses('kew1200')
+  const kew4500 = loadKewGlosses('kew4500')
   const map: Record<string, SourcedGloss> = {}
   for (const word of words) {
     const extra = ZHONGKAO_EXTRA[word]

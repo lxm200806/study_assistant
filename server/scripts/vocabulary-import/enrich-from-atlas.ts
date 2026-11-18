@@ -1,37 +1,28 @@
 #!/usr/bin/env ts-node
 /**
- * 一期 enrichment：
- * 1) 把现有 exampleSentence 映射为 examples[].role=basic（不覆盖已有 basic / KEW 简句）
- * 2) 词光命中词：追加 exam 句、回填 topic/topics/cefr
- *
- * 词光数据 CC BY 4.0，署名 Word Atlas contributors。
+ * 用本地全局词典（senses.json）回填成品词书的 topic / cefr / exam 句等。
+ * 日常不再读取词光仓库；词光请先：npm run cidian:daoru-ciguang
  *
  * 用法（在 server/ 下）：
- *   npm run enrich:atlas
- *   npm run enrich:atlas -- --dry-run
- *   npm run enrich:atlas -- kew1200-1.json
+ *   npm run cidian:tianchong
+ *   npm run cidian:tianchong -- --dry-run
+ *   npm run cidian:tianchong -- kew1200.json
  */
 import fs from 'fs'
 import path from 'path'
 import type { CefrLevel, WordData, WordExample } from '../../src/data/vocabulary/types'
 import { isWeakTopic, normalizeTopic } from '../../src/data/taxonomy'
+import {
+  asFlatSense,
+  buildSenseFromFlat,
+  lookupSense,
+  normalizeSenseEntry,
+  type FlatSenseView,
+  type GlobalSense
+} from '../../src/data/vocabulary/senses'
 import { BOOKS_DIR } from './kew-layout'
 
-const ATLAS_DEFAULT = path.resolve(__dirname, '../../../../word-atlas/data/word-atlas.json')
-const ATLAS_ATTR = 'Word Atlas contributors — CC BY 4.0'
-const ATLAS_TAG = 'src:atlas=CC-BY-4.0'
-
-interface AtlasExample {
-  en?: string
-  zh?: string
-}
-
-interface AtlasEntry {
-  w: string
-  topic?: string
-  cefr?: string
-  ex?: AtlasExample[]
-}
+const LEXICON_TAG = 'src:lexicon=senses.json'
 
 export interface EnrichStats {
   words: number
@@ -40,20 +31,6 @@ export interface EnrichStats {
   topicFilled: number
   cefrFilled: number
   atlasHits: number
-}
-
-function norm(word: string): string {
-  return word.trim().toLowerCase().replace(/[’‘]/g, "'")
-}
-
-export function loadAtlasIndex(atlasPath: string): Map<string, AtlasEntry> {
-  const raw = JSON.parse(fs.readFileSync(atlasPath, 'utf-8')) as AtlasEntry[]
-  const map = new Map<string, AtlasEntry>()
-  for (const entry of raw) {
-    const key = norm(entry.w || '')
-    if (key) map.set(key, entry)
-  }
-  return map
 }
 
 function hasRole(examples: WordExample[] | undefined, role: WordExample['role']): boolean {
@@ -112,19 +89,6 @@ export function ensureBasicExample(word: WordData): boolean {
   return added
 }
 
-function pickAtlasExam(entry: AtlasEntry, basicEn: string): AtlasExample | null {
-  const list = (entry.ex || []).filter(e => e.en?.trim())
-  if (!list.length) return null
-  const preferred = list[1] || list[0]
-  if (!preferred?.en) return null
-  if (preferred.en.trim().toLowerCase() === basicEn.trim().toLowerCase()) {
-    return (
-      list.find(e => e.en && e.en.trim().toLowerCase() !== basicEn.trim().toLowerCase()) || null
-    )
-  }
-  return preferred
-}
-
 function ensureTopicShape(word: WordData) {
   word.topic = normalizeTopic(word.topic || word.topics?.[0])
   word.topics = word.topics?.length
@@ -132,9 +96,40 @@ function ensureTopicShape(word: WordData) {
     : [word.topic]
 }
 
+function resolveFlatLexicon(
+  lexiconEntry?:
+    | GlobalSense
+    | FlatSenseView
+    | { topic?: string; cefr?: string; ex?: Array<{ en?: string; zh?: string }> }
+    | undefined
+): FlatSenseView | undefined {
+  if (!lexiconEntry) return undefined
+  const raw = lexiconEntry as Record<string, unknown>
+  // 旧测试：假 atlas 对象带 ex[]
+  if (Array.isArray(raw.ex) && !Array.isArray(raw.meanings) && typeof raw.meaning !== 'string') {
+    const ex = raw.ex as Array<{ en?: string; zh?: string }>
+    return asFlatSense(
+      buildSenseFromFlat({
+        topic: typeof raw.topic === 'string' ? raw.topic : undefined,
+        cefr: typeof raw.cefr === 'string' ? raw.cefr : undefined,
+        examExample: ex[1]?.en || ex[0]?.en,
+        examExampleZh: ex[1]?.zh || ex[0]?.zh,
+        status: 'pending',
+        origin: 'lexicon'
+      })
+    )
+  }
+  return asFlatSense(normalizeSenseEntry(lexiconEntry))
+}
+
+/** @deprecated 名称保留兼容测试；实际从全局词典取数 */
 export function enrichWordFromAtlas(
   word: WordData,
-  atlas: AtlasEntry | undefined
+  lexiconEntry?:
+    | GlobalSense
+    | FlatSenseView
+    | { topic?: string; cefr?: string; ex?: Array<{ en?: string; zh?: string }> }
+    | undefined
 ): {
   basicEnsured: boolean
   examAdded: boolean
@@ -145,7 +140,11 @@ export function enrichWordFromAtlas(
   const basicEnsured = ensureBasicExample(word)
   ensureTopicShape(word)
 
-  if (!atlas) {
+  // 显式传入（测试/覆盖）优先于全局词典
+  const fromArg = resolveFlatLexicon(lexiconEntry)
+  const fromFile = lookupSense(word.word)
+  const entry = fromArg || (fromFile ? asFlatSense(fromFile) : undefined)
+  if (!entry) {
     syncLegacyExampleFields(word)
     return {
       basicEnsured,
@@ -157,44 +156,39 @@ export function enrichWordFromAtlas(
   }
 
   const examples = [...(word.examples || [])]
-  const basicEn = examples.find(e => e.role === 'basic')?.en || word.exampleSentence || ''
-
   let examAdded = false
-  if (!hasRole(examples, 'exam')) {
-    const exam = pickAtlasExam(atlas, basicEn)
-    if (exam?.en) {
-      examAdded = pushUniqueExample(examples, {
-        en: exam.en,
-        zh: exam.zh?.trim() || undefined,
-        role: 'exam',
-        source: 'word-atlas'
-      })
-    }
+  if (!hasRole(examples, 'exam') && entry.examExample?.trim()) {
+    examAdded = pushUniqueExample(examples, {
+      en: entry.examExample.trim(),
+      zh: entry.examExampleZh?.trim() || undefined,
+      role: 'exam',
+      source: entry.origin || 'lexicon'
+    })
   }
   word.examples = examples
 
   let topicFilled = false
-  const atlasTopic = normalizeTopic(atlas.topic)
-  // 仅当现主题弱、词光主题更强时回填；已是同一主题则不动（保证幂等）
+  const lexiconTopic = normalizeTopic(entry.topic || '')
   if (
-    !isWeakTopic(atlasTopic) &&
+    entry.topic &&
+    !isWeakTopic(lexiconTopic) &&
     isWeakTopic(word.topic) &&
-    normalizeTopic(word.topic) !== atlasTopic
+    normalizeTopic(word.topic) !== lexiconTopic
   ) {
-    word.topic = atlasTopic
-    word.topics = [atlasTopic]
+    word.topic = lexiconTopic
+    word.topics = [lexiconTopic]
     topicFilled = true
   }
 
   let cefrFilled = false
-  const cefr = (atlas.cefr || '').toUpperCase() as CefrLevel
+  const cefr = String(entry.cefr || '').toUpperCase() as CefrLevel
   if (!word.cefr && ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].includes(cefr)) {
     word.cefr = cefr
     cefrFilled = true
   }
 
   if (examAdded || topicFilled || cefrFilled) {
-    word.tags = [...new Set([...(word.tags || []), ATLAS_TAG])]
+    word.tags = [...new Set([...(word.tags || []), LEXICON_TAG])]
     const baseSources = word.sources || {
       list: 'unknown',
       meaning: 'unknown',
@@ -204,9 +198,9 @@ export function enrichWordFromAtlas(
     }
     word.sources = {
       ...baseSources,
-      examExample: examAdded ? 'word-atlas' : baseSources.examExample,
-      topic: topicFilled ? 'word-atlas' : baseSources.topic,
-      cefr: cefrFilled ? 'word-atlas' : baseSources.cefr
+      examExample: examAdded ? entry.origin || 'lexicon' : baseSources.examExample,
+      topic: topicFilled ? entry.origin || 'lexicon' : baseSources.topic,
+      cefr: cefrFilled ? entry.origin || 'lexicon' : baseSources.cefr
     }
   }
 
@@ -214,10 +208,7 @@ export function enrichWordFromAtlas(
   return { basicEnsured, examAdded, topicFilled, cefrFilled, hit: true }
 }
 
-export function enrichBookWords(
-  words: WordData[],
-  atlasIndex: Map<string, AtlasEntry>
-): EnrichStats {
+export function enrichBookWords(words: WordData[]): EnrichStats {
   const stats: EnrichStats = {
     words: words.length,
     basicEnsured: 0,
@@ -228,8 +219,7 @@ export function enrichBookWords(
   }
 
   for (const word of words) {
-    const atlas = atlasIndex.get(norm(word.word))
-    const result = enrichWordFromAtlas(word, atlas)
+    const result = enrichWordFromAtlas(word, lookupSense(word.word))
     if (result.basicEnsured) stats.basicEnsured += 1
     if (result.hit) stats.atlasHits += 1
     if (result.examAdded) stats.examAdded += 1
@@ -244,20 +234,9 @@ function main() {
   const args = process.argv.slice(2).filter(a => a !== '--')
   const dryRun = args.includes('--dry-run')
   const only = args.filter(a => !a.startsWith('--'))
-  const atlasPath = process.env.WORD_ATLAS_PATH || ATLAS_DEFAULT
 
-  if (!fs.existsSync(atlasPath)) {
-    console.error(`词光数据不存在: ${atlasPath}`)
-    console.error('请设置 WORD_ATLAS_PATH，或把 word-atlas 放在与 study_assistant 同级目录。')
-    process.exit(1)
-  }
-
-  console.log(`词光: ${atlasPath}`)
-  console.log(`署名: ${ATLAS_ATTR}`)
+  console.log('数据源: 本地全局词典 senses.json（不再读词光）')
   if (dryRun) console.log('dry-run：不写文件')
-
-  const atlasIndex = loadAtlasIndex(atlasPath)
-  console.log(`词光词条: ${atlasIndex.size}`)
 
   const files = fs
     .readdirSync(BOOKS_DIR)
@@ -288,12 +267,12 @@ function main() {
     const raw = fs.readFileSync(filePath, 'utf-8')
     const pretty = /\n\s{2}"/.test(raw)
     const book = JSON.parse(raw) as { words: WordData[]; [key: string]: unknown }
-    const stats = enrichBookWords(book.words, atlasIndex)
+    const stats = enrichBookWords(book.words)
     for (const k of Object.keys(total) as (keyof EnrichStats)[]) {
       total[k] += stats[k]
     }
     console.log(
-      `${file}: words=${stats.words} atlas=${stats.atlasHits} basic+${stats.basicEnsured} exam+${stats.examAdded} topic+${stats.topicFilled} cefr+${stats.cefrFilled}`
+      `${file}: words=${stats.words} lexicon=${stats.atlasHits} basic+${stats.basicEnsured} exam+${stats.examAdded} topic+${stats.topicFilled} cefr+${stats.cefrFilled}`
     )
     if (!dryRun) {
       book.wordCount = book.words.length
@@ -303,9 +282,9 @@ function main() {
   }
 
   console.log(
-    `\n合计: words=${total.words} atlas=${total.atlasHits} basic+${total.basicEnsured} exam+${total.examAdded} topic+${total.topicFilled} cefr+${total.cefrFilled}`
+    `\n合计: words=${total.words} lexicon=${total.atlasHits} basic+${total.basicEnsured} exam+${total.examAdded} topic+${total.topicFilled} cefr+${total.cefrFilled}`
   )
-  console.log('完成后请重启后端以同步数据库（./restart-server.sh）。')
+  console.log('缺词请先: npm run cidian:quezi -- <书号> --write ，再 cidian:jiaoyan，然后 paoguang / cidian:tianchong。')
 }
 
 if (require.main === module) {

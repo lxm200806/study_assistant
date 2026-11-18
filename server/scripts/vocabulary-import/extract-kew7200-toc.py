@@ -25,9 +25,9 @@ SKIP = {
 }
 
 BOOK_META = {
-    1: {"code": "kew7200-1", "name": "7200高频词 1", "level": "B2+", "targetWordCount": 800},
-    2: {"code": "kew7200-2", "name": "7200高频词 2", "level": "C1", "targetWordCount": 800},
-    3: {"code": "kew7200-3", "name": "7200高频词 3", "level": "C1+", "targetWordCount": 800},
+    1: {"level": "B2+", "targetWordCount": 800},
+    2: {"level": "C1", "targetWordCount": 800},
+    3: {"level": "C1+", "targetWordCount": 800},
 }
 
 
@@ -80,13 +80,13 @@ def parse_book(n: int, dictionary: set[str]) -> dict:
         uid = f"u{len(units) + 1}"
         units.append({"id": uid, "title": f"Unit {len(units) + 1}", "words": chunk})
     meta = BOOK_META[n]
+    for unit in units:
+        old_id = unit["id"]
+        unit["id"] = f"{n}-{old_id}"
+        unit["title"] = f"第{n}册 {unit['title']}"
+        unit["sourcePart"] = f"kew7200-{n}"
     return {
-        "code": meta["code"],
-        "name": meta["name"],
-        "description": (
-            f"Seed Learning《7200 Key English Words {n}》。从目录提取每单元 New Words 主题词，"
-            "不含课文句子用词。"
-        ),
+        "vol": n,
         "level": meta["level"],
         "targetWordCount": meta["targetWordCount"],
         "units": units,
@@ -98,15 +98,15 @@ def parse_book(n: int, dictionary: set[str]) -> dict:
 def main() -> None:
     dictionary = load_dictionary()
     print(f"dictionary {len(dictionary)}")
-    books = []
+    merged_units = []
     for n in range(1, 4):
         book = parse_book(n, dictionary)
         extra = book.pop("_extraTokens")
         token_count = book.pop("_tokenCount")
-        books.append(book)
-        print(f"{book['code']}: tokens={token_count} units={len(book['units'])} extra={extra[:20]}")
+        merged_units.extend(book["units"])
+        print(f"kew7200-{n}: tokens={token_count} units={len(book['units'])} extra={extra[:20]}")
         if book["units"]:
-            print("  u1", book["units"][0]["words"])
+            print("  first", book["units"][0]["words"])
             print("  last", book["units"][-1]["words"])
 
     catalog = {
@@ -114,10 +114,20 @@ def main() -> None:
         "publisher": "Seed Learning",
         "author": "Paul Nation",
         "source": "Table of Contents — unit target words only (not passage running words)",
-        "books": books,
+        "books": [
+            {
+                "code": "kew7200",
+                "name": "7200高频词",
+                "description": "Seed Learning 7200 高频词（全套）。从目录提取每单元 New Words 主题词。",
+                "level": "B1",
+                "targetWordCount": 2400,
+                "units": merged_units,
+            }
+        ],
     }
     OUT.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("wrote", OUT)
+    print(f"  kew7200: {len(merged_units)} units")
 
 
 if __name__ == "__main__":

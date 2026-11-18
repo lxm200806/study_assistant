@@ -37,11 +37,119 @@ export interface ResponseData<T = any> {
   learner?: { id: string; name: string; activeSubject?: string }
 }
 
+/** 登录相关接口的 401 是账号密码错误，不要当成会话过期 */
+const AUTH_CREDENTIAL_PATHS = new Set([
+  '/auth/login',
+  '/auth/register',
+  '/auth/refresh',
+  '/auth/wechat'
+])
+
+let sessionExpiredPromptOpen = false
+let networkHintAt = 0
+let refreshInFlight: Promise<boolean> | null = null
+
+function clearLocalSession() {
+  uni.removeStorageSync('accessToken')
+  uni.removeStorageSync('refreshToken')
+  uni.removeStorageSync('user')
+}
+
+function currentRoutePath(): string {
+  try {
+    const pages = getCurrentPages()
+    const cur = pages[pages.length - 1] as { route?: string } | undefined
+    return cur?.route ? `/${cur.route}` : ''
+  } catch {
+    return ''
+  }
+}
+
+/** 会话失效：清本地登录态，弹窗后进登录页（全局只弹一次） */
+export function promptSessionExpired(message = '登录已失效，请重新登录后再继续。') {
+  if (sessionExpiredPromptOpen) return
+  const path = currentRoutePath()
+  if (path.includes('/pages/login/login') || path.includes('/pages/register/register')) {
+    clearLocalSession()
+    return
+  }
+  sessionExpiredPromptOpen = true
+  clearLocalSession()
+  uni.showModal({
+    title: '需要重新登录',
+    content: message,
+    showCancel: false,
+    confirmText: '去登录',
+    success: () => {
+      uni.reLaunch({
+        url: '/pages/login/login',
+        complete: () => {
+          sessionExpiredPromptOpen = false
+        }
+      })
+    },
+    fail: () => {
+      sessionExpiredPromptOpen = false
+      uni.reLaunch({ url: '/pages/login/login' })
+    }
+  })
+}
+
+function hintServerUnavailable() {
+  const now = Date.now()
+  if (now - networkHintAt < 4000) return
+  networkHintAt = now
+  uni.showToast({
+    title: '后端未启动（3005），请稍后再试',
+    icon: 'none',
+    duration: 2800
+  })
+}
+
+function getRefreshToken(): string | null {
+  const raw = uni.getStorageSync('refreshToken')
+  const token = unwrapStorage<string>(raw) ?? (typeof raw === 'string' ? raw : null)
+  return token || null
+}
+
+async function tryRefreshAccessToken(): Promise<boolean> {
+  const refreshToken = getRefreshToken()
+  if (!refreshToken) return false
+  if (refreshInFlight) return refreshInFlight
+
+  refreshInFlight = (async () => {
+    try {
+      const result = await request('/auth/refresh', 'POST', { refreshToken }, undefined, {
+        skipAuthHandler: true
+      })
+      if (result.accessToken) {
+        uni.setStorageSync('accessToken', result.accessToken)
+        if (result.refreshToken) uni.setStorageSync('refreshToken', result.refreshToken)
+        return true
+      }
+      return false
+    } catch {
+      return false
+    } finally {
+      refreshInFlight = null
+    }
+  })()
+
+  return refreshInFlight
+}
+
+type RequestOptions = {
+  skipAuthHandler?: boolean
+  /** 内部重试标记，避免刷新后无限递归 */
+  _retried?: boolean
+}
+
 export async function request<T>(
   url: string,
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET',
   data?: any,
-  headers?: Record<string, string>
+  headers?: Record<string, string>,
+  options: RequestOptions = {}
 ): Promise<ResponseData<T>> {
   const token = getAuthToken()
 
@@ -50,7 +158,7 @@ export async function request<T>(
     ...(token && { Authorization: `Bearer ${token}` })
   }
 
-  const options: UniApp.RequestOptions = {
+  const req: UniApp.RequestOptions = {
     url: getApiBaseUrl() + url,
     method,
     timeout: 120000,
@@ -60,23 +168,46 @@ export async function request<T>(
 
   return new Promise((resolve, reject) => {
     uni.request({
-      ...options,
-      success: (res) => {
+      ...req,
+      success: async (res) => {
         if (res.statusCode === 200 || res.statusCode === 201) {
           resolve(res.data as ResponseData<T>)
-        } else {
-          const body = res.data as ResponseData
-          const errMsg = body?.error || 'Request failed'
-          if (res.statusCode === 401) {
-            reject(new Error(`Unauthorized: ${errMsg}`))
-          } else if (res.statusCode === 403) {
-            reject(new Error(`BOOK_LOCKED: ${errMsg}`))
-          } else {
-            reject(new Error(errMsg))
-          }
+          return
         }
+
+        const body = res.data as ResponseData
+        const errMsg = body?.error || 'Request failed'
+
+        if (res.statusCode === 401) {
+          const isCredentialCall = AUTH_CREDENTIAL_PATHS.has(url)
+          if (!options.skipAuthHandler && !isCredentialCall) {
+            if (!options._retried) {
+              const refreshed = await tryRefreshAccessToken()
+              if (refreshed) {
+                try {
+                  resolve(await request<T>(url, method, data, headers, { ...options, _retried: true }))
+                  return
+                } catch (retryErr) {
+                  reject(retryErr)
+                  return
+                }
+              }
+            }
+            promptSessionExpired()
+          }
+          reject(new Error(`Unauthorized: ${errMsg}`))
+          return
+        }
+
+        if (res.statusCode === 403) {
+          reject(new Error(`BOOK_LOCKED: ${errMsg}`))
+          return
+        }
+
+        reject(new Error(errMsg))
       },
       fail: (err) => {
+        hintServerUnavailable()
         reject(new Error(err.errMsg || 'Network error'))
       }
     })

@@ -60,16 +60,15 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 app.use(errorMiddleware)
 
 app.get('/', (req, res) => {
-  res.send('学习助手服务�?API')
+  res.send('学习助手服务�?API')
 })
 
 app.listen(Number(PORT), '0.0.0.0', () => {
   console.log(`Server running on http://0.0.0.0:${PORT}`)
   console.log(`API文档: http://localhost:${PORT}/api-docs`)
 
-  // 后台同步词库，避免阻�?HTTP 请求
-  void initVocabulary()
+  void ensureAdminUser()
+    .then(() => initVocabulary())
     .then(() => initBooks())
-    .then(() => ensureAdminUser())
     .catch(err => console.error('Background book sync failed:', err))
 })

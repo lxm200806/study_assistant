@@ -37,8 +37,8 @@ describe('flattenKewBook', () => {
   })
 
   it('splits watch across books by sense key', () => {
-    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew1200-1', 'u7', 'watch')].senseKey).toBe('v')
-    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew1200-3', 'b3', 'watch')].senseKey).toBe('n')
+    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew1200', '1-u7', 'watch')].senseKey).toBe('v')
+    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew1200', '3-b3', 'watch')].senseKey).toBe('n')
   })
 
   it('skips true same-sense duplicates', () => {
@@ -50,14 +50,14 @@ describe('flattenKewBook', () => {
   })
 
   it('splits 4500 iron and major by curriculum sense', () => {
-    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew4500-1', 'u31', 'iron')].senseKey).toBe('metal')
-    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew4500-4', 'u18', 'iron')].senseKey).toBe('appliance')
-    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew4500-1', 'u14', 'major')].senseKey).toBe('n')
-    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew4500-4', 'u40', 'major')].senseKey).toBe('adj')
+    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew4500', '1-u31', 'iron')].senseKey).toBe('metal')
+    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew4500', '4-u18', 'iron')].senseKey).toBe('appliance')
+    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew4500', '1-u14', 'major')].senseKey).toBe('n')
+    expect(KEW_SENSE_OVERRIDES[kewSenseLookupKey('kew4500', '4-u40', 'major')].senseKey).toBe('adj')
 
-    const result = flattenKewBook(book('kew4500-1', [
-      { id: 'u14', title: 'Unit 14', words: ['major'] },
-      { id: 'u31', title: 'Unit 31', words: ['iron'] }
+    const result = flattenKewBook(book('kew4500', [
+      { id: '1-u14', title: '第1册 Unit 14', words: ['major'] },
+      { id: '1-u31', title: '第1册 Unit 31', words: ['iron'] }
     ]))
     expect(result.words.map(item => item.word).sort()).toEqual(['iron', 'major'])
   })

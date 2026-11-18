@@ -60,84 +60,28 @@ const BOOKS: BookMeta[] = [
     wordCount: 3991
   },
   {
-    id: 'kew1200-1',
-    code: 'kew1200-1',
-    name: '1200高频词 1',
-    description: 'Seed Learning 单元主题词（New Words）',
+    id: 'kew1200',
+    code: 'kew1200',
+    name: '1200高频词',
+    description: 'Seed Learning 1200 高频词（全套）',
     level: 'A1',
-    wordCount: 399
+    wordCount: 1198
   },
   {
-    id: 'kew1200-2',
-    code: 'kew1200-2',
-    name: '1200高频词 2',
-    description: 'Seed Learning 单元主题词（New Words）',
-    level: 'A1+',
-    wordCount: 399
-  },
-  {
-    id: 'kew1200-3',
-    code: 'kew1200-3',
-    name: '1200高频词 3',
-    description: 'Seed Learning 单元主题词（New Words）',
+    id: 'kew4500',
+    code: 'kew4500',
+    name: '4500高频词',
+    description: 'Seed Learning 4500 高频词（全套）',
     level: 'A2',
-    wordCount: 400
+    wordCount: 3198
   },
   {
-    id: 'kew4500-1',
-    code: 'kew4500-1',
-    name: '4500高频词 1',
-    description: 'Seed Learning 单元主题词（New Words）',
-    level: 'A2+',
-    wordCount: 800
-  },
-  {
-    id: 'kew4500-2',
-    code: 'kew4500-2',
-    name: '4500高频词 2',
-    description: 'Seed Learning 单元主题词（New Words）',
+    id: 'kew7200',
+    code: 'kew7200',
+    name: '7200高频词',
+    description: 'Seed Learning 7200 高频词（全套）',
     level: 'B1',
-    wordCount: 800
-  },
-  {
-    id: 'kew4500-3',
-    code: 'kew4500-3',
-    name: '4500高频词 3',
-    description: 'Seed Learning 单元主题词（New Words）',
-    level: 'B1+',
-    wordCount: 800
-  },
-  {
-    id: 'kew4500-4',
-    code: 'kew4500-4',
-    name: '4500高频词 4',
-    description: 'Seed Learning 单元主题词（New Words）',
-    level: 'B2',
-    wordCount: 800
-  },
-  {
-    id: 'kew7200-1',
-    code: 'kew7200-1',
-    name: '7200高频词 1',
-    description: 'Seed Learning 单元主题词（New Words）',
-    level: 'B2+',
-    wordCount: 800
-  },
-  {
-    id: 'kew7200-2',
-    code: 'kew7200-2',
-    name: '7200高频词 2',
-    description: 'Seed Learning 单元主题词（New Words）',
-    level: 'C1',
-    wordCount: 800
-  },
-  {
-    id: 'kew7200-3',
-    code: 'kew7200-3',
-    name: '7200高频词 3',
-    description: 'Seed Learning 单元主题词（New Words）',
-    level: 'C1+',
-    wordCount: 800
+    wordCount: 2398
   }
 ]
 

@@ -5,15 +5,15 @@
   "source": "Table of Contents — unit target words only (not passage running words)",
   "books": [
     {
-      "code": "kew7200-1",
-      "name": "7200高频词 1",
-      "description": "Seed Learning《7200 Key English Words 1》。从目录提取每单元 New Words 主题词，不含课文句子用词。",
-      "level": "B2+",
-      "targetWordCount": 800,
+      "code": "kew7200",
+      "name": "7200高频词",
+      "description": "Seed Learning 7200 高频词（全套）",
+      "level": "B1",
+      "targetWordCount": 2400,
       "units": [
         {
-          "id": "u1",
-          "title": "Unit 1",
+          "id": "1-u1",
+          "title": "第1册 Unit 1",
           "words": [
             "abrupt",
             "ambivalent",
@@ -35,11 +35,12 @@
             "tabloid",
             "vanity",
             "whatsoever"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u2",
-          "title": "Unit 2",
+          "id": "1-u2",
+          "title": "第1册 Unit 2",
           "words": [
             "alumnus",
             "beneficiary",
@@ -61,11 +62,12 @@
             "tribunal",
             "unanimous",
             "verdict"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u3",
-          "title": "Unit 3",
+          "id": "1-u3",
+          "title": "第1册 Unit 3",
           "words": [
             "aggression",
             "attentive",
@@ -87,11 +89,12 @@
             "velvet",
             "verbal",
             "wardrobe"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u4",
-          "title": "Unit 4",
+          "id": "1-u4",
+          "title": "第1册 Unit 4",
           "words": [
             "anonymous",
             "ballot",
@@ -113,11 +116,12 @@
             "socialist",
             "statute",
             "wary"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u5",
-          "title": "Unit 5",
+          "id": "1-u5",
+          "title": "第1册 Unit 5",
           "words": [
             "aide",
             "articulate",
@@ -139,11 +143,12 @@
             "tangible",
             "undermine",
             "viable"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u6",
-          "title": "Unit 6",
+          "id": "1-u6",
+          "title": "第1册 Unit 6",
           "words": [
             "absurd",
             "accumulate",
@@ -165,11 +170,12 @@
             "retrospect",
             "streak",
             "trivial"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u7",
-          "title": "Unit 7",
+          "id": "1-u7",
+          "title": "第1册 Unit 7",
           "words": [
             "accountable",
             "ambiguity",
@@ -191,11 +197,12 @@
             "victor",
             "weary",
             "wretched"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u8",
-          "title": "Unit 8",
+          "id": "1-u8",
+          "title": "第1册 Unit 8",
           "words": [
             "accrue",
             "breach",
@@ -217,11 +224,12 @@
             "voucher",
             "warranty",
             "withhold"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u9",
-          "title": "Unit 9",
+          "id": "1-u9",
+          "title": "第1册 Unit 9",
           "words": [
             "administrative",
             "align",
@@ -243,11 +251,12 @@
             "trustee",
             "validate",
             "zenith"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u10",
-          "title": "Unit 10",
+          "id": "1-u10",
+          "title": "第1册 Unit 10",
           "words": [
             "adore",
             "adultery",
@@ -269,11 +278,12 @@
             "stink",
             "vulgar",
             "weld"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u11",
-          "title": "Unit 11",
+          "id": "1-u11",
+          "title": "第1册 Unit 11",
           "words": [
             "affiliate",
             "archive",
@@ -295,11 +305,12 @@
             "threshold",
             "tug",
             "warrant"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u12",
-          "title": "Unit 12",
+          "id": "1-u12",
+          "title": "第1册 Unit 12",
           "words": [
             "agitate",
             "apprehend",
@@ -321,11 +332,12 @@
             "trifle",
             "utterly",
             "ward"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u13",
-          "title": "Unit 13",
+          "id": "1-u13",
+          "title": "第1册 Unit 13",
           "words": [
             "agony",
             "averse",
@@ -347,11 +359,12 @@
             "synthesis",
             "tread",
             "wade"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u14",
-          "title": "Unit 14",
+          "id": "1-u14",
+          "title": "第1册 Unit 14",
           "words": [
             "amid",
             "appall",
@@ -373,11 +386,12 @@
             "stump",
             "tolerance",
             "tout"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u15",
-          "title": "Unit 15",
+          "id": "1-u15",
+          "title": "第1册 Unit 15",
           "words": [
             "applicable",
             "autonomy",
@@ -399,11 +413,12 @@
             "surge",
             "tangle",
             "transcribe"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u16",
-          "title": "Unit 16",
+          "id": "1-u16",
+          "title": "第1册 Unit 16",
           "words": [
             "arbitrate",
             "audit",
@@ -425,11 +440,12 @@
             "underestimate",
             "wholesale",
             "zeal"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u17",
-          "title": "Unit 17",
+          "id": "1-u17",
+          "title": "第1册 Unit 17",
           "words": [
             "arouse",
             "blackmail",
@@ -451,11 +467,12 @@
             "stance",
             "uphold",
             "wistful"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u18",
-          "title": "Unit 18",
+          "id": "1-u18",
+          "title": "第1册 Unit 18",
           "words": [
             "aerial",
             "ascend",
@@ -477,11 +494,12 @@
             "traitor",
             "volatile",
             "warfare"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u19",
-          "title": "Unit 19",
+          "id": "1-u19",
+          "title": "第1册 Unit 19",
           "words": [
             "abide",
             "anguish",
@@ -503,11 +521,12 @@
             "smack",
             "sow",
             "stride"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u20",
-          "title": "Unit 20",
+          "id": "1-u20",
+          "title": "第1册 Unit 20",
           "words": [
             "amiable",
             "anecdote",
@@ -529,11 +548,12 @@
             "tenure",
             "torment",
             "utter"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u21",
-          "title": "Unit 21",
+          "id": "1-u21",
+          "title": "第1册 Unit 21",
           "words": [
             "abolition",
             "acquit",
@@ -555,11 +575,12 @@
             "judiciary",
             "litigate",
             "ramble"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u22",
-          "title": "Unit 22",
+          "id": "1-u22",
+          "title": "第1册 Unit 22",
           "words": [
             "authentic",
             "autobiography",
@@ -581,11 +602,12 @@
             "vehement",
             "wobble",
             "yearn"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u23",
-          "title": "Unit 23",
+          "id": "1-u23",
+          "title": "第1册 Unit 23",
           "words": [
             "ambiguous",
             "array",
@@ -607,11 +629,12 @@
             "veteran",
             "veto",
             "wry"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u24",
-          "title": "Unit 24",
+          "id": "1-u24",
+          "title": "第1册 Unit 24",
           "words": [
             "discern",
             "diversify",
@@ -633,11 +656,12 @@
             "twilight",
             "vacant",
             "vicious"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u25",
-          "title": "Unit 25",
+          "id": "1-u25",
+          "title": "第1册 Unit 25",
           "words": [
             "adjacent",
             "ale",
@@ -659,11 +683,12 @@
             "sly",
             "solitary",
             "whine"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u26",
-          "title": "Unit 26",
+          "id": "1-u26",
+          "title": "第1册 Unit 26",
           "words": [
             "aggravate",
             "arbitrary",
@@ -685,11 +710,12 @@
             "sodium",
             "thrive",
             "waive"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u27",
-          "title": "Unit 27",
+          "id": "1-u27",
+          "title": "第1册 Unit 27",
           "words": [
             "astonishment",
             "forgo",
@@ -711,11 +737,12 @@
             "vexing",
             "whack",
             "woo"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u28",
-          "title": "Unit 28",
+          "id": "1-u28",
+          "title": "第1册 Unit 28",
           "words": [
             "acute",
             "adhere",
@@ -737,11 +764,12 @@
             "garrison",
             "illuminate",
             "preoccupy"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u29",
-          "title": "Unit 29",
+          "id": "1-u29",
+          "title": "第1册 Unit 29",
           "words": [
             "allay",
             "confound",
@@ -763,11 +791,12 @@
             "twitch",
             "void",
             "woe"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u30",
-          "title": "Unit 30",
+          "id": "1-u30",
+          "title": "第1册 Unit 30",
           "words": [
             "adequacy",
             "ample",
@@ -789,11 +818,12 @@
             "stout",
             "verge",
             "violet"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u31",
-          "title": "Unit 31",
+          "id": "1-u31",
+          "title": "第1册 Unit 31",
           "words": [
             "authoritative",
             "awe",
@@ -815,11 +845,12 @@
             "shove",
             "stray",
             "tolerant"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u32",
-          "title": "Unit 32",
+          "id": "1-u32",
+          "title": "第1册 Unit 32",
           "words": [
             "affix",
             "alight",
@@ -841,11 +872,12 @@
             "titan",
             "whereabouts",
             "willow"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u33",
-          "title": "Unit 33",
+          "id": "1-u33",
+          "title": "第1册 Unit 33",
           "words": [
             "appraise",
             "clan",
@@ -867,11 +899,12 @@
             "repress",
             "resolute",
             "tariff"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u34",
-          "title": "Unit 34",
+          "id": "1-u34",
+          "title": "第1册 Unit 34",
           "words": [
             "antecedent",
             "axis",
@@ -893,11 +926,12 @@
             "polytechnic",
             "requisite",
             "shuffle"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u35",
-          "title": "Unit 35",
+          "id": "1-u35",
+          "title": "第1册 Unit 35",
           "words": [
             "avert",
             "bout",
@@ -919,11 +953,12 @@
             "reproach",
             "snort",
             "thereafter"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u36",
-          "title": "Unit 36",
+          "id": "1-u36",
+          "title": "第1册 Unit 36",
           "words": [
             "administer",
             "certify",
@@ -945,11 +980,12 @@
             "stifle",
             "tract",
             "whirl"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u37",
-          "title": "Unit 37",
+          "id": "1-u37",
+          "title": "第1册 Unit 37",
           "words": [
             "adverse",
             "aspire",
@@ -971,11 +1007,12 @@
             "rumble",
             "segregate",
             "spiral"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u38",
-          "title": "Unit 38",
+          "id": "1-u38",
+          "title": "第1册 Unit 38",
           "words": [
             "audible",
             "conversely",
@@ -997,11 +1034,12 @@
             "strangle",
             "thump",
             "valve"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u39",
-          "title": "Unit 39",
+          "id": "1-u39",
+          "title": "第1册 Unit 39",
           "words": [
             "automate",
             "circuit",
@@ -1023,11 +1061,12 @@
             "tab",
             "tack",
             "wall"
-          ]
+          ],
+          "sourcePart": "kew7200-1"
         },
         {
-          "id": "u40",
-          "title": "Unit 40",
+          "id": "1-u40",
+          "title": "第1册 Unit 40",
           "words": [
             "analogy",
             "coherence",
@@ -1049,20 +1088,12 @@
             "snarl",
             "susceptible",
             "tier"
-          ]
-        }
-      ]
-    },
-    {
-      "code": "kew7200-2",
-      "name": "7200高频词 2",
-      "description": "Seed Learning《7200 Key English Words 2》。从目录提取每单元 New Words 主题词，不含课文句子用词。",
-      "level": "C1",
-      "targetWordCount": 800,
-      "units": [
+          ],
+          "sourcePart": "kew7200-1"
+        },
         {
-          "id": "u1",
-          "title": "Unit 1",
+          "id": "2-u1",
+          "title": "第2册 Unit 1",
           "words": [
             "apparatus",
             "booze",
@@ -1084,11 +1115,12 @@
             "stale",
             "trickle",
             "wedge"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u2",
-          "title": "Unit 2",
+          "id": "2-u2",
+          "title": "第2册 Unit 2",
           "words": [
             "acclaim",
             "aristocrat",
@@ -1110,11 +1142,12 @@
             "perk",
             "pretentious",
             "topple"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u3",
-          "title": "Unit 3",
+          "id": "2-u3",
+          "title": "第2册 Unit 3",
           "words": [
             "acoustic",
             "amplify",
@@ -1136,11 +1169,12 @@
             "thrash",
             "warp",
             "waver"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u4",
-          "title": "Unit 4",
+          "id": "2-u4",
+          "title": "第2册 Unit 4",
           "words": [
             "anatomy",
             "asthma",
@@ -1162,11 +1196,12 @@
             "paralyze",
             "pharmaceutical",
             "vomit"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u5",
-          "title": "Unit 5",
+          "id": "2-u5",
+          "title": "第2册 Unit 5",
           "words": [
             "chirp",
             "crimson",
@@ -1188,11 +1223,12 @@
             "swarm",
             "tractor",
             "turf"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u6",
-          "title": "Unit 6",
+          "id": "2-u6",
+          "title": "第2册 Unit 6",
           "words": [
             "apathy",
             "avid",
@@ -1214,11 +1250,12 @@
             "trustworthy",
             "vengeance",
             "wrath"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u7",
-          "title": "Unit 7",
+          "id": "2-u7",
+          "title": "第2册 Unit 7",
           "words": [
             "affidavit",
             "benchmark",
@@ -1240,11 +1277,12 @@
             "revoke",
             "smirk",
             "trespass"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u8",
-          "title": "Unit 8",
+          "id": "2-u8",
+          "title": "第2册 Unit 8",
           "words": [
             "bestow",
             "blunder",
@@ -1266,11 +1304,12 @@
             "lavish",
             "tranquil",
             "unrest"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u9",
-          "title": "Unit 9",
+          "id": "2-u9",
+          "title": "第2册 Unit 9",
           "words": [
             "conspire",
             "defect",
@@ -1292,11 +1331,12 @@
             "trooper",
             "turbulence",
             "wield"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u10",
-          "title": "Unit 10",
+          "id": "2-u10",
+          "title": "第2册 Unit 10",
           "words": [
             "afflict",
             "battered",
@@ -1318,11 +1358,12 @@
             "rash",
             "splinter",
             "turmoil"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u11",
-          "title": "Unit 11",
+          "id": "2-u11",
+          "title": "第2册 Unit 11",
           "words": [
             "allegiance",
             "bloc",
@@ -1344,11 +1385,12 @@
             "sap",
             "solitude",
             "suffice"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u12",
-          "title": "Unit 12",
+          "id": "2-u12",
+          "title": "第2册 Unit 12",
           "words": [
             "corroborate",
             "dreary",
@@ -1370,11 +1412,12 @@
             "toll",
             "trough",
             "vanish"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u13",
-          "title": "Unit 13",
+          "id": "2-u13",
+          "title": "第2册 Unit 13",
           "words": [
             "adorn",
             "aftermath",
@@ -1396,11 +1439,12 @@
             "sulk",
             "temperament",
             "wither"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u14",
-          "title": "Unit 14",
+          "id": "2-u14",
+          "title": "第2册 Unit 14",
           "words": [
             "abate",
             "bulge",
@@ -1422,11 +1466,12 @@
             "tedious",
             "underway",
             "wince"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u15",
-          "title": "Unit 15",
+          "id": "2-u15",
+          "title": "第2册 Unit 15",
           "words": [
             "advent",
             "almighty",
@@ -1448,11 +1493,12 @@
             "vintage",
             "vogue",
             "wreath"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u16",
-          "title": "Unit 16",
+          "id": "2-u16",
+          "title": "第2册 Unit 16",
           "words": [
             "annex",
             "bridle",
@@ -1474,11 +1520,12 @@
             "vile",
             "wasp",
             "whimper"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u17",
-          "title": "Unit 17",
+          "id": "2-u17",
+          "title": "第2册 Unit 17",
           "words": [
             "affluent",
             "apologetic",
@@ -1500,11 +1547,12 @@
             "sarcasm",
             "scurry",
             "thicket"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u18",
-          "title": "Unit 18",
+          "id": "2-u18",
+          "title": "第2册 Unit 18",
           "words": [
             "empress",
             "fiasco",
@@ -1526,11 +1574,12 @@
             "regal",
             "splendor",
             "vista"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u19",
-          "title": "Unit 19",
+          "id": "2-u19",
+          "title": "第2册 Unit 19",
           "words": [
             "doze",
             "expend",
@@ -1552,11 +1601,12 @@
             "pessimistic",
             "proxy",
             "vindicate"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u20",
-          "title": "Unit 20",
+          "id": "2-u20",
+          "title": "第2册 Unit 20",
           "words": [
             "acquiesce",
             "adamant",
@@ -1578,11 +1628,12 @@
             "inconsistency",
             "metaphysics",
             "punitive"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u21",
-          "title": "Unit 21",
+          "id": "2-u21",
+          "title": "第2册 Unit 21",
           "words": [
             "confide",
             "cram",
@@ -1604,11 +1655,12 @@
             "regiment",
             "relinquish",
             "sanctuary"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u22",
-          "title": "Unit 22",
+          "id": "2-u22",
+          "title": "第2册 Unit 22",
           "words": [
             "cunning",
             "excel",
@@ -1630,11 +1682,12 @@
             "shingle",
             "thatch",
             "villa"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u23",
-          "title": "Unit 23",
+          "id": "2-u23",
+          "title": "第2册 Unit 23",
           "words": [
             "bog",
             "crank",
@@ -1656,11 +1709,12 @@
             "undercover",
             "vandal",
             "vault"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u24",
-          "title": "Unit 24",
+          "id": "2-u24",
+          "title": "第2册 Unit 24",
           "words": [
             "abound",
             "anomaly",
@@ -1682,11 +1736,12 @@
             "steroid",
             "stigma",
             "surrogate"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u25",
-          "title": "Unit 25",
+          "id": "2-u25",
+          "title": "第2册 Unit 25",
           "words": [
             "benign",
             "blot",
@@ -1708,11 +1763,12 @@
             "thwart",
             "tremor",
             "wriggle"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u26",
-          "title": "Unit 26",
+          "id": "2-u26",
+          "title": "第2册 Unit 26",
           "words": [
             "adversary",
             "algebra",
@@ -1734,11 +1790,12 @@
             "phony",
             "rascal",
             "wholesale"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u27",
-          "title": "Unit 27",
+          "id": "2-u27",
+          "title": "第2册 Unit 27",
           "words": [
             "bluff",
             "buoy",
@@ -1760,11 +1817,12 @@
             "tenor",
             "usher",
             "wring"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u28",
-          "title": "Unit 28",
+          "id": "2-u28",
+          "title": "第2册 Unit 28",
           "words": [
             "akin",
             "apocalypse",
@@ -1786,11 +1844,12 @@
             "rector",
             "relic",
             "shroud"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u29",
-          "title": "Unit 29",
+          "id": "2-u29",
+          "title": "第2册 Unit 29",
           "words": [
             "arson",
             "ashtray",
@@ -1812,11 +1871,12 @@
             "strife",
             "sullen",
             "tumult"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u30",
-          "title": "Unit 30",
+          "id": "2-u30",
+          "title": "第2册 Unit 30",
           "words": [
             "buff",
             "covert",
@@ -1838,11 +1898,12 @@
             "terminology",
             "treble",
             "wares"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u31",
-          "title": "Unit 31",
+          "id": "2-u31",
+          "title": "第2册 Unit 31",
           "words": [
             "alleviate",
             "assorted",
@@ -1864,11 +1925,12 @@
             "quake",
             "subside",
             "unilateral"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u32",
-          "title": "Unit 32",
+          "id": "2-u32",
+          "title": "第2册 Unit 32",
           "words": [
             "allot",
             "attire",
@@ -1890,11 +1952,12 @@
             "satire",
             "smug",
             "uncanny"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u33",
-          "title": "Unit 33",
+          "id": "2-u33",
+          "title": "第2册 Unit 33",
           "words": [
             "allude",
             "beset",
@@ -1916,11 +1979,12 @@
             "quantum",
             "rebate",
             "subtract"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u34",
-          "title": "Unit 34",
+          "id": "2-u34",
+          "title": "第2册 Unit 34",
           "words": [
             "allusion",
             "birch",
@@ -1942,11 +2006,12 @@
             "shred",
             "spatial",
             "subdivide"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u35",
-          "title": "Unit 35",
+          "id": "2-u35",
+          "title": "第2册 Unit 35",
           "words": [
             "ammunition",
             "anarchy",
@@ -1968,11 +2033,12 @@
             "thud",
             "toddle",
             "trench"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u36",
-          "title": "Unit 36",
+          "id": "2-u36",
+          "title": "第2册 Unit 36",
           "words": [
             "ardent",
             "brink",
@@ -1994,11 +2060,12 @@
             "succumb",
             "temporal",
             "transcend"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u37",
-          "title": "Unit 37",
+          "id": "2-u37",
+          "title": "第2册 Unit 37",
           "words": [
             "arthritis",
             "assail",
@@ -2020,11 +2087,12 @@
             "soot",
             "speck",
             "tint"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u38",
-          "title": "Unit 38",
+          "id": "2-u38",
+          "title": "第2册 Unit 38",
           "words": [
             "assimilate",
             "boulder",
@@ -2046,11 +2114,12 @@
             "surmise",
             "tacit",
             "tinker"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u39",
-          "title": "Unit 39",
+          "id": "2-u39",
+          "title": "第2册 Unit 39",
           "words": [
             "astound",
             "breadth",
@@ -2072,11 +2141,12 @@
             "swirl",
             "taint",
             "thaw"
-          ]
+          ],
+          "sourcePart": "kew7200-2"
         },
         {
-          "id": "u40",
-          "title": "Unit 40",
+          "id": "2-u40",
+          "title": "第2册 Unit 40",
           "words": [
             "asylum",
             "blatant",
@@ -2098,20 +2168,12 @@
             "soundly",
             "tact",
             "tally"
-          ]
-        }
-      ]
-    },
-    {
-      "code": "kew7200-3",
-      "name": "7200高频词 3",
-      "description": "Seed Learning《7200 Key English Words 3》。从目录提取每单元 New Words 主题词，不含课文句子用词。",
-      "level": "C1+",
-      "targetWordCount": 800,
-      "units": [
+          ],
+          "sourcePart": "kew7200-2"
+        },
         {
-          "id": "u1",
-          "title": "Unit 1",
+          "id": "3-u1",
+          "title": "第3册 Unit 1",
           "words": [
             "ambush",
             "beware",
@@ -2133,11 +2195,12 @@
             "trample",
             "writhe",
             "zoology"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u2",
-          "title": "Unit 2",
+          "id": "3-u2",
+          "title": "第3册 Unit 2",
           "words": [
             "artifact",
             "covenant",
@@ -2159,11 +2222,12 @@
             "trendy",
             "veer",
             "vindictive"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u3",
-          "title": "Unit 3",
+          "id": "3-u3",
+          "title": "第3册 Unit 3",
           "words": [
             "accomplice",
             "bolster",
@@ -2185,11 +2249,12 @@
             "stoke",
             "tearful",
             "therapeutic"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u4",
-          "title": "Unit 4",
+          "id": "3-u4",
+          "title": "第3册 Unit 4",
           "words": [
             "adjourn",
             "borderline",
@@ -2211,11 +2276,12 @@
             "rampant",
             "spout",
             "tamper"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u5",
-          "title": "Unit 5",
+          "id": "3-u5",
+          "title": "第3册 Unit 5",
           "words": [
             "abreast",
             "ancestry",
@@ -2237,11 +2303,12 @@
             "slumber",
             "upbeat",
             "utensil"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u6",
-          "title": "Unit 6",
+          "id": "3-u6",
+          "title": "第3册 Unit 6",
           "words": [
             "aerospace",
             "algorithm",
@@ -2263,11 +2330,12 @@
             "vacancy",
             "vicinity",
             "whim"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u7",
-          "title": "Unit 7",
+          "id": "3-u7",
+          "title": "第3册 Unit 7",
           "words": [
             "clout",
             "dally",
@@ -2289,11 +2357,12 @@
             "suffocate",
             "ventilate",
             "withstand"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u8",
-          "title": "Unit 8",
+          "id": "3-u8",
+          "title": "第3册 Unit 8",
           "words": [
             "aloof",
             "bogus",
@@ -2315,11 +2384,12 @@
             "schizophrenic",
             "sever",
             "shun"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u9",
-          "title": "Unit 9",
+          "id": "3-u9",
+          "title": "第3册 Unit 9",
           "words": [
             "amalgamate",
             "annuity",
@@ -2341,11 +2411,12 @@
             "ramification",
             "snip",
             "subvert"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u10",
-          "title": "Unit 10",
+          "id": "3-u10",
+          "title": "第3册 Unit 10",
           "words": [
             "boon",
             "chord",
@@ -2367,11 +2438,12 @@
             "repute",
             "uplift",
             "vitality"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u11",
-          "title": "Unit 11",
+          "id": "3-u11",
+          "title": "第3册 Unit 11",
           "words": [
             "adjoin",
             "austere",
@@ -2393,11 +2465,12 @@
             "pathology",
             "physiological",
             "premier"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u12",
-          "title": "Unit 12",
+          "id": "3-u12",
+          "title": "第3册 Unit 12",
           "words": [
             "babble",
             "chauffeur",
@@ -2419,11 +2492,12 @@
             "superfluous",
             "tyrant",
             "writ"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u13",
-          "title": "Unit 13",
+          "id": "3-u13",
+          "title": "第3册 Unit 13",
           "words": [
             "affront",
             "bumble",
@@ -2445,11 +2519,12 @@
             "respectability",
             "sordid",
             "taboo"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u14",
-          "title": "Unit 14",
+          "id": "3-u14",
+          "title": "第3册 Unit 14",
           "words": [
             "chide",
             "coma",
@@ -2471,11 +2546,12 @@
             "snug",
             "staunch",
             "ubiquitous"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u15",
-          "title": "Unit 15",
+          "id": "3-u15",
+          "title": "第3册 Unit 15",
           "words": [
             "apiece",
             "burgeon",
@@ -2497,11 +2573,12 @@
             "phantom",
             "salvage",
             "sham"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u16",
-          "title": "Unit 16",
+          "id": "3-u16",
+          "title": "第3册 Unit 16",
           "words": [
             "dissipate",
             "exuberant",
@@ -2523,11 +2600,12 @@
             "uproar",
             "vigil",
             "whitewash"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u17",
-          "title": "Unit 17",
+          "id": "3-u17",
+          "title": "第3册 Unit 17",
           "words": [
             "apprehensive",
             "coexist",
@@ -2549,11 +2627,12 @@
             "terse",
             "treason",
             "vie"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u18",
-          "title": "Unit 18",
+          "id": "3-u18",
+          "title": "第3册 Unit 18",
           "words": [
             "ascribe",
             "chaste",
@@ -2575,11 +2654,12 @@
             "upbringing",
             "virile",
             "wrangle"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u19",
-          "title": "Unit 19",
+          "id": "3-u19",
+          "title": "第3册 Unit 19",
           "words": [
             "attest",
             "bouquet",
@@ -2601,11 +2681,12 @@
             "sedate",
             "tantrum",
             "upheaval"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u20",
-          "title": "Unit 20",
+          "id": "3-u20",
+          "title": "第3册 Unit 20",
           "words": [
             "autograph",
             "bandwagon",
@@ -2627,11 +2708,12 @@
             "perspire",
             "revitalize",
             "runway"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u21",
-          "title": "Unit 21",
+          "id": "3-u21",
+          "title": "第3册 Unit 21",
           "words": [
             "antidote",
             "avail",
@@ -2653,11 +2735,12 @@
             "tarnish",
             "venue",
             "wane"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u22",
-          "title": "Unit 22",
+          "id": "3-u22",
+          "title": "第3册 Unit 22",
           "words": [
             "abbreviate",
             "augment",
@@ -2679,11 +2762,12 @@
             "preface",
             "repulse",
             "shin"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u23",
-          "title": "Unit 23",
+          "id": "3-u23",
+          "title": "第3册 Unit 23",
           "words": [
             "extradite",
             "fiend",
@@ -2705,11 +2789,12 @@
             "stamina",
             "traverse",
             "whimsy"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u24",
-          "title": "Unit 24",
+          "id": "3-u24",
+          "title": "第3册 Unit 24",
           "words": [
             "abhor",
             "beacon",
@@ -2731,11 +2816,12 @@
             "supernatural",
             "superstitious",
             "yoke"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u25",
-          "title": "Unit 25",
+          "id": "3-u25",
+          "title": "第3册 Unit 25",
           "words": [
             "discernible",
             "eject",
@@ -2757,11 +2843,12 @@
             "stockpile",
             "template",
             "vibrant"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u26",
-          "title": "Unit 26",
+          "id": "3-u26",
+          "title": "第3册 Unit 26",
           "words": [
             "atone",
             "communal",
@@ -2783,11 +2870,12 @@
             "valiant",
             "warden",
             "wooded"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u27",
-          "title": "Unit 27",
+          "id": "3-u27",
+          "title": "第3册 Unit 27",
           "words": [
             "amass",
             "backbone",
@@ -2809,11 +2897,12 @@
             "quell",
             "refurbish",
             "whiff"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u28",
-          "title": "Unit 28",
+          "id": "3-u28",
+          "title": "第3册 Unit 28",
           "words": [
             "abstinence",
             "fallible",
@@ -2835,11 +2924,12 @@
             "treatise",
             "vernacular",
             "weighty"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u29",
-          "title": "Unit 29",
+          "id": "3-u29",
+          "title": "第3册 Unit 29",
           "words": [
             "accede",
             "aloft",
@@ -2861,11 +2951,12 @@
             "privacy",
             "purge",
             "scavenge"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u30",
-          "title": "Unit 30",
+          "id": "3-u30",
+          "title": "第3册 Unit 30",
           "words": [
             "allure",
             "annihilate",
@@ -2887,11 +2978,12 @@
             "valor",
             "wand",
             "yolk"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u31",
-          "title": "Unit 31",
+          "id": "3-u31",
+          "title": "第3册 Unit 31",
           "words": [
             "existential",
             "fondle",
@@ -2913,11 +3005,12 @@
             "swerve",
             "trajectory",
             "velocity"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u32",
-          "title": "Unit 32",
+          "id": "3-u32",
+          "title": "第3册 Unit 32",
           "words": [
             "astray",
             "attrition",
@@ -2939,11 +3032,12 @@
             "recoil",
             "semblance",
             "tadpole"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u33",
-          "title": "Unit 33",
+          "id": "3-u33",
+          "title": "第3册 Unit 33",
           "words": [
             "brittle",
             "cliche",
@@ -2965,11 +3059,12 @@
             "thermostat",
             "trite",
             "waft"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u34",
-          "title": "Unit 34",
+          "id": "3-u34",
+          "title": "第3册 Unit 34",
           "words": [
             "antic",
             "apartheid",
@@ -2991,11 +3086,12 @@
             "peruse",
             "plaque",
             "supplant"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u35",
-          "title": "Unit 35",
+          "id": "3-u35",
+          "title": "第3册 Unit 35",
           "words": [
             "arduous",
             "ascent",
@@ -3017,11 +3113,12 @@
             "neural",
             "outspoken",
             "putative"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u36",
-          "title": "Unit 36",
+          "id": "3-u36",
+          "title": "第3册 Unit 36",
           "words": [
             "admonish",
             "amnesty",
@@ -3043,11 +3140,12 @@
             "reparation",
             "supremacy",
             "uprising"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u37",
-          "title": "Unit 37",
+          "id": "3-u37",
+          "title": "第3册 Unit 37",
           "words": [
             "affinity",
             "apparel",
@@ -3069,11 +3167,12 @@
             "reinstate",
             "savior",
             "scruff"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u38",
-          "title": "Unit 38",
+          "id": "3-u38",
+          "title": "第3册 Unit 38",
           "words": [
             "amenity",
             "convulse",
@@ -3095,11 +3194,12 @@
             "tingle",
             "tram",
             "wan"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u39",
-          "title": "Unit 39",
+          "id": "3-u39",
+          "title": "第3册 Unit 39",
           "words": [
             "astute",
             "clinch",
@@ -3121,11 +3221,12 @@
             "torpedo",
             "upshot",
             "wanton"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         },
         {
-          "id": "u40",
-          "title": "Unit 40",
+          "id": "3-u40",
+          "title": "第3册 Unit 40",
           "words": [
             "audacity",
             "braid",
@@ -3147,7 +3248,8 @@
             "tenement",
             "torrent",
             "upholster"
-          ]
+          ],
+          "sourcePart": "kew7200-3"
         }
       ]
     }

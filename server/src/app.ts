@@ -72,10 +72,10 @@ app.listen(Number(PORT), '0.0.0.0', () => {
   console.log(`Server running on http://0.0.0.0:${PORT}`)
   console.log(`API??: http://localhost:${PORT}/api-docs`)
 
-  // ???????????HTTP ??
-  void initVocabulary()
+  // ????????????????????????????????
+  void ensureAdminUser()
+    .then(() => initVocabulary())
     .then(() => initBooks())
-    .then(() => ensureAdminUser())
     .then(() => seedChineseIfEmpty())
     .catch(err => console.error('Background book/chinese sync failed:', err))
 })

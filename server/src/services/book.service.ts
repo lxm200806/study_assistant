@@ -27,11 +27,66 @@ function preferExample(
 }
 
 const BOOK_CODE_RENAMES: Record<string, string> = {
-  kew1: 'kew1200-1',
-  kew2: 'kew1200-2',
-  kew3: 'kew1200-3',
+  kew1: 'kew1200',
+  kew2: 'kew1200',
+  kew3: 'kew1200',
+  'kew1200-1': 'kew1200',
+  'kew1200-2': 'kew1200',
+  'kew1200-3': 'kew1200',
+  'kew4500-1': 'kew4500',
+  'kew4500-2': 'kew4500',
+  'kew4500-3': 'kew4500',
+  'kew4500-4': 'kew4500',
+  'kew7200-1': 'kew7200',
+  'kew7200-2': 'kew7200',
+  'kew7200-3': 'kew7200',
   ket: 'mse-ket',
   pet: 'mse-pet'
+}
+
+async function absorbBookInto(fromId: string, toId: string, fromCode: string, toCode: string) {
+  const oldProgress = await prisma.bookStudyProgress.findMany({ where: { bookId: fromId } })
+  for (const row of oldProgress) {
+    const existing = await prisma.bookStudyProgress.findUnique({
+      where: { learnerId_bookId: { learnerId: row.learnerId, bookId: toId } }
+    })
+    if (existing) {
+      const merged = [...new Set([...existing.practicedWordIds, ...row.practicedWordIds])]
+      await prisma.bookStudyProgress.update({
+        where: { id: existing.id },
+        data: {
+          practicedWordIds: merged,
+          cycleStartedAt:
+            existing.cycleStartedAt < row.cycleStartedAt ? existing.cycleStartedAt : row.cycleStartedAt
+        }
+      })
+      await prisma.bookStudyProgress.delete({ where: { id: row.id } })
+    } else {
+      await prisma.bookStudyProgress.update({
+        where: { id: row.id },
+        data: { bookId: toId }
+      })
+    }
+  }
+
+  const oldUnlocks = await prisma.userBookUnlock.findMany({ where: { bookId: fromId } })
+  for (const row of oldUnlocks) {
+    const existing = await prisma.userBookUnlock.findUnique({
+      where: { userId_bookId: { userId: row.userId, bookId: toId } }
+    })
+    if (existing) {
+      await prisma.userBookUnlock.delete({ where: { id: row.id } })
+    } else {
+      await prisma.userBookUnlock.update({
+        where: { id: row.id },
+        data: { bookId: toId }
+      })
+    }
+  }
+
+  await prisma.bookVocabulary.deleteMany({ where: { bookId: fromId } })
+  await prisma.book.delete({ where: { id: fromId } })
+  console.log(`Merged book ${fromCode} → ${toCode}`)
 }
 
 async function migrateLegacyBookCodes() {
@@ -40,7 +95,7 @@ async function migrateLegacyBookCodes() {
     if (!oldBook) continue
     const taken = await prisma.book.findUnique({ where: { code: to } })
     if (taken) {
-      console.warn(`Skip renaming ${from} → ${to}: target code already exists`)
+      await absorbBookInto(oldBook.id, taken.id, from, to)
       continue
     }
     await prisma.book.update({ where: { id: oldBook.id }, data: { code: to } })
@@ -48,7 +103,7 @@ async function migrateLegacyBookCodes() {
   }
 }
 
-export async function syncBookByCode(code: string) {
+export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
   const bookData = loadBook(code)
   if (!bookData) {
     console.warn(`Skip sync: book JSON not found for ${code}`)
@@ -57,6 +112,30 @@ export async function syncBookByCode(code: string) {
 
   const entries = collectBookWordEntries(bookData.words)
   let book = await prisma.book.findUnique({ where: { code: bookData.code } })
+
+  // 词数已对齐则跳过全量重写，避免每次启动卡死 API
+  if (book && !opts?.force) {
+    const linked = await prisma.bookVocabulary.count({ where: { bookId: book.id } })
+    if (book.wordCount === entries.length && linked === entries.length) {
+      if (
+        book.name !== bookData.name ||
+        book.description !== bookData.description ||
+        book.level !== bookData.level
+      ) {
+        await prisma.book.update({
+          where: { id: book.id },
+          data: {
+            name: bookData.name,
+            description: bookData.description,
+            level: bookData.level,
+            isFree: bookData.code === 'mse-ket' || bookData.code === 'ket' ? true : book.isFree
+          }
+        })
+      }
+      console.log(`Skip sync ${bookData.code}: already ${entries.length} words`)
+      return
+    }
+  }
 
   if (!book) {
     console.log(`Creating book: ${bookData.name}`)
@@ -156,12 +235,12 @@ export async function syncBookByCode(code: string) {
   console.log(`Book ${bookData.name} synced with ${entries.length} words`)
 }
 
-export async function initBooks(onlyCodes?: string[]) {
+export async function initBooks(onlyCodes?: string[], opts?: { force?: boolean }) {
   try {
     await migrateLegacyBookCodes()
     const codes = onlyCodes?.length ? onlyCodes : [...VOCABULARY_BOOK_CODES]
     for (const code of codes) {
-      await syncBookByCode(code)
+      await syncBookByCode(code, opts)
     }
   } catch (error) {
     console.error('Error initializing books:', error)

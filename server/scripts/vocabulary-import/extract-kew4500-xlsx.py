@@ -13,10 +13,10 @@ MATERIALS = ROOT / "materials" / "reference material" / "4500 Key English Words"
 OUT = ROOT / "data" / "sources" / "kew" / "kew4500" / "units.json"
 
 BOOK_META = {
-    1: {"code": "kew4500-1", "name": "4500高频词 1", "level": "A2+", "targetWordCount": 800},
-    2: {"code": "kew4500-2", "name": "4500高频词 2", "level": "B1", "targetWordCount": 800},
-    3: {"code": "kew4500-3", "name": "4500高频词 3", "level": "B1+", "targetWordCount": 800},
-    4: {"code": "kew4500-4", "name": "4500高频词 4", "level": "B2", "targetWordCount": 800},
+    1: {"level": "A2+", "targetWordCount": 800},
+    2: {"level": "B1", "targetWordCount": 800},
+    3: {"level": "B1+", "targetWordCount": 800},
+    4: {"level": "B2", "targetWordCount": 800},
 }
 
 
@@ -75,15 +75,14 @@ def parse_book(n: int) -> dict:
     unit_list = []
     for uid in order:
         unit = units[uid]
+        new_id = f"{n}-{uid}"
+        unit["id"] = new_id
+        unit["title"] = f"第{n}册 {unit['title']}"
+        unit["sourcePart"] = f"kew4500-{n}"
         unit["words"] = [entry["word"] for entry in unit["entries"]]
         unit_list.append(unit)
     return {
-        "code": meta["code"],
-        "name": meta["name"],
-        "description": (
-            f"Seed Learning《4500 Key English Words {n}》。来自官方 Word Lists，"
-            "每单元 20 个 New Words，不含课文句子用词。"
-        ),
+        "vol": n,
         "level": meta["level"],
         "targetWordCount": meta["targetWordCount"],
         "units": unit_list,
@@ -91,27 +90,35 @@ def parse_book(n: int) -> dict:
 
 
 def main() -> None:
-    books = [parse_book(n) for n in range(1, 5)]
+    parts = [parse_book(n) for n in range(1, 5)]
+    merged_units = [unit for part in parts for unit in part["units"]]
     catalog = {
         "series": "4500 Key English Words",
         "publisher": "Seed Learning",
         "author": "Paul Nation",
         "source": "Official Word Lists xlsx — unit target words only (not passage running words)",
-        "books": books,
+        "books": [
+            {
+                "code": "kew4500",
+                "name": "4500高频词",
+                "description": "Seed Learning 4500 高频词（全套）。来自官方 Word Lists，每单元 20 个 New Words。",
+                "level": "A2",
+                "targetWordCount": 3200,
+                "units": merged_units,
+            }
+        ],
     }
 
     by_word: dict[str, list] = defaultdict(list)
-    for book in books:
-        for unit in book["units"]:
-            for entry in unit["entries"]:
-                by_word[entry["word"]].append(
-                    {
-                        "book": book["code"],
-                        "unit": unit["id"],
-                        "pos": entry["pos"],
-                        "en": entry["englishMeaning"],
-                    }
-                )
+    for unit in merged_units:
+        for entry in unit["entries"]:
+            by_word[entry["word"]].append(
+                {
+                    "unit": unit["id"],
+                    "pos": entry["pos"],
+                    "en": entry["englishMeaning"],
+                }
+            )
 
     multi = {w: v for w, v in by_word.items() if len(v) > 1}
     diff_pos = []
@@ -124,16 +131,11 @@ def main() -> None:
     OUT.write_text(json.dumps(catalog, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(f"wrote {OUT}")
-    for book in books:
-        counts = [len(u["entries"]) for u in book["units"]]
-        print(
-            f"  {book['code']}: {len(book['units'])} units, "
-            f"{sum(counts)} words, per-unit {min(counts)}-{max(counts)}"
-        )
+    print(f"  kew4500: {len(merged_units)} units, {sum(len(u['entries']) for u in merged_units)} words")
     print(f"  repeated spellings: {len(multi)}")
     print(f"  different POS: {len(diff_pos)}")
     for item in diff_pos[:30]:
-        print("   ", item["word"], [(r["book"], r["unit"], r["pos"]) for r in item["rows"]])
+        print("   ", item["word"], [(r["unit"], r["pos"]) for r in item["rows"]])
 
 
 if __name__ == "__main__":

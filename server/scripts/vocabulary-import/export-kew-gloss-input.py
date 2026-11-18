@@ -9,9 +9,9 @@ ROOT = Path(__file__).resolve().parents[2]
 BOOKS = ROOT / "data" / "vocabulary" / "books"
 TMP = ROOT / "tmp" / "kew"
 SERIES_BOOKS = {
-    "kew1200": ["kew1200-1", "kew1200-2", "kew1200-3"],
-    "kew4500": ["kew4500-1", "kew4500-2", "kew4500-3", "kew4500-4"],
-    "kew7200": ["kew7200-1", "kew7200-2", "kew7200-3"],
+    "kew1200": ["kew1200"],
+    "kew4500": ["kew4500"],
+    "kew7200": ["kew7200"],
 }
 
 

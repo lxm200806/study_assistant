@@ -643,9 +643,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "I actually like this quiet song.",
@@ -654,9 +654,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -665,7 +665,7 @@
         {
           "en": "I actually like this quiet song.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Although online courses seem convenient, some students actually learn more effectively through face-to-face interaction.",
@@ -893,9 +893,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "This is an advanced English class.",
@@ -904,9 +904,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -915,7 +915,7 @@
         {
           "en": "This is an advanced English class.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Advanced medical technology can improve patient outcomes, but its high cost may increase inequalities in healthcare access.",
@@ -4713,10 +4713,10 @@
       "topic": "travel",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew4500-1",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:meaning=shared:kew4500",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "My backpack is full of books.",
@@ -4724,10 +4724,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew4500-1",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "meaning": "shared:kew4500",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -4736,7 +4736,7 @@
         {
           "en": "My backpack is full of books.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Young adults often backpack through rural regions, supporting small businesses and learning about local traditions.",
@@ -5353,9 +5353,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "They play baseball in the field.",
@@ -5364,9 +5364,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -5375,7 +5375,7 @@
         {
           "en": "They play baseball in the field.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "Team sports such as baseball can help young people develop cooperation skills and maintain physical fitness.",
@@ -6280,9 +6280,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The beetle walks on the leaf.",
@@ -6291,9 +6291,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -6302,7 +6302,7 @@
         {
           "en": "The beetle walks on the leaf.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Some beetle species help maintain healthy forests by breaking down dead wood and recycling nutrients.",
@@ -7131,10 +7131,10 @@
       "topic": "daily",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew4500-2",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:meaning=shared:kew4500",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Put the rice in the bin.",
@@ -7142,10 +7142,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew4500-2",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "meaning": "shared:kew4500",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -7154,7 +7154,7 @@
         {
           "en": "Put the rice in the bin.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Providing a separate bin for food waste can help households recycle more effectively and reduce landfill use.",
@@ -8020,9 +8020,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Wash your body after swimming.",
@@ -8031,9 +8031,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -8042,7 +8042,7 @@
         {
           "en": "Wash your body after swimming.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "An independent body should monitor water quality and publish its findings for the public.",
@@ -9033,10 +9033,10 @@
       "topic": "daily",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-3",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "She wears a bracelet on her arm.",
@@ -9044,10 +9044,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-3",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -9056,7 +9056,7 @@
         {
           "en": "She wears a bracelet on her arm.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "A handmade bracelet can reflect local artistic traditions while providing income for craftspeople in rural communities.",
@@ -10878,9 +10878,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-4",
-        "src:english=shared:kew4500-4",
-        "src:example=shared:kew4500-4",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Cups are kept in the kitchen cabinet.",
@@ -10889,9 +10889,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-4",
-        "englishMeaning": "shared:kew4500-4",
-        "example": "shared:kew4500-4",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -10900,7 +10900,7 @@
         {
           "en": "Cups are kept in the kitchen cabinet.",
           "role": "basic",
-          "source": "shared:kew4500-4"
+          "source": "shared:kew4500"
         },
         {
           "en": "The cabinet approved a national programme to improve access to affordable housing in rapidly growing cities.",
@@ -10928,9 +10928,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "We met at a small cafe.",
@@ -10939,9 +10939,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -10950,7 +10950,7 @@
         {
           "en": "We met at a small cafe.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "A neighbourhood cafe can strengthen community ties by providing a welcoming space for residents to meet.",
@@ -11116,9 +11116,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-3",
-        "src:english=shared:kew4500-3",
-        "src:example=shared:kew4500-3",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Mark the date on the wall calendar.",
@@ -11127,9 +11127,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-3",
-        "englishMeaning": "shared:kew4500-3",
-        "example": "shared:kew4500-3",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -11138,7 +11138,7 @@
         {
           "en": "Mark the date on the wall calendar.",
           "role": "basic",
-          "source": "shared:kew4500-3"
+          "source": "shared:kew4500"
         },
         {
           "en": "Schools should publish an annual calendar so families can plan holidays around important educational events.",
@@ -11941,9 +11941,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Teaching is her long career.",
@@ -11952,9 +11952,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -11963,7 +11963,7 @@
         {
           "en": "Teaching is her long career.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Access to affordable training enables adults to change career and adapt to a rapidly evolving labour market.",
@@ -12706,9 +12706,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "A celebrity visited our school.",
@@ -12717,9 +12717,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -12728,7 +12728,7 @@
         {
           "en": "A celebrity visited our school.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Celebrity endorsements can influence young consumers, so advertisements should clearly distinguish personal opinions from paid promotion.",
@@ -12844,9 +12844,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3"
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200"
       ],
       "exampleSentence": "Stand in the center of the room.",
       "senseKey": "",
@@ -12854,15 +12854,15 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3"
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200"
       },
       "examples": [
         {
           "en": "Stand in the center of the room.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         }
       ],
       "exampleSentences": [
@@ -13070,9 +13070,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "I have cereal with milk.",
@@ -13081,9 +13081,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -13092,7 +13092,7 @@
         {
           "en": "I have cereal with milk.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "Farmers may need to grow different cereal crops as changing rainfall patterns affect agricultural production.",
@@ -15259,10 +15259,10 @@
       "topic": "daily",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-2",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The shop is closed on Sunday.",
@@ -15270,10 +15270,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-2",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -15282,7 +15282,7 @@
         {
           "en": "The shop is closed on Sunday.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "When local libraries remain closed at weekends, working families have fewer opportunities to access educational resources.",
@@ -15310,9 +15310,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Hang your coat in the closet.",
@@ -15321,9 +15321,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -15332,7 +15332,7 @@
         {
           "en": "Hang your coat in the closet.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Small apartments can feel more spacious when residents organise belongings efficiently and make better use of closet space.",
@@ -15510,9 +15510,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The clown made the children laugh.",
@@ -15521,9 +15521,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -15532,7 +15532,7 @@
         {
           "en": "The clown made the children laugh.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "A trained clown can help young patients feel more comfortable during their stay in hospital.",
@@ -16386,9 +16386,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "He reads a comic after school.",
@@ -16397,9 +16397,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -16408,7 +16408,7 @@
         {
           "en": "He reads a comic after school.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Comic characters can make educational programmes more engaging and help children remember important information.",
@@ -16735,9 +16735,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Please contact me after lunch.",
@@ -16746,9 +16746,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -16757,7 +16757,7 @@
         {
           "en": "Please contact me after lunch.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Regular contact with family members can reduce loneliness among older people who live alone.",
@@ -17335,9 +17335,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "He wears a lion costume at the party.",
@@ -17346,9 +17346,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -17357,7 +17357,7 @@
         {
           "en": "He wears a lion costume at the party.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Traditional costume can express cultural identity and help younger generations understand the history of their communities.",
@@ -17911,9 +17911,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The cricket sings at night.",
@@ -17922,9 +17922,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -17933,7 +17933,7 @@
         {
           "en": "The cricket sings at night.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Team sports such as cricket can help young people develop cooperation skills and build lasting friendships.",
@@ -17961,9 +17961,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The crocodile opens its long mouth.",
@@ -17972,9 +17972,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -17983,7 +17983,7 @@
         {
           "en": "The crocodile opens its long mouth.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "Wetland conservation protects crocodile habitats while also supporting the fish and birds that depend on these ecosystems.",
@@ -18310,10 +18310,10 @@
       "topic": "daily",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew4500-2",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:meaning=shared:kew4500",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "We ate chicken curry with rice.",
@@ -18321,10 +18321,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew4500-2",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "meaning": "shared:kew4500",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -18333,7 +18333,7 @@
         {
           "en": "We ate chicken curry with rice.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "School cafeterias can offer vegetable curry as an affordable alternative to meals containing meat.",
@@ -19900,9 +19900,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "My books are on the desk.",
@@ -19911,9 +19911,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -19922,7 +19922,7 @@
         {
           "en": "My books are on the desk.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "Providing every student with a suitable desk can improve comfort and concentration in the classroom.",
@@ -20614,26 +20614,26 @@
       "topic": "thinking",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-3",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3"
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200"
       ],
       "exampleSentence": "Follow the directions on the page.",
       "senseKey": "",
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-3",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3"
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200"
       },
       "examples": [
         {
           "en": "Follow the directions on the page.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         }
       ],
       "exampleSentences": [
@@ -21329,9 +21329,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The dolphin jumps in the sea.",
@@ -21340,9 +21340,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -21351,7 +21351,7 @@
         {
           "en": "The dolphin jumps in the sea.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Underwater noise from shipping can disrupt dolphin communication and make it harder for these animals to find food.",
@@ -21379,9 +21379,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The donkey carried a heavy bag.",
@@ -21390,9 +21390,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -21401,7 +21401,7 @@
         {
           "en": "The donkey carried a heavy bag.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "In some rural communities, donkeys remain important for transporting goods where roads are unsuitable for vehicles.",
@@ -23549,9 +23549,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "We take the elevator to the top.",
@@ -23560,9 +23560,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -23571,7 +23571,7 @@
         {
           "en": "We take the elevator to the top.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Installing elevators in older apartment buildings can significantly improve accessibility for elderly residents and people with disabilities.",
@@ -23724,10 +23724,10 @@
       "topic": "technology",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-3",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Send an email to your teacher.",
@@ -23735,10 +23735,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-3",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -23747,7 +23747,7 @@
         {
           "en": "Send an email to your teacher.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "Although email enables rapid communication, excessive messages can distract employees and reduce productivity at work.",
@@ -25325,9 +25325,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The football game is so exciting.",
@@ -25336,9 +25336,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -25347,7 +25347,7 @@
         {
           "en": "The football game is so exciting.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "Advances in renewable energy offer exciting opportunities for young engineers seeking to address global environmental challenges.",
@@ -25913,9 +25913,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Dinosaurs have been extinct for years.",
@@ -25924,9 +25924,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -25935,7 +25935,7 @@
         {
           "en": "Dinosaurs have been extinct for years.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Without stronger habitat protection, many endangered species could become extinct within the next few decades.",
@@ -26752,9 +26752,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "This fashion is popular this year.",
@@ -26763,9 +26763,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -26774,7 +26774,7 @@
         {
           "en": "This fashion is popular this year.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "The fashion industry can reduce its environmental impact by producing durable clothing and using recycled materials.",
@@ -30473,9 +30473,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The shop is further down the road.",
@@ -30484,9 +30484,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -30495,7 +30495,7 @@
         {
           "en": "The shop is further down the road.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Further research is needed to understand how urban green spaces affect residents' mental health.",
@@ -31550,10 +31550,10 @@
       "topic": "daily",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-2",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "She wears glasses to read books.",
@@ -31561,10 +31561,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-2",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -31573,7 +31573,7 @@
         {
           "en": "She wears glasses to read books.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "Regular eye examinations help students obtain suitable glasses, allowing them to read comfortably and participate fully in lessons.",
@@ -33697,9 +33697,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "That guy helps us carry the box.",
@@ -33708,9 +33708,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -33719,7 +33719,7 @@
         {
           "en": "That guy helps us carry the box.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Calling a colleague a guy may sound friendly, but informal vocabulary is usually inappropriate in academic writing.",
@@ -35804,9 +35804,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "They play hockey on the ice.",
@@ -35815,9 +35815,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -35826,7 +35826,7 @@
         {
           "en": "They play hockey on the ice.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "Making hockey facilities more accessible could encourage greater participation in team sports among young people.",
@@ -36280,9 +36280,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "She felt horror at the dark noise.",
@@ -36291,9 +36291,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -36302,7 +36302,7 @@
         {
           "en": "She felt horror at the dark noise.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Horror films often use music and lighting to create tension rather than relying entirely on frightening images.",
@@ -37156,26 +37156,26 @@
       "topic": "thinking",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-3",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3"
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200"
       ],
       "exampleSentence": "I eat ice cream after lunch.",
       "senseKey": "",
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-3",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3"
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200"
       },
       "examples": [
         {
           "en": "I eat ice cream after lunch.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         }
       ],
       "exampleSentences": [
@@ -37937,9 +37937,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "We stayed indoors during the storm.",
@@ -37948,9 +37948,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -37959,7 +37959,7 @@
         {
           "en": "We stayed indoors during the storm.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Children who spend most of their time indoors may have fewer opportunities for physical activity.",
@@ -38036,9 +38036,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Salt is an ingredient in bread.",
@@ -38047,9 +38047,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -38058,7 +38058,7 @@
         {
           "en": "Salt is an ingredient in bread.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Public trust is an essential ingredient in the successful implementation of environmental policies.",
@@ -39388,9 +39388,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The jellyfish floats in the sea.",
@@ -39399,9 +39399,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -39410,7 +39410,7 @@
         {
           "en": "The jellyfish floats in the sea.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Rising ocean temperatures may encourage jellyfish populations to grow, potentially disrupting marine ecosystems and coastal tourism.",
@@ -40440,9 +40440,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-3",
-        "src:english=shared:kew4500-3",
-        "src:example=shared:kew4500-3",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "He built the model from a kit.",
@@ -40451,9 +40451,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-3",
-        "englishMeaning": "shared:kew4500-3",
-        "example": "shared:kew4500-3",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -40462,7 +40462,7 @@
         {
           "en": "He built the model from a kit.",
           "role": "basic",
-          "source": "shared:kew4500-3"
+          "source": "shared:kew4500"
         },
         {
           "en": "Schools should provide basic science kits so that all pupils can take part in practical experiments.",
@@ -40590,26 +40590,26 @@
       "topic": "thinking",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-2",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2"
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200"
       ],
       "exampleSentence": "The kitten drinks milk from a bowl.",
       "senseKey": "",
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-2",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2"
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200"
       },
       "examples": [
         {
           "en": "The kitten drinks milk from a bowl.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         }
       ],
       "exampleSentences": [
@@ -40954,10 +40954,10 @@
       "topic": "technology",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew4500-2",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:meaning=shared:kew4500",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "She writes on her laptop at home.",
@@ -40965,10 +40965,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew4500-2",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "meaning": "shared:kew4500",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -40977,7 +40977,7 @@
         {
           "en": "She writes on her laptop at home.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Providing every student with a laptop may improve access to learning resources, but technical support remains essential.",
@@ -42896,9 +42896,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "A lizard runs across the stone.",
@@ -42907,9 +42907,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -42918,7 +42918,7 @@
         {
           "en": "A lizard runs across the stone.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "Protecting rocky habitats helps preserve lizard populations, which play an important role in controlling insects.",
@@ -44362,10 +44362,10 @@
       "topic": "daily",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-2",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The mango is yellow and sweet.",
@@ -44373,10 +44373,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-2",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -44385,7 +44385,7 @@
         {
           "en": "The mango is yellow and sweet.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "Improved storage facilities can help mango farmers reduce food waste and earn more reliable incomes.",
@@ -45189,9 +45189,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The mechanic fixed my old bike.",
@@ -45200,9 +45200,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -45211,7 +45211,7 @@
         {
           "en": "The mechanic fixed my old bike.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "As electric vehicles become more common, mechanics need additional training to maintain their complex systems safely.",
@@ -45777,9 +45777,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-4",
-        "src:english=shared:kew4500-4",
-        "src:example=shared:kew4500-4",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Speak into the microphone so everyone can hear.",
@@ -45788,9 +45788,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-4",
-        "englishMeaning": "shared:kew4500-4",
-        "example": "shared:kew4500-4",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -45799,7 +45799,7 @@
         {
           "en": "Speak into the microphone so everyone can hear.",
           "role": "basic",
-          "source": "shared:kew4500-4"
+          "source": "shared:kew4500"
         },
         {
           "en": "Using a microphone during lectures can help students hear clearly, particularly in large classrooms with poor acoustics.",
@@ -47958,9 +47958,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-4",
-        "src:english=shared:kew4500-4",
-        "src:example=shared:kew4500-4",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "He drank hot coffee from a large mug.",
@@ -47969,9 +47969,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-4",
-        "englishMeaning": "shared:kew4500-4",
-        "example": "shared:kew4500-4",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -47980,7 +47980,7 @@
         {
           "en": "He drank hot coffee from a large mug.",
           "role": "basic",
-          "source": "shared:kew4500-4"
+          "source": "shared:kew4500"
         },
         {
           "en": "Providing reusable mugs in offices can reduce the waste generated by disposable cups each day.",
@@ -50575,9 +50575,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Fish swim in the ocean.",
@@ -50586,9 +50586,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -50597,7 +50597,7 @@
         {
           "en": "Fish swim in the ocean.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "Plastic waste entering the ocean threatens marine wildlife and can eventually affect human health through food chains.",
@@ -50675,9 +50675,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The octopus has eight long arms.",
@@ -50686,9 +50686,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -50697,7 +50697,7 @@
         {
           "en": "The octopus has eight long arms.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Research into octopus behaviour has revealed remarkable learning abilities, challenging traditional assumptions about intelligence in marine animals.",
@@ -51403,9 +51403,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "We play an online game together.",
@@ -51414,9 +51414,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -51425,7 +51425,7 @@
         {
           "en": "We play an online game together.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Online courses can widen access to education, especially for learners who live far from universities.",
@@ -52118,9 +52118,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Bake the cake in the oven.",
@@ -52129,9 +52129,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -52140,7 +52140,7 @@
         {
           "en": "Bake the cake in the oven.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Using an energy-efficient oven can reduce household electricity consumption without changing cooking habits significantly.",
@@ -53094,9 +53094,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "We have a birthday party.",
@@ -53105,9 +53105,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -53116,7 +53116,7 @@
         {
           "en": "We have a birthday party.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Each political party should explain how its education policies will benefit students from disadvantaged backgrounds.",
@@ -53381,10 +53381,10 @@
       "topic": "daily",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-2",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "I like pasta with tomato sauce.",
@@ -53392,10 +53392,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-2",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -53404,7 +53404,7 @@
         {
           "en": "I like pasta with tomato sauce.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "School canteens can serve wholegrain pasta with vegetables to provide affordable meals with more fibre.",
@@ -53847,9 +53847,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The penguin walks on the ice.",
@@ -53858,9 +53858,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -53869,7 +53869,7 @@
         {
           "en": "The penguin walks on the ice.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Changes in ocean temperatures can affect penguin populations by altering the availability of fish and other prey.",
@@ -54485,9 +54485,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-3",
-        "src:english=shared:kew4500-3",
-        "src:example=shared:kew4500-3",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "I bought medicine at the pharmacy.",
@@ -54496,9 +54496,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-3",
-        "englishMeaning": "shared:kew4500-3",
-        "example": "shared:kew4500-3",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -54507,7 +54507,7 @@
         {
           "en": "I bought medicine at the pharmacy.",
           "role": "basic",
-          "source": "shared:kew4500-3"
+          "source": "shared:kew4500"
         },
         {
           "en": "A community pharmacy can improve access to healthcare by offering professional advice close to people's homes.",
@@ -54673,9 +54673,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "She studies photography at college.",
@@ -54684,9 +54684,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -54695,7 +54695,7 @@
         {
           "en": "She studies photography at college.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Digital photography allows researchers to document environmental changes and share visual evidence with a wider audience.",
@@ -57639,9 +57639,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "This program helps the computer work.",
@@ -57650,9 +57650,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -57661,7 +57661,7 @@
         {
           "en": "This program helps the computer work.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Schools should teach students how to program computers rather than simply how to use existing software.",
@@ -57889,9 +57889,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The puppy plays with a ball.",
@@ -57900,9 +57900,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -57911,7 +57911,7 @@
         {
           "en": "The puppy plays with a ball.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Adopting a puppy requires a long-term commitment to training, exercise, and regular veterinary care.",
@@ -58729,9 +58729,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-3",
-        "src:english=shared:kew4500-3",
-        "src:example=shared:kew4500-3",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The children made a racket in the hall.",
@@ -58740,9 +58740,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-3",
-        "englishMeaning": "shared:kew4500-3",
-        "example": "shared:kew4500-3",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -58751,7 +58751,7 @@
         {
           "en": "The children made a racket in the hall.",
           "role": "basic",
-          "source": "shared:kew4500-3"
+          "source": "shared:kew4500"
         },
         {
           "en": "Providing basic equipment, such as a racket, can make school sports more accessible to children.",
@@ -58979,9 +58979,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Monkeys live in the rainforest.",
@@ -58990,9 +58990,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -59001,7 +59001,7 @@
         {
           "en": "Monkeys live in the rainforest.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Protecting tropical rainforest helps preserve biodiversity and prevents large amounts of stored carbon from entering the atmosphere.",
@@ -59029,9 +59029,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Please rap on the door twice.",
@@ -59040,9 +59040,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -59051,7 +59051,7 @@
         {
           "en": "Please rap on the door twice.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Rap can give young people a creative way to express their experiences and discuss social issues.",
@@ -59479,9 +59479,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "We recently visited the new zoo.",
@@ -59490,9 +59490,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -59501,7 +59501,7 @@
         {
           "en": "We recently visited the new zoo.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "Researchers have recently explored how access to green spaces influences the mental health of urban residents.",
@@ -61994,9 +61994,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "I am not scared of the dark.",
@@ -62005,9 +62005,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -62016,7 +62016,7 @@
         {
           "en": "I am not scared of the dark.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "Students who are scared of making mistakes may avoid speaking during foreign language lessons.",
@@ -62094,9 +62094,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The dark cave looks scary.",
@@ -62105,9 +62105,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -62116,7 +62116,7 @@
         {
           "en": "The dark cave looks scary.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "Starting school can be scary for young children, so teachers should create a welcoming environment.",
@@ -62381,10 +62381,10 @@
       "topic": "travel",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-3",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "She rides a scooter to school.",
@@ -62392,10 +62392,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-3",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -62404,7 +62404,7 @@
         {
           "en": "She rides a scooter to school.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "Shared electric scooter schemes may reduce short car journeys if cities provide safe routes and suitable parking areas.",
@@ -64084,9 +64084,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "This shoe is too small.",
@@ -64095,9 +64095,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -64106,7 +64106,7 @@
         {
           "en": "This shoe is too small.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Comfortable shoes are essential for workers who spend most of their working day standing.",
@@ -64936,9 +64936,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Look at the stop sign, please.",
@@ -64947,9 +64947,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -64958,7 +64958,7 @@
         {
           "en": "Look at the stop sign, please.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "A decline in local wildlife may be a sign of wider environmental damage caused by urban expansion.",
@@ -65562,9 +65562,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "This site is good for a new park.",
@@ -65573,9 +65573,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -65584,7 +65584,7 @@
         {
           "en": "This site is good for a new park.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "The proposed hospital site is close to public transport, making healthcare more accessible to residents.",
@@ -66752,9 +66752,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1"
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200"
       ],
       "exampleSentence": "A snail moves very slowly.",
       "senseKey": "",
@@ -66762,15 +66762,15 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1"
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200"
       },
       "examples": [
         {
           "en": "A snail moves very slowly.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         }
       ],
       "exampleSentences": [
@@ -66889,26 +66889,26 @@
       "topic": "thinking",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew4500-3",
-        "src:phonetic=shared:kew4500-3",
-        "src:english=shared:kew4500-3",
-        "src:example=shared:kew4500-3"
+        "src:meaning=shared:kew4500",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500"
       ],
       "exampleSentence": "They snowboard down the mountain each winter.",
       "senseKey": "",
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew4500-3",
-        "phonetic": "shared:kew4500-3",
-        "englishMeaning": "shared:kew4500-3",
-        "example": "shared:kew4500-3"
+        "meaning": "shared:kew4500",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500"
       },
       "examples": [
         {
           "en": "They snowboard down the mountain each winter.",
           "role": "basic",
-          "source": "shared:kew4500-3"
+          "source": "shared:kew4500"
         }
       ],
       "exampleSentences": [
@@ -68492,9 +68492,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "A spider makes a web.",
@@ -68503,9 +68503,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -68514,7 +68514,7 @@
         {
           "en": "A spider makes a web.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Although many people fear spiders, these creatures help control insect populations in gardens and agricultural environments.",
@@ -68930,9 +68930,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
         "src:english=pending",
-        "src:example=shared:kew4500-1",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The stairs are near the front door.",
@@ -68941,9 +68941,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
         "englishMeaning": "pending",
-        "example": "shared:kew4500-1",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -68952,7 +68952,7 @@
         {
           "en": "The stairs are near the front door.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Public buildings should provide lifts alongside stairs to ensure equal access for people with limited mobility.",
@@ -69080,9 +69080,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "I see a bright star at night.",
@@ -69091,9 +69091,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -69102,7 +69102,7 @@
         {
           "en": "I see a bright star at night.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "Light pollution prevents many urban residents from seeing stars, reducing their connection with the natural night sky.",
@@ -70156,9 +70156,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Please move this stuff off the table.",
@@ -70167,9 +70167,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -70178,7 +70178,7 @@
         {
           "en": "Please move this stuff off the table.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Consumers often buy stuff they rarely use, contributing to household waste and unnecessary resource consumption.",
@@ -70356,9 +70356,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-2",
-        "src:english=shared:kew1200-2",
-        "src:example=shared:kew1200-2",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Suddenly the lights go off.",
@@ -70367,9 +70367,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-2",
-        "englishMeaning": "shared:kew1200-2",
-        "example": "shared:kew1200-2",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -70378,7 +70378,7 @@
         {
           "en": "Suddenly the lights go off.",
           "role": "basic",
-          "source": "shared:kew1200-2"
+          "source": "shared:kew1200"
         },
         {
           "en": "When demand suddenly increases, public transport systems may struggle to provide enough services for passengers.",
@@ -70606,9 +70606,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "We swim a lot in summer.",
@@ -70617,9 +70617,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -70628,7 +70628,7 @@
         {
           "en": "We swim a lot in summer.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Rising summer temperatures may increase demand for electricity as more households rely on air conditioning.",
@@ -71056,9 +71056,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "I surf the internet after homework.",
@@ -71067,9 +71067,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -71078,7 +71078,7 @@
         {
           "en": "I surf the internet after homework.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Students who surf the internet for research need skills to distinguish reliable sources from misleading information.",
@@ -71181,10 +71181,10 @@
       "topic": "sport",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-3",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "He loves surfing on big waves.",
@@ -71192,10 +71192,10 @@
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-3",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -71204,7 +71204,7 @@
         {
           "en": "He loves surfing on big waves.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "The growing popularity of surfing can support coastal economies while increasing pressure on fragile marine environments.",
@@ -71757,26 +71757,26 @@
       "topic": "thinking",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-3",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3"
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200"
       ],
       "exampleSentence": "Pack your swimsuit for the pool.",
       "senseKey": "",
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-3",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3"
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200"
       },
       "examples": [
         {
           "en": "Pack your swimsuit for the pool.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         }
       ],
       "exampleSentences": [
@@ -72899,9 +72899,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "They play tennis after school.",
@@ -72910,9 +72910,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -72921,7 +72921,7 @@
         {
           "en": "They play tennis after school.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "Providing affordable tennis lessons can encourage young people to exercise regularly and develop greater physical coordination.",
@@ -75220,9 +75220,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "He hurts his toe on a rock.",
@@ -75231,9 +75231,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -75242,7 +75242,7 @@
         {
           "en": "He hurts his toe on a rock.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         },
         {
           "en": "Wearing shoes that restrict toe movement may affect balance and contribute to foot problems over time.",
@@ -78859,9 +78859,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Tonight is red versus blue.",
@@ -78870,9 +78870,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -78881,7 +78881,7 @@
         {
           "en": "Tonight is red versus blue.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "The debate over public versus private transport often centres on cost, convenience, and environmental impact.",
@@ -79496,26 +79496,26 @@
       "topic": "thinking",
       "tags": [
         "src:list=cambridge-mse",
-        "src:meaning=shared:kew1200-3",
-        "src:phonetic=shared:kew1200-3",
-        "src:english=shared:kew1200-3",
-        "src:example=shared:kew1200-3"
+        "src:meaning=shared:kew1200",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200"
       ],
       "exampleSentence": "I wake up at seven o'clock.",
       "senseKey": "",
       "senseLabel": "",
       "sources": {
         "list": "cambridge-mse",
-        "meaning": "shared:kew1200-3",
-        "phonetic": "shared:kew1200-3",
-        "englishMeaning": "shared:kew1200-3",
-        "example": "shared:kew1200-3"
+        "meaning": "shared:kew1200",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200"
       },
       "examples": [
         {
           "en": "I wake up at seven o'clock.",
           "role": "basic",
-          "source": "shared:kew1200-3"
+          "source": "shared:kew1200"
         }
       ],
       "exampleSentences": [
@@ -79785,9 +79785,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew7200-1",
-        "src:english=shared:kew7200-1",
-        "src:example=shared:kew7200-1",
+        "src:phonetic=shared:kew7200",
+        "src:english=shared:kew7200",
+        "src:example=shared:kew7200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "Her coats are in the wardrobe.",
@@ -79796,9 +79796,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew7200-1",
-        "englishMeaning": "shared:kew7200-1",
-        "example": "shared:kew7200-1",
+        "phonetic": "shared:kew7200",
+        "englishMeaning": "shared:kew7200",
+        "example": "shared:kew7200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -79807,7 +79807,7 @@
         {
           "en": "Her coats are in the wardrobe.",
           "role": "basic",
-          "source": "shared:kew7200-1"
+          "source": "shared:kew7200"
         },
         {
           "en": "Building a smaller wardrobe with durable clothing can reduce the environmental impact of fashion consumption.",
@@ -80336,9 +80336,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-1",
-        "src:english=shared:kew4500-1",
-        "src:example=shared:kew4500-1",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "A spider makes a web in the tree.",
@@ -80347,9 +80347,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-1",
-        "englishMeaning": "shared:kew4500-1",
-        "example": "shared:kew4500-1",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -80358,7 +80358,7 @@
         {
           "en": "A spider makes a web in the tree.",
           "role": "basic",
-          "source": "shared:kew4500-1"
+          "source": "shared:kew4500"
         },
         {
           "en": "Although the web provides convenient access to information, students must learn to evaluate the reliability of online sources.",
@@ -80736,9 +80736,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1"
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200"
       ],
       "exampleSentence": "She sings well in music class.",
       "senseKey": "",
@@ -80746,15 +80746,15 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1"
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200"
       },
       "examples": [
         {
           "en": "She sings well in music class.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         }
       ],
       "exampleSentences": [
@@ -80874,9 +80874,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew1200-1",
-        "src:english=shared:kew1200-1",
-        "src:example=shared:kew1200-1",
+        "src:phonetic=shared:kew1200",
+        "src:english=shared:kew1200",
+        "src:example=shared:kew1200",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "The whale is huge and kind.",
@@ -80885,9 +80885,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew1200-1",
-        "englishMeaning": "shared:kew1200-1",
-        "example": "shared:kew1200-1",
+        "phonetic": "shared:kew1200",
+        "englishMeaning": "shared:kew1200",
+        "example": "shared:kew1200",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -80896,7 +80896,7 @@
         {
           "en": "The whale is huge and kind.",
           "role": "basic",
-          "source": "shared:kew1200-1"
+          "source": "shared:kew1200"
         },
         {
           "en": "Protecting whale populations requires international cooperation because these marine mammals migrate across vast areas of ocean.",
@@ -82339,9 +82339,9 @@
       "tags": [
         "src:list=cambridge-mse",
         "src:meaning=ecdict",
-        "src:phonetic=shared:kew4500-2",
-        "src:english=shared:kew4500-2",
-        "src:example=shared:kew4500-2",
+        "src:phonetic=shared:kew4500",
+        "src:english=shared:kew4500",
+        "src:example=shared:kew4500",
         "src:atlas=CC-BY-4.0"
       ],
       "exampleSentence": "This warm coat is made of wool.",
@@ -82350,9 +82350,9 @@
       "sources": {
         "list": "cambridge-mse",
         "meaning": "ecdict",
-        "phonetic": "shared:kew4500-2",
-        "englishMeaning": "shared:kew4500-2",
-        "example": "shared:kew4500-2",
+        "phonetic": "shared:kew4500",
+        "englishMeaning": "shared:kew4500",
+        "example": "shared:kew4500",
         "examExample": "word-atlas",
         "topic": "word-atlas",
         "cefr": "word-atlas"
@@ -82361,7 +82361,7 @@
         {
           "en": "This warm coat is made of wool.",
           "role": "basic",
-          "source": "shared:kew4500-2"
+          "source": "shared:kew4500"
         },
         {
           "en": "Wool provides natural insulation, making it a useful material for clothing designed for cold climates.",

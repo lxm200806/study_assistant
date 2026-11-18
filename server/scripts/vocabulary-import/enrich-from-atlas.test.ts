@@ -56,7 +56,7 @@ describe('enrich-from-atlas', () => {
     expect(word.topic).toBe('society')
     expect(word.cefr).toBe('B2')
     expect(word.exampleSentences?.[0]).toBe('Do not abandon your old friends.')
-    expect(word.tags).toContain('src:atlas=CC-BY-4.0')
+    expect(word.tags).toContain('src:lexicon=senses.json')
   })
 
   it('normalizes legacy abstract and syncs fields without atlas', () => {

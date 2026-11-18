@@ -37,16 +37,9 @@ export const VOCABULARY_BOOK_CODES = [
   'gaokao',
   'cet4',
   'cet6',
-  'kew1200-1',
-  'kew1200-2',
-  'kew1200-3',
-  'kew4500-1',
-  'kew4500-2',
-  'kew4500-3',
-  'kew4500-4',
-  'kew7200-1',
-  'kew7200-2',
-  'kew7200-3'
+  'kew1200',
+  'kew4500',
+  'kew7200'
 ] as const
 
 const bookCache = new Map<string, BookData>()

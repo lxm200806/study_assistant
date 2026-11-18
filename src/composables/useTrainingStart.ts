@@ -1,6 +1,7 @@
 import type { Vocabulary } from '@/types'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { useUserStore } from '@/stores/user'
+import { promptSessionExpired } from '@/utils/api'
 
 export function isBookAccessible(bookCode: string, isFree?: boolean): boolean {
   const userStore = useUserStore()
@@ -34,8 +35,8 @@ export async function ensureTrainingWords(
   let confirmText = '切换 KET'
 
   if (errorKind === 'auth') {
-    content = '请先登录后再开始训练。'
-    confirmText = '去登录'
+    promptSessionExpired('请先登录后再开始训练。')
+    return false
   } else if (locked) {
     content = `「${book?.name || '当前词书'}」需开通会员。免费用户可使用 KET 词书。`
     confirmText = '去会员页'
@@ -52,9 +53,7 @@ export async function ensureTrainingWords(
       cancelText: '取消',
       success: (res) => {
         if (res.confirm) {
-          if (errorKind === 'auth') {
-            uni.navigateTo({ url: '/pages/login/login' })
-          } else if (locked) {
+          if (locked) {
             if (errorKind === 'locked' || !isBookAccessible(book?.code || '', book?.isFree)) {
               uni.navigateTo({ url: '/pages/membership/membership' })
             } else {
@@ -77,20 +76,6 @@ export async function requireLoginForTraining(): Promise<boolean> {
   const userStore = useUserStore()
   const loggedIn = await userStore.checkLogin()
   if (loggedIn) return true
-
-  return new Promise((resolve) => {
-    uni.showModal({
-      title: '需要登录',
-      content: '开始训练前请先登录账号。',
-      confirmText: '去登录',
-      cancelText: '取消',
-      success: (res) => {
-        if (res.confirm) {
-          uni.navigateTo({ url: '/pages/login/login' })
-        }
-        resolve(false)
-      },
-      fail: () => resolve(false)
-    })
-  })
+  promptSessionExpired('开始训练前请先登录账号。')
+  return false
 }

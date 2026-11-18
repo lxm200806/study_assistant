@@ -1,6 +1,6 @@
 #!/usr/bin/env ts-node
 /**
- * 从各书 JSON 生成全局义项表 senses.json。
+ * 从各书 JSON 生成全局义项表 senses.json（嵌套 meanings[]）。
  * 一词一行：先出现的合格释义和例句保留。
  * 优先级：KEW 1200 → 4500 → 7200 → MSE → 中考 → 高考。
  */
@@ -8,20 +8,20 @@ import fs from 'fs'
 import path from 'path'
 import { vocabularyBooks } from '../../src/data/vocabulary'
 import { collectBookWordEntries } from '../../src/data/vocabulary/book-entries'
-import { sensesFilePath, senseWithExamples, type GlobalSense } from '../../src/data/vocabulary/senses'
+import {
+  asFlatSense,
+  buildSenseFromFlat,
+  normalizeSenseEntry,
+  sensesFilePath,
+  senseWithExamples,
+  type GlobalSense
+} from '../../src/data/vocabulary/senses'
 import { exampleContainsWord } from './book-word'
 
 const PRIORITY = [
-  'kew1200-1',
-  'kew1200-2',
-  'kew1200-3',
-  'kew4500-1',
-  'kew4500-2',
-  'kew4500-3',
-  'kew4500-4',
-  'kew7200-1',
-  'kew7200-2',
-  'kew7200-3',
+  'kew1200',
+  'kew4500',
+  'kew7200',
   'mse-ket',
   'mse-pet',
   'zhongkao',
@@ -55,7 +55,14 @@ function isGoodExample(word: string, text: string): boolean {
 
 async function main() {
   const byCode = new Map(vocabularyBooks.map(book => [book.code, book]))
+  // 保留已有全局条目的 enrichment / status，避免 build:senses 冲掉审核状态
+  const existingRaw = fs.existsSync(sensesFilePath())
+    ? (JSON.parse(fs.readFileSync(sensesFilePath(), 'utf-8')) as Record<string, unknown>)
+    : {}
   const out: Record<string, GlobalSense> = {}
+  for (const [key, value] of Object.entries(existingRaw)) {
+    out[key.trim().toLowerCase()] = normalizeSenseEntry(value)
+  }
 
   for (const code of PRIORITY) {
     const book = byCode.get(code)
@@ -71,21 +78,42 @@ async function main() {
           meaning: entry.meaning,
           englishMeaning: isGoodEnglish(entry.englishMeaning) ? entry.englishMeaning : '',
           phonetic: entry.phonetic && !isFakePhonetic(word, entry.phonetic) ? entry.phonetic : '',
-          examples
+          examples,
+          status: 'pending',
+          origin: `book:${code}`
         })
         continue
       }
-      if (!current.englishMeaning && isGoodEnglish(entry.englishMeaning)) {
-        current.englishMeaning = entry.englishMeaning
+      if (current.status === 'verified' || current.status === 'llm') continue
+      const flat = asFlatSense(current)
+      let changed = false
+      let nextEnglish = flat.englishMeaning
+      let nextPhonetic = flat.phonetic
+      let nextExample = flat.exampleSentence
+      let nextExam = flat.examExample
+      if (!nextEnglish && isGoodEnglish(entry.englishMeaning)) {
+        nextEnglish = entry.englishMeaning
+        changed = true
       }
-      if (!current.phonetic && entry.phonetic && !isFakePhonetic(word, entry.phonetic)) {
-        current.phonetic = entry.phonetic
+      if (!nextPhonetic && entry.phonetic && !isFakePhonetic(word, entry.phonetic)) {
+        nextPhonetic = entry.phonetic
+        changed = true
       }
-      if (!current.exampleSentence && examples.length) {
-        const next = senseWithExamples({ ...current, examples })
-        current.exampleSentence = next.exampleSentence
-        if (next.exampleSentences) current.exampleSentences = next.exampleSentences
+      if (!nextExample && examples.length) {
+        nextExample = examples[0]
+        if (examples[1] && !nextExam) nextExam = examples[1]
+        changed = true
       }
+      if (!changed) continue
+      out[word] = buildSenseFromFlat({
+        ...flat,
+        englishMeaning: nextEnglish,
+        phonetic: nextPhonetic,
+        exampleSentence: nextExample,
+        examExample: nextExam,
+        status: flat.status || 'pending',
+        origin: flat.origin || `book:${code}`
+      })
     }
   }
 
@@ -93,11 +121,14 @@ async function main() {
   fs.mkdirSync(path.dirname(file), { recursive: true })
   const keys = Object.keys(out).sort()
   const sorted: Record<string, GlobalSense> = {}
-  for (const key of keys) sorted[key] = out[key]
+  for (const key of keys) sorted[key] = normalizeSenseEntry(out[key])
   fs.writeFileSync(file, `${JSON.stringify(sorted, null, 2)}\n`)
-  const withExample = keys.filter(key => sorted[key].exampleSentence).length
-  const withMany = keys.filter(key => (sorted[key].exampleSentences?.length || 0) > 1).length
-  console.log(`senses.json: ${keys.length} 词，${withExample} 条有例句，${withMany} 条有多条例句 → ${file}`)
+  const withExample = keys.filter(key => asFlatSense(sorted[key]).exampleSentence).length
+  const withMany = keys.filter(key => (sorted[key].meanings[0]?.sentences.length || 0) > 1).length
+  const verified = keys.filter(key => sorted[key].status === 'verified').length
+  console.log(
+    `senses.json: ${keys.length} 词，${withExample} 条有例句，${withMany} 条有多条例句，verified ${verified} → ${file}`
+  )
 }
 
 main().catch(err => {

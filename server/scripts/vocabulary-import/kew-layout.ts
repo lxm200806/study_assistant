@@ -10,10 +10,11 @@ export const BOOKS_DIR = path.join(SERVER_ROOT, 'data/vocabulary/books')
 export const TMP_DIR = path.join(SERVER_ROOT, 'tmp')
 export const REPORT_DIR = path.join(TMP_DIR, 'kew')
 
+/** 源与成品均为每套一本 */
 const BOOKS: Record<KewSeries, string[]> = {
-  kew1200: ['kew1200-1', 'kew1200-2', 'kew1200-3'],
-  kew4500: ['kew4500-1', 'kew4500-2', 'kew4500-3', 'kew4500-4'],
-  kew7200: ['kew7200-1', 'kew7200-2', 'kew7200-3']
+  kew1200: ['kew1200'],
+  kew4500: ['kew4500'],
+  kew7200: ['kew7200']
 }
 
 const LIST_SOURCE: Record<KewSeries, string> = {
