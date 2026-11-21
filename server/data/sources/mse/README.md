@@ -1,11 +1,14 @@
-# MSE（KET / PET）词书
+# MSE（KET / PET）
 
-- **释义**：`data/sources/senses.json`
-- **课表**：`data/vocabulary/books/mse-ket.json`、`mse-pet.json`
+与全部词书同一流程：
 
-旧 `*-glosses.json` 已删除。`polish:mse` / `fill:mse` 已废弃。
+| 文件 | 作用 |
+| --- | --- |
+| `data/sources/senses.json` | 释义 |
+| `data/vocabulary/units/mse-ket.json` 等 | 单元顺序 |
+| `data/vocabulary/books/mse-ket.json` 等 | 编排生成的课表 |
 
 ```bash
-# 改总表后同步
-npm run tongbu:cishu -- --force mse-ket mse-pet
+npm run cishu:bianpai -- mse-ket
+npm run tongbu:cishu -- --force mse-ket
 ```

@@ -18,8 +18,8 @@
       "word": "fly",
       "tags": [
         "kew-unit:1-u1",
-        "sense:v",
-        "src:list=kew-toc"
+        "src:list=kew-toc",
+        "sense:v"
       ],
       "senseKey": "v",
       "senseLabel": "飞"
@@ -1147,8 +1147,8 @@
       "word": "watch",
       "tags": [
         "kew-unit:1-u7",
-        "sense:v",
-        "src:list=kew-toc"
+        "src:list=kew-toc",
+        "sense:v"
       ],
       "senseKey": "v",
       "senseLabel": "观看"
@@ -4455,8 +4455,8 @@
       "word": "tear",
       "tags": [
         "kew-unit:2-u9",
-        "sense:n",
-        "src:list=kew-toc"
+        "src:list=kew-toc",
+        "sense:n"
       ],
       "senseKey": "n",
       "senseLabel": "眼泪"

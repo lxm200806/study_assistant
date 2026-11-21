@@ -1,15 +1,15 @@
-# 中高考 / 四六级词书
+# 中高考 / 四六级
 
-| 书 | 课表 |
-| --- | --- |
-| 中考 | `data/vocabulary/books/zhongkao.json` |
-| 高考 | `data/vocabulary/books/gaokao.json` |
-| 四级 | `data/vocabulary/books/cet4.json` |
-| 六级 | `data/vocabulary/books/cet6.json` |
+| 书 | 单元表 | 课表 |
+| --- | --- | --- |
+| 中考 | `vocabulary/units/zhongkao.json` | `books/zhongkao.json` |
+| 高考 | `vocabulary/units/gaokao.json` | `books/gaokao.json` |
+| 四级 | `vocabulary/units/cet4.json` | `books/cet4.json` |
+| 六级 | `vocabulary/units/cet6.json` | `books/cet6.json` |
 
-**释义**一律在 `data/sources/senses.json`。  
-旧 `*-glosses.json` 与 `build:cnexam-gloss` / `polish:zhongkao` / `build:cet-books` 已废弃。
+释义在 `senses.json`。改单元顺序后：
 
 ```bash
-npm run tongbu:cishu -- --force zhongkao gaokao cet4 cet6
+npm run cishu:bianpai -- zhongkao
+npm run tongbu:cishu -- --force zhongkao
 ```

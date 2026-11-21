@@ -2195,9 +2195,9 @@
       "word": "major",
       "tags": [
         "kew-unit:1-u14",
-        "sense:n",
         "pos:n.",
-        "src:list=kew4500-word-lists"
+        "src:list=kew4500-word-lists",
+        "sense:n"
       ],
       "senseKey": "n",
       "senseLabel": "专业"
@@ -3822,9 +3822,9 @@
       "word": "sense",
       "tags": [
         "kew-unit:1-u24",
-        "sense:feeling",
         "pos:n.",
-        "src:list=kew4500-word-lists"
+        "src:list=kew4500-word-lists",
+        "sense:feeling"
       ],
       "senseKey": "feeling",
       "senseLabel": "感觉"
@@ -4833,9 +4833,9 @@
       "word": "iron",
       "tags": [
         "kew-unit:1-u31",
-        "sense:metal",
         "pos:n.",
-        "src:list=kew4500-word-lists"
+        "src:list=kew4500-word-lists",
+        "sense:metal"
       ],
       "senseKey": "metal",
       "senseLabel": "铁"
@@ -19060,9 +19060,9 @@
       "word": "resolution",
       "tags": [
         "kew-unit:3-u40",
-        "sense:solution",
         "pos:n.",
-        "src:list=kew4500-word-lists"
+        "src:list=kew4500-word-lists",
+        "sense:solution"
       ],
       "senseKey": "solution",
       "senseLabel": "解决"
