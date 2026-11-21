@@ -18,7 +18,6 @@ import {
   saveGlobalSenses,
   sensesFilePath
 } from '../../src/data/vocabulary/senses'
-import { loadNormalizedGlosses } from './kew-gloss'
 import {
   BOOKS_DIR,
   REPORT_DIR,
@@ -46,7 +45,6 @@ type WordSeed = {
 function wordsFromUnits(series: KewSeries): WordSeed[] {
   const layout = getKewLayout(series)
   const catalog = loadKewCatalog(layout.unitsPath)
-  const glosses = loadNormalizedGlosses(layout.glossPath(series))
   const seen = new Set<string>()
   const out: WordSeed[] = []
   for (const book of catalog.books) {
@@ -55,18 +53,9 @@ function wordsFromUnits(series: KewSeries): WordSeed[] {
         const word = normalizeKewWord(item.word)
         if (!word || seen.has(word)) continue
         seen.add(word)
-        const g = glosses[word]
         out.push({
           word,
-          meaning: g?.meaning,
-          englishMeaning: g?.englishMeaning || item.englishMeaning,
-          phonetic: g?.phonetic,
-          exampleSentence: g?.exampleSentence,
-          exampleSentenceZh: g?.exampleSentenceZh,
-          examExample: g?.examExample,
-          examExampleZh: g?.examExampleZh,
-          topic: g?.topic as string | undefined,
-          cefr: g?.cefr as string | undefined
+          englishMeaning: item.englishMeaning
         })
       }
     }

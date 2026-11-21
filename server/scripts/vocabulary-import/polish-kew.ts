@@ -1,120 +1,86 @@
 #!/usr/bin/env ts-node
 /**
- * 用词书 gloss + 全局词典覆盖 KEW 成品字段。
- * 优先级：词书 gloss > senses.json 全局词典 > 成书原值
+ * 从 units.json 重建 KEW 成品课表（瘦身形态：word + 单元 tags + senseKey）。
+ * 释义一律以 senses.json 为准，同步时 hydrate；不再读取 *-glosses.json。
  *
- * 用法: npx ts-node --transpile-only scripts/vocabulary-import/polish-kew.ts [kew1200|kew4500|kew7200]
+ * 用法（server/ 下）:
+ *   npm run paoguang:kew1200
+ *   npm run paoguang:kew4500
+ *   npm run paoguang:kew7200
  */
 import fs from 'fs'
-import type { WordData, WordSources } from '../../src/data/vocabulary/types'
-import { lookupSense } from '../../src/data/vocabulary/senses'
-import { glossKey, loadNormalizedGlosses, validateGloss, type KewGloss } from './kew-gloss'
-import { applyMergedToWord, mergeLexiconFields } from './merge-lexicon-fields'
-import { REPORT_DIR, getKewLayout, resolveKewSeriesArgs, type KewSeriesLayout } from './kew-layout'
+import type { WordData } from '../../src/data/vocabulary/types'
+import {
+  REPORT_DIR,
+  getKewLayout,
+  resolveKewSeriesArgs,
+  type KewSeriesLayout
+} from './kew-layout'
+import {
+  flattenKewBook,
+  loadKewCatalog,
+  validateKewBook
+} from './parse-kew'
 
-const PDF_NOTE = 'kew-student-pdf-image-only'
+function rebuildSlimBook(layout: KewSeriesLayout, code: string) {
+  const catalog = loadKewCatalog(layout.unitsPath)
+  const source = catalog.books.find(b => b.code === code) || catalog.books[0]
+  if (!source) throw new Error(`${layout.series}: units.json 里没有书 ${code}`)
 
-const SENSE_SOURCES: Record<string, string> = {
-  fly: 'kew-unit-checked',
-  tear: 'kew-unit-checked',
-  watch: 'kew-unit-checked',
-  iron: 'kew-unit-checked',
-  major: 'kew-unit-checked',
-  resolution: 'kew-unit-checked',
-  sense: 'kew-unit-checked'
-}
+  const errors = validateKewBook(source)
+  const { words, duplicates } = flattenKewBook(source)
 
-type GlossMap = Record<string, KewGloss>
-
-function sourceTags(sources: WordSources): string[] {
-  const tags = [
-    `src:list=${sources.list}`,
-    `src:meaning=${sources.meaning}`,
-    `src:phonetic=${sources.phonetic}`,
-    `src:english=${sources.englishMeaning}`,
-    `src:example=${sources.example}`
-  ]
-  if (sources.examExample) tags.push(`src:exam=${sources.examExample}`)
-  if (sources.topic) tags.push(`src:topic=${sources.topic}`)
-  if (sources.cefr) tags.push(`src:cefr=${sources.cefr}`)
-  return tags
-}
-
-function loadGlossMap(layout: KewSeriesLayout, code: string): GlossMap {
-  const file = layout.glossPath(code)
-  if (!fs.existsSync(file)) {
-    throw new Error(`缺少义项表: ${file}`)
-  }
-  return loadNormalizedGlosses(file)
-}
-
-function polishBook(layout: KewSeriesLayout, code: string) {
   const bookPath = layout.bookPath(code)
-  const book = JSON.parse(fs.readFileSync(bookPath, 'utf-8')) as {
-    code: string
-    name: string
-    words: WordData[]
-    [key: string]: unknown
-  }
-  const glosses = loadGlossMap(layout, code)
-  const issues: string[] = []
-  let fromGloss = 0
-  let fromLexicon = 0
+  const prev = fs.existsSync(bookPath)
+    ? (JSON.parse(fs.readFileSync(bookPath, 'utf-8')) as Record<string, unknown>)
+    : {}
 
-  book.words = book.words.map(item => {
-    const key = glossKey(item.word)
-    const gloss = glosses[key]
-    if (!gloss) {
-      issues.push(`缺义项 ${key}`)
-      return item
+  const slimWords: WordData[] = words.map(w => {
+    const row: WordData = {
+      word: w.word,
+      tags: [...w.tags, `src:list=${layout.listSource}`]
     }
-    fromGloss += 1
-    const errors = validateGloss(item.word, gloss)
-    if (errors.length) {
-      issues.push(`${key}: ${errors.join('; ')}`)
-    }
-
-    const global = lookupSense(key)
-    if (global) fromLexicon += 1
-
-    const merged = mergeLexiconFields({
-      gloss,
-      global,
-      existing: item,
-      defaultSources: {
-        list: layout.listSource,
-        editor: layout.editor,
-        englishMeaning: layout.englishMeaningSource(code),
-        meaning: SENSE_SOURCES[key] || layout.editor
-      }
-    })
-
-    const next = applyMergedToWord(item, merged)
-    const tags = (item.tags || []).filter(tag => !tag.startsWith('src:') && tag !== PDF_NOTE)
-    return {
-      ...next,
-      tags: [...tags, PDF_NOTE, ...sourceTags(next.sources!)]
-    }
+    if (w.senseKey) row.senseKey = w.senseKey
+    if (w.senseLabel) row.senseLabel = w.senseLabel
+    return row
   })
 
-  book.wordCount = book.words.length
+  const book = {
+    ...prev,
+    code: source.code,
+    name: source.name,
+    description: source.description,
+    level: source.level,
+    targetWordCount: source.targetWordCount,
+    wordCount: slimWords.length,
+    source: catalog.source || prev.source,
+    words: slimWords
+  }
+
   fs.writeFileSync(bookPath, `${JSON.stringify(book, null, 2)}\n`)
-  return { count: book.words.length, issues, fromGloss, fromLexicon }
+  return {
+    count: slimWords.length,
+    validateErrors: errors,
+    duplicates: duplicates.length,
+    bookPath
+  }
 }
 
 function polishSeries(layout: KewSeriesLayout) {
   fs.mkdirSync(REPORT_DIR, { recursive: true })
   const report: Record<string, unknown> = {}
   for (const code of layout.books) {
-    const result = polishBook(layout, code)
+    const result = rebuildSlimBook(layout, code)
     report[code] = result
     console.log(
-      `${code}: ${result.count} 词, 问题 ${result.issues.length} 条, gloss ${result.fromGloss}, 命中全局 ${result.fromLexicon}`
+      `${code}: 课表 ${result.count} 词（来自 units.json）→ ${result.bookPath}` +
+        (result.validateErrors.length ? `；校验问题 ${result.validateErrors.length}` : '') +
+        (result.duplicates ? `；跳过重复 ${result.duplicates}` : '')
     )
-    for (const issue of result.issues.slice(0, 20)) console.log(`  ${issue}`)
-    if (result.issues.length > 20) console.log(`  ... 另有 ${result.issues.length - 20} 条`)
+    for (const err of result.validateErrors.slice(0, 10)) console.log(`  ! ${err}`)
   }
   fs.writeFileSync(layout.reportPath, `${JSON.stringify(report, null, 2)}\n`)
+  console.log('释义请维护 senses.json，然后: npm run tongbu:cishu -- --force ' + layout.books.join(' '))
 }
 
 function main() {

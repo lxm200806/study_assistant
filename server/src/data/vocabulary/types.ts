@@ -57,13 +57,18 @@ export interface WordSources {
   cefr?: string
 }
 
-/** 每本成品词书都必须有中文意思、音标、英文释义、例句（与 KEW 一致）。 */
+/**
+ * 词书词条。
+ * 理想瘦身形态：只需 word + 顺序(+tags 单元) + 可选 senseKey/senseLabel；
+ * meaning/phonetic/例句等由全局 senses.json 在加载/同步时补齐。
+ */
 export interface WordData {
   word: string
-  meaning: string
-  phonetic: string
-  englishMeaning: string
-  /** 例句。JSON 成品必填；仅内置 fallback 可缺。与 examples[basic] 同步。 */
+  /** 可缺：瘦身后由总表 hydrate */
+  meaning?: string
+  phonetic?: string
+  englishMeaning?: string
+  /** 例句。与 examples[basic] 同步；可缺，由总表补。 */
   exampleSentence?: string
   /** 同一拼写的其它例句（同书多用法时轮换）；优先用 examples。 */
   exampleSentences?: string[]

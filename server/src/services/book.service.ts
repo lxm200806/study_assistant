@@ -173,12 +173,19 @@ export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
       tags: entry.tags
     })
     const bookExamples = entry.examples.filter(ex => ex && !isPlaceholderExample(ex, entry.word))
-    const examplesForBook = bookExamples.length ? bookExamples : entry.examples.slice(0, 1)
+    const senseExamples = [sense.exampleSentence, sense.examExample].filter(
+      (ex): ex is string => !!ex && !isPlaceholderExample(ex, entry.word)
+    )
+    const examplesForBook = bookExamples.length
+      ? bookExamples
+      : senseExamples.length
+        ? senseExamples
+        : entry.examples.slice(0, 1)
 
     let word = await prisma.vocabulary.findUnique({ where: { word: entry.word } })
 
     const wordFields = {
-      meaning: sense.meaning,
+      meaning: sense.meaning || entry.meaning,
       phonetic: sense.phonetic || entry.phonetic,
       englishMeaning: sense.englishMeaning || entry.englishMeaning,
       exampleSentence: preferExample(entry.word, word?.exampleSentence, [
@@ -186,11 +193,11 @@ export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
         ...examplesForBook
       ]),
       imageUrl: entry.emoji || word?.imageUrl || null,
-      contentType: taxonomy.contentType || word?.contentType || null,
-      topic: preferTopic(word?.topic, taxonomy.topic),
+      contentType: taxonomy.contentType || sense.contentType || word?.contentType || null,
+      topic: preferTopic(word?.topic, taxonomy.topic || sense.topic),
       tags: [...new Set([...(word?.tags || []), ...(taxonomy.tags || []), ...entry.tags])],
-      senseKey: '',
-      senseLabel: ''
+      senseKey: entry.senseKey || '',
+      senseLabel: entry.senseLabel || ''
     }
 
     if (!word) {
@@ -210,14 +217,14 @@ export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
         bookId: book.id,
         wordId: word.id,
         sortOrder: i,
-        meaning: entry.meaning || sense.meaning,
-        englishMeaning: entry.englishMeaning || sense.englishMeaning,
+        meaning: sense.meaning || entry.meaning,
+        englishMeaning: sense.englishMeaning || entry.englishMeaning,
         exampleSentences: examplesForBook
       },
       update: {
         sortOrder: i,
-        meaning: entry.meaning || sense.meaning,
-        englishMeaning: entry.englishMeaning || sense.englishMeaning,
+        meaning: sense.meaning || entry.meaning,
+        englishMeaning: sense.englishMeaning || entry.englishMeaning,
         exampleSentences: examplesForBook
       }
     })
