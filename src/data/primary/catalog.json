@@ -2,7 +2,7 @@
   "books": [
     {
       "code": "pep-g3a-2024",
-      "name": "人教 PEP 三上（2024）",
+      "name": "人教 PEP 三上",
       "level": "小学三上",
       "shortLabel": "三上",
       "series": "pep",
@@ -15,7 +15,7 @@
     },
     {
       "code": "pep-g3b-2025",
-      "name": "人教 PEP 三下（2025）",
+      "name": "人教 PEP 三下",
       "level": "小学三下",
       "shortLabel": "三下",
       "series": "pep",
@@ -28,7 +28,7 @@
     },
     {
       "code": "pep-g4a-2025",
-      "name": "人教 PEP 四上（2025）",
+      "name": "人教 PEP 四上",
       "level": "小学四上",
       "shortLabel": "四上",
       "series": "pep",
@@ -41,7 +41,7 @@
     },
     {
       "code": "pep-g4b-2026",
-      "name": "人教 PEP 四下（2026）",
+      "name": "人教 PEP 四下",
       "level": "小学四下",
       "shortLabel": "四下",
       "series": "pep",
@@ -54,7 +54,7 @@
     },
     {
       "code": "pep-g5a-2026",
-      "name": "人教 PEP 五上（2026）",
+      "name": "人教 PEP 五上",
       "level": "小学五上",
       "shortLabel": "五上",
       "series": "pep",
@@ -67,9 +67,9 @@
     },
     {
       "code": "pep-g4b-legacy",
-      "name": "人教 PEP 四下（旧版）",
+      "name": "人教 PEP 四下",
       "level": "小学四下",
-      "shortLabel": "四下·旧",
+      "shortLabel": "四下",
       "series": "pep",
       "seriesLabel": "人教 PEP",
       "grade": "四年级",
@@ -80,9 +80,9 @@
     },
     {
       "code": "pep-g5a-legacy",
-      "name": "人教 PEP 五上（旧版）",
+      "name": "人教 PEP 五上",
       "level": "小学五上",
-      "shortLabel": "五上·旧",
+      "shortLabel": "五上",
       "series": "pep",
       "seriesLabel": "人教 PEP",
       "grade": "五年级",
@@ -93,9 +93,9 @@
     },
     {
       "code": "pep-g5b-legacy",
-      "name": "人教 PEP 五下（旧版）",
+      "name": "人教 PEP 五下",
       "level": "小学五下",
-      "shortLabel": "五下·旧",
+      "shortLabel": "五下",
       "series": "pep",
       "seriesLabel": "人教 PEP",
       "grade": "五年级",
@@ -106,9 +106,9 @@
     },
     {
       "code": "pep-g6a-legacy",
-      "name": "人教 PEP 六上（旧版）",
+      "name": "人教 PEP 六上",
       "level": "小学六上",
-      "shortLabel": "六上·旧",
+      "shortLabel": "六上",
       "series": "pep",
       "seriesLabel": "人教 PEP",
       "grade": "六年级",
@@ -119,9 +119,9 @@
     },
     {
       "code": "pep-g6b-legacy",
-      "name": "人教 PEP 六下（旧版）",
+      "name": "人教 PEP 六下",
       "level": "小学六下",
-      "shortLabel": "六下·旧",
+      "shortLabel": "六下",
       "series": "pep",
       "seriesLabel": "人教 PEP",
       "grade": "六年级",
@@ -132,7 +132,7 @@
     },
     {
       "code": "jt-g3a-2024",
-      "name": "人教精通 三上（2024）",
+      "name": "人教精通 三上",
       "level": "小学三上",
       "shortLabel": "三上",
       "series": "jt",
@@ -145,7 +145,7 @@
     },
     {
       "code": "jt-g3b-2025",
-      "name": "人教精通 三下（2025）",
+      "name": "人教精通 三下",
       "level": "小学三下",
       "shortLabel": "三下",
       "series": "jt",
@@ -158,7 +158,7 @@
     },
     {
       "code": "jt-g4a-2025",
-      "name": "人教精通 四上（2025）",
+      "name": "人教精通 四上",
       "level": "小学四上",
       "shortLabel": "四上",
       "series": "jt",

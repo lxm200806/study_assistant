@@ -45,6 +45,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   const dailyStats = ref({ date: '', wordCount: 0, goal: 30, streak: 0, progress: 0 })
   const sessionTopic = ref<string | undefined>(undefined)
   const sessionUnitId = ref<string | undefined>(undefined)
+  /** 文章单元练习临时用的书，不写入 currentBookCode / 本地存储 */
+  const sessionBookCode = ref<string | undefined>(undefined)
   const lastSessionUnit = ref<import('@/types/map').SessionUnitMeta | null>(null)
 
   const books = ref<Book[]>(getBookList())
@@ -75,6 +77,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     await loadSessionVocabulary(count)
   }
 
+  const resolveBookCode = () => sessionBookCode.value || currentBookCode.value
+
   const loadSessionVocabulary = async (
     count: number = 10,
     trainingType?: string,
@@ -82,17 +86,21 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     opts?: { mode?: SessionMode; unit?: string; excludeIds?: string[] }
   ): Promise<Vocabulary[]> => {
     try {
-      if (currentBookCode.value) {
+      const bookCode = resolveBookCode()
+      if (bookCode) {
         const mode = opts?.mode || studySettings.value.sessionMode
+        // 单元顺序学才带 unit；记忆曲线认读/拼读绝不混入单元参数
+        const unit =
+          mode === 'unit' ? opts?.unit || sessionUnitId.value || undefined : undefined
         const result = await bookAPI.session(
-          currentBookCode.value,
+          bookCode,
           count,
           mode,
           trainingType,
           topic || sessionTopic.value,
           {
-            unit: opts?.unit || sessionUnitId.value,
-            excludeIds: opts?.excludeIds
+            unit,
+            excludeIds: mode === 'unit' ? opts?.excludeIds : undefined
           }
         )
         const data = result.data as SessionResponse | undefined
@@ -117,7 +125,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   }
 
   const loadBookProgress = async (bookCode?: string) => {
-    const code = bookCode || currentBookCode.value
+    const code = bookCode || resolveBookCode()
     if (!code) return
     try {
       const result = await bookAPI.progress(code)
@@ -163,10 +171,11 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   }
 
   const completeSession = async (wordIds: string[]) => {
-    if (!currentBookCode.value || wordIds.length === 0) return 0
+    const bookCode = resolveBookCode()
+    if (!bookCode || wordIds.length === 0) return 0
     try {
-      const result = await trainingAPI.completeSession(currentBookCode.value, wordIds)
-      await loadBookProgress()
+      const result = await trainingAPI.completeSession(bookCode, wordIds)
+      await loadBookProgress(bookCode)
       return (result as { newlyCovered?: number }).newlyCovered || 0
     } catch (error) {
       console.error('Failed to complete session:', error)
@@ -220,6 +229,10 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     uni.setStorageSync('currentBookCode', next)
   }
 
+  const setSessionBookCode = (code?: string) => {
+    sessionBookCode.value = code ? canonicalBookCode(code) : undefined
+  }
+
   const setMeaningType = (type: MeaningType) => {
     meaningType.value = type
     uni.setStorageSync('meaningType', type)
@@ -262,7 +275,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   }
 
   const ensureBookSelected = (): boolean => {
-    if (!currentBookCode.value) {
+    if (!resolveBookCode()) {
       uni.showToast({ title: '请先选择词汇书', icon: 'none' })
       return false
     }
@@ -461,6 +474,11 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     return books.value.find(b => b.code === currentBookCode.value)
   })
 
+  const getSessionBook = computed(() => {
+    const code = resolveBookCode()
+    return books.value.find(b => b.code === code)
+  })
+
   return {
     vocabularyList,
     stats,
@@ -469,6 +487,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     dailyStats,
     sessionTopic,
     sessionUnitId,
+    sessionBookCode,
     lastSessionUnit,
     trainingRecords,
     books,
@@ -493,6 +512,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     loadDailyStats,
     setSessionTopic,
     setSessionUnitId,
+    setSessionBookCode,
     loadStats,
     saveStats,
     updateWordStats,
@@ -511,6 +531,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     setStudySettings,
     loadSettings,
     ensureBookSelected,
-    getCurrentBook
+    getCurrentBook,
+    getSessionBook
   }
 })

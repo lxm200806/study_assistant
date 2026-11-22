@@ -1,7 +1,7 @@
 {
   "code": "pep-g6b-legacy",
-  "name": "人教 PEP 六下（旧版）",
-  "description": "人教 PEP 六下（旧版）。词表/课文整理自个人课本 Markdown（kb/md）。",
+  "name": "人教 PEP 六下",
+  "description": "人教 PEP 六下。词表/课文整理自个人课本 Markdown（kb/md）。",
   "level": "小学六下",
   "targetWordCount": 125,
   "wordCount": 125,

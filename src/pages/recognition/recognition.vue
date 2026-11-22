@@ -32,22 +32,24 @@
         </view>
         <text class="hint">点开始即可。先学后测；检测题型默认全开，测的时候可随时关掉某一种。智能先练错词和到期词。</text>
       </template>
-      <text v-else class="hint">本组按单元词表顺序出题；学完一组继续下一组词，不会按记忆曲线回头重复。</text>
+      <text v-else class="hint">按本单元词表一次练完（不走记忆曲线分组）。练完后可看成绩、再练本单元或下一单元。</text>
 
-      <text class="label">这一组</text>
-      <view class="chips">
-        <view
-          v-for="count in groupCounts"
-          :key="count"
-          :class="['chip', vocabStore.studySettings.wordsPerGroup === count ? 'on' : '']"
-          @tap="setWordsPerGroup(count)"
-        >{{ count }}</view>
-      </view>
-      <text
-        v-if="vocabStore.getCurrentBook"
-        class="hint link"
-        @tap="setFullBookRound"
-      >全书一轮 ({{ vocabStore.getCurrentBook.wordCount }} 词)</text>
+      <template v-if="!unitFlow">
+        <text class="label">这一组</text>
+        <view class="chips">
+          <view
+            v-for="count in groupCounts"
+            :key="count"
+            :class="['chip', vocabStore.studySettings.wordsPerGroup === count ? 'on' : '']"
+            @tap="setWordsPerGroup(count)"
+          >{{ count }}</view>
+        </view>
+        <text
+          v-if="vocabStore.getCurrentBook"
+          class="hint link"
+          @tap="setFullBookRound"
+        >全书一轮 ({{ vocabStore.getCurrentBook.wordCount }} 词)</text>
+      </template>
 
       <button class="start" @tap="startTraining">开始</button>
     </view>
@@ -152,10 +154,7 @@
         </view>
         <view v-if="showResult && isLastQuiz" class="end-actions">
           <template v-if="unitFlow">
-            <button class="start end-btn" @tap="completeAndContinueUnit">
-              {{ isLastUnitChunk ? '完成本单元' : '下一组词' }}
-            </button>
-            <button class="ghost end-btn" @tap="completeAndFinish">查看成绩</button>
+            <button class="start end-btn" @tap="completeUnitAndShowScore">完成本单元</button>
           </template>
           <template v-else>
             <button class="start end-btn" @tap="completeAndNextGroup">下一组</button>
@@ -166,18 +165,9 @@
       </template>
     </view>
 
-    <view v-else-if="phase === 'unit-done'" class="setup done">
-      <text class="eyebrow">单元学习</text>
-      <text class="score">{{ unitIdLabel }}</text>
-      <text class="lede">本单元词已按顺序练完。可再学一遍、查看成绩，或进入下一单元。</text>
-      <button class="start" @tap="restartUnit">再学本单元</button>
-      <button class="ghost end-btn" @tap="showUnitScore">查看成绩</button>
-      <button v-if="nextUnitId" class="ghost end-btn" @tap="goNextUnit">下一单元</button>
-      <button class="ghost end-btn" @tap="backToUnitPage">返回单元</button>
-    </view>
-
     <view v-else class="setup done">
       <text class="eyebrow">{{ unitFlow ? '单元成绩' : '认读练习' }}</text>
+      <text v-if="unitFlow" class="score-sub">{{ unitIdLabel }}</text>
       <text class="score">{{ sessionAnalysis.accuracy }}%</text>
       <text class="lede">{{ sessionAnalysis.correct }}/{{ sessionAnalysis.total }} 正确</text>
       <TrainingAnalysis
@@ -187,7 +177,7 @@
         :weak-topics="unitFlow ? [] : weakTopicLabels"
       />
       <view v-if="unitFlow" class="end-actions">
-        <button class="start end-btn" @tap="restartUnit">再学本单元</button>
+        <button class="start end-btn" @tap="restartUnit">再练本单元</button>
         <button v-if="nextUnitId" class="ghost end-btn" @tap="goNextUnit">下一单元</button>
         <button class="ghost end-btn" @tap="backToUnitPage">返回单元</button>
       </view>
@@ -219,7 +209,7 @@ import { isBrowserH5 } from '@/utils/audio-recording'
 import { atlasThumbUrl, resolveAtlasId } from '@/utils/wordAtlas'
 
 type RecogMode = 'zh' | 'en' | 'listen'
-type Phase = 'setup' | 'study' | 'bridge' | 'quiz' | 'done' | 'unit-done'
+type Phase = 'setup' | 'study' | 'bridge' | 'quiz' | 'done'
 
 const RECOG_MODE_ORDER: RecogMode[] = ['zh', 'en', 'listen']
 const recogModes: Array<{ key: RecogMode; label: string }> = [
@@ -330,10 +320,6 @@ const unitIdLabel = computed(() => {
   const n = id.replace(/\D/g, '')
   return n ? `Unit ${n}` : id.toUpperCase()
 })
-
-const isLastUnitChunk = computed(
-  () => unitFlow.value && (unitMeta.value?.remainingAfter ?? 0) === 0 && words.value.length > 0
-)
 
 function unitLoadOpts(excludeSeen = true) {
   return {
@@ -658,9 +644,11 @@ function onKeyDown(event: KeyboardEvent) {
 
 const startGroup = async (excludeSeen = true) => {
   if (unitFlow.value) {
-    words.value = await loadGroup(vocabStore.studySettings.wordsPerGroup, unitLoadOpts(excludeSeen))
+    // 文章入口：一次拉齐本单元全部词，不按记忆曲线「一组 N 词」切片
+    words.value = await loadGroup(500, unitLoadOpts(excludeSeen))
     if (unitMeta.value?.nextUnitId) nextUnitId.value = unitMeta.value.nextUnitId
   } else {
+    // 侧栏认读：按设置的一组数量走记忆曲线队列
     words.value = await loadGroup(vocabStore.studySettings.wordsPerGroup)
   }
 }
@@ -678,28 +666,22 @@ function beginStudyPhase() {
   prepareStudyCard()
 }
 
-function enterUnitDone() {
-  showResult.value = false
-  showFinish.value = false
-  if (unitMeta.value?.nextUnitId) nextUnitId.value = unitMeta.value.nextUnitId
-  phase.value = 'unit-done'
-}
-
 const startTraining = async () => {
   if (!vocabStore.ensureBookSelected()) return
   ensureAccessibleBook()
 
-  totalCount.value = vocabStore.studySettings.wordsPerGroup
   totalCorrect.value = 0
   resetSession()
   resetFlow()
 
   await vocabStore.loadBookProgress()
   await startGroup(false)
+  totalCount.value = words.value.length || vocabStore.studySettings.wordsPerGroup
 
   if (!(await ensureTrainingWords(words.value))) {
     if (unitFlow.value) {
-      enterUnitDone()
+      uni.showToast({ title: '本单元暂无单词', icon: 'none' })
+      backToUnitPage()
     }
     return
   }
@@ -710,17 +692,11 @@ const startTraining = async () => {
 const nextGroupTraining = async () => {
   showFinish.value = false
   resetSession()
-  // 记忆曲线：重新抽一组；单元流：保留已学词，继续往后切
-  if (!unitFlow.value) {
-    resetFlow()
-    totalCorrect.value = 0
-  }
+  resetFlow()
+  totalCorrect.value = 0
   await startGroup(true)
+  totalCount.value = words.value.length || vocabStore.studySettings.wordsPerGroup
   if (!(await ensureTrainingWords(words.value))) {
-    if (unitFlow.value) {
-      enterUnitDone()
-      return
-    }
     phase.value = 'setup'
     return
   }
@@ -736,23 +712,14 @@ const { completeAndNextGroup, completeAndFinish } = useGroupComplete({
   weakTopicLabels
 })
 
-const completeAndContinueUnit = async () => {
+/** 文章单元流：整单元练完 → 成绩页（再练 / 下一单元），对齐课文练习收尾 */
+const completeUnitAndShowScore = async () => {
   await finishSession()
   await vocabStore.loadBookProgress()
+  if (unitMeta.value?.nextUnitId) nextUnitId.value = unitMeta.value.nextUnitId
   showResult.value = false
-  if (isLastUnitChunk.value) {
-    enterUnitDone()
-    return
-  }
-  // 单元流保留本单元作答统计，不 resetSession
-  showResult.value = false
-  selectedOption.value = -1
-  await startGroup(true)
-  if (!words.value.length) {
-    enterUnitDone()
-    return
-  }
-  beginStudyPhase()
+  showFinish.value = true
+  phase.value = 'done'
 }
 
 async function restartUnit() {
@@ -761,15 +728,12 @@ async function restartUnit() {
   totalCorrect.value = 0
   showFinish.value = false
   await startGroup(false)
+  totalCount.value = words.value.length || 0
   if (!(await ensureTrainingWords(words.value))) {
-    enterUnitDone()
+    uni.showToast({ title: '本单元暂无单词', icon: 'none' })
     return
   }
   beginStudyPhase()
-}
-
-async function showUnitScore() {
-  await completeAndFinish()
 }
 
 function goNextUnit() {
@@ -785,14 +749,20 @@ function goNextUnit() {
 }
 
 function backToUnitPage() {
-  const code = vocabStore.currentBookCode
-  if (code?.startsWith('pep-')) {
+  const code = vocabStore.sessionBookCode || vocabStore.currentBookCode
+  if (code?.startsWith('pep-') || code?.startsWith('jt-')) {
     uni.redirectTo({
       url: `/pages/primary/unit?code=${encodeURIComponent(code)}&id=${encodeURIComponent(unitId.value || 'u1')}`
     })
     return
   }
   uni.navigateBack()
+}
+
+function clearUnitSessionBook() {
+  vocabStore.setSessionBookCode(undefined)
+  vocabStore.setSessionUnitId(undefined)
+  vocabStore.setSessionTopic(undefined)
 }
 
 watch(showFinish, (done) => {
@@ -807,14 +777,17 @@ const endSession = () => {
 onLoad((query) => {
   if (query?.autoStart === '1') autoStart.value = true
   if (query?.topic) vocabStore.setSessionTopic(query.topic as string)
-  if (query?.flow === 'unit' || query?.unit) {
+  if (query?.flow === 'unit' && query?.unit) {
     unitFlow.value = true
-    unitId.value = String(query?.unit || 'u1')
+    unitId.value = String(query.unit)
     vocabStore.setSessionUnitId(unitId.value)
+    // 仅会话内用文章书，不改认读/拼读的 currentBookCode
+    if (query?.book) vocabStore.setSessionBookCode(String(query.book))
   } else {
+    // 侧栏认读：强制记忆曲线流程，清掉文章单元残留
     unitFlow.value = false
     unitId.value = ''
-    vocabStore.setSessionUnitId(undefined)
+    clearUnitSessionBook()
   }
 })
 
@@ -826,8 +799,12 @@ onMounted(async () => {
   vocabStore.loadBooks()
   vocabStore.loadStats()
   vocabStore.loadSettings()
-  await vocabStore.loadBookProgress()
-  await vocabStore.loadDueCount(vocabStore.currentBookCode, 'reading')
+  // 进度/到期：单元流看会话书，侧栏认读看正式 currentBook
+  const progressBook = unitFlow.value
+    ? vocabStore.sessionBookCode || vocabStore.currentBookCode
+    : vocabStore.currentBookCode
+  await vocabStore.loadBookProgress(progressBook)
+  await vocabStore.loadDueCount(progressBook, 'reading')
   await vocabStore.loadServerStats()
   readingStats.value = vocabStore.getTypeStats('reading')
   if (autoStart.value) {
@@ -838,6 +815,7 @@ onMounted(async () => {
 onUnmounted(() => {
   clearAutoSkipTimer()
   stopSpeak()
+  if (unitFlow.value) clearUnitSessionBook()
   if (isBrowserH5() && typeof window !== 'undefined') {
     window.removeEventListener('keydown', onKeyDown)
   }
@@ -1312,6 +1290,13 @@ onUnmounted(() => {
   height: 44px;
   line-height: 44px;
   font-size: 15px;
+}
+
+.score-sub {
+  display: block;
+  font-size: 26rpx;
+  color: var(--pc-text-3, #888);
+  margin-bottom: 8rpx;
 }
 
 .score {

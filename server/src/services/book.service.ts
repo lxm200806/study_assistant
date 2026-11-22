@@ -273,6 +273,7 @@ export async function getBooks() {
     const meta = loadBook(book.code)
     return {
       ...book,
+      name: meta?.name || book.name,
       wordCount: book.wordCount,
       description: meta?.description || book.description
     }

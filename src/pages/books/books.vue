@@ -96,6 +96,7 @@ import { requireSubject } from '@/utils/subject'
 import { useVocabularyStore, type MeaningType } from '@/stores/vocabulary'
 import { openMapTab, openPage } from '@/utils/navigation'
 import { isBookAccessible } from '@/composables/useTrainingStart'
+import { rememberPrimaryBook } from '@/utils/primary-session'
 
 const vocabStore = useVocabularyStore()
 
@@ -226,8 +227,19 @@ const selectBook = (book: BookItem) => {
     return
   }
   if (book.code === vocabStore.currentBookCode) return
-  vocabStore.setCurrentBook(book.code)
-  uni.showToast({ title: `已选择 ${book.name}`, icon: 'success' })
+  const prev = vocabStore.getCurrentBook
+  const prevName = prev?.name || '当前词书'
+  uni.showModal({
+    title: '切换词汇练习词书？',
+    content: `从「${prevName}」改为「${book.name}」？`,
+    confirmText: '确认',
+    cancelText: '取消',
+    success: (modal) => {
+      if (!modal.confirm) return
+      vocabStore.setCurrentBook(book.code)
+      uni.showToast({ title: `已选择 ${book.name}`, icon: 'success' })
+    }
+  })
 }
 
 const goToBookMap = (code: string) => {
@@ -235,7 +247,8 @@ const goToBookMap = (code: string) => {
 }
 
 const goPepBook = (code: string) => {
-  vocabStore.setCurrentBook(code)
+  // 只打开文章课本，不改认读/拼读用的 currentBook
+  rememberPrimaryBook(code)
   openPage(`/pages/primary/book?code=${encodeURIComponent(code)}`)
 }
 

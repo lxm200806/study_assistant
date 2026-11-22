@@ -14,7 +14,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'pep-g3a-2024',
     code: 'pep-g3a-2024',
-    name: '人教 PEP 三上（2024）',
+    name: '人教 PEP 三上',
     description: '义务教育教科书《英语（PEP）》三年级上册单元词表；课文练习为自编口语短文',
     level: '小学三上',
     wordCount: 120
@@ -22,7 +22,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'pep-g3b-2025',
     code: 'pep-g3b-2025',
-    name: '人教 PEP 三下（2025）',
+    name: '人教 PEP 三下',
     description: '义务教育教科书《英语（PEP）》三年级下册单元词表；课文练习为自编口语短文',
     level: '小学三下',
     wordCount: 114
@@ -30,7 +30,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'pep-g4a-2025',
     code: 'pep-g4a-2025',
-    name: '人教 PEP 四上（2025）',
+    name: '人教 PEP 四上',
     description: '义务教育教科书《英语（PEP）》四年级上册单元词表；课文练习为自编口语短文',
     level: '小学四上',
     wordCount: 110
@@ -38,7 +38,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'pep-g4b-2026',
     code: 'pep-g4b-2026',
-    name: '人教 PEP 四下（2026）',
+    name: '人教 PEP 四下',
     description: '义务教育教科书《英语（PEP）》四年级下册单元词表；课文练习为自编口语短文',
     level: '小学四下',
     wordCount: 110
@@ -46,7 +46,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'pep-g5a-2026',
     code: 'pep-g5a-2026',
-    name: '人教 PEP 五上（2026）',
+    name: '人教 PEP 五上',
     description: '义务教育教科书《英语（PEP）》五年级上册单元词表；课文练习为自编口语短文',
     level: '小学五上',
     wordCount: 111
@@ -54,7 +54,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'pep-g4b-legacy',
     code: 'pep-g4b-legacy',
-    name: '人教 PEP 四下（旧版）',
+    name: '人教 PEP 四下',
     description: '人教 PEP 旧版四下；词表/课文来自个人课本库',
     level: '小学四下',
     wordCount: 0
@@ -62,7 +62,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'pep-g5a-legacy',
     code: 'pep-g5a-legacy',
-    name: '人教 PEP 五上（旧版）',
+    name: '人教 PEP 五上',
     description: '人教 PEP 旧版五上；词表/课文来自个人课本库',
     level: '小学五上',
     wordCount: 0
@@ -70,7 +70,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'pep-g5b-legacy',
     code: 'pep-g5b-legacy',
-    name: '人教 PEP 五下（旧版）',
+    name: '人教 PEP 五下',
     description: '人教 PEP 旧版五下；词表/课文来自个人课本库',
     level: '小学五下',
     wordCount: 0
@@ -78,7 +78,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'pep-g6a-legacy',
     code: 'pep-g6a-legacy',
-    name: '人教 PEP 六上（旧版）',
+    name: '人教 PEP 六上',
     description: '人教 PEP 旧版六上；词表/课文来自个人课本库',
     level: '小学六上',
     wordCount: 0
@@ -86,7 +86,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'pep-g6b-legacy',
     code: 'pep-g6b-legacy',
-    name: '人教 PEP 六下（旧版）',
+    name: '人教 PEP 六下',
     description: '人教 PEP 旧版六下；词表/课文来自个人课本库',
     level: '小学六下',
     wordCount: 0
@@ -94,7 +94,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'jt-g3a-2024',
     code: 'jt-g3a-2024',
-    name: '人教精通 三上（2024）',
+    name: '人教精通 三上',
     description: '人教精通三年级上册；词表/课文来自个人课本库',
     level: '小学三上',
     wordCount: 0
@@ -102,7 +102,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'jt-g3b-2025',
     code: 'jt-g3b-2025',
-    name: '人教精通 三下（2025）',
+    name: '人教精通 三下',
     description: '人教精通三年级下册；词表/课文来自个人课本库',
     level: '小学三下',
     wordCount: 0
@@ -110,7 +110,7 @@ const BOOKS: BookMeta[] = [
   {
     id: 'jt-g4a-2025',
     code: 'jt-g4a-2025',
-    name: '人教精通 四上（2025）',
+    name: '人教精通 四上',
     description: '人教精通四年级上册；词表/课文来自个人课本库',
     level: '小学四上',
     wordCount: 0

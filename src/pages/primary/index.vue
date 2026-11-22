@@ -1,8 +1,8 @@
 <template>
   <view class="container">
     <view class="hero">
-      <text class="hero-title">文章</text>
-      <text class="hero-desc">按年级、版本筛选课本，进入单元练词汇与课文。</text>
+      <text class="hero-title">选择文章课本</text>
+      <text class="hero-desc">第一次请先选一册；之后侧栏「文章练习」会直接进入上次选中的课本。</text>
     </view>
 
     <view class="filters">
@@ -42,7 +42,7 @@
           <text class="book-name">{{ item.name }}</text>
           <text class="badge">{{ item.seriesLabel }}</text>
         </view>
-        <text class="book-level">{{ item.grade }}{{ item.term }} · {{ item.year }}</text>
+        <text class="book-level">{{ item.grade }}{{ item.term }}</text>
         <text class="book-count">{{ item.unitCount }} 单元 · {{ item.wordCount }} 词</text>
         <view class="book-actions">
           <text class="map-link">进入练习 ›</text>
@@ -60,6 +60,7 @@ import { onShow } from '@dcloudio/uni-app'
 import { requireSubject } from '@/utils/subject'
 import { openPage } from '@/utils/navigation'
 import { listPepBooks } from '@/data/primary/load'
+import { rememberPrimaryBook } from '@/utils/primary-session'
 
 const books = listPepBooks()
 const grade = ref('全部')
@@ -98,6 +99,7 @@ onShow(async () => {
 })
 
 function openBook(code: string) {
+  rememberPrimaryBook(code)
   openPage(`/pages/primary/book?code=${encodeURIComponent(code)}`)
 }
 </script>

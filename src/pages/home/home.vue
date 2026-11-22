@@ -38,7 +38,7 @@
           <view class="progress-bar">
             <view class="progress-fill" :style="{ width: dailyProgress + '%' }"></view>
           </view>
-          <text class="rail-hint">从左侧进入认读或拼读</text>
+          <text class="rail-hint">从左侧「词汇练习」进入认读或拼读</text>
         </view>
       </template>
     </template>

@@ -112,7 +112,6 @@ onLoad((query) => {
 onShow(async () => {
   if (!(await requireSubject('english', 'student'))) return
   await vocabStore.loadBooks()
-  if (book.value) vocabStore.setCurrentBook(book.value.code)
 })
 
 function isReady(passage: PepPassage) {
@@ -127,9 +126,10 @@ function passageLines(passage: PepPassage) {
 
 function startVocab() {
   if (!unit.value || !book.value) return
-  vocabStore.setCurrentBook(book.value.code)
-  vocabStore.setSessionTopic(undefined)
-  openPage(`/pages/recognition/recognition?autoStart=1&flow=unit&unit=${unit.value.id}`)
+  // 不改认读/拼读的 currentBook；仅通过 URL 临时指定文章用书
+  openPage(
+    `/pages/recognition/recognition?autoStart=1&flow=unit&unit=${encodeURIComponent(unit.value.id)}&book=${encodeURIComponent(book.value.code)}`
+  )
 }
 
 function startPassage() {
@@ -140,9 +140,8 @@ function startPassage() {
     })
     return
   }
-  vocabStore.setCurrentBook(book.value.code)
   openPage(
-    `/pages/typing/typing?lane=article&article=${encodeURIComponent(articleId.value)}&autoStart=1`
+    `/pages/typing/typing?lane=article&article=${encodeURIComponent(articleId.value)}&autoStart=1&book=${encodeURIComponent(book.value.code)}`
   )
 }
 </script>

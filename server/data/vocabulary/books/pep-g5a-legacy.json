@@ -1,7 +1,7 @@
 {
   "code": "pep-g5a-legacy",
-  "name": "人教 PEP 五上（旧版）",
-  "description": "人教 PEP 五上（旧版）。词表/课文整理自个人课本 Markdown（kb/md）。",
+  "name": "人教 PEP 五上",
+  "description": "人教 PEP 五上。词表/课文整理自个人课本 Markdown（kb/md）。",
   "level": "小学五上",
   "targetWordCount": 201,
   "wordCount": 179,

@@ -1,7 +1,7 @@
 {
   "code": "jt-g4a-2025",
-  "name": "人教精通 四上（2025）",
-  "description": "人教精通 四上（2025）。词表/课文整理自个人课本 Markdown（kb/md）。",
+  "name": "人教精通 四上",
+  "description": "人教精通 四上。词表/课文整理自个人课本 Markdown（kb/md）。",
   "level": "小学四上",
   "targetWordCount": 132,
   "source": "jt-g4a-2025-kb-md",

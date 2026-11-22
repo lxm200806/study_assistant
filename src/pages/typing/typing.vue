@@ -1641,6 +1641,14 @@ onLoad((query) => {
   if (query?.lane === 'article') lane.value = 'article'
   if (query?.article) pendingArticleId.value = String(query.article)
   if (query?.autoStart === '1') pendingAutoStart.value = true
+  // 拼读单词组走记忆曲线；文章练习不改 currentBook，并清掉会话书残留
+  if (query?.lane !== 'article') {
+    vocabStore.setSessionUnitId(undefined)
+    vocabStore.setSessionBookCode(undefined)
+  } else {
+    // 文章短文练习：不写入会话词书，避免影响认读/拼读
+    vocabStore.setSessionBookCode(undefined)
+  }
 })
 
 onShow(async () => {

@@ -8,12 +8,32 @@
         </view>
       </view>
 
+      <template v-if="vocabItems.length">
+        <view class="row more-toggle is-locked" title="词汇练习">
+          <PcRailIcon name="book" />
+          <text class="label">词汇练习</text>
+          <text class="chev">▾</text>
+        </view>
+        <view v-show="expanded" class="more">
+          <view
+            v-for="item in vocabItems"
+            :key="item.key"
+            :class="['row', 'sub', isCurrent(item) ? 'is-on' : '']"
+            :title="item.label"
+            @tap="open(item.url)"
+          >
+            <PcRailIcon :name="item.icon" />
+            <text class="label">{{ item.label }}</text>
+          </view>
+        </view>
+      </template>
+
       <view
         v-for="item in mainItems"
         :key="item.key"
         :class="['row', isCurrent(item) ? 'is-on' : '']"
         :title="item.label"
-        @tap="open(item.url)"
+        @tap="openMain(item)"
       >
         <PcRailIcon :name="item.icon" />
         <text class="label">{{ item.label }}</text>
@@ -80,6 +100,7 @@ import { useUserStore } from '@/stores/user'
 import { isTabPage } from '@/utils/navigation'
 import { applyRailWidth, installPcRouteSync, pcPath } from '@/utils/pc-route'
 import { applyPcTheme } from '@/utils/pc-theme'
+import { lastPrimaryBookCode } from '@/utils/primary-session'
 import type { Subject } from '@/utils/subject'
 
 type RailItem = {
@@ -119,7 +140,7 @@ const mainItems = computed<RailItem[]>(() => {
     if (userStore.isAdmin) items.push(item('admin', '词库', '/pages/admin/admin', 'gear'))
     return items
   }
-  // 英语：侧栏直接进认读/拼读，不再放今日。语文仍用今日看课程。
+  // 语文仍用今日看课程；英语用「词汇练习」下拉 + 文章练习。
   if (chinese && student) {
     items.push(
       {
@@ -136,26 +157,10 @@ const mainItems = computed<RailItem[]>(() => {
   if (!chinese && student) {
     items.push(
       {
-        key: 'recognition',
-        label: '认读',
-        url: '/pages/recognition/recognition',
-        icon: 'read',
-        show: () => true,
-        match: (path) => path.startsWith('/pages/recognition/')
-      },
-      {
-        key: 'typing',
-        label: '拼读',
-        url: '/pages/typing/typing',
-        icon: 'keyboard',
-        show: () => true,
-        match: (path) => path.startsWith('/pages/typing/')
-      },
-      {
-        key: 'primary',
-        label: '文章',
+        key: 'article',
+        label: '文章练习',
         url: '/pages/primary/index',
-        icon: 'library',
+        icon: 'materials',
         show: () => true,
         match: (path) => path.startsWith('/pages/primary/')
       },
@@ -181,6 +186,28 @@ const mainItems = computed<RailItem[]>(() => {
     )
   }
   return items.filter((item) => item.show())
+})
+
+const vocabItems = computed<RailItem[]>(() => {
+  if (userStore.isChinese || !userStore.isStudentRole) return []
+  return [
+    {
+      key: 'recognition',
+      label: '认读练习',
+      url: '/pages/recognition/recognition',
+      icon: 'read',
+      show: () => true,
+      match: (path) => path.startsWith('/pages/recognition/')
+    },
+    {
+      key: 'typing',
+      label: '拼读练习',
+      url: '/pages/typing/typing',
+      icon: 'keyboard',
+      show: () => true,
+      match: (path) => path.startsWith('/pages/typing/')
+    }
+  ]
 })
 
 const moreItems = computed<RailItem[]>(() => {
@@ -235,6 +262,23 @@ function open(url: string) {
     return
   }
   uni.navigateTo({ url })
+}
+
+function openMain(entry: RailItem) {
+  if (entry.key === 'article') {
+    openArticlePractice()
+    return
+  }
+  open(entry.url)
+}
+
+function openArticlePractice() {
+  const code = lastPrimaryBookCode()
+  if (code) {
+    open(`/pages/primary/book?code=${encodeURIComponent(code)}`)
+    return
+  }
+  open('/pages/primary/index')
 }
 
 function togglePin() {
@@ -427,6 +471,14 @@ function readPinned() {
 
 .more .sub {
   padding-left: 16px;
+}
+
+.more-toggle.is-locked {
+  cursor: default;
+}
+
+.more-toggle.is-locked:hover {
+  background: transparent;
 }
 
 .subject {

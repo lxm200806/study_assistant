@@ -3,7 +3,10 @@
     <view v-if="!book" class="empty">未找到该册</view>
     <template v-else>
       <view class="hero">
-        <text class="eyebrow">人教 PEP · {{ book.year || '' }}</text>
+        <view class="hero-top">
+          <text class="eyebrow">{{ book.seriesLabel || '课本' }}</text>
+          <text class="switch-book" @tap="openCatalog">换课本</text>
+        </view>
         <text class="title">{{ book.shortLabel || book.level }}</text>
         <text class="lede">{{ book.name }}。点进单元可看课文与单词。</text>
       </view>
@@ -50,6 +53,7 @@ import { usePepTextMode } from '@/composables/usePepTextMode'
 import { requireSubject } from '@/utils/subject'
 import { openPage } from '@/utils/navigation'
 import { getPepBook, type PepUnit } from '@/data/primary/load'
+import { rememberPrimaryBook } from '@/utils/primary-session'
 
 const vocabStore = useVocabularyStore()
 const { mode, setMode } = usePepTextMode()
@@ -58,12 +62,12 @@ const book = computed(() => getPepBook(code.value))
 
 onLoad((query) => {
   code.value = String(query?.code || 'pep-g3a-2024')
+  rememberPrimaryBook(code.value)
 })
 
 onShow(async () => {
   if (!(await requireSubject('english', 'student'))) return
   await vocabStore.loadBooks()
-  if (book.value) vocabStore.setCurrentBook(book.value.code)
 })
 
 function activePassages(unit: PepUnit) {
@@ -78,14 +82,18 @@ function readyCount(unit: PepUnit) {
   return activePassages(unit).filter(p => p.ready || !!(p.body || '').trim()).length
 }
 
+function openCatalog() {
+  openPage('/pages/primary/index')
+}
+
 function openUnit(id: string) {
   openPage(`/pages/primary/unit?code=${encodeURIComponent(code.value)}&id=${encodeURIComponent(id)}`)
 }
 
 function startVocab(unit: PepUnit) {
-  vocabStore.setCurrentBook(code.value)
-  vocabStore.setSessionTopic(undefined)
-  openPage(`/pages/recognition/recognition?autoStart=1&flow=unit&unit=${unit.id}`)
+  openPage(
+    `/pages/recognition/recognition?autoStart=1&flow=unit&unit=${encodeURIComponent(unit.id)}&book=${encodeURIComponent(code.value)}`
+  )
 }
 
 function startPassage(unit: PepUnit) {
@@ -94,8 +102,9 @@ function startPassage(unit: PepUnit) {
     uni.showToast({ title: mode.value === 'textbook' ? '原文尚未填入' : '暂无课文', icon: 'none' })
     return
   }
-  vocabStore.setCurrentBook(code.value)
-  openPage(`/pages/typing/typing?lane=article&article=${encodeURIComponent(`builtin:${list[0].key}`)}&autoStart=1`)
+  openPage(
+    `/pages/typing/typing?lane=article&article=${encodeURIComponent(`builtin:${list[0].key}`)}&autoStart=1&book=${encodeURIComponent(code.value)}`
+  )
 }
 </script>
 
@@ -110,7 +119,26 @@ function startPassage(unit: PepUnit) {
   font-family: "Avenir Next", "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
 }
 .hero { margin-bottom: 20px; }
-.eyebrow { display:block; font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--pc-text-3,#8a8175); margin-bottom:8px; }
+.hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.eyebrow {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pc-text-3, #8a8175);
+}
+.switch-book {
+  font-size: 13px;
+  color: var(--pc-accent, #0f6e6a);
+  cursor: pointer;
+  flex: 0 0 auto;
+}
 .title { display:block; font-size:32px; font-weight:700; line-height:1.2; margin-bottom:8px; }
 .lede, .mode-hint, .empty { display:block; font-size:14px; color:var(--pc-text-2,#5c5348); line-height:1.5; }
 .mode-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
