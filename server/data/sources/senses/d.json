@@ -5225,6 +5225,21 @@
     "contentType": "non-fiction",
     "origin": "word-atlas"
   },
+  "delivery worker": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "快递员"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/dɪˈlɪvəri ˈwɜːkə(r)/"
+    },
+    "origin": "seed:pep-g4a-2025"
+  },
   "delta": {
     "meanings": [
       {
@@ -18359,6 +18374,21 @@
     "level": "B2",
     "contentType": "non-fiction",
     "origin": "llm-verify"
+  },
+  "don't": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/dəʊnt/"
+    },
+    "origin": "seed:pep-g3a-2024"
   },
   "donate": {
     "meanings": [

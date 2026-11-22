@@ -1,0 +1,747 @@
+{
+  "code": "jt-g3b-2025",
+  "name": "人教精通 三下（2025）",
+  "level": "小学三下",
+  "shortLabel": "三下",
+  "year": 2025,
+  "series": "jt",
+  "seriesLabel": "人教精通",
+  "grade": "三年级",
+  "term": "下",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 My classroom",
+      "theme": "",
+      "words": [
+        {
+          "word": "in",
+          "phonetic": "",
+          "meaning": "在......内;在......中"
+        },
+        {
+          "word": "on",
+          "phonetic": "",
+          "meaning": "在......上"
+        },
+        {
+          "word": "under",
+          "phonetic": "",
+          "meaning": "在(或到、通过)......下面"
+        },
+        {
+          "word": "box",
+          "phonetic": "",
+          "meaning": "盒;箱"
+        },
+        {
+          "word": "chair",
+          "phonetic": "",
+          "meaning": "椅子"
+        },
+        {
+          "word": "computer",
+          "phonetic": "",
+          "meaning": "计算机;电脑"
+        },
+        {
+          "word": "desk",
+          "phonetic": "",
+          "meaning": "书桌"
+        },
+        {
+          "word": "blackboard",
+          "phonetic": "",
+          "meaning": "黑板"
+        },
+        {
+          "word": "classroom",
+          "phonetic": "",
+          "meaning": "教室;课堂"
+        },
+        {
+          "word": "door",
+          "phonetic": "",
+          "meaning": "门"
+        },
+        {
+          "word": "floor",
+          "phonetic": "",
+          "meaning": "地板;地面"
+        },
+        {
+          "word": "wall",
+          "phonetic": "",
+          "meaning": "墙;壁;墙壁"
+        },
+        {
+          "word": "window",
+          "phonetic": "",
+          "meaning": "窗;窗户"
+        },
+        {
+          "word": "guess",
+          "phonetic": "",
+          "meaning": "猜测"
+        },
+        {
+          "word": "many",
+          "phonetic": "",
+          "meaning": "许多"
+        },
+        {
+          "word": "book",
+          "phonetic": "",
+          "meaning": "书;书籍"
+        },
+        {
+          "word": "love",
+          "phonetic": "",
+          "meaning": "爱;热爱"
+        },
+        {
+          "word": "dirty",
+          "phonetic": "",
+          "meaning": "脏的"
+        },
+        {
+          "word": "clean",
+          "phonetic": "",
+          "meaning": "打扫"
+        },
+        {
+          "word": "help",
+          "phonetic": "",
+          "meaning": "帮助"
+        },
+        {
+          "word": "great",
+          "phonetic": "",
+          "meaning": "优秀的;杰出的"
+        },
+        {
+          "word": "today",
+          "phonetic": "",
+          "meaning": "今天"
+        },
+        {
+          "word": "turn",
+          "phonetic": "",
+          "meaning": "机会"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3b-2025-u1-textbook-a",
+          "title": "Unit 1 My classroom · Lesson 2 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3b-2025-u1-textbook-b",
+          "title": "Unit 1 My classroom · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 My class",
+      "theme": "",
+      "words": [
+        {
+          "word": "one",
+          "phonetic": "",
+          "meaning": "一"
+        },
+        {
+          "word": "two",
+          "phonetic": "",
+          "meaning": "二"
+        },
+        {
+          "word": "three",
+          "phonetic": "",
+          "meaning": "三"
+        },
+        {
+          "word": "four",
+          "phonetic": "",
+          "meaning": "四"
+        },
+        {
+          "word": "five",
+          "phonetic": "",
+          "meaning": "五"
+        },
+        {
+          "word": "six",
+          "phonetic": "",
+          "meaning": "六"
+        },
+        {
+          "word": "seven",
+          "phonetic": "",
+          "meaning": "七"
+        },
+        {
+          "word": "eight",
+          "phonetic": "",
+          "meaning": "八"
+        },
+        {
+          "word": "nine",
+          "phonetic": "",
+          "meaning": "九"
+        },
+        {
+          "word": "ten",
+          "phonetic": "",
+          "meaning": "十"
+        },
+        {
+          "word": "eleven",
+          "phonetic": "",
+          "meaning": "十一"
+        },
+        {
+          "word": "twelve",
+          "phonetic": "",
+          "meaning": "十二"
+        },
+        {
+          "word": "class",
+          "phonetic": "",
+          "meaning": "班;班级"
+        },
+        {
+          "word": "which",
+          "phonetic": "",
+          "meaning": "哪一个"
+        },
+        {
+          "word": "grade",
+          "phonetic": "",
+          "meaning": "年级"
+        },
+        {
+          "word": "student",
+          "phonetic": "",
+          "meaning": "学生"
+        },
+        {
+          "word": "school",
+          "phonetic": "",
+          "meaning": "学校"
+        },
+        {
+          "word": "Well done",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3b-2025-u2-textbook-a",
+          "title": "Unit 2 My class · Lesson 2 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3b-2025-u2-textbook-b",
+          "title": "Unit 2 My class · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 My family",
+      "theme": "",
+      "words": [
+        {
+          "word": "father",
+          "phonetic": "",
+          "meaning": "爸爸"
+        },
+        {
+          "word": "mother",
+          "phonetic": "",
+          "meaning": "妈妈"
+        },
+        {
+          "word": "baby",
+          "phonetic": "",
+          "meaning": "婴儿"
+        },
+        {
+          "word": "brother",
+          "phonetic": "",
+          "meaning": "哥哥;弟弟"
+        },
+        {
+          "word": "baby brother",
+          "phonetic": "",
+          "meaning": "弟弟"
+        },
+        {
+          "word": "sister",
+          "phonetic": "",
+          "meaning": "姐姐;妹妹"
+        },
+        {
+          "word": "me",
+          "phonetic": "",
+          "meaning": "我"
+        },
+        {
+          "word": "aunt",
+          "phonetic": "",
+          "meaning": "姑母;姨母;伯母;婶母;舅母"
+        },
+        {
+          "word": "uncle",
+          "phonetic": "",
+          "meaning": "舅父;叔父;伯父;姑父;姨父"
+        },
+        {
+          "word": "grandfather",
+          "phonetic": "",
+          "meaning": "爷爷;外公"
+        },
+        {
+          "word": "grandmother",
+          "phonetic": "",
+          "meaning": "奶奶;外婆"
+        },
+        {
+          "word": "family",
+          "phonetic": "",
+          "meaning": "家,家庭"
+        },
+        {
+          "word": "son",
+          "phonetic": "",
+          "meaning": "儿子"
+        },
+        {
+          "word": "meet",
+          "phonetic": "",
+          "meaning": "相遇;遇见"
+        },
+        {
+          "word": "that",
+          "phonetic": "",
+          "meaning": "那,那个"
+        },
+        {
+          "word": "daughter",
+          "phonetic": "",
+          "meaning": "女儿"
+        },
+        {
+          "word": "who",
+          "phonetic": "",
+          "meaning": "谁"
+        },
+        {
+          "word": "beautiful",
+          "phonetic": "",
+          "meaning": "美丽的"
+        },
+        {
+          "word": "very much",
+          "phonetic": "",
+          "meaning": "非常"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3b-2025-u3-textbook-a",
+          "title": "Unit 3 My family · Lesson 2 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3b-2025-u3-textbook-b",
+          "title": "Unit 3 My family · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 Clothes",
+      "theme": "",
+      "words": [
+        {
+          "word": "cap",
+          "phonetic": "",
+          "meaning": "便帽,制服帽"
+        },
+        {
+          "word": "coat",
+          "phonetic": "",
+          "meaning": "外套;外衣;大衣"
+        },
+        {
+          "word": "shirt",
+          "phonetic": "",
+          "meaning": "衬衫"
+        },
+        {
+          "word": "sweater",
+          "phonetic": "",
+          "meaning": "套头衫;套头毛衣"
+        },
+        {
+          "word": "T-shirt T",
+          "phonetic": "",
+          "meaning": "恤衫"
+        },
+        {
+          "word": "dress",
+          "phonetic": "",
+          "meaning": "连衣裙"
+        },
+        {
+          "word": "shorts",
+          "phonetic": "",
+          "meaning": "短裤"
+        },
+        {
+          "word": "skirt",
+          "phonetic": "",
+          "meaning": "女裙"
+        },
+        {
+          "word": "sock",
+          "phonetic": "",
+          "meaning": "短袜"
+        },
+        {
+          "word": "trousers",
+          "phonetic": "",
+          "meaning": "裤子"
+        },
+        {
+          "word": "clothes",
+          "phonetic": "",
+          "meaning": "衣服;服装"
+        },
+        {
+          "word": "take",
+          "phonetic": "",
+          "meaning": "携带;拿走;取走"
+        },
+        {
+          "word": "wash",
+          "phonetic": "",
+          "meaning": "洗"
+        },
+        {
+          "word": "by myself",
+          "phonetic": "",
+          "meaning": "独立地"
+        },
+        {
+          "word": "shoe",
+          "phonetic": "",
+          "meaning": "鞋"
+        },
+        {
+          "word": "by hand",
+          "phonetic": "",
+          "meaning": "用手"
+        },
+        {
+          "word": "helpful",
+          "phonetic": "",
+          "meaning": "有用的;有帮助的"
+        },
+        {
+          "word": "home",
+          "phonetic": "",
+          "meaning": "家;住所"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3b-2025-u4-textbook-a",
+          "title": "Unit 4 Clothes · Lesson 1 · 课堂问候",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3b-2025-u4-textbook-b",
+          "title": "Unit 4 Clothes · Lesson 1 · 课堂问候 / Lesson 2 · Let's talk / Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 Animals",
+      "theme": "",
+      "words": [
+        {
+          "word": "chicken",
+          "phonetic": "",
+          "meaning": "鸡"
+        },
+        {
+          "word": "cow",
+          "phonetic": "",
+          "meaning": "母牛;奶牛"
+        },
+        {
+          "word": "duck",
+          "phonetic": "",
+          "meaning": "鸭"
+        },
+        {
+          "word": "horse",
+          "phonetic": "",
+          "meaning": "马"
+        },
+        {
+          "word": "sheep",
+          "phonetic": "",
+          "meaning": "绵羊"
+        },
+        {
+          "word": "bee",
+          "phonetic": "",
+          "meaning": "蜜蜂"
+        },
+        {
+          "word": "bird",
+          "phonetic": "",
+          "meaning": "鸟"
+        },
+        {
+          "word": "fish",
+          "phonetic": "",
+          "meaning": "鱼"
+        },
+        {
+          "word": "mouse",
+          "phonetic": "",
+          "meaning": "老鼠"
+        },
+        {
+          "word": "pig",
+          "phonetic": "",
+          "meaning": "猪"
+        },
+        {
+          "word": "rabbit",
+          "phonetic": "",
+          "meaning": "兔子"
+        },
+        {
+          "word": "animal",
+          "phonetic": "",
+          "meaning": "动物"
+        },
+        {
+          "word": "kid",
+          "phonetic": "",
+          "meaning": "小孩"
+        },
+        {
+          "word": "here",
+          "phonetic": "",
+          "meaning": "在这里;向这里"
+        },
+        {
+          "word": "right",
+          "phonetic": "",
+          "meaning": "正确的"
+        },
+        {
+          "word": "where",
+          "phonetic": "",
+          "meaning": "哪里"
+        },
+        {
+          "word": "tree",
+          "phonetic": "",
+          "meaning": "树;树木"
+        },
+        {
+          "word": "heavy",
+          "phonetic": "",
+          "meaning": "重的;沉的"
+        },
+        {
+          "word": "grass",
+          "phonetic": "",
+          "meaning": "草"
+        },
+        {
+          "word": "give",
+          "phonetic": "",
+          "meaning": "给;交给"
+        },
+        {
+          "word": "us",
+          "phonetic": "",
+          "meaning": "我们"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3b-2025-u5-textbook-a",
+          "title": "Unit 5 Animals · 课堂问候",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3b-2025-u5-textbook-b",
+          "title": "Unit 5 Animals · Lesson 2 · Let's talk / Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 Colours",
+      "theme": "",
+      "words": [
+        {
+          "word": "blue",
+          "phonetic": "",
+          "meaning": "蓝色的"
+        },
+        {
+          "word": "brown",
+          "phonetic": "",
+          "meaning": "棕色的;褐色的"
+        },
+        {
+          "word": "green",
+          "phonetic": "",
+          "meaning": "绿色的"
+        },
+        {
+          "word": "pink",
+          "phonetic": "",
+          "meaning": "粉色的"
+        },
+        {
+          "word": "red",
+          "phonetic": "",
+          "meaning": "红色的"
+        },
+        {
+          "word": "black",
+          "phonetic": "",
+          "meaning": "黑色的"
+        },
+        {
+          "word": "orange",
+          "phonetic": "",
+          "meaning": "橙色的"
+        },
+        {
+          "word": "white",
+          "phonetic": "",
+          "meaning": "白色的"
+        },
+        {
+          "word": "yellow",
+          "phonetic": "",
+          "meaning": "黄色的"
+        },
+        {
+          "word": "colour",
+          "phonetic": "",
+          "meaning": "颜色("
+        },
+        {
+          "word": "draw",
+          "phonetic": "",
+          "meaning": "画"
+        },
+        {
+          "word": "dream",
+          "phonetic": "",
+          "meaning": "梦想;理想"
+        },
+        {
+          "word": "garden",
+          "phonetic": "",
+          "meaning": "花园;果园;菜园"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3b-2025-u6-textbook-a",
+          "title": "Unit 6 Colours · Lesson 1 · 课堂问候",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3b-2025-u6-textbook-b",
+          "title": "Unit 6 Colours · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    }
+  ]
+}

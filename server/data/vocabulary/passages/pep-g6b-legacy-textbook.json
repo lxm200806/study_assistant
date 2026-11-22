@@ -1,0 +1,95 @@
+{
+  "bookCode": "pep-g6b-legacy",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "pep-g6b-legacy-u1-textbook-a",
+      "bookCode": "pep-g6b-legacy",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 How tall are you? · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g6b-legacy-u1-textbook-b",
+      "bookCode": "pep-g6b-legacy",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 How tall are you? · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g6b-legacy-u2-textbook-a",
+      "bookCode": "pep-g6b-legacy",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Last weekend · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g6b-legacy-u2-textbook-b",
+      "bookCode": "pep-g6b-legacy",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Last weekend · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g6b-legacy-u3-textbook-a",
+      "bookCode": "pep-g6b-legacy",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Where did you go? · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g6b-legacy-u3-textbook-b",
+      "bookCode": "pep-g6b-legacy",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Where did you go? · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g6b-legacy-u4-textbook-a",
+      "bookCode": "pep-g6b-legacy",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Then and now Recycle Mike's happy days · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g6b-legacy-u4-textbook-b",
+      "bookCode": "pep-g6b-legacy",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Then and now Recycle Mike's happy days · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

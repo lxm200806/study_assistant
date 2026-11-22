@@ -1,0 +1,977 @@
+{
+  "code": "jt-g5b",
+  "name": "人教精通 五下",
+  "level": "小学五下",
+  "shortLabel": "五下",
+  "year": 2013,
+  "series": "jt",
+  "seriesLabel": "人教精通",
+  "grade": "五年级",
+  "term": "下",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 Look! This is our library.",
+      "theme": "",
+      "words": [
+        {
+          "word": "library",
+          "phonetic": "",
+          "meaning": "图书馆"
+        },
+        {
+          "word": "borrow",
+          "phonetic": "",
+          "meaning": "借"
+        },
+        {
+          "word": "borrow books",
+          "phonetic": "",
+          "meaning": "借书"
+        },
+        {
+          "word": "meeting room",
+          "phonetic": "",
+          "meaning": "会议室"
+        },
+        {
+          "word": "have a meeting",
+          "phonetic": "",
+          "meaning": "开会"
+        },
+        {
+          "word": "welcome",
+          "phonetic": "",
+          "meaning": "欢迎"
+        },
+        {
+          "word": "meet",
+          "phonetic": "",
+          "meaning": "相遇;开会"
+        },
+        {
+          "word": "our",
+          "phonetic": "",
+          "meaning": "我们的"
+        },
+        {
+          "word": "English lesson",
+          "phonetic": "",
+          "meaning": "英语课"
+        },
+        {
+          "word": "language lab",
+          "phonetic": "",
+          "meaning": "语言实验室"
+        },
+        {
+          "word": "science lesson",
+          "phonetic": "",
+          "meaning": "科学课"
+        },
+        {
+          "word": "science lab",
+          "phonetic": "",
+          "meaning": "科学实验室"
+        },
+        {
+          "word": "we",
+          "phonetic": "",
+          "meaning": "我们"
+        },
+        {
+          "word": "have",
+          "phonetic": "",
+          "meaning": "有"
+        },
+        {
+          "word": "all",
+          "phonetic": "",
+          "meaning": "所有;全部"
+        },
+        {
+          "word": "like",
+          "phonetic": "",
+          "meaning": "喜欢"
+        },
+        {
+          "word": "very much",
+          "phonetic": "",
+          "meaning": "非常;很"
+        },
+        {
+          "word": "art club",
+          "phonetic": "",
+          "meaning": "美术(艺术)俱乐部"
+        },
+        {
+          "word": "paint a picture",
+          "phonetic": "",
+          "meaning": "绘画"
+        },
+        {
+          "word": "music club",
+          "phonetic": "",
+          "meaning": "音乐俱乐部"
+        },
+        {
+          "word": "play the piano",
+          "phonetic": "",
+          "meaning": "弹钢琴"
+        },
+        {
+          "word": "many",
+          "phonetic": "",
+          "meaning": "许多"
+        },
+        {
+          "word": "way",
+          "phonetic": "",
+          "meaning": "路;道路"
+        },
+        {
+          "word": "please",
+          "phonetic": "",
+          "meaning": "请"
+        },
+        {
+          "word": "also",
+          "phonetic": "",
+          "meaning": "也;同样"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g5b-u1-textbook-a",
+          "title": "Unit 1 Look! This is our library. · Lesson 1 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g5b-u1-textbook-b",
+          "title": "Unit 1 Look! This is our library. · Lesson 3 · Just talk / Lesson 4 · Let's talk / Lesson 5 · Just talk / Lesson 6 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 Library of Congress in Washington D.C.",
+      "theme": "",
+      "words": [
+        {
+          "word": "toy train",
+          "phonetic": "",
+          "meaning": "玩具火车"
+        },
+        {
+          "word": "toy plane",
+          "phonetic": "",
+          "meaning": "玩具飞机"
+        },
+        {
+          "word": "toy ship",
+          "phonetic": "",
+          "meaning": "玩具轮船"
+        },
+        {
+          "word": "toy boat",
+          "phonetic": "",
+          "meaning": "玩具小船"
+        },
+        {
+          "word": "can",
+          "phonetic": "",
+          "meaning": "能"
+        },
+        {
+          "word": "help",
+          "phonetic": "",
+          "meaning": "帮助"
+        },
+        {
+          "word": "want",
+          "phonetic": "",
+          "meaning": "想;想要"
+        },
+        {
+          "word": "toy",
+          "phonetic": "",
+          "meaning": "玩具"
+        },
+        {
+          "word": "train",
+          "phonetic": "",
+          "meaning": "火车"
+        },
+        {
+          "word": "plane",
+          "phonetic": "",
+          "meaning": "飞机"
+        },
+        {
+          "word": "ship",
+          "phonetic": "",
+          "meaning": "轮船"
+        },
+        {
+          "word": "boat",
+          "phonetic": "",
+          "meaning": "小船"
+        },
+        {
+          "word": "motorbike",
+          "phonetic": "",
+          "meaning": "摩托车"
+        },
+        {
+          "word": "jeep",
+          "phonetic": "",
+          "meaning": "吉普车"
+        },
+        {
+          "word": "coach",
+          "phonetic": "",
+          "meaning": "长途旅游车"
+        },
+        {
+          "word": "buy",
+          "phonetic": "",
+          "meaning": "买"
+        },
+        {
+          "word": "bike",
+          "phonetic": "",
+          "meaning": "自行车"
+        },
+        {
+          "word": "car",
+          "phonetic": "",
+          "meaning": "小汽车"
+        },
+        {
+          "word": "bus",
+          "phonetic": "",
+          "meaning": "公共汽车"
+        },
+        {
+          "word": "taxi",
+          "phonetic": "",
+          "meaning": "出租车"
+        },
+        {
+          "word": "trousers",
+          "phonetic": "",
+          "meaning": "裤子;长裤"
+        },
+        {
+          "word": "short pants",
+          "phonetic": "",
+          "meaning": "短裤"
+        },
+        {
+          "word": "try",
+          "phonetic": "",
+          "meaning": "试"
+        },
+        {
+          "word": "coat",
+          "phonetic": "",
+          "meaning": "大衣"
+        },
+        {
+          "word": "clothes",
+          "phonetic": "",
+          "meaning": "衣服"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g5b-u2-textbook-a",
+          "title": "Unit 2 Library of Congress in Washington D.C. · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g5b-u2-textbook-b",
+          "title": "Unit 2 Library of Congress in Washington D.C. · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 tea. She only likes Wulong tea. Wu Di wants to",
+      "theme": "",
+      "words": [
+        {
+          "word": "ask",
+          "phonetic": "",
+          "meaning": "问"
+        },
+        {
+          "word": "answer",
+          "phonetic": "",
+          "meaning": "回答"
+        },
+        {
+          "word": "eat",
+          "phonetic": "",
+          "meaning": "吃"
+        },
+        {
+          "word": "make",
+          "phonetic": "",
+          "meaning": "制造;做"
+        },
+        {
+          "word": "think",
+          "phonetic": "",
+          "meaning": "想"
+        },
+        {
+          "word": "late",
+          "phonetic": "",
+          "meaning": "晚;迟到"
+        },
+        {
+          "word": "class",
+          "phonetic": "",
+          "meaning": "班"
+        },
+        {
+          "word": "question",
+          "phonetic": "",
+          "meaning": "问题"
+        },
+        {
+          "word": "actively",
+          "phonetic": "",
+          "meaning": "积极地"
+        },
+        {
+          "word": "quiet",
+          "phonetic": "",
+          "meaning": "安静的"
+        },
+        {
+          "word": "make noise",
+          "phonetic": "",
+          "meaning": "喧闹;制造噪音"
+        },
+        {
+          "word": "keep your room clean",
+          "phonetic": "",
+          "meaning": "保持房间清洁"
+        },
+        {
+          "word": "do housework",
+          "phonetic": "",
+          "meaning": "做家务"
+        },
+        {
+          "word": "read in bed",
+          "phonetic": "",
+          "meaning": "在床上看书"
+        },
+        {
+          "word": "go home late",
+          "phonetic": "",
+          "meaning": "晚回家"
+        },
+        {
+          "word": "go home",
+          "phonetic": "",
+          "meaning": "回家"
+        },
+        {
+          "word": "get up",
+          "phonetic": "",
+          "meaning": "起床"
+        },
+        {
+          "word": "go to bed",
+          "phonetic": "",
+          "meaning": "去睡觉"
+        },
+        {
+          "word": "help old people",
+          "phonetic": "",
+          "meaning": "帮助老人"
+        },
+        {
+          "word": "keep off the grass",
+          "phonetic": "",
+          "meaning": "不要进入草地"
+        },
+        {
+          "word": "take good care of young children",
+          "phonetic": "",
+          "meaning": "照看好儿童"
+        },
+        {
+          "word": "play on the street",
+          "phonetic": "",
+          "meaning": "在街道上玩耍"
+        },
+        {
+          "word": "pick flowers",
+          "phonetic": "",
+          "meaning": "摘花"
+        },
+        {
+          "word": "litter",
+          "phonetic": "",
+          "meaning": "乱丢杂物"
+        },
+        {
+          "word": "wait",
+          "phonetic": "",
+          "meaning": "等待"
+        },
+        {
+          "word": "take",
+          "phonetic": "",
+          "meaning": "拿;乘坐"
+        },
+        {
+          "word": "young",
+          "phonetic": "",
+          "meaning": "年轻的"
+        },
+        {
+          "word": "child",
+          "phonetic": "",
+          "meaning": "孩子(复数)"
+        },
+        {
+          "word": "people",
+          "phonetic": "",
+          "meaning": "人;人们"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g5b-u3-textbook-a",
+          "title": "Unit 3 tea. She only likes Wulong tea. Wu Di wants to · Lesson 16 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g5b-u3-textbook-b",
+          "title": "Unit 3 tea. She only likes Wulong tea. Wu Di wants to · Lesson 18 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 Many People Worked On The Ships Some People Cleaned The Ship",
+      "theme": "",
+      "words": [
+        {
+          "word": "have a bad cold",
+          "phonetic": "",
+          "meaning": "重感冒"
+        },
+        {
+          "word": "have a fever",
+          "phonetic": "",
+          "meaning": "发烧"
+        },
+        {
+          "word": "have a headache",
+          "phonetic": "",
+          "meaning": "头痛"
+        },
+        {
+          "word": "have a cough",
+          "phonetic": "",
+          "meaning": "咳嗽"
+        },
+        {
+          "word": "dear",
+          "phonetic": "",
+          "meaning": "亲爱的"
+        },
+        {
+          "word": "ill",
+          "phonetic": "",
+          "meaning": "有病的"
+        },
+        {
+          "word": "bad",
+          "phonetic": "",
+          "meaning": "严重的;厉害的"
+        },
+        {
+          "word": "afraid",
+          "phonetic": "",
+          "meaning": "害怕"
+        },
+        {
+          "word": "worry",
+          "phonetic": "",
+          "meaning": "担心,着急"
+        },
+        {
+          "word": "have a toothache",
+          "phonetic": "",
+          "meaning": "牙痛"
+        },
+        {
+          "word": "have a stomachache",
+          "phonetic": "",
+          "meaning": "胃痛"
+        },
+        {
+          "word": "take some medicine",
+          "phonetic": "",
+          "meaning": "吃点儿药"
+        },
+        {
+          "word": "take a good rest",
+          "phonetic": "",
+          "meaning": "好好休息"
+        },
+        {
+          "word": "wrong",
+          "phonetic": "",
+          "meaning": "错的"
+        },
+        {
+          "word": "with",
+          "phonetic": "",
+          "meaning": "和......一起"
+        },
+        {
+          "word": "head",
+          "phonetic": "",
+          "meaning": "头"
+        },
+        {
+          "word": "face",
+          "phonetic": "",
+          "meaning": "脸"
+        },
+        {
+          "word": "ear",
+          "phonetic": "",
+          "meaning": "耳朵"
+        },
+        {
+          "word": "arm",
+          "phonetic": "",
+          "meaning": "胳膊"
+        },
+        {
+          "word": "chocolate",
+          "phonetic": "",
+          "meaning": "巧克力"
+        },
+        {
+          "word": "dragon fruit",
+          "phonetic": "",
+          "meaning": "火龙果"
+        },
+        {
+          "word": "bring",
+          "phonetic": "",
+          "meaning": "带来"
+        },
+        {
+          "word": "feel",
+          "phonetic": "",
+          "meaning": "感觉"
+        },
+        {
+          "word": "get-well card",
+          "phonetic": "",
+          "meaning": "康复卡"
+        },
+        {
+          "word": "here",
+          "phonetic": "",
+          "meaning": "这里;在这里"
+        },
+        {
+          "word": "for",
+          "phonetic": "",
+          "meaning": "为了......;给......"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g5b-u4-textbook-a",
+          "title": "Unit 4 Many People Worked On The Ships Some People Cleaned The Ship · Lesson 21 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g5b-u4-textbook-b",
+          "title": "Unit 4 Many People Worked On The Ships Some People Cleaned The Ship · Lesson 23 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 Elizabeth Blackwell Wang Li Is A Student She Wants To Be A",
+      "theme": "",
+      "words": [
+        {
+          "word": "make a call",
+          "phonetic": "",
+          "meaning": "打电话"
+        },
+        {
+          "word": "write an email",
+          "phonetic": "",
+          "meaning": "写电子邮件"
+        },
+        {
+          "word": "wash the clothes",
+          "phonetic": "",
+          "meaning": "洗衣服"
+        },
+        {
+          "word": "clean the room",
+          "phonetic": "",
+          "meaning": "打扫房间"
+        },
+        {
+          "word": "tell a story",
+          "phonetic": "",
+          "meaning": "讲故事"
+        },
+        {
+          "word": "sing a song",
+          "phonetic": "",
+          "meaning": "唱歌"
+        },
+        {
+          "word": "play the guitar",
+          "phonetic": "",
+          "meaning": "弹吉他"
+        },
+        {
+          "word": "play the violin",
+          "phonetic": "",
+          "meaning": "拉小提琴"
+        },
+        {
+          "word": "look at the picture",
+          "phonetic": "",
+          "meaning": "看图片"
+        },
+        {
+          "word": "talk about",
+          "phonetic": "",
+          "meaning": "谈论......"
+        },
+        {
+          "word": "stand",
+          "phonetic": "",
+          "meaning": "站立"
+        },
+        {
+          "word": "sit",
+          "phonetic": "",
+          "meaning": "坐;坐下"
+        },
+        {
+          "word": "cousin",
+          "phonetic": "",
+          "meaning": "表(堂)兄弟;表(堂)姐妹"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g5b-u5-textbook-a",
+          "title": "Unit 5 Elizabeth Blackwell Wang Li Is A Student She Wants To Be A · Lesson 26 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g5b-u5-textbook-b",
+          "title": "Unit 5 Elizabeth Blackwell Wang Li Is A Student She Wants To Be A · Lesson 27 · Just talk / Lesson 29 · Just talk / Lesson 30 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 The bear walks on a stick.",
+      "theme": "",
+      "words": [
+        {
+          "word": "play football",
+          "phonetic": "",
+          "meaning": "踢足球"
+        },
+        {
+          "word": "play volleyball",
+          "phonetic": "",
+          "meaning": "打排球"
+        },
+        {
+          "word": "play basketball",
+          "phonetic": "",
+          "meaning": "打篮球"
+        },
+        {
+          "word": "watch the games",
+          "phonetic": "",
+          "meaning": "观看比赛"
+        },
+        {
+          "word": "game",
+          "phonetic": "",
+          "meaning": "比赛;游戏"
+        },
+        {
+          "word": "foot",
+          "phonetic": "",
+          "meaning": "脚(复数)"
+        },
+        {
+          "word": "football",
+          "phonetic": "",
+          "meaning": "足球"
+        },
+        {
+          "word": "basketball",
+          "phonetic": "",
+          "meaning": "篮球"
+        },
+        {
+          "word": "playground",
+          "phonetic": "",
+          "meaning": "操场"
+        },
+        {
+          "word": "play badminton",
+          "phonetic": "",
+          "meaning": "打羽毛球"
+        },
+        {
+          "word": "play tennis",
+          "phonetic": "",
+          "meaning": "打网球"
+        },
+        {
+          "word": "play ping-pong",
+          "phonetic": "",
+          "meaning": "打乒乓球"
+        },
+        {
+          "word": "play baseball",
+          "phonetic": "",
+          "meaning": "打棒球"
+        },
+        {
+          "word": "Miss",
+          "phonetic": "",
+          "meaning": "小姐"
+        },
+        {
+          "word": "Ms",
+          "phonetic": "",
+          "meaning": "女士"
+        },
+        {
+          "word": "Mr",
+          "phonetic": "",
+          "meaning": "先生"
+        },
+        {
+          "word": "Mrs",
+          "phonetic": "",
+          "meaning": "太太"
+        },
+        {
+          "word": "favourite",
+          "phonetic": "",
+          "meaning": "最喜欢的"
+        },
+        {
+          "word": "sport",
+          "phonetic": "",
+          "meaning": "运动"
+        },
+        {
+          "word": "do the high jump",
+          "phonetic": "",
+          "meaning": "跳高"
+        },
+        {
+          "word": "do the long jump",
+          "phonetic": "",
+          "meaning": "跳远"
+        },
+        {
+          "word": "run fast",
+          "phonetic": "",
+          "meaning": "跑得快"
+        },
+        {
+          "word": "run",
+          "phonetic": "",
+          "meaning": "跑;跑步"
+        },
+        {
+          "word": "high jump",
+          "phonetic": "",
+          "meaning": "跳高"
+        },
+        {
+          "word": "long jump",
+          "phonetic": "",
+          "meaning": "跳远"
+        },
+        {
+          "word": "A actively",
+          "phonetic": "",
+          "meaning": "积极地"
+        },
+        {
+          "word": "afraid",
+          "phonetic": "",
+          "meaning": "害怕"
+        },
+        {
+          "word": "all",
+          "phonetic": "",
+          "meaning": "所有;全部"
+        },
+        {
+          "word": "also",
+          "phonetic": "",
+          "meaning": "也;同样"
+        },
+        {
+          "word": "answer",
+          "phonetic": "",
+          "meaning": "回答"
+        },
+        {
+          "word": "arm",
+          "phonetic": "",
+          "meaning": "胳膊"
+        },
+        {
+          "word": "art club",
+          "phonetic": "",
+          "meaning": "美术(艺术)俱乐部"
+        },
+        {
+          "word": "ask",
+          "phonetic": "",
+          "meaning": "问"
+        },
+        {
+          "word": "B bad",
+          "phonetic": "",
+          "meaning": "严重的;厉害的"
+        },
+        {
+          "word": "bike",
+          "phonetic": "",
+          "meaning": "自行车"
+        },
+        {
+          "word": "boat",
+          "phonetic": "",
+          "meaning": "小船"
+        },
+        {
+          "word": "borrow",
+          "phonetic": "",
+          "meaning": "借"
+        },
+        {
+          "word": "borrow books",
+          "phonetic": "",
+          "meaning": "借书"
+        },
+        {
+          "word": "bring",
+          "phonetic": "",
+          "meaning": "带来"
+        },
+        {
+          "word": "bus",
+          "phonetic": "",
+          "meaning": "公共汽车"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g5b-u6-textbook-a",
+          "title": "Unit 6 The bear walks on a stick. · Lesson 31 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g5b-u6-textbook-b",
+          "title": "Unit 6 The bear walks on a stick. · Lesson 33 · Just talk / Lesson 35 · Just talk / Lesson 36 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    }
+  ]
+}

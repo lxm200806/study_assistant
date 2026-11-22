@@ -4921,6 +4921,21 @@
     "contentType": "non-fiction",
     "origin": "word-atlas"
   },
+  "pe": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "体育（课）"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ˌpiː ˈiː/"
+    },
+    "origin": "seed:pep-g4a-2025"
+  },
   "pea": {
     "meanings": [
       {
@@ -10709,6 +10724,21 @@
     "level": "A2",
     "contentType": "non-fiction",
     "origin": "word-atlas"
+  },
+  "piggy bank": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "猪形储钱罐"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ˈpɪɡi bæŋk/"
+    },
+    "origin": "seed:pep-g3b-2025"
   },
   "piggyback": {
     "meanings": [

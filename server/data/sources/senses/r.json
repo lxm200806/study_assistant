@@ -5804,6 +5804,21 @@
     "contentType": "non-fiction",
     "origin": "word-atlas"
   },
+  "red panda": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小熊猫"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/red ˈpændə/"
+    },
+    "origin": "seed:pep-g3a-2024"
+  },
   "redeem": {
     "meanings": [
       {

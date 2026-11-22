@@ -1,0 +1,139 @@
+{
+  "bookCode": "jt-g4b",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "jt-g4b-u1-textbook-a",
+      "bookCode": "jt-g4b",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Look at my bedroom. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u1-textbook-b",
+      "bookCode": "jt-g4b",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Look at my bedroom. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u2-textbook-a",
+      "bookCode": "jt-g4b",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Listen and number. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u2-textbook-b",
+      "bookCode": "jt-g4b",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Listen and number. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u3-textbook-a",
+      "bookCode": "jt-g4b",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Listen and number. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u3-textbook-b",
+      "bookCode": "jt-g4b",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Listen and number. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u4-textbook-a",
+      "bookCode": "jt-g4b",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 courtyard house Homes around China cave home · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u4-textbook-b",
+      "bookCode": "jt-g4b",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 courtyard house Homes around China cave home · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u5-textbook-a",
+      "bookCode": "jt-g4b",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Listen and number. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u5-textbook-b",
+      "bookCode": "jt-g4b",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Listen and number. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u6-textbook-a",
+      "bookCode": "jt-g4b",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Listen and number. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g4b-u6-textbook-b",
+      "bookCode": "jt-g4b",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Listen and number. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

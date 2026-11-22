@@ -1,0 +1,787 @@
+{
+  "code": "jt-g3a-2024",
+  "name": "人教精通 三上（2024）",
+  "level": "小学三上",
+  "shortLabel": "三上",
+  "year": 2024,
+  "series": "jt",
+  "seriesLabel": "人教精通",
+  "grade": "三年级",
+  "term": "上",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 Greetings",
+      "theme": "",
+      "words": [
+        {
+          "word": "hello",
+          "phonetic": "",
+          "meaning": "喂;你好"
+        },
+        {
+          "word": "I",
+          "phonetic": "",
+          "meaning": "我"
+        },
+        {
+          "word": "am",
+          "phonetic": "",
+          "meaning": "是"
+        },
+        {
+          "word": "Miss",
+          "phonetic": "",
+          "meaning": "小姐,女士"
+        },
+        {
+          "word": "what",
+          "phonetic": "",
+          "meaning": "什么"
+        },
+        {
+          "word": "is",
+          "phonetic": "",
+          "meaning": "是"
+        },
+        {
+          "word": "your",
+          "phonetic": "",
+          "meaning": "你的;你们的"
+        },
+        {
+          "word": "name",
+          "phonetic": "",
+          "meaning": "名字"
+        },
+        {
+          "word": "stand up",
+          "phonetic": "",
+          "meaning": "起立;站起来"
+        },
+        {
+          "word": "boy",
+          "phonetic": "",
+          "meaning": "男孩"
+        },
+        {
+          "word": "and",
+          "phonetic": "",
+          "meaning": "和"
+        },
+        {
+          "word": "girl",
+          "phonetic": "",
+          "meaning": "女孩"
+        },
+        {
+          "word": "sit down",
+          "phonetic": "",
+          "meaning": "坐下"
+        },
+        {
+          "word": "Mr",
+          "phonetic": "",
+          "meaning": "先生"
+        },
+        {
+          "word": "dad",
+          "phonetic": "",
+          "meaning": "爸爸"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3a-2024-u1-textbook-a",
+          "title": "Unit 1 Greetings · Lesson 1 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3a-2024-u1-textbook-b",
+          "title": "Unit 1 Greetings · Lesson 1 · 课堂问候 / Lesson 3 · Let's read / Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 School things",
+      "theme": "",
+      "words": [
+        {
+          "word": "pencil",
+          "phonetic": "",
+          "meaning": "铅笔"
+        },
+        {
+          "word": "sharpener",
+          "phonetic": "",
+          "meaning": "卷笔刀"
+        },
+        {
+          "word": "pencil box",
+          "phonetic": "",
+          "meaning": "文具盒"
+        },
+        {
+          "word": "schoolbag",
+          "phonetic": "",
+          "meaning": "书包"
+        },
+        {
+          "word": "eraser",
+          "phonetic": "",
+          "meaning": "橡皮;黑板擦"
+        },
+        {
+          "word": "crayon",
+          "phonetic": "",
+          "meaning": "蜡笔"
+        },
+        {
+          "word": "pen",
+          "phonetic": "",
+          "meaning": "钢笔"
+        },
+        {
+          "word": "ruler",
+          "phonetic": "",
+          "meaning": "直尺"
+        },
+        {
+          "word": "look",
+          "phonetic": "",
+          "meaning": "看"
+        },
+        {
+          "word": "have",
+          "phonetic": "",
+          "meaning": "有"
+        },
+        {
+          "word": "new",
+          "phonetic": "",
+          "meaning": "新的;新来的;新买的"
+        },
+        {
+          "word": "it",
+          "phonetic": "",
+          "meaning": "它"
+        },
+        {
+          "word": "nice",
+          "phonetic": "",
+          "meaning": "好看的;令人愉悦的"
+        },
+        {
+          "word": "can",
+          "phonetic": "",
+          "meaning": "能;会"
+        },
+        {
+          "word": "use",
+          "phonetic": "",
+          "meaning": "用;使用"
+        },
+        {
+          "word": "find",
+          "phonetic": "",
+          "meaning": "发现;找到"
+        },
+        {
+          "word": "my",
+          "phonetic": "",
+          "meaning": "我的"
+        },
+        {
+          "word": "sure",
+          "phonetic": "",
+          "meaning": "当然"
+        },
+        {
+          "word": "you",
+          "phonetic": "",
+          "meaning": "你;你们"
+        },
+        {
+          "word": "sorry",
+          "phonetic": "",
+          "meaning": "抱歉"
+        },
+        {
+          "word": "don",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3a-2024-u2-textbook-a",
+          "title": "Unit 2 School things · 课堂问候",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3a-2024-u2-textbook-b",
+          "title": "Unit 2 School things · Lesson 1 · 课堂问候 / Lesson 3 · Let's read / Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 Toys",
+      "theme": "",
+      "words": [
+        {
+          "word": "ball",
+          "phonetic": "",
+          "meaning": "球"
+        },
+        {
+          "word": "doll",
+          "phonetic": "",
+          "meaning": "玩偶;玩具娃娃"
+        },
+        {
+          "word": "kite",
+          "phonetic": "",
+          "meaning": "风筝"
+        },
+        {
+          "word": "jigsaw",
+          "phonetic": "",
+          "meaning": "拼图;拼板玩具"
+        },
+        {
+          "word": "toy",
+          "phonetic": "",
+          "meaning": "玩具"
+        },
+        {
+          "word": "cat",
+          "phonetic": "",
+          "meaning": "猫"
+        },
+        {
+          "word": "dog",
+          "phonetic": "",
+          "meaning": "狗"
+        },
+        {
+          "word": "bike",
+          "phonetic": "",
+          "meaning": "自行车"
+        },
+        {
+          "word": "bus",
+          "phonetic": "",
+          "meaning": "公共汽车"
+        },
+        {
+          "word": "this",
+          "phonetic": "",
+          "meaning": "这,这个"
+        },
+        {
+          "word": "mum",
+          "phonetic": "",
+          "meaning": "妈妈"
+        },
+        {
+          "word": "gift",
+          "phonetic": "",
+          "meaning": "礼物"
+        },
+        {
+          "word": "for",
+          "phonetic": "",
+          "meaning": "对,给"
+        },
+        {
+          "word": "so",
+          "phonetic": "",
+          "meaning": "很;极"
+        },
+        {
+          "word": "cute",
+          "phonetic": "",
+          "meaning": "可爱的"
+        },
+        {
+          "word": "play with",
+          "phonetic": "",
+          "meaning": "玩......;和......一起玩"
+        },
+        {
+          "word": "good",
+          "phonetic": "",
+          "meaning": "好的;亲密的"
+        },
+        {
+          "word": "friend",
+          "phonetic": "",
+          "meaning": "朋友"
+        },
+        {
+          "word": "she",
+          "phonetic": "",
+          "meaning": "她"
+        },
+        {
+          "word": "has",
+          "phonetic": "",
+          "meaning": "有"
+        },
+        {
+          "word": "often",
+          "phonetic": "",
+          "meaning": "经常"
+        },
+        {
+          "word": "share",
+          "phonetic": "",
+          "meaning": "分享"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3a-2024-u3-textbook-a",
+          "title": "Unit 3 Toys · 课堂问候",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3a-2024-u3-textbook-b",
+          "title": "Unit 3 Toys · Lesson 1 · 课堂问候 / Lesson 3 · Let's read / Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 Friends",
+      "theme": "",
+      "words": [
+        {
+          "word": "face",
+          "phonetic": "",
+          "meaning": "脸;面孔"
+        },
+        {
+          "word": "hair",
+          "phonetic": "",
+          "meaning": "头发"
+        },
+        {
+          "word": "eye",
+          "phonetic": "",
+          "meaning": "眼睛"
+        },
+        {
+          "word": "ear",
+          "phonetic": "",
+          "meaning": "耳朵"
+        },
+        {
+          "word": "nose",
+          "phonetic": "",
+          "meaning": "鼻子"
+        },
+        {
+          "word": "mouth",
+          "phonetic": "",
+          "meaning": "嘴"
+        },
+        {
+          "word": "long",
+          "phonetic": "",
+          "meaning": "长的"
+        },
+        {
+          "word": "short",
+          "phonetic": "",
+          "meaning": "短的;矮的"
+        },
+        {
+          "word": "big",
+          "phonetic": "",
+          "meaning": "大的"
+        },
+        {
+          "word": "small",
+          "phonetic": "",
+          "meaning": "小的"
+        },
+        {
+          "word": "tall",
+          "phonetic": "",
+          "meaning": "高的"
+        },
+        {
+          "word": "let",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "OK",
+          "phonetic": "",
+          "meaning": "对;好;行"
+        },
+        {
+          "word": "his",
+          "phonetic": "",
+          "meaning": "他的"
+        },
+        {
+          "word": "he",
+          "phonetic": "",
+          "meaning": "他"
+        },
+        {
+          "word": "or",
+          "phonetic": "",
+          "meaning": "或者,还是"
+        },
+        {
+          "word": "her",
+          "phonetic": "",
+          "meaning": "她的"
+        },
+        {
+          "word": "are",
+          "phonetic": "",
+          "meaning": "是"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3a-2024-u4-textbook-a",
+          "title": "Unit 4 Friends · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3a-2024-u4-textbook-b",
+          "title": "Unit 4 Friends · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 Drinks and fruits",
+      "theme": "",
+      "words": [
+        {
+          "word": "milk",
+          "phonetic": "",
+          "meaning": "奶"
+        },
+        {
+          "word": "water",
+          "phonetic": "",
+          "meaning": "水"
+        },
+        {
+          "word": "tea",
+          "phonetic": "",
+          "meaning": "茶;茶叶"
+        },
+        {
+          "word": "juice",
+          "phonetic": "",
+          "meaning": "果汁"
+        },
+        {
+          "word": "cola",
+          "phonetic": "",
+          "meaning": "可乐"
+        },
+        {
+          "word": "apple",
+          "phonetic": "",
+          "meaning": "苹果"
+        },
+        {
+          "word": "banana",
+          "phonetic": "",
+          "meaning": "香蕉"
+        },
+        {
+          "word": "orange",
+          "phonetic": "",
+          "meaning": "橙子"
+        },
+        {
+          "word": "grape",
+          "phonetic": "",
+          "meaning": "葡萄"
+        },
+        {
+          "word": "lemon",
+          "phonetic": "",
+          "meaning": "柠檬"
+        },
+        {
+          "word": "drink",
+          "phonetic": "",
+          "meaning": "饮料"
+        },
+        {
+          "word": "fruit",
+          "phonetic": "",
+          "meaning": "水果"
+        },
+        {
+          "word": "buy",
+          "phonetic": "",
+          "meaning": "买"
+        },
+        {
+          "word": "some",
+          "phonetic": "",
+          "meaning": "一些"
+        },
+        {
+          "word": "too",
+          "phonetic": "",
+          "meaning": "也;还"
+        },
+        {
+          "word": "tomorrow",
+          "phonetic": "",
+          "meaning": "明天"
+        },
+        {
+          "word": "like",
+          "phonetic": "",
+          "meaning": "喜欢"
+        },
+        {
+          "word": "yes",
+          "phonetic": "",
+          "meaning": "是;对;好的"
+        },
+        {
+          "word": "no",
+          "phonetic": "",
+          "meaning": "不;不是;没有"
+        },
+        {
+          "word": "want",
+          "phonetic": "",
+          "meaning": "要;想要"
+        },
+        {
+          "word": "make",
+          "phonetic": "",
+          "meaning": "做;制作"
+        },
+        {
+          "word": "say",
+          "phonetic": "",
+          "meaning": "说"
+        },
+        {
+          "word": "ice cream",
+          "phonetic": "",
+          "meaning": "冰激凌"
+        },
+        {
+          "word": "candy",
+          "phonetic": "",
+          "meaning": "糖果"
+        },
+        {
+          "word": "they",
+          "phonetic": "",
+          "meaning": "他们;她们;它们"
+        },
+        {
+          "word": "bad",
+          "phonetic": "",
+          "meaning": "不好的;有害的"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3a-2024-u5-textbook-a",
+          "title": "Unit 5 Drinks and fruits · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3a-2024-u5-textbook-b",
+          "title": "Unit 5 Drinks and fruits · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 Food",
+      "theme": "",
+      "words": [
+        {
+          "word": "cake",
+          "phonetic": "",
+          "meaning": "蛋糕"
+        },
+        {
+          "word": "bread",
+          "phonetic": "",
+          "meaning": "面包"
+        },
+        {
+          "word": "rice",
+          "phonetic": "",
+          "meaning": "大米;米饭"
+        },
+        {
+          "word": "noodle",
+          "phonetic": "",
+          "meaning": "面条"
+        },
+        {
+          "word": "soup",
+          "phonetic": "",
+          "meaning": "汤;羹"
+        },
+        {
+          "word": "egg",
+          "phonetic": "",
+          "meaning": "蛋;鸡蛋"
+        },
+        {
+          "word": "chicken",
+          "phonetic": "",
+          "meaning": "鸡肉"
+        },
+        {
+          "word": "fish",
+          "phonetic": "",
+          "meaning": "鱼肉"
+        },
+        {
+          "word": "tomato",
+          "phonetic": "",
+          "meaning": "番茄;西红柿"
+        },
+        {
+          "word": "potato",
+          "phonetic": "",
+          "meaning": "马铃薯;土豆"
+        },
+        {
+          "word": "food",
+          "phonetic": "",
+          "meaning": "食物"
+        },
+        {
+          "word": "have",
+          "phonetic": "",
+          "meaning": "有"
+        },
+        {
+          "word": "but",
+          "phonetic": "",
+          "meaning": "然而;但是"
+        },
+        {
+          "word": "hungry",
+          "phonetic": "",
+          "meaning": "饥饿的"
+        },
+        {
+          "word": "dinner",
+          "phonetic": "",
+          "meaning": "主餐,正餐"
+        },
+        {
+          "word": "need",
+          "phonetic": "",
+          "meaning": "需要"
+        },
+        {
+          "word": "vegetable",
+          "phonetic": "",
+          "meaning": "蔬菜"
+        },
+        {
+          "word": "tomatoes with eggs",
+          "phonetic": "",
+          "meaning": "西红柿炒鸡蛋"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g3a-2024-u6-textbook-a",
+          "title": "Unit 6 Food · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g3a-2024-u6-textbook-b",
+          "title": "Unit 6 Food · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    }
+  ]
+}

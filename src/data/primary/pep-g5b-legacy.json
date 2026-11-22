@@ -1,0 +1,1002 @@
+{
+  "code": "pep-g5b-legacy",
+  "name": "人教 PEP 五下（旧版）",
+  "level": "小学五下",
+  "shortLabel": "五下·旧",
+  "year": 2013,
+  "series": "pep",
+  "seriesLabel": "人教 PEP",
+  "grade": "五年级",
+  "term": "下",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 My day",
+      "theme": "",
+      "words": [
+        {
+          "word": "eat breakfast",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "have",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "class",
+          "phonetic": "",
+          "meaning": "上"
+        },
+        {
+          "word": "play sports",
+          "phonetic": "",
+          "meaning": "进行体育运动"
+        },
+        {
+          "word": "exercise",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "do morning exercises",
+          "phonetic": "",
+          "meaning": "做早操"
+        },
+        {
+          "word": "eat dinner",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "clean my room",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "go for a walk",
+          "phonetic": "",
+          "meaning": "散步"
+        },
+        {
+          "word": "go shopping",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "take",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "dancing",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "take a dancing class",
+          "phonetic": "",
+          "meaning": "上舞蹈课"
+        },
+        {
+          "word": "when",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "after",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "start",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "usually",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Spain",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "late",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "why",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "shop",
+          "phonetic": "",
+          "meaning": "去买东西;购物"
+        },
+        {
+          "word": "work",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "last",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sound",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "also",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "busy",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "need",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "play",
+          "phonetic": "",
+          "meaning": "的"
+        },
+        {
+          "word": "letter",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "live",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "island",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "always",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "cave",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "go swimming",
+          "phonetic": "",
+          "meaning": "去游泳"
+        },
+        {
+          "word": "win",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g5b-legacy-u1-textbook-a",
+          "title": "Unit 1 My day · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5b-legacy-u1-textbook-b",
+          "title": "Unit 1 My day · Let's talk / Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 My favourite season",
+      "theme": "",
+      "words": [
+        {
+          "word": "spring",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "summer",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "autumn",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "winter",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "season",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "picnic",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "go on a picnic",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pick",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pick apples",
+          "phonetic": "",
+          "meaning": "摘苹果"
+        },
+        {
+          "word": "snowman",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "make a snowman",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "go swimming",
+          "phonetic": "",
+          "meaning": "去游泳"
+        },
+        {
+          "word": "which",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "best",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "snow",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "good job",
+          "phonetic": "",
+          "meaning": "做得好"
+        },
+        {
+          "word": "because",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "vacation",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "all",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pink",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "lovely",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "leaf",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "leaves",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fall",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "paint",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g5b-legacy-u2-textbook-a",
+          "title": "Unit 2 My favourite season · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5b-legacy-u2-textbook-b",
+          "title": "Unit 2 My favourite season · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 My school calendar Recycle",
+      "theme": "",
+      "words": [
+        {
+          "word": "January",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "February",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "March",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "April",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "May",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "June",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "July",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "August",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "September",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "October",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "November",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "December",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "few",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "a few",
+          "phonetic": "",
+          "meaning": "一些"
+        },
+        {
+          "word": "thing",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "meet",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sports meet",
+          "phonetic": "",
+          "meaning": "运动会"
+        },
+        {
+          "word": "trip",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "year",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "plant",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "contest",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "labour",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Labour Day",
+          "phonetic": "",
+          "meaning": "劳动节"
+        },
+        {
+          "word": "the Great Wall",
+          "phonetic": "",
+          "meaning": "长城"
+        },
+        {
+          "word": "national",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "National Day",
+          "phonetic": "",
+          "meaning": "国庆日"
+        },
+        {
+          "word": "American",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Thanksgiving",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Christmas",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "game",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "riddle",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "act",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "act out",
+          "phonetic": "",
+          "meaning": "把......表演出来"
+        },
+        {
+          "word": "RSVP",
+          "phonetic": "",
+          "meaning": "请赐复"
+        },
+        {
+          "word": "by",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g5b-legacy-u3-textbook-a",
+          "title": "Unit 3 My school calendar Recycle · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5b-legacy-u3-textbook-b",
+          "title": "Unit 3 My school calendar Recycle · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 When is the art show?",
+      "theme": "",
+      "words": [
+        {
+          "word": "first",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "second",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "third",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fourth",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fifth",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "twelfth",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "twentieth",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "twenty-first",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "twenty-third",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "thirtieth",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "other",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "special",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "show",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "festival",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "kitten",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "diary",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "still",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "noise",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fur",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "open",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "walk",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g5b-legacy-u4-textbook-a",
+          "title": "Unit 4 When is the art show? · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5b-legacy-u4-textbook-b",
+          "title": "Unit 4 When is the art show? · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 Whose dog is it?",
+      "theme": "",
+      "words": [
+        {
+          "word": "mine",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "yours",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "his",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hers",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "theirs",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "ours",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "climbing",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "climb",
+          "phonetic": "",
+          "meaning": "的"
+        },
+        {
+          "word": "ing",
+          "phonetic": "",
+          "meaning": "形式)(正在)攀登;攀爬"
+        },
+        {
+          "word": "eating",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "eat",
+          "phonetic": "",
+          "meaning": "的"
+        },
+        {
+          "word": "playing",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "play",
+          "phonetic": "",
+          "meaning": "的"
+        },
+        {
+          "word": "jumping",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "jump",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "drinking",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "drink",
+          "phonetic": "",
+          "meaning": "的"
+        },
+        {
+          "word": "sleeping",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sleep",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "each",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "each other",
+          "phonetic": "",
+          "meaning": "相互"
+        },
+        {
+          "word": "excited",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g5b-legacy-u5-textbook-a",
+          "title": "Unit 5 Whose dog is it? · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5b-legacy-u5-textbook-b",
+          "title": "Unit 5 Whose dog is it? · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 Work quietly!",
+      "theme": "",
+      "words": [
+        {
+          "word": "doing morning exercises",
+          "phonetic": "",
+          "meaning": "做早操"
+        },
+        {
+          "word": "having",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "class",
+          "phonetic": "",
+          "meaning": "上"
+        },
+        {
+          "word": "eating lunch",
+          "phonetic": "",
+          "meaning": "吃午饭"
+        },
+        {
+          "word": "reading a book",
+          "phonetic": "",
+          "meaning": "看书"
+        },
+        {
+          "word": "listening to music",
+          "phonetic": "",
+          "meaning": "听音乐"
+        },
+        {
+          "word": "keep",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "keep to the right",
+          "phonetic": "",
+          "meaning": "靠右"
+        },
+        {
+          "word": "keep your desk clean",
+          "phonetic": "",
+          "meaning": "保持你的课桌干净"
+        },
+        {
+          "word": "talk quietly",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "turn",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "take turns",
+          "phonetic": "",
+          "meaning": "按顺序来"
+        },
+        {
+          "word": "bamboo",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "its",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "show",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "anything",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "else",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "els",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "say",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "have a look",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sushi",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "teach",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sure",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Canadian",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Spanish",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g5b-legacy-u6-textbook-a",
+          "title": "Unit 6 Work quietly! · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5b-legacy-u6-textbook-b",
+          "title": "Unit 6 Work quietly! · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    }
+  ]
+}

@@ -1,11 +1,13 @@
 import { ref } from 'vue'
 import type { Vocabulary } from '@/types'
+import type { SessionMode, SessionUnitMeta } from '@/types/map'
 import { useVocabularyStore } from '@/stores/vocabulary'
 
 export function useTrainingFlow(trainingType: 'listening' | 'speaking' | 'reading' | 'writing') {
   const vocabStore = useVocabularyStore()
   const allSessionWords = ref<Vocabulary[]>([])
   const newlyCovered = ref(0)
+  const unitMeta = ref<SessionUnitMeta | null>(null)
 
   const trackWords = (wordList: Vocabulary[]) => {
     for (const word of wordList) {
@@ -18,10 +20,25 @@ export function useTrainingFlow(trainingType: 'listening' | 'speaking' | 'readin
   const resetFlow = () => {
     allSessionWords.value = []
     newlyCovered.value = 0
+    unitMeta.value = null
   }
 
-  const loadGroup = async (count: number) => {
-    await vocabStore.loadSessionVocabulary(count, trainingType)
+  const loadGroup = async (
+    count: number,
+    opts?: { mode?: SessionMode; unit?: string; excludeSeen?: boolean }
+  ) => {
+    const excludeIds =
+      opts?.excludeSeen === false
+        ? undefined
+        : opts?.mode === 'unit' || opts?.unit
+          ? allSessionWords.value.map(w => w.id)
+          : undefined
+    await vocabStore.loadSessionVocabulary(count, trainingType, undefined, {
+      mode: opts?.mode,
+      unit: opts?.unit,
+      excludeIds
+    })
+    unitMeta.value = vocabStore.lastSessionUnit
     trackWords(vocabStore.vocabularyList)
     return vocabStore.vocabularyList
   }
@@ -35,6 +52,7 @@ export function useTrainingFlow(trainingType: 'listening' | 'speaking' | 'readin
   return {
     allSessionWords,
     newlyCovered,
+    unitMeta,
     resetFlow,
     loadGroup,
     finishSession

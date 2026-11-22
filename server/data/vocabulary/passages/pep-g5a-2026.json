@@ -1,0 +1,66 @@
+{
+  "bookCode": "pep-g5a-2026",
+  "kind": "authored",
+  "passages": [
+    {
+      "key": "pep-g5a-2026-u1",
+      "title": "Unit 1 Different friends · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like team.\nThis is my player.\nI can see him.\nWe need lovely.\nClever is nice.",
+      "translation": "你好，我喜欢队。\n这是我的运动员。\n我能看见他（宾格）。\n我们需要可爱的。\n聪明的很好。",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u1",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g5a-2026-u2",
+      "title": "Unit 2 My feelings · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like sad.\nThis is my matter.\nI can see project.\nWe need centre.\nAgree is nice.",
+      "translation": "你好，我喜欢伤心的。\n这是我的事情。\n我能看见项目。\n我们需要中心。\n同意很好。",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u2",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g5a-2026-u3",
+      "title": "Unit 3 Work and play · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like wednesday.\nThis is my subject.\nI can see monday.\nWe need tuesday.\nFriday is nice.",
+      "translation": "你好，我喜欢星期三。\n这是我的学科。\n我能看见星期一。\n我们需要星期二。\n星期五很好。",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u3",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g5a-2026-u4",
+      "title": "Unit 4 Healthy habits · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like stay.\nThis is my should.\nI can see flu.\nWe need else.\nExercise is nice.",
+      "translation": "你好，我喜欢保持。\n这是我的应该。\n我能看见流感。\n我们需要其他。\n运动很好。",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u4",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g5a-2026-u5",
+      "title": "Unit 5 Food we eat · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like hungry.\nThis is my beef.\nI can see ice cream.\nWe need little.\nDumpling is nice.",
+      "translation": "你好，我喜欢饥饿的。\n这是我的牛肉。\n我能看见冰激凌。\n我们需要小的。\n饺子很好。",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u5",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g5a-2026-u6",
+      "title": "Unit 6 Nature and us · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like river.\nThis is my nature.\nI can see waterfall.\nWe need forest.\nFamous is nice.",
+      "translation": "你好，我喜欢河。\n这是我的自然。\n我能看见瀑布。\n我们需要森林。\n著名的很好。",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u6",
+      "kind": "authored"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review'
+export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review' | 'unit'
 
 export type MasteryStatus = 'mastered' | 'learning' | 'unfamiliar' | 'unpracticed'
 export type WeakReason = 'overdue' | 'low_retention' | 'recent_lapse'
@@ -12,10 +12,19 @@ export interface BookProgress {
   cyclePracticedCount: number
 }
 
+export interface SessionUnitMeta {
+  id: string
+  total: number
+  remainingAfter: number
+  complete: boolean
+  nextUnitId: string | null
+}
+
 export interface SessionResponse {
   words: import('@/types').Vocabulary[]
   progress: BookProgress
   mode: SessionMode
+  unit?: SessionUnitMeta
 }
 
 export interface CategoryStats {
@@ -93,7 +102,8 @@ export const SESSION_MODE_LABELS: Record<SessionMode, string> = {
   coverage: '全书覆盖',
   smart: '智能推荐',
   weak: '薄弱强化',
-  review: '到期复习'
+  review: '到期复习',
+  unit: '单元顺序'
 }
 
 export const STATUS_LABELS: Record<MasteryStatus, string> = {

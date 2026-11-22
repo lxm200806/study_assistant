@@ -1,0 +1,1026 @@
+{
+  "code": "jt-g5b",
+  "name": "人教精通 五下",
+  "description": "人教精通 五下。词表/课文整理自个人课本 Markdown（kb/md）。",
+  "level": "小学五下",
+  "targetWordCount": 158,
+  "wordCount": 145,
+  "source": "jt-g5b-kb-md",
+  "words": [
+    {
+      "word": "library",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "borrow",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "borrow books",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "meeting room",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have a meeting",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "welcome",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "meet",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "our",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "english lesson",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "language lab",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "science lesson",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "science lab",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "we",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "all",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "like",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "very much",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "art club",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "paint a picture",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "music club",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play the piano",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "many",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "way",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "please",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "also",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "toy train",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "toy plane",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "toy ship",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "toy boat",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "can",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "help",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "want",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "toy",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "train",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "plane",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ship",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "boat",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "motorbike",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "jeep",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "coach",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "buy",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "bike",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "car",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "bus",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "taxi",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "trousers",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "short pants",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "try",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "coat",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "clothes",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ask",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "answer",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "eat",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "make",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "think",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "late",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "class",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "question",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "actively",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "quiet",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "make noise",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "keep your room clean",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "do housework",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "read in bed",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "go home late",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "go home",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "get up",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "go to bed",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "help old people",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "keep off the grass",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "take good care of young children",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play on the street",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "pick flowers",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "litter",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "wait",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "take",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "young",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "child",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "people",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have a bad cold",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have a fever",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have a headache",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have a cough",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "dear",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ill",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "bad",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "afraid",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "worry",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have a toothache",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have a stomachache",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "take some medicine",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "take a good rest",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "wrong",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "with",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "head",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "face",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ear",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "arm",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "chocolate",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "dragon fruit",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "bring",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "feel",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "get-well card",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "here",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "for",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "make a call",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "write an email",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "wash the clothes",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "clean the room",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "tell a story",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sing a song",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play the guitar",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play the violin",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "look at the picture",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "talk about",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "stand",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sit",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "cousin",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play football",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play volleyball",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play basketball",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "watch the games",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "game",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "foot",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "football",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "basketball",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "playground",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play badminton",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play tennis",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play ping-pong",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play baseball",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "miss",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ms",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "mr",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "mrs",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "favourite",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sport",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "do the high jump",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "do the long jump",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "run fast",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "run",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "high jump",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "long jump",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "a actively",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "b bad",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    }
+  ]
+}

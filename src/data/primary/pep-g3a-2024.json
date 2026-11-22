@@ -1,0 +1,918 @@
+{
+  "code": "pep-g3a-2024",
+  "name": "人教 PEP 三上（2024）",
+  "level": "小学三上",
+  "shortLabel": "三上",
+  "year": 2024,
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 Making friends",
+      "theme": "",
+      "words": [
+        {
+          "word": "name",
+          "phonetic": "/neɪm/",
+          "meaning": "名字"
+        },
+        {
+          "word": "nice",
+          "phonetic": "/naɪs/",
+          "meaning": "友好的；令人愉快的"
+        },
+        {
+          "word": "ear",
+          "phonetic": "/ɪə(r)/",
+          "meaning": "耳朵"
+        },
+        {
+          "word": "hand",
+          "phonetic": "/hænd/",
+          "meaning": "手"
+        },
+        {
+          "word": "eye",
+          "phonetic": "/aɪ/",
+          "meaning": "眼睛"
+        },
+        {
+          "word": "mouth",
+          "phonetic": "/maʊθ/",
+          "meaning": "嘴"
+        },
+        {
+          "word": "arm",
+          "phonetic": "/ɑːm/",
+          "meaning": "胳膊"
+        },
+        {
+          "word": "can",
+          "phonetic": "/kæn/",
+          "meaning": "可以；能够"
+        },
+        {
+          "word": "share",
+          "phonetic": "/ʃeə(r)/",
+          "meaning": "分享"
+        },
+        {
+          "word": "smile",
+          "phonetic": "/smaɪl/",
+          "meaning": "微笑"
+        },
+        {
+          "word": "listen",
+          "phonetic": "/ˈlɪsn/",
+          "meaning": "听；倾听"
+        },
+        {
+          "word": "help",
+          "phonetic": "/help/",
+          "meaning": "帮助"
+        },
+        {
+          "word": "say",
+          "phonetic": "/seɪ/",
+          "meaning": "说；讲"
+        },
+        {
+          "word": "friend",
+          "phonetic": "/frend/",
+          "meaning": "朋友"
+        },
+        {
+          "word": "good",
+          "phonetic": "/ɡʊd/",
+          "meaning": "好的"
+        },
+        {
+          "word": "and",
+          "phonetic": "/ænd/",
+          "meaning": "和；与"
+        },
+        {
+          "word": "toy",
+          "phonetic": "/tɔɪ/",
+          "meaning": "玩具"
+        },
+        {
+          "word": "hello",
+          "phonetic": "/həˈləʊ/",
+          "meaning": "你好"
+        },
+        {
+          "word": "hi",
+          "phonetic": "/haɪ/",
+          "meaning": "嗨"
+        },
+        {
+          "word": "too",
+          "phonetic": "/tuː/",
+          "meaning": "也"
+        },
+        {
+          "word": "goodbye",
+          "phonetic": "/ˌɡʊdˈbaɪ/",
+          "meaning": "再见"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3a-2024-u1",
+          "title": "Unit 1 Making friends · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, my name is Mina.\nHi, nice to meet you.\nI can share my toy.\nI listen and smile.\nGoodbye, my friend.",
+          "translation": "你好，我叫米娜。\n嗨，很高兴认识你。\n我可以分享我的玩具。\n我认真听，还微笑。\n再见，我的朋友。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3a-2024-u1-textbook-a",
+          "title": "Unit 1 Making friends · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3a-2024-u1-textbook-b",
+          "title": "Unit 1 Making friends · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3a-2024-u1",
+          "title": "Unit 1 Making friends · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, my name is Mina.\nHi, nice to meet you.\nI can share my toy.\nI listen and smile.\nGoodbye, my friend.",
+          "translation": "你好，我叫米娜。\n嗨，很高兴认识你。\n我可以分享我的玩具。\n我认真听，还微笑。\n再见，我的朋友。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 Different families",
+      "theme": "",
+      "words": [
+        {
+          "word": "mum",
+          "phonetic": "/mʌm/",
+          "meaning": "（口语）妈妈"
+        },
+        {
+          "word": "dad",
+          "phonetic": "/dæd/",
+          "meaning": "（口语）爸爸"
+        },
+        {
+          "word": "grandma",
+          "phonetic": "/ˈɡrænmɑː/",
+          "meaning": "奶奶；姥姥"
+        },
+        {
+          "word": "grandpa",
+          "phonetic": "/ˈɡrænpɑː/",
+          "meaning": "爷爷；姥爷"
+        },
+        {
+          "word": "grandmother",
+          "phonetic": "/ˈɡrænmʌðə(r)/",
+          "meaning": "（外）祖母"
+        },
+        {
+          "word": "grandfather",
+          "phonetic": "/ˈɡrænfɑːðə(r)/",
+          "meaning": "（外）祖父"
+        },
+        {
+          "word": "mother",
+          "phonetic": "/ˈmʌðə(r)/",
+          "meaning": "母亲；妈妈"
+        },
+        {
+          "word": "father",
+          "phonetic": "/ˈfɑːðə(r)/",
+          "meaning": "父亲；爸爸"
+        },
+        {
+          "word": "family",
+          "phonetic": "/ˈfæməli/",
+          "meaning": "家；家庭"
+        },
+        {
+          "word": "have",
+          "phonetic": "/hæv/",
+          "meaning": "有"
+        },
+        {
+          "word": "big",
+          "phonetic": "/bɪɡ/",
+          "meaning": "大的"
+        },
+        {
+          "word": "sister",
+          "phonetic": "/ˈsɪstə(r)/",
+          "meaning": "姐；妹"
+        },
+        {
+          "word": "brother",
+          "phonetic": "/ˈbrʌðə(r)/",
+          "meaning": "哥；弟"
+        },
+        {
+          "word": "cousin",
+          "phonetic": "/ˈkʌzn/",
+          "meaning": "堂（表）兄弟；堂（表）姐妹"
+        },
+        {
+          "word": "me",
+          "phonetic": "/miː/",
+          "meaning": "我"
+        },
+        {
+          "word": "small",
+          "phonetic": "/smɔːl/",
+          "meaning": "小的"
+        },
+        {
+          "word": "baby",
+          "phonetic": "/ˈbeɪbi/",
+          "meaning": "婴儿"
+        },
+        {
+          "word": "aunt",
+          "phonetic": "/ɑːnt/",
+          "meaning": "伯母；婶母；舅母；姑母；姨母"
+        },
+        {
+          "word": "uncle",
+          "phonetic": "/ˈʌŋkl/",
+          "meaning": "伯父；叔父；舅父；姑父；姨父"
+        },
+        {
+          "word": "some",
+          "phonetic": "/sʌm/",
+          "meaning": "一些"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3a-2024-u2",
+          "title": "Unit 2 Different families · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "This is my family.\nI have a mum and a dad.\nMy grandma is nice.\nI have a small baby brother.\nSome cousins come to see me.",
+          "translation": "这是我的家。\n我有妈妈和爸爸。\n我的奶奶很好。\n我有一个小宝宝弟弟。\n一些堂表亲来看我。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3a-2024-u2-textbook-a",
+          "title": "Unit 2 Different families · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3a-2024-u2-textbook-b",
+          "title": "Unit 2 Different families · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3a-2024-u2",
+          "title": "Unit 2 Different families · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "This is my family.\nI have a mum and a dad.\nMy grandma is nice.\nI have a small baby brother.\nSome cousins come to see me.",
+          "translation": "这是我的家。\n我有妈妈和爸爸。\n我的奶奶很好。\n我有一个小宝宝弟弟。\n一些堂表亲来看我。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 Amazing animals",
+      "theme": "",
+      "words": [
+        {
+          "word": "like",
+          "phonetic": "/laɪk/",
+          "meaning": "喜欢"
+        },
+        {
+          "word": "dog",
+          "phonetic": "/dɒɡ/",
+          "meaning": "狗"
+        },
+        {
+          "word": "pet",
+          "phonetic": "/pet/",
+          "meaning": "宠物"
+        },
+        {
+          "word": "cat",
+          "phonetic": "/kæt/",
+          "meaning": "猫"
+        },
+        {
+          "word": "fish",
+          "phonetic": "/fɪʃ/",
+          "meaning": "鱼"
+        },
+        {
+          "word": "bird",
+          "phonetic": "/bɜːd/",
+          "meaning": "鸟"
+        },
+        {
+          "word": "rabbit",
+          "phonetic": "/ˈræbɪt/",
+          "meaning": "兔子"
+        },
+        {
+          "word": "go",
+          "phonetic": "/ɡəʊ/",
+          "meaning": "去；走"
+        },
+        {
+          "word": "zoo",
+          "phonetic": "/zuː/",
+          "meaning": "动物园"
+        },
+        {
+          "word": "fox",
+          "phonetic": "/fɒks/",
+          "meaning": "狐狸"
+        },
+        {
+          "word": "miss",
+          "phonetic": "/mɪs/",
+          "meaning": "女士；老师"
+        },
+        {
+          "word": "panda",
+          "phonetic": "/ˈpændə/",
+          "meaning": "大熊猫"
+        },
+        {
+          "word": "red panda",
+          "phonetic": "/red ˈpændə/",
+          "meaning": "小熊猫"
+        },
+        {
+          "word": "cute",
+          "phonetic": "/kjuːt/",
+          "meaning": "可爱的"
+        },
+        {
+          "word": "monkey",
+          "phonetic": "/ˈmʌŋki/",
+          "meaning": "猴子"
+        },
+        {
+          "word": "tiger",
+          "phonetic": "/ˈtaɪɡə(r)/",
+          "meaning": "老虎"
+        },
+        {
+          "word": "elephant",
+          "phonetic": "/ˈelɪfənt/",
+          "meaning": "大象"
+        },
+        {
+          "word": "lion",
+          "phonetic": "/ˈlaɪən/",
+          "meaning": "狮子"
+        },
+        {
+          "word": "giraffe",
+          "phonetic": "/dʒəˈrɑːf/",
+          "meaning": "长颈鹿"
+        },
+        {
+          "word": "tall",
+          "phonetic": "/tɔːl/",
+          "meaning": "高的"
+        },
+        {
+          "word": "fast",
+          "phonetic": "/fɑːst/",
+          "meaning": "快的"
+        },
+        {
+          "word": "animal",
+          "phonetic": "/ˈænɪml/",
+          "meaning": "动物"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3a-2024-u3",
+          "title": "Unit 3 Amazing animals · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "I like animals.\nI have a pet cat.\nWe go to the zoo.\nLook at the tall giraffe.\nThe panda is cute.",
+          "translation": "我喜欢动物。\n我有一只宠物猫。\n我们去动物园。\n看那只高高的长颈鹿。\n大熊猫很可爱。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3a-2024-u3-textbook-a",
+          "title": "Unit 3 Amazing animals · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3a-2024-u3-textbook-b",
+          "title": "Unit 3 Amazing animals · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3a-2024-u3",
+          "title": "Unit 3 Amazing animals · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "I like animals.\nI have a pet cat.\nWe go to the zoo.\nLook at the tall giraffe.\nThe panda is cute.",
+          "translation": "我喜欢动物。\n我有一只宠物猫。\n我们去动物园。\n看那只高高的长颈鹿。\n大熊猫很可爱。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 Plants around us",
+      "theme": "",
+      "words": [
+        {
+          "word": "apple",
+          "phonetic": "/ˈæpl/",
+          "meaning": "苹果"
+        },
+        {
+          "word": "banana",
+          "phonetic": "/bəˈnɑːnə/",
+          "meaning": "香蕉"
+        },
+        {
+          "word": "farm",
+          "phonetic": "/fɑːm/",
+          "meaning": "农场"
+        },
+        {
+          "word": "air",
+          "phonetic": "/eə(r)/",
+          "meaning": "空气"
+        },
+        {
+          "word": "orange",
+          "phonetic": "/ˈɒrɪndʒ/",
+          "meaning": "橙子；柑橘"
+        },
+        {
+          "word": "grape",
+          "phonetic": "/ɡreɪp/",
+          "meaning": "葡萄"
+        },
+        {
+          "word": "school",
+          "phonetic": "/skuːl/",
+          "meaning": "学校"
+        },
+        {
+          "word": "garden",
+          "phonetic": "/ˈɡɑːdn/",
+          "meaning": "花园"
+        },
+        {
+          "word": "need",
+          "phonetic": "/niːd/",
+          "meaning": "需要"
+        },
+        {
+          "word": "water",
+          "phonetic": "/ˈwɔːtə(r)/",
+          "meaning": "水；浇水"
+        },
+        {
+          "word": "flower",
+          "phonetic": "/ˈflaʊə(r)/",
+          "meaning": "花"
+        },
+        {
+          "word": "grass",
+          "phonetic": "/ɡrɑːs/",
+          "meaning": "草；草地"
+        },
+        {
+          "word": "plant",
+          "phonetic": "/plɑːnt/",
+          "meaning": "植物；种植"
+        },
+        {
+          "word": "new",
+          "phonetic": "/njuː/",
+          "meaning": "新的"
+        },
+        {
+          "word": "tree",
+          "phonetic": "/triː/",
+          "meaning": "树"
+        },
+        {
+          "word": "sun",
+          "phonetic": "/sʌn/",
+          "meaning": "太阳"
+        },
+        {
+          "word": "give",
+          "phonetic": "/ɡɪv/",
+          "meaning": "给"
+        },
+        {
+          "word": "us",
+          "phonetic": "/ʌs/",
+          "meaning": "我们"
+        },
+        {
+          "word": "them",
+          "phonetic": "/ðəm/",
+          "meaning": "它们；他们；她们"
+        },
+        {
+          "word": "fruit",
+          "phonetic": "/fruːt/",
+          "meaning": "水果"
+        },
+        {
+          "word": "wood",
+          "phonetic": "/wʊd/",
+          "meaning": "木头"
+        },
+        {
+          "word": "leaf",
+          "phonetic": "/liːf/",
+          "meaning": "叶子"
+        },
+        {
+          "word": "get",
+          "phonetic": "/ɡet/",
+          "meaning": "得到；获取"
+        },
+        {
+          "word": "do",
+          "phonetic": "/duː/",
+          "meaning": "做"
+        },
+        {
+          "word": "don't",
+          "phonetic": "/dəʊnt/",
+          "meaning": "不"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3a-2024-u4",
+          "title": "Unit 4 Plants around us · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Our school has a new garden.\nPlants need water and sun.\nI see a flower and a green leaf.\nApples and bananas are fruit.\nDo not pick them.",
+          "translation": "我们学校有一座新花园。\n植物需要水和阳光。\n我看见一朵花和一片绿叶。\n苹果和香蕉是水果。\n请不要摘它们。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3a-2024-u4-textbook-a",
+          "title": "Unit 4 Plants around us · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3a-2024-u4-textbook-b",
+          "title": "Unit 4 Plants around us · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3a-2024-u4",
+          "title": "Unit 4 Plants around us · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Our school has a new garden.\nPlants need water and sun.\nI see a flower and a green leaf.\nApples and bananas are fruit.\nDo not pick them.",
+          "translation": "我们学校有一座新花园。\n植物需要水和阳光。\n我看见一朵花和一片绿叶。\n苹果和香蕉是水果。\n请不要摘它们。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 The colourful world",
+      "theme": "",
+      "words": [
+        {
+          "word": "colour",
+          "phonetic": "/ˈkʌlə(r)/",
+          "meaning": "颜色"
+        },
+        {
+          "word": "red",
+          "phonetic": "/red/",
+          "meaning": "红色；红色的"
+        },
+        {
+          "word": "yellow",
+          "phonetic": "/ˈjeləʊ/",
+          "meaning": "黄色；黄色的"
+        },
+        {
+          "word": "blue",
+          "phonetic": "/bluː/",
+          "meaning": "蓝色；蓝色的"
+        },
+        {
+          "word": "green",
+          "phonetic": "/ɡriːn/",
+          "meaning": "绿色；绿色的"
+        },
+        {
+          "word": "orange",
+          "phonetic": "/ˈɒrɪndʒ/",
+          "meaning": "橙子；柑橘"
+        },
+        {
+          "word": "white",
+          "phonetic": "/waɪt/",
+          "meaning": "白色；白色的"
+        },
+        {
+          "word": "black",
+          "phonetic": "/blæk/",
+          "meaning": "黑色；黑色的"
+        },
+        {
+          "word": "brown",
+          "phonetic": "/braʊn/",
+          "meaning": "棕色；棕色的"
+        },
+        {
+          "word": "pink",
+          "phonetic": "/pɪŋk/",
+          "meaning": "粉色；粉色的"
+        },
+        {
+          "word": "purple",
+          "phonetic": "/ˈpɜːpl/",
+          "meaning": "紫色；紫色的"
+        },
+        {
+          "word": "see",
+          "phonetic": "/siː/",
+          "meaning": "看见"
+        },
+        {
+          "word": "make",
+          "phonetic": "/meɪk/",
+          "meaning": "使出现；做"
+        },
+        {
+          "word": "draw",
+          "phonetic": "/drɔː/",
+          "meaning": "画"
+        },
+        {
+          "word": "bear",
+          "phonetic": "/beə(r)/",
+          "meaning": "熊"
+        },
+        {
+          "word": "duck",
+          "phonetic": "/dʌk/",
+          "meaning": "鸭"
+        },
+        {
+          "word": "sea",
+          "phonetic": "/siː/",
+          "meaning": "海；海洋"
+        },
+        {
+          "word": "some",
+          "phonetic": "/sʌm/",
+          "meaning": "一些"
+        },
+        {
+          "word": "nice",
+          "phonetic": "/naɪs/",
+          "meaning": "友好的；令人愉快的"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3a-2024-u5",
+          "title": "Unit 5 The colourful world · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "What colour do you see?\nI see red and yellow.\nI draw a blue sea.\nI make a pink duck.\nThe world is nice.",
+          "translation": "你看见什么颜色？\n我看见红色和黄色。\n我画一片蓝色的海。\n我画一只粉色的鸭子。\n世界真美好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3a-2024-u5-textbook-a",
+          "title": "Unit 5 The colourful world · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3a-2024-u5-textbook-b",
+          "title": "Unit 5 The colourful world · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3a-2024-u5",
+          "title": "Unit 5 The colourful world · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "What colour do you see?\nI see red and yellow.\nI draw a blue sea.\nI make a pink duck.\nThe world is nice.",
+          "translation": "你看见什么颜色？\n我看见红色和黄色。\n我画一片蓝色的海。\n我画一只粉色的鸭子。\n世界真美好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 Useful numbers",
+      "theme": "",
+      "words": [
+        {
+          "word": "old",
+          "phonetic": "/əʊld/",
+          "meaning": "（多少）岁；年纪；旧的"
+        },
+        {
+          "word": "five",
+          "phonetic": "/faɪv/",
+          "meaning": "五"
+        },
+        {
+          "word": "year",
+          "phonetic": "/jɪə(r)/",
+          "meaning": "年纪；年"
+        },
+        {
+          "word": "one",
+          "phonetic": "/wʌn/",
+          "meaning": "一"
+        },
+        {
+          "word": "two",
+          "phonetic": "/tuː/",
+          "meaning": "二"
+        },
+        {
+          "word": "three",
+          "phonetic": "/θriː/",
+          "meaning": "三"
+        },
+        {
+          "word": "four",
+          "phonetic": "/fɔː(r)/",
+          "meaning": "四"
+        },
+        {
+          "word": "ten",
+          "phonetic": "/ten/",
+          "meaning": "十"
+        },
+        {
+          "word": "six",
+          "phonetic": "/sɪks/",
+          "meaning": "六"
+        },
+        {
+          "word": "seven",
+          "phonetic": "/ˈsevn/",
+          "meaning": "七"
+        },
+        {
+          "word": "eight",
+          "phonetic": "/eɪt/",
+          "meaning": "八"
+        },
+        {
+          "word": "nine",
+          "phonetic": "/naɪn/",
+          "meaning": "九"
+        },
+        {
+          "word": "o'clock",
+          "phonetic": "/əˈklɒk/",
+          "meaning": "（表示整点）……点钟"
+        },
+        {
+          "word": "cut",
+          "phonetic": "/kʌt/",
+          "meaning": "切块"
+        },
+        {
+          "word": "eat",
+          "phonetic": "/iːt/",
+          "meaning": "吃"
+        },
+        {
+          "word": "cake",
+          "phonetic": "/keɪk/",
+          "meaning": "蛋糕"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3a-2024-u6",
+          "title": "Unit 6 Useful numbers · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "I am five years old.\nOne, two, three, four, five.\nIt is three o'clock.\nWe cut the cake.\nWe eat and smile.",
+          "translation": "我五岁了。\n一、二、三、四、五。\n现在三点整。\n我们切蛋糕。\n我们边吃边笑。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3a-2024-u6-textbook-a",
+          "title": "Unit 6 Useful numbers · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3a-2024-u6-textbook-b",
+          "title": "Unit 6 Useful numbers · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3a-2024-u6",
+          "title": "Unit 6 Useful numbers · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "I am five years old.\nOne, two, three, four, five.\nIt is three o'clock.\nWe cut the cake.\nWe eat and smile.",
+          "translation": "我五岁了。\n一、二、三、四、五。\n现在三点整。\n我们切蛋糕。\n我们边吃边笑。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    }
+  ]
+}

@@ -21,12 +21,14 @@ import {
 import {
   BOOKS_DIR,
   REPORT_DIR,
+  SERVER_ROOT,
   getKewLayout,
   isKewSeries,
   KEW_SERIES,
   parseKewSeries,
   type KewSeries
 } from './kew-layout'
+import { loadCurriculumBook, unitsPath } from './curriculum'
 import { loadKewCatalog, normalizeKewWord, unitItems } from './parse-kew'
 
 type WordSeed = {
@@ -96,13 +98,51 @@ function wordsFromBookJson(code: string): WordSeed[] {
   })
 }
 
+type GlossMap = Record<string, { phonetic?: string; meaning?: string; englishMeaning?: string }>
+
+function loadGlosses(code: string): GlossMap {
+  const candidates = [
+    path.join(SERVER_ROOT, 'data/sources/pep', `${code}-glosses.json`),
+    path.join(SERVER_ROOT, 'data/sources', code, 'glosses.json'),
+    path.join(SERVER_ROOT, 'data/vocabulary/glosses', `${code}.json`)
+  ]
+  for (const file of candidates) {
+    if (!fs.existsSync(file)) continue
+    return JSON.parse(fs.readFileSync(file, 'utf-8')) as GlossMap
+  }
+  return {}
+}
+
+/** 任意已有 units 的词书：从单元表取词，并用 glosses 补中文/音标 */
+function wordsFromCurriculumUnits(code: string): WordSeed[] {
+  const book = loadCurriculumBook(code)
+  const gloss = loadGlosses(code)
+  const seen = new Set<string>()
+  const out: WordSeed[] = []
+  for (const unit of book.units) {
+    for (const item of unitItems(unit)) {
+      const word = normalizeKewWord(item.word)
+      if (!word || seen.has(word)) continue
+      seen.add(word)
+      const g = gloss[word]
+      out.push({
+        word,
+        meaning: g?.meaning || '',
+        englishMeaning: g?.englishMeaning || item.englishMeaning || '',
+        phonetic: g?.phonetic || ''
+      })
+    }
+  }
+  return out
+}
+
 function main() {
   const args = process.argv.slice(2).filter(a => !a.endsWith('.ts'))
   const write = args.includes('--write')
   const fromBook = args.includes('--from-book')
   const codes = args.filter(a => !a.startsWith('--'))
   if (!codes.length) {
-    console.error(`用法: npm run cidian:quezi -- <kew1200|mse-ket|...> [--write] [--from-book]`)
+    console.error(`用法: npm run cidian:quezi -- <kew1200|mse-ket|pep-g3a-2024|...> [--write] [--from-book]`)
     console.error(`KEW 套系: ${KEW_SERIES.join(', ')}`)
     process.exit(1)
   }
@@ -115,8 +155,10 @@ function main() {
     let seeds: WordSeed[] = []
     if (isKewSeries(code) && !fromBook) {
       seeds = wordsFromUnits(parseKewSeries(code))
-    } else if (isKewSeries(code) && fromBook) {
+    } else if (fromBook) {
       seeds = wordsFromBookJson(code)
+    } else if (fs.existsSync(unitsPath(code))) {
+      seeds = wordsFromCurriculumUnits(code)
     } else {
       seeds = wordsFromBookJson(code)
     }

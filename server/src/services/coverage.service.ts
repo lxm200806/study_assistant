@@ -12,7 +12,7 @@ import {
 } from './review-engine.service'
 import { getBookByCode } from './book.service'
 
-export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review'
+export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review' | 'unit'
 
 export interface BookProgressInfo {
   bookCode: string
@@ -142,13 +142,58 @@ function computeSmartScore(
   return score + Math.random() * 10
 }
 
+function normalizeUnitId(unitId: string): string {
+  const raw = unitId.trim()
+  if (!raw) return ''
+  return raw.startsWith('u') ? raw : `u${raw}`
+}
+
+/** 优先用课表 units.json 的词序；没有课表时再退回标签。 */
+function resolveUnitBookWords<T extends { wordId: string; word: { word: string; tags?: string[] } }>(
+  bookCode: string,
+  bookWordsAll: T[],
+  unitId: string
+): T[] {
+  const uid = normalizeUnitId(unitId)
+  try {
+    // lazy require，避免 coverage 被前端无关路径拖进课表脚本
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const { loadCurriculumBook } = require('../../scripts/vocabulary-import/curriculum') as {
+      loadCurriculumBook: (code: string) => {
+        units: Array<{ id: string; words: string[] }>
+      }
+    }
+    const curriculum = loadCurriculumBook(bookCode)
+    const unit = curriculum.units.find(u => normalizeUnitId(u.id) === uid)
+    if (unit?.words?.length) {
+      const bySpelling = new Map(bookWordsAll.map(bv => [bv.word.word.trim().toLowerCase(), bv] as const))
+      const ordered: T[] = []
+      const seen = new Set<string>()
+      for (const raw of unit.words) {
+        const key = raw.trim().toLowerCase()
+        const hit = bySpelling.get(key)
+        if (!hit || seen.has(hit.wordId)) continue
+        seen.add(hit.wordId)
+        ordered.push(hit)
+      }
+      if (ordered.length) return ordered
+    }
+  } catch {
+    /* no units file */
+  }
+
+  const tag = `kew-unit:${uid}`
+  return bookWordsAll.filter(bv => (bv.word.tags || []).includes(tag))
+}
+
 export async function getSessionWords(
   userId: string,
   bookCode: string,
   count: number,
   mode: SessionMode = 'coverage',
   trainingType?: string,
-  topic?: string
+  topic?: string,
+  opts?: { unitId?: string; excludeIds?: string[] }
 ) {
   if ((mode as string) === 'random') {
     mode = 'smart'
@@ -159,6 +204,49 @@ export async function getSessionWords(
   }
 
   const bookWordsAll = book.vocabulary.sort((a, b) => a.sortOrder - b.sortOrder)
+  const unitId = (opts?.unitId || '').trim()
+  const excludeSet = new Set((opts?.excludeIds || []).filter(Boolean))
+
+  // 单元顺序学：与记忆曲线队列分开，按教材单元词序切片
+  if (mode === 'unit') {
+    if (!unitId) {
+      throw new Error('UNIT_REQUIRED')
+    }
+    const uid = normalizeUnitId(unitId)
+    const unitWords = resolveUnitBookWords(bookCode, bookWordsAll, uid)
+    const remaining = unitWords.filter(bv => !excludeSet.has(bv.wordId))
+    const selected = remaining.slice(0, Math.max(1, count))
+    const progressInfo = await getBookProgress(userId, bookCode)
+    const now = new Date()
+
+    let unitIds: string[] = []
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const { loadCurriculumBook } = require('../../scripts/vocabulary-import/curriculum') as {
+        loadCurriculumBook: (code: string) => { units: Array<{ id: string }> }
+      }
+      unitIds = loadCurriculumBook(bookCode).units.map(u => normalizeUnitId(u.id)).filter(Boolean)
+    } catch {
+      unitIds = []
+    }
+    const idx = unitIds.indexOf(uid)
+    const nextUnitId = idx >= 0 && idx < unitIds.length - 1 ? unitIds[idx + 1] : null
+    return {
+      words: selected.map(bv =>
+        formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${now.toISOString().slice(0, 10)}`, rotate: true })
+      ),
+      progress: progressInfo,
+      mode: 'unit' as SessionMode,
+      unit: {
+        id: uid,
+        total: unitWords.length,
+        remainingAfter: Math.max(0, remaining.length - selected.length),
+        complete: selected.length === 0,
+        nextUnitId
+      }
+    }
+  }
+
   const bookWords = topic
     ? bookWordsAll.filter(bv => bv.word.topic === topic)
     : bookWordsAll

@@ -116,6 +116,11 @@
         </view>
 
         <view class="quick-actions">
+          <view class="action-card" @tap="goPepPrimary">
+            <view class="action-icon">📗</view>
+            <text class="action-title">小学 PEP</text>
+            <text class="action-desc">三上～五上 · 词汇课文</text>
+          </view>
           <view class="action-card" @tap="goToBooks">
             <view class="action-icon">📚</view>
             <text class="action-title">词汇书</text>
@@ -280,6 +285,10 @@ async function enterCurrentStudent() {
   }
   await userStore.chooseStudentRole(userStore.activeLearnerId)
   uni.showToast({ title: `已进入 ${userStore.learnerName}`, icon: 'none' })
+}
+
+const goPepPrimary = () => {
+  openPage('/pages/primary/index')
 }
 
 const goToBooks = () => {

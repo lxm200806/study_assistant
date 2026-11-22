@@ -1,0 +1,139 @@
+{
+  "bookCode": "jt-g5b",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "jt-g5b-u1-textbook-a",
+      "bookCode": "jt-g5b",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Look! This is our library. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u1-textbook-b",
+      "bookCode": "jt-g5b",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Look! This is our library. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u2-textbook-a",
+      "bookCode": "jt-g5b",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Library of Congress in Washington D.C. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u2-textbook-b",
+      "bookCode": "jt-g5b",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Library of Congress in Washington D.C. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u3-textbook-a",
+      "bookCode": "jt-g5b",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 tea. She only likes Wulong tea. Wu Di wants to · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u3-textbook-b",
+      "bookCode": "jt-g5b",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 tea. She only likes Wulong tea. Wu Di wants to · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u4-textbook-a",
+      "bookCode": "jt-g5b",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Many People Worked On The Ships Some People Cleaned The Ship · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u4-textbook-b",
+      "bookCode": "jt-g5b",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Many People Worked On The Ships Some People Cleaned The Ship · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u5-textbook-a",
+      "bookCode": "jt-g5b",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Elizabeth Blackwell Wang Li Is A Student She Wants To Be A · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u5-textbook-b",
+      "bookCode": "jt-g5b",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Elizabeth Blackwell Wang Li Is A Student She Wants To Be A · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u6-textbook-a",
+      "bookCode": "jt-g5b",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 The bear walks on a stick. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5b-u6-textbook-b",
+      "bookCode": "jt-g5b",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 The bear walks on a stick. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

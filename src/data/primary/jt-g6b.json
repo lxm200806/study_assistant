@@ -1,0 +1,574 @@
+{
+  "code": "jt-g6b",
+  "name": "人教精通 六下",
+  "level": "小学六下",
+  "shortLabel": "六下",
+  "year": 2013,
+  "series": "jt",
+  "seriesLabel": "人教精通",
+  "grade": "六年级",
+  "term": "下",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 Contents",
+      "theme": "",
+      "words": [
+        {
+          "word": "listened",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "learned",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "english",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "club",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "played",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "enjoyed",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g6b-u1-textbook-a",
+          "title": "Unit 1 Contents · Lesson 4 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g6b-u1-textbook-b",
+          "title": "Unit 1 Contents · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 Contents",
+      "theme": "",
+      "words": [
+        {
+          "word": "on foot",
+          "phonetic": "",
+          "meaning": "步行"
+        },
+        {
+          "word": "half an hour",
+          "phonetic": "",
+          "meaning": "半小时"
+        },
+        {
+          "word": "city",
+          "phonetic": "",
+          "meaning": "城市"
+        },
+        {
+          "word": "Shanghai",
+          "phonetic": "",
+          "meaning": "上海"
+        },
+        {
+          "word": "Xi",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Wuhan",
+          "phonetic": "",
+          "meaning": "武汉"
+        },
+        {
+          "word": "by plane",
+          "phonetic": "",
+          "meaning": "乘飞机"
+        },
+        {
+          "word": "by train",
+          "phonetic": "",
+          "meaning": "乘火车"
+        },
+        {
+          "word": "by ship",
+          "phonetic": "",
+          "meaning": "乘轮船"
+        },
+        {
+          "word": "travel",
+          "phonetic": "",
+          "meaning": "旅行"
+        },
+        {
+          "word": "know",
+          "phonetic": "",
+          "meaning": "知道"
+        },
+        {
+          "word": "hear",
+          "phonetic": "",
+          "meaning": "听见"
+        },
+        {
+          "word": "lake",
+          "phonetic": "",
+          "meaning": "湖;湖泊"
+        },
+        {
+          "word": "the Ming Tombs",
+          "phonetic": "",
+          "meaning": "明十三陵"
+        },
+        {
+          "word": "the Temple of Heaven",
+          "phonetic": "",
+          "meaning": "天坛"
+        },
+        {
+          "word": "the Summer Palace",
+          "phonetic": "",
+          "meaning": "颐和园"
+        },
+        {
+          "word": "the Forbidden City",
+          "phonetic": "",
+          "meaning": "紫禁城"
+        },
+        {
+          "word": "Beihai Park",
+          "phonetic": "",
+          "meaning": "北海公园"
+        },
+        {
+          "word": "tomorrow",
+          "phonetic": "",
+          "meaning": "明天"
+        },
+        {
+          "word": "visit",
+          "phonetic": "",
+          "meaning": "参观"
+        },
+        {
+          "word": "the Great Wall",
+          "phonetic": "",
+          "meaning": "长城"
+        },
+        {
+          "word": "them",
+          "phonetic": "",
+          "meaning": "他们;她们;它们("
+        },
+        {
+          "word": "they",
+          "phonetic": "",
+          "meaning": "的宾格)"
+        },
+        {
+          "word": "Tower Bridge",
+          "phonetic": "",
+          "meaning": "伦敦塔桥"
+        },
+        {
+          "word": "Big Ben",
+          "phonetic": "",
+          "meaning": "大本钟"
+        },
+        {
+          "word": "Niagara Falls",
+          "phonetic": "",
+          "meaning": "尼亚加拉瀑布"
+        },
+        {
+          "word": "CN Tower",
+          "phonetic": "",
+          "meaning": "加拿大国家电视塔"
+        },
+        {
+          "word": "Sydney Opera House",
+          "phonetic": "",
+          "meaning": "悉尼歌剧院"
+        },
+        {
+          "word": "Disneyland",
+          "phonetic": "",
+          "meaning": "迪士尼乐园"
+        },
+        {
+          "word": "see",
+          "phonetic": "",
+          "meaning": "看见"
+        },
+        {
+          "word": "favourite",
+          "phonetic": "",
+          "meaning": "最喜欢的"
+        },
+        {
+          "word": "place",
+          "phonetic": "",
+          "meaning": "位置;地点"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g6b-u2-textbook-a",
+          "title": "Unit 2 Contents · Lesson 8 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g6b-u2-textbook-b",
+          "title": "Unit 2 Contents · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 famous parks in the world. It is a very big",
+      "theme": "",
+      "words": [
+        {
+          "word": "A a lot of",
+          "phonetic": "",
+          "meaning": "很多"
+        },
+        {
+          "word": "across the road",
+          "phonetic": "",
+          "meaning": "在马路对面"
+        },
+        {
+          "word": "act in drama",
+          "phonetic": "",
+          "meaning": "表演戏剧"
+        },
+        {
+          "word": "at home",
+          "phonetic": "",
+          "meaning": "在家里"
+        },
+        {
+          "word": "at night",
+          "phonetic": "",
+          "meaning": "在晚上"
+        },
+        {
+          "word": "B behind",
+          "phonetic": "",
+          "meaning": "在"
+        },
+        {
+          "word": "Beihai Park",
+          "phonetic": "",
+          "meaning": "北海公园"
+        },
+        {
+          "word": "beside",
+          "phonetic": "",
+          "meaning": "在"
+        },
+        {
+          "word": "between",
+          "phonetic": "",
+          "meaning": "在"
+        },
+        {
+          "word": "Big Ben",
+          "phonetic": "",
+          "meaning": "大本钟"
+        },
+        {
+          "word": "blackboard",
+          "phonetic": "",
+          "meaning": "黑板"
+        },
+        {
+          "word": "bookshop",
+          "phonetic": "",
+          "meaning": "书店"
+        },
+        {
+          "word": "but",
+          "phonetic": "",
+          "meaning": "但是"
+        },
+        {
+          "word": "by bike",
+          "phonetic": "",
+          "meaning": "乘坐公共汽车"
+        },
+        {
+          "word": "by plane",
+          "phonetic": "",
+          "meaning": "乘飞机"
+        },
+        {
+          "word": "by ship",
+          "phonetic": "",
+          "meaning": "乘轮船"
+        },
+        {
+          "word": "by subway",
+          "phonetic": "",
+          "meaning": "乘地铁"
+        },
+        {
+          "word": "by train",
+          "phonetic": "",
+          "meaning": "乘火车"
+        },
+        {
+          "word": "C city",
+          "phonetic": "",
+          "meaning": "城市"
+        },
+        {
+          "word": "City Library",
+          "phonetic": "",
+          "meaning": "城市图书馆"
+        },
+        {
+          "word": "clothes shop",
+          "phonetic": "",
+          "meaning": "服装店"
+        },
+        {
+          "word": "CN Tower",
+          "phonetic": "",
+          "meaning": "加拿大国家电视塔"
+        },
+        {
+          "word": "cross the street",
+          "phonetic": "",
+          "meaning": "穿过马路"
+        },
+        {
+          "word": "D Disneyland",
+          "phonetic": "",
+          "meaning": "迪士尼乐园"
+        },
+        {
+          "word": "do tasks",
+          "phonetic": "",
+          "meaning": "做任务"
+        },
+        {
+          "word": "E enjoy Spring Festival",
+          "phonetic": "",
+          "meaning": "过春节"
+        },
+        {
+          "word": "enjoy sunbathing",
+          "phonetic": "",
+          "meaning": "享受日光浴"
+        },
+        {
+          "word": "enjoy the moon and stars",
+          "phonetic": "",
+          "meaning": "看月亮和星星"
+        },
+        {
+          "word": "F favourite",
+          "phonetic": "",
+          "meaning": "最喜欢的"
+        },
+        {
+          "word": "G go down this street",
+          "phonetic": "",
+          "meaning": "顺着这条街走"
+        },
+        {
+          "word": "go to the beach",
+          "phonetic": "",
+          "meaning": "去沙滩"
+        },
+        {
+          "word": "H half an hour",
+          "phonetic": "",
+          "meaning": "半小时"
+        },
+        {
+          "word": "have a party",
+          "phonetic": "",
+          "meaning": "聚会"
+        },
+        {
+          "word": "have an English party",
+          "phonetic": "",
+          "meaning": "举办英语聚会"
+        },
+        {
+          "word": "healthy",
+          "phonetic": "",
+          "meaning": "健康的(食品)"
+        },
+        {
+          "word": "hear",
+          "phonetic": "",
+          "meaning": "听见"
+        },
+        {
+          "word": "I in front of",
+          "phonetic": "",
+          "meaning": "在"
+        },
+        {
+          "word": "K know",
+          "phonetic": "",
+          "meaning": "知道"
+        },
+        {
+          "word": "L lake",
+          "phonetic": "",
+          "meaning": "湖;湖泊"
+        },
+        {
+          "word": "learn",
+          "phonetic": "",
+          "meaning": "学;学习;学到"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g6b-u3-textbook-a",
+          "title": "Unit 3 famous parks in the world. It is a very big · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g6b-u3-textbook-b",
+          "title": "Unit 3 famous parks in the world. It is a very big · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 42 The Great Wall Of China Is One Of The Greatest Wonders Of",
+      "theme": "",
+      "words": [],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g6b-u4-textbook-a",
+          "title": "Unit 4 42 The Great Wall Of China Is One Of The Greatest Wonders Of · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g6b-u4-textbook-b",
+          "title": "Unit 4 42 The Great Wall Of China Is One Of The Greatest Wonders Of · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 Task 12 Listen, write and read.",
+      "theme": "",
+      "words": [],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g6b-u5-textbook-a",
+          "title": "Unit 5 Task 12 Listen, write and read. · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g6b-u5-textbook-b",
+          "title": "Unit 5 Task 12 Listen, write and read. · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 Words In Each Unit Vocabulary I Went To Sanya For My Holiday",
+      "theme": "",
+      "words": [],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g6b-u6-textbook-a",
+          "title": "Unit 6 Words In Each Unit Vocabulary I Went To Sanya For My Holiday · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g6b-u6-textbook-b",
+          "title": "Unit 6 Words In Each Unit Vocabulary I Went To Sanya For My Holiday · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    }
+  ]
+}

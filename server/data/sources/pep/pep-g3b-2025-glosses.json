@@ -1,0 +1,458 @@
+{
+  "where": {
+    "phonetic": "/weə(r)/",
+    "meaning": "在哪里；到哪里"
+  },
+  "from": {
+    "phonetic": "/frɒm/",
+    "meaning": "来自；从……来"
+  },
+  "about": {
+    "phonetic": "/əˈbaʊt/",
+    "meaning": "大约；左右"
+  },
+  "today": {
+    "phonetic": "/təˈdeɪ/",
+    "meaning": "今天"
+  },
+  "teacher": {
+    "phonetic": "/ˈtiːtʃə(r)/",
+    "meaning": "教师"
+  },
+  "student": {
+    "phonetic": "/ˈstjuːdnt/",
+    "meaning": "学生"
+  },
+  "after": {
+    "phonetic": "/ˈɑːftə(r)/",
+    "meaning": "在……后面"
+  },
+  "who": {
+    "phonetic": "/huː/",
+    "meaning": "谁；什么人"
+  },
+  "girl": {
+    "phonetic": "/ɡɜːl/",
+    "meaning": "女孩"
+  },
+  "neighbour": {
+    "phonetic": "/ˈneɪbə(r)/",
+    "meaning": "邻居"
+  },
+  "boy": {
+    "phonetic": "/bɔɪ/",
+    "meaning": "男孩"
+  },
+  "woman": {
+    "phonetic": "/ˈwʊmən/",
+    "meaning": "成年女子；妇女"
+  },
+  "man": {
+    "phonetic": "/mæn/",
+    "meaning": "成年男子；男人"
+  },
+  "mr": {
+    "phonetic": "/ˈmɪstə(r)/",
+    "meaning": "先生"
+  },
+  "classmate": {
+    "phonetic": "/ˈklɑːsmeɪt/",
+    "meaning": "同班同学"
+  },
+  "he": {
+    "phonetic": "/hiː/",
+    "meaning": "他"
+  },
+  "english": {
+    "phonetic": "/ˈɪŋɡlɪʃ/",
+    "meaning": "英语；英语的"
+  },
+  "she": {
+    "phonetic": "/ʃiː/",
+    "meaning": "她"
+  },
+  "very": {
+    "phonetic": "/ˈveri/",
+    "meaning": "很；非常"
+  },
+  "uk": {
+    "phonetic": "/ˌjuːˈkeɪ/",
+    "meaning": "英国"
+  },
+  "china": {
+    "phonetic": "/ˈtʃaɪnə/",
+    "meaning": "中国"
+  },
+  "canada": {
+    "phonetic": "/ˈkænədə/",
+    "meaning": "加拿大"
+  },
+  "usa": {
+    "phonetic": "/ˌjuːesˈeɪ/",
+    "meaning": "美国"
+  },
+  "has": {
+    "phonetic": "/hæz/",
+    "meaning": "有（have的第三人称单数）"
+  },
+  "long": {
+    "phonetic": "/lɒŋ/",
+    "meaning": "长的"
+  },
+  "body": {
+    "phonetic": "/ˈbɒdi/",
+    "meaning": "身体"
+  },
+  "short": {
+    "phonetic": "/ʃɔːt/",
+    "meaning": "短的；个子矮的"
+  },
+  "leg": {
+    "phonetic": "/leɡ/",
+    "meaning": "腿"
+  },
+  "right": {
+    "phonetic": "/raɪt/",
+    "meaning": "准确的；恰当的"
+  },
+  "fat": {
+    "phonetic": "/fæt/",
+    "meaning": "肥的"
+  },
+  "thin": {
+    "phonetic": "/θɪn/",
+    "meaning": "瘦的"
+  },
+  "slow": {
+    "phonetic": "/sləʊ/",
+    "meaning": "缓慢的；慢的"
+  },
+  "love": {
+    "phonetic": "/lʌv/",
+    "meaning": "喜爱；爱"
+  },
+  "tail": {
+    "phonetic": "/teɪl/",
+    "meaning": "尾巴"
+  },
+  "her": {
+    "phonetic": "/hɜː(r)/",
+    "meaning": "她；她的"
+  },
+  "gift": {
+    "phonetic": "/ɡɪft/",
+    "meaning": "礼物"
+  },
+  "picture": {
+    "phonetic": "/ˈpɪktʃə(r)/",
+    "meaning": "图画；绘画"
+  },
+  "card": {
+    "phonetic": "/kɑːd/",
+    "meaning": "贺卡；卡片"
+  },
+  "sing": {
+    "phonetic": "/sɪŋ/",
+    "meaning": "唱（歌）"
+  },
+  "dance": {
+    "phonetic": "/dɑːns/",
+    "meaning": "跳舞"
+  },
+  "face": {
+    "phonetic": "/feɪs/",
+    "meaning": "脸；面孔"
+  },
+  "all": {
+    "phonetic": "/ɔːl/",
+    "meaning": "所有；全部"
+  },
+  "so": {
+    "phonetic": "/səʊ/",
+    "meaning": "这么；那么"
+  },
+  "talk": {
+    "phonetic": "/tɔːk/",
+    "meaning": "讲；说；说话"
+  },
+  "song": {
+    "phonetic": "/sɒŋ/",
+    "meaning": "歌；歌曲"
+  },
+  "or": {
+    "phonetic": "/ɔː(r)/",
+    "meaning": "或；或者"
+  },
+  "much": {
+    "phonetic": "/mʌtʃ/",
+    "meaning": "许多；大量"
+  },
+  "eraser": {
+    "phonetic": "/ɪˈreɪzə(r)/",
+    "meaning": "橡皮"
+  },
+  "find": {
+    "phonetic": "/faɪnd/",
+    "meaning": "找到；找出"
+  },
+  "ruler": {
+    "phonetic": "/ˈruːlə(r)/",
+    "meaning": "直尺"
+  },
+  "pen": {
+    "phonetic": "/pen/",
+    "meaning": "钢笔"
+  },
+  "pencil": {
+    "phonetic": "/ˈpensl/",
+    "meaning": "铅笔"
+  },
+  "book": {
+    "phonetic": "/bʊk/",
+    "meaning": "书；书籍"
+  },
+  "bag": {
+    "phonetic": "/bæɡ/",
+    "meaning": "包；袋"
+  },
+  "paper": {
+    "phonetic": "/ˈpeɪpə(r)/",
+    "meaning": "纸"
+  },
+  "these": {
+    "phonetic": "/ðiːz/",
+    "meaning": "这些"
+  },
+  "see": {
+    "phonetic": "/siː/",
+    "meaning": "看见"
+  },
+  "smell": {
+    "phonetic": "/smel/",
+    "meaning": "闻（气味）"
+  },
+  "taste": {
+    "phonetic": "/teɪst/",
+    "meaning": "尝（味道）"
+  },
+  "hear": {
+    "phonetic": "/hɪə(r)/",
+    "meaning": "听见；听到"
+  },
+  "touch": {
+    "phonetic": "/tʌtʃ/",
+    "meaning": "触摸；碰"
+  },
+  "learn": {
+    "phonetic": "/lɜːn/",
+    "meaning": "学；学习"
+  },
+  "nose": {
+    "phonetic": "/nəʊz/",
+    "meaning": "鼻；鼻子"
+  },
+  "tongue": {
+    "phonetic": "/tʌŋ/",
+    "meaning": "舌；舌头"
+  },
+  "class": {
+    "phonetic": "/klɑːs/",
+    "meaning": "课；班级"
+  },
+  "in class": {
+    "phonetic": "/ɪn klɑːs/",
+    "meaning": "在课堂上"
+  },
+  "computer": {
+    "phonetic": "/kəmˈpjuːtə(r)/",
+    "meaning": "计算机；电脑"
+  },
+  "breakfast": {
+    "phonetic": "/ˈbrekfəst/",
+    "meaning": "早餐；早饭"
+  },
+  "time": {
+    "phonetic": "/taɪm/",
+    "meaning": "时间"
+  },
+  "bread": {
+    "phonetic": "/bred/",
+    "meaning": "面包"
+  },
+  "egg": {
+    "phonetic": "/eɡ/",
+    "meaning": "蛋；鸡蛋"
+  },
+  "milk": {
+    "phonetic": "/mɪlk/",
+    "meaning": "牛奶"
+  },
+  "noodle": {
+    "phonetic": "/ˈnuːdl/",
+    "meaning": "面条"
+  },
+  "juice": {
+    "phonetic": "/dʒuːs/",
+    "meaning": "果汁"
+  },
+  "rice": {
+    "phonetic": "/raɪs/",
+    "meaning": "大米；米饭"
+  },
+  "meat": {
+    "phonetic": "/miːt/",
+    "meaning": "肉"
+  },
+  "vegetable": {
+    "phonetic": "/ˈvedʒtəbl/",
+    "meaning": "蔬菜"
+  },
+  "healthy": {
+    "phonetic": "/ˈhelθi/",
+    "meaning": "健康的"
+  },
+  "plate": {
+    "phonetic": "/pleɪt/",
+    "meaning": "盘子"
+  },
+  "soup": {
+    "phonetic": "/suːp/",
+    "meaning": "汤"
+  },
+  "fruit": {
+    "phonetic": "/fruːt/",
+    "meaning": "水果"
+  },
+  "colourful": {
+    "phonetic": "/ˈkʌləfl/",
+    "meaning": "五彩缤纷的"
+  },
+  "candy": {
+    "phonetic": "/ˈkændi/",
+    "meaning": "糖果"
+  },
+  "yummy": {
+    "phonetic": "/ˈjʌmi/",
+    "meaning": "很好吃的"
+  },
+  "at": {
+    "phonetic": "/æt/",
+    "meaning": "在（某处）"
+  },
+  "boat": {
+    "phonetic": "/bəʊt/",
+    "meaning": "小船；舟"
+  },
+  "cool": {
+    "phonetic": "/kuːl/",
+    "meaning": "酷的；绝妙的"
+  },
+  "keep": {
+    "phonetic": "/kiːp/",
+    "meaning": "保有；留着"
+  },
+  "home": {
+    "phonetic": "/həʊm/",
+    "meaning": "家；住所"
+  },
+  "ball": {
+    "phonetic": "/bɔːl/",
+    "meaning": "球"
+  },
+  "doll": {
+    "phonetic": "/dɒl/",
+    "meaning": "玩偶；玩具娃娃"
+  },
+  "car": {
+    "phonetic": "/kɑː(r)/",
+    "meaning": "小汽车；轿车"
+  },
+  "on": {
+    "phonetic": "/ɒn/",
+    "meaning": "在……上"
+  },
+  "shelf": {
+    "phonetic": "/ʃelf/",
+    "meaning": "架子（复数 shelves）"
+  },
+  "in": {
+    "phonetic": "/ɪn/",
+    "meaning": "在……内；在……中"
+  },
+  "box": {
+    "phonetic": "/bɒks/",
+    "meaning": "箱子"
+  },
+  "cap": {
+    "phonetic": "/kæp/",
+    "meaning": "帽子"
+  },
+  "map": {
+    "phonetic": "/mæp/",
+    "meaning": "地图"
+  },
+  "under": {
+    "phonetic": "/ˈʌndə(r)/",
+    "meaning": "在……下面"
+  },
+  "still": {
+    "phonetic": "/stɪl/",
+    "meaning": "还是；仍然"
+  },
+  "put": {
+    "phonetic": "/pʊt/",
+    "meaning": "放；安置"
+  },
+  "fifteen": {
+    "phonetic": "/ˌfɪfˈtiːn/",
+    "meaning": "十五"
+  },
+  "twelve": {
+    "phonetic": "/twelv/",
+    "meaning": "十二"
+  },
+  "fourteen": {
+    "phonetic": "/ˌfɔːˈtiːn/",
+    "meaning": "十四"
+  },
+  "thirteen": {
+    "phonetic": "/ˌθɜːˈtiːn/",
+    "meaning": "十三"
+  },
+  "eleven": {
+    "phonetic": "/ɪˈlevn/",
+    "meaning": "十一"
+  },
+  "twenty": {
+    "phonetic": "/ˈtwenti/",
+    "meaning": "二十"
+  },
+  "seventeen": {
+    "phonetic": "/ˌsevnˈtiːn/",
+    "meaning": "十七"
+  },
+  "sixteen": {
+    "phonetic": "/ˌsɪksˈtiːn/",
+    "meaning": "十六"
+  },
+  "eighteen": {
+    "phonetic": "/ˌeɪˈtiːn/",
+    "meaning": "十八"
+  },
+  "nineteen": {
+    "phonetic": "/ˌnaɪnˈtiːn/",
+    "meaning": "十九"
+  },
+  "piggy bank": {
+    "phonetic": "/ˈpɪɡi bæŋk/",
+    "meaning": "猪形储钱罐"
+  },
+  "pay": {
+    "phonetic": "/peɪ/",
+    "meaning": "付费"
+  },
+  "back": {
+    "phonetic": "/bæk/",
+    "meaning": "回到原处"
+  }
+}

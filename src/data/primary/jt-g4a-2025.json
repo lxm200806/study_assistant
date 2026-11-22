@@ -1,0 +1,847 @@
+{
+  "code": "jt-g4a-2025",
+  "name": "人教精通 四上（2025）",
+  "level": "小学四上",
+  "shortLabel": "四上",
+  "year": 2025,
+  "series": "jt",
+  "seriesLabel": "人教精通",
+  "grade": "四年级",
+  "term": "上",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 Sports",
+      "theme": "",
+      "words": [
+        {
+          "word": "swim",
+          "phonetic": "",
+          "meaning": "游泳"
+        },
+        {
+          "word": "run",
+          "phonetic": "",
+          "meaning": "跑;跑步"
+        },
+        {
+          "word": "jump",
+          "phonetic": "",
+          "meaning": "跳"
+        },
+        {
+          "word": "rope",
+          "phonetic": "",
+          "meaning": "绳"
+        },
+        {
+          "word": "play",
+          "phonetic": "",
+          "meaning": "参加(体育运动、游戏、比赛等)"
+        },
+        {
+          "word": "ping-pong",
+          "phonetic": "",
+          "meaning": "乒乓球"
+        },
+        {
+          "word": "basketball",
+          "phonetic": "",
+          "meaning": "篮球"
+        },
+        {
+          "word": "football",
+          "phonetic": "",
+          "meaning": "足球"
+        },
+        {
+          "word": "once",
+          "phonetic": "",
+          "meaning": "一次"
+        },
+        {
+          "word": "week",
+          "phonetic": "",
+          "meaning": "一周"
+        },
+        {
+          "word": "twice",
+          "phonetic": "",
+          "meaning": "两次"
+        },
+        {
+          "word": "time",
+          "phonetic": "",
+          "meaning": "次"
+        },
+        {
+          "word": "every",
+          "phonetic": "",
+          "meaning": "每"
+        },
+        {
+          "word": "day",
+          "phonetic": "",
+          "meaning": "一天"
+        },
+        {
+          "word": "sport",
+          "phonetic": "",
+          "meaning": "体育运动"
+        },
+        {
+          "word": "make",
+          "phonetic": "",
+          "meaning": "使变得;结成(朋友)"
+        },
+        {
+          "word": "be good at",
+          "phonetic": "",
+          "meaning": "擅长"
+        },
+        {
+          "word": "from",
+          "phonetic": "",
+          "meaning": "来自"
+        },
+        {
+          "word": "the USA",
+          "phonetic": "",
+          "meaning": "美国"
+        },
+        {
+          "word": "China",
+          "phonetic": "",
+          "meaning": "中国"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4a-2025-u1-textbook-a",
+          "title": "Unit 1 Sports · Lesson 1 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4a-2025-u1-textbook-b",
+          "title": "Unit 1 Sports · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 Hobbies",
+      "theme": "",
+      "words": [
+        {
+          "word": "dance",
+          "phonetic": "",
+          "meaning": "跳舞"
+        },
+        {
+          "word": "play",
+          "phonetic": "",
+          "meaning": "参加(体育运动、游戏、比赛等)"
+        },
+        {
+          "word": "guitar",
+          "phonetic": "",
+          "meaning": "吉他"
+        },
+        {
+          "word": "paint",
+          "phonetic": "",
+          "meaning": "画"
+        },
+        {
+          "word": "listen",
+          "phonetic": "",
+          "meaning": "听"
+        },
+        {
+          "word": "music",
+          "phonetic": "",
+          "meaning": "音乐;乐曲"
+        },
+        {
+          "word": "collect",
+          "phonetic": "",
+          "meaning": "收集"
+        },
+        {
+          "word": "stamp",
+          "phonetic": "",
+          "meaning": "邮票"
+        },
+        {
+          "word": "weiqi",
+          "phonetic": "",
+          "meaning": "围棋"
+        },
+        {
+          "word": "read",
+          "phonetic": "",
+          "meaning": "读;阅读"
+        },
+        {
+          "word": "story",
+          "phonetic": "",
+          "meaning": "故事"
+        },
+        {
+          "word": "practise",
+          "phonetic": "",
+          "meaning": "练习"
+        },
+        {
+          "word": "kung fu",
+          "phonetic": "",
+          "meaning": "功夫"
+        },
+        {
+          "word": "drum",
+          "phonetic": "",
+          "meaning": "鼓"
+        },
+        {
+          "word": "hobby",
+          "phonetic": "",
+          "meaning": "业余爱好"
+        },
+        {
+          "word": "these",
+          "phonetic": "",
+          "meaning": "这些"
+        },
+        {
+          "word": "any",
+          "phonetic": "",
+          "meaning": "任何的;任一的"
+        },
+        {
+          "word": "fishing",
+          "phonetic": "",
+          "meaning": "钓鱼"
+        },
+        {
+          "word": "eat",
+          "phonetic": "",
+          "meaning": "吃;吃饭"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4a-2025-u2-textbook-a",
+          "title": "Unit 2 Hobbies · Lesson 1 · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4a-2025-u2-textbook-b",
+          "title": "Unit 2 Hobbies · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 Weather",
+      "theme": "",
+      "words": [
+        {
+          "word": "hot",
+          "phonetic": "",
+          "meaning": "温度高的;热的"
+        },
+        {
+          "word": "warm",
+          "phonetic": "",
+          "meaning": "温暖的"
+        },
+        {
+          "word": "cool",
+          "phonetic": "",
+          "meaning": "凉的;凉爽的"
+        },
+        {
+          "word": "cold",
+          "phonetic": "",
+          "meaning": "寒冷的"
+        },
+        {
+          "word": "sunny",
+          "phonetic": "",
+          "meaning": "阳光充足的;阳光灿烂的"
+        },
+        {
+          "word": "rainy",
+          "phonetic": "",
+          "meaning": "多雨的"
+        },
+        {
+          "word": "cloudy",
+          "phonetic": "",
+          "meaning": "多云的;阴的"
+        },
+        {
+          "word": "snowy",
+          "phonetic": "",
+          "meaning": "下雪多的"
+        },
+        {
+          "word": "windy",
+          "phonetic": "",
+          "meaning": "多风的"
+        },
+        {
+          "word": "weather",
+          "phonetic": "",
+          "meaning": "天气"
+        },
+        {
+          "word": "how",
+          "phonetic": "",
+          "meaning": "怎么样"
+        },
+        {
+          "word": "there",
+          "phonetic": "",
+          "meaning": "在那里"
+        },
+        {
+          "word": "should",
+          "phonetic": "",
+          "meaning": "应该"
+        },
+        {
+          "word": "sometimes",
+          "phonetic": "",
+          "meaning": "有时候"
+        },
+        {
+          "word": "also",
+          "phonetic": "",
+          "meaning": "也;还"
+        },
+        {
+          "word": "umbrella",
+          "phonetic": "",
+          "meaning": "伞"
+        },
+        {
+          "word": "will",
+          "phonetic": "",
+          "meaning": "将;会"
+        },
+        {
+          "word": "put on",
+          "phonetic": "",
+          "meaning": "穿上;戴上"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4a-2025-u3-textbook-a",
+          "title": "Unit 3 Weather · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4a-2025-u3-textbook-b",
+          "title": "Unit 3 Weather · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 Fun activities",
+      "theme": "",
+      "words": [
+        {
+          "word": "go",
+          "phonetic": "",
+          "meaning": "去"
+        },
+        {
+          "word": "boating",
+          "phonetic": "",
+          "meaning": "划船"
+        },
+        {
+          "word": "fly",
+          "phonetic": "",
+          "meaning": "放飞;飞"
+        },
+        {
+          "word": "snowman",
+          "phonetic": "",
+          "meaning": "雪人"
+        },
+        {
+          "word": "bookshop",
+          "phonetic": "",
+          "meaning": "书店"
+        },
+        {
+          "word": "library",
+          "phonetic": "",
+          "meaning": "图书馆"
+        },
+        {
+          "word": "cinema",
+          "phonetic": "",
+          "meaning": "电影院"
+        },
+        {
+          "word": "museum",
+          "phonetic": "",
+          "meaning": "博物馆"
+        },
+        {
+          "word": "sports centre",
+          "phonetic": "",
+          "meaning": "体育中心"
+        },
+        {
+          "word": "fine",
+          "phonetic": "",
+          "meaning": "晴朗的"
+        },
+        {
+          "word": "too",
+          "phonetic": "",
+          "meaning": "太;过于"
+        },
+        {
+          "word": "now",
+          "phonetic": "",
+          "meaning": "现在"
+        },
+        {
+          "word": "after",
+          "phonetic": "",
+          "meaning": "在......后"
+        },
+        {
+          "word": "all kinds of",
+          "phonetic": "",
+          "meaning": "各种各样的"
+        },
+        {
+          "word": "when",
+          "phonetic": "",
+          "meaning": "当......的时候"
+        },
+        {
+          "word": "park",
+          "phonetic": "",
+          "meaning": "公园"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4a-2025-u4-textbook-a",
+          "title": "Unit 4 Fun activities · Lesson 2 · 课堂问候",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4a-2025-u4-textbook-b",
+          "title": "Unit 4 Fun activities · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 Animals",
+      "theme": "",
+      "words": [
+        {
+          "word": "bear",
+          "phonetic": "",
+          "meaning": "熊"
+        },
+        {
+          "word": "panda",
+          "phonetic": "",
+          "meaning": "大熊猫"
+        },
+        {
+          "word": "tiger",
+          "phonetic": "",
+          "meaning": "老虎"
+        },
+        {
+          "word": "elephant",
+          "phonetic": "",
+          "meaning": "大象"
+        },
+        {
+          "word": "monkey",
+          "phonetic": "",
+          "meaning": "猴子"
+        },
+        {
+          "word": "lion",
+          "phonetic": "",
+          "meaning": "狮子"
+        },
+        {
+          "word": "arm",
+          "phonetic": "",
+          "meaning": "手臂"
+        },
+        {
+          "word": "foot",
+          "phonetic": "",
+          "meaning": "脚"
+        },
+        {
+          "word": "leg",
+          "phonetic": "",
+          "meaning": "腿"
+        },
+        {
+          "word": "body",
+          "phonetic": "",
+          "meaning": "身体"
+        },
+        {
+          "word": "tail",
+          "phonetic": "",
+          "meaning": "尾巴"
+        },
+        {
+          "word": "head",
+          "phonetic": "",
+          "meaning": "头"
+        },
+        {
+          "word": "favourite",
+          "phonetic": "",
+          "meaning": "最喜欢的"
+        },
+        {
+          "word": "fast",
+          "phonetic": "",
+          "meaning": "快的;迅速的"
+        },
+        {
+          "word": "clever",
+          "phonetic": "",
+          "meaning": "聪明的"
+        },
+        {
+          "word": "its",
+          "phonetic": "",
+          "meaning": "它的"
+        },
+        {
+          "word": "pet",
+          "phonetic": "",
+          "meaning": "宠物"
+        },
+        {
+          "word": "meat",
+          "phonetic": "",
+          "meaning": "肉"
+        },
+        {
+          "word": "slow",
+          "phonetic": "",
+          "meaning": "缓慢的;迟缓的"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4a-2025-u5-textbook-a",
+          "title": "Unit 5 Animals · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4a-2025-u5-textbook-b",
+          "title": "Unit 5 Animals · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 My day",
+      "theme": "",
+      "words": [
+        {
+          "word": "thirteen",
+          "phonetic": "",
+          "meaning": "十三"
+        },
+        {
+          "word": "fourteen",
+          "phonetic": "",
+          "meaning": "十四"
+        },
+        {
+          "word": "fifteen",
+          "phonetic": "",
+          "meaning": "十五"
+        },
+        {
+          "word": "sixteen",
+          "phonetic": "",
+          "meaning": "十六"
+        },
+        {
+          "word": "seventeen",
+          "phonetic": "",
+          "meaning": "十七"
+        },
+        {
+          "word": "eighteen",
+          "phonetic": "",
+          "meaning": "十八"
+        },
+        {
+          "word": "nineteen",
+          "phonetic": "",
+          "meaning": "十九"
+        },
+        {
+          "word": "twenty",
+          "phonetic": "",
+          "meaning": "二十"
+        },
+        {
+          "word": "thirty",
+          "phonetic": "",
+          "meaning": "三十"
+        },
+        {
+          "word": "forty",
+          "phonetic": "",
+          "meaning": "四十"
+        },
+        {
+          "word": "fifty",
+          "phonetic": "",
+          "meaning": "五十"
+        },
+        {
+          "word": "get up",
+          "phonetic": "",
+          "meaning": "起床"
+        },
+        {
+          "word": "time",
+          "phonetic": "",
+          "meaning": "次"
+        },
+        {
+          "word": "clock",
+          "phonetic": "",
+          "meaning": "时钟"
+        },
+        {
+          "word": "have to",
+          "phonetic": "",
+          "meaning": "必须;不得不"
+        },
+        {
+          "word": "get to",
+          "phonetic": "",
+          "meaning": "到达"
+        },
+        {
+          "word": "before",
+          "phonetic": "",
+          "meaning": "在......之前"
+        },
+        {
+          "word": "hurry up",
+          "phonetic": "",
+          "meaning": "赶紧"
+        },
+        {
+          "word": "at",
+          "phonetic": "",
+          "meaning": "在(某时刻)"
+        },
+        {
+          "word": "breakfast",
+          "phonetic": "",
+          "meaning": "早餐;早饭"
+        },
+        {
+          "word": "over",
+          "phonetic": "",
+          "meaning": "结束"
+        },
+        {
+          "word": "half",
+          "phonetic": "",
+          "meaning": "半;一半"
+        },
+        {
+          "word": "hour",
+          "phonetic": "",
+          "meaning": "小时"
+        },
+        {
+          "word": "go to bed",
+          "phonetic": "",
+          "meaning": "上床睡觉"
+        },
+        {
+          "word": "after",
+          "phonetic": "",
+          "meaning": "在......后"
+        },
+        {
+          "word": "all kinds of",
+          "phonetic": "",
+          "meaning": "各种各样的"
+        },
+        {
+          "word": "also",
+          "phonetic": "",
+          "meaning": "也;还"
+        },
+        {
+          "word": "any",
+          "phonetic": "",
+          "meaning": "任何的;任一的"
+        },
+        {
+          "word": "arm",
+          "phonetic": "",
+          "meaning": "手臂"
+        },
+        {
+          "word": "basketball",
+          "phonetic": "",
+          "meaning": "篮球"
+        },
+        {
+          "word": "be good at",
+          "phonetic": "",
+          "meaning": "擅长"
+        },
+        {
+          "word": "bear",
+          "phonetic": "",
+          "meaning": "熊"
+        },
+        {
+          "word": "boating",
+          "phonetic": "",
+          "meaning": "划船"
+        },
+        {
+          "word": "body",
+          "phonetic": "",
+          "meaning": "身体"
+        },
+        {
+          "word": "bookshop",
+          "phonetic": "",
+          "meaning": "书店"
+        },
+        {
+          "word": "China",
+          "phonetic": "",
+          "meaning": "中国"
+        },
+        {
+          "word": "cinema",
+          "phonetic": "",
+          "meaning": "电影院"
+        },
+        {
+          "word": "clever",
+          "phonetic": "",
+          "meaning": "聪明的"
+        },
+        {
+          "word": "cloudy",
+          "phonetic": "",
+          "meaning": "多云的;阴的"
+        },
+        {
+          "word": "cold",
+          "phonetic": "",
+          "meaning": "寒冷的"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4a-2025-u6-textbook-a",
+          "title": "Unit 6 My day · Lesson 3 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4a-2025-u6-textbook-b",
+          "title": "Unit 6 My day · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    }
+  ]
+}

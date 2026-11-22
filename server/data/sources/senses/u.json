@@ -5770,6 +5770,21 @@
     "contentType": "non-fiction",
     "origin": "llm-verify"
   },
+  "usa": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "美国"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ˌjuːesˈeɪ/"
+    },
+    "origin": "seed:pep-g3b-2025"
+  },
   "usage": {
     "meanings": [
       {

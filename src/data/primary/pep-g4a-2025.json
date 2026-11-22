@@ -1,0 +1,858 @@
+{
+  "code": "pep-g4a-2025",
+  "name": "人教 PEP 四上（2025）",
+  "level": "小学四上",
+  "shortLabel": "四上",
+  "year": 2025,
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 Helping at home",
+      "theme": "",
+      "words": [
+        {
+          "word": "pe",
+          "phonetic": "/ˌpiː ˈiː/",
+          "meaning": "体育（课）"
+        },
+        {
+          "word": "job",
+          "phonetic": "/dʒɒb/",
+          "meaning": "工作；职业"
+        },
+        {
+          "word": "doctor",
+          "phonetic": "/ˈdɒktə(r)/",
+          "meaning": "医生"
+        },
+        {
+          "word": "farmer",
+          "phonetic": "/ˈfɑːmə(r)/",
+          "meaning": "农民"
+        },
+        {
+          "word": "nurse",
+          "phonetic": "/nɜːs/",
+          "meaning": "护士"
+        },
+        {
+          "word": "office worker",
+          "phonetic": "/ˈɒfɪs ˈwɜːkə(r)/",
+          "meaning": "公司职员"
+        },
+        {
+          "word": "factory worker",
+          "phonetic": "/ˈfæktri ˈwɜːkə(r)/",
+          "meaning": "工厂工人"
+        },
+        {
+          "word": "busy",
+          "phonetic": "/ˈbɪzi/",
+          "meaning": "忙碌的"
+        },
+        {
+          "word": "tired",
+          "phonetic": "/ˈtaɪəd/",
+          "meaning": "疲倦的"
+        },
+        {
+          "word": "chore",
+          "phonetic": "/tʃɔː(r)/",
+          "meaning": "家庭杂务"
+        },
+        {
+          "word": "cook",
+          "phonetic": "/kʊk/",
+          "meaning": "烹饪；厨师"
+        },
+        {
+          "word": "clean",
+          "phonetic": "/kliːn/",
+          "meaning": "打扫；干净的"
+        },
+        {
+          "word": "room",
+          "phonetic": "/ruːm/",
+          "meaning": "房间"
+        },
+        {
+          "word": "look after",
+          "phonetic": "/lʊk ˈɑːftə(r)/",
+          "meaning": "照顾"
+        },
+        {
+          "word": "sweep",
+          "phonetic": "/swiːp/",
+          "meaning": "扫"
+        },
+        {
+          "word": "floor",
+          "phonetic": "/flɔː(r)/",
+          "meaning": "地板"
+        },
+        {
+          "word": "together",
+          "phonetic": "/təˈɡeðə(r)/",
+          "meaning": "一起"
+        },
+        {
+          "word": "people",
+          "phonetic": "/ˈpiːpl/",
+          "meaning": "人们"
+        },
+        {
+          "word": "child",
+          "phonetic": "/tʃaɪld/",
+          "meaning": "儿童；小孩"
+        },
+        {
+          "word": "children",
+          "phonetic": "/ˈtʃɪldrən/",
+          "meaning": "child 的复数"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4a-2025-u1",
+          "title": "Unit 1 Helping at home · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like pe.\nThis is my job.\nI can see doctor.\nWe need farmer.\nNurse is nice.",
+          "translation": "你好，我喜欢体育（课）。\n这是我的工作。\n我能看见医生。\n我们需要农民。\n护士很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4a-2025-u1-textbook-a",
+          "title": "Unit 1 Helping at home · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4a-2025-u1-textbook-b",
+          "title": "Unit 1 Helping at home · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4a-2025-u1",
+          "title": "Unit 1 Helping at home · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like pe.\nThis is my job.\nI can see doctor.\nWe need farmer.\nNurse is nice.",
+          "translation": "你好，我喜欢体育（课）。\n这是我的工作。\n我能看见医生。\n我们需要农民。\n护士很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 My friends",
+      "theme": "",
+      "words": [
+        {
+          "word": "his",
+          "phonetic": "/hɪz/",
+          "meaning": "他的"
+        },
+        {
+          "word": "strong",
+          "phonetic": "/strɒŋ/",
+          "meaning": "强壮的"
+        },
+        {
+          "word": "hair",
+          "phonetic": "/heə(r)/",
+          "meaning": "头发"
+        },
+        {
+          "word": "also",
+          "phonetic": "/ˈɔːlsəʊ/",
+          "meaning": "也"
+        },
+        {
+          "word": "kind",
+          "phonetic": "/kaɪnd/",
+          "meaning": "友好的"
+        },
+        {
+          "word": "quiet",
+          "phonetic": "/ˈkwaɪət/",
+          "meaning": "文静的"
+        },
+        {
+          "word": "best",
+          "phonetic": "/best/",
+          "meaning": "最好的"
+        },
+        {
+          "word": "read",
+          "phonetic": "/riːd/",
+          "meaning": "阅读"
+        },
+        {
+          "word": "chinese",
+          "phonetic": "/ˌtʃaɪˈniːz/",
+          "meaning": "中文；中国人；中国的"
+        },
+        {
+          "word": "play",
+          "phonetic": "/pleɪ/",
+          "meaning": "玩耍"
+        },
+        {
+          "word": "game",
+          "phonetic": "/ɡeɪm/",
+          "meaning": "游戏"
+        },
+        {
+          "word": "football",
+          "phonetic": "/ˈfʊtbɔːl/",
+          "meaning": "足球运动"
+        },
+        {
+          "word": "basketball",
+          "phonetic": "/ˈbɑːskɪtbɔːl/",
+          "meaning": "篮球运动"
+        },
+        {
+          "word": "always",
+          "phonetic": "/ˈɔːlweɪz/",
+          "meaning": "总是"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4a-2025-u2",
+          "title": "Unit 2 My friends · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like his.\nThis is my strong.\nI can see hair.\nWe need also.\nKind is nice.",
+          "translation": "你好，我喜欢他的。\n这是我的强壮的。\n我能看见头发。\n我们需要也。\n友好的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4a-2025-u2-textbook-a",
+          "title": "Unit 2 My friends · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4a-2025-u2-textbook-b",
+          "title": "Unit 2 My friends · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4a-2025-u2",
+          "title": "Unit 2 My friends · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like his.\nThis is my strong.\nI can see hair.\nWe need also.\nKind is nice.",
+          "translation": "你好，我喜欢他的。\n这是我的强壮的。\n我能看见头发。\n我们需要也。\n友好的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 Places we live in",
+      "theme": "",
+      "words": [
+        {
+          "word": "afternoon",
+          "phonetic": "/ˌɑːftəˈnuːn/",
+          "meaning": "下午"
+        },
+        {
+          "word": "there",
+          "phonetic": "/ðeə(r)/",
+          "meaning": "（表示存在）在那里"
+        },
+        {
+          "word": "playground",
+          "phonetic": "/ˈpleɪɡraʊnd/",
+          "meaning": "游乐场；操场"
+        },
+        {
+          "word": "park",
+          "phonetic": "/pɑːk/",
+          "meaning": "公园"
+        },
+        {
+          "word": "over",
+          "phonetic": "/ˈəʊvə(r)/",
+          "meaning": "在……的远端（或对面）"
+        },
+        {
+          "word": "hospital",
+          "phonetic": "/ˈhɒspɪtl/",
+          "meaning": "医院"
+        },
+        {
+          "word": "shop",
+          "phonetic": "/ʃɒp/",
+          "meaning": "商店"
+        },
+        {
+          "word": "toilet",
+          "phonetic": "/ˈtɔɪlət/",
+          "meaning": "厕所；卫生间"
+        },
+        {
+          "word": "bus stop",
+          "phonetic": "/ˈbʌs stɒp/",
+          "meaning": "公共汽车站"
+        },
+        {
+          "word": "library",
+          "phonetic": "/ˈlaɪbrəri/",
+          "meaning": "图书馆"
+        },
+        {
+          "word": "sport",
+          "phonetic": "/spɔːt/",
+          "meaning": "体育运动"
+        },
+        {
+          "word": "walk",
+          "phonetic": "/wɔːk/",
+          "meaning": "散步；行走"
+        },
+        {
+          "word": "community",
+          "phonetic": "/kəˈmjuːnəti/",
+          "meaning": "社区"
+        },
+        {
+          "word": "favourite",
+          "phonetic": "/ˈfeɪvərɪt/",
+          "meaning": "最喜欢的"
+        },
+        {
+          "word": "place",
+          "phonetic": "/pleɪs/",
+          "meaning": "地方；场所"
+        },
+        {
+          "word": "photo",
+          "phonetic": "/ˈfəʊtəʊ/",
+          "meaning": "照片"
+        },
+        {
+          "word": "story",
+          "phonetic": "/ˈstɔːri/",
+          "meaning": "故事"
+        },
+        {
+          "word": "buy",
+          "phonetic": "/baɪ/",
+          "meaning": "购买"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4a-2025-u3",
+          "title": "Unit 3 Places we live in · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like afternoon.\nThis is my there.\nI can see playground.\nWe need park.\nOver is nice.",
+          "translation": "你好，我喜欢下午。\n这是我的（表示存在）在那里。\n我能看见游乐场。\n我们需要公园。\n在……的远端（或对面）很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4a-2025-u3-textbook-a",
+          "title": "Unit 3 Places we live in · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4a-2025-u3-textbook-b",
+          "title": "Unit 3 Places we live in · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4a-2025-u3",
+          "title": "Unit 3 Places we live in · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like afternoon.\nThis is my there.\nI can see playground.\nWe need park.\nOver is nice.",
+          "translation": "你好，我喜欢下午。\n这是我的（表示存在）在那里。\n我能看见游乐场。\n我们需要公园。\n在……的远端（或对面）很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 Helping in the community",
+      "theme": "",
+      "words": [
+        {
+          "word": "firefighter",
+          "phonetic": "/ˈfaɪəfaɪtə(r)/",
+          "meaning": "消防队员"
+        },
+        {
+          "word": "why",
+          "phonetic": "/waɪ/",
+          "meaning": "为什么"
+        },
+        {
+          "word": "driver",
+          "phonetic": "/ˈdraɪvə(r)/",
+          "meaning": "司机"
+        },
+        {
+          "word": "cleaner",
+          "phonetic": "/ˈkliːnə(r)/",
+          "meaning": "清洁工"
+        },
+        {
+          "word": "cook",
+          "phonetic": "/kʊk/",
+          "meaning": "烹饪；厨师"
+        },
+        {
+          "word": "delivery worker",
+          "phonetic": "/dɪˈlɪvəri ˈwɜːkə(r)/",
+          "meaning": "快递员"
+        },
+        {
+          "word": "police officer",
+          "phonetic": "/pəˈliːs ˈɒfɪsə(r)/",
+          "meaning": "警察；警员"
+        },
+        {
+          "word": "a lot of",
+          "phonetic": "/ə lɒt əv/",
+          "meaning": "大量；许多"
+        },
+        {
+          "word": "now",
+          "phonetic": "/naʊ/",
+          "meaning": "现在"
+        },
+        {
+          "word": "make the bed",
+          "phonetic": "/meɪk ðə bed/",
+          "meaning": "铺床"
+        },
+        {
+          "word": "old",
+          "phonetic": "/əʊld/",
+          "meaning": "年纪大的；老的"
+        },
+        {
+          "word": "tell",
+          "phonetic": "/tel/",
+          "meaning": "讲述；告诉"
+        },
+        {
+          "word": "everyone",
+          "phonetic": "/ˈevriwʌn/",
+          "meaning": "每人"
+        },
+        {
+          "word": "ms",
+          "phonetic": "/mɪz/",
+          "meaning": "女士（用于女子姓氏前）"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4a-2025-u4",
+          "title": "Unit 4 Helping in the community · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like firefighter.\nThis is my why.\nI can see driver.\nWe need cleaner.\nCook is nice.",
+          "translation": "你好，我喜欢消防队员。\n这是我的为什么。\n我能看见司机。\n我们需要清洁工。\n厨师很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4a-2025-u4-textbook-a",
+          "title": "Unit 4 Helping in the community · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4a-2025-u4-textbook-b",
+          "title": "Unit 4 Helping in the community · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4a-2025-u4",
+          "title": "Unit 4 Helping in the community · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like firefighter.\nThis is my why.\nI can see driver.\nWe need cleaner.\nCook is nice.",
+          "translation": "你好，我喜欢消防队员。\n这是我的为什么。\n我能看见司机。\n我们需要清洁工。\n厨师很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 The weather and us",
+      "theme": "",
+      "words": [
+        {
+          "word": "speak",
+          "phonetic": "/spiːk/",
+          "meaning": "说话；发言"
+        },
+        {
+          "word": "weather",
+          "phonetic": "/ˈweðə(r)/",
+          "meaning": "天气"
+        },
+        {
+          "word": "sunny",
+          "phonetic": "/ˈsʌni/",
+          "meaning": "阳光充足的"
+        },
+        {
+          "word": "hot",
+          "phonetic": "/hɒt/",
+          "meaning": "热的"
+        },
+        {
+          "word": "bad",
+          "phonetic": "/bæd/",
+          "meaning": "令人不快的；坏的"
+        },
+        {
+          "word": "cold",
+          "phonetic": "/kəʊld/",
+          "meaning": "冷的"
+        },
+        {
+          "word": "windy",
+          "phonetic": "/ˈwɪndi/",
+          "meaning": "多风的"
+        },
+        {
+          "word": "cloudy",
+          "phonetic": "/ˈklaʊdi/",
+          "meaning": "多云的"
+        },
+        {
+          "word": "rainy",
+          "phonetic": "/ˈreɪni/",
+          "meaning": "阴雨的"
+        },
+        {
+          "word": "snowy",
+          "phonetic": "/ˈsnəʊi/",
+          "meaning": "下雪的"
+        },
+        {
+          "word": "cool",
+          "phonetic": "/kuːl/",
+          "meaning": "凉爽的"
+        },
+        {
+          "word": "warm",
+          "phonetic": "/wɔːm/",
+          "meaning": "温暖的"
+        },
+        {
+          "word": "tomorrow",
+          "phonetic": "/təˈmɒrəʊ/",
+          "meaning": "在明天"
+        },
+        {
+          "word": "rain",
+          "phonetic": "/reɪn/",
+          "meaning": "雨；下雨"
+        },
+        {
+          "word": "closed",
+          "phonetic": "/kləʊzd/",
+          "meaning": "关闭的"
+        },
+        {
+          "word": "film",
+          "phonetic": "/fɪlm/",
+          "meaning": "电影"
+        },
+        {
+          "word": "degree",
+          "phonetic": "/dɪˈɡriː/",
+          "meaning": "度；度数"
+        },
+        {
+          "word": "fly",
+          "phonetic": "/flaɪ/",
+          "meaning": "操纵（飞行器等）；飞"
+        },
+        {
+          "word": "kite",
+          "phonetic": "/kaɪt/",
+          "meaning": "风筝"
+        },
+        {
+          "word": "snowman",
+          "phonetic": "/ˈsnəʊmæn/",
+          "meaning": "雪人"
+        },
+        {
+          "word": "fun",
+          "phonetic": "/fʌn/",
+          "meaning": "乐趣"
+        },
+        {
+          "word": "their",
+          "phonetic": "/ðeə(r)/",
+          "meaning": "他们的；她们的；它们的"
+        },
+        {
+          "word": "swim",
+          "phonetic": "/swɪm/",
+          "meaning": "游泳"
+        },
+        {
+          "word": "sydney",
+          "phonetic": "/ˈsɪdni/",
+          "meaning": "悉尼"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4a-2025-u5",
+          "title": "Unit 5 The weather and us · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like speak.\nThis is my weather.\nI can see sunny.\nWe need hot.\nBad is nice.",
+          "translation": "你好，我喜欢说话。\n这是我的天气。\n我能看见阳光充足的。\n我们需要热的。\n令人不快的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4a-2025-u5-textbook-a",
+          "title": "Unit 5 The weather and us · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4a-2025-u5-textbook-b",
+          "title": "Unit 5 The weather and us · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4a-2025-u5",
+          "title": "Unit 5 The weather and us · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like speak.\nThis is my weather.\nI can see sunny.\nWe need hot.\nBad is nice.",
+          "translation": "你好，我喜欢说话。\n这是我的天气。\n我能看见阳光充足的。\n我们需要热的。\n令人不快的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 Changing for the seasons",
+      "theme": "",
+      "words": [
+        {
+          "word": "whose",
+          "phonetic": "/huːz/",
+          "meaning": "谁的"
+        },
+        {
+          "word": "sweater",
+          "phonetic": "/ˈswetə(r)/",
+          "meaning": "毛衣"
+        },
+        {
+          "word": "sock",
+          "phonetic": "/sɒk/",
+          "meaning": "短袜"
+        },
+        {
+          "word": "wear",
+          "phonetic": "/weə(r)/",
+          "meaning": "穿；戴"
+        },
+        {
+          "word": "shirt",
+          "phonetic": "/ʃɜːt/",
+          "meaning": "衬衫"
+        },
+        {
+          "word": "coat",
+          "phonetic": "/kəʊt/",
+          "meaning": "大衣；外套"
+        },
+        {
+          "word": "mine",
+          "phonetic": "/maɪn/",
+          "meaning": "我的"
+        },
+        {
+          "word": "dress",
+          "phonetic": "/dres/",
+          "meaning": "连衣裙"
+        },
+        {
+          "word": "which",
+          "phonetic": "/wɪtʃ/",
+          "meaning": "哪一个；哪一类"
+        },
+        {
+          "word": "season",
+          "phonetic": "/ˈsiːzn/",
+          "meaning": "季节"
+        },
+        {
+          "word": "winter",
+          "phonetic": "/ˈwɪntə(r)/",
+          "meaning": "冬天"
+        },
+        {
+          "word": "snow",
+          "phonetic": "/snəʊ/",
+          "meaning": "雪；下雪"
+        },
+        {
+          "word": "get together",
+          "phonetic": "/ɡet təˈɡeðə(r)/",
+          "meaning": "聚会"
+        },
+        {
+          "word": "spring",
+          "phonetic": "/sprɪŋ/",
+          "meaning": "春天"
+        },
+        {
+          "word": "summer",
+          "phonetic": "/ˈsʌmə(r)/",
+          "meaning": "夏天"
+        },
+        {
+          "word": "autumn",
+          "phonetic": "/ˈɔːtəm/",
+          "meaning": "秋天"
+        },
+        {
+          "word": "t-shirt",
+          "phonetic": "/ˈtiː ʃɜːt/",
+          "meaning": "T恤衫"
+        },
+        {
+          "word": "fall",
+          "phonetic": "/fɔːl/",
+          "meaning": "落下"
+        },
+        {
+          "word": "leaf",
+          "phonetic": "/liːf/",
+          "meaning": "叶子（复数 leaves）"
+        },
+        {
+          "word": "glove",
+          "phonetic": "/ɡlʌv/",
+          "meaning": "手套"
+        },
+        {
+          "word": "then",
+          "phonetic": "/ðen/",
+          "meaning": "然后；那时"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4a-2025-u6",
+          "title": "Unit 6 Changing for the seasons · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like whose.\nThis is my sweater.\nI can see sock.\nWe need wear.\nShirt is nice.",
+          "translation": "你好，我喜欢谁的。\n这是我的毛衣。\n我能看见短袜。\n我们需要穿。\n衬衫很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4a-2025-u6-textbook-a",
+          "title": "Unit 6 Changing for the seasons · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4a-2025-u6-textbook-b",
+          "title": "Unit 6 Changing for the seasons · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4a-2025-u6",
+          "title": "Unit 6 Changing for the seasons · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like whose.\nThis is my sweater.\nI can see sock.\nWe need wear.\nShirt is nice.",
+          "translation": "你好，我喜欢谁的。\n这是我的毛衣。\n我能看见短袜。\n我们需要穿。\n衬衫很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    }
+  ]
+}

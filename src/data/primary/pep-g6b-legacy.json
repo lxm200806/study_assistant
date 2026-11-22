@@ -1,0 +1,754 @@
+{
+  "code": "pep-g6b-legacy",
+  "name": "人教 PEP 六下（旧版）",
+  "level": "小学六下",
+  "shortLabel": "六下·旧",
+  "year": 2013,
+  "series": "pep",
+  "seriesLabel": "人教 PEP",
+  "grade": "六年级",
+  "term": "下",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 How tall are you?",
+      "theme": "",
+      "words": [
+        {
+          "word": "younger",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "young",
+          "phonetic": "",
+          "meaning": "的比较级)更年轻的"
+        },
+        {
+          "word": "older",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "old",
+          "phonetic": "",
+          "meaning": "的比较级)更年长的"
+        },
+        {
+          "word": "taller",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "tall",
+          "phonetic": "",
+          "meaning": "的比较级)更高的"
+        },
+        {
+          "word": "shorter",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "short",
+          "phonetic": "",
+          "meaning": "的比较级)更矮的;更短的"
+        },
+        {
+          "word": "longer",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "long",
+          "phonetic": "",
+          "meaning": "的比较级)更长的"
+        },
+        {
+          "word": "thinner",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "thin",
+          "phonetic": "",
+          "meaning": "的比较级)更瘦的"
+        },
+        {
+          "word": "heavier",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "heavy",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hevi",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "big",
+          "phonetic": "",
+          "meaning": "的比较级)更大的"
+        },
+        {
+          "word": "smaller",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "small",
+          "phonetic": "",
+          "meaning": "的比较级)更小的"
+        },
+        {
+          "word": "stronger",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "strong",
+          "phonetic": "",
+          "meaning": "的比较级)更强壮的"
+        },
+        {
+          "word": "dinosaur",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hall",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "metre",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "meter",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "than",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "both",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "kilogram",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "countryside",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "lower",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "low",
+          "phonetic": "",
+          "meaning": "的比较级)更低"
+        },
+        {
+          "word": "shadow",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "smarter",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "smart",
+          "phonetic": "",
+          "meaning": "的比较级)更聪明的"
+        },
+        {
+          "word": "become",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g6b-legacy-u1-textbook-a",
+          "title": "Unit 1 How tall are you? · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g6b-legacy-u1-textbook-b",
+          "title": "Unit 1 How tall are you? · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 Last weekend",
+      "theme": "",
+      "words": [
+        {
+          "word": "cleaned",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "clean",
+          "phonetic": "",
+          "meaning": "的过去式)打扫"
+        },
+        {
+          "word": "stayed",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "stay",
+          "phonetic": "",
+          "meaning": "的过去式)停留;待"
+        },
+        {
+          "word": "washed",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "wash",
+          "phonetic": "",
+          "meaning": "的过去式)洗"
+        },
+        {
+          "word": "watched",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "watch",
+          "phonetic": "",
+          "meaning": "的过去式)看"
+        },
+        {
+          "word": "had",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "have",
+          "phonetic": "",
+          "meaning": "的过去式)患病;得病"
+        },
+        {
+          "word": "had a cold",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "slept",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sleep",
+          "phonetic": "",
+          "meaning": "的过去式)睡觉"
+        },
+        {
+          "word": "read",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "saw",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "see",
+          "phonetic": "",
+          "meaning": "的过去式)看见"
+        },
+        {
+          "word": "last",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "yesterday",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "before",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "drank",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "drink",
+          "phonetic": "",
+          "meaning": "的过去式)喝"
+        },
+        {
+          "word": "show",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "magazine",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "better",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "well",
+          "phonetic": "",
+          "meaning": "的比较级)更好的"
+        },
+        {
+          "word": "faster",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fast",
+          "phonetic": "",
+          "meaning": "的比较级)更快的"
+        },
+        {
+          "word": "hotel",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fixed",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fix",
+          "phonetic": "",
+          "meaning": "的过去式)修理"
+        },
+        {
+          "word": "broken",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "lamp",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "loud",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "enjoy",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g6b-legacy-u2-textbook-a",
+          "title": "Unit 2 Last weekend · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g6b-legacy-u2-textbook-b",
+          "title": "Unit 2 Last weekend · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 Where did you go?",
+      "theme": "",
+      "words": [
+        {
+          "word": "went",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "go",
+          "phonetic": "",
+          "meaning": "的过去式)去"
+        },
+        {
+          "word": "camp",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "went camping",
+          "phonetic": "",
+          "meaning": "野营"
+        },
+        {
+          "word": "fish",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "went fishing",
+          "phonetic": "",
+          "meaning": "去钓鱼"
+        },
+        {
+          "word": "rode",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "ride",
+          "phonetic": "",
+          "meaning": "的过去式)骑(马;自行车)"
+        },
+        {
+          "word": "hurt",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "ate",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "eat",
+          "phonetic": "",
+          "meaning": "的过去式)吃"
+        },
+        {
+          "word": "took",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "take",
+          "phonetic": "",
+          "meaning": "的过去式)拍照"
+        },
+        {
+          "word": "took pictures",
+          "phonetic": "",
+          "meaning": "照相"
+        },
+        {
+          "word": "bought",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "buy",
+          "phonetic": "",
+          "meaning": "的过去式)买"
+        },
+        {
+          "word": "gift",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fell",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fall",
+          "phonetic": "",
+          "meaning": "的过去式)摔倒"
+        },
+        {
+          "word": "off",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "mule",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Turpan",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "could",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "can",
+          "phonetic": "",
+          "meaning": "的过去式)能"
+        },
+        {
+          "word": "till",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "beach",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "basket",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "part",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "licked",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "lick",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "laughed",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "laugh",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g6b-legacy-u3-textbook-a",
+          "title": "Unit 3 Where did you go? · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g6b-legacy-u3-textbook-b",
+          "title": "Unit 3 Where did you go? · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 Then and now Recycle Mike's happy days",
+      "theme": "",
+      "words": [
+        {
+          "word": "dining hall",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "grass",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "gym",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "ago",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "cycling",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "go cycling",
+          "phonetic": "",
+          "meaning": "去骑自行车"
+        },
+        {
+          "word": "ice-skate",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "badminton",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "star",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "easy",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "look up",
+          "phonetic": "",
+          "meaning": "查阅"
+        },
+        {
+          "word": "Internet",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "different",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "active",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "race",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "nothing",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "thought",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "think",
+          "phonetic": "",
+          "meaning": "的过去式)想"
+        },
+        {
+          "word": "felt",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "feel",
+          "phonetic": "",
+          "meaning": "的过去式)感觉"
+        },
+        {
+          "word": "cheetah",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "trip",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "woke",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "wake",
+          "phonetic": "",
+          "meaning": "的过去式)醒"
+        },
+        {
+          "word": "dream",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g6b-legacy-u4-textbook-a",
+          "title": "Unit 4 Then and now Recycle Mike's happy days · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g6b-legacy-u4-textbook-b",
+          "title": "Unit 4 Then and now Recycle Mike's happy days · Let's talk / Let's talk / Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "bookCode": "jt-g3a-2024",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "jt-g3a-2024-u1-textbook-a",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Greetings · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u1-textbook-b",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Greetings · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u2-textbook-a",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 School things · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u2-textbook-b",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 School things · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u3-textbook-a",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Toys · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u3-textbook-b",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Toys · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u4-textbook-a",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Friends · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u4-textbook-b",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Friends · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u5-textbook-a",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Drinks and fruits · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u5-textbook-b",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Drinks and fruits · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u6-textbook-a",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Food · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3a-2024-u6-textbook-b",
+      "bookCode": "jt-g3a-2024",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Food · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

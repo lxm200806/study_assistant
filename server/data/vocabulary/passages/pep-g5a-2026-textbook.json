@@ -1,0 +1,139 @@
+{
+  "bookCode": "pep-g5a-2026",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "pep-g5a-2026-u1-textbook-a",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Different friends · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u1-textbook-b",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Different friends · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u2-textbook-a",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 My feelings · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u2-textbook-b",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 My feelings · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u3-textbook-a",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Work and play · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u3-textbook-b",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Work and play · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u4-textbook-a",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Healthy habits · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u4-textbook-b",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Healthy habits · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u5-textbook-a",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Food we eat · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u5-textbook-b",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Food we eat · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u6-textbook-a",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Nature and us · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-2026-u6-textbook-b",
+      "bookCode": "pep-g5a-2026",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Nature and us · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

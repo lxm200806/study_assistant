@@ -1,0 +1,66 @@
+{
+  "bookCode": "pep-g3a-2024",
+  "kind": "authored",
+  "passages": [
+    {
+      "key": "pep-g3a-2024-u1",
+      "bookCode": "pep-g3a-2024",
+      "unitId": "u1",
+      "kind": "authored",
+      "title": "Unit 1 Making friends · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, my name is Mina.\nHi, nice to meet you.\nI can share my toy.\nI listen and smile.\nGoodbye, my friend.",
+      "translation": "你好，我叫米娜。\n嗨，很高兴认识你。\n我可以分享我的玩具。\n我认真听，还微笑。\n再见，我的朋友。"
+    },
+    {
+      "key": "pep-g3a-2024-u2",
+      "bookCode": "pep-g3a-2024",
+      "unitId": "u2",
+      "kind": "authored",
+      "title": "Unit 2 Different families · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "This is my family.\nI have a mum and a dad.\nMy grandma is nice.\nI have a small baby brother.\nSome cousins come to see me.",
+      "translation": "这是我的家。\n我有妈妈和爸爸。\n我的奶奶很好。\n我有一个小宝宝弟弟。\n一些堂表亲来看我。"
+    },
+    {
+      "key": "pep-g3a-2024-u3",
+      "bookCode": "pep-g3a-2024",
+      "unitId": "u3",
+      "kind": "authored",
+      "title": "Unit 3 Amazing animals · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "I like animals.\nI have a pet cat.\nWe go to the zoo.\nLook at the tall giraffe.\nThe panda is cute.",
+      "translation": "我喜欢动物。\n我有一只宠物猫。\n我们去动物园。\n看那只高高的长颈鹿。\n大熊猫很可爱。"
+    },
+    {
+      "key": "pep-g3a-2024-u4",
+      "bookCode": "pep-g3a-2024",
+      "unitId": "u4",
+      "kind": "authored",
+      "title": "Unit 4 Plants around us · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Our school has a new garden.\nPlants need water and sun.\nI see a flower and a green leaf.\nApples and bananas are fruit.\nDo not pick them.",
+      "translation": "我们学校有一座新花园。\n植物需要水和阳光。\n我看见一朵花和一片绿叶。\n苹果和香蕉是水果。\n请不要摘它们。"
+    },
+    {
+      "key": "pep-g3a-2024-u5",
+      "bookCode": "pep-g3a-2024",
+      "unitId": "u5",
+      "kind": "authored",
+      "title": "Unit 5 The colourful world · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "What colour do you see?\nI see red and yellow.\nI draw a blue sea.\nI make a pink duck.\nThe world is nice.",
+      "translation": "你看见什么颜色？\n我看见红色和黄色。\n我画一片蓝色的海。\n我画一只粉色的鸭子。\n世界真美好。"
+    },
+    {
+      "key": "pep-g3a-2024-u6",
+      "bookCode": "pep-g3a-2024",
+      "unitId": "u6",
+      "kind": "authored",
+      "title": "Unit 6 Useful numbers · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "I am five years old.\nOne, two, three, four, five.\nIt is three o'clock.\nWe cut the cake.\nWe eat and smile.",
+      "translation": "我五岁了。\n一、二、三、四、五。\n现在三点整。\n我们切蛋糕。\n我们边吃边笑。"
+    }
+  ]
+}

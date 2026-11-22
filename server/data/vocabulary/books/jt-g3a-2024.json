@@ -1,0 +1,844 @@
+{
+  "code": "jt-g3a-2024",
+  "name": "人教精通 三上（2024）",
+  "description": "人教精通 三上（2024）。词表/课文整理自个人课本 Markdown（kb/md）。",
+  "level": "小学三上",
+  "targetWordCount": 120,
+  "wordCount": 119,
+  "source": "jt-g3a-2024-kb-md",
+  "words": [
+    {
+      "word": "hello",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "i",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "am",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "miss",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "what",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "is",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "your",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "name",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "stand up",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "boy",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "and",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "girl",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sit down",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "mr",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "dad",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "pencil",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sharpener",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "pencil box",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "schoolbag",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "eraser",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "crayon",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "pen",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ruler",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "look",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "new",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "it",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "nice",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "can",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "use",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "find",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "my",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sure",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "you",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sorry",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "don",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ball",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "doll",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "kite",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "jigsaw",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "toy",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "cat",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "dog",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "bike",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "bus",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "this",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "mum",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "gift",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "for",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "so",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "cute",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play with",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "good",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "friend",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "she",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "has",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "often",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "share",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "face",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "hair",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "eye",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ear",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "nose",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "mouth",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "long",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "short",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "big",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "small",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "tall",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "let",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ok",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "his",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "he",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "or",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "her",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "are",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "milk",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "water",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "tea",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "juice",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "cola",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "apple",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "banana",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "orange",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "grape",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "lemon",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "drink",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "fruit",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "buy",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "some",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "too",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "tomorrow",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "like",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "yes",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "no",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "want",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "make",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "say",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ice cream",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "candy",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "they",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "bad",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "cake",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "bread",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "rice",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "noodle",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "soup",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "egg",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "chicken",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "fish",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "tomato",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "potato",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "food",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "but",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "hungry",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "dinner",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "need",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "vegetable",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "tomatoes with eggs",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1124 @@
+{
+  "code": "pep-g5b-legacy",
+  "name": "人教 PEP 五下（旧版）",
+  "description": "人教 PEP 五下（旧版）。词表/课文整理自个人课本 Markdown（kb/md）。",
+  "level": "小学五下",
+  "targetWordCount": 163,
+  "wordCount": 159,
+  "source": "pep-g5b-legacy-kb-md",
+  "words": [
+    {
+      "word": "eat breakfast",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "class",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play sports",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "exercise",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "do morning exercises",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "eat dinner",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "clean my room",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "go for a walk",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "go shopping",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "take",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "dancing",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "take a dancing class",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "when",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "after",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "start",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "usually",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "spain",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "late",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "why",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "shop",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "work",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "last",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sound",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "also",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "busy",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "need",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "play",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "letter",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "live",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "island",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "always",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "cave",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "go swimming",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "win",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "spring",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "summer",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "autumn",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "winter",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "season",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "picnic",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "go on a picnic",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "pick",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "pick apples",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "snowman",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "make a snowman",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "which",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "best",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "snow",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "good job",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "because",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "vacation",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "all",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "pink",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "lovely",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "leaf",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "leaves",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "fall",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "paint",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "january",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "february",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "march",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "april",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "may",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "june",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "july",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "august",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "september",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "october",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "november",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "december",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "few",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "a few",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "thing",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "meet",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sports meet",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "trip",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "year",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "plant",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "contest",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "labour",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "labour day",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "the great wall",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "national",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "national day",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "american",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "thanksgiving",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "christmas",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "game",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "riddle",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "act",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "act out",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "rsvp",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "by",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "first",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "second",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "third",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "fourth",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "fifth",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "twelfth",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "twentieth",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "twenty-first",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "twenty-third",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "thirtieth",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "other",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "special",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "show",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "festival",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "kitten",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "diary",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "still",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "noise",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "fur",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "open",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "walk",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "mine",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "yours",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "his",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "hers",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "theirs",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ours",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "climbing",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "climb",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "ing",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "eating",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "eat",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "playing",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "jumping",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "jump",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "drinking",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "drink",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sleeping",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sleep",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "each",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "each other",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "excited",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "doing morning exercises",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "having",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "eating lunch",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "reading a book",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "listening to music",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "keep",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "keep to the right",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "keep your desk clean",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "talk quietly",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "turn",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "take turns",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "bamboo",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "its",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "anything",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "else",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "els",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "say",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "have a look",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sushi",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "teach",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "sure",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "canadian",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    },
+    {
+      "word": "spanish",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=kb-md"
+      ]
+    }
+  ]
+}

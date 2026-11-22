@@ -8797,6 +8797,21 @@
     "level": "B1",
     "origin": "book:mse-pet"
   },
+  "set the table": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "摆放餐具"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/set ðə ˈteɪbl/"
+    },
+    "origin": "seed:pep-g4b-2026"
+  },
   "set up": {
     "meanings": [
       {
@@ -39806,6 +39821,21 @@
     "level": "B1",
     "contentType": "non-fiction",
     "origin": "llm-verify"
+  },
+  "sydney": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "悉尼"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ˈsɪdni/"
+    },
+    "origin": "seed:pep-g4a-2025"
   },
   "symbol": {
     "meanings": [

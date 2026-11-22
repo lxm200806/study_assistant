@@ -1,0 +1,937 @@
+{
+  "code": "pep-g6a-legacy",
+  "name": "人教 PEP 六上（旧版）",
+  "level": "小学六上",
+  "shortLabel": "六上·旧",
+  "year": 2013,
+  "series": "pep",
+  "seriesLabel": "人教 PEP",
+  "grade": "六年级",
+  "term": "上",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 How can I get there?",
+      "theme": "",
+      "words": [
+        {
+          "word": "science",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "museum",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "post office",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "bookstore",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "cinema",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hospital",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "crossing",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "turn",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "left",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "straight",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "right",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "ask",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sir",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "interesting",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Italian",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "restaurant",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pizza",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "street",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "get",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "BDS",
+          "phonetic": "",
+          "meaning": "北斗卫星导航系统"
+        },
+        {
+          "word": "gave",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "give",
+          "phonetic": "",
+          "meaning": "的过去式)提供;交给"
+        },
+        {
+          "word": "feature",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "follow",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "far",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "tell",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g6a-legacy-u1-textbook-a",
+          "title": "Unit 1 How can I get there? · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g6a-legacy-u1-textbook-b",
+          "title": "Unit 1 How can I get there? · Let's talk / Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 Ways to go to school Recycle",
+      "theme": "",
+      "words": [
+        {
+          "word": "on foot",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "by",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "bus",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "plane",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "taxi",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "ship",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "subway",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "train",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "slow",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "down",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "slow down",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "stop",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Mrs",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "early",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "helmet",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "must",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "wear",
+          "phonetic": "",
+          "meaning": "穿"
+        },
+        {
+          "word": "attention",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pay attention to",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "traffic",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "traffic lights",
+          "phonetic": "",
+          "meaning": "交通信号灯"
+        },
+        {
+          "word": "Munich",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Germany",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Alaska",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sled",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fast",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "ferry",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Papa Westray",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Scotland",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g6a-legacy-u2-textbook-a",
+          "title": "Unit 2 Ways to go to school Recycle · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g6a-legacy-u2-textbook-b",
+          "title": "Unit 2 Ways to go to school Recycle · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 My weekend plan",
+      "theme": "",
+      "words": [
+        {
+          "word": "visit",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "film",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "see a film",
+          "phonetic": "",
+          "meaning": "看电影"
+        },
+        {
+          "word": "trip",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "take a trip",
+          "phonetic": "",
+          "meaning": "去旅行"
+        },
+        {
+          "word": "supermarket",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "evening",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "tonight",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "tomorrow",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "next week",
+          "phonetic": "",
+          "meaning": "下周"
+        },
+        {
+          "word": "dictionary",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "comic",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "comic book",
+          "phonetic": "",
+          "meaning": "连环画册"
+        },
+        {
+          "word": "word",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "word book",
+          "phonetic": "",
+          "meaning": "单词书"
+        },
+        {
+          "word": "postcard",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "lesson",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "space",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "travel",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "half",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "price",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Mid-Autumn Festival",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "together",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "get together",
+          "phonetic": "",
+          "meaning": "聚会"
+        },
+        {
+          "word": "mooncake",
+          "phonetic": "",
+          "meaning": "月饼"
+        },
+        {
+          "word": "poem",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "moon",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g6a-legacy-u3-textbook-a",
+          "title": "Unit 3 My weekend plan · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g6a-legacy-u3-textbook-b",
+          "title": "Unit 3 My weekend plan · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 I have a pen pal",
+      "theme": "",
+      "words": [
+        {
+          "word": "studies",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "study",
+          "phonetic": "",
+          "meaning": "的第三人称单数形式)学习"
+        },
+        {
+          "word": "puzzle",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hiking",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pen pal",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hobby",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "jasmine",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "idea",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Canberra",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "amazing",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "shall",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "goal",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "join",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "club",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "share",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g6a-legacy-u4-textbook-a",
+          "title": "Unit 4 I have a pen pal · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g6a-legacy-u4-textbook-b",
+          "title": "Unit 4 I have a pen pal · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 What does he do?",
+      "theme": "",
+      "words": [
+        {
+          "word": "factory",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "worker",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "postman",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "businessman",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "police officer",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fisherman",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "scientist",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pilot",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "coach",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "country",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "head teacher",
+          "phonetic": "",
+          "meaning": "校长"
+        },
+        {
+          "word": "sea",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "stay",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "university",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "gym",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "if",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "reporter",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "use",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "type",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "quickly",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "secretary",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g6a-legacy-u5-textbook-a",
+          "title": "Unit 5 What does he do? · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g6a-legacy-u5-textbook-b",
+          "title": "Unit 5 What does he do? · Let's talk / Let's talk / Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 How do you feel?",
+      "theme": "",
+      "words": [
+        {
+          "word": "angry",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "afraid",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sad",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "worried",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "happy",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "see a doctor",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "wear",
+          "phonetic": "",
+          "meaning": "穿"
+        },
+        {
+          "word": "more",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "deep",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "breath",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "take a deep breath",
+          "phonetic": "",
+          "meaning": "深深吸一口气"
+        },
+        {
+          "word": "count",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "count to ten",
+          "phonetic": "",
+          "meaning": "数到十"
+        },
+        {
+          "word": "chase",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "mice",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "mouse",
+          "phonetic": "",
+          "meaning": "的复数)老鼠"
+        },
+        {
+          "word": "bad",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hurt",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "ill",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "wrong",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "should",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "feel",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "well",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sit",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "grass",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hear",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "ant",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "worry",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "stuck",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "mud",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pull",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "everyone",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g6a-legacy-u6-textbook-a",
+          "title": "Unit 6 How do you feel? · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g6a-legacy-u6-textbook-b",
+          "title": "Unit 6 How do you feel? · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    }
+  ]
+}

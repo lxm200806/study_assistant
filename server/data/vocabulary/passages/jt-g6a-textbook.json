@@ -1,0 +1,139 @@
+{
+  "bookCode": "jt-g6a",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "jt-g6a-u1-textbook-a",
+      "bookCode": "jt-g6a",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Contents · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u1-textbook-b",
+      "bookCode": "jt-g6a",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Contents · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u2-textbook-a",
+      "bookCode": "jt-g6a",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Contents · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u2-textbook-b",
+      "bookCode": "jt-g6a",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Contents · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u3-textbook-a",
+      "bookCode": "jt-g6a",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Mr Kent wants people to care more about birds. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u3-textbook-b",
+      "bookCode": "jt-g6a",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Mr Kent wants people to care more about birds. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u4-textbook-a",
+      "bookCode": "jt-g6a",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 43 Time Get up: · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u4-textbook-b",
+      "bookCode": "jt-g6a",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 43 Time Get up: · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u5-textbook-a",
+      "bookCode": "jt-g6a",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 happy holiday for all children. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u5-textbook-b",
+      "bookCode": "jt-g6a",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 happy holiday for all children. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u6-textbook-a",
+      "bookCode": "jt-g6a",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Fun Facts People Eat Turkey On Thanksgiving Day In America · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6a-u6-textbook-b",
+      "bookCode": "jt-g6a",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Fun Facts People Eat Turkey On Thanksgiving Day In America · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

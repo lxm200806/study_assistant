@@ -152,6 +152,14 @@ const mainItems = computed<RailItem[]>(() => {
         match: (path) => path.startsWith('/pages/typing/')
       },
       {
+        key: 'primary',
+        label: '文章',
+        url: '/pages/primary/index',
+        icon: 'library',
+        show: () => true,
+        match: (path) => path.startsWith('/pages/primary/')
+      },
+      {
         key: 'books',
         label: '词书',
         url: '/pages/books/books',

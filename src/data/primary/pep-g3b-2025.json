@@ -1,0 +1,873 @@
+{
+  "code": "pep-g3b-2025",
+  "name": "人教 PEP 三下（2025）",
+  "level": "小学三下",
+  "shortLabel": "三下",
+  "year": 2025,
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 Meeting new people",
+      "theme": "",
+      "words": [
+        {
+          "word": "where",
+          "phonetic": "/weə(r)/",
+          "meaning": "在哪里；到哪里"
+        },
+        {
+          "word": "from",
+          "phonetic": "/frɒm/",
+          "meaning": "来自；从……来"
+        },
+        {
+          "word": "about",
+          "phonetic": "/əˈbaʊt/",
+          "meaning": "大约；左右"
+        },
+        {
+          "word": "today",
+          "phonetic": "/təˈdeɪ/",
+          "meaning": "今天"
+        },
+        {
+          "word": "teacher",
+          "phonetic": "/ˈtiːtʃə(r)/",
+          "meaning": "教师"
+        },
+        {
+          "word": "student",
+          "phonetic": "/ˈstjuːdnt/",
+          "meaning": "学生"
+        },
+        {
+          "word": "after",
+          "phonetic": "/ˈɑːftə(r)/",
+          "meaning": "在……后面"
+        },
+        {
+          "word": "who",
+          "phonetic": "/huː/",
+          "meaning": "谁；什么人"
+        },
+        {
+          "word": "girl",
+          "phonetic": "/ɡɜːl/",
+          "meaning": "女孩"
+        },
+        {
+          "word": "neighbour",
+          "phonetic": "/ˈneɪbə(r)/",
+          "meaning": "邻居"
+        },
+        {
+          "word": "boy",
+          "phonetic": "/bɔɪ/",
+          "meaning": "男孩"
+        },
+        {
+          "word": "woman",
+          "phonetic": "/ˈwʊmən/",
+          "meaning": "成年女子；妇女"
+        },
+        {
+          "word": "man",
+          "phonetic": "/mæn/",
+          "meaning": "成年男子；男人"
+        },
+        {
+          "word": "mr",
+          "phonetic": "/ˈmɪstə(r)/",
+          "meaning": "先生"
+        },
+        {
+          "word": "classmate",
+          "phonetic": "/ˈklɑːsmeɪt/",
+          "meaning": "同班同学"
+        },
+        {
+          "word": "he",
+          "phonetic": "/hiː/",
+          "meaning": "他"
+        },
+        {
+          "word": "english",
+          "phonetic": "/ˈɪŋɡlɪʃ/",
+          "meaning": "英语；英语的"
+        },
+        {
+          "word": "she",
+          "phonetic": "/ʃiː/",
+          "meaning": "她"
+        },
+        {
+          "word": "very",
+          "phonetic": "/ˈveri/",
+          "meaning": "很；非常"
+        },
+        {
+          "word": "uk",
+          "phonetic": "/ˌjuːˈkeɪ/",
+          "meaning": "英国"
+        },
+        {
+          "word": "china",
+          "phonetic": "/ˈtʃaɪnə/",
+          "meaning": "中国"
+        },
+        {
+          "word": "canada",
+          "phonetic": "/ˈkænədə/",
+          "meaning": "加拿大"
+        },
+        {
+          "word": "usa",
+          "phonetic": "/ˌjuːesˈeɪ/",
+          "meaning": "美国"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3b-2025-u1",
+          "title": "Unit 1 Meeting new people · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like where.\nThis is my from.\nI can see about.\nWe need today.\nTeacher is nice.",
+          "translation": "你好，我喜欢在哪里。\n这是我的来自。\n我能看见大约。\n我们需要今天。\n教师很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3b-2025-u1-textbook-a",
+          "title": "Unit 1 Meeting new people · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3b-2025-u1-textbook-b",
+          "title": "Unit 1 Meeting new people · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3b-2025-u1",
+          "title": "Unit 1 Meeting new people · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like where.\nThis is my from.\nI can see about.\nWe need today.\nTeacher is nice.",
+          "translation": "你好，我喜欢在哪里。\n这是我的来自。\n我能看见大约。\n我们需要今天。\n教师很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 My words and actions",
+      "theme": "",
+      "words": [
+        {
+          "word": "has",
+          "phonetic": "/hæz/",
+          "meaning": "有（have的第三人称单数）"
+        },
+        {
+          "word": "long",
+          "phonetic": "/lɒŋ/",
+          "meaning": "长的"
+        },
+        {
+          "word": "body",
+          "phonetic": "/ˈbɒdi/",
+          "meaning": "身体"
+        },
+        {
+          "word": "short",
+          "phonetic": "/ʃɔːt/",
+          "meaning": "短的；个子矮的"
+        },
+        {
+          "word": "leg",
+          "phonetic": "/leɡ/",
+          "meaning": "腿"
+        },
+        {
+          "word": "right",
+          "phonetic": "/raɪt/",
+          "meaning": "准确的；恰当的"
+        },
+        {
+          "word": "fat",
+          "phonetic": "/fæt/",
+          "meaning": "肥的"
+        },
+        {
+          "word": "thin",
+          "phonetic": "/θɪn/",
+          "meaning": "瘦的"
+        },
+        {
+          "word": "slow",
+          "phonetic": "/sləʊ/",
+          "meaning": "缓慢的；慢的"
+        },
+        {
+          "word": "love",
+          "phonetic": "/lʌv/",
+          "meaning": "喜爱；爱"
+        },
+        {
+          "word": "tail",
+          "phonetic": "/teɪl/",
+          "meaning": "尾巴"
+        },
+        {
+          "word": "her",
+          "phonetic": "/hɜː(r)/",
+          "meaning": "她；她的"
+        },
+        {
+          "word": "gift",
+          "phonetic": "/ɡɪft/",
+          "meaning": "礼物"
+        },
+        {
+          "word": "picture",
+          "phonetic": "/ˈpɪktʃə(r)/",
+          "meaning": "图画；绘画"
+        },
+        {
+          "word": "card",
+          "phonetic": "/kɑːd/",
+          "meaning": "贺卡；卡片"
+        },
+        {
+          "word": "sing",
+          "phonetic": "/sɪŋ/",
+          "meaning": "唱（歌）"
+        },
+        {
+          "word": "dance",
+          "phonetic": "/dɑːns/",
+          "meaning": "跳舞"
+        },
+        {
+          "word": "face",
+          "phonetic": "/feɪs/",
+          "meaning": "脸；面孔"
+        },
+        {
+          "word": "all",
+          "phonetic": "/ɔːl/",
+          "meaning": "所有；全部"
+        },
+        {
+          "word": "so",
+          "phonetic": "/səʊ/",
+          "meaning": "这么；那么"
+        },
+        {
+          "word": "talk",
+          "phonetic": "/tɔːk/",
+          "meaning": "讲；说；说话"
+        },
+        {
+          "word": "song",
+          "phonetic": "/sɒŋ/",
+          "meaning": "歌；歌曲"
+        },
+        {
+          "word": "or",
+          "phonetic": "/ɔː(r)/",
+          "meaning": "或；或者"
+        },
+        {
+          "word": "much",
+          "phonetic": "/mʌtʃ/",
+          "meaning": "许多；大量"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3b-2025-u2",
+          "title": "Unit 2 My words and actions · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like has.\nThis is my long.\nI can see body.\nWe need short.\nLeg is nice.",
+          "translation": "你好，我喜欢有（have的第三人称单数）。\n这是我的长的。\n我能看见身体。\n我们需要短的。\n腿很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3b-2025-u2-textbook-a",
+          "title": "Unit 2 My words and actions · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3b-2025-u2-textbook-b",
+          "title": "Unit 2 My words and actions · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3b-2025-u2",
+          "title": "Unit 2 My words and actions · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like has.\nThis is my long.\nI can see body.\nWe need short.\nLeg is nice.",
+          "translation": "你好，我喜欢有（have的第三人称单数）。\n这是我的长的。\n我能看见身体。\n我们需要短的。\n腿很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 Tools and senses for learning",
+      "theme": "",
+      "words": [
+        {
+          "word": "eraser",
+          "phonetic": "/ɪˈreɪzə(r)/",
+          "meaning": "橡皮"
+        },
+        {
+          "word": "find",
+          "phonetic": "/faɪnd/",
+          "meaning": "找到；找出"
+        },
+        {
+          "word": "ruler",
+          "phonetic": "/ˈruːlə(r)/",
+          "meaning": "直尺"
+        },
+        {
+          "word": "pen",
+          "phonetic": "/pen/",
+          "meaning": "钢笔"
+        },
+        {
+          "word": "pencil",
+          "phonetic": "/ˈpensl/",
+          "meaning": "铅笔"
+        },
+        {
+          "word": "book",
+          "phonetic": "/bʊk/",
+          "meaning": "书；书籍"
+        },
+        {
+          "word": "bag",
+          "phonetic": "/bæɡ/",
+          "meaning": "包；袋"
+        },
+        {
+          "word": "paper",
+          "phonetic": "/ˈpeɪpə(r)/",
+          "meaning": "纸"
+        },
+        {
+          "word": "these",
+          "phonetic": "/ðiːz/",
+          "meaning": "这些"
+        },
+        {
+          "word": "see",
+          "phonetic": "/siː/",
+          "meaning": "看见"
+        },
+        {
+          "word": "smell",
+          "phonetic": "/smel/",
+          "meaning": "闻（气味）"
+        },
+        {
+          "word": "taste",
+          "phonetic": "/teɪst/",
+          "meaning": "尝（味道）"
+        },
+        {
+          "word": "hear",
+          "phonetic": "/hɪə(r)/",
+          "meaning": "听见；听到"
+        },
+        {
+          "word": "touch",
+          "phonetic": "/tʌtʃ/",
+          "meaning": "触摸；碰"
+        },
+        {
+          "word": "learn",
+          "phonetic": "/lɜːn/",
+          "meaning": "学；学习"
+        },
+        {
+          "word": "nose",
+          "phonetic": "/nəʊz/",
+          "meaning": "鼻；鼻子"
+        },
+        {
+          "word": "tongue",
+          "phonetic": "/tʌŋ/",
+          "meaning": "舌；舌头"
+        },
+        {
+          "word": "class",
+          "phonetic": "/klɑːs/",
+          "meaning": "课；班级"
+        },
+        {
+          "word": "in class",
+          "phonetic": "/ɪn klɑːs/",
+          "meaning": "在课堂上"
+        },
+        {
+          "word": "computer",
+          "phonetic": "/kəmˈpjuːtə(r)/",
+          "meaning": "计算机；电脑"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3b-2025-u3",
+          "title": "Unit 3 Tools and senses for learning · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like eraser.\nThis is my find.\nI can see ruler.\nWe need pen.\nPencil is nice.",
+          "translation": "你好，我喜欢橡皮。\n这是我的找到。\n我能看见直尺。\n我们需要钢笔。\n铅笔很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3b-2025-u3-textbook-a",
+          "title": "Unit 3 Tools and senses for learning · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3b-2025-u3-textbook-b",
+          "title": "Unit 3 Tools and senses for learning · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3b-2025-u3",
+          "title": "Unit 3 Tools and senses for learning · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like eraser.\nThis is my find.\nI can see ruler.\nWe need pen.\nPencil is nice.",
+          "translation": "你好，我喜欢橡皮。\n这是我的找到。\n我能看见直尺。\n我们需要钢笔。\n铅笔很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 Healthy food",
+      "theme": "",
+      "words": [
+        {
+          "word": "breakfast",
+          "phonetic": "/ˈbrekfəst/",
+          "meaning": "早餐；早饭"
+        },
+        {
+          "word": "time",
+          "phonetic": "/taɪm/",
+          "meaning": "时间"
+        },
+        {
+          "word": "bread",
+          "phonetic": "/bred/",
+          "meaning": "面包"
+        },
+        {
+          "word": "egg",
+          "phonetic": "/eɡ/",
+          "meaning": "蛋；鸡蛋"
+        },
+        {
+          "word": "milk",
+          "phonetic": "/mɪlk/",
+          "meaning": "牛奶"
+        },
+        {
+          "word": "noodle",
+          "phonetic": "/ˈnuːdl/",
+          "meaning": "面条"
+        },
+        {
+          "word": "juice",
+          "phonetic": "/dʒuːs/",
+          "meaning": "果汁"
+        },
+        {
+          "word": "rice",
+          "phonetic": "/raɪs/",
+          "meaning": "大米；米饭"
+        },
+        {
+          "word": "meat",
+          "phonetic": "/miːt/",
+          "meaning": "肉"
+        },
+        {
+          "word": "vegetable",
+          "phonetic": "/ˈvedʒtəbl/",
+          "meaning": "蔬菜"
+        },
+        {
+          "word": "healthy",
+          "phonetic": "/ˈhelθi/",
+          "meaning": "健康的"
+        },
+        {
+          "word": "plate",
+          "phonetic": "/pleɪt/",
+          "meaning": "盘子"
+        },
+        {
+          "word": "soup",
+          "phonetic": "/suːp/",
+          "meaning": "汤"
+        },
+        {
+          "word": "fruit",
+          "phonetic": "/fruːt/",
+          "meaning": "水果"
+        },
+        {
+          "word": "colourful",
+          "phonetic": "/ˈkʌləfl/",
+          "meaning": "五彩缤纷的"
+        },
+        {
+          "word": "candy",
+          "phonetic": "/ˈkændi/",
+          "meaning": "糖果"
+        },
+        {
+          "word": "yummy",
+          "phonetic": "/ˈjʌmi/",
+          "meaning": "很好吃的"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3b-2025-u4",
+          "title": "Unit 4 Healthy food · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like breakfast.\nThis is my time.\nI can see bread.\nWe need egg.\nMilk is nice.",
+          "translation": "你好，我喜欢早餐。\n这是我的时间。\n我能看见面包。\n我们需要蛋。\n牛奶很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3b-2025-u4-textbook-a",
+          "title": "Unit 4 Healthy food · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3b-2025-u4-textbook-b",
+          "title": "Unit 4 Healthy food · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3b-2025-u4",
+          "title": "Unit 4 Healthy food · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like breakfast.\nThis is my time.\nI can see bread.\nWe need egg.\nMilk is nice.",
+          "translation": "你好，我喜欢早餐。\n这是我的时间。\n我能看见面包。\n我们需要蛋。\n牛奶很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 Old things",
+      "theme": "",
+      "words": [
+        {
+          "word": "at",
+          "phonetic": "/æt/",
+          "meaning": "在（某处）"
+        },
+        {
+          "word": "boat",
+          "phonetic": "/bəʊt/",
+          "meaning": "小船；舟"
+        },
+        {
+          "word": "cool",
+          "phonetic": "/kuːl/",
+          "meaning": "酷的；绝妙的"
+        },
+        {
+          "word": "keep",
+          "phonetic": "/kiːp/",
+          "meaning": "保有；留着"
+        },
+        {
+          "word": "home",
+          "phonetic": "/həʊm/",
+          "meaning": "家；住所"
+        },
+        {
+          "word": "ball",
+          "phonetic": "/bɔːl/",
+          "meaning": "球"
+        },
+        {
+          "word": "doll",
+          "phonetic": "/dɒl/",
+          "meaning": "玩偶；玩具娃娃"
+        },
+        {
+          "word": "car",
+          "phonetic": "/kɑː(r)/",
+          "meaning": "小汽车；轿车"
+        },
+        {
+          "word": "on",
+          "phonetic": "/ɒn/",
+          "meaning": "在……上"
+        },
+        {
+          "word": "shelf",
+          "phonetic": "/ʃelf/",
+          "meaning": "架子（复数 shelves）"
+        },
+        {
+          "word": "in",
+          "phonetic": "/ɪn/",
+          "meaning": "在……内；在……中"
+        },
+        {
+          "word": "box",
+          "phonetic": "/bɒks/",
+          "meaning": "箱子"
+        },
+        {
+          "word": "cap",
+          "phonetic": "/kæp/",
+          "meaning": "帽子"
+        },
+        {
+          "word": "map",
+          "phonetic": "/mæp/",
+          "meaning": "地图"
+        },
+        {
+          "word": "under",
+          "phonetic": "/ˈʌndə(r)/",
+          "meaning": "在……下面"
+        },
+        {
+          "word": "still",
+          "phonetic": "/stɪl/",
+          "meaning": "还是；仍然"
+        },
+        {
+          "word": "put",
+          "phonetic": "/pʊt/",
+          "meaning": "放；安置"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3b-2025-u5",
+          "title": "Unit 5 Old things · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like at.\nThis is my boat.\nI can see cool.\nWe need keep.\nHome is nice.",
+          "translation": "你好，我喜欢在（某处）。\n这是我的小船。\n我能看见酷的。\n我们需要保有。\n家很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3b-2025-u5-textbook-a",
+          "title": "Unit 5 Old things · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3b-2025-u5-textbook-b",
+          "title": "Unit 5 Old things · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3b-2025-u5",
+          "title": "Unit 5 Old things · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like at.\nThis is my boat.\nI can see cool.\nWe need keep.\nHome is nice.",
+          "translation": "你好，我喜欢在（某处）。\n这是我的小船。\n我能看见酷的。\n我们需要保有。\n家很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 Numbers in life",
+      "theme": "",
+      "words": [
+        {
+          "word": "fifteen",
+          "phonetic": "/ˌfɪfˈtiːn/",
+          "meaning": "十五"
+        },
+        {
+          "word": "twelve",
+          "phonetic": "/twelv/",
+          "meaning": "十二"
+        },
+        {
+          "word": "fourteen",
+          "phonetic": "/ˌfɔːˈtiːn/",
+          "meaning": "十四"
+        },
+        {
+          "word": "thirteen",
+          "phonetic": "/ˌθɜːˈtiːn/",
+          "meaning": "十三"
+        },
+        {
+          "word": "eleven",
+          "phonetic": "/ɪˈlevn/",
+          "meaning": "十一"
+        },
+        {
+          "word": "twenty",
+          "phonetic": "/ˈtwenti/",
+          "meaning": "二十"
+        },
+        {
+          "word": "seventeen",
+          "phonetic": "/ˌsevnˈtiːn/",
+          "meaning": "十七"
+        },
+        {
+          "word": "sixteen",
+          "phonetic": "/ˌsɪksˈtiːn/",
+          "meaning": "十六"
+        },
+        {
+          "word": "eighteen",
+          "phonetic": "/ˌeɪˈtiːn/",
+          "meaning": "十八"
+        },
+        {
+          "word": "nineteen",
+          "phonetic": "/ˌnaɪnˈtiːn/",
+          "meaning": "十九"
+        },
+        {
+          "word": "piggy bank",
+          "phonetic": "/ˈpɪɡi bæŋk/",
+          "meaning": "猪形储钱罐"
+        },
+        {
+          "word": "pay",
+          "phonetic": "/peɪ/",
+          "meaning": "付费"
+        },
+        {
+          "word": "back",
+          "phonetic": "/bæk/",
+          "meaning": "回到原处"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g3b-2025-u6",
+          "title": "Unit 6 Numbers in life · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like fifteen.\nThis is my twelve.\nI can see fourteen.\nWe need thirteen.\nEleven is nice.",
+          "translation": "你好，我喜欢十五。\n这是我的十二。\n我能看见十四。\n我们需要十三。\n十一很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g3b-2025-u6-textbook-a",
+          "title": "Unit 6 Numbers in life · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g3b-2025-u6-textbook-b",
+          "title": "Unit 6 Numbers in life · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g3b-2025-u6",
+          "title": "Unit 6 Numbers in life · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like fifteen.\nThis is my twelve.\nI can see fourteen.\nWe need thirteen.\nEleven is nice.",
+          "translation": "你好，我喜欢十五。\n这是我的十二。\n我能看见十四。\n我们需要十三。\n十一很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    }
+  ]
+}

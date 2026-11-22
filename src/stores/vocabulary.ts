@@ -44,6 +44,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   const serverStatsLoaded = ref(false)
   const dailyStats = ref({ date: '', wordCount: 0, goal: 30, streak: 0, progress: 0 })
   const sessionTopic = ref<string | undefined>(undefined)
+  const sessionUnitId = ref<string | undefined>(undefined)
+  const lastSessionUnit = ref<import('@/types/map').SessionUnitMeta | null>(null)
 
   const books = ref<Book[]>(getBookList())
   const currentBookCode = ref<string>(DEFAULT_BOOK_CODE)
@@ -73,19 +75,30 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     await loadSessionVocabulary(count)
   }
 
-  const loadSessionVocabulary = async (count: number = 10, trainingType?: string, topic?: string): Promise<Vocabulary[]> => {
+  const loadSessionVocabulary = async (
+    count: number = 10,
+    trainingType?: string,
+    topic?: string,
+    opts?: { mode?: SessionMode; unit?: string; excludeIds?: string[] }
+  ): Promise<Vocabulary[]> => {
     try {
       if (currentBookCode.value) {
+        const mode = opts?.mode || studySettings.value.sessionMode
         const result = await bookAPI.session(
           currentBookCode.value,
           count,
-          studySettings.value.sessionMode,
+          mode,
           trainingType,
-          topic || sessionTopic.value
+          topic || sessionTopic.value,
+          {
+            unit: opts?.unit || sessionUnitId.value,
+            excludeIds: opts?.excludeIds
+          }
         )
         const data = result.data as SessionResponse | undefined
         vocabularyList.value = data?.words || []
         bookProgress.value = data?.progress || null
+        lastSessionUnit.value = data?.unit || null
         return vocabularyList.value
       }
 
@@ -243,6 +256,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   }
 
   const setSessionMode = (mode: SessionMode) => {
+    // unit 是小学单元流专用，不写入认读记忆曲线设置
+    if (mode === 'unit') return
     setStudySettings({ sessionMode: mode })
   }
 
@@ -285,6 +300,11 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
 
   const setSessionTopic = (topic?: string) => {
     sessionTopic.value = topic
+  }
+
+  const setSessionUnitId = (unitId?: string) => {
+    sessionUnitId.value = unitId
+    if (!unitId) lastSessionUnit.value = null
   }
 
   const loadStats = () => {
@@ -448,6 +468,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     serverStatsLoaded,
     dailyStats,
     sessionTopic,
+    sessionUnitId,
+    lastSessionUnit,
     trainingRecords,
     books,
     currentBookCode,
@@ -470,6 +492,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     loadServerStats,
     loadDailyStats,
     setSessionTopic,
+    setSessionUnitId,
     loadStats,
     saveStats,
     updateWordStats,

@@ -755,6 +755,21 @@
     "contentType": "non-fiction",
     "origin": "word-atlas"
   },
+  "take care of": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "照顾"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/teɪk keə(r) əv/"
+    },
+    "origin": "seed:pep-g5a-2026"
+  },
   "take off": {
     "meanings": [
       {

@@ -27,6 +27,46 @@
       }
     },
     {
+      "path": "pages/primary/index",
+      "style": {
+        "navigationBarTitleText": "文章",
+        "navigationBarBackgroundColor": "#f4f1ea",
+        "backgroundColor": "#f4f1ea"
+      }
+    },
+    {
+      "path": "pages/primary/book",
+      "style": {
+        "navigationBarTitleText": "册次",
+        "navigationBarBackgroundColor": "#f4f1ea",
+        "backgroundColor": "#f4f1ea"
+      }
+    },
+    {
+      "path": "pages/primary/unit",
+      "style": {
+        "navigationBarTitleText": "单元内容",
+        "navigationBarBackgroundColor": "#f4f1ea",
+        "backgroundColor": "#f4f1ea"
+      }
+    },
+    {
+      "path": "pages/primary/pep-g3a",
+      "style": {
+        "navigationBarTitleText": "PEP 三上",
+        "navigationBarBackgroundColor": "#f4f1ea",
+        "backgroundColor": "#f4f1ea"
+      }
+    },
+    {
+      "path": "pages/primary/pep-g3a-unit",
+      "style": {
+        "navigationBarTitleText": "单元内容",
+        "navigationBarBackgroundColor": "#f4f1ea",
+        "backgroundColor": "#f4f1ea"
+      }
+    },
+    {
       "path": "pages/theme/theme",
       "style": {
         "navigationBarTitleText": "主题"

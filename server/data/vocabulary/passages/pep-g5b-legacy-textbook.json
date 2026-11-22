@@ -1,0 +1,139 @@
+{
+  "bookCode": "pep-g5b-legacy",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "pep-g5b-legacy-u1-textbook-a",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 My day · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u1-textbook-b",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 My day · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u2-textbook-a",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 My favourite season · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u2-textbook-b",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 My favourite season · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u3-textbook-a",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 My school calendar Recycle · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u3-textbook-b",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 My school calendar Recycle · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u4-textbook-a",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 When is the art show? · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u4-textbook-b",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 When is the art show? · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u5-textbook-a",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Whose dog is it? · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u5-textbook-b",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Whose dog is it? · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u6-textbook-a",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Work quietly! · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5b-legacy-u6-textbook-b",
+      "bookCode": "pep-g5b-legacy",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Work quietly! · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

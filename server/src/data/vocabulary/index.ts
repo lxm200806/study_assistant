@@ -29,8 +29,26 @@ const fallbacks: Record<string, BookData> = {
   gaokao: gaokaoFallback
 }
 
-/** 注册顺序：MSE → 中高考 → 四六级 → KEW */
+/** 注册顺序：小学 PEP/精通 → MSE → 中高考 → 四六级 → KEW */
 export const VOCABULARY_BOOK_CODES = [
+  'pep-g3a-2024',
+  'pep-g3b-2025',
+  'pep-g4a-2025',
+  'pep-g4b-2026',
+  'pep-g5a-2026',
+  'pep-g4b-legacy',
+  'pep-g5a-legacy',
+  'pep-g5b-legacy',
+  'pep-g6a-legacy',
+  'pep-g6b-legacy',
+  'jt-g3a-2024',
+  'jt-g3b-2025',
+  'jt-g4a-2025',
+  'jt-g4b',
+  'jt-g5a',
+  'jt-g5b',
+  'jt-g6a',
+  'jt-g6b',
   'mse-ket',
   'mse-pet',
   'zhongkao',
@@ -41,6 +59,34 @@ export const VOCABULARY_BOOK_CODES = [
   'kew4500',
   'kew7200'
 ] as const
+
+/** 免费开放的词书（无需会员） */
+export const FREE_BOOK_CODES = [
+  'pep-g3a-2024',
+  'pep-g3b-2025',
+  'pep-g4a-2025',
+  'pep-g4b-2026',
+  'pep-g5a-2026',
+  'pep-g4b-legacy',
+  'pep-g5a-legacy',
+  'pep-g5b-legacy',
+  'pep-g6a-legacy',
+  'pep-g6b-legacy',
+  'jt-g3a-2024',
+  'jt-g3b-2025',
+  'jt-g4a-2025',
+  'jt-g4b',
+  'jt-g5a',
+  'jt-g5b',
+  'jt-g6a',
+  'jt-g6b',
+  'mse-ket',
+  'ket'
+] as const
+
+export function isFreeBookCode(code: string): boolean {
+  return (FREE_BOOK_CODES as readonly string[]).includes(code)
+}
 
 const bookCache = new Map<string, BookData>()
 

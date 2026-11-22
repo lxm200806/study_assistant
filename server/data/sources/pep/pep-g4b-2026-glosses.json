@@ -1,0 +1,442 @@
+{
+  "sorry": {
+    "phonetic": "/ˈsɒri/",
+    "meaning": "对不起"
+  },
+  "hurry up": {
+    "phonetic": "/ˈhʌri ʌp/",
+    "meaning": "快点；赶快"
+  },
+  "late": {
+    "phonetic": "/leɪt/",
+    "meaning": "迟到的；迟发生的"
+  },
+  "class": {
+    "phonetic": "/klɑːs/",
+    "meaning": "课；课程；班；班级"
+  },
+  "ready": {
+    "phonetic": "/ˈredi/",
+    "meaning": "准备好的"
+  },
+  "rule": {
+    "phonetic": "/ruːl/",
+    "meaning": "规则；规章"
+  },
+  "classroom": {
+    "phonetic": "/ˈklɑːsruːm/",
+    "meaning": "教室"
+  },
+  "turn off": {
+    "phonetic": "/tɜːn ɒf/",
+    "meaning": "关掉"
+  },
+  "light": {
+    "phonetic": "/laɪt/",
+    "meaning": "灯；光"
+  },
+  "blackboard": {
+    "phonetic": "/ˈblækbɔːd/",
+    "meaning": "黑板"
+  },
+  "desk": {
+    "phonetic": "/desk/",
+    "meaning": "书桌；办公桌"
+  },
+  "chair": {
+    "phonetic": "/tʃeə(r)/",
+    "meaning": "椅子"
+  },
+  "tidy": {
+    "phonetic": "/ˈtaɪdi/",
+    "meaning": "整洁的；使整洁"
+  },
+  "music": {
+    "phonetic": "/ˈmjuːzɪk/",
+    "meaning": "音乐"
+  },
+  "door": {
+    "phonetic": "/dɔː(r)/",
+    "meaning": "门"
+  },
+  "window": {
+    "phonetic": "/ˈwɪndəʊ/",
+    "meaning": "窗"
+  },
+  "fan": {
+    "phonetic": "/fæn/",
+    "meaning": "风扇"
+  },
+  "when": {
+    "phonetic": "/wen/",
+    "meaning": "当……时；什么时候"
+  },
+  "understand": {
+    "phonetic": "/ˌʌndəˈstænd/",
+    "meaning": "懂；理解"
+  },
+  "wall": {
+    "phonetic": "/wɔːl/",
+    "meaning": "墙；壁"
+  },
+  "newspaper": {
+    "phonetic": "/ˈnjuːzpeɪpə(r)/",
+    "meaning": "报纸"
+  },
+  "hand out": {
+    "phonetic": "/hænd aʊt/",
+    "meaning": "分发"
+  },
+  "workbook": {
+    "phonetic": "/ˈwɜːkbʊk/",
+    "meaning": "练习册；作业本"
+  },
+  "watch": {
+    "phonetic": "/wɒtʃ/",
+    "meaning": "看"
+  },
+  "tv": {
+    "phonetic": "/ˌtiː ˈviː/",
+    "meaning": "电视"
+  },
+  "homework": {
+    "phonetic": "/ˈhəʊmwɜːk/",
+    "meaning": "家庭作业"
+  },
+  "first": {
+    "phonetic": "/fɜːst/",
+    "meaning": "首先；首次；第一"
+  },
+  "wet": {
+    "phonetic": "/wet/",
+    "meaning": "湿的；未干的"
+  },
+  "run": {
+    "phonetic": "/rʌn/",
+    "meaning": "跑；奔跑"
+  },
+  "living room": {
+    "phonetic": "/ˈlɪvɪŋ ruːm/",
+    "meaning": "客厅；起居室"
+  },
+  "safe": {
+    "phonetic": "/seɪf/",
+    "meaning": "安全的"
+  },
+  "wash": {
+    "phonetic": "/wɒʃ/",
+    "meaning": "洗"
+  },
+  "helpful": {
+    "phonetic": "/ˈhelpfl/",
+    "meaning": "有帮助的；有用的"
+  },
+  "loud": {
+    "phonetic": "/laʊd/",
+    "meaning": "说话太大声的；吵闹的"
+  },
+  "sleep": {
+    "phonetic": "/sliːp/",
+    "meaning": "睡觉"
+  },
+  "bedroom": {
+    "phonetic": "/ˈbedruːm/",
+    "meaning": "卧室"
+  },
+  "kitchen": {
+    "phonetic": "/ˈkɪtʃən/",
+    "meaning": "厨房"
+  },
+  "study": {
+    "phonetic": "/ˈstʌdi/",
+    "meaning": "书房"
+  },
+  "bathroom": {
+    "phonetic": "/ˈbɑːθruːm/",
+    "meaning": "浴室；洗手间"
+  },
+  "think": {
+    "phonetic": "/θɪŋk/",
+    "meaning": "想；思考"
+  },
+  "work": {
+    "phonetic": "/wɜːk/",
+    "meaning": "做（某事）；工作"
+  },
+  "hard": {
+    "phonetic": "/hɑːd/",
+    "meaning": "努力地；费力地"
+  },
+  "follow": {
+    "phonetic": "/ˈfɒləʊ/",
+    "meaning": "遵循；听从（忠告、指示等）"
+  },
+  "feel": {
+    "phonetic": "/fiːl/",
+    "meaning": "觉得；感到"
+  },
+  "over": {
+    "phonetic": "/ˈəʊvə(r)/",
+    "meaning": "结束（的）"
+  },
+  "kid": {
+    "phonetic": "/kɪd/",
+    "meaning": "小孩"
+  },
+  "dinner": {
+    "phonetic": "/ˈdɪnə(r)/",
+    "meaning": "正餐；晚餐"
+  },
+  "art": {
+    "phonetic": "/ɑːt/",
+    "meaning": "美术；艺术"
+  },
+  "lunch": {
+    "phonetic": "/lʌntʃ/",
+    "meaning": "午餐"
+  },
+  "maths": {
+    "phonetic": "/mæθs/",
+    "meaning": "数学"
+  },
+  "get up": {
+    "phonetic": "/ɡet ʌp/",
+    "meaning": "起床"
+  },
+  "go to school": {
+    "phonetic": "/ɡəʊ tə skuːl/",
+    "meaning": "上学"
+  },
+  "go home": {
+    "phonetic": "/ɡəʊ həʊm/",
+    "meaning": "回家"
+  },
+  "go to bed": {
+    "phonetic": "/ɡəʊ tə bed/",
+    "meaning": "上床睡觉"
+  },
+  "want": {
+    "phonetic": "/wɒnt/",
+    "meaning": "想要"
+  },
+  "clock": {
+    "phonetic": "/klɒk/",
+    "meaning": "时钟"
+  },
+  "just": {
+    "phonetic": "/dʒʌst/",
+    "meaning": "只是；仅仅；正要"
+  },
+  "minute": {
+    "phonetic": "/ˈmɪnɪt/",
+    "meaning": "分钟"
+  },
+  "trousers": {
+    "phonetic": "/ˈtraʊzəz/",
+    "meaning": "裤子"
+  },
+  "pair": {
+    "phonetic": "/peə(r)/",
+    "meaning": "一条；一副"
+  },
+  "clothes": {
+    "phonetic": "/kləʊðz/",
+    "meaning": "衣服；服装"
+  },
+  "those": {
+    "phonetic": "/ðəʊz/",
+    "meaning": "那些"
+  },
+  "shorts": {
+    "phonetic": "/ʃɔːts/",
+    "meaning": "短裤"
+  },
+  "jacket": {
+    "phonetic": "/ˈdʒækɪt/",
+    "meaning": "夹克衫；短上衣"
+  },
+  "skirt": {
+    "phonetic": "/skɜːt/",
+    "meaning": "裙子"
+  },
+  "dear": {
+    "phonetic": "/dɪə(r)/",
+    "meaning": "亲爱的"
+  },
+  "expensive": {
+    "phonetic": "/ɪkˈspensɪv/",
+    "meaning": "昂贵的"
+  },
+  "take": {
+    "phonetic": "/teɪk/",
+    "meaning": "买下"
+  },
+  "cheap": {
+    "phonetic": "/tʃiːp/",
+    "meaning": "便宜的"
+  },
+  "shoe": {
+    "phonetic": "/ʃuː/",
+    "meaning": "鞋"
+  },
+  "beautiful": {
+    "phonetic": "/ˈbjuːtɪfl/",
+    "meaning": "美丽的"
+  },
+  "hat": {
+    "phonetic": "/hæt/",
+    "meaning": "帽子"
+  },
+  "sunglasses": {
+    "phonetic": "/ˈsʌnɡlɑːsɪz/",
+    "meaning": "太阳镜；墨镜"
+  },
+  "free": {
+    "phonetic": "/friː/",
+    "meaning": "免费的"
+  },
+  "large": {
+    "phonetic": "/lɑːdʒ/",
+    "meaning": "大型号的"
+  },
+  "size": {
+    "phonetic": "/saɪz/",
+    "meaning": "尺码；号"
+  },
+  "list": {
+    "phonetic": "/lɪst/",
+    "meaning": "清单；目录"
+  },
+  "try on": {
+    "phonetic": "/traɪ ɒn/",
+    "meaning": "试穿"
+  },
+  "any": {
+    "phonetic": "/ˈeni/",
+    "meaning": "任何的；任一的"
+  },
+  "cow": {
+    "phonetic": "/kaʊ/",
+    "meaning": "奶牛"
+  },
+  "horse": {
+    "phonetic": "/hɔːs/",
+    "meaning": "马"
+  },
+  "sheep": {
+    "phonetic": "/ʃiːp/",
+    "meaning": "羊；绵羊"
+  },
+  "pig": {
+    "phonetic": "/pɪɡ/",
+    "meaning": "猪"
+  },
+  "chicken": {
+    "phonetic": "/ˈtʃɪkɪn/",
+    "meaning": "鸡；鸡肉"
+  },
+  "tomato": {
+    "phonetic": "/təˈmɑːtəʊ/",
+    "meaning": "西红柿"
+  },
+  "bee": {
+    "phonetic": "/biː/",
+    "meaning": "蜜蜂"
+  },
+  "mouse": {
+    "phonetic": "/maʊs/",
+    "meaning": "老鼠（复数 mice）"
+  },
+  "carrot": {
+    "phonetic": "/ˈkærət/",
+    "meaning": "胡萝卜"
+  },
+  "potato": {
+    "phonetic": "/pəˈteɪtəʊ/",
+    "meaning": "土豆"
+  },
+  "green bean": {
+    "phonetic": "/ɡriːn biːn/",
+    "meaning": "青刀豆；四季豆"
+  },
+  "can": {
+    "phonetic": "/kæn/",
+    "meaning": "（盛食品或饮料的）金属罐"
+  },
+  "a box of": {
+    "phonetic": "/ə bɒks əv/",
+    "meaning": "一盒；一箱"
+  },
+  "feed": {
+    "phonetic": "/fiːd/",
+    "meaning": "饲养；给……食物"
+  },
+  "pass": {
+    "phonetic": "/pɑːs/",
+    "meaning": "给；递"
+  },
+  "pick": {
+    "phonetic": "/pɪk/",
+    "meaning": "采；摘"
+  },
+  "milk": {
+    "phonetic": "/mɪlk/",
+    "meaning": "挤奶"
+  },
+  "knife": {
+    "phonetic": "/naɪf/",
+    "meaning": "刀"
+  },
+  "fork": {
+    "phonetic": "/fɔːk/",
+    "meaning": "餐叉"
+  },
+  "chopstick": {
+    "phonetic": "/ˈtʃɒpstɪk/",
+    "meaning": "筷子（常用复数）"
+  },
+  "waste": {
+    "phonetic": "/weɪst/",
+    "meaning": "浪费；废品"
+  },
+  "food": {
+    "phonetic": "/fuːd/",
+    "meaning": "菜肴；食物"
+  },
+  "delicious": {
+    "phonetic": "/dɪˈlɪʃəs/",
+    "meaning": "美味的；可口的"
+  },
+  "clear the table": {
+    "phonetic": "/klɪə(r) ðə ˈteɪbl/",
+    "meaning": "收拾餐桌"
+  },
+  "set the table": {
+    "phonetic": "/set ðə ˈteɪbl/",
+    "meaning": "摆放餐具"
+  },
+  "bowl": {
+    "phonetic": "/bəʊl/",
+    "meaning": "碗"
+  },
+  "spoon": {
+    "phonetic": "/spuːn/",
+    "meaning": "勺；匙"
+  },
+  "supermarket": {
+    "phonetic": "/ˈsuːpəmɑːkɪt/",
+    "meaning": "超市"
+  },
+  "herself": {
+    "phonetic": "/hɜːˈself/",
+    "meaning": "她自己"
+  },
+  "week": {
+    "phonetic": "/wiːk/",
+    "meaning": "周；星期"
+  },
+  "salad": {
+    "phonetic": "/ˈsæləd/",
+    "meaning": "蔬菜沙拉"
+  }
+}

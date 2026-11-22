@@ -41,7 +41,25 @@ export function defaultListSource(code: string): string {
     zhongkao: 'kylebing-junior',
     gaokao: 'kylebing-senior',
     cet4: 'cnexam-cet4',
-    cet6: 'cnexam-cet6'
+    cet6: 'cnexam-cet6',
+    'pep-g3a-2024': 'pep-primary-ss-aihu',
+    'pep-g3b-2025': 'pep-primary-ss-aihu',
+    'pep-g4a-2025': 'pep-primary-ss-aihu',
+    'pep-g4b-2026': 'pep-primary-ss-aihu',
+    'pep-g5a-2026': 'pep-primary-ss-aihu',
+    'pep-g4b-legacy': 'kb-md',
+    'pep-g5a-legacy': 'kb-md',
+    'pep-g5b-legacy': 'kb-md',
+    'pep-g6a-legacy': 'kb-md',
+    'pep-g6b-legacy': 'kb-md',
+    'jt-g3a-2024': 'kb-md',
+    'jt-g3b-2025': 'kb-md',
+    'jt-g4a-2025': 'kb-md',
+    'jt-g4b': 'kb-md',
+    'jt-g5a': 'kb-md',
+    'jt-g5b': 'kb-md',
+    'jt-g6a': 'kb-md',
+    'jt-g6b': 'kb-md'
   }
   return map[code] || code
 }

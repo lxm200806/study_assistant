@@ -1,0 +1,853 @@
+{
+  "code": "pep-g4b-2026",
+  "name": "人教 PEP 四下（2026）",
+  "level": "小学四下",
+  "shortLabel": "四下",
+  "year": 2026,
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 Class rules",
+      "theme": "",
+      "words": [
+        {
+          "word": "sorry",
+          "phonetic": "/ˈsɒri/",
+          "meaning": "对不起"
+        },
+        {
+          "word": "hurry up",
+          "phonetic": "/ˈhʌri ʌp/",
+          "meaning": "快点；赶快"
+        },
+        {
+          "word": "late",
+          "phonetic": "/leɪt/",
+          "meaning": "迟到的；迟发生的"
+        },
+        {
+          "word": "class",
+          "phonetic": "/klɑːs/",
+          "meaning": "课；课程；班；班级"
+        },
+        {
+          "word": "ready",
+          "phonetic": "/ˈredi/",
+          "meaning": "准备好的"
+        },
+        {
+          "word": "rule",
+          "phonetic": "/ruːl/",
+          "meaning": "规则；规章"
+        },
+        {
+          "word": "classroom",
+          "phonetic": "/ˈklɑːsruːm/",
+          "meaning": "教室"
+        },
+        {
+          "word": "turn off",
+          "phonetic": "/tɜːn ɒf/",
+          "meaning": "关掉"
+        },
+        {
+          "word": "light",
+          "phonetic": "/laɪt/",
+          "meaning": "灯；光"
+        },
+        {
+          "word": "blackboard",
+          "phonetic": "/ˈblækbɔːd/",
+          "meaning": "黑板"
+        },
+        {
+          "word": "desk",
+          "phonetic": "/desk/",
+          "meaning": "书桌；办公桌"
+        },
+        {
+          "word": "chair",
+          "phonetic": "/tʃeə(r)/",
+          "meaning": "椅子"
+        },
+        {
+          "word": "tidy",
+          "phonetic": "/ˈtaɪdi/",
+          "meaning": "整洁的；使整洁"
+        },
+        {
+          "word": "music",
+          "phonetic": "/ˈmjuːzɪk/",
+          "meaning": "音乐"
+        },
+        {
+          "word": "door",
+          "phonetic": "/dɔː(r)/",
+          "meaning": "门"
+        },
+        {
+          "word": "window",
+          "phonetic": "/ˈwɪndəʊ/",
+          "meaning": "窗"
+        },
+        {
+          "word": "fan",
+          "phonetic": "/fæn/",
+          "meaning": "风扇"
+        },
+        {
+          "word": "when",
+          "phonetic": "/wen/",
+          "meaning": "当……时；什么时候"
+        },
+        {
+          "word": "understand",
+          "phonetic": "/ˌʌndəˈstænd/",
+          "meaning": "懂；理解"
+        },
+        {
+          "word": "wall",
+          "phonetic": "/wɔːl/",
+          "meaning": "墙；壁"
+        },
+        {
+          "word": "newspaper",
+          "phonetic": "/ˈnjuːzpeɪpə(r)/",
+          "meaning": "报纸"
+        },
+        {
+          "word": "hand out",
+          "phonetic": "/hænd aʊt/",
+          "meaning": "分发"
+        },
+        {
+          "word": "workbook",
+          "phonetic": "/ˈwɜːkbʊk/",
+          "meaning": "练习册；作业本"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4b-2026-u1",
+          "title": "Unit 1 Class rules · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like sorry.\nThis is my hurry up.\nI can see late.\nWe need class.\nReady is nice.",
+          "translation": "你好，我喜欢对不起。\n这是我的快点。\n我能看见迟到的。\n我们需要课。\n准备好的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-2026-u1-textbook-a",
+          "title": "Unit 1 Class rules · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-2026-u1-textbook-b",
+          "title": "Unit 1 Class rules · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4b-2026-u1",
+          "title": "Unit 1 Class rules · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like sorry.\nThis is my hurry up.\nI can see late.\nWe need class.\nReady is nice.",
+          "translation": "你好，我喜欢对不起。\n这是我的快点。\n我能看见迟到的。\n我们需要课。\n准备好的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 Family rules",
+      "theme": "",
+      "words": [
+        {
+          "word": "watch",
+          "phonetic": "/wɒtʃ/",
+          "meaning": "看"
+        },
+        {
+          "word": "tv",
+          "phonetic": "/ˌtiː ˈviː/",
+          "meaning": "电视"
+        },
+        {
+          "word": "homework",
+          "phonetic": "/ˈhəʊmwɜːk/",
+          "meaning": "家庭作业"
+        },
+        {
+          "word": "first",
+          "phonetic": "/fɜːst/",
+          "meaning": "首先；首次；第一"
+        },
+        {
+          "word": "wet",
+          "phonetic": "/wet/",
+          "meaning": "湿的；未干的"
+        },
+        {
+          "word": "run",
+          "phonetic": "/rʌn/",
+          "meaning": "跑；奔跑"
+        },
+        {
+          "word": "living room",
+          "phonetic": "/ˈlɪvɪŋ ruːm/",
+          "meaning": "客厅；起居室"
+        },
+        {
+          "word": "safe",
+          "phonetic": "/seɪf/",
+          "meaning": "安全的"
+        },
+        {
+          "word": "wash",
+          "phonetic": "/wɒʃ/",
+          "meaning": "洗"
+        },
+        {
+          "word": "helpful",
+          "phonetic": "/ˈhelpfl/",
+          "meaning": "有帮助的；有用的"
+        },
+        {
+          "word": "loud",
+          "phonetic": "/laʊd/",
+          "meaning": "说话太大声的；吵闹的"
+        },
+        {
+          "word": "sleep",
+          "phonetic": "/sliːp/",
+          "meaning": "睡觉"
+        },
+        {
+          "word": "bedroom",
+          "phonetic": "/ˈbedruːm/",
+          "meaning": "卧室"
+        },
+        {
+          "word": "kitchen",
+          "phonetic": "/ˈkɪtʃən/",
+          "meaning": "厨房"
+        },
+        {
+          "word": "study",
+          "phonetic": "/ˈstʌdi/",
+          "meaning": "书房"
+        },
+        {
+          "word": "bathroom",
+          "phonetic": "/ˈbɑːθruːm/",
+          "meaning": "浴室；洗手间"
+        },
+        {
+          "word": "think",
+          "phonetic": "/θɪŋk/",
+          "meaning": "想；思考"
+        },
+        {
+          "word": "work",
+          "phonetic": "/wɜːk/",
+          "meaning": "做（某事）；工作"
+        },
+        {
+          "word": "hard",
+          "phonetic": "/hɑːd/",
+          "meaning": "努力地；费力地"
+        },
+        {
+          "word": "follow",
+          "phonetic": "/ˈfɒləʊ/",
+          "meaning": "遵循；听从（忠告、指示等）"
+        },
+        {
+          "word": "feel",
+          "phonetic": "/fiːl/",
+          "meaning": "觉得；感到"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4b-2026-u2",
+          "title": "Unit 2 Family rules · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like watch.\nThis is my tv.\nI can see homework.\nWe need first.\nWet is nice.",
+          "translation": "你好，我喜欢看。\n这是我的电视。\n我能看见家庭作业。\n我们需要首先。\n湿的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-2026-u2-textbook-a",
+          "title": "Unit 2 Family rules · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-2026-u2-textbook-b",
+          "title": "Unit 2 Family rules · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4b-2026-u2",
+          "title": "Unit 2 Family rules · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like watch.\nThis is my tv.\nI can see homework.\nWe need first.\nWet is nice.",
+          "translation": "你好，我喜欢看。\n这是我的电视。\n我能看见家庭作业。\n我们需要首先。\n湿的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 Time for school",
+      "theme": "",
+      "words": [
+        {
+          "word": "over",
+          "phonetic": "/ˈəʊvə(r)/",
+          "meaning": "结束（的）"
+        },
+        {
+          "word": "kid",
+          "phonetic": "/kɪd/",
+          "meaning": "小孩"
+        },
+        {
+          "word": "dinner",
+          "phonetic": "/ˈdɪnə(r)/",
+          "meaning": "正餐；晚餐"
+        },
+        {
+          "word": "art",
+          "phonetic": "/ɑːt/",
+          "meaning": "美术；艺术"
+        },
+        {
+          "word": "lunch",
+          "phonetic": "/lʌntʃ/",
+          "meaning": "午餐"
+        },
+        {
+          "word": "maths",
+          "phonetic": "/mæθs/",
+          "meaning": "数学"
+        },
+        {
+          "word": "get up",
+          "phonetic": "/ɡet ʌp/",
+          "meaning": "起床"
+        },
+        {
+          "word": "go to school",
+          "phonetic": "/ɡəʊ tə skuːl/",
+          "meaning": "上学"
+        },
+        {
+          "word": "go home",
+          "phonetic": "/ɡəʊ həʊm/",
+          "meaning": "回家"
+        },
+        {
+          "word": "go to bed",
+          "phonetic": "/ɡəʊ tə bed/",
+          "meaning": "上床睡觉"
+        },
+        {
+          "word": "want",
+          "phonetic": "/wɒnt/",
+          "meaning": "想要"
+        },
+        {
+          "word": "clock",
+          "phonetic": "/klɒk/",
+          "meaning": "时钟"
+        },
+        {
+          "word": "just",
+          "phonetic": "/dʒʌst/",
+          "meaning": "只是；仅仅；正要"
+        },
+        {
+          "word": "minute",
+          "phonetic": "/ˈmɪnɪt/",
+          "meaning": "分钟"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4b-2026-u3",
+          "title": "Unit 3 Time for school · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like over.\nThis is my kid.\nI can see dinner.\nWe need art.\nLunch is nice.",
+          "translation": "你好，我喜欢结束（的）。\n这是我的小孩。\n我能看见正餐。\n我们需要美术。\n午餐很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-2026-u3-textbook-a",
+          "title": "Unit 3 Time for school · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-2026-u3-textbook-b",
+          "title": "Unit 3 Time for school · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4b-2026-u3",
+          "title": "Unit 3 Time for school · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like over.\nThis is my kid.\nI can see dinner.\nWe need art.\nLunch is nice.",
+          "translation": "你好，我喜欢结束（的）。\n这是我的小孩。\n我能看见正餐。\n我们需要美术。\n午餐很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 Going shopping",
+      "theme": "",
+      "words": [
+        {
+          "word": "trousers",
+          "phonetic": "/ˈtraʊzəz/",
+          "meaning": "裤子"
+        },
+        {
+          "word": "pair",
+          "phonetic": "/peə(r)/",
+          "meaning": "一条；一副"
+        },
+        {
+          "word": "clothes",
+          "phonetic": "/kləʊðz/",
+          "meaning": "衣服；服装"
+        },
+        {
+          "word": "those",
+          "phonetic": "/ðəʊz/",
+          "meaning": "那些"
+        },
+        {
+          "word": "shorts",
+          "phonetic": "/ʃɔːts/",
+          "meaning": "短裤"
+        },
+        {
+          "word": "jacket",
+          "phonetic": "/ˈdʒækɪt/",
+          "meaning": "夹克衫；短上衣"
+        },
+        {
+          "word": "skirt",
+          "phonetic": "/skɜːt/",
+          "meaning": "裙子"
+        },
+        {
+          "word": "dear",
+          "phonetic": "/dɪə(r)/",
+          "meaning": "亲爱的"
+        },
+        {
+          "word": "expensive",
+          "phonetic": "/ɪkˈspensɪv/",
+          "meaning": "昂贵的"
+        },
+        {
+          "word": "take",
+          "phonetic": "/teɪk/",
+          "meaning": "买下"
+        },
+        {
+          "word": "cheap",
+          "phonetic": "/tʃiːp/",
+          "meaning": "便宜的"
+        },
+        {
+          "word": "shoe",
+          "phonetic": "/ʃuː/",
+          "meaning": "鞋"
+        },
+        {
+          "word": "beautiful",
+          "phonetic": "/ˈbjuːtɪfl/",
+          "meaning": "美丽的"
+        },
+        {
+          "word": "hat",
+          "phonetic": "/hæt/",
+          "meaning": "帽子"
+        },
+        {
+          "word": "sunglasses",
+          "phonetic": "/ˈsʌnɡlɑːsɪz/",
+          "meaning": "太阳镜；墨镜"
+        },
+        {
+          "word": "free",
+          "phonetic": "/friː/",
+          "meaning": "免费的"
+        },
+        {
+          "word": "large",
+          "phonetic": "/lɑːdʒ/",
+          "meaning": "大型号的"
+        },
+        {
+          "word": "size",
+          "phonetic": "/saɪz/",
+          "meaning": "尺码；号"
+        },
+        {
+          "word": "list",
+          "phonetic": "/lɪst/",
+          "meaning": "清单；目录"
+        },
+        {
+          "word": "try on",
+          "phonetic": "/traɪ ɒn/",
+          "meaning": "试穿"
+        },
+        {
+          "word": "any",
+          "phonetic": "/ˈeni/",
+          "meaning": "任何的；任一的"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4b-2026-u4",
+          "title": "Unit 4 Going shopping · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like trousers.\nThis is my pair.\nI can see clothes.\nWe need those.\nShorts is nice.",
+          "translation": "你好，我喜欢裤子。\n这是我的一条。\n我能看见衣服。\n我们需要那些。\n短裤很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-2026-u4-textbook-a",
+          "title": "Unit 4 Going shopping · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-2026-u4-textbook-b",
+          "title": "Unit 4 Going shopping · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4b-2026-u4",
+          "title": "Unit 4 Going shopping · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like trousers.\nThis is my pair.\nI can see clothes.\nWe need those.\nShorts is nice.",
+          "translation": "你好，我喜欢裤子。\n这是我的一条。\n我能看见衣服。\n我们需要那些。\n短裤很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 Farms and us",
+      "theme": "",
+      "words": [
+        {
+          "word": "cow",
+          "phonetic": "/kaʊ/",
+          "meaning": "奶牛"
+        },
+        {
+          "word": "horse",
+          "phonetic": "/hɔːs/",
+          "meaning": "马"
+        },
+        {
+          "word": "sheep",
+          "phonetic": "/ʃiːp/",
+          "meaning": "羊；绵羊"
+        },
+        {
+          "word": "pig",
+          "phonetic": "/pɪɡ/",
+          "meaning": "猪"
+        },
+        {
+          "word": "chicken",
+          "phonetic": "/ˈtʃɪkɪn/",
+          "meaning": "鸡；鸡肉"
+        },
+        {
+          "word": "tomato",
+          "phonetic": "/təˈmɑːtəʊ/",
+          "meaning": "西红柿"
+        },
+        {
+          "word": "bee",
+          "phonetic": "/biː/",
+          "meaning": "蜜蜂"
+        },
+        {
+          "word": "mouse",
+          "phonetic": "/maʊs/",
+          "meaning": "老鼠（复数 mice）"
+        },
+        {
+          "word": "carrot",
+          "phonetic": "/ˈkærət/",
+          "meaning": "胡萝卜"
+        },
+        {
+          "word": "potato",
+          "phonetic": "/pəˈteɪtəʊ/",
+          "meaning": "土豆"
+        },
+        {
+          "word": "green bean",
+          "phonetic": "/ɡriːn biːn/",
+          "meaning": "青刀豆；四季豆"
+        },
+        {
+          "word": "can",
+          "phonetic": "/kæn/",
+          "meaning": "（盛食品或饮料的）金属罐"
+        },
+        {
+          "word": "a box of",
+          "phonetic": "/ə bɒks əv/",
+          "meaning": "一盒；一箱"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4b-2026-u5",
+          "title": "Unit 5 Farms and us · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like cow.\nThis is my horse.\nI can see sheep.\nWe need pig.\nChicken is nice.",
+          "translation": "你好，我喜欢奶牛。\n这是我的马。\n我能看见羊。\n我们需要猪。\n鸡很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-2026-u5-textbook-a",
+          "title": "Unit 5 Farms and us · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-2026-u5-textbook-b",
+          "title": "Unit 5 Farms and us · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4b-2026-u5",
+          "title": "Unit 5 Farms and us · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like cow.\nThis is my horse.\nI can see sheep.\nWe need pig.\nChicken is nice.",
+          "translation": "你好，我喜欢奶牛。\n这是我的马。\n我能看见羊。\n我们需要猪。\n鸡很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 From farm to table",
+      "theme": "",
+      "words": [
+        {
+          "word": "feed",
+          "phonetic": "/fiːd/",
+          "meaning": "饲养；给……食物"
+        },
+        {
+          "word": "pass",
+          "phonetic": "/pɑːs/",
+          "meaning": "给；递"
+        },
+        {
+          "word": "pick",
+          "phonetic": "/pɪk/",
+          "meaning": "采；摘"
+        },
+        {
+          "word": "milk",
+          "phonetic": "/mɪlk/",
+          "meaning": "挤奶"
+        },
+        {
+          "word": "knife",
+          "phonetic": "/naɪf/",
+          "meaning": "刀"
+        },
+        {
+          "word": "fork",
+          "phonetic": "/fɔːk/",
+          "meaning": "餐叉"
+        },
+        {
+          "word": "chopstick",
+          "phonetic": "/ˈtʃɒpstɪk/",
+          "meaning": "筷子（常用复数）"
+        },
+        {
+          "word": "waste",
+          "phonetic": "/weɪst/",
+          "meaning": "浪费；废品"
+        },
+        {
+          "word": "food",
+          "phonetic": "/fuːd/",
+          "meaning": "菜肴；食物"
+        },
+        {
+          "word": "delicious",
+          "phonetic": "/dɪˈlɪʃəs/",
+          "meaning": "美味的；可口的"
+        },
+        {
+          "word": "clear the table",
+          "phonetic": "/klɪə(r) ðə ˈteɪbl/",
+          "meaning": "收拾餐桌"
+        },
+        {
+          "word": "set the table",
+          "phonetic": "/set ðə ˈteɪbl/",
+          "meaning": "摆放餐具"
+        },
+        {
+          "word": "bowl",
+          "phonetic": "/bəʊl/",
+          "meaning": "碗"
+        },
+        {
+          "word": "spoon",
+          "phonetic": "/spuːn/",
+          "meaning": "勺；匙"
+        },
+        {
+          "word": "supermarket",
+          "phonetic": "/ˈsuːpəmɑːkɪt/",
+          "meaning": "超市"
+        },
+        {
+          "word": "herself",
+          "phonetic": "/hɜːˈself/",
+          "meaning": "她自己"
+        },
+        {
+          "word": "week",
+          "phonetic": "/wiːk/",
+          "meaning": "周；星期"
+        },
+        {
+          "word": "salad",
+          "phonetic": "/ˈsæləd/",
+          "meaning": "蔬菜沙拉"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g4b-2026-u6",
+          "title": "Unit 6 From farm to table · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like feed.\nThis is my pass.\nI can see pick.\nWe need milk.\nKnife is nice.",
+          "translation": "你好，我喜欢饲养。\n这是我的给。\n我能看见采。\n我们需要挤奶。\n刀很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-2026-u6-textbook-a",
+          "title": "Unit 6 From farm to table · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-2026-u6-textbook-b",
+          "title": "Unit 6 From farm to table · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g4b-2026-u6",
+          "title": "Unit 6 From farm to table · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like feed.\nThis is my pass.\nI can see pick.\nWe need milk.\nKnife is nice.",
+          "translation": "你好，我喜欢饲养。\n这是我的给。\n我能看见采。\n我们需要挤奶。\n刀很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    }
+  ]
+}

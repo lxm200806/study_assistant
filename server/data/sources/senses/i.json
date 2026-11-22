@@ -4275,6 +4275,21 @@
     "level": "B1",
     "origin": "word-atlas"
   },
+  "in class": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "在课堂上"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ɪn klɑːs/"
+    },
+    "origin": "seed:pep-g3b-2025"
+  },
   "in front of": {
     "meanings": [
       {

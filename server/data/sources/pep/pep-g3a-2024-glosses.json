@@ -1,0 +1,482 @@
+{
+  "name": {
+    "phonetic": "/neɪm/",
+    "meaning": "名字"
+  },
+  "nice": {
+    "phonetic": "/naɪs/",
+    "meaning": "友好的；令人愉快的"
+  },
+  "ear": {
+    "phonetic": "/ɪə(r)/",
+    "meaning": "耳朵"
+  },
+  "hand": {
+    "phonetic": "/hænd/",
+    "meaning": "手"
+  },
+  "eye": {
+    "phonetic": "/aɪ/",
+    "meaning": "眼睛"
+  },
+  "mouth": {
+    "phonetic": "/maʊθ/",
+    "meaning": "嘴"
+  },
+  "arm": {
+    "phonetic": "/ɑːm/",
+    "meaning": "胳膊"
+  },
+  "can": {
+    "phonetic": "/kæn/",
+    "meaning": "可以；能够"
+  },
+  "share": {
+    "phonetic": "/ʃeə(r)/",
+    "meaning": "分享"
+  },
+  "smile": {
+    "phonetic": "/smaɪl/",
+    "meaning": "微笑"
+  },
+  "listen": {
+    "phonetic": "/ˈlɪsn/",
+    "meaning": "听；倾听"
+  },
+  "help": {
+    "phonetic": "/help/",
+    "meaning": "帮助"
+  },
+  "say": {
+    "phonetic": "/seɪ/",
+    "meaning": "说；讲"
+  },
+  "friend": {
+    "phonetic": "/frend/",
+    "meaning": "朋友"
+  },
+  "good": {
+    "phonetic": "/ɡʊd/",
+    "meaning": "好的"
+  },
+  "and": {
+    "phonetic": "/ænd/",
+    "meaning": "和；与"
+  },
+  "toy": {
+    "phonetic": "/tɔɪ/",
+    "meaning": "玩具"
+  },
+  "hello": {
+    "phonetic": "/həˈləʊ/",
+    "meaning": "你好"
+  },
+  "hi": {
+    "phonetic": "/haɪ/",
+    "meaning": "嗨"
+  },
+  "too": {
+    "phonetic": "/tuː/",
+    "meaning": "也"
+  },
+  "goodbye": {
+    "phonetic": "/ˌɡʊdˈbaɪ/",
+    "meaning": "再见"
+  },
+  "mum": {
+    "phonetic": "/mʌm/",
+    "meaning": "（口语）妈妈"
+  },
+  "dad": {
+    "phonetic": "/dæd/",
+    "meaning": "（口语）爸爸"
+  },
+  "grandma": {
+    "phonetic": "/ˈɡrænmɑː/",
+    "meaning": "奶奶；姥姥"
+  },
+  "grandpa": {
+    "phonetic": "/ˈɡrænpɑː/",
+    "meaning": "爷爷；姥爷"
+  },
+  "grandmother": {
+    "phonetic": "/ˈɡrænmʌðə(r)/",
+    "meaning": "（外）祖母"
+  },
+  "grandfather": {
+    "phonetic": "/ˈɡrænfɑːðə(r)/",
+    "meaning": "（外）祖父"
+  },
+  "mother": {
+    "phonetic": "/ˈmʌðə(r)/",
+    "meaning": "母亲；妈妈"
+  },
+  "father": {
+    "phonetic": "/ˈfɑːðə(r)/",
+    "meaning": "父亲；爸爸"
+  },
+  "family": {
+    "phonetic": "/ˈfæməli/",
+    "meaning": "家；家庭"
+  },
+  "have": {
+    "phonetic": "/hæv/",
+    "meaning": "有"
+  },
+  "big": {
+    "phonetic": "/bɪɡ/",
+    "meaning": "大的"
+  },
+  "sister": {
+    "phonetic": "/ˈsɪstə(r)/",
+    "meaning": "姐；妹"
+  },
+  "brother": {
+    "phonetic": "/ˈbrʌðə(r)/",
+    "meaning": "哥；弟"
+  },
+  "cousin": {
+    "phonetic": "/ˈkʌzn/",
+    "meaning": "堂（表）兄弟；堂（表）姐妹"
+  },
+  "me": {
+    "phonetic": "/miː/",
+    "meaning": "我"
+  },
+  "small": {
+    "phonetic": "/smɔːl/",
+    "meaning": "小的"
+  },
+  "baby": {
+    "phonetic": "/ˈbeɪbi/",
+    "meaning": "婴儿"
+  },
+  "aunt": {
+    "phonetic": "/ɑːnt/",
+    "meaning": "伯母；婶母；舅母；姑母；姨母"
+  },
+  "uncle": {
+    "phonetic": "/ˈʌŋkl/",
+    "meaning": "伯父；叔父；舅父；姑父；姨父"
+  },
+  "some": {
+    "phonetic": "/sʌm/",
+    "meaning": "一些"
+  },
+  "like": {
+    "phonetic": "/laɪk/",
+    "meaning": "喜欢"
+  },
+  "dog": {
+    "phonetic": "/dɒɡ/",
+    "meaning": "狗"
+  },
+  "pet": {
+    "phonetic": "/pet/",
+    "meaning": "宠物"
+  },
+  "cat": {
+    "phonetic": "/kæt/",
+    "meaning": "猫"
+  },
+  "fish": {
+    "phonetic": "/fɪʃ/",
+    "meaning": "鱼"
+  },
+  "bird": {
+    "phonetic": "/bɜːd/",
+    "meaning": "鸟"
+  },
+  "rabbit": {
+    "phonetic": "/ˈræbɪt/",
+    "meaning": "兔子"
+  },
+  "go": {
+    "phonetic": "/ɡəʊ/",
+    "meaning": "去；走"
+  },
+  "zoo": {
+    "phonetic": "/zuː/",
+    "meaning": "动物园"
+  },
+  "fox": {
+    "phonetic": "/fɒks/",
+    "meaning": "狐狸"
+  },
+  "miss": {
+    "phonetic": "/mɪs/",
+    "meaning": "女士；老师"
+  },
+  "panda": {
+    "phonetic": "/ˈpændə/",
+    "meaning": "大熊猫"
+  },
+  "red panda": {
+    "phonetic": "/red ˈpændə/",
+    "meaning": "小熊猫"
+  },
+  "cute": {
+    "phonetic": "/kjuːt/",
+    "meaning": "可爱的"
+  },
+  "monkey": {
+    "phonetic": "/ˈmʌŋki/",
+    "meaning": "猴子"
+  },
+  "tiger": {
+    "phonetic": "/ˈtaɪɡə(r)/",
+    "meaning": "老虎"
+  },
+  "elephant": {
+    "phonetic": "/ˈelɪfənt/",
+    "meaning": "大象"
+  },
+  "lion": {
+    "phonetic": "/ˈlaɪən/",
+    "meaning": "狮子"
+  },
+  "giraffe": {
+    "phonetic": "/dʒəˈrɑːf/",
+    "meaning": "长颈鹿"
+  },
+  "tall": {
+    "phonetic": "/tɔːl/",
+    "meaning": "高的"
+  },
+  "fast": {
+    "phonetic": "/fɑːst/",
+    "meaning": "快的"
+  },
+  "animal": {
+    "phonetic": "/ˈænɪml/",
+    "meaning": "动物"
+  },
+  "apple": {
+    "phonetic": "/ˈæpl/",
+    "meaning": "苹果"
+  },
+  "banana": {
+    "phonetic": "/bəˈnɑːnə/",
+    "meaning": "香蕉"
+  },
+  "farm": {
+    "phonetic": "/fɑːm/",
+    "meaning": "农场"
+  },
+  "air": {
+    "phonetic": "/eə(r)/",
+    "meaning": "空气"
+  },
+  "orange": {
+    "phonetic": "/ˈɒrɪndʒ/",
+    "meaning": "橙子；柑橘"
+  },
+  "grape": {
+    "phonetic": "/ɡreɪp/",
+    "meaning": "葡萄"
+  },
+  "school": {
+    "phonetic": "/skuːl/",
+    "meaning": "学校"
+  },
+  "garden": {
+    "phonetic": "/ˈɡɑːdn/",
+    "meaning": "花园"
+  },
+  "need": {
+    "phonetic": "/niːd/",
+    "meaning": "需要"
+  },
+  "water": {
+    "phonetic": "/ˈwɔːtə(r)/",
+    "meaning": "水；浇水"
+  },
+  "flower": {
+    "phonetic": "/ˈflaʊə(r)/",
+    "meaning": "花"
+  },
+  "grass": {
+    "phonetic": "/ɡrɑːs/",
+    "meaning": "草；草地"
+  },
+  "plant": {
+    "phonetic": "/plɑːnt/",
+    "meaning": "植物；种植"
+  },
+  "new": {
+    "phonetic": "/njuː/",
+    "meaning": "新的"
+  },
+  "tree": {
+    "phonetic": "/triː/",
+    "meaning": "树"
+  },
+  "sun": {
+    "phonetic": "/sʌn/",
+    "meaning": "太阳"
+  },
+  "give": {
+    "phonetic": "/ɡɪv/",
+    "meaning": "给"
+  },
+  "us": {
+    "phonetic": "/ʌs/",
+    "meaning": "我们"
+  },
+  "them": {
+    "phonetic": "/ðəm/",
+    "meaning": "它们；他们；她们"
+  },
+  "fruit": {
+    "phonetic": "/fruːt/",
+    "meaning": "水果"
+  },
+  "wood": {
+    "phonetic": "/wʊd/",
+    "meaning": "木头"
+  },
+  "leaf": {
+    "phonetic": "/liːf/",
+    "meaning": "叶子"
+  },
+  "get": {
+    "phonetic": "/ɡet/",
+    "meaning": "得到；获取"
+  },
+  "do": {
+    "phonetic": "/duː/",
+    "meaning": "做"
+  },
+  "don't": {
+    "phonetic": "/dəʊnt/",
+    "meaning": "不"
+  },
+  "colour": {
+    "phonetic": "/ˈkʌlə(r)/",
+    "meaning": "颜色"
+  },
+  "red": {
+    "phonetic": "/red/",
+    "meaning": "红色；红色的"
+  },
+  "yellow": {
+    "phonetic": "/ˈjeləʊ/",
+    "meaning": "黄色；黄色的"
+  },
+  "blue": {
+    "phonetic": "/bluː/",
+    "meaning": "蓝色；蓝色的"
+  },
+  "green": {
+    "phonetic": "/ɡriːn/",
+    "meaning": "绿色；绿色的"
+  },
+  "white": {
+    "phonetic": "/waɪt/",
+    "meaning": "白色；白色的"
+  },
+  "black": {
+    "phonetic": "/blæk/",
+    "meaning": "黑色；黑色的"
+  },
+  "brown": {
+    "phonetic": "/braʊn/",
+    "meaning": "棕色；棕色的"
+  },
+  "pink": {
+    "phonetic": "/pɪŋk/",
+    "meaning": "粉色；粉色的"
+  },
+  "purple": {
+    "phonetic": "/ˈpɜːpl/",
+    "meaning": "紫色；紫色的"
+  },
+  "see": {
+    "phonetic": "/siː/",
+    "meaning": "看见"
+  },
+  "make": {
+    "phonetic": "/meɪk/",
+    "meaning": "使出现；做"
+  },
+  "draw": {
+    "phonetic": "/drɔː/",
+    "meaning": "画"
+  },
+  "bear": {
+    "phonetic": "/beə(r)/",
+    "meaning": "熊"
+  },
+  "duck": {
+    "phonetic": "/dʌk/",
+    "meaning": "鸭"
+  },
+  "sea": {
+    "phonetic": "/siː/",
+    "meaning": "海；海洋"
+  },
+  "old": {
+    "phonetic": "/əʊld/",
+    "meaning": "（多少）岁；年纪；旧的"
+  },
+  "five": {
+    "phonetic": "/faɪv/",
+    "meaning": "五"
+  },
+  "year": {
+    "phonetic": "/jɪə(r)/",
+    "meaning": "年纪；年"
+  },
+  "one": {
+    "phonetic": "/wʌn/",
+    "meaning": "一"
+  },
+  "two": {
+    "phonetic": "/tuː/",
+    "meaning": "二"
+  },
+  "three": {
+    "phonetic": "/θriː/",
+    "meaning": "三"
+  },
+  "four": {
+    "phonetic": "/fɔː(r)/",
+    "meaning": "四"
+  },
+  "ten": {
+    "phonetic": "/ten/",
+    "meaning": "十"
+  },
+  "six": {
+    "phonetic": "/sɪks/",
+    "meaning": "六"
+  },
+  "seven": {
+    "phonetic": "/ˈsevn/",
+    "meaning": "七"
+  },
+  "eight": {
+    "phonetic": "/eɪt/",
+    "meaning": "八"
+  },
+  "nine": {
+    "phonetic": "/naɪn/",
+    "meaning": "九"
+  },
+  "o'clock": {
+    "phonetic": "/əˈklɒk/",
+    "meaning": "（表示整点）……点钟"
+  },
+  "cut": {
+    "phonetic": "/kʌt/",
+    "meaning": "切块"
+  },
+  "eat": {
+    "phonetic": "/iːt/",
+    "meaning": "吃"
+  },
+  "cake": {
+    "phonetic": "/keɪk/",
+    "meaning": "蛋糕"
+  }
+}

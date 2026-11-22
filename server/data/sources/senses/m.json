@@ -1373,6 +1373,21 @@
     "level": "A2",
     "origin": "book:mse-pet"
   },
+  "make the bed": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "铺床"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/meɪk ðə bed/"
+    },
+    "origin": "seed:pep-g4a-2025"
+  },
   "make-up": {
     "meanings": [
       {

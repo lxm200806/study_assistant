@@ -8,6 +8,32 @@
       </view>
     </view>
 
+    <view class="filters">
+      <view class="filter-row">
+        <text class="filter-label">分类</text>
+        <view class="chips">
+          <text
+            v-for="opt in categoryOptions"
+            :key="opt.key"
+            :class="['chip', category === opt.key ? 'on' : '']"
+            @tap="category = opt.key"
+          >{{ opt.label }}</text>
+        </view>
+      </view>
+      <view class="filter-row">
+        <text class="filter-label">年级</text>
+        <view class="chips">
+          <text
+            v-for="opt in gradeOptions"
+            :key="opt"
+            :class="['chip', grade === opt ? 'on' : '']"
+            @tap="grade = opt"
+          >{{ opt }}</text>
+        </view>
+      </view>
+    </view>
+
+    <view v-if="!bookGroups.length" class="empty">没有匹配的词书</view>
     <view v-for="group in bookGroups" :key="group.key" class="group">
       <text class="group-title">{{ group.title }}</text>
       <view class="books-grid">
@@ -26,6 +52,11 @@
           <text class="book-count">{{ book.wordCount }} 词</text>
           <text class="book-desc">{{ book.description }}</text>
           <view class="book-actions" @tap.stop>
+            <text
+              v-if="book.code.startsWith('pep-') || book.code.startsWith('jt-')"
+              class="map-link"
+              @tap="goPepBook(book.code)"
+            >练习</text>
             <text class="map-link" @tap="goToBookMap(book.code)">图谱</text>
           </view>
         </view>
@@ -59,11 +90,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import { requireSubject } from '@/utils/subject'
 import { useVocabularyStore, type MeaningType } from '@/stores/vocabulary'
-import { openMapTab } from '@/utils/navigation'
+import { openMapTab, openPage } from '@/utils/navigation'
 import { isBookAccessible } from '@/composables/useTrainingStart'
 
 const vocabStore = useVocabularyStore()
@@ -79,25 +110,97 @@ type BookItem = {
 }
 
 const GROUP_DEFS: { key: string; title: string; codes: string[] }[] = [
+  {
+    key: 'pep',
+    title: '人教 PEP',
+    codes: [
+      'pep-g3a-2024',
+      'pep-g3b-2025',
+      'pep-g4a-2025',
+      'pep-g4b-2026',
+      'pep-g5a-2026',
+      'pep-g4b-legacy',
+      'pep-g5a-legacy',
+      'pep-g5b-legacy',
+      'pep-g6a-legacy',
+      'pep-g6b-legacy'
+    ]
+  },
+  {
+    key: 'jt',
+    title: '人教精通',
+    codes: [
+      'jt-g3a-2024',
+      'jt-g3b-2025',
+      'jt-g4a-2025',
+      'jt-g4b',
+      'jt-g5a',
+      'jt-g5b',
+      'jt-g6a',
+      'jt-g6b'
+    ]
+  },
   { key: 'mse', title: '剑桥 MSE', codes: ['mse-ket', 'mse-pet'] },
   { key: 'cn', title: '课标 · 考纲', codes: ['zhongkao', 'gaokao', 'cet4', 'cet6'] },
   { key: 'kew', title: '高频词 KEW', codes: ['kew1200', 'kew4500', 'kew7200'] }
 ]
 
+const GRADE_ORDER = ['三年级', '四年级', '五年级', '六年级']
+
+const category = ref('全部')
+const grade = ref('全部')
+
+const categoryOptions = computed(() => [
+  { key: '全部', label: '全部' },
+  ...GROUP_DEFS.map(g => ({ key: g.key, label: g.title }))
+])
+
+const gradeOptions = computed(() => ['全部', ...GRADE_ORDER])
+
+function gradeOf(book: BookItem): string {
+  const level = book.level || ''
+  if (/三|g3/i.test(level) || /g3/i.test(book.code)) return '三年级'
+  if (/四|g4/i.test(level) || /g4/i.test(book.code)) return '四年级'
+  if (/五|g5/i.test(level) || /g5/i.test(book.code)) return '五年级'
+  if (/六|g6/i.test(level) || /g6/i.test(book.code)) return '六年级'
+  const m = level.match(/小学([三四五代六])/)
+  if (m) {
+    const map: Record<string, string> = {
+      三: '三年级',
+      四: '四年级',
+      五: '五年级',
+      六: '六年级'
+    }
+    return map[m[1]] || ''
+  }
+  return ''
+}
+
+function matchBook(book: BookItem): boolean {
+  if (grade.value !== '全部' && gradeOf(book) !== grade.value) return false
+  return true
+}
+
 const bookGroups = computed(() => {
   const byCode = new Map(vocabStore.books.map(b => [b.code, b as BookItem]))
   const used = new Set<string>()
-  const groups = GROUP_DEFS.map(def => {
-    const books = def.codes
-      .map(code => byCode.get(code))
-      .filter((b): b is BookItem => !!b)
-    books.forEach(b => used.add(b.code))
-    return { key: def.key, title: def.title, books }
-  }).filter(g => g.books.length > 0)
+  const defs =
+    category.value === '全部' ? GROUP_DEFS : GROUP_DEFS.filter(d => d.key === category.value)
 
-  const rest = vocabStore.books.filter(b => !used.has(b.code)) as BookItem[]
-  if (rest.length) {
-    groups.push({ key: 'other', title: '其他', books: rest })
+  const groups = defs
+    .map(def => {
+      const books = def.codes
+        .map(code => byCode.get(code))
+        .filter((b): b is BookItem => !!b)
+        .filter(matchBook)
+      books.forEach(b => used.add(b.code))
+      return { key: def.key, title: def.title, books }
+    })
+    .filter(g => g.books.length > 0)
+
+  if (category.value === '全部') {
+    const rest = (vocabStore.books as BookItem[]).filter(b => !used.has(b.code)).filter(matchBook)
+    if (rest.length) groups.push({ key: 'other', title: '其他', books: rest })
   }
   return groups
 })
@@ -129,6 +232,11 @@ const selectBook = (book: BookItem) => {
 
 const goToBookMap = (code: string) => {
   openMapTab(code)
+}
+
+const goPepBook = (code: string) => {
+  vocabStore.setCurrentBook(code)
+  openPage(`/pages/primary/book?code=${encodeURIComponent(code)}`)
 }
 
 const setMeaningType = (type: MeaningType) => {
@@ -177,6 +285,58 @@ onShow(async () => {
 .current-meta {
   font-size: 22rpx;
   color: rgba(255, 255, 255, 0.85);
+}
+
+.filters {
+  margin: 0 4rpx 22rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.filter-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12rpx;
+}
+
+.filter-label {
+  flex-shrink: 0;
+  width: 64rpx;
+  padding-top: 8rpx;
+  font-size: 22rpx;
+  color: var(--pc-text-3, #888);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  flex: 1;
+}
+
+.chip {
+  font-size: 22rpx;
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  background: var(--pc-surface-2, #fff);
+  color: var(--pc-text-2, #555);
+  border: 2rpx solid transparent;
+}
+
+.chip.on {
+  background: var(--pc-accent-soft, #e7f3ef);
+  color: var(--pc-accent, #0f6e6a);
+  border-color: var(--pc-accent, #0f6e6a);
+  font-weight: 600;
+}
+
+.empty {
+  padding: 48rpx 12rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: var(--pc-text-3, #888);
+  margin-bottom: 20rpx;
 }
 
 .group {

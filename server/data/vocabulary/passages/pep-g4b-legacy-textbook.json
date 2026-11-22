@@ -1,0 +1,139 @@
+{
+  "bookCode": "pep-g4b-legacy",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "pep-g4b-legacy-u1-textbook-a",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 My school · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u1-textbook-b",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 My school · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u2-textbook-a",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 What time is it? · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u2-textbook-b",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 What time is it? · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u3-textbook-a",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Weather Recycle · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u3-textbook-b",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Weather Recycle · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u4-textbook-a",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 At the farm · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u4-textbook-b",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 At the farm · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u5-textbook-a",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 My clothes · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u5-textbook-b",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 My clothes · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u6-textbook-a",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Shopping Recycle · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-legacy-u6-textbook-b",
+      "bookCode": "pep-g4b-legacy",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Shopping Recycle · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

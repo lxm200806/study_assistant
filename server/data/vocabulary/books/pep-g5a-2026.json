@@ -1,0 +1,788 @@
+{
+  "code": "pep-g5a-2026",
+  "name": "人教 PEP 五上（2026）",
+  "description": "义务教育教科书《英语（PEP）》五上（2026 新教材）。单元词表供词汇练习；课文练习为自编口语短文（非教材原文）。词表整理自速声英语公开单元页。",
+  "level": "小学五上",
+  "targetWordCount": 111,
+  "wordCount": 111,
+  "source": "pep-g5a-2026-unit-lists",
+  "words": [
+    {
+      "word": "team",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "player",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "him",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "lovely",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "clever",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "young",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "hard-working",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "science",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "robot",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "jump",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "rope",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "piano",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "chess",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "front",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "easy",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "star",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "wonderful",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "australia",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "sad",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "matter",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "project",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "centre",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "agree",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "finish",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "monday",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "worried",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "both",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "excited",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "wrong",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "angry",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "afraid",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "parent",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "ask",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "move",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "yours",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "wednesday",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "subject",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "tuesday",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "friday",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "because",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "thursday",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "start",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "usually",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "weekend",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "sometimes",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "saturday",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "sunday",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "lesson",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "evening",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "answer",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "ping-pong",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "night",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "visit",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "grandparent",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "stay",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "should",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "flu",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "else",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "exercise",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "enough",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "if",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "habit",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "show",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "phone",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "then",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "rest",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "take care of",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "check",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "less",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "brush",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "tooth",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "teeth",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "twice",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "hour",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "free",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "hungry",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "beef",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "ice cream",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "little",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "dumpling",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "tea",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "hamburger",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "mrs",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "coconut",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "interesting",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "seed",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "pull",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "stem",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "root",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "lotus",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "lake",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "world",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "round",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "different",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "way",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "river",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "nature",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "waterfall",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "forest",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "famous",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "mountain",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "wind",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "trip",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "dangerous",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "umbrella",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "fog",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "fire",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "hiking",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "bring",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "know",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "raincoat",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    }
+  ]
+}

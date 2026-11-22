@@ -1,0 +1,139 @@
+{
+  "bookCode": "jt-g3b-2025",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "jt-g3b-2025-u1-textbook-a",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 My classroom · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u1-textbook-b",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 My classroom · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u2-textbook-a",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 My class · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u2-textbook-b",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 My class · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u3-textbook-a",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 My family · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u3-textbook-b",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 My family · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u4-textbook-a",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Clothes · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u4-textbook-b",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Clothes · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u5-textbook-a",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Animals · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u5-textbook-b",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Animals · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u6-textbook-a",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Colours · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g3b-2025-u6-textbook-b",
+      "bookCode": "jt-g3b-2025",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Colours · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

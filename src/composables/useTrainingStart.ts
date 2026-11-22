@@ -7,6 +7,7 @@ export function isBookAccessible(bookCode: string, isFree?: boolean): boolean {
   const userStore = useUserStore()
   if (userStore.isAdmin || userStore.plan === 'premium') return true
   if (isFree === true || bookCode === 'mse-ket' || bookCode === 'ket') return true
+  if (bookCode.startsWith('pep-g')) return true
   return false
 }
 

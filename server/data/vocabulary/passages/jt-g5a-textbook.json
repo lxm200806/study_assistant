@@ -1,0 +1,139 @@
+{
+  "bookCode": "jt-g5a",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "jt-g5a-u1-textbook-a",
+      "bookCode": "jt-g5a",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Hello Boys And Girls We Have Two New Friends In Our Class · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u1-textbook-b",
+      "bookCode": "jt-g5a",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Hello Boys And Girls We Have Two New Friends In Our Class · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u2-textbook-a",
+      "bookCode": "jt-g5a",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Thinking Tasks · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u2-textbook-b",
+      "bookCode": "jt-g5a",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Thinking Tasks · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u3-textbook-a",
+      "bookCode": "jt-g5a",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 kinds of people. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u3-textbook-b",
+      "bookCode": "jt-g5a",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 kinds of people. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u4-textbook-a",
+      "bookCode": "jt-g5a",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Children all over the world celebrate Children's Day · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u4-textbook-b",
+      "bookCode": "jt-g5a",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Children all over the world celebrate Children's Day · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u5-textbook-a",
+      "bookCode": "jt-g5a",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Special Museums A museum is a fun place. Let's go and · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u5-textbook-b",
+      "bookCode": "jt-g5a",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Special Museums A museum is a fun place. Let's go and · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u6-textbook-a",
+      "bookCode": "jt-g5a",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Thinking Tasks R E A D I Ng For Kno Wle Dg · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g5a-u6-textbook-b",
+      "bookCode": "jt-g5a",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Thinking Tasks R E A D I Ng For Kno Wle Dg · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "bookCode": "jt-g6b",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "jt-g6b-u1-textbook-a",
+      "bookCode": "jt-g6b",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Contents · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u1-textbook-b",
+      "bookCode": "jt-g6b",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Contents · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u2-textbook-a",
+      "bookCode": "jt-g6b",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Contents · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u2-textbook-b",
+      "bookCode": "jt-g6b",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Contents · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u3-textbook-a",
+      "bookCode": "jt-g6b",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 famous parks in the world. It is a very big · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u3-textbook-b",
+      "bookCode": "jt-g6b",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 famous parks in the world. It is a very big · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u4-textbook-a",
+      "bookCode": "jt-g6b",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 42 The Great Wall Of China Is One Of The Greatest Wonders Of · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u4-textbook-b",
+      "bookCode": "jt-g6b",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 42 The Great Wall Of China Is One Of The Greatest Wonders Of · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u5-textbook-a",
+      "bookCode": "jt-g6b",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Task 12 Listen, write and read. · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u5-textbook-b",
+      "bookCode": "jt-g6b",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Task 12 Listen, write and read. · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u6-textbook-a",
+      "bookCode": "jt-g6b",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Words In Each Unit Vocabulary I Went To Sanya For My Holiday · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "jt-g6b-u6-textbook-b",
+      "bookCode": "jt-g6b",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Words In Each Unit Vocabulary I Went To Sanya For My Holiday · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

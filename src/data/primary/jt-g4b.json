@@ -1,0 +1,922 @@
+{
+  "code": "jt-g4b",
+  "name": "人教精通 四下",
+  "level": "小学四下",
+  "shortLabel": "四下",
+  "year": 2013,
+  "series": "jt",
+  "seriesLabel": "人教精通",
+  "grade": "四年级",
+  "term": "下",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 Look at my bedroom.",
+      "theme": "",
+      "words": [
+        {
+          "word": "home",
+          "phonetic": "",
+          "meaning": "家"
+        },
+        {
+          "word": "bedroom",
+          "phonetic": "",
+          "meaning": "卧室"
+        },
+        {
+          "word": "bed",
+          "phonetic": "",
+          "meaning": "床"
+        },
+        {
+          "word": "desk",
+          "phonetic": "",
+          "meaning": "课桌"
+        },
+        {
+          "word": "chair",
+          "phonetic": "",
+          "meaning": "椅子"
+        },
+        {
+          "word": "living room",
+          "phonetic": "",
+          "meaning": "起居室"
+        },
+        {
+          "word": "TV",
+          "phonetic": "",
+          "meaning": "电视"
+        },
+        {
+          "word": "sofa",
+          "phonetic": "",
+          "meaning": "沙发"
+        },
+        {
+          "word": "armchair",
+          "phonetic": "",
+          "meaning": "单人沙发;扶手椅"
+        },
+        {
+          "word": "ball",
+          "phonetic": "",
+          "meaning": "球"
+        },
+        {
+          "word": "kite",
+          "phonetic": "",
+          "meaning": "风筝"
+        },
+        {
+          "word": "kitchen",
+          "phonetic": "",
+          "meaning": "厨房"
+        },
+        {
+          "word": "fridge",
+          "phonetic": "",
+          "meaning": "冰箱"
+        },
+        {
+          "word": "table",
+          "phonetic": "",
+          "meaning": "桌子"
+        },
+        {
+          "word": "study",
+          "phonetic": "",
+          "meaning": "书房"
+        },
+        {
+          "word": "computer",
+          "phonetic": "",
+          "meaning": "电脑"
+        },
+        {
+          "word": "picture",
+          "phonetic": "",
+          "meaning": "图片;照片"
+        },
+        {
+          "word": "bathroom",
+          "phonetic": "",
+          "meaning": "浴室;卫生间"
+        },
+        {
+          "word": "clock",
+          "phonetic": "",
+          "meaning": "时钟"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4b-u1-textbook-a",
+          "title": "Unit 1 Look at my bedroom. · Lesson 1 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4b-u1-textbook-b",
+          "title": "Unit 1 Look at my bedroom. · Lesson 2 · Just talk / Lesson 3 · Just talk / Lesson 4 · Just talk / Lesson 5 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 Listen and number.",
+      "theme": "",
+      "words": [
+        {
+          "word": "twenty-one",
+          "phonetic": "",
+          "meaning": "二十一"
+        },
+        {
+          "word": "twenty-two",
+          "phonetic": "",
+          "meaning": "二十二"
+        },
+        {
+          "word": "twenty-three",
+          "phonetic": "",
+          "meaning": "二十三"
+        },
+        {
+          "word": "twenty-four",
+          "phonetic": "",
+          "meaning": "二十四"
+        },
+        {
+          "word": "twenty-five",
+          "phonetic": "",
+          "meaning": "二十五"
+        },
+        {
+          "word": "twenty-six",
+          "phonetic": "",
+          "meaning": "二十六"
+        },
+        {
+          "word": "twenty-seven",
+          "phonetic": "",
+          "meaning": "二十七"
+        },
+        {
+          "word": "twenty-eight",
+          "phonetic": "",
+          "meaning": "二十八"
+        },
+        {
+          "word": "twenty-nine",
+          "phonetic": "",
+          "meaning": "二十九"
+        },
+        {
+          "word": "eleven",
+          "phonetic": "",
+          "meaning": "十一"
+        },
+        {
+          "word": "twelve",
+          "phonetic": "",
+          "meaning": "十二"
+        },
+        {
+          "word": "thirty",
+          "phonetic": "",
+          "meaning": "三十"
+        },
+        {
+          "word": "forty",
+          "phonetic": "",
+          "meaning": "四十"
+        },
+        {
+          "word": "boy",
+          "phonetic": "",
+          "meaning": "男孩"
+        },
+        {
+          "word": "girl",
+          "phonetic": "",
+          "meaning": "女孩"
+        },
+        {
+          "word": "fifty",
+          "phonetic": "",
+          "meaning": "五十"
+        },
+        {
+          "word": "sixty",
+          "phonetic": "",
+          "meaning": "六十"
+        },
+        {
+          "word": "student",
+          "phonetic": "",
+          "meaning": "学生"
+        },
+        {
+          "word": "school",
+          "phonetic": "",
+          "meaning": "学校"
+        },
+        {
+          "word": "seventy",
+          "phonetic": "",
+          "meaning": "七十"
+        },
+        {
+          "word": "eighty",
+          "phonetic": "",
+          "meaning": "八十"
+        },
+        {
+          "word": "bag",
+          "phonetic": "",
+          "meaning": "书包"
+        },
+        {
+          "word": "book",
+          "phonetic": "",
+          "meaning": "书"
+        },
+        {
+          "word": "ninety",
+          "phonetic": "",
+          "meaning": "九十"
+        },
+        {
+          "word": "one hundred",
+          "phonetic": "",
+          "meaning": "一百"
+        },
+        {
+          "word": "pen",
+          "phonetic": "",
+          "meaning": "钢笔"
+        },
+        {
+          "word": "pencil",
+          "phonetic": "",
+          "meaning": "铅笔"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4b-u2-textbook-a",
+          "title": "Unit 2 Listen and number. · Lesson 8 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4b-u2-textbook-b",
+          "title": "Unit 2 Listen and number. · Lesson 9 · Just talk / Lesson 10 · Just talk / Lesson 11 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 Listen and number.",
+      "theme": "",
+      "words": [
+        {
+          "word": "maths",
+          "phonetic": "",
+          "meaning": "数学"
+        },
+        {
+          "word": "PE",
+          "phonetic": "",
+          "meaning": "体育"
+        },
+        {
+          "word": "Chinese",
+          "phonetic": "",
+          "meaning": "中文;汉语;语文"
+        },
+        {
+          "word": "English",
+          "phonetic": "",
+          "meaning": "英语"
+        },
+        {
+          "word": "music",
+          "phonetic": "",
+          "meaning": "音乐"
+        },
+        {
+          "word": "art",
+          "phonetic": "",
+          "meaning": "美术"
+        },
+        {
+          "word": "subject",
+          "phonetic": "",
+          "meaning": "科目;学科"
+        },
+        {
+          "word": "science",
+          "phonetic": "",
+          "meaning": "科学"
+        },
+        {
+          "word": "lesson",
+          "phonetic": "",
+          "meaning": "课"
+        },
+        {
+          "word": "drama",
+          "phonetic": "",
+          "meaning": "戏剧"
+        },
+        {
+          "word": "listen",
+          "phonetic": "",
+          "meaning": "听"
+        },
+        {
+          "word": "do",
+          "phonetic": "",
+          "meaning": "做"
+        },
+        {
+          "word": "speak",
+          "phonetic": "",
+          "meaning": "说"
+        },
+        {
+          "word": "Words in each unit",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "listen and do",
+          "phonetic": "",
+          "meaning": "听听做做"
+        },
+        {
+          "word": "speak and sing",
+          "phonetic": "",
+          "meaning": "说说唱唱"
+        },
+        {
+          "word": "play and act",
+          "phonetic": "",
+          "meaning": "玩玩演演"
+        },
+        {
+          "word": "sing",
+          "phonetic": "",
+          "meaning": "唱歌"
+        },
+        {
+          "word": "play",
+          "phonetic": "",
+          "meaning": "玩"
+        },
+        {
+          "word": "act",
+          "phonetic": "",
+          "meaning": "表演"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4b-u3-textbook-a",
+          "title": "Unit 3 Listen and number. · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4b-u3-textbook-b",
+          "title": "Unit 3 Listen and number. · Lesson 14 · Just talk / Lesson 15 · Just talk / Lesson 16 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 courtyard house Homes around China cave home",
+      "theme": "",
+      "words": [
+        {
+          "word": "day",
+          "phonetic": "",
+          "meaning": "天"
+        },
+        {
+          "word": "week",
+          "phonetic": "",
+          "meaning": "周"
+        },
+        {
+          "word": "Sunday",
+          "phonetic": "",
+          "meaning": "星期日"
+        },
+        {
+          "word": "Monday",
+          "phonetic": "",
+          "meaning": "星期一"
+        },
+        {
+          "word": "Tuesday",
+          "phonetic": "",
+          "meaning": "星期二"
+        },
+        {
+          "word": "Wednesday",
+          "phonetic": "",
+          "meaning": "星期三"
+        },
+        {
+          "word": "Thursday",
+          "phonetic": "",
+          "meaning": "星期四"
+        },
+        {
+          "word": "Friday",
+          "phonetic": "",
+          "meaning": "星期五"
+        },
+        {
+          "word": "Saturday",
+          "phonetic": "",
+          "meaning": "星期六"
+        },
+        {
+          "word": "today",
+          "phonetic": "",
+          "meaning": "今天"
+        },
+        {
+          "word": "weekend",
+          "phonetic": "",
+          "meaning": "周末"
+        },
+        {
+          "word": "park",
+          "phonetic": "",
+          "meaning": "公园"
+        },
+        {
+          "word": "theme park",
+          "phonetic": "",
+          "meaning": "主题公园;游乐园"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4b-u4-textbook-a",
+          "title": "Unit 4 courtyard house Homes around China cave home · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4b-u4-textbook-b",
+          "title": "Unit 4 courtyard house Homes around China cave home · Lesson 20 · Just talk / Lesson 21 · Just talk / Lesson 22 · Just talk / Lesson 23 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 Listen and number.",
+      "theme": "",
+      "words": [
+        {
+          "word": "picnic",
+          "phonetic": "",
+          "meaning": "野餐"
+        },
+        {
+          "word": "sausage",
+          "phonetic": "",
+          "meaning": "香肠"
+        },
+        {
+          "word": "bread",
+          "phonetic": "",
+          "meaning": "面包"
+        },
+        {
+          "word": "cake",
+          "phonetic": "",
+          "meaning": "蛋糕"
+        },
+        {
+          "word": "lunch",
+          "phonetic": "",
+          "meaning": "午餐"
+        },
+        {
+          "word": "pork",
+          "phonetic": "",
+          "meaning": "猪肉"
+        },
+        {
+          "word": "beef",
+          "phonetic": "",
+          "meaning": "牛肉"
+        },
+        {
+          "word": "rice",
+          "phonetic": "",
+          "meaning": "米饭"
+        },
+        {
+          "word": "chicken",
+          "phonetic": "",
+          "meaning": "鸡肉"
+        },
+        {
+          "word": "sing",
+          "phonetic": "",
+          "meaning": "唱歌"
+        },
+        {
+          "word": "dance",
+          "phonetic": "",
+          "meaning": "跳舞"
+        },
+        {
+          "word": "paint",
+          "phonetic": "",
+          "meaning": "绘画"
+        },
+        {
+          "word": "draw",
+          "phonetic": "",
+          "meaning": "画"
+        },
+        {
+          "word": "read",
+          "phonetic": "",
+          "meaning": "读"
+        },
+        {
+          "word": "watch",
+          "phonetic": "",
+          "meaning": "看"
+        },
+        {
+          "word": "play",
+          "phonetic": "",
+          "meaning": "玩"
+        },
+        {
+          "word": "read a book",
+          "phonetic": "",
+          "meaning": "看书"
+        },
+        {
+          "word": "watch TV",
+          "phonetic": "",
+          "meaning": "看电视"
+        },
+        {
+          "word": "play computer games",
+          "phonetic": "",
+          "meaning": "玩电脑游戏"
+        },
+        {
+          "word": "game",
+          "phonetic": "",
+          "meaning": "游戏"
+        },
+        {
+          "word": "do",
+          "phonetic": "",
+          "meaning": "做"
+        },
+        {
+          "word": "go",
+          "phonetic": "",
+          "meaning": "去"
+        },
+        {
+          "word": "shop",
+          "phonetic": "",
+          "meaning": "购物"
+        },
+        {
+          "word": "go shopping",
+          "phonetic": "",
+          "meaning": "去购物"
+        },
+        {
+          "word": "swim",
+          "phonetic": "",
+          "meaning": "游泳"
+        },
+        {
+          "word": "go swimming",
+          "phonetic": "",
+          "meaning": "去游泳"
+        },
+        {
+          "word": "fish",
+          "phonetic": "",
+          "meaning": "鱼;钓鱼"
+        },
+        {
+          "word": "go fishing",
+          "phonetic": "",
+          "meaning": "去钓鱼"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4b-u5-textbook-a",
+          "title": "Unit 5 Listen and number. · Lesson 26 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4b-u5-textbook-b",
+          "title": "Unit 5 Listen and number. · Lesson 27 · Just talk / Lesson 28 · Just talk / Lesson 29 · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 Listen and number.",
+      "theme": "",
+      "words": [
+        {
+          "word": "zoo",
+          "phonetic": "",
+          "meaning": "动物园"
+        },
+        {
+          "word": "farm",
+          "phonetic": "",
+          "meaning": "农场"
+        },
+        {
+          "word": "giraffe",
+          "phonetic": "",
+          "meaning": "长颈鹿"
+        },
+        {
+          "word": "camel",
+          "phonetic": "",
+          "meaning": "骆驼"
+        },
+        {
+          "word": "monkey",
+          "phonetic": "",
+          "meaning": "猴子"
+        },
+        {
+          "word": "panda",
+          "phonetic": "",
+          "meaning": "熊猫"
+        },
+        {
+          "word": "bear",
+          "phonetic": "",
+          "meaning": "熊"
+        },
+        {
+          "word": "seal",
+          "phonetic": "",
+          "meaning": "海豹"
+        },
+        {
+          "word": "dolphin",
+          "phonetic": "",
+          "meaning": "海豚"
+        },
+        {
+          "word": "hippo",
+          "phonetic": "",
+          "meaning": "河马"
+        },
+        {
+          "word": "tiger",
+          "phonetic": "",
+          "meaning": "老虎"
+        },
+        {
+          "word": "cat",
+          "phonetic": "",
+          "meaning": "猫"
+        },
+        {
+          "word": "dog",
+          "phonetic": "",
+          "meaning": "狗"
+        },
+        {
+          "word": "horse",
+          "phonetic": "",
+          "meaning": "马"
+        },
+        {
+          "word": "cow",
+          "phonetic": "",
+          "meaning": "母牛;奶牛"
+        },
+        {
+          "word": "sheep",
+          "phonetic": "",
+          "meaning": "绵羊"
+        },
+        {
+          "word": "goat",
+          "phonetic": "",
+          "meaning": "山羊"
+        },
+        {
+          "word": "duck",
+          "phonetic": "",
+          "meaning": "鸭"
+        },
+        {
+          "word": "pig",
+          "phonetic": "",
+          "meaning": "猪"
+        },
+        {
+          "word": "A act",
+          "phonetic": "",
+          "meaning": "表演"
+        },
+        {
+          "word": "armchair",
+          "phonetic": "",
+          "meaning": "单人沙发;扶手椅"
+        },
+        {
+          "word": "art",
+          "phonetic": "",
+          "meaning": "美术"
+        },
+        {
+          "word": "B bag",
+          "phonetic": "",
+          "meaning": "书包"
+        },
+        {
+          "word": "ball",
+          "phonetic": "",
+          "meaning": "球"
+        },
+        {
+          "word": "bathroom",
+          "phonetic": "",
+          "meaning": "浴室;卫生间"
+        },
+        {
+          "word": "bed",
+          "phonetic": "",
+          "meaning": "床"
+        },
+        {
+          "word": "bedroom",
+          "phonetic": "",
+          "meaning": "卧室"
+        },
+        {
+          "word": "beef",
+          "phonetic": "",
+          "meaning": "牛肉"
+        },
+        {
+          "word": "book",
+          "phonetic": "",
+          "meaning": "书"
+        },
+        {
+          "word": "boy",
+          "phonetic": "",
+          "meaning": "男孩"
+        },
+        {
+          "word": "bread",
+          "phonetic": "",
+          "meaning": "面包"
+        },
+        {
+          "word": "C cake",
+          "phonetic": "",
+          "meaning": "蛋糕"
+        },
+        {
+          "word": "chair",
+          "phonetic": "",
+          "meaning": "椅子"
+        },
+        {
+          "word": "chicken",
+          "phonetic": "",
+          "meaning": "鸡肉"
+        },
+        {
+          "word": "Chinese",
+          "phonetic": "",
+          "meaning": "中文;汉语;语文"
+        },
+        {
+          "word": "clock",
+          "phonetic": "",
+          "meaning": "时钟"
+        },
+        {
+          "word": "computer",
+          "phonetic": "",
+          "meaning": "电脑"
+        },
+        {
+          "word": "D dance",
+          "phonetic": "",
+          "meaning": "跳舞"
+        },
+        {
+          "word": "day",
+          "phonetic": "",
+          "meaning": "天"
+        },
+        {
+          "word": "desk",
+          "phonetic": "",
+          "meaning": "课桌"
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "jt-g4b-u6-textbook-a",
+          "title": "Unit 6 Listen and number. · Just talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "jt-g4b-u6-textbook-b",
+          "title": "Unit 6 Listen and number. · Lesson 32 · Just talk / Lesson 33 · Just talk / Lesson 34 · Just talk / Lesson 35 · Just talk / Lesson 36 · Let's read",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    }
+  ]
+}

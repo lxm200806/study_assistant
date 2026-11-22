@@ -2745,6 +2745,21 @@
     "level": "A2",
     "origin": "book:mse-ket"
   },
+  "get together": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "聚会"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ɡet təˈɡeðə(r)/"
+    },
+    "origin": "seed:pep-g4a-2025"
+  },
   "get up": {
     "meanings": [
       {
@@ -4884,6 +4899,21 @@
     "contentType": "non-fiction",
     "origin": "llm-verify"
   },
+  "go home": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "回家"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ɡəʊ həʊm/"
+    },
+    "origin": "seed:pep-g4b-2026"
+  },
   "go on": {
     "meanings": [
       {
@@ -4976,6 +5006,36 @@
     "topic": "daily",
     "level": "A2",
     "origin": "book:mse-ket"
+  },
+  "go to bed": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "上床睡觉"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ɡəʊ tə bed/"
+    },
+    "origin": "seed:pep-g4b-2026"
+  },
+  "go to school": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "上学"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ɡəʊ tə skuːl/"
+    },
+    "origin": "seed:pep-g4b-2026"
   },
   "goad": {
     "meanings": [
@@ -8273,6 +8333,21 @@
     "level": "A1",
     "contentType": "non-fiction",
     "origin": "word-atlas"
+  },
+  "green bean": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "青刀豆；四季豆"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ɡriːn biːn/"
+    },
+    "origin": "seed:pep-g4b-2026"
   },
   "greengrocer": {
     "meanings": [

@@ -1,0 +1,781 @@
+{
+  "code": "pep-g4b-2026",
+  "name": "人教 PEP 四下（2026）",
+  "description": "义务教育教科书《英语（PEP）》四下（2026 新教材）。单元词表供词汇练习；课文练习为自编口语短文（非教材原文）。词表整理自速声英语公开单元页。",
+  "level": "小学四下",
+  "targetWordCount": 110,
+  "wordCount": 110,
+  "source": "pep-g4b-2026-unit-lists",
+  "words": [
+    {
+      "word": "sorry",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "hurry up",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "late",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "class",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "ready",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "rule",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "classroom",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "turn off",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "light",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "blackboard",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "desk",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "chair",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "tidy",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "music",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "door",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "window",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "fan",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "when",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "understand",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "wall",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "newspaper",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "hand out",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "workbook",
+      "tags": [
+        "kew-unit:u1",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "watch",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "tv",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "homework",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "first",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "wet",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "run",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "living room",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "safe",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "wash",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "helpful",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "loud",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "sleep",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "bedroom",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "kitchen",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "study",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "bathroom",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "think",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "work",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "hard",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "follow",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "feel",
+      "tags": [
+        "kew-unit:u2",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "over",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "kid",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "dinner",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "art",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "lunch",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "maths",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "get up",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "go to school",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "go home",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "go to bed",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "want",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "clock",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "just",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "minute",
+      "tags": [
+        "kew-unit:u3",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "trousers",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "pair",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "clothes",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "those",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "shorts",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "jacket",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "skirt",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "dear",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "expensive",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "take",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "cheap",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "shoe",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "beautiful",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "hat",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "sunglasses",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "free",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "large",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "size",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "list",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "try on",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "any",
+      "tags": [
+        "kew-unit:u4",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "cow",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "horse",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "sheep",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "pig",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "chicken",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "tomato",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "bee",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "mouse",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "carrot",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "potato",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "green bean",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "can",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "a box of",
+      "tags": [
+        "kew-unit:u5",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "feed",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "pass",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "pick",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "milk",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "knife",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "fork",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "chopstick",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "waste",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "food",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "delicious",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "clear the table",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "set the table",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "bowl",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "spoon",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "supermarket",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "herself",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "week",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    },
+    {
+      "word": "salad",
+      "tags": [
+        "kew-unit:u6",
+        "src:list=pep-primary-ss-aihu"
+      ]
+    }
+  ]
+}

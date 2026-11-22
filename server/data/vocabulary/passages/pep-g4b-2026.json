@@ -1,0 +1,66 @@
+{
+  "bookCode": "pep-g4b-2026",
+  "kind": "authored",
+  "passages": [
+    {
+      "key": "pep-g4b-2026-u1",
+      "title": "Unit 1 Class rules · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like sorry.\nThis is my hurry up.\nI can see late.\nWe need class.\nReady is nice.",
+      "translation": "你好，我喜欢对不起。\n这是我的快点。\n我能看见迟到的。\n我们需要课。\n准备好的很好。",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u1",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g4b-2026-u2",
+      "title": "Unit 2 Family rules · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like watch.\nThis is my tv.\nI can see homework.\nWe need first.\nWet is nice.",
+      "translation": "你好，我喜欢看。\n这是我的电视。\n我能看见家庭作业。\n我们需要首先。\n湿的很好。",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u2",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g4b-2026-u3",
+      "title": "Unit 3 Time for school · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like over.\nThis is my kid.\nI can see dinner.\nWe need art.\nLunch is nice.",
+      "translation": "你好，我喜欢结束（的）。\n这是我的小孩。\n我能看见正餐。\n我们需要美术。\n午餐很好。",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u3",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g4b-2026-u4",
+      "title": "Unit 4 Going shopping · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like trousers.\nThis is my pair.\nI can see clothes.\nWe need those.\nShorts is nice.",
+      "translation": "你好，我喜欢裤子。\n这是我的一条。\n我能看见衣服。\n我们需要那些。\n短裤很好。",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u4",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g4b-2026-u5",
+      "title": "Unit 5 Farms and us · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like cow.\nThis is my horse.\nI can see sheep.\nWe need pig.\nChicken is nice.",
+      "translation": "你好，我喜欢奶牛。\n这是我的马。\n我能看见羊。\n我们需要猪。\n鸡很好。",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u5",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g4b-2026-u6",
+      "title": "Unit 6 From farm to table · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like feed.\nThis is my pass.\nI can see pick.\nWe need milk.\nKnife is nice.",
+      "translation": "你好，我喜欢饲养。\n这是我的给。\n我能看见采。\n我们需要挤奶。\n刀很好。",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u6",
+      "kind": "authored"
+    }
+  ]
+}

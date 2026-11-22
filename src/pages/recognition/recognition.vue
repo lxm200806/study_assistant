@@ -1,28 +1,38 @@
 <template>
   <view class="desk">
     <view v-if="phase === 'setup'" class="setup">
-      <text class="eyebrow">认读练习</text>
-      <text class="lede">不用键盘。先学一遍认识单词，再检测一遍看会不会。检测可用汉语、英语、听音。</text>
+      <text class="eyebrow">{{ unitFlow ? '单元学习' : '认读练习' }}</text>
+      <text class="lede">
+        <template v-if="unitFlow">按课本单元顺序学习，与记忆曲线认读分开。学完本单元后再决定重学或下一单元。</template>
+        <template v-else>不用键盘。先学一遍认识单词，再检测一遍看会不会。检测可用汉语、英语、听音。</template>
+      </text>
 
-      <BookSwitcher training-type="reading" @change="onBookChange" />
+      <BookSwitcher v-if="!unitFlow" training-type="reading" @change="onBookChange" />
+      <view v-else class="summary">
+        <text>{{ vocabStore.getCurrentBook?.name || '当前词书' }}</text>
+        <text>{{ unitIdLabel }}</text>
+      </view>
 
-      <view v-if="setupSummary" class="summary">
+      <view v-if="!unitFlow && setupSummary" class="summary">
         <text>到期 {{ setupSummary.due }}</text>
         <text>已学 {{ setupSummary.learned }}</text>
         <text>掌握 {{ setupSummary.mastered }}</text>
         <text v-if="setupSummary.progress">进度 {{ setupSummary.progress }}</text>
       </view>
 
-      <text class="label">词从哪来</text>
-      <view class="chips">
-        <view
-          v-for="item in sessionModes"
-          :key="item.key"
-          :class="['chip', vocabStore.studySettings.sessionMode === item.key ? 'on' : '']"
-          @tap="setSessionMode(item.key)"
-        >{{ item.label }}</view>
-      </view>
-      <text class="hint">点开始即可。先学后测；检测题型默认全开，测的时候可随时关掉某一种。智能先练错词和到期词。</text>
+      <template v-if="!unitFlow">
+        <text class="label">词从哪来</text>
+        <view class="chips">
+          <view
+            v-for="item in sessionModes"
+            :key="item.key"
+            :class="['chip', vocabStore.studySettings.sessionMode === item.key ? 'on' : '']"
+            @tap="setSessionMode(item.key)"
+          >{{ item.label }}</view>
+        </view>
+        <text class="hint">点开始即可。先学后测；检测题型默认全开，测的时候可随时关掉某一种。智能先练错词和到期词。</text>
+      </template>
+      <text v-else class="hint">本组按单元词表顺序出题；学完一组继续下一组词，不会按记忆曲线回头重复。</text>
 
       <text class="label">这一组</text>
       <view class="chips">
@@ -141,24 +151,47 @@
           <text v-else-if="!isLastQuiz && autoSkip && isCorrect" class="auto-skip-hint">答对了，马上下一题</text>
         </view>
         <view v-if="showResult && isLastQuiz" class="end-actions">
-          <button class="start end-btn" @tap="completeAndNextGroup">下一组</button>
-          <button class="ghost end-btn" @tap="completeAndFinish">完成训练</button>
+          <template v-if="unitFlow">
+            <button class="start end-btn" @tap="completeAndContinueUnit">
+              {{ isLastUnitChunk ? '完成本单元' : '下一组词' }}
+            </button>
+            <button class="ghost end-btn" @tap="completeAndFinish">查看成绩</button>
+          </template>
+          <template v-else>
+            <button class="start end-btn" @tap="completeAndNextGroup">下一组</button>
+            <button class="ghost end-btn" @tap="completeAndFinish">完成训练</button>
+          </template>
         </view>
         <text v-else-if="!showResult" class="key-hint">数字键 1–4 作答 · Enter 继续</text>
       </template>
     </view>
 
+    <view v-else-if="phase === 'unit-done'" class="setup done">
+      <text class="eyebrow">单元学习</text>
+      <text class="score">{{ unitIdLabel }}</text>
+      <text class="lede">本单元词已按顺序练完。可再学一遍、查看成绩，或进入下一单元。</text>
+      <button class="start" @tap="restartUnit">再学本单元</button>
+      <button class="ghost end-btn" @tap="showUnitScore">查看成绩</button>
+      <button v-if="nextUnitId" class="ghost end-btn" @tap="goNextUnit">下一单元</button>
+      <button class="ghost end-btn" @tap="backToUnitPage">返回单元</button>
+    </view>
+
     <view v-else class="setup done">
-      <text class="eyebrow">认读练习</text>
+      <text class="eyebrow">{{ unitFlow ? '单元成绩' : '认读练习' }}</text>
       <text class="score">{{ sessionAnalysis.accuracy }}%</text>
       <text class="lede">{{ sessionAnalysis.correct }}/{{ sessionAnalysis.total }} 正确</text>
       <TrainingAnalysis
         :analysis="sessionAnalysis"
         :newly-covered="newlyCovered"
-        :due-count="finishDueCount"
-        :weak-topics="weakTopicLabels"
+        :due-count="unitFlow ? 0 : finishDueCount"
+        :weak-topics="unitFlow ? [] : weakTopicLabels"
       />
-      <TrainingFinishActions />
+      <view v-if="unitFlow" class="end-actions">
+        <button class="start end-btn" @tap="restartUnit">再学本单元</button>
+        <button v-if="nextUnitId" class="ghost end-btn" @tap="goNextUnit">下一单元</button>
+        <button class="ghost end-btn" @tap="backToUnitPage">返回单元</button>
+      </view>
+      <TrainingFinishActions v-else />
     </view>
   </view>
 </template>
@@ -186,7 +219,7 @@ import { isBrowserH5 } from '@/utils/audio-recording'
 import { atlasThumbUrl, resolveAtlasId } from '@/utils/wordAtlas'
 
 type RecogMode = 'zh' | 'en' | 'listen'
-type Phase = 'setup' | 'study' | 'bridge' | 'quiz' | 'done'
+type Phase = 'setup' | 'study' | 'bridge' | 'quiz' | 'done' | 'unit-done'
 
 const RECOG_MODE_ORDER: RecogMode[] = ['zh', 'en', 'listen']
 const recogModes: Array<{ key: RecogMode; label: string }> = [
@@ -242,11 +275,14 @@ function shuffleIndices(n: number): number[] {
 
 const vocabStore = useVocabularyStore()
 const { recordAnswer, getAnalysis, resetSession } = useSessionAnalysis('reading')
-const { newlyCovered, resetFlow, loadGroup, finishSession } = useTrainingFlow('reading')
+const { newlyCovered, resetFlow, loadGroup, finishSession, unitMeta } = useTrainingFlow('reading')
 
 const phase = ref<Phase>('setup')
 const showResult = ref(false)
 const showFinish = ref(false)
+const unitFlow = ref(false)
+const unitId = ref('')
+const nextUnitId = ref<string | null>(null)
 const selectedOption = ref(-1)
 const isCorrect = ref(false)
 const studyIndex = ref(0)
@@ -287,6 +323,25 @@ const sessionModes: Array<{ key: SessionMode; label: string }> = [
   { key: 'weak', label: SESSION_MODE_LABELS.weak },
   { key: 'coverage', label: SESSION_MODE_LABELS.coverage }
 ]
+
+const unitIdLabel = computed(() => {
+  const id = unitId.value || unitMeta.value?.id || ''
+  if (!id) return '本单元'
+  const n = id.replace(/\D/g, '')
+  return n ? `Unit ${n}` : id.toUpperCase()
+})
+
+const isLastUnitChunk = computed(
+  () => unitFlow.value && (unitMeta.value?.remainingAfter ?? 0) === 0 && words.value.length > 0
+)
+
+function unitLoadOpts(excludeSeen = true) {
+  return {
+    mode: 'unit' as SessionMode,
+    unit: unitId.value,
+    excludeSeen
+  }
+}
 
 const sessionAnalysis = computed(() => getAnalysis())
 const setupSummary = computed(() => {
@@ -601,8 +656,13 @@ function onKeyDown(event: KeyboardEvent) {
   }
 }
 
-const startGroup = async () => {
-  words.value = await loadGroup(vocabStore.studySettings.wordsPerGroup)
+const startGroup = async (excludeSeen = true) => {
+  if (unitFlow.value) {
+    words.value = await loadGroup(vocabStore.studySettings.wordsPerGroup, unitLoadOpts(excludeSeen))
+    if (unitMeta.value?.nextUnitId) nextUnitId.value = unitMeta.value.nextUnitId
+  } else {
+    words.value = await loadGroup(vocabStore.studySettings.wordsPerGroup)
+  }
 }
 
 const { ensureAccessibleBook } = useDailySession()
@@ -618,6 +678,13 @@ function beginStudyPhase() {
   prepareStudyCard()
 }
 
+function enterUnitDone() {
+  showResult.value = false
+  showFinish.value = false
+  if (unitMeta.value?.nextUnitId) nextUnitId.value = unitMeta.value.nextUnitId
+  phase.value = 'unit-done'
+}
+
 const startTraining = async () => {
   if (!vocabStore.ensureBookSelected()) return
   ensureAccessibleBook()
@@ -628,9 +695,12 @@ const startTraining = async () => {
   resetFlow()
 
   await vocabStore.loadBookProgress()
-  await startGroup()
+  await startGroup(false)
 
   if (!(await ensureTrainingWords(words.value))) {
+    if (unitFlow.value) {
+      enterUnitDone()
+    }
     return
   }
 
@@ -640,10 +710,17 @@ const startTraining = async () => {
 const nextGroupTraining = async () => {
   showFinish.value = false
   resetSession()
-  resetFlow()
-  totalCorrect.value = 0
-  await startGroup()
+  // 记忆曲线：重新抽一组；单元流：保留已学词，继续往后切
+  if (!unitFlow.value) {
+    resetFlow()
+    totalCorrect.value = 0
+  }
+  await startGroup(true)
   if (!(await ensureTrainingWords(words.value))) {
+    if (unitFlow.value) {
+      enterUnitDone()
+      return
+    }
     phase.value = 'setup'
     return
   }
@@ -659,6 +736,65 @@ const { completeAndNextGroup, completeAndFinish } = useGroupComplete({
   weakTopicLabels
 })
 
+const completeAndContinueUnit = async () => {
+  await finishSession()
+  await vocabStore.loadBookProgress()
+  showResult.value = false
+  if (isLastUnitChunk.value) {
+    enterUnitDone()
+    return
+  }
+  // 单元流保留本单元作答统计，不 resetSession
+  showResult.value = false
+  selectedOption.value = -1
+  await startGroup(true)
+  if (!words.value.length) {
+    enterUnitDone()
+    return
+  }
+  beginStudyPhase()
+}
+
+async function restartUnit() {
+  resetSession()
+  resetFlow()
+  totalCorrect.value = 0
+  showFinish.value = false
+  await startGroup(false)
+  if (!(await ensureTrainingWords(words.value))) {
+    enterUnitDone()
+    return
+  }
+  beginStudyPhase()
+}
+
+async function showUnitScore() {
+  await completeAndFinish()
+}
+
+function goNextUnit() {
+  const next = nextUnitId.value || unitMeta.value?.nextUnitId
+  if (!next) {
+    backToUnitPage()
+    return
+  }
+  unitId.value = next
+  vocabStore.setSessionUnitId(next)
+  nextUnitId.value = null
+  void restartUnit()
+}
+
+function backToUnitPage() {
+  const code = vocabStore.currentBookCode
+  if (code?.startsWith('pep-')) {
+    uni.redirectTo({
+      url: `/pages/primary/unit?code=${encodeURIComponent(code)}&id=${encodeURIComponent(unitId.value || 'u1')}`
+    })
+    return
+  }
+  uni.navigateBack()
+}
+
 watch(showFinish, (done) => {
   if (done) phase.value = 'done'
 })
@@ -671,6 +807,15 @@ const endSession = () => {
 onLoad((query) => {
   if (query?.autoStart === '1') autoStart.value = true
   if (query?.topic) vocabStore.setSessionTopic(query.topic as string)
+  if (query?.flow === 'unit' || query?.unit) {
+    unitFlow.value = true
+    unitId.value = String(query?.unit || 'u1')
+    vocabStore.setSessionUnitId(unitId.value)
+  } else {
+    unitFlow.value = false
+    unitId.value = ''
+    vocabStore.setSessionUnitId(undefined)
+  }
 })
 
 onMounted(async () => {

@@ -65,14 +65,23 @@ export async function getBookSessionHandler(req: Request, res: Response) {
     const mode = (req.query.mode as SessionMode) || 'coverage'
     const type = req.query.type as string | undefined
     const topic = req.query.topic as string | undefined
+    const unitId = typeof req.query.unit === 'string' ? req.query.unit : undefined
+    const excludeRaw = typeof req.query.exclude === 'string' ? req.query.exclude : ''
+    const excludeIds = excludeRaw
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean)
 
     await assertBookAccess(userId, code)
-    const result = await getSessionWords(userId, code, count, mode, type, topic)
+    const result = await getSessionWords(userId, code, count, mode, type, topic, { unitId, excludeIds })
     res.status(200).json({ success: true, data: result })
   } catch (error) {
     const message = (error as Error).message
     if (message === 'BOOK_LOCKED') {
       return res.status(403).json({ success: false, error: '当前词书需开通会员后使用' })
+    }
+    if (message === 'UNIT_REQUIRED') {
+      return res.status(400).json({ success: false, error: '单元学习需指定 unit' })
     }
     if (message === 'Book not found') {
       return res.status(404).json({ success: false, error: message })

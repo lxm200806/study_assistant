@@ -9890,6 +9890,21 @@
     "contentType": "non-fiction",
     "origin": "word-atlas"
   },
+  "lotus": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "莲"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ˈləʊtəs/"
+    },
+    "origin": "seed:pep-g5a-2026"
+  },
   "loud": {
     "meanings": [
       {

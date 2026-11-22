@@ -1,0 +1,139 @@
+{
+  "bookCode": "pep-g3b-2025",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "pep-g3b-2025-u1-textbook-a",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Meeting new people · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u1-textbook-b",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Meeting new people · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u2-textbook-a",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 My words and actions · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u2-textbook-b",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 My words and actions · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u3-textbook-a",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Tools and senses for learning · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u3-textbook-b",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Tools and senses for learning · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u4-textbook-a",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Healthy food · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u4-textbook-b",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Healthy food · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u5-textbook-a",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Old things · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u5-textbook-b",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Old things · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u6-textbook-a",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Numbers in life · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g3b-2025-u6-textbook-b",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 Numbers in life · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

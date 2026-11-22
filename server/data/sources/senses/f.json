@@ -550,6 +550,21 @@
     "contentType": "non-fiction",
     "origin": "word-atlas"
   },
+  "factory worker": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "工厂工人"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ˈfæktri ˈwɜːkə(r)/"
+    },
+    "origin": "seed:pep-g4a-2025"
+  },
   "factual": {
     "meanings": [
       {

@@ -1,0 +1,446 @@
+{
+  "team": {
+    "phonetic": "/tiːm/",
+    "meaning": "队；组"
+  },
+  "player": {
+    "phonetic": "/ˈpleɪə(r)/",
+    "meaning": "运动员；选手"
+  },
+  "him": {
+    "phonetic": "/hɪm/",
+    "meaning": "他（宾格）"
+  },
+  "lovely": {
+    "phonetic": "/ˈlʌvli/",
+    "meaning": "可爱的"
+  },
+  "clever": {
+    "phonetic": "/ˈklevə(r)/",
+    "meaning": "聪明的"
+  },
+  "young": {
+    "phonetic": "/jʌŋ/",
+    "meaning": "年轻的"
+  },
+  "hard-working": {
+    "phonetic": "/ˌhɑːdˈwɜːkɪŋ/",
+    "meaning": "勤奋的"
+  },
+  "science": {
+    "phonetic": "/ˈsaɪəns/",
+    "meaning": "科学"
+  },
+  "robot": {
+    "phonetic": "/ˈrəʊbɒt/",
+    "meaning": "机器人"
+  },
+  "jump": {
+    "phonetic": "/dʒʌmp/",
+    "meaning": "跳"
+  },
+  "rope": {
+    "phonetic": "/rəʊp/",
+    "meaning": "绳子"
+  },
+  "piano": {
+    "phonetic": "/piˈænəʊ/",
+    "meaning": "钢琴"
+  },
+  "chess": {
+    "phonetic": "/tʃes/",
+    "meaning": "国际象棋"
+  },
+  "front": {
+    "phonetic": "/frʌnt/",
+    "meaning": "前面"
+  },
+  "easy": {
+    "phonetic": "/ˈiːzi/",
+    "meaning": "容易的"
+  },
+  "star": {
+    "phonetic": "/stɑː(r)/",
+    "meaning": "星；明星"
+  },
+  "wonderful": {
+    "phonetic": "/ˈwʌndəfl/",
+    "meaning": "极好的；精彩的"
+  },
+  "australia": {
+    "phonetic": "/ɒˈstreɪliə/",
+    "meaning": "澳大利亚"
+  },
+  "sad": {
+    "phonetic": "/sæd/",
+    "meaning": "伤心的；难过的"
+  },
+  "matter": {
+    "phonetic": "/ˈmætə(r)/",
+    "meaning": "事情；问题"
+  },
+  "project": {
+    "phonetic": "/ˈprɒdʒekt/",
+    "meaning": "项目；课题"
+  },
+  "centre": {
+    "phonetic": "/ˈsentə(r)/",
+    "meaning": "中心"
+  },
+  "agree": {
+    "phonetic": "/əˈɡriː/",
+    "meaning": "同意"
+  },
+  "finish": {
+    "phonetic": "/ˈfɪnɪʃ/",
+    "meaning": "完成"
+  },
+  "monday": {
+    "phonetic": "/ˈmʌndeɪ/",
+    "meaning": "星期一"
+  },
+  "worried": {
+    "phonetic": "/ˈwʌrid/",
+    "meaning": "担心的"
+  },
+  "both": {
+    "phonetic": "/bəʊθ/",
+    "meaning": "两者"
+  },
+  "excited": {
+    "phonetic": "/ɪkˈsaɪtɪd/",
+    "meaning": "激动的；兴奋的"
+  },
+  "wrong": {
+    "phonetic": "/rɒŋ/",
+    "meaning": "有毛病的；错的"
+  },
+  "angry": {
+    "phonetic": "/ˈæŋɡri/",
+    "meaning": "生气的"
+  },
+  "afraid": {
+    "phonetic": "/əˈfreɪd/",
+    "meaning": "害怕的"
+  },
+  "parent": {
+    "phonetic": "/ˈpeərənt/",
+    "meaning": "父母"
+  },
+  "ask": {
+    "phonetic": "/ɑːsk/",
+    "meaning": "问"
+  },
+  "move": {
+    "phonetic": "/muːv/",
+    "meaning": "移动；搬家"
+  },
+  "yours": {
+    "phonetic": "/jɔːz/",
+    "meaning": "你的；你们的"
+  },
+  "wednesday": {
+    "phonetic": "/ˈwenzdeɪ/",
+    "meaning": "星期三"
+  },
+  "subject": {
+    "phonetic": "/ˈsʌbdʒɪkt/",
+    "meaning": "学科；科目"
+  },
+  "tuesday": {
+    "phonetic": "/ˈtjuːzdeɪ/",
+    "meaning": "星期二"
+  },
+  "friday": {
+    "phonetic": "/ˈfraɪdeɪ/",
+    "meaning": "星期五"
+  },
+  "because": {
+    "phonetic": "/bɪˈkɒz/",
+    "meaning": "因为"
+  },
+  "thursday": {
+    "phonetic": "/ˈθɜːzdeɪ/",
+    "meaning": "星期四"
+  },
+  "start": {
+    "phonetic": "/stɑːt/",
+    "meaning": "开始"
+  },
+  "usually": {
+    "phonetic": "/ˈjuːʒuəli/",
+    "meaning": "通常"
+  },
+  "weekend": {
+    "phonetic": "/ˌwiːkˈend/",
+    "meaning": "周末"
+  },
+  "sometimes": {
+    "phonetic": "/ˈsʌmtaɪmz/",
+    "meaning": "有时"
+  },
+  "saturday": {
+    "phonetic": "/ˈsætədeɪ/",
+    "meaning": "星期六"
+  },
+  "sunday": {
+    "phonetic": "/ˈsʌndeɪ/",
+    "meaning": "星期日"
+  },
+  "lesson": {
+    "phonetic": "/ˈlesn/",
+    "meaning": "课"
+  },
+  "evening": {
+    "phonetic": "/ˈiːvnɪŋ/",
+    "meaning": "晚上；傍晚"
+  },
+  "answer": {
+    "phonetic": "/ˈɑːnsə(r)/",
+    "meaning": "回答"
+  },
+  "ping-pong": {
+    "phonetic": "/ˈpɪŋpɒŋ/",
+    "meaning": "乒乓球"
+  },
+  "night": {
+    "phonetic": "/naɪt/",
+    "meaning": "夜晚"
+  },
+  "visit": {
+    "phonetic": "/ˈvɪzɪt/",
+    "meaning": "拜访"
+  },
+  "grandparent": {
+    "phonetic": "/ˈɡrænpeərənt/",
+    "meaning": "（外）祖父母"
+  },
+  "stay": {
+    "phonetic": "/steɪ/",
+    "meaning": "保持；停留"
+  },
+  "should": {
+    "phonetic": "/ʃʊd/",
+    "meaning": "应该"
+  },
+  "flu": {
+    "phonetic": "/fluː/",
+    "meaning": "流感"
+  },
+  "else": {
+    "phonetic": "/els/",
+    "meaning": "其他；别的"
+  },
+  "exercise": {
+    "phonetic": "/ˈeksəsaɪz/",
+    "meaning": "运动；锻炼"
+  },
+  "enough": {
+    "phonetic": "/ɪˈnʌf/",
+    "meaning": "足够的"
+  },
+  "if": {
+    "phonetic": "/ɪf/",
+    "meaning": "如果"
+  },
+  "habit": {
+    "phonetic": "/ˈhæbɪt/",
+    "meaning": "习惯"
+  },
+  "show": {
+    "phonetic": "/ʃəʊ/",
+    "meaning": "展示；给人看"
+  },
+  "phone": {
+    "phonetic": "/fəʊn/",
+    "meaning": "电话"
+  },
+  "then": {
+    "phonetic": "/ðen/",
+    "meaning": "然后"
+  },
+  "rest": {
+    "phonetic": "/rest/",
+    "meaning": "休息"
+  },
+  "take care of": {
+    "phonetic": "/teɪk keə(r) əv/",
+    "meaning": "照顾"
+  },
+  "check": {
+    "phonetic": "/tʃek/",
+    "meaning": "检查"
+  },
+  "less": {
+    "phonetic": "/les/",
+    "meaning": "更少"
+  },
+  "brush": {
+    "phonetic": "/brʌʃ/",
+    "meaning": "刷"
+  },
+  "tooth": {
+    "phonetic": "/tuːθ/",
+    "meaning": "牙齿"
+  },
+  "teeth": {
+    "phonetic": "/tiːθ/",
+    "meaning": "牙齿（复数）"
+  },
+  "twice": {
+    "phonetic": "/twaɪs/",
+    "meaning": "两次"
+  },
+  "hour": {
+    "phonetic": "/ˈaʊə(r)/",
+    "meaning": "小时"
+  },
+  "free": {
+    "phonetic": "/friː/",
+    "meaning": "空闲的；免费的"
+  },
+  "hungry": {
+    "phonetic": "/ˈhʌŋɡri/",
+    "meaning": "饥饿的"
+  },
+  "beef": {
+    "phonetic": "/biːf/",
+    "meaning": "牛肉"
+  },
+  "ice cream": {
+    "phonetic": "/aɪs kriːm/",
+    "meaning": "冰激凌"
+  },
+  "little": {
+    "phonetic": "/ˈlɪtl/",
+    "meaning": "小的；少的"
+  },
+  "dumpling": {
+    "phonetic": "/ˈdʌmplɪŋ/",
+    "meaning": "饺子"
+  },
+  "tea": {
+    "phonetic": "/tiː/",
+    "meaning": "茶"
+  },
+  "hamburger": {
+    "phonetic": "/ˈhæmbɜːɡə(r)/",
+    "meaning": "汉堡包"
+  },
+  "mrs": {
+    "phonetic": "/ˈmɪsɪz/",
+    "meaning": "夫人；太太"
+  },
+  "coconut": {
+    "phonetic": "/ˈkəʊkənʌt/",
+    "meaning": "椰子"
+  },
+  "interesting": {
+    "phonetic": "/ˈɪntrəstɪŋ/",
+    "meaning": "有趣的"
+  },
+  "seed": {
+    "phonetic": "/siːd/",
+    "meaning": "种子"
+  },
+  "pull": {
+    "phonetic": "/pʊl/",
+    "meaning": "拔；拉"
+  },
+  "stem": {
+    "phonetic": "/stem/",
+    "meaning": "茎"
+  },
+  "root": {
+    "phonetic": "/ruːt/",
+    "meaning": "根"
+  },
+  "lotus": {
+    "phonetic": "/ˈləʊtəs/",
+    "meaning": "莲"
+  },
+  "lake": {
+    "phonetic": "/leɪk/",
+    "meaning": "湖"
+  },
+  "world": {
+    "phonetic": "/wɜːld/",
+    "meaning": "世界"
+  },
+  "round": {
+    "phonetic": "/raʊnd/",
+    "meaning": "圆的"
+  },
+  "different": {
+    "phonetic": "/ˈdɪfrənt/",
+    "meaning": "不同的"
+  },
+  "way": {
+    "phonetic": "/weɪ/",
+    "meaning": "方式；路线"
+  },
+  "river": {
+    "phonetic": "/ˈrɪvə(r)/",
+    "meaning": "河；江"
+  },
+  "nature": {
+    "phonetic": "/ˈneɪtʃə(r)/",
+    "meaning": "自然"
+  },
+  "waterfall": {
+    "phonetic": "/ˈwɔːtəfɔːl/",
+    "meaning": "瀑布"
+  },
+  "forest": {
+    "phonetic": "/ˈfɒrɪst/",
+    "meaning": "森林"
+  },
+  "famous": {
+    "phonetic": "/ˈfeɪməs/",
+    "meaning": "著名的"
+  },
+  "mountain": {
+    "phonetic": "/ˈmaʊntən/",
+    "meaning": "山"
+  },
+  "wind": {
+    "phonetic": "/wɪnd/",
+    "meaning": "风"
+  },
+  "trip": {
+    "phonetic": "/trɪp/",
+    "meaning": "旅行"
+  },
+  "dangerous": {
+    "phonetic": "/ˈdeɪndʒərəs/",
+    "meaning": "危险的"
+  },
+  "umbrella": {
+    "phonetic": "/ʌmˈbrelə/",
+    "meaning": "雨伞"
+  },
+  "fog": {
+    "phonetic": "/fɒɡ/",
+    "meaning": "雾"
+  },
+  "fire": {
+    "phonetic": "/ˈfaɪə(r)/",
+    "meaning": "火；火灾"
+  },
+  "hiking": {
+    "phonetic": "/ˈhaɪkɪŋ/",
+    "meaning": "徒步旅行"
+  },
+  "bring": {
+    "phonetic": "/brɪŋ/",
+    "meaning": "带来"
+  },
+  "know": {
+    "phonetic": "/nəʊ/",
+    "meaning": "知道；了解"
+  },
+  "raincoat": {
+    "phonetic": "/ˈreɪnkəʊt/",
+    "meaning": "雨衣"
+  }
+}

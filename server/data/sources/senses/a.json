@@ -29,6 +29,21 @@
     "level": "A1",
     "origin": "book:cet4"
   },
+  "a box of": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "一盒；一箱"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ə bɒks əv/"
+    },
+    "origin": "seed:pep-g4b-2026"
+  },
   "a few": {
     "meanings": [
       {
@@ -83,6 +98,21 @@
     "topic": "daily",
     "level": "A2",
     "origin": "book:mse-ket"
+  },
+  "a lot of": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "大量；许多"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ə lɒt əv/"
+    },
+    "origin": "seed:pep-g4a-2025"
   },
   "a.m.": {
     "meanings": [

@@ -1,0 +1,139 @@
+{
+  "bookCode": "pep-g4b-2026",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "pep-g4b-2026-u1-textbook-a",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Class rules · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u1-textbook-b",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 Class rules · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u2-textbook-a",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Family rules · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u2-textbook-b",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 Family rules · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u3-textbook-a",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Time for school · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u3-textbook-b",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 Time for school · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u4-textbook-a",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Going shopping · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u4-textbook-b",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 Going shopping · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u5-textbook-a",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Farms and us · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u5-textbook-b",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 Farms and us · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u6-textbook-a",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 From farm to table · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g4b-2026-u6-textbook-b",
+      "bookCode": "pep-g4b-2026",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 From farm to table · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

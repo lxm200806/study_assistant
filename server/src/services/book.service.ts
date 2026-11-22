@@ -1,5 +1,5 @@
 import prisma from '../prisma/client'
-import { VOCABULARY_BOOK_CODES, loadBook } from '../data/vocabulary'
+import { VOCABULARY_BOOK_CODES, isFreeBookCode, loadBook } from '../data/vocabulary'
 import { collectBookWordEntries } from '../data/vocabulary/book-entries'
 import { resolveSense } from '../data/vocabulary/senses'
 import { isWeakTopic, normalizeTopic } from '../data/taxonomy'
@@ -128,7 +128,7 @@ export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
             name: bookData.name,
             description: bookData.description,
             level: bookData.level,
-            isFree: bookData.code === 'mse-ket' || bookData.code === 'ket' ? true : book.isFree
+            isFree: isFreeBookCode(bookData.code) ? true : book.isFree
           }
         })
       }
@@ -146,7 +146,7 @@ export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
         description: bookData.description,
         level: bookData.level,
         wordCount: entries.length,
-        isFree: bookData.code === 'mse-ket' || bookData.code === 'ket'
+        isFree: isFreeBookCode(bookData.code)
       }
     })
   } else {
@@ -157,7 +157,7 @@ export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
         description: bookData.description,
         level: bookData.level,
         wordCount: entries.length,
-        isFree: bookData.code === 'mse-ket' || bookData.code === 'ket' ? true : book.isFree
+        isFree: isFreeBookCode(bookData.code) ? true : book.isFree
       }
     })
   }

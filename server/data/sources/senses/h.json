@@ -2770,6 +2770,21 @@
     "contentType": "non-fiction",
     "origin": "word-atlas"
   },
+  "has": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有（have的第三人称单数）"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/hæz/"
+    },
+    "origin": "seed:pep-g3b-2025"
+  },
   "hassle": {
     "meanings": [
       {
@@ -11947,6 +11962,21 @@
     "level": "A2",
     "contentType": "non-fiction",
     "origin": "word-atlas"
+  },
+  "hurry up": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "快点；赶快"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ˈhʌri ʌp/"
+    },
+    "origin": "seed:pep-g4b-2026"
   },
   "hurt": {
     "meanings": [

@@ -1,0 +1,757 @@
+{
+  "code": "pep-g4b-legacy",
+  "name": "人教 PEP 四下（旧版）",
+  "level": "小学四下",
+  "shortLabel": "四下·旧",
+  "year": 2013,
+  "series": "pep",
+  "seriesLabel": "人教 PEP",
+  "grade": "四年级",
+  "term": "下",
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 My school",
+      "theme": "",
+      "words": [
+        {
+          "word": "f irst irst",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "f loor loor",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "second",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "teachers",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "off ice",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "library",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "playground",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "computer",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "room room",
+          "phonetic": "",
+          "meaning": "计算机房"
+        },
+        {
+          "word": "art",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "music",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "next to",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "homework",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "class",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "forty",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "way",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-legacy-u1-textbook-a",
+          "title": "Unit 1 My school · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-legacy-u1-textbook-b",
+          "title": "Unit 1 My school · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 What time is it?",
+      "theme": "",
+      "words": [
+        {
+          "word": "breakfast",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "English class",
+          "phonetic": "",
+          "meaning": "英语课"
+        },
+        {
+          "word": "lunch",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "music class",
+          "phonetic": "",
+          "meaning": "音乐课"
+        },
+        {
+          "word": "PE",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "class",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "dinner",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "get up",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "go",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "to school",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "go home",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "go to bed",
+          "phonetic": "",
+          "meaning": "上床睡觉"
+        },
+        {
+          "word": "over",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "now",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "clock",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "kid",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "thirty",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "fifty",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "twenty",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hurry",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "up",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "come",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "on",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "just",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "a minute",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-legacy-u2-textbook-a",
+          "title": "Unit 2 What time is it? · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-legacy-u2-textbook-b",
+          "title": "Unit 2 What time is it? · Let's read / Let's talk / Let's talk / Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 Weather Recycle",
+      "theme": "",
+      "words": [
+        {
+          "word": "cold",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "cool",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "warm",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hot",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sunny",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "windy",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "cloudy",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "snowy",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "rainy",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "outside",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "be careful",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "weather",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "New York",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "how about",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "degree",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "world",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "London",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Moscow",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Singapore",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "Sydney",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "f ly",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "love",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-legacy-u3-textbook-a",
+          "title": "Unit 3 Weather Recycle · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-legacy-u3-textbook-b",
+          "title": "Unit 3 Weather Recycle · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 At the farm",
+      "theme": "",
+      "words": [
+        {
+          "word": "tomato",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "potato",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "green beans",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "carrot",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "horse",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "cow",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sheep",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hen",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "these",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "this",
+          "phonetic": "",
+          "meaning": "的复数形式)这些"
+        },
+        {
+          "word": "yum",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "animal",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "those",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "that",
+          "phonetic": "",
+          "meaning": "的复数形式)那些"
+        },
+        {
+          "word": "garden",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "farm",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "goat",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "eat",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-legacy-u4-textbook-a",
+          "title": "Unit 4 At the farm · Part A",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-legacy-u4-textbook-b",
+          "title": "Unit 4 At the farm · Part B",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 My clothes",
+      "theme": "",
+      "words": [
+        {
+          "word": "clothes",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pants",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "hat",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "dress",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "skirt",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "coat",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sweater",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sock",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "shorts",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "jacket",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "shirt",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "yours",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "whose",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pack",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-legacy-u5-textbook-a",
+          "title": "Unit 5 My clothes · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-legacy-u5-textbook-b",
+          "title": "Unit 5 My clothes · Let's talk / Let's talk / Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 Shopping Recycle",
+      "theme": "",
+      "words": [
+        {
+          "word": "glove",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "scarf",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "umbrella",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sunglasses",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "pretty",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "expensive",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "cheap",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "nice",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "try on",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "size",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "of course",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "too",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "just",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "how much",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "eighty",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "dollar",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "sale",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "more",
+          "phonetic": "",
+          "meaning": ""
+        },
+        {
+          "word": "us",
+          "phonetic": "",
+          "meaning": ""
+        }
+      ],
+      "authoredPassages": [],
+      "textbookPassages": [
+        {
+          "key": "pep-g4b-legacy-u6-textbook-a",
+          "title": "Unit 6 Shopping Recycle · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g4b-legacy-u6-textbook-b",
+          "title": "Unit 6 Shopping Recycle · Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": []
+    }
+  ]
+}

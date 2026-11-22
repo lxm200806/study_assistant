@@ -378,10 +378,19 @@ export const bookAPI = {
   random: async (code: string, count: number = 10) => {
     return request(`/books/${code}/random?count=${count}`, 'GET')
   },
-  session: async (code: string, count: number = 10, mode: string = 'coverage', type?: string, topic?: string) => {
+  session: async (
+    code: string,
+    count: number = 10,
+    mode: string = 'coverage',
+    type?: string,
+    topic?: string,
+    opts?: { unit?: string; excludeIds?: string[] }
+  ) => {
     const params = new URLSearchParams({ count: String(count), mode })
     if (type) params.set('type', type)
     if (topic) params.set('topic', topic)
+    if (opts?.unit) params.set('unit', opts.unit)
+    if (opts?.excludeIds?.length) params.set('exclude', opts.excludeIds.join(','))
     return request(`/books/${code}/session?${params.toString()}`, 'GET')
   },
   progress: async (code: string) => {

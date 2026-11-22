@@ -1,0 +1,442 @@
+{
+  "pe": {
+    "phonetic": "/ˌpiː ˈiː/",
+    "meaning": "体育（课）"
+  },
+  "job": {
+    "phonetic": "/dʒɒb/",
+    "meaning": "工作；职业"
+  },
+  "doctor": {
+    "phonetic": "/ˈdɒktə(r)/",
+    "meaning": "医生"
+  },
+  "farmer": {
+    "phonetic": "/ˈfɑːmə(r)/",
+    "meaning": "农民"
+  },
+  "nurse": {
+    "phonetic": "/nɜːs/",
+    "meaning": "护士"
+  },
+  "office worker": {
+    "phonetic": "/ˈɒfɪs ˈwɜːkə(r)/",
+    "meaning": "公司职员"
+  },
+  "factory worker": {
+    "phonetic": "/ˈfæktri ˈwɜːkə(r)/",
+    "meaning": "工厂工人"
+  },
+  "busy": {
+    "phonetic": "/ˈbɪzi/",
+    "meaning": "忙碌的"
+  },
+  "tired": {
+    "phonetic": "/ˈtaɪəd/",
+    "meaning": "疲倦的"
+  },
+  "chore": {
+    "phonetic": "/tʃɔː(r)/",
+    "meaning": "家庭杂务"
+  },
+  "cook": {
+    "phonetic": "/kʊk/",
+    "meaning": "烹饪；厨师"
+  },
+  "clean": {
+    "phonetic": "/kliːn/",
+    "meaning": "打扫；干净的"
+  },
+  "room": {
+    "phonetic": "/ruːm/",
+    "meaning": "房间"
+  },
+  "look after": {
+    "phonetic": "/lʊk ˈɑːftə(r)/",
+    "meaning": "照顾"
+  },
+  "sweep": {
+    "phonetic": "/swiːp/",
+    "meaning": "扫"
+  },
+  "floor": {
+    "phonetic": "/flɔː(r)/",
+    "meaning": "地板"
+  },
+  "together": {
+    "phonetic": "/təˈɡeðə(r)/",
+    "meaning": "一起"
+  },
+  "people": {
+    "phonetic": "/ˈpiːpl/",
+    "meaning": "人们"
+  },
+  "child": {
+    "phonetic": "/tʃaɪld/",
+    "meaning": "儿童；小孩"
+  },
+  "children": {
+    "phonetic": "/ˈtʃɪldrən/",
+    "meaning": "child 的复数"
+  },
+  "his": {
+    "phonetic": "/hɪz/",
+    "meaning": "他的"
+  },
+  "strong": {
+    "phonetic": "/strɒŋ/",
+    "meaning": "强壮的"
+  },
+  "hair": {
+    "phonetic": "/heə(r)/",
+    "meaning": "头发"
+  },
+  "also": {
+    "phonetic": "/ˈɔːlsəʊ/",
+    "meaning": "也"
+  },
+  "kind": {
+    "phonetic": "/kaɪnd/",
+    "meaning": "友好的"
+  },
+  "quiet": {
+    "phonetic": "/ˈkwaɪət/",
+    "meaning": "文静的"
+  },
+  "best": {
+    "phonetic": "/best/",
+    "meaning": "最好的"
+  },
+  "read": {
+    "phonetic": "/riːd/",
+    "meaning": "阅读"
+  },
+  "chinese": {
+    "phonetic": "/ˌtʃaɪˈniːz/",
+    "meaning": "中文；中国人；中国的"
+  },
+  "play": {
+    "phonetic": "/pleɪ/",
+    "meaning": "玩耍"
+  },
+  "game": {
+    "phonetic": "/ɡeɪm/",
+    "meaning": "游戏"
+  },
+  "football": {
+    "phonetic": "/ˈfʊtbɔːl/",
+    "meaning": "足球运动"
+  },
+  "basketball": {
+    "phonetic": "/ˈbɑːskɪtbɔːl/",
+    "meaning": "篮球运动"
+  },
+  "always": {
+    "phonetic": "/ˈɔːlweɪz/",
+    "meaning": "总是"
+  },
+  "afternoon": {
+    "phonetic": "/ˌɑːftəˈnuːn/",
+    "meaning": "下午"
+  },
+  "there": {
+    "phonetic": "/ðeə(r)/",
+    "meaning": "（表示存在）在那里"
+  },
+  "playground": {
+    "phonetic": "/ˈpleɪɡraʊnd/",
+    "meaning": "游乐场；操场"
+  },
+  "park": {
+    "phonetic": "/pɑːk/",
+    "meaning": "公园"
+  },
+  "over": {
+    "phonetic": "/ˈəʊvə(r)/",
+    "meaning": "在……的远端（或对面）"
+  },
+  "hospital": {
+    "phonetic": "/ˈhɒspɪtl/",
+    "meaning": "医院"
+  },
+  "shop": {
+    "phonetic": "/ʃɒp/",
+    "meaning": "商店"
+  },
+  "toilet": {
+    "phonetic": "/ˈtɔɪlət/",
+    "meaning": "厕所；卫生间"
+  },
+  "bus stop": {
+    "phonetic": "/ˈbʌs stɒp/",
+    "meaning": "公共汽车站"
+  },
+  "library": {
+    "phonetic": "/ˈlaɪbrəri/",
+    "meaning": "图书馆"
+  },
+  "sport": {
+    "phonetic": "/spɔːt/",
+    "meaning": "体育运动"
+  },
+  "walk": {
+    "phonetic": "/wɔːk/",
+    "meaning": "散步；行走"
+  },
+  "community": {
+    "phonetic": "/kəˈmjuːnəti/",
+    "meaning": "社区"
+  },
+  "favourite": {
+    "phonetic": "/ˈfeɪvərɪt/",
+    "meaning": "最喜欢的"
+  },
+  "place": {
+    "phonetic": "/pleɪs/",
+    "meaning": "地方；场所"
+  },
+  "photo": {
+    "phonetic": "/ˈfəʊtəʊ/",
+    "meaning": "照片"
+  },
+  "story": {
+    "phonetic": "/ˈstɔːri/",
+    "meaning": "故事"
+  },
+  "buy": {
+    "phonetic": "/baɪ/",
+    "meaning": "购买"
+  },
+  "firefighter": {
+    "phonetic": "/ˈfaɪəfaɪtə(r)/",
+    "meaning": "消防队员"
+  },
+  "why": {
+    "phonetic": "/waɪ/",
+    "meaning": "为什么"
+  },
+  "driver": {
+    "phonetic": "/ˈdraɪvə(r)/",
+    "meaning": "司机"
+  },
+  "cleaner": {
+    "phonetic": "/ˈkliːnə(r)/",
+    "meaning": "清洁工"
+  },
+  "delivery worker": {
+    "phonetic": "/dɪˈlɪvəri ˈwɜːkə(r)/",
+    "meaning": "快递员"
+  },
+  "police officer": {
+    "phonetic": "/pəˈliːs ˈɒfɪsə(r)/",
+    "meaning": "警察；警员"
+  },
+  "a lot of": {
+    "phonetic": "/ə lɒt əv/",
+    "meaning": "大量；许多"
+  },
+  "now": {
+    "phonetic": "/naʊ/",
+    "meaning": "现在"
+  },
+  "make the bed": {
+    "phonetic": "/meɪk ðə bed/",
+    "meaning": "铺床"
+  },
+  "old": {
+    "phonetic": "/əʊld/",
+    "meaning": "年纪大的；老的"
+  },
+  "tell": {
+    "phonetic": "/tel/",
+    "meaning": "讲述；告诉"
+  },
+  "everyone": {
+    "phonetic": "/ˈevriwʌn/",
+    "meaning": "每人"
+  },
+  "ms": {
+    "phonetic": "/mɪz/",
+    "meaning": "女士（用于女子姓氏前）"
+  },
+  "speak": {
+    "phonetic": "/spiːk/",
+    "meaning": "说话；发言"
+  },
+  "weather": {
+    "phonetic": "/ˈweðə(r)/",
+    "meaning": "天气"
+  },
+  "sunny": {
+    "phonetic": "/ˈsʌni/",
+    "meaning": "阳光充足的"
+  },
+  "hot": {
+    "phonetic": "/hɒt/",
+    "meaning": "热的"
+  },
+  "bad": {
+    "phonetic": "/bæd/",
+    "meaning": "令人不快的；坏的"
+  },
+  "cold": {
+    "phonetic": "/kəʊld/",
+    "meaning": "冷的"
+  },
+  "windy": {
+    "phonetic": "/ˈwɪndi/",
+    "meaning": "多风的"
+  },
+  "cloudy": {
+    "phonetic": "/ˈklaʊdi/",
+    "meaning": "多云的"
+  },
+  "rainy": {
+    "phonetic": "/ˈreɪni/",
+    "meaning": "阴雨的"
+  },
+  "snowy": {
+    "phonetic": "/ˈsnəʊi/",
+    "meaning": "下雪的"
+  },
+  "cool": {
+    "phonetic": "/kuːl/",
+    "meaning": "凉爽的"
+  },
+  "warm": {
+    "phonetic": "/wɔːm/",
+    "meaning": "温暖的"
+  },
+  "tomorrow": {
+    "phonetic": "/təˈmɒrəʊ/",
+    "meaning": "在明天"
+  },
+  "rain": {
+    "phonetic": "/reɪn/",
+    "meaning": "雨；下雨"
+  },
+  "closed": {
+    "phonetic": "/kləʊzd/",
+    "meaning": "关闭的"
+  },
+  "film": {
+    "phonetic": "/fɪlm/",
+    "meaning": "电影"
+  },
+  "degree": {
+    "phonetic": "/dɪˈɡriː/",
+    "meaning": "度；度数"
+  },
+  "fly": {
+    "phonetic": "/flaɪ/",
+    "meaning": "操纵（飞行器等）；飞"
+  },
+  "kite": {
+    "phonetic": "/kaɪt/",
+    "meaning": "风筝"
+  },
+  "snowman": {
+    "phonetic": "/ˈsnəʊmæn/",
+    "meaning": "雪人"
+  },
+  "fun": {
+    "phonetic": "/fʌn/",
+    "meaning": "乐趣"
+  },
+  "their": {
+    "phonetic": "/ðeə(r)/",
+    "meaning": "他们的；她们的；它们的"
+  },
+  "swim": {
+    "phonetic": "/swɪm/",
+    "meaning": "游泳"
+  },
+  "sydney": {
+    "phonetic": "/ˈsɪdni/",
+    "meaning": "悉尼"
+  },
+  "whose": {
+    "phonetic": "/huːz/",
+    "meaning": "谁的"
+  },
+  "sweater": {
+    "phonetic": "/ˈswetə(r)/",
+    "meaning": "毛衣"
+  },
+  "sock": {
+    "phonetic": "/sɒk/",
+    "meaning": "短袜"
+  },
+  "wear": {
+    "phonetic": "/weə(r)/",
+    "meaning": "穿；戴"
+  },
+  "shirt": {
+    "phonetic": "/ʃɜːt/",
+    "meaning": "衬衫"
+  },
+  "coat": {
+    "phonetic": "/kəʊt/",
+    "meaning": "大衣；外套"
+  },
+  "mine": {
+    "phonetic": "/maɪn/",
+    "meaning": "我的"
+  },
+  "dress": {
+    "phonetic": "/dres/",
+    "meaning": "连衣裙"
+  },
+  "which": {
+    "phonetic": "/wɪtʃ/",
+    "meaning": "哪一个；哪一类"
+  },
+  "season": {
+    "phonetic": "/ˈsiːzn/",
+    "meaning": "季节"
+  },
+  "winter": {
+    "phonetic": "/ˈwɪntə(r)/",
+    "meaning": "冬天"
+  },
+  "snow": {
+    "phonetic": "/snəʊ/",
+    "meaning": "雪；下雪"
+  },
+  "get together": {
+    "phonetic": "/ɡet təˈɡeðə(r)/",
+    "meaning": "聚会"
+  },
+  "spring": {
+    "phonetic": "/sprɪŋ/",
+    "meaning": "春天"
+  },
+  "summer": {
+    "phonetic": "/ˈsʌmə(r)/",
+    "meaning": "夏天"
+  },
+  "autumn": {
+    "phonetic": "/ˈɔːtəm/",
+    "meaning": "秋天"
+  },
+  "t-shirt": {
+    "phonetic": "/ˈtiː ʃɜːt/",
+    "meaning": "T恤衫"
+  },
+  "fall": {
+    "phonetic": "/fɔːl/",
+    "meaning": "落下"
+  },
+  "leaf": {
+    "phonetic": "/liːf/",
+    "meaning": "叶子（复数 leaves）"
+  },
+  "glove": {
+    "phonetic": "/ɡlʌv/",
+    "meaning": "手套"
+  },
+  "then": {
+    "phonetic": "/ðen/",
+    "meaning": "然后；那时"
+  }
+}

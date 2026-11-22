@@ -1,0 +1,17 @@
+{
+  "bookCode": "pep-g3a-2024",
+  "kind": "textbook",
+  "note": "复制为 pep-g3a-2024-textbook.local.json 后填入已获授权的课文正文。该 local 文件默认不入库。",
+  "passages": [
+    {
+      "key": "pep-g3a-2024-u1-textbook-a",
+      "bookCode": "pep-g3a-2024",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 · Part A Let's talk",
+      "source": "人教 PEP 三上（已授权）",
+      "body": "",
+      "translation": ""
+    }
+  ]
+}

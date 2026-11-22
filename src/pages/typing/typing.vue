@@ -375,7 +375,7 @@
 
 <script setup lang="ts">
 import { computed, onUnmounted, ref } from 'vue'
-import { onShow } from '@dcloudio/uni-app'
+import { onLoad, onShow } from '@dcloudio/uni-app'
 import BookSwitcher from '@/components/BookSwitcher.vue'
 import TypingWordCore from '@/components/typing/TypingWordCore.vue'
 import TypingPassageCore from '@/components/typing/TypingPassageCore.vue'
@@ -1634,11 +1634,26 @@ function onKeyDown(event: KeyboardEvent) {
   }
 }
 
+const pendingArticleId = ref('')
+const pendingAutoStart = ref(false)
+
+onLoad((query) => {
+  if (query?.lane === 'article') lane.value = 'article'
+  if (query?.article) pendingArticleId.value = String(query.article)
+  if (query?.autoStart === '1') pendingAutoStart.value = true
+})
+
 onShow(async () => {
   if (!(await requireSubject('english', 'student'))) return
   if (ready.value) return
   ready.value = true
   await loadSetup()
+  if (pendingAutoStart.value && pendingArticleId.value) {
+    pendingAutoStart.value = false
+    await startArticle(pendingArticleId.value)
+  } else if (pendingArticleId.value) {
+    lane.value = 'article'
+  }
 })
 
 if (isH5 && typeof window !== 'undefined') {

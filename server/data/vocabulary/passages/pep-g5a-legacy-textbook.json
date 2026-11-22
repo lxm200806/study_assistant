@@ -1,0 +1,139 @@
+{
+  "bookCode": "pep-g5a-legacy",
+  "kind": "textbook",
+  "note": "教材原文槽位；授权正文写入 *.local.json",
+  "passages": [
+    {
+      "key": "pep-g5a-legacy-u1-textbook-a",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 What's he like? · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u1-textbook-b",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u1",
+      "kind": "textbook",
+      "title": "Unit 1 What's he like? · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u2-textbook-a",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 My week · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u2-textbook-b",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u2",
+      "kind": "textbook",
+      "title": "Unit 2 My week · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u3-textbook-a",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 What would you like? · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u3-textbook-b",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u3",
+      "kind": "textbook",
+      "title": "Unit 3 What would you like? · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u4-textbook-a",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 What can you do? · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u4-textbook-b",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u4",
+      "kind": "textbook",
+      "title": "Unit 4 What can you do? · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u5-textbook-a",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 There is a big bed CONTENTS · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u5-textbook-b",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u5",
+      "kind": "textbook",
+      "title": "Unit 5 There is a big bed CONTENTS · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u6-textbook-a",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 In a nature park Recycle · Part A",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    },
+    {
+      "key": "pep-g5a-legacy-u6-textbook-b",
+      "bookCode": "pep-g5a-legacy",
+      "unitId": "u6",
+      "kind": "textbook",
+      "title": "Unit 6 In a nature park Recycle · Part B",
+      "source": "教材原文（待授权填入）",
+      "body": "",
+      "translation": "",
+      "ready": false
+    }
+  ]
+}

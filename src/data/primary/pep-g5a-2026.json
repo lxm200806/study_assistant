@@ -1,0 +1,863 @@
+{
+  "code": "pep-g5a-2026",
+  "name": "人教 PEP 五上（2026）",
+  "level": "小学五上",
+  "shortLabel": "五上",
+  "year": 2026,
+  "units": [
+    {
+      "id": "u1",
+      "title": "Unit 1 Different friends",
+      "theme": "",
+      "words": [
+        {
+          "word": "team",
+          "phonetic": "/tiːm/",
+          "meaning": "队；组"
+        },
+        {
+          "word": "player",
+          "phonetic": "/ˈpleɪə(r)/",
+          "meaning": "运动员；选手"
+        },
+        {
+          "word": "him",
+          "phonetic": "/hɪm/",
+          "meaning": "他（宾格）"
+        },
+        {
+          "word": "lovely",
+          "phonetic": "/ˈlʌvli/",
+          "meaning": "可爱的"
+        },
+        {
+          "word": "clever",
+          "phonetic": "/ˈklevə(r)/",
+          "meaning": "聪明的"
+        },
+        {
+          "word": "young",
+          "phonetic": "/jʌŋ/",
+          "meaning": "年轻的"
+        },
+        {
+          "word": "hard-working",
+          "phonetic": "/ˌhɑːdˈwɜːkɪŋ/",
+          "meaning": "勤奋的"
+        },
+        {
+          "word": "science",
+          "phonetic": "/ˈsaɪəns/",
+          "meaning": "科学"
+        },
+        {
+          "word": "robot",
+          "phonetic": "/ˈrəʊbɒt/",
+          "meaning": "机器人"
+        },
+        {
+          "word": "jump",
+          "phonetic": "/dʒʌmp/",
+          "meaning": "跳"
+        },
+        {
+          "word": "rope",
+          "phonetic": "/rəʊp/",
+          "meaning": "绳子"
+        },
+        {
+          "word": "piano",
+          "phonetic": "/piˈænəʊ/",
+          "meaning": "钢琴"
+        },
+        {
+          "word": "chess",
+          "phonetic": "/tʃes/",
+          "meaning": "国际象棋"
+        },
+        {
+          "word": "front",
+          "phonetic": "/frʌnt/",
+          "meaning": "前面"
+        },
+        {
+          "word": "easy",
+          "phonetic": "/ˈiːzi/",
+          "meaning": "容易的"
+        },
+        {
+          "word": "star",
+          "phonetic": "/stɑː(r)/",
+          "meaning": "星；明星"
+        },
+        {
+          "word": "wonderful",
+          "phonetic": "/ˈwʌndəfl/",
+          "meaning": "极好的；精彩的"
+        },
+        {
+          "word": "australia",
+          "phonetic": "/ɒˈstreɪliə/",
+          "meaning": "澳大利亚"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g5a-2026-u1",
+          "title": "Unit 1 Different friends · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like team.\nThis is my player.\nI can see him.\nWe need lovely.\nClever is nice.",
+          "translation": "你好，我喜欢队。\n这是我的运动员。\n我能看见他（宾格）。\n我们需要可爱的。\n聪明的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g5a-2026-u1-textbook-a",
+          "title": "Unit 1 Different friends · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5a-2026-u1-textbook-b",
+          "title": "Unit 1 Different friends · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g5a-2026-u1",
+          "title": "Unit 1 Different friends · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like team.\nThis is my player.\nI can see him.\nWe need lovely.\nClever is nice.",
+          "translation": "你好，我喜欢队。\n这是我的运动员。\n我能看见他（宾格）。\n我们需要可爱的。\n聪明的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u2",
+      "title": "Unit 2 My feelings",
+      "theme": "",
+      "words": [
+        {
+          "word": "sad",
+          "phonetic": "/sæd/",
+          "meaning": "伤心的；难过的"
+        },
+        {
+          "word": "matter",
+          "phonetic": "/ˈmætə(r)/",
+          "meaning": "事情；问题"
+        },
+        {
+          "word": "project",
+          "phonetic": "/ˈprɒdʒekt/",
+          "meaning": "项目；课题"
+        },
+        {
+          "word": "centre",
+          "phonetic": "/ˈsentə(r)/",
+          "meaning": "中心"
+        },
+        {
+          "word": "agree",
+          "phonetic": "/əˈɡriː/",
+          "meaning": "同意"
+        },
+        {
+          "word": "finish",
+          "phonetic": "/ˈfɪnɪʃ/",
+          "meaning": "完成"
+        },
+        {
+          "word": "monday",
+          "phonetic": "/ˈmʌndeɪ/",
+          "meaning": "星期一"
+        },
+        {
+          "word": "worried",
+          "phonetic": "/ˈwʌrid/",
+          "meaning": "担心的"
+        },
+        {
+          "word": "both",
+          "phonetic": "/bəʊθ/",
+          "meaning": "两者"
+        },
+        {
+          "word": "excited",
+          "phonetic": "/ɪkˈsaɪtɪd/",
+          "meaning": "激动的；兴奋的"
+        },
+        {
+          "word": "wrong",
+          "phonetic": "/rɒŋ/",
+          "meaning": "有毛病的；错的"
+        },
+        {
+          "word": "angry",
+          "phonetic": "/ˈæŋɡri/",
+          "meaning": "生气的"
+        },
+        {
+          "word": "afraid",
+          "phonetic": "/əˈfreɪd/",
+          "meaning": "害怕的"
+        },
+        {
+          "word": "parent",
+          "phonetic": "/ˈpeərənt/",
+          "meaning": "父母"
+        },
+        {
+          "word": "ask",
+          "phonetic": "/ɑːsk/",
+          "meaning": "问"
+        },
+        {
+          "word": "move",
+          "phonetic": "/muːv/",
+          "meaning": "移动；搬家"
+        },
+        {
+          "word": "yours",
+          "phonetic": "/jɔːz/",
+          "meaning": "你的；你们的"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g5a-2026-u2",
+          "title": "Unit 2 My feelings · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like sad.\nThis is my matter.\nI can see project.\nWe need centre.\nAgree is nice.",
+          "translation": "你好，我喜欢伤心的。\n这是我的事情。\n我能看见项目。\n我们需要中心。\n同意很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g5a-2026-u2-textbook-a",
+          "title": "Unit 2 My feelings · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5a-2026-u2-textbook-b",
+          "title": "Unit 2 My feelings · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g5a-2026-u2",
+          "title": "Unit 2 My feelings · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like sad.\nThis is my matter.\nI can see project.\nWe need centre.\nAgree is nice.",
+          "translation": "你好，我喜欢伤心的。\n这是我的事情。\n我能看见项目。\n我们需要中心。\n同意很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u3",
+      "title": "Unit 3 Work and play",
+      "theme": "",
+      "words": [
+        {
+          "word": "wednesday",
+          "phonetic": "/ˈwenzdeɪ/",
+          "meaning": "星期三"
+        },
+        {
+          "word": "subject",
+          "phonetic": "/ˈsʌbdʒɪkt/",
+          "meaning": "学科；科目"
+        },
+        {
+          "word": "monday",
+          "phonetic": "/ˈmʌndeɪ/",
+          "meaning": "星期一"
+        },
+        {
+          "word": "tuesday",
+          "phonetic": "/ˈtjuːzdeɪ/",
+          "meaning": "星期二"
+        },
+        {
+          "word": "friday",
+          "phonetic": "/ˈfraɪdeɪ/",
+          "meaning": "星期五"
+        },
+        {
+          "word": "because",
+          "phonetic": "/bɪˈkɒz/",
+          "meaning": "因为"
+        },
+        {
+          "word": "thursday",
+          "phonetic": "/ˈθɜːzdeɪ/",
+          "meaning": "星期四"
+        },
+        {
+          "word": "start",
+          "phonetic": "/stɑːt/",
+          "meaning": "开始"
+        },
+        {
+          "word": "usually",
+          "phonetic": "/ˈjuːʒuəli/",
+          "meaning": "通常"
+        },
+        {
+          "word": "weekend",
+          "phonetic": "/ˌwiːkˈend/",
+          "meaning": "周末"
+        },
+        {
+          "word": "sometimes",
+          "phonetic": "/ˈsʌmtaɪmz/",
+          "meaning": "有时"
+        },
+        {
+          "word": "saturday",
+          "phonetic": "/ˈsætədeɪ/",
+          "meaning": "星期六"
+        },
+        {
+          "word": "sunday",
+          "phonetic": "/ˈsʌndeɪ/",
+          "meaning": "星期日"
+        },
+        {
+          "word": "lesson",
+          "phonetic": "/ˈlesn/",
+          "meaning": "课"
+        },
+        {
+          "word": "evening",
+          "phonetic": "/ˈiːvnɪŋ/",
+          "meaning": "晚上；傍晚"
+        },
+        {
+          "word": "answer",
+          "phonetic": "/ˈɑːnsə(r)/",
+          "meaning": "回答"
+        },
+        {
+          "word": "ping-pong",
+          "phonetic": "/ˈpɪŋpɒŋ/",
+          "meaning": "乒乓球"
+        },
+        {
+          "word": "night",
+          "phonetic": "/naɪt/",
+          "meaning": "夜晚"
+        },
+        {
+          "word": "visit",
+          "phonetic": "/ˈvɪzɪt/",
+          "meaning": "拜访"
+        },
+        {
+          "word": "grandparent",
+          "phonetic": "/ˈɡrænpeərənt/",
+          "meaning": "（外）祖父母"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g5a-2026-u3",
+          "title": "Unit 3 Work and play · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like wednesday.\nThis is my subject.\nI can see monday.\nWe need tuesday.\nFriday is nice.",
+          "translation": "你好，我喜欢星期三。\n这是我的学科。\n我能看见星期一。\n我们需要星期二。\n星期五很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g5a-2026-u3-textbook-a",
+          "title": "Unit 3 Work and play · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5a-2026-u3-textbook-b",
+          "title": "Unit 3 Work and play · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g5a-2026-u3",
+          "title": "Unit 3 Work and play · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like wednesday.\nThis is my subject.\nI can see monday.\nWe need tuesday.\nFriday is nice.",
+          "translation": "你好，我喜欢星期三。\n这是我的学科。\n我能看见星期一。\n我们需要星期二。\n星期五很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u4",
+      "title": "Unit 4 Healthy habits",
+      "theme": "",
+      "words": [
+        {
+          "word": "stay",
+          "phonetic": "/steɪ/",
+          "meaning": "保持；停留"
+        },
+        {
+          "word": "should",
+          "phonetic": "/ʃʊd/",
+          "meaning": "应该"
+        },
+        {
+          "word": "flu",
+          "phonetic": "/fluː/",
+          "meaning": "流感"
+        },
+        {
+          "word": "else",
+          "phonetic": "/els/",
+          "meaning": "其他；别的"
+        },
+        {
+          "word": "exercise",
+          "phonetic": "/ˈeksəsaɪz/",
+          "meaning": "运动；锻炼"
+        },
+        {
+          "word": "enough",
+          "phonetic": "/ɪˈnʌf/",
+          "meaning": "足够的"
+        },
+        {
+          "word": "if",
+          "phonetic": "/ɪf/",
+          "meaning": "如果"
+        },
+        {
+          "word": "habit",
+          "phonetic": "/ˈhæbɪt/",
+          "meaning": "习惯"
+        },
+        {
+          "word": "show",
+          "phonetic": "/ʃəʊ/",
+          "meaning": "展示；给人看"
+        },
+        {
+          "word": "phone",
+          "phonetic": "/fəʊn/",
+          "meaning": "电话"
+        },
+        {
+          "word": "then",
+          "phonetic": "/ðen/",
+          "meaning": "然后"
+        },
+        {
+          "word": "rest",
+          "phonetic": "/rest/",
+          "meaning": "休息"
+        },
+        {
+          "word": "take care of",
+          "phonetic": "/teɪk keə(r) əv/",
+          "meaning": "照顾"
+        },
+        {
+          "word": "check",
+          "phonetic": "/tʃek/",
+          "meaning": "检查"
+        },
+        {
+          "word": "less",
+          "phonetic": "/les/",
+          "meaning": "更少"
+        },
+        {
+          "word": "brush",
+          "phonetic": "/brʌʃ/",
+          "meaning": "刷"
+        },
+        {
+          "word": "tooth",
+          "phonetic": "/tuːθ/",
+          "meaning": "牙齿"
+        },
+        {
+          "word": "teeth",
+          "phonetic": "/tiːθ/",
+          "meaning": "牙齿（复数）"
+        },
+        {
+          "word": "twice",
+          "phonetic": "/twaɪs/",
+          "meaning": "两次"
+        },
+        {
+          "word": "hour",
+          "phonetic": "/ˈaʊə(r)/",
+          "meaning": "小时"
+        },
+        {
+          "word": "free",
+          "phonetic": "/friː/",
+          "meaning": "空闲的；免费的"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g5a-2026-u4",
+          "title": "Unit 4 Healthy habits · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like stay.\nThis is my should.\nI can see flu.\nWe need else.\nExercise is nice.",
+          "translation": "你好，我喜欢保持。\n这是我的应该。\n我能看见流感。\n我们需要其他。\n运动很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g5a-2026-u4-textbook-a",
+          "title": "Unit 4 Healthy habits · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5a-2026-u4-textbook-b",
+          "title": "Unit 4 Healthy habits · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g5a-2026-u4",
+          "title": "Unit 4 Healthy habits · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like stay.\nThis is my should.\nI can see flu.\nWe need else.\nExercise is nice.",
+          "translation": "你好，我喜欢保持。\n这是我的应该。\n我能看见流感。\n我们需要其他。\n运动很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u5",
+      "title": "Unit 5 Food we eat",
+      "theme": "",
+      "words": [
+        {
+          "word": "hungry",
+          "phonetic": "/ˈhʌŋɡri/",
+          "meaning": "饥饿的"
+        },
+        {
+          "word": "beef",
+          "phonetic": "/biːf/",
+          "meaning": "牛肉"
+        },
+        {
+          "word": "ice cream",
+          "phonetic": "/aɪs kriːm/",
+          "meaning": "冰激凌"
+        },
+        {
+          "word": "little",
+          "phonetic": "/ˈlɪtl/",
+          "meaning": "小的；少的"
+        },
+        {
+          "word": "dumpling",
+          "phonetic": "/ˈdʌmplɪŋ/",
+          "meaning": "饺子"
+        },
+        {
+          "word": "tea",
+          "phonetic": "/tiː/",
+          "meaning": "茶"
+        },
+        {
+          "word": "hamburger",
+          "phonetic": "/ˈhæmbɜːɡə(r)/",
+          "meaning": "汉堡包"
+        },
+        {
+          "word": "mrs",
+          "phonetic": "/ˈmɪsɪz/",
+          "meaning": "夫人；太太"
+        },
+        {
+          "word": "coconut",
+          "phonetic": "/ˈkəʊkənʌt/",
+          "meaning": "椰子"
+        },
+        {
+          "word": "interesting",
+          "phonetic": "/ˈɪntrəstɪŋ/",
+          "meaning": "有趣的"
+        },
+        {
+          "word": "seed",
+          "phonetic": "/siːd/",
+          "meaning": "种子"
+        },
+        {
+          "word": "pull",
+          "phonetic": "/pʊl/",
+          "meaning": "拔；拉"
+        },
+        {
+          "word": "stem",
+          "phonetic": "/stem/",
+          "meaning": "茎"
+        },
+        {
+          "word": "root",
+          "phonetic": "/ruːt/",
+          "meaning": "根"
+        },
+        {
+          "word": "lotus",
+          "phonetic": "/ˈləʊtəs/",
+          "meaning": "莲"
+        },
+        {
+          "word": "lake",
+          "phonetic": "/leɪk/",
+          "meaning": "湖"
+        },
+        {
+          "word": "world",
+          "phonetic": "/wɜːld/",
+          "meaning": "世界"
+        },
+        {
+          "word": "round",
+          "phonetic": "/raʊnd/",
+          "meaning": "圆的"
+        },
+        {
+          "word": "different",
+          "phonetic": "/ˈdɪfrənt/",
+          "meaning": "不同的"
+        },
+        {
+          "word": "way",
+          "phonetic": "/weɪ/",
+          "meaning": "方式；路线"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g5a-2026-u5",
+          "title": "Unit 5 Food we eat · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like hungry.\nThis is my beef.\nI can see ice cream.\nWe need little.\nDumpling is nice.",
+          "translation": "你好，我喜欢饥饿的。\n这是我的牛肉。\n我能看见冰激凌。\n我们需要小的。\n饺子很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g5a-2026-u5-textbook-a",
+          "title": "Unit 5 Food we eat · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5a-2026-u5-textbook-b",
+          "title": "Unit 5 Food we eat · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g5a-2026-u5",
+          "title": "Unit 5 Food we eat · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like hungry.\nThis is my beef.\nI can see ice cream.\nWe need little.\nDumpling is nice.",
+          "translation": "你好，我喜欢饥饿的。\n这是我的牛肉。\n我能看见冰激凌。\n我们需要小的。\n饺子很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "id": "u6",
+      "title": "Unit 6 Nature and us",
+      "theme": "",
+      "words": [
+        {
+          "word": "river",
+          "phonetic": "/ˈrɪvə(r)/",
+          "meaning": "河；江"
+        },
+        {
+          "word": "nature",
+          "phonetic": "/ˈneɪtʃə(r)/",
+          "meaning": "自然"
+        },
+        {
+          "word": "waterfall",
+          "phonetic": "/ˈwɔːtəfɔːl/",
+          "meaning": "瀑布"
+        },
+        {
+          "word": "forest",
+          "phonetic": "/ˈfɒrɪst/",
+          "meaning": "森林"
+        },
+        {
+          "word": "famous",
+          "phonetic": "/ˈfeɪməs/",
+          "meaning": "著名的"
+        },
+        {
+          "word": "mountain",
+          "phonetic": "/ˈmaʊntən/",
+          "meaning": "山"
+        },
+        {
+          "word": "wind",
+          "phonetic": "/wɪnd/",
+          "meaning": "风"
+        },
+        {
+          "word": "trip",
+          "phonetic": "/trɪp/",
+          "meaning": "旅行"
+        },
+        {
+          "word": "dangerous",
+          "phonetic": "/ˈdeɪndʒərəs/",
+          "meaning": "危险的"
+        },
+        {
+          "word": "umbrella",
+          "phonetic": "/ʌmˈbrelə/",
+          "meaning": "雨伞"
+        },
+        {
+          "word": "fog",
+          "phonetic": "/fɒɡ/",
+          "meaning": "雾"
+        },
+        {
+          "word": "fire",
+          "phonetic": "/ˈfaɪə(r)/",
+          "meaning": "火；火灾"
+        },
+        {
+          "word": "hiking",
+          "phonetic": "/ˈhaɪkɪŋ/",
+          "meaning": "徒步旅行"
+        },
+        {
+          "word": "bring",
+          "phonetic": "/brɪŋ/",
+          "meaning": "带来"
+        },
+        {
+          "word": "know",
+          "phonetic": "/nəʊ/",
+          "meaning": "知道；了解"
+        },
+        {
+          "word": "raincoat",
+          "phonetic": "/ˈreɪnkəʊt/",
+          "meaning": "雨衣"
+        }
+      ],
+      "authoredPassages": [
+        {
+          "key": "pep-g5a-2026-u6",
+          "title": "Unit 6 Nature and us · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like river.\nThis is my nature.\nI can see waterfall.\nWe need forest.\nFamous is nice.",
+          "translation": "你好，我喜欢河。\n这是我的自然。\n我能看见瀑布。\n我们需要森林。\n著名的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ],
+      "textbookPassages": [
+        {
+          "key": "pep-g5a-2026-u6-textbook-a",
+          "title": "Unit 6 Nature and us · Part A Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        },
+        {
+          "key": "pep-g5a-2026-u6-textbook-b",
+          "title": "Unit 6 Nature and us · Part B Let's talk",
+          "source": "教材原文（待授权填入）",
+          "body": "",
+          "translation": "",
+          "kind": "textbook",
+          "ready": false
+        }
+      ],
+      "passages": [
+        {
+          "key": "pep-g5a-2026-u6",
+          "title": "Unit 6 Nature and us · 自编",
+          "source": "原创单元口语练习（非教材原文）",
+          "body": "Hello, I like river.\nThis is my nature.\nI can see waterfall.\nWe need forest.\nFamous is nice.",
+          "translation": "你好，我喜欢河。\n这是我的自然。\n我能看见瀑布。\n我们需要森林。\n著名的很好。",
+          "kind": "authored",
+          "ready": true
+        }
+      ]
+    }
+  ]
+}

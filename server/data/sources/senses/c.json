@@ -9962,6 +9962,21 @@
     "contentType": "non-fiction",
     "origin": "word-atlas"
   },
+  "chopstick": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "筷子（常用复数）"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/ˈtʃɒpstɪk/"
+    },
+    "origin": "seed:pep-g4b-2026"
+  },
   "chopsticks": {
     "meanings": [
       {
@@ -12459,6 +12474,21 @@
     "level": "A2",
     "contentType": "non-fiction",
     "origin": "word-atlas"
+  },
+  "clear the table": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "收拾餐桌"
+        },
+        "sentences": []
+      }
+    ],
+    "status": "pending",
+    "phonetic": {
+      "g": "/klɪə(r) ðə ˈteɪbl/"
+    },
+    "origin": "seed:pep-g4b-2026"
   },
   "clearance": {
     "meanings": [

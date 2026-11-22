@@ -1,0 +1,66 @@
+{
+  "bookCode": "pep-g3b-2025",
+  "kind": "authored",
+  "passages": [
+    {
+      "key": "pep-g3b-2025-u1",
+      "title": "Unit 1 Meeting new people · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like where.\nThis is my from.\nI can see about.\nWe need today.\nTeacher is nice.",
+      "translation": "你好，我喜欢在哪里。\n这是我的来自。\n我能看见大约。\n我们需要今天。\n教师很好。",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u1",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g3b-2025-u2",
+      "title": "Unit 2 My words and actions · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like has.\nThis is my long.\nI can see body.\nWe need short.\nLeg is nice.",
+      "translation": "你好，我喜欢有（have的第三人称单数）。\n这是我的长的。\n我能看见身体。\n我们需要短的。\n腿很好。",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u2",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g3b-2025-u3",
+      "title": "Unit 3 Tools and senses for learning · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like eraser.\nThis is my find.\nI can see ruler.\nWe need pen.\nPencil is nice.",
+      "translation": "你好，我喜欢橡皮。\n这是我的找到。\n我能看见直尺。\n我们需要钢笔。\n铅笔很好。",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u3",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g3b-2025-u4",
+      "title": "Unit 4 Healthy food · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like breakfast.\nThis is my time.\nI can see bread.\nWe need egg.\nMilk is nice.",
+      "translation": "你好，我喜欢早餐。\n这是我的时间。\n我能看见面包。\n我们需要蛋。\n牛奶很好。",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u4",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g3b-2025-u5",
+      "title": "Unit 5 Old things · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like at.\nThis is my boat.\nI can see cool.\nWe need keep.\nHome is nice.",
+      "translation": "你好，我喜欢在（某处）。\n这是我的小船。\n我能看见酷的。\n我们需要保有。\n家很好。",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u5",
+      "kind": "authored"
+    },
+    {
+      "key": "pep-g3b-2025-u6",
+      "title": "Unit 6 Numbers in life · 自编",
+      "source": "原创单元口语练习（非教材原文）",
+      "body": "Hello, I like fifteen.\nThis is my twelve.\nI can see fourteen.\nWe need thirteen.\nEleven is nice.",
+      "translation": "你好，我喜欢十五。\n这是我的十二。\n我能看见十四。\n我们需要十三。\n十一很好。",
+      "bookCode": "pep-g3b-2025",
+      "unitId": "u6",
+      "kind": "authored"
+    }
+  ]
+}
