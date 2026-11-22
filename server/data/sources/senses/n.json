@@ -1,0 +1,6919 @@
+{
+  "nag": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "唠叨；不断抱怨；烦扰",
+          "en": "to keep complaining or urging someone in an annoying way"
+        },
+        "sentences": [
+          {
+            "en": "Do not nag him about small mistakes.",
+            "role": "basic",
+            "zh": "不要因为小错误唠叨他。"
+          },
+          {
+            "en": "She kept nagging me to finish my homework, which made me nervous.",
+            "role": "ext",
+            "zh": "她不停地唠叨让我完成作业，这让我很紧张。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/næɡ/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nail": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "钉子",
+          "en": "a thin metal pin you hammer into wood"
+        },
+        "sentences": [
+          {
+            "en": "He hits a nail into the wood.",
+            "role": "basic",
+            "zh": "他把一颗钉子钉进木头里。"
+          },
+          {
+            "en": "Teaching children to keep their nails clean can help establish healthy personal hygiene habits early.",
+            "role": "ext",
+            "zh": "教孩子保持指甲清洁，有助于他们尽早养成良好的个人卫生习惯。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "指甲",
+          "en": "the hard part at the end of a finger or toe"
+        },
+        "sentences": [
+          {
+            "en": "I cut my nails before the piano lesson.",
+            "role": "basic",
+            "zh": "我在上钢琴课前剪了指甲。"
+          },
+          {
+            "en": "She painted her nails bright red for the party.",
+            "role": "ext",
+            "zh": "她为了聚会把指甲涂成了鲜红色。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/neɪl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "naive": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "天真的；轻信的；幼稚的",
+          "en": "too willing to believe that people are honest and that things are simple, often lacking experience or judgment"
+        },
+        "sentences": [
+          {
+            "en": "He was naive about the deal.",
+            "role": "basic",
+            "zh": "他对这笔交易太天真了。"
+          },
+          {
+            "en": "It would be naive to assume that economic growth alone can solve every social problem.",
+            "role": "ext",
+            "zh": "认为单靠经济增长就能解决所有社会问题，是不切实际的。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/naɪˈiːv/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "naked": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "裸体的，未穿衣服的",
+          "en": "not wearing any clothes"
+        },
+        "sentences": [
+          {
+            "en": "The baby was naked after his warm bath.",
+            "role": "basic",
+            "zh": "婴儿洗完热水澡后光着身子。"
+          },
+          {
+            "en": "The artist painted a naked figure in the center of the canvas.",
+            "role": "ext",
+            "zh": "画家在画布中央画了一个裸体人物。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɪkɪd/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "name": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "名字；名称",
+          "en": "the word or words that a person, thing, or place is called by"
+        },
+        "sentences": [
+          {
+            "en": "My name is on the book.",
+            "role": "basic",
+            "zh": "我的名字在这本书上。"
+          },
+          {
+            "en": "Companies often choose a memorable name to distinguish their products in an increasingly competitive market.",
+            "role": "ext",
+            "zh": "企业往往选择容易记住的名称，以便在竞争日益激烈的市场中突出自己的产品。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/neɪm/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nameless": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无名的；未透露姓名的",
+          "en": "Having no name, or having a name that is not known or not revealed"
+        },
+        "sentences": [
+          {
+            "en": "A nameless donor left fresh flowers outside the shelter.",
+            "role": "basic",
+            "zh": "一位未透露姓名的捐赠者在收容所外留下了鲜花。"
+          },
+          {
+            "en": "Many nameless workers contributed to the construction of monuments that now attract tourists worldwide.",
+            "role": "ext",
+            "zh": "许多无名工人参与建造了如今吸引世界各地游客的纪念性建筑。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɪmləs/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "namely": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "即；也就是（用于具体说明前面提到的事物）",
+          "en": "used to introduce a more precise or specific explanation of something just mentioned"
+        },
+        "sentences": [
+          {
+            "en": "We visited two cities, namely Beijing and Shanghai.",
+            "role": "basic",
+            "zh": "我们参观了两座城市，即北京和上海。"
+          },
+          {
+            "en": "The company has one major problem, namely a lack of skilled workers.",
+            "role": "ext",
+            "zh": "这家公司有一个主要问题，即缺乏熟练工人。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈneɪmli/",
+      "us": "/ˈneɪmli/"
+    },
+    "topic": "thinking",
+    "level": "B1",
+    "origin": "book:cet4"
+  },
+  "nanny": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "（受雇在家庭中照看孩子的）保姆",
+          "en": "a person, especially a woman, paid to take care of a child in the child's home"
+        },
+        "sentences": [
+          {
+            "en": "The nanny reads stories to the children.",
+            "role": "basic",
+            "zh": "保姆给孩子们读故事。"
+          },
+          {
+            "en": "They hired a nanny so that both parents could return to work.",
+            "role": "ext",
+            "zh": "他们雇了一位保姆，这样父母双方都能回去上班。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnæni/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nap": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小睡",
+          "en": "a short sleep during the day"
+        },
+        "sentences": [
+          {
+            "en": "The baby had a short nap.",
+            "role": "basic",
+            "zh": "婴儿小睡了一会儿。"
+          },
+          {
+            "en": "A brief afternoon nap may improve alertness, but it should not replace adequate sleep at night.",
+            "role": "ext",
+            "zh": "下午短暂小睡可能提高警觉性，但不应代替充足的夜间睡眠。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/næp/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "napkin": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "餐巾；餐巾纸",
+          "en": "Cloth or paper used to wipe your mouth while eating"
+        },
+        "sentences": [
+          {
+            "en": "He wiped the soup from his chin with a napkin.",
+            "role": "basic",
+            "zh": "他用餐巾擦掉下巴上的汤。"
+          },
+          {
+            "en": "Restaurants can reduce waste by replacing disposable paper napkins with reusable cloth alternatives, provided laundering is managed efficiently.",
+            "role": "ext",
+            "zh": "只要高效安排洗涤，餐馆就能用可重复使用的布餐巾替代一次性餐巾纸来减少垃圾。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnæpkɪn/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "narcotic": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "麻醉药；毒品",
+          "en": "a drug that makes you sleep or feel less pain, or an illegal drug"
+        },
+        "sentences": [
+          {
+            "en": "The doctor used a mild narcotic.",
+            "role": "basic",
+            "zh": "医生使用了一种温和的麻醉药。"
+          },
+          {
+            "en": "Strict controls on narcotic medicines should prevent misuse without limiting access for patients with severe pain.",
+            "role": "ext",
+            "zh": "对麻醉性药品的严格管控应防止滥用，同时不妨碍剧痛患者获得药物。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɑːˈkɒtɪk/",
+      "us": "/nɑːrˈkɑːtɪk/"
+    },
+    "topic": "health",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "narrate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "讲述；叙述",
+          "en": "to tell a story or describe events"
+        },
+        "sentences": [
+          {
+            "en": "Teachers narrate the story slowly.",
+            "role": "basic",
+            "zh": "老师们慢慢地讲述这个故事。"
+          },
+          {
+            "en": "Local residents narrate their experiences in the documentary, offering valuable insights into urban change.",
+            "role": "ext",
+            "zh": "当地居民在纪录片中讲述亲身经历，为理解城市变迁提供了宝贵视角。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nəˈreɪt/"
+    },
+    "topic": "media",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "narration": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "叙述；讲述；（故事等的）叙述手法",
+          "en": "the act or process of telling a story or describing events; a spoken or written account"
+        },
+        "sentences": [
+          {
+            "en": "Her narration of the events made the story easy to follow.",
+            "role": "basic",
+            "zh": "她对事件的叙述使这个故事很容易理解。"
+          },
+          {
+            "en": "The film uses first-person narration to draw the audience into the main character's mind.",
+            "role": "ext",
+            "zh": "这部电影采用第一人称叙述，把观众带入主人公的内心世界。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nəˈreɪʃn/",
+      "us": "/nəˈreɪʃn/"
+    },
+    "topic": "arts",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "narrative": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "叙述；故事",
+          "en": "A description of connected events, real or imagined."
+        },
+        "sentences": [
+          {
+            "en": "Her travel diary contains a lively narrative of the journey.",
+            "role": "basic",
+            "zh": "她的旅行日记生动地记述了这段旅程。"
+          },
+          {
+            "en": "Museums can use personal narratives to help visitors understand how historical events affected the lives of ordinary people.",
+            "role": "ext",
+            "zh": "博物馆可以通过个人叙事，帮助参观者理解历史事件如何影响普通人的生活。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnærətɪv/"
+    },
+    "topic": "arts",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "narrator": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "叙述者；旁白者",
+          "en": "The person or voice telling a story"
+        },
+        "sentences": [
+          {
+            "en": "The narrator's gentle voice helped me fall asleep.",
+            "role": "basic",
+            "zh": "旁白者轻柔的声音帮助我入睡。"
+          },
+          {
+            "en": "An unreliable narrator encourages readers to question events and consider how personal perspectives shape their understanding of reality.",
+            "role": "ext",
+            "zh": "不可靠的叙述者促使读者质疑事件，并思考个人视角如何塑造对现实的理解。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nəˈreɪtə(r)/",
+      "us": "/ˈnæreɪtər/"
+    },
+    "topic": "media",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "narrow": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "狭窄的",
+          "en": "having a small distance from one side to the other"
+        },
+        "sentences": [
+          {
+            "en": "The narrow path goes up the hill.",
+            "role": "basic",
+            "zh": "这条狭窄的小路通向山上。"
+          },
+          {
+            "en": "Governments should invest in rural schools to narrow the educational gap between urban and remote communities.",
+            "role": "ext",
+            "zh": "政府应投资乡村学校，缩小城市与偏远社区之间的教育差距。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnærəʊ/",
+      "us": "/ˈnæroʊ/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nasal": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "鼻的；鼻音的",
+          "en": "of or relating to the nose; (of a speech sound) pronounced with air passing through the nose"
+        },
+        "sentences": [
+          {
+            "en": "He has a nasal voice.",
+            "role": "basic",
+            "zh": "他说话带鼻音。"
+          },
+          {
+            "en": "The doctor used a nasal spray to relieve her congestion.",
+            "role": "ext",
+            "zh": "医生用鼻腔喷雾剂来缓解她的鼻塞。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɪzl/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nasty": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "令人讨厌的；恶意的；恶劣的",
+          "en": "very unpleasant, unkind, or bad"
+        },
+        "sentences": [
+          {
+            "en": "A nasty smell came from the old fridge.",
+            "role": "basic",
+            "zh": "旧冰箱里散发出一股难闻的气味。"
+          },
+          {
+            "en": "Nasty comments on social media can discourage young people from participating in otherwise valuable online discussions.",
+            "role": "ext",
+            "zh": "社交媒体上的恶意评论可能使年轻人不愿参与原本有价值的网络讨论。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɑːsti/",
+      "us": "/ˈnæsti/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "国家；民族",
+          "en": "a country, especially when thought of as a community of people with a shared history, culture, or government"
+        },
+        "sentences": [
+          {
+            "en": "Each nation has its own flag.",
+            "role": "basic",
+            "zh": "每个国家都有自己的国旗。"
+          },
+          {
+            "en": "Wealthier nations should support international efforts to improve access to clean water in poorer regions.",
+            "role": "ext",
+            "zh": "较富裕的国家应支持国际合作，改善贫困地区的清洁用水条件。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɪʃn/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "national": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "国家的；全国的",
+          "en": "relating to a whole country"
+        },
+        "sentences": [
+          {
+            "en": "The national flag is red and gold.",
+            "role": "basic",
+            "zh": "国旗是红色和金色的。"
+          },
+          {
+            "en": "National policies can help reduce regional differences in access to healthcare and education.",
+            "role": "ext",
+            "zh": "国家政策有助于缩小医疗和教育机会方面的地区差异。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnæʃnəl/"
+    },
+    "topic": "government",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nationality": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "国籍",
+          "en": "the legal status of belonging to a particular country"
+        },
+        "sentences": [
+          {
+            "en": "Her nationality is written on the passport.",
+            "role": "basic",
+            "zh": "她的国籍写在护照上。"
+          },
+          {
+            "en": "Access to essential healthcare should depend on medical need rather than a person's nationality or income.",
+            "role": "ext",
+            "zh": "获得基本医疗服务应取决于医疗需求，而非个人国籍或收入。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnæʃəˈnæləti/",
+      "us": "/ˌnæʃəˈnæləti/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nationwide": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "全国性的；遍及全国的",
+          "en": "happening or existing across an entire country"
+        },
+        "sentences": [
+          {
+            "en": "The government announced a nationwide campaign to improve road safety.",
+            "role": "basic",
+            "zh": "政府宣布了一项旨在改善道路安全的全国性运动。"
+          },
+          {
+            "en": "The new policy will be implemented on a nationwide basis starting next month.",
+            "role": "ext",
+            "zh": "这项新政策将从下个月起在全国范围内实施。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌneɪʃnˈwaɪd/",
+      "us": "/ˌneɪʃnˈwaɪd/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "native": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "出生地的；本国的",
+          "en": "relating to your country of birth"
+        },
+        "sentences": [
+          {
+            "en": "After living abroad for many years, Ravi returned to his native city.",
+            "role": "basic",
+            "zh": "在国外生活多年后，拉维回到了自己的故乡城市。"
+          },
+          {
+            "en": "Planting native species in urban gardens can support local wildlife and reduce the need for additional watering.",
+            "role": "ext",
+            "zh": "在城市花园中种植本土物种可以帮助当地野生动物生存，并减少额外浇水的需要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɪtɪv/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "natural": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "自然的；天然的",
+          "en": "existing in nature; not made or caused by people"
+        },
+        "sentences": [
+          {
+            "en": "This park looks natural and green.",
+            "role": "basic",
+            "zh": "这个公园看起来自然又绿意盎然。"
+          },
+          {
+            "en": "Protecting natural habitats is essential for maintaining biodiversity and supporting communities that depend on local ecosystems.",
+            "role": "ext",
+            "zh": "保护自然栖息地对于维持生物多样性、支持依赖当地生态系统的社区至关重要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnætʃrəl/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "naturally": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "自然地；天然地",
+          "en": "In a natural way, without human intervention or artificial means"
+        },
+        "sentences": [
+          {
+            "en": "Let your hair dry naturally after you wash it.",
+            "role": "basic",
+            "zh": "洗完头后，让头发自然晾干。"
+          },
+          {
+            "en": "Some pollutants occur naturally in the environment, but human activities can increase their concentration to harmful levels.",
+            "role": "ext",
+            "zh": "某些污染物天然存在于环境中，但人类活动会使其浓度上升到有害水平。"
+          }
+        ],
+        "pos": "adv."
+      },
+      {
+        "meaning": {
+          "zh": "理所当然地；自然地（用于表示某事合乎情理）",
+          "en": "As may be expected; of course"
+        },
+        "sentences": [
+          {
+            "en": "Naturally, she was upset when she heard the news.",
+            "role": "basic",
+            "zh": "听到这个消息时，她自然很难过。"
+          },
+          {
+            "en": "Naturally, the team celebrated after winning the championship.",
+            "role": "ext",
+            "zh": "赢得冠军后，全队自然要庆祝一番。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnætʃərəli/"
+    },
+    "topic": "uncategorized",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nature": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "自然；大自然",
+          "en": "the natural world, including plants, animals, landscapes, and other things not made by people"
+        },
+        "sentences": [
+          {
+            "en": "We love spending time in nature, walking among trees and rivers.",
+            "role": "basic",
+            "zh": "我们喜欢亲近大自然，在树木和河流间散步。"
+          },
+          {
+            "en": "Understanding the nature of urban poverty is essential for developing policies that address its underlying causes.",
+            "role": "ext",
+            "zh": "了解城市贫困的本质，对制定解决其根本原因的政策至关重要。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈneɪtʃə/",
+      "us": "/ˈneɪtʃər/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "naughty": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "淘气的，不听话的（尤指儿童）",
+          "en": "behaving badly or disobediently, especially of a child"
+        },
+        "sentences": [
+          {
+            "en": "The naughty boy hid his sister's book.",
+            "role": "basic",
+            "zh": "那个淘气的男孩把他妹妹的书藏了起来。"
+          },
+          {
+            "en": "Children described as naughty may benefit more from patient guidance than from repeated punishment.",
+            "role": "ext",
+            "zh": "被说成淘气的孩子可能更需要耐心引导，而非反复惩罚。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɔːti/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nausea": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "恶心；作呕感",
+          "en": "the feeling that you may vomit"
+        },
+        "sentences": [
+          {
+            "en": "The rough sea filled her with nausea.",
+            "role": "basic",
+            "zh": "波涛汹涌的大海让她感到恶心。"
+          },
+          {
+            "en": "Some patients experience nausea as a side effect of the medication.",
+            "role": "ext",
+            "zh": "一些患者会出现恶心，这是该药物的副作用。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɔːziə/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nautical": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "航海的；船舶的",
+          "en": "Relating to ships, sailing, or navigation at sea"
+        },
+        "sentences": [
+          {
+            "en": "My uncle collects old nautical maps and wooden boats.",
+            "role": "basic",
+            "zh": "我叔叔收藏旧海图和木制小船。"
+          },
+          {
+            "en": "Modern nautical equipment helps crews navigate safely, but practical training remains essential for preventing accidents at sea.",
+            "role": "ext",
+            "zh": "现代航海设备帮助船员安全航行，但实践培训对于预防海上事故仍然至关重要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɔːtɪkəl/"
+    },
+    "topic": "travel",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "naval": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "海军的；与海军有关的",
+          "en": "relating to a navy or warships"
+        },
+        "sentences": [
+          {
+            "en": "He joined a naval academy after high school.",
+            "role": "basic",
+            "zh": "高中毕业后他进入了海军学院。"
+          },
+          {
+            "en": "The country increased its naval spending to protect sea routes.",
+            "role": "ext",
+            "zh": "该国增加了海军开支以保护海上航线。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈneɪvl/",
+      "us": "/ˈneɪvl/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "origin": "book:cet4"
+  },
+  "navigable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "可通航的",
+          "en": "Wide and deep enough for ships or boats to pass through."
+        },
+        "sentences": [
+          {
+            "en": "The river is only navigable during the rainy season.",
+            "role": "basic",
+            "zh": "这条河只有在雨季才能通航。"
+          },
+          {
+            "en": "A clearly organised and easily navigable website can improve access to essential public services.",
+            "role": "ext",
+            "zh": "结构清晰、易于浏览的网站可以让公众更方便地获取基本公共服务。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnævɪɡəbəl/"
+    },
+    "topic": "environment",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "navigate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "导航；航行；驾驶（车辆、船只或飞机）",
+          "en": "to direct the course of a vehicle, ship, or aircraft"
+        },
+        "sentences": [
+          {
+            "en": "Pilots navigate the plane across the ocean.",
+            "role": "basic",
+            "zh": "飞行员驾驶飞机飞越海洋。"
+          },
+          {
+            "en": "Clear website design helps users navigate public services and access essential information without unnecessary delays.",
+            "role": "ext",
+            "zh": "清晰的网站设计帮助用户查找公共服务并获取必要信息，避免不必要的耽搁。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnævɪɡeɪt/",
+      "us": "/ˈnævɪɡeɪt/"
+    },
+    "topic": "travel",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "navigation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "导航；航行",
+          "en": "Finding and following a route to a destination."
+        },
+        "sentences": [
+          {
+            "en": "We used a compass for navigation during our hike.",
+            "role": "basic",
+            "zh": "徒步时，我们用指南针辨别方向。"
+          },
+          {
+            "en": "Clear website navigation helps users find essential information quickly, making online public services more accessible to everyone.",
+            "role": "ext",
+            "zh": "清晰的网站导航能帮助用户快速找到重要信息，让所有人都更方便地使用在线公共服务。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌnævɪˈɡeɪʃən/"
+    },
+    "topic": "travel",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "navy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "海军",
+          "en": "the part of a country’s defense that operates at sea"
+        },
+        "sentences": [
+          {
+            "en": "Her brother joined the navy last year.",
+            "role": "basic",
+            "zh": "她哥哥去年加入了海军。"
+          },
+          {
+            "en": "The navy can support coastal communities by delivering emergency supplies after severe storms damage local roads.",
+            "role": "ext",
+            "zh": "强风暴破坏当地道路后，海军可以运送应急物资，支援沿海社区。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɪvi/"
+    },
+    "topic": "government",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "navy blue": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "藏青色；深蓝色",
+          "en": "a dark blue color"
+        },
+        "sentences": [
+          {
+            "en": "She wore a navy blue dress to the party.",
+            "role": "basic",
+            "zh": "她穿了一条藏青色的连衣裙去参加聚会。"
+          },
+          {
+            "en": "The team's new uniforms are navy blue with white stripes.",
+            "role": "ext",
+            "zh": "这支队伍的新队服是藏青色带白色条纹的。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌneɪvi ˈbluː/",
+      "us": "/ˌneɪvi ˈbluː/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:mse-pet"
+  },
+  "near": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "在…附近；靠近",
+          "en": "close to a place or person"
+        },
+        "sentences": [
+          {
+            "en": "The library is near our school.",
+            "role": "basic",
+            "zh": "我们在车站附近找到了一家安静的咖啡馆。"
+          },
+          {
+            "en": "Building affordable housing near public transport can reduce commuting costs and improve access to employment.",
+            "role": "ext",
+            "zh": "在公共交通设施附近建设经济适用住房，可以降低通勤成本并增加就业机会。"
+          }
+        ],
+        "pos": "prep."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɪə/",
+      "us": "/nɪr/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nearby": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "附近的；邻近的",
+          "en": "not far away; close to the place mentioned"
+        },
+        "sentences": [
+          {
+            "en": "We bought fresh bread from a nearby bakery.",
+            "role": "basic",
+            "zh": "我们从附近的一家面包店买了新鲜面包。"
+          },
+          {
+            "en": "Access to nearby parks encourages urban residents to exercise regularly and spend more time outdoors.",
+            "role": "ext",
+            "zh": "附近有方便前往的公园，能鼓励城市居民经常锻炼，并增加户外活动时间。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "在附近；在近处",
+          "en": "not far away; close by"
+        },
+        "sentences": [
+          {
+            "en": "She lives nearby, so she often walks to work.",
+            "role": "basic",
+            "zh": "她住在附近，所以经常步行上班。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌnɪəˈbaɪ/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nearest": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "最近的；最接近的",
+          "en": "Closest in distance, time, or similarity"
+        },
+        "sentences": [
+          {
+            "en": "Could you show me the way to the nearest pharmacy?",
+            "role": "basic",
+            "zh": "你能告诉我去最近的药店怎么走吗？"
+          },
+          {
+            "en": "For many rural residents, the nearest hospital is several hours away, making access to emergency care difficult.",
+            "role": "ext",
+            "zh": "对许多农村居民而言，最近的医院也有数小时路程，这让急诊医疗服务难以获得。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɪərɪst/",
+      "us": "/ˈnɪrɪst/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "word-atlas"
+  },
+  "nearly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "几乎，差不多",
+          "en": "almost; not completely"
+        },
+        "sentences": [
+          {
+            "en": "I overslept and nearly missed the bus.",
+            "role": "basic",
+            "zh": "我睡过了头，差点没赶上公交车。"
+          },
+          {
+            "en": "Nearly half of the surveyed residents supported expanding public transport rather than building additional roads.",
+            "role": "ext",
+            "zh": "受访居民中近一半支持扩建公共交通系统，而不是增建道路。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɪəli/",
+      "us": "/ˈnɪrli/"
+    },
+    "topic": "uncategorized",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "neat": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "整洁的",
+          "en": "tidy and in order"
+        },
+        "sentences": [
+          {
+            "en": "Keep your desk neat and clean.",
+            "role": "basic",
+            "zh": "保持你的书桌整洁干净。"
+          },
+          {
+            "en": "Keeping shared workspaces neat can improve efficiency by making essential equipment easier to locate.",
+            "role": "ext",
+            "zh": "保持共用工作空间整洁，可以让必要设备更容易找到，从而提高效率。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/niːt/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "necessarily": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "必然地；一定",
+          "en": "In a way that is certain or unavoidable; always"
+        },
+        "sentences": [
+          {
+            "en": "An expensive coat is not necessarily a warmer one.",
+            "role": "basic",
+            "zh": "贵的大衣不一定更暖和。"
+          },
+          {
+            "en": "Economic growth does not necessarily improve living standards unless its benefits are shared widely across society.",
+            "role": "ext",
+            "zh": "经济增长不一定能提高生活水平，除非其成果能由社会各界广泛共享。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnesəsərəli/",
+      "us": "/ˌnesəˈserəli/"
+    },
+    "topic": "thinking",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "necessary": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "必要的",
+          "en": "needed or required for something"
+        },
+        "sentences": [
+          {
+            "en": "Warm clothes are necessary in winter.",
+            "role": "basic",
+            "zh": "冬天保暖的衣服是必要的。"
+          },
+          {
+            "en": "Investment in public transport is necessary to reduce traffic congestion and improve urban air quality.",
+            "role": "ext",
+            "zh": "投资公共交通对于缓解交通拥堵和改善城市空气质量是必要的。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnesəsəri/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "necessitate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "使必要；需要",
+          "en": "to make something necessary"
+        },
+        "sentences": [
+          {
+            "en": "The storm will necessitate a delay.",
+            "role": "basic",
+            "zh": "这场暴风雨将使得延期成为必要。"
+          },
+          {
+            "en": "The new regulations may necessitate changes to our procedures.",
+            "role": "ext",
+            "zh": "新规定可能需要我们修改流程。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nəˈsesɪteɪt/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "necessity": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "必需品；必要性",
+          "en": "something that is needed; the state of being necessary"
+        },
+        "sentences": [
+          {
+            "en": "Clean water is a necessity for life.",
+            "role": "basic",
+            "zh": "清洁的水是生活的必需品。"
+          },
+          {
+            "en": "The rising cost of housing highlights the necessity of providing affordable homes for low-income families.",
+            "role": "ext",
+            "zh": "住房成本上涨凸显了为低收入家庭提供可负担住房的必要性。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nəˈsesəti/",
+      "us": "/nəˈsesəti/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "neck": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "颈，脖子",
+          "en": "the part of the body that connects the head to the shoulders"
+        },
+        "sentences": [
+          {
+            "en": "He wrapped a warm scarf around his neck.",
+            "role": "basic",
+            "zh": "他在脖子上围了一条暖和的围巾。"
+          },
+          {
+            "en": "Office workers may experience neck pain if their computer screens are positioned at an unsuitable height.",
+            "role": "ext",
+            "zh": "如果电脑屏幕的高度不合适，办公室职员可能会感到颈部疼痛。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nek/",
+      "us": "/nek/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "necklace": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "项链",
+          "en": "a piece of jewelry worn around the neck, such as a chain or string of beads"
+        },
+        "sentences": [
+          {
+            "en": "She wears a necklace to the party.",
+            "role": "basic",
+            "zh": "她戴着一条项链去参加聚会。"
+          },
+          {
+            "en": "A handmade necklace can reflect local traditions while providing income for craftspeople in rural communities.",
+            "role": "ext",
+            "zh": "一条手工项链既能体现当地传统，也能为农村社区的手工艺人带来收入。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnekləs/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "necktie": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "领带",
+          "en": "a narrow piece of cloth worn around the neck, usually by men, tied in a knot at the front"
+        },
+        "sentences": [
+          {
+            "en": "He wore a blue necktie to the job interview.",
+            "role": "basic",
+            "zh": "他系了一条蓝色领带去参加面试。"
+          },
+          {
+            "en": "A silk necktie can add a formal touch to a plain shirt.",
+            "role": "ext",
+            "zh": "一条丝绸领带能给普通的衬衫增添正式感。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnektaɪ/",
+      "us": "/ˈnektaɪ/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nectar": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "花蜜",
+          "en": "a sweet liquid produced by flowers, collected by bees"
+        },
+        "sentences": [
+          {
+            "en": "Bees drink nectar from flowers.",
+            "role": "basic",
+            "zh": "蜜蜂从花朵中吸食花蜜。"
+          },
+          {
+            "en": "The hummingbird feeds on nectar from tropical flowers.",
+            "role": "ext",
+            "zh": "蜂鸟以热带花朵的花蜜为食。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnektə/",
+      "us": "/ˈnektər/"
+    },
+    "topic": "nature",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "need": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "需要",
+          "en": "to require something because it is essential or very important"
+        },
+        "sentences": [
+          {
+            "en": "I need a new pencil.",
+            "role": "basic",
+            "zh": "我需要一支新铅笔。"
+          },
+          {
+            "en": "Cities need to improve public transport if they want to reduce dependence on private cars.",
+            "role": "ext",
+            "zh": "城市若想减少人们对私家车的依赖，就需要改善公共交通。"
+          }
+        ],
+        "pos": "v."
+      },
+      {
+        "meaning": {
+          "zh": "必须，需要（用于否定句和疑问句）",
+          "en": "used in negative sentences and questions to say that something is necessary"
+        },
+        "sentences": [
+          {
+            "en": "You needn't worry about the test.",
+            "role": "basic",
+            "zh": "你不必担心这次考试。"
+          },
+          {
+            "en": "Need we book tickets in advance?",
+            "role": "ext",
+            "zh": "我们需要提前订票吗？"
+          }
+        ],
+        "pos": "modal v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/niːd/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "needful": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "必要的；必需的",
+          "en": "necessary for a particular purpose"
+        },
+        "sentences": [
+          {
+            "en": "They packed everything needful for the long winter journey.",
+            "role": "basic",
+            "zh": "他们装好了漫长冬日旅途所需的一切物品。"
+          },
+          {
+            "en": "Reliable access to clean water is needful for maintaining public health in isolated rural communities.",
+            "role": "ext",
+            "zh": "可靠的清洁用水供应是偏远农村社区维持公共卫生的必要条件。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈniːdfəl/"
+    },
+    "topic": "uncategorized",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "needle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "针",
+          "en": "a thin, solid, metal object with a sharp point at one end"
+        },
+        "sentences": [
+          {
+            "en": "She pushed the needle through cloth.",
+            "role": "basic",
+            "zh": "她把针穿过布料。"
+          },
+          {
+            "en": "The nurse used a sterile needle for the injection.",
+            "role": "ext",
+            "zh": "护士用无菌针头进行注射。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈniːdl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "needless": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不必要的；多余的",
+          "en": "not necessary and therefore best avoided"
+        },
+        "sentences": [
+          {
+            "en": "Calling ahead saved us a needless trip across town.",
+            "role": "basic",
+            "zh": "提前打个电话，让我们免于白跑一趟穿过全城。"
+          },
+          {
+            "en": "Clear guidance on public services can prevent needless confusion and help residents access essential support.",
+            "role": "ext",
+            "zh": "清晰的公共服务指南可以避免不必要的困惑，帮助居民获得必要的支持。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈniːdləs/"
+    },
+    "topic": "daily",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "needy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "贫困的；需要帮助的",
+          "en": "not having enough money for basic needs; needing help"
+        },
+        "sentences": [
+          {
+            "en": "The fund helps needy families in winter.",
+            "role": "basic",
+            "zh": "该基金在冬天帮助贫困家庭。"
+          },
+          {
+            "en": "The charity provides free meals for needy children in the community.",
+            "role": "ext",
+            "zh": "这家慈善机构为社区里有需要的儿童提供免费餐食。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈniːdi/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "negate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "使无效；抵消；否定",
+          "en": "to cancel the effect of something; to make something ineffective or untrue"
+        },
+        "sentences": [
+          {
+            "en": "One error can negate the gain.",
+            "role": "basic",
+            "zh": "一个错误就可能抵消收益。"
+          },
+          {
+            "en": "Increased energy consumption may negate the environmental benefits of replacing older appliances with more efficient models.",
+            "role": "ext",
+            "zh": "增加的能源消耗可能抵消用更高效型号替换旧电器所带来的环境效益。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nɪˈɡeɪt/"
+    },
+    "topic": "thinking",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "negation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "否定；否认",
+          "en": "the act of denying something or stating its opposite"
+        },
+        "sentences": [
+          {
+            "en": "His firm headshake was a clear negation of my suggestion.",
+            "role": "basic",
+            "zh": "他坚决地摇了摇头，明确否定了我的建议。"
+          },
+          {
+            "en": "In language teaching, understanding negation helps learners distinguish between statements that affirm facts and those that deny them.",
+            "role": "ext",
+            "zh": "在语言教学中，理解否定表达有助于学习者区分肯定事实与否认事实的陈述。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nɪˈɡeɪʃən/"
+    },
+    "topic": "education",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "negative": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "负面的；消极的；否定的",
+          "en": "bad or harmful; expressing disagreement or criticism"
+        },
+        "sentences": [
+          {
+            "en": "Her negative comments made me doubt my cooking.",
+            "role": "basic",
+            "zh": "她的负面评价让我怀疑自己的厨艺。"
+          },
+          {
+            "en": "Heavy reliance on private cars can have negative effects on air quality and public health.",
+            "role": "ext",
+            "zh": "过度依赖私家车可能对空气质量和公众健康产生不利影响。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɡətɪv/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "neglect": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "忽视；疏于照料",
+          "en": "to fail to give proper attention or care to someone or something"
+        },
+        "sentences": [
+          {
+            "en": "He neglected his health because of too much work.",
+            "role": "basic",
+            "zh": "他因为工作太多而忽视了自己的健康。"
+          },
+          {
+            "en": "The old building has been neglected for years and is now in poor condition.",
+            "role": "ext",
+            "zh": "这座老建筑多年来一直无人照料，现在状况很差。"
+          }
+        ],
+        "pos": "v."
+      },
+      {
+        "meaning": {
+          "zh": "忽视；疏忽",
+          "en": "failure to give proper attention or care to someone or something"
+        },
+        "sentences": [
+          {
+            "en": "The child suffered from neglect.",
+            "role": "basic",
+            "zh": "那个孩子因受到疏忽而受苦。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɪˈɡlekt/",
+      "us": "/nɪˈɡlekt/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "origin": "book:cet4"
+  },
+  "neglected": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "被忽视的；无人照管的",
+          "en": "not given enough care or attention"
+        },
+        "sentences": [
+          {
+            "en": "The neglected garden was full of weeds.",
+            "role": "basic",
+            "zh": "那个无人照管的花园里长满了杂草。"
+          },
+          {
+            "en": "Neglected children may struggle to trust adults later in life.",
+            "role": "ext",
+            "zh": "被忽视的孩子在日后的人生中可能难以信任成年人。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɪˈɡlektɪd/",
+      "us": "/nɪˈɡlektɪd/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "negligence": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "疏忽；失职；过失",
+          "en": "Failure to take proper care or fulfil a responsibility"
+        },
+        "sentences": [
+          {
+            "en": "The leaking roof resulted from years of negligence.",
+            "role": "basic",
+            "zh": "屋顶漏水是多年疏于维护造成的。"
+          },
+          {
+            "en": "Stronger workplace inspections can help prevent accidents caused by employer negligence and inadequate safety training.",
+            "role": "ext",
+            "zh": "加强工作场所检查有助于预防雇主失职及安全培训不足引发的事故。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɡlɪdʒəns/"
+    },
+    "topic": "work",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "negligent": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "疏忽的；失职的",
+          "en": "failing to take proper care; careless"
+        },
+        "sentences": [
+          {
+            "en": "The driver was negligent.",
+            "role": "basic",
+            "zh": "那名司机疏忽大意。"
+          },
+          {
+            "en": "The company was found negligent in maintaining safety standards.",
+            "role": "ext",
+            "zh": "该公司被认定在维护安全标准方面存在失职。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɡlɪdʒənt/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "negligible": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "微不足道的；可忽略不计的",
+          "en": "so small or unimportant that it does not matter"
+        },
+        "sentences": [
+          {
+            "en": "The extra cost is negligible.",
+            "role": "basic",
+            "zh": "额外费用微不足道。"
+          },
+          {
+            "en": "The difference between the two measurements was negligible, so the results were considered reliable.",
+            "role": "ext",
+            "zh": "两次测量之间的差异可忽略不计，因此结果被认为是可靠的。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɡlɪdʒəbl/"
+    },
+    "topic": "uncategorized",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "negotiable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "可协商的；可商量的",
+          "en": "able to be changed or agreed through discussion"
+        },
+        "sentences": [
+          {
+            "en": "The price is negotiable if you collect the sofa yourself.",
+            "role": "basic",
+            "zh": "如果你自己来搬沙发，价格可以商量。"
+          },
+          {
+            "en": "Flexible employment contracts may include negotiable working hours, allowing staff to accommodate childcare and other responsibilities.",
+            "role": "ext",
+            "zh": "灵活的劳动合同可能包含可协商的工作时间，让员工能够兼顾育儿和其他责任。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɪˈɡəʊʃiəbəl/",
+      "us": "/nɪˈɡoʊʃiəbəl/"
+    },
+    "topic": "economy",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "negotiate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "谈判；协商",
+          "en": "to discuss something formally in order to reach an agreement"
+        },
+        "sentences": [
+          {
+            "en": "The two sides will negotiate a new trade deal.",
+            "role": "basic",
+            "zh": "双方将就一项新的贸易协议进行谈判。"
+          },
+          {
+            "en": "Governments must negotiate fair trade agreements that protect workers while encouraging international investment and economic growth.",
+            "role": "ext",
+            "zh": "各国政府必须协商达成公平的贸易协定，在保护劳动者的同时促进国际投资和经济增长。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɪˈɡəʊʃieɪt/",
+      "us": "/nɪˈɡoʊʃieɪt/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "negotiation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "谈判；协商",
+          "en": "Discussion aimed at reaching an agreement between different parties."
+        },
+        "sentences": [
+          {
+            "en": "After some negotiation, we agreed on a fair price.",
+            "role": "basic",
+            "zh": "经过一番协商，我们商定了一个公平的价格。"
+          },
+          {
+            "en": "Successful negotiation between employers and workers can prevent disputes and improve conditions throughout an industry.",
+            "role": "ext",
+            "zh": "雇主与工人之间成功的谈判可以防止纠纷，并改善整个行业的工作条件。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɪˌɡəʊʃiˈeɪʃn/",
+      "us": "/nɪˌɡoʊʃiˈeɪʃn/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "negro": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "黑人（过时且常含冒犯性的称呼，现应避免使用）",
+          "en": "an outdated and often offensive term for a Black person; avoid using it"
+        },
+        "sentences": [
+          {
+            "en": "The word \"negro\" is now considered offensive and should not be used.",
+            "role": "basic",
+            "zh": "“negro”一词现在被认为具有冒犯性，不应使用。"
+          },
+          {
+            "en": "In historical texts, learners may encounter \"negro,\" but it is not acceptable in modern polite English.",
+            "role": "ext",
+            "zh": "在历史文本中，学习者可能会遇到“negro”，但在现代礼貌英语中它不可接受。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈniːɡrəʊ/",
+      "us": "/ˈniːɡroʊ/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "book:cet4"
+  },
+  "neighbor": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "邻居；邻人",
+          "en": "a person who lives next to you or near you"
+        },
+        "sentences": [
+          {
+            "en": "Our neighbor waters the flowers.",
+            "role": "basic",
+            "zh": "我们的邻居给花浇水。"
+          },
+          {
+            "en": "She asked her neighbor to keep an eye on her house while she was away.",
+            "role": "ext",
+            "zh": "她外出时请邻居帮忙照看房子。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈneɪbə/",
+      "us": "/ˈneɪbər/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "neighborhood": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "街区；社区；邻近地区",
+          "en": "a district or area of a town where people live"
+        },
+        "sentences": [
+          {
+            "en": "Our neighborhood has a small park.",
+            "role": "basic",
+            "zh": "我们街区有一个小公园。"
+          },
+          {
+            "en": "The new library has become a popular gathering place for the whole neighborhood.",
+            "role": "ext",
+            "zh": "新图书馆已成为整个社区受欢迎的聚会场所。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈneɪbəhʊd/",
+      "us": "/ˈneɪbərˌhʊd/"
+    },
+    "topic": "city",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "neighboring": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "邻近的；相邻的",
+          "en": "located next to or near another place"
+        },
+        "sentences": [
+          {
+            "en": "We borrowed a ladder from the neighboring farm.",
+            "role": "basic",
+            "zh": "我们从邻近的农场借来了一架梯子。"
+          },
+          {
+            "en": "Neighboring countries can reduce environmental damage by coordinating river management and sharing information about industrial pollution.",
+            "role": "ext",
+            "zh": "邻国可以通过协调河流管理、共享工业污染信息来减少环境破坏。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈneɪbərɪŋ/"
+    },
+    "topic": "city",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "neighbour": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "邻居；邻近的人或物",
+          "en": "a person living near you, or something located next to another"
+        },
+        "sentences": [
+          {
+            "en": "Our neighbour helped water the plants while we were away.",
+            "role": "basic",
+            "zh": "我们不在家时，邻居帮忙给植物浇了水。"
+          },
+          {
+            "en": "Shared gardens can strengthen relationships between neighbours and create a greater sense of belonging in urban communities.",
+            "role": "ext",
+            "zh": "共享花园可以增进邻里关系，增强城市社区居民的归属感。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈneɪbə/",
+      "us": "/ˈneɪbər/"
+    },
+    "topic": "society",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "neighbourhood": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "四邻，邻近地区；街区",
+          "en": "An area around people's homes within a town or city."
+        },
+        "sentences": [
+          {
+            "en": "A small bakery has just opened in our neighbourhood.",
+            "role": "basic",
+            "zh": "我们街区刚开了一家小面包店。"
+          },
+          {
+            "en": "Investing in neighbourhood parks can improve residents' health while creating opportunities for people to meet and socialise.",
+            "role": "ext",
+            "zh": "投资建设社区公园可以改善居民健康，同时创造见面和社交的机会。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈneɪbəhʊd/",
+      "us": "/ˈneɪbərˌhʊd/"
+    },
+    "topic": "city",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "neighbouring": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "邻近的；附近的",
+          "en": "located next to or near something"
+        },
+        "sentences": [
+          {
+            "en": "The neighbouring houses were all painted white.",
+            "role": "basic",
+            "zh": "邻近的房子都漆成了白色。"
+          },
+          {
+            "en": "The two neighbouring countries signed a trade agreement.",
+            "role": "ext",
+            "zh": "这两个邻国签署了一项贸易协定。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈneɪbərɪŋ/",
+      "us": "/ˈneɪbərɪŋ/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "origin": "book:cet6"
+  },
+  "neither": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "两者都不；也不",
+          "en": "not one or the other of two; also not"
+        },
+        "sentences": [
+          {
+            "en": "Neither of the boys is late.",
+            "role": "basic",
+            "zh": "两件夹克都不合身，所以我会继续挑选。"
+          },
+          {
+            "en": "Neither approach can solve traffic congestion alone, so cities need a combination of investment and regulation.",
+            "role": "ext",
+            "zh": "两种方法都无法单独解决交通拥堵，因此城市需要将投资与监管相结合。"
+          }
+        ],
+        "pos": "det./pron./conj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnaɪðə/",
+      "us": "/ˈniːðər/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nephew": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "侄子；外甥",
+          "en": "the son of your brother or sister"
+        },
+        "sentences": [
+          {
+            "en": "My nephew plays with toy cars.",
+            "role": "basic",
+            "zh": "我的侄子玩玩具汽车。"
+          },
+          {
+            "en": "Looking after a nephew or niece can help young adults understand the responsibilities of raising children.",
+            "role": "ext",
+            "zh": "照顾侄子或侄女可以帮助年轻人理解养育孩子的责任。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnefjuː/",
+      "us": "/ˈnefjuː/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nerve": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "勇气；胆量",
+          "en": "courage or confidence to do something difficult or frightening"
+        },
+        "sentences": [
+          {
+            "en": "He needed nerve to speak in public.",
+            "role": "basic",
+            "zh": "他需要勇气才能在公众场合发言。"
+          },
+          {
+            "en": "It took a lot of nerve to challenge the manager's decision in front of the whole team.",
+            "role": "ext",
+            "zh": "当着整个团队的面质疑经理的决定需要很大的勇气。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɜːv/",
+      "us": "/nɜːrv/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nervous": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "紧张的；担忧的",
+          "en": "worried or slightly afraid about something that is going to happen"
+        },
+        "sentences": [
+          {
+            "en": "I feel nervous before the test.",
+            "role": "basic",
+            "zh": "考试前我感到很紧张。"
+          },
+          {
+            "en": "Students who feel nervous about examinations may benefit from regular practice and supportive feedback from teachers.",
+            "role": "ext",
+            "zh": "对考试感到紧张的学生可以从定期练习和教师的鼓励性反馈中获益。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɜːvəs/",
+      "us": "/ˈnɜːrvəs/"
+    },
+    "topic": "emotion",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nest": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "巢，鸟巢",
+          "en": "a structure built by a bird for laying eggs and caring for its young"
+        },
+        "sentences": [
+          {
+            "en": "The bird builds a nest in the tree.",
+            "role": "basic",
+            "zh": "鸟在树上筑巢。"
+          },
+          {
+            "en": "Protecting trees where rare birds nest is essential for maintaining biodiversity in areas affected by urban development.",
+            "role": "ext",
+            "zh": "在受城市开发影响的地区，保护珍稀鸟类筑巢的树木对维持生物多样性至关重要。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nest/",
+      "us": "/nest/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nestle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "依偎；舒适地安顿",
+          "en": "to settle or lie close and comfortably"
+        },
+        "sentences": [
+          {
+            "en": "The cat likes to nestle in my lap.",
+            "role": "basic"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnesl/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "net": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "网；网状物",
+          "en": "a material made of threads with many holes, used for catching things or covering something"
+        },
+        "sentences": [
+          {
+            "en": "The fisherman throws a net into the sea.",
+            "role": "basic",
+            "zh": "渔夫把网撒向大海。"
+          },
+          {
+            "en": "The goalkeeper dived to catch the ball but it slipped through the net.",
+            "role": "ext",
+            "zh": "守门员扑向球，但球从网中滑了过去。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "净的；纯的",
+          "en": "remaining after all costs, taxes, etc. have been deducted"
+        },
+        "sentences": [
+          {
+            "en": "The company increased its net profit by reducing energy consumption rather than raising prices for customers.",
+            "role": "ext",
+            "zh": "这家公司通过减少能源消耗而非提高售价来增加净利润。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/net/"
+    },
+    "topic": "economy",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "network": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "网络；网状系统",
+          "en": "a group of connected people or organizations"
+        },
+        "sentences": [
+          {
+            "en": "The school network shares useful news.",
+            "role": "basic",
+            "zh": "学校网络分享有用的消息。"
+          },
+          {
+            "en": "An efficient public transport network can reduce traffic congestion and improve access to employment.",
+            "role": "ext",
+            "zh": "高效的公共交通网络可以缓解交通拥堵，并让人们更方便地前往工作地点。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnetwɜːk/",
+      "us": "/ˈnetwɜːrk/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "neural": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "神经的；神经系统的",
+          "en": "relating to the nerves or the nervous system"
+        },
+        "sentences": [
+          {
+            "en": "The brain has many neural paths.",
+            "role": "basic",
+            "zh": "大脑有许多神经通路。"
+          },
+          {
+            "en": "Researchers are studying how neural networks in the brain process language.",
+            "role": "ext",
+            "zh": "研究人员正在研究大脑中的神经网络如何处理语言。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjʊərəl/",
+      "us": "/ˈnʊrəl/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "neurosis": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "神经症",
+          "en": "A former term for a mental disorder characterized by anxiety, distress, or maladaptive behavior, now largely replaced by more specific diagnoses."
+        },
+        "sentences": [
+          {
+            "en": "The old psychology book devoted a chapter to neurosis.",
+            "role": "basic",
+            "zh": "那本旧心理学书用一章的篇幅介绍神经症。"
+          },
+          {
+            "en": "Although neurosis appears frequently in older research, modern clinicians generally use more specific diagnostic terms.",
+            "role": "ext",
+            "zh": "尽管神经症一词常见于早期研究，现代临床医生通常采用更具体的诊断术语。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/njʊəˈrəʊsɪs/",
+      "us": "/njʊˈroʊsɪs/"
+    },
+    "topic": "health",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "neurotic": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "神经质的；神经过敏的",
+          "en": "too anxious and easily upset"
+        },
+        "sentences": [
+          {
+            "en": "The neurotic cat hides from visitors.",
+            "role": "basic",
+            "zh": "那只神经质的猫一见到访客就躲起来。"
+          },
+          {
+            "en": "She became neurotic about checking the door locks before leaving.",
+            "role": "ext",
+            "zh": "她出门前反复检查门锁，变得有些神经过敏。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/njʊəˈrɒtɪk/",
+      "us": "/nʊˈrɑːtɪk/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "neutral": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "中立的",
+          "en": "not taking either side in a fight or argument"
+        },
+        "sentences": [
+          {
+            "en": "The judge stayed neutral during the argument.",
+            "role": "basic",
+            "zh": "法官在争论中保持中立。"
+          },
+          {
+            "en": "Journalists should remain neutral when reporting political debates so that audiences can form their own opinions.",
+            "role": "ext",
+            "zh": "记者报道政治辩论时应保持中立，让受众能够形成自己的看法。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːtrəl/",
+      "us": "/ˈnuːtrəl/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "neutrality": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "中立；中立状态",
+          "en": "the state of not supporting either side in a disagreement or war"
+        },
+        "sentences": [
+          {
+            "en": "The country declared its neutrality during the war.",
+            "role": "basic",
+            "zh": "该国在战争期间宣布中立。"
+          },
+          {
+            "en": "Maintaining neutrality can be difficult when public opinion is strongly divided.",
+            "role": "ext",
+            "zh": "当公众意见严重分裂时，保持中立可能很困难。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/njuːˈtræləti/",
+      "us": "/nuːˈtræləti/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "neutralize": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "抵消；使失效；中和",
+          "en": "to stop something from having an effect, or to make something neutral"
+        },
+        "sentences": [
+          {
+            "en": "This spray helps neutralize unpleasant smells in the kitchen.",
+            "role": "basic",
+            "zh": "这种喷雾有助于消除厨房里的异味。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːtrəlaɪz/",
+      "us": "/ˈnuːtrəlaɪz/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "neutron": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "中子（原子核中不带电的粒子）",
+          "en": "a particle in the nucleus of an atom that has no electric charge"
+        },
+        "sentences": [
+          {
+            "en": "A neutron has no electric charge.",
+            "role": "basic",
+            "zh": "中子不带电荷。"
+          },
+          {
+            "en": "When a neutron hits a uranium nucleus, it can split the nucleus and release energy.",
+            "role": "ext",
+            "zh": "当中子击中铀原子核时，可以使原子核分裂并释放能量。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːtrɒn/",
+      "us": "/ˈnuːtrɑːn/"
+    },
+    "topic": "science",
+    "level": "B1",
+    "origin": "book:cet6"
+  },
+  "never": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "从不",
+          "en": "not at any time"
+        },
+        "sentences": [
+          {
+            "en": "I never eat candy before bed.",
+            "role": "basic",
+            "zh": "我睡前从不吃糖。"
+          },
+          {
+            "en": "Public transport can never fully replace walking and cycling as accessible forms of daily exercise.",
+            "role": "ext",
+            "zh": "作为方便易行的日常运动方式，步行和骑行永远无法被公共交通完全取代。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnevə/",
+      "us": "/ˈnevər/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nevertheless": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "然而；不过",
+          "en": "in spite of that; however"
+        },
+        "sentences": [
+          {
+            "en": "It rained; nevertheless, we still played.",
+            "role": "basic",
+            "zh": "下雨了，不过我们还是玩了。"
+          },
+          {
+            "en": "Public transport improvements require considerable investment; nevertheless, they can reduce congestion and improve urban air quality.",
+            "role": "ext",
+            "zh": "改善公共交通需要大量投资，但这能缓解拥堵并改善城市空气质量。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnevəðəˈles/",
+      "us": "/ˌnevərðəˈles/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "new": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "新的；新近的；崭新的",
+          "en": "recently made, bought, created, or not existing before; not old"
+        },
+        "sentences": [
+          {
+            "en": "I wear my new shoes today.",
+            "role": "basic",
+            "zh": "我今天穿我的新鞋。"
+          },
+          {
+            "en": "New technologies can make healthcare more accessible, but their benefits must be shared across different income groups.",
+            "role": "ext",
+            "zh": "新技术能让医疗服务更易获得，但不同收入群体都应能享受到这些益处。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/njuː/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "newly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "新近；最近",
+          "en": "Recently, especially when describing something just done or begun."
+        },
+        "sentences": [
+          {
+            "en": "We ate lunch in the newly opened corner café.",
+            "role": "basic",
+            "zh": "我们在街角新开的咖啡馆吃了午饭。"
+          },
+          {
+            "en": "Newly qualified teachers often need additional support to manage diverse classrooms effectively during their first year.",
+            "role": "ext",
+            "zh": "新取得资格的教师在第一年通常需要额外支持，才能有效管理学生背景多样的课堂。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːli/",
+      "us": "/ˈnuːli/"
+    },
+    "topic": "uncategorized",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "news": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "新闻，消息",
+          "en": "reports or information about recent events, especially in newspapers, on television, or online"
+        },
+        "sentences": [
+          {
+            "en": "She called her sister to share the good news.",
+            "role": "basic",
+            "zh": "她给姐姐打电话，分享这个好消息。"
+          },
+          {
+            "en": "People should check several reliable sources before sharing news about health issues on social media.",
+            "role": "ext",
+            "zh": "人们在社交媒体上分享健康问题的新闻前，应核实多个可靠来源。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/njuːz/"
+    },
+    "topic": "media",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "newsletter": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "定期通讯；简报",
+          "en": "a regular printed or electronic report for a particular group"
+        },
+        "sentences": [
+          {
+            "en": "Our school newsletter arrived in my inbox this morning.",
+            "role": "basic",
+            "zh": "今天早上，我的收件箱里收到了学校简报。"
+          },
+          {
+            "en": "A monthly newsletter allows charities to share progress with supporters and explain how donations are being used.",
+            "role": "ext",
+            "zh": "月度通讯让慈善机构能够向支持者汇报进展，并说明捐款的使用情况。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːzletə/",
+      "us": "/ˈnuːzletər/"
+    },
+    "topic": "media",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "newspaper": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "报纸",
+          "en": "a printed publication containing news, articles, and advertisements"
+        },
+        "sentences": [
+          {
+            "en": "Grandpa reads the newspaper every morning.",
+            "role": "basic",
+            "zh": "爷爷每天早上看报纸。"
+          },
+          {
+            "en": "Local newspapers provide valuable coverage of community issues that national media may overlook.",
+            "role": "ext",
+            "zh": "地方报纸对全国性媒体可能忽略的社区问题提供了有价值的报道。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːzpeɪpə/",
+      "us": "/ˈnuːzpeɪpər/"
+    },
+    "topic": "media",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "newsstand": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "报摊；报刊亭",
+          "en": "a small shop or stand where newspapers and magazines are sold"
+        },
+        "sentences": [
+          {
+            "en": "I bought a newspaper at the newsstand.",
+            "role": "basic",
+            "zh": "我在报摊买了一份报纸。"
+          },
+          {
+            "en": "The newsstand on the corner sells both local and international magazines.",
+            "role": "ext",
+            "zh": "街角的报刊亭出售本地和国际杂志。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːzstænd/",
+      "us": "/ˈnuːzstænd/"
+    },
+    "topic": "city",
+    "level": "A2",
+    "origin": "book:cet4"
+  },
+  "next": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "下一个的；紧接着的",
+          "en": "coming immediately after the present one"
+        },
+        "sentences": [
+          {
+            "en": "The next class is art.",
+            "role": "basic",
+            "zh": "下一节课是美术。"
+          },
+          {
+            "en": "Over the next decade, governments will need to invest more heavily in affordable public transport.",
+            "role": "ext",
+            "zh": "未来十年，各国政府需要加大对价格可负担的公共交通的投入。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnekst/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "next to": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "紧挨着；在……旁边",
+          "en": "in or into a position immediately to one side of somebody/something"
+        },
+        "sentences": [
+          {
+            "en": "We talked about next to at school.",
+            "role": "basic"
+          }
+        ],
+        "pos": "prep."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nekst tə/",
+      "us": "/nekst tə/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:mse-ket"
+  },
+  "nibble": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小口咬；一点点地吃",
+          "en": "to take small bites of food"
+        },
+        "sentences": [
+          {
+            "en": "The rabbit likes to nibble the carrot.",
+            "role": "basic",
+            "zh": "兔子喜欢小口啃胡萝卜。"
+          },
+          {
+            "en": "She nibbled at a biscuit while waiting for the bus.",
+            "role": "ext",
+            "zh": "等公交车时，她小口地啃着一块饼干。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɪbl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nice": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "好的；令人愉快的；友好的",
+          "en": "pleasant, kind, or good"
+        },
+        "sentences": [
+          {
+            "en": "You draw a nice picture.",
+            "role": "basic",
+            "zh": "我们在湖边愉快地野餐了一次。"
+          },
+          {
+            "en": "Although nice surroundings matter, affordable housing and reliable transport are more important to many urban residents.",
+            "role": "ext",
+            "zh": "虽然宜人的环境很重要，但对许多城市居民而言，可负担的住房和可靠的交通更为重要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/naɪs/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nicety": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "微妙细节；细微差别",
+          "en": "A small detail or distinction, often requiring careful attention"
+        },
+        "sentences": [
+          {
+            "en": "I am still learning the niceties of formal dining.",
+            "role": "basic",
+            "zh": "我还在学习正式用餐的礼仪细节。"
+          },
+          {
+            "en": "Understanding the niceties of legal language is essential when translating international agreements that affect trade and environmental protection.",
+            "role": "ext",
+            "zh": "翻译涉及贸易和环境保护的国际协议时，理解法律语言的细微差别至关重要。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnaɪsəti/"
+    },
+    "topic": "society",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "niche": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "合适的位置（或角色）；归宿",
+          "en": "a comfortable or suitable position in life or employment"
+        },
+        "sentences": [
+          {
+            "en": "She found her niche in art.",
+            "role": "basic",
+            "zh": "她在艺术中找到了适合自己的位置。"
+          },
+          {
+            "en": "After trying several jobs, he finally carved out a niche for himself in teaching.",
+            "role": "ext",
+            "zh": "尝试了几份工作后，他终于在教学中为自己开辟了一片天地。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "（市场）利基；细分市场",
+          "en": "a specialized segment of the market for a particular kind of product or service"
+        },
+        "sentences": [
+          {
+            "en": "The company targets a niche in the organic food market.",
+            "role": "basic",
+            "zh": "这家公司瞄准有机食品市场中的一个细分市场。"
+          },
+          {
+            "en": "Small firms often survive by serving a niche that larger companies ignore.",
+            "role": "ext",
+            "zh": "小公司常常通过服务大公司忽视的利基市场而生存。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/niːʃ/"
+    },
+    "topic": "economy",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nickel": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "镍",
+          "en": "A hard, silvery metal used in alloys and batteries."
+        },
+        "sentences": [
+          {
+            "en": "My skin reacts badly to jewellery containing nickel.",
+            "role": "basic",
+            "zh": "我的皮肤对含镍的首饰有严重的过敏反应。"
+          },
+          {
+            "en": "Growing demand for electric vehicles has increased interest in nickel mining, raising concerns about environmental damage.",
+            "role": "ext",
+            "zh": "电动汽车需求的增长提高了人们对镍矿开采的关注，也引发了对环境破坏的担忧。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɪkəl/"
+    },
+    "topic": "science",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nickname": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "绰号；昵称",
+          "en": "an informal name given to a person or thing, often instead of or in addition to the real name"
+        },
+        "sentences": [
+          {
+            "en": "His nickname at school is Fox.",
+            "role": "basic",
+            "zh": "他在学校的绰号是“狐狸”。"
+          },
+          {
+            "en": "The city has earned the nickname “the Big Apple” over the years.",
+            "role": "ext",
+            "zh": "多年来，这座城市赢得了“大苹果”这个昵称。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɪkneɪm/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "niece": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "侄女；外甥女",
+          "en": "the daughter of your brother or sister"
+        },
+        "sentences": [
+          {
+            "en": "My niece draws a yellow sun.",
+            "role": "basic",
+            "zh": "我的侄女画了一个黄色的太阳。"
+          },
+          {
+            "en": "Flexible working hours can help adults care for relatives, including a young niece or nephew.",
+            "role": "ext",
+            "zh": "弹性工作时间可以帮助成年人照顾亲属，包括年幼的侄女或侄子。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/niːs/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "night": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "夜晚；晚上",
+          "en": "the time when it is dark because the sun has gone down"
+        },
+        "sentences": [
+          {
+            "en": "The stars shine at night.",
+            "role": "basic",
+            "zh": "夜晚星星闪耀。"
+          },
+          {
+            "en": "Excessive artificial light at night can disrupt sleep patterns and affect the behaviour of urban wildlife.",
+            "role": "ext",
+            "zh": "夜间过多的人造光会扰乱睡眠规律，并影响城市野生动物的行为。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/naɪt/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nightclub": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "夜总会；夜店",
+          "en": "a place that is open late at night where people go to dance, drink, and listen to music"
+        },
+        "sentences": [
+          {
+            "en": "They went to a nightclub after dinner.",
+            "role": "basic",
+            "zh": "晚饭后他们去了一家夜总会。"
+          },
+          {
+            "en": "The city center has several nightclubs that stay open until early morning.",
+            "role": "ext",
+            "zh": "市中心有几家营业到凌晨的夜总会。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnaɪtklʌb/",
+      "us": "/ˈnaɪtklʌb/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:mse-pet"
+  },
+  "nightgown": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "睡裙",
+          "en": "a loose dress worn in bed, usually by women or girls"
+        },
+        "sentences": [
+          {
+            "en": "She packed a cotton nightgown for her weekend trip.",
+            "role": "basic",
+            "zh": "她为周末旅行带了一件棉质睡裙。"
+          },
+          {
+            "en": "For patients with limited mobility, a loose nightgown can make dressing easier and improve comfort during hospital stays.",
+            "role": "ext",
+            "zh": "对于行动不便的患者，宽松的睡裙能使穿衣更方便，也能提高住院期间的舒适度。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnaɪtɡaʊn/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "nightlife": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "夜生活；夜间娱乐",
+          "en": "Entertainment and social activities available in a place at night"
+        },
+        "sentences": [
+          {
+            "en": "We enjoyed the city's nightlife after dinner by the river.",
+            "role": "basic",
+            "zh": "在河边吃过晚饭后，我们体验了这座城市的夜生活。"
+          },
+          {
+            "en": "A vibrant nightlife can attract tourists and create jobs, but noise may disturb local residents.",
+            "role": "ext",
+            "zh": "丰富的夜生活可以吸引游客并创造就业机会，但噪声可能扰民。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnaɪtlaɪf/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nightmare": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "噩梦",
+          "en": "a frightening dream"
+        },
+        "sentences": [
+          {
+            "en": "He woke from a bad nightmare.",
+            "role": "basic",
+            "zh": "他从噩梦中惊醒。"
+          },
+          {
+            "en": "Without reliable public transport, commuting can become a nightmare for people living outside major cities.",
+            "role": "ext",
+            "zh": "如果没有可靠的公共交通，通勤对住在大城市外围的人来说可能十分煎熬。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "极不愉快的经历；噩梦般的情况",
+          "en": "a very unpleasant or difficult experience or situation"
+        },
+        "sentences": [
+          {
+            "en": "The traffic jam was a nightmare.",
+            "role": "basic",
+            "zh": "交通堵塞真是场噩梦。"
+          },
+          {
+            "en": "Organizing the event turned into a logistical nightmare.",
+            "role": "ext",
+            "zh": "组织这次活动变成了一场后勤上的噩梦。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnaɪtmeə/",
+      "us": "/ˈnaɪtmer/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nil": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "零；无",
+          "en": "nothing; zero"
+        },
+        "sentences": [
+          {
+            "en": "The team scored nil in the match.",
+            "role": "basic",
+            "zh": "该队在比赛中一分未得。"
+          },
+          {
+            "en": "The company reported nil profit for the quarter.",
+            "role": "ext",
+            "zh": "公司报告本季度利润为零。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nɪl/"
+    },
+    "topic": "sport",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nine": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "九，九个",
+          "en": "the number 9"
+        },
+        "sentences": [
+          {
+            "en": "We packed nine apples for today's picnic.",
+            "role": "basic",
+            "zh": "我们为今天的野餐装了九个苹果。"
+          },
+          {
+            "en": "The survey found that nine local schools had introduced cycling lessons to encourage more sustainable travel.",
+            "role": "ext",
+            "zh": "调查发现，当地九所学校已开设骑行课程，以鼓励更可持续的出行。"
+          }
+        ],
+        "pos": "num."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/naɪn/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nineteen": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "十九；十九个",
+          "en": "the number 19"
+        },
+        "sentences": [
+          {
+            "en": "There are nineteen students in the classroom.",
+            "role": "basic",
+            "zh": "教室里有十九名学生。"
+          },
+          {
+            "en": "She was nineteen when she moved to the city to start college.",
+            "role": "ext",
+            "zh": "她十九岁时搬到这座城市开始上大学。"
+          }
+        ],
+        "pos": "num."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnaɪnˈtiːn/",
+      "us": "/ˌnaɪnˈtiːn/"
+    },
+    "topic": "education",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nineteenth": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "第十九的",
+          "en": "coming after the eighteenth and before the twentieth in order"
+        },
+        "sentences": [
+          {
+            "en": "She lives on the nineteenth floor.",
+            "role": "basic",
+            "zh": "她住在第十九层。"
+          },
+          {
+            "en": "The nineteenth century saw major changes in industry.",
+            "role": "ext",
+            "zh": "十九世纪工业发生了重大变化。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "第十九；十九分之一",
+          "en": "the number 19 in a series; one of 19 equal parts"
+        },
+        "sentences": [
+          {
+            "en": "He was the nineteenth to arrive.",
+            "role": "basic",
+            "zh": "他是第十九个到的。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnaɪnˈtiːnθ/",
+      "us": "/ˌnaɪnˈtiːnθ/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "ninety": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "九十",
+          "en": "the number 90"
+        },
+        "sentences": [
+          {
+            "en": "There are ninety students in the hall.",
+            "role": "basic",
+            "zh": "大厅里有九十名学生。"
+          },
+          {
+            "en": "The temperature rose to ninety degrees by noon.",
+            "role": "ext",
+            "zh": "到中午时气温升到了九十度。"
+          }
+        ],
+        "pos": "num."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnaɪnti/",
+      "us": "/ˈnaɪnti/"
+    },
+    "topic": "education",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "ninth": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "第九；九分之一",
+          "en": "coming after the eighth; one of nine equal parts"
+        },
+        "sentences": [
+          {
+            "en": "Our new apartment is on the ninth floor.",
+            "role": "basic",
+            "zh": "我们的新公寓在九楼。"
+          },
+          {
+            "en": "By the ninth year of the conservation programme, several endangered species had begun to recover.",
+            "role": "ext",
+            "zh": "到保护项目实施的第九年，几种濒危物种的数量已开始回升。"
+          }
+        ],
+        "pos": "num."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/naɪnθ/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nitrate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "硝酸盐",
+          "en": "a salt or ester of nitric acid, often used in fertilizers"
+        },
+        "sentences": [
+          {
+            "en": "The gardener added a nitrate fertiliser to the soil.",
+            "role": "basic",
+            "zh": "园丁往土里施了硝酸盐肥料。"
+          },
+          {
+            "en": "Excessive nitrate levels in rivers can encourage algal growth and threaten the survival of aquatic species.",
+            "role": "ext",
+            "zh": "河流中硝酸盐含量过高，会促进藻类生长，并威胁水生物种的生存。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnaɪtreɪt/"
+    },
+    "topic": "environment",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "nitrogen": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "氮；氮气",
+          "en": "A chemical element that is a gas and makes up most of Earth's air."
+        },
+        "sentences": [
+          {
+            "en": "These beans help add nitrogen to our garden soil.",
+            "role": "basic",
+            "zh": "这些豆类植物有助于增加我们花园土壤中的氮。"
+          },
+          {
+            "en": "Excess nitrogen from agricultural fertilisers can enter rivers, encouraging rapid algae growth and damaging aquatic ecosystems.",
+            "role": "ext",
+            "zh": "农业肥料中过量的氮可能进入河流，促使藻类迅速生长，破坏水生生态系统。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnaɪtrədʒən/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "no": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不，不是（用于否定回答）",
+          "en": "used to give a negative answer or response"
+        },
+        "sentences": [
+          {
+            "en": "No, I am not hungry.",
+            "role": "basic",
+            "zh": "不，我不饿。"
+          },
+          {
+            "en": "No, thank you. I've already had enough.",
+            "role": "ext",
+            "zh": "不，谢谢。我已经吃饱了。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nəʊ/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "no one": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "没有人；无人",
+          "en": "not a single person; nobody"
+        },
+        "sentences": [
+          {
+            "en": "We talked about no one at school.",
+            "role": "basic"
+          }
+        ],
+        "pos": "pron."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnoʊ wʌn/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:mse-ket"
+  },
+  "noble": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "高尚的；崇高的",
+          "en": "having or showing fine personal qualities or high moral principles"
+        },
+        "sentences": [
+          {
+            "en": "It was a noble act to help the stranger.",
+            "role": "basic",
+            "zh": "帮助陌生人是一种高尚的行为。"
+          },
+          {
+            "en": "Although reducing poverty is a noble goal, effective policies require sustained funding and careful evaluation.",
+            "role": "ext",
+            "zh": "虽然减贫是崇高的目标，但有效的政策需要持续的资金支持和审慎的评估。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊbəl/",
+      "us": "/ˈnoʊbəl/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nobody": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "没有人",
+          "en": "not one person"
+        },
+        "sentences": [
+          {
+            "en": "Nobody is in the classroom now.",
+            "role": "basic",
+            "zh": "现在教室里没有人。"
+          },
+          {
+            "en": "Nobody should be denied access to education because their family cannot afford school fees.",
+            "role": "ext",
+            "zh": "任何人都不应因家庭付不起学费而被剥夺受教育的机会。"
+          }
+        ],
+        "pos": "pron."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊbədi/",
+      "us": "/ˈnoʊbədi/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nod": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "点头（表示同意、理解或问候）",
+          "en": "to move your head up and down, especially to show agreement, understanding, or as a greeting"
+        },
+        "sentences": [
+          {
+            "en": "Please nod if you agree.",
+            "role": "basic",
+            "zh": "如果你同意，请点头。"
+          },
+          {
+            "en": "During group discussions, participants may nod to show understanding without necessarily agreeing with the speaker's views.",
+            "role": "ext",
+            "zh": "在小组讨论中，参与者可能通过点头表示理解，但并不一定赞同发言者的观点。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɒd/",
+      "us": "/nɑːd/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "noise": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "噪音；响声",
+          "en": "a sound, especially a loud or unpleasant one"
+        },
+        "sentences": [
+          {
+            "en": "Please do not make noise in class.",
+            "role": "basic",
+            "zh": "请不要在课堂上吵闹。"
+          },
+          {
+            "en": "Prolonged exposure to traffic noise can affect sleep quality and reduce the wellbeing of urban residents.",
+            "role": "ext",
+            "zh": "长期接触交通噪音会影响睡眠质量，降低城市居民的身心健康水平。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nɔɪz/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "noisily": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "吵闹地；喧闹地",
+          "en": "in a noisy manner; making a lot of noise"
+        },
+        "sentences": [
+          {
+            "en": "The children were playing noisily in the yard.",
+            "role": "basic",
+            "zh": "孩子们在院子里吵闹地玩耍。"
+          },
+          {
+            "en": "The engine started noisily, waking everyone in the house.",
+            "role": "ext",
+            "zh": "发动机吵闹地启动了，吵醒了屋里的所有人。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɔɪzɪli/",
+      "us": "/ˈnɔɪzɪli/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "noisy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "嘈杂的；吵闹的",
+          "en": "making a lot of noise, especially a loud and unpleasant sound"
+        },
+        "sentences": [
+          {
+            "en": "The noisy washing machine woke everyone up this morning.",
+            "role": "basic",
+            "zh": "今天早上，吵闹的洗衣机把大家都吵醒了。"
+          },
+          {
+            "en": "Living near noisy roads can affect sleep quality and increase stress among urban residents.",
+            "role": "ext",
+            "zh": "住在嘈杂的道路附近可能影响城市居民的睡眠质量并加重压力。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɔɪzi/",
+      "us": "/ˈnɔɪzi/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nomad": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "游牧民；漂泊者",
+          "en": "A person who moves from place to place rather than living permanently in one place"
+        },
+        "sentences": [
+          {
+            "en": "The nomad packed his tent before moving his goats uphill.",
+            "role": "basic",
+            "zh": "这个游牧民收好帐篷，然后把山羊赶上山坡。"
+          },
+          {
+            "en": "For many nomads, access to seasonal grazing land is essential to maintaining their traditional way of life.",
+            "role": "ext",
+            "zh": "对许多游牧民而言，能够使用季节性牧场是维持传统生活方式的关键。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊmæd/",
+      "us": "/ˈnoʊmæd/"
+    },
+    "topic": "travel",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "nominal": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "名义上的；有名无实的",
+          "en": "existing in name only, not in reality"
+        },
+        "sentences": [
+          {
+            "en": "He is the nominal head of the firm.",
+            "role": "basic",
+            "zh": "他是公司名义上的负责人。"
+          },
+          {
+            "en": "The country's nominal leader has little real power.",
+            "role": "ext",
+            "zh": "这个国家名义上的领导人几乎没有实权。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "象征性的；极小的（费用等）",
+          "en": "(of a sum of money) very small; token"
+        },
+        "sentences": [
+          {
+            "en": "We paid a nominal fee for the service.",
+            "role": "basic",
+            "zh": "我们为这项服务支付了象征性的费用。"
+          },
+          {
+            "en": "Members pay only a nominal charge to use the library.",
+            "role": "ext",
+            "zh": "会员使用图书馆只需支付极少的费用。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɒmɪnl/",
+      "us": "/ˈnɑːmɪnl/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nominate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "提名；推荐（某人担任某职位或获得奖项）",
+          "en": "to officially suggest someone for a job, position, or award"
+        },
+        "sentences": [
+          {
+            "en": "They will nominate her for the prize.",
+            "role": "basic",
+            "zh": "他们将提名她获得该奖项。"
+          },
+          {
+            "en": "The committee nominated him as the new director.",
+            "role": "ext",
+            "zh": "委员会提名他为新主任。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɒmɪneɪt/"
+    },
+    "topic": "work",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nomination": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "提名；推荐",
+          "en": "The act of formally proposing someone for a position or award."
+        },
+        "sentences": [
+          {
+            "en": "Her nomination for the teaching award surprised everyone.",
+            "role": "basic",
+            "zh": "她获教学奖提名，让大家都很惊讶。"
+          },
+          {
+            "en": "A transparent nomination process can help ensure that leadership candidates represent the interests of the wider community.",
+            "role": "ext",
+            "zh": "透明的提名程序有助于确保领导职位候选人代表更广泛群体的利益。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnɒmɪˈneɪʃən/",
+      "us": "/ˌnɑːmɪˈneɪʃən/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "nominee": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "被提名者；候选人",
+          "en": "a person who has been formally proposed or chosen as a candidate for a position, award, or office"
+        },
+        "sentences": [
+          {
+            "en": "She is the nominee for the prize.",
+            "role": "basic",
+            "zh": "她是该奖项的被提名者。"
+          },
+          {
+            "en": "The party's nominee will give a speech at the convention tonight.",
+            "role": "ext",
+            "zh": "该党的候选人今晚将在大会上发表演讲。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnɒmɪˈniː/",
+      "us": "/ˌnɑːmɪˈniː/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "non-refundable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不可退款的",
+          "en": "Not able to be refunded; (of money) not returnable after payment."
+        },
+        "sentences": [
+          {
+            "en": "We chose cheaper tickets, but they were non-refundable.",
+            "role": "basic",
+            "zh": "我们选了更便宜的票，但这些票不能退款。"
+          },
+          {
+            "en": "Non-refundable booking fees can discourage travellers from changing plans, even when their circumstances unexpectedly change.",
+            "role": "ext",
+            "zh": "不可退还的预订费可能让旅客不愿更改计划，即使他们的情况突然发生了变化。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnɒn rɪˈfʌndəbl/",
+      "us": "/ˌnɑːn rɪˈfʌndəbl/"
+    },
+    "topic": "travel",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "non-smoking": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "禁止吸烟的；无烟的",
+          "en": "where smoking is not allowed"
+        },
+        "sentences": [
+          {
+            "en": "We asked for a non-smoking room at reception.",
+            "role": "basic",
+            "zh": "我们在前台要求安排一间无烟客房。"
+          },
+          {
+            "en": "Non-smoking areas in public buildings help protect visitors and employees from exposure to tobacco smoke.",
+            "role": "ext",
+            "zh": "公共建筑内的禁烟区域有助于保护访客和员工免受烟草烟雾的影响。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnɒn ˈsməʊkɪŋ/",
+      "us": "/ˌnɑːn ˈsmoʊkɪŋ/"
+    },
+    "topic": "health",
+    "level": "A2",
+    "origin": "word-atlas"
+  },
+  "non-stop": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不停的；不间断的",
+          "en": "continuing without stopping or without a pause"
+        },
+        "sentences": [
+          {
+            "en": "We took a non-stop flight from Beijing to London.",
+            "role": "basic",
+            "zh": "我们乘坐了从北京到伦敦的直飞航班。"
+          },
+          {
+            "en": "The team worked non-stop for twelve hours to finish the project.",
+            "role": "ext",
+            "zh": "团队连续工作了十二个小时才完成这个项目。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "不停地；不间断地",
+          "en": "without stopping or taking a break"
+        },
+        "sentences": [
+          {
+            "en": "The rain fell non-stop all night.",
+            "role": "basic",
+            "zh": "雨下了一整夜，没有停过。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnɒnˈstɒp/",
+      "us": "/ˌnɑːnˈstɑːp/"
+    },
+    "topic": "travel",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nonchalant": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "若无其事的；漠不关心的",
+          "en": "calm and relaxed, not showing worry or interest"
+        },
+        "sentences": [
+          {
+            "en": "He gave a nonchalant shrug.",
+            "role": "basic",
+            "zh": "他若无其事地耸了耸肩。"
+          },
+          {
+            "en": "She tried to appear nonchalant about the exam results, but her trembling hands betrayed her.",
+            "role": "ext",
+            "zh": "她试图对考试成绩表现得满不在乎，但颤抖的双手出卖了她。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɒnʃələnt/",
+      "us": "/ˌnɑːnʃəˈlɑːnt/"
+    },
+    "topic": "emotion",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "none": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "没有一个；全无",
+          "en": "not one; not any"
+        },
+        "sentences": [
+          {
+            "en": "None of the cakes are left.",
+            "role": "basic",
+            "zh": "蛋糕一块也没剩下。"
+          },
+          {
+            "en": "Although several solutions were proposed, none addressed the underlying causes of inequality in access to education.",
+            "role": "ext",
+            "zh": "虽然提出了多种解决办法，但没有一种触及教育机会不平等的根本原因。"
+          }
+        ],
+        "pos": "pron."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nʌn/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nonetheless": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "尽管如此；然而",
+          "en": "despite what has just been said; however"
+        },
+        "sentences": [
+          {
+            "en": "The task was difficult; nonetheless, she finished it on time.",
+            "role": "basic",
+            "zh": "这项任务很难，尽管如此，她还是按时完成了。"
+          },
+          {
+            "en": "The evidence is limited; nonetheless, it suggests a clear trend.",
+            "role": "ext",
+            "zh": "证据有限；然而，它显示出一个明显的趋势。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnʌnðəˈles/",
+      "us": "/ˌnʌnðəˈles/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "nonsense": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "胡说；废话；荒谬的想法",
+          "en": "words or ideas that are untrue, silly, or make no sense"
+        },
+        "sentences": [
+          {
+            "en": "That excuse is complete nonsense.",
+            "role": "basic",
+            "zh": "那个借口完全是胡说八道。"
+          },
+          {
+            "en": "Schools should teach students to distinguish reliable evidence from nonsense circulated through social media platforms.",
+            "role": "ext",
+            "zh": "学校应教学生区分可靠证据和社交媒体平台上传播的无稽之谈。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɒnsəns/",
+      "us": "/ˈnɑːnsens/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "noodle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "面条",
+          "en": "a long thin strip of dough made from flour and water, usually boiled and eaten with sauce or in soup"
+        },
+        "sentences": [
+          {
+            "en": "I eat noodle soup for lunch.",
+            "role": "basic",
+            "zh": "我午饭吃面条汤。"
+          },
+          {
+            "en": "She stirred the noodles in the boiling water to stop them from sticking together.",
+            "role": "ext",
+            "zh": "她搅动沸水里的面条，防止它们粘在一起。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnuːdl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "noon": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "中午",
+          "en": "twelve o'clock in the middle of the day"
+        },
+        "sentences": [
+          {
+            "en": "We eat lunch at noon.",
+            "role": "basic",
+            "zh": "我们中午吃午饭。"
+          },
+          {
+            "en": "Outdoor workers should avoid intense physical activity around noon, when temperatures and sunlight can be particularly strong.",
+            "role": "ext",
+            "zh": "户外工作者应避免在正午前后进行高强度体力活动，此时气温可能很高，阳光也可能特别强烈。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nuːn/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nor": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "也不",
+          "en": "and not either; also not"
+        },
+        "sentences": [
+          {
+            "en": "He cannot swim, nor can he dive.",
+            "role": "basic",
+            "zh": "他不会游泳，也不会跳水。"
+          },
+          {
+            "en": "Expanding roads alone will neither solve traffic congestion nor reduce the environmental damage caused by private vehicles.",
+            "role": "ext",
+            "zh": "仅仅拓宽道路既不能解决交通拥堵，也无法减少私家车造成的环境破坏。"
+          }
+        ],
+        "pos": "conj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɔː/",
+      "us": "/nɔːr/"
+    },
+    "topic": "thinking",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "norm": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "常态；规范；标准",
+          "en": "a usual or accepted standard, situation, or way of behaving"
+        },
+        "sentences": [
+          {
+            "en": "Working from home is now the norm in our team.",
+            "role": "basic",
+            "zh": "居家办公如今已成为我们团队的常态。"
+          },
+          {
+            "en": "Social norms influence how people interact, although acceptable behaviour can vary significantly across cultures.",
+            "role": "ext",
+            "zh": "社会规范影响人们的交往方式，但不同文化所接受的行为可能差异很大。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nɔːm/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "normal": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "正常的；通常的",
+          "en": "usual, ordinary, or expected"
+        },
+        "sentences": [
+          {
+            "en": "It is normal to feel tired after sport.",
+            "role": "basic",
+            "zh": "运动后感到疲倦是正常的。"
+          },
+          {
+            "en": "Flexible working hours are becoming a normal feature of employment in many sectors of the economy.",
+            "role": "ext",
+            "zh": "弹性工作时间正成为许多经济领域中常见的用工安排。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɔːml/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "normalization": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "正常化；恢复正常",
+          "en": "The process of making something normal or usual again."
+        },
+        "sentences": [
+          {
+            "en": "The normalization of bus services made commuting easier again.",
+            "role": "basic",
+            "zh": "公交服务恢复正常后，通勤又方便起来了。"
+          },
+          {
+            "en": "The normalization of diplomatic relations can encourage trade and strengthen cooperation on shared environmental challenges.",
+            "role": "ext",
+            "zh": "外交关系正常化能够促进贸易，并加强应对共同环境挑战的合作。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnɔːməlaɪˈzeɪʃən/",
+      "us": "/ˌnɔːrmələˈzeɪʃən/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "normally": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "通常地；正常情况下",
+          "en": "usually, or in most situations"
+        },
+        "sentences": [
+          {
+            "en": "I normally walk to work unless it rains heavily.",
+            "role": "basic",
+            "zh": "除非下大雨，我通常步行上班。"
+          },
+          {
+            "en": "Students normally benefit from regular feedback, especially when teachers provide clear guidance on improving their work.",
+            "role": "ext",
+            "zh": "学生通常能从定期反馈中受益，尤其是在教师明确指导他们改进作业时。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɔːməli/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "north": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "北，北方；北部",
+          "en": "the direction that is on your left when you face the rising sun; the northern part of an area"
+        },
+        "sentences": [
+          {
+            "en": "The north of the island gets snow every winter.",
+            "role": "basic",
+            "zh": "这座岛的北部每年冬天都会下雪。"
+          },
+          {
+            "en": "Investment in rail connections could help towns in the north attract businesses and create more local jobs.",
+            "role": "ext",
+            "zh": "投资铁路连接设施可以帮助北部城镇吸引企业，并创造更多本地就业岗位。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "北方的，北部的；朝北的",
+          "en": "in or toward the north"
+        },
+        "sentences": [
+          {
+            "en": "They live on the north side of the city.",
+            "role": "basic",
+            "zh": "他们住在城市的北边。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɔːθ/",
+      "us": "/nɔːrθ/"
+    },
+    "topic": "uncategorized",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "north america": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "北美洲",
+          "en": "the continent in the northern hemisphere, including Canada, the United States, Mexico, and Central America"
+        },
+        "sentences": [
+          {
+            "en": "We learned about North America in geography class.",
+            "role": "basic",
+            "zh": "我们在地理课上学习了北美洲。"
+          },
+          {
+            "en": "Many species of birds migrate from North America to South America each year.",
+            "role": "ext",
+            "zh": "许多鸟类每年从北美洲迁徙到南美洲。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnɔːθ əˈmerɪkə/",
+      "us": "/ˌnɔːrθ əˈmerɪkə/"
+    },
+    "topic": "travel",
+    "level": "A2",
+    "origin": "book:mse-ket"
+  },
+  "northeast": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "东北；东北部；东北方向",
+          "en": "The direction between north and east, or the northeastern part of a place."
+        },
+        "sentences": [
+          {
+            "en": "The storm is moving toward the northeast.",
+            "role": "basic",
+            "zh": "暴风雨正向东北方向移动。"
+          },
+          {
+            "en": "Investment in rail connections could improve access to employment for communities in the northeast of the country.",
+            "role": "ext",
+            "zh": "投资铁路交通可以为该国东北部的社区居民提供更多就业便利。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnɔːθˈiːst/",
+      "us": "/ˌnɔːrθˈiːst/"
+    },
+    "topic": "uncategorized",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "northern": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "北方的；向北的",
+          "en": "in or toward the north"
+        },
+        "sentences": [
+          {
+            "en": "Cold wind comes from the northern hills.",
+            "role": "basic",
+            "zh": "冷风从北面的山丘吹来。"
+          },
+          {
+            "en": "Northern regions often face higher heating costs, making energy efficiency particularly important for local households.",
+            "role": "ext",
+            "zh": "北部地区的供暖费用往往较高，因此提高能源效率对当地家庭尤其重要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɔːðən/",
+      "us": "/ˈnɔːrðərn/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "northwards": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "向北；朝北",
+          "en": "towards the north"
+        },
+        "sentences": [
+          {
+            "en": "The birds flew northwards for the winter.",
+            "role": "basic",
+            "zh": "这些鸟向北飞去过冬。"
+          },
+          {
+            "en": "After leaving the city, the road turns northwards into the mountains.",
+            "role": "ext",
+            "zh": "离开城市后，这条路向北转入山区。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɔːθwədz/",
+      "us": "/ˈnɔːrθwərdz/"
+    },
+    "topic": "travel",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "northwest": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "西北；西北部；西北方",
+          "en": "The direction between north and west, or the northwestern part of a place."
+        },
+        "sentences": [
+          {
+            "en": "The cabin is in the northwest of the island.",
+            "role": "basic",
+            "zh": "小木屋位于岛的西北部。"
+          },
+          {
+            "en": "Investment in rail networks could improve access to employment for communities in the northwest of the country.",
+            "role": "ext",
+            "zh": "对铁路网的投资可以为该国西北部的社区提供更多就业便利。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌnɔːθˈwest/"
+    },
+    "topic": "city",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nose": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "鼻子",
+          "en": "the part of the face used for breathing and smelling"
+        },
+        "sentences": [
+          {
+            "en": "My nose is red from the cold wind.",
+            "role": "basic",
+            "zh": "我的鼻子被冷风吹红了。"
+          },
+          {
+            "en": "Wearing a mask over the nose and mouth can reduce exposure to airborne dust.",
+            "role": "ext",
+            "zh": "戴口罩遮住口鼻可以减少吸入空气中的灰尘。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nəʊz/",
+      "us": "/noʊz/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nostalgia": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "怀旧；对过去的怀念",
+          "en": "a feeling of pleasure and sometimes slight sadness when thinking about the past"
+        },
+        "sentences": [
+          {
+            "en": "Old songs fill her with nostalgia.",
+            "role": "basic",
+            "zh": "老歌让她满怀怀旧之情。"
+          },
+          {
+            "en": "Nostalgia can encourage communities to preserve historic buildings, even when modern developments promise greater convenience.",
+            "role": "ext",
+            "zh": "即使现代开发项目有望带来更多便利，怀旧之情也能促使社区保护历史建筑。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɒˈstældʒə/",
+      "us": "/nɑːˈstældʒə/"
+    },
+    "topic": "emotion",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nostalgic": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "怀旧的；令人怀念的",
+          "en": "feeling happy and slightly sad when remembering the past; making you remember the past with mixed feelings"
+        },
+        "sentences": [
+          {
+            "en": "The old song made her nostalgic.",
+            "role": "basic",
+            "zh": "那首老歌让她感到怀旧。"
+          },
+          {
+            "en": "Walking through the old neighborhood filled him with nostalgic memories of his childhood.",
+            "role": "ext",
+            "zh": "走过老街区让他心中充满了对童年的怀旧回忆。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɒˈstældʒɪk/",
+      "us": "/nɑːˈstældʒɪk/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nostril": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "鼻孔",
+          "en": "Either of the two openings in the nose."
+        },
+        "sentences": [
+          {
+            "en": "One nostril felt blocked when I woke this morning.",
+            "role": "basic",
+            "zh": "今天早上醒来时，我觉得一侧鼻孔堵住了。"
+          },
+          {
+            "en": "Air entering through each nostril is warmed and filtered before it reaches the lungs.",
+            "role": "ext",
+            "zh": "从每个鼻孔进入的空气在到达肺部前都会被加温和过滤。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɒstrəl/",
+      "us": "/ˈnɑːstrəl/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "not": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不，没有（用于否定动词、形容词等）",
+          "en": "used to make a word, phrase, or sentence negative"
+        },
+        "sentences": [
+          {
+            "en": "I am not tired.",
+            "role": "basic",
+            "zh": "我不累。"
+          },
+          {
+            "en": "She did not come to the party, and I was not surprised.",
+            "role": "ext",
+            "zh": "她没有来参加聚会，我并不感到意外。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɒt/",
+      "us": "/nɑːt/"
+    },
+    "topic": "uncategorized",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "notable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "显著的；值得注意的",
+          "en": "important or unusual enough to deserve attention"
+        },
+        "sentences": [
+          {
+            "en": "Her balcony is notable for its bright yellow flowers.",
+            "role": "basic",
+            "zh": "她家的阳台因鲜艳的黄色花朵而引人注目。"
+          },
+          {
+            "en": "The city has achieved a notable reduction in air pollution since introducing stricter vehicle standards.",
+            "role": "ext",
+            "zh": "自实施更严格的车辆标准以来，该市的空气污染已显著减少。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtəbl/",
+      "us": "/ˈnoʊtəbl/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "notably": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "尤其，特别；显著地",
+          "en": "especially; in a way that is noticeable or important"
+        },
+        "sentences": [
+          {
+            "en": "The team is notably strong in defense.",
+            "role": "basic",
+            "zh": "这支队伍在防守方面尤其强大。"
+          },
+          {
+            "en": "Notably, the study found a significant increase in cases among young adults.",
+            "role": "ext",
+            "zh": "值得注意的是，该研究发现年轻成年人中的病例显著增加。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtəbli/",
+      "us": "/ˈnoʊtəbli/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "notary": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "公证人",
+          "en": "An official authorized to witness signatures and certify documents."
+        },
+        "sentences": [
+          {
+            "en": "We signed the property documents in front of a notary.",
+            "role": "basic",
+            "zh": "我们在公证人面前签署了房产文件。"
+          },
+          {
+            "en": "A notary can verify signatures on legal documents, helping reduce the risk of fraud in property transactions.",
+            "role": "ext",
+            "zh": "公证人可以核验法律文件上的签名，帮助降低房产交易中的欺诈风险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtəri/",
+      "us": "/ˈnoʊtəri/"
+    },
+    "topic": "government",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "notation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "记号，符号体系（尤指音乐、数学等使用的）",
+          "en": "a system of written signs or symbols used in a particular subject"
+        },
+        "sentences": [
+          {
+            "en": "Music uses a special notation.",
+            "role": "basic",
+            "zh": "音乐使用一种特殊的记谱法。"
+          },
+          {
+            "en": "Mathematical notation can make complex ideas easier to express.",
+            "role": "ext",
+            "zh": "数学符号可以使复杂的想法更容易表达。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nəʊˈteɪʃn/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "notch": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "等级；档次；水平",
+          "en": "a level or degree on a scale"
+        },
+        "sentences": [
+          {
+            "en": "The team moved up a notch.",
+            "role": "basic",
+            "zh": "这支队伍提升了一个档次。"
+          },
+          {
+            "en": "Her performance was a notch above the rest.",
+            "role": "ext",
+            "zh": "她的表现比其他人都高出一个档次。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "凹口；切口；V形刻痕",
+          "en": "a small cut or V-shaped indentation"
+        },
+        "sentences": [
+          {
+            "en": "He made a notch in the stick.",
+            "role": "basic",
+            "zh": "他在棍子上刻了一个凹口。"
+          },
+          {
+            "en": "The arrow rested in the notch of the bow.",
+            "role": "ext",
+            "zh": "箭搭在弓的凹口上。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɒtʃ/",
+      "us": "/nɑːtʃ/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "note": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "便条；短笺",
+          "en": "a short written message"
+        },
+        "sentences": [
+          {
+            "en": "Mum leaves a note on the fridge.",
+            "role": "basic",
+            "zh": "妈妈在冰箱上留了一张便条。"
+          },
+          {
+            "en": "Students who take notes in their own words may develop a deeper understanding of complex material.",
+            "role": "ext",
+            "zh": "用自己的话记笔记的学生可能会对复杂的学习材料形成更深入的理解。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nəʊt/",
+      "us": "/noʊt/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "note-taking": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "记笔记",
+          "en": "the activity of writing down important information while listening or reading"
+        },
+        "sentences": [
+          {
+            "en": "Note-taking helps me remember what happens during meetings.",
+            "role": "basic",
+            "zh": "记笔记有助于我记住会议中的内容。"
+          },
+          {
+            "en": "Effective note-taking allows students to identify key arguments and review complex material more efficiently after lectures.",
+            "role": "ext",
+            "zh": "有效记笔记能帮助学生识别关键论点，并在课后更高效地复习复杂内容。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊt ˌteɪkɪŋ/",
+      "us": "/ˈnoʊt ˌteɪkɪŋ/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "notebook": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "笔记本",
+          "en": "a small book of plain paper for writing notes"
+        },
+        "sentences": [
+          {
+            "en": "Write the words in your notebook.",
+            "role": "basic",
+            "zh": "把这些单词写在你的笔记本上。"
+          },
+          {
+            "en": "Keeping a notebook during fieldwork allows researchers to record observations that photographs alone may not capture.",
+            "role": "ext",
+            "zh": "实地研究时使用笔记本，有助于研究人员记录仅靠照片可能无法捕捉的观察结果。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtbʊk/",
+      "us": "/ˈnoʊtbʊk/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "noted": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "著名的；知名的",
+          "en": "well known and admired for a particular quality or achievement"
+        },
+        "sentences": [
+          {
+            "en": "A noted pianist performed at our local theatre yesterday.",
+            "role": "basic",
+            "zh": "昨天，一位著名钢琴家在我们当地的剧院演出。"
+          },
+          {
+            "en": "The region is noted for its traditional crafts, which attract visitors and support the local economy.",
+            "role": "ext",
+            "zh": "该地区以传统手工艺闻名，这些工艺吸引游客并支持当地经济发展。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtɪd/",
+      "us": "/ˈnoʊtɪd/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "notepaper": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "便条纸；信纸",
+          "en": "paper used for writing letters or short notes"
+        },
+        "sentences": [
+          {
+            "en": "She took some notepaper from the desk drawer.",
+            "role": "basic",
+            "zh": "她从书桌抽屉里拿了一些便条纸。"
+          },
+          {
+            "en": "Providing recycled notepaper in offices is a simple measure that can support more sustainable purchasing practices.",
+            "role": "ext",
+            "zh": "在办公室提供再生便条纸，是支持更可持续采购方式的一项简单措施。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtpeɪpə(r)/",
+      "us": "/ˈnoʊtpeɪpər/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "noteworthy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "值得注意的；显著的",
+          "en": "important or interesting enough to be noticed"
+        },
+        "sentences": [
+          {
+            "en": "That was a noteworthy scientific discovery.",
+            "role": "basic",
+            "zh": "那是一项值得注意的科学发现。"
+          },
+          {
+            "en": "It is noteworthy that the report reached the same conclusion as the earlier study.",
+            "role": "ext",
+            "zh": "值得注意的是，这份报告得出了与早先研究相同的结论。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtwɜːði/",
+      "us": "/ˈnoʊtwɜːrði/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nothing": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "没有什么；没有任何东西",
+          "en": "not any thing at all"
+        },
+        "sentences": [
+          {
+            "en": "There is nothing in the box.",
+            "role": "basic",
+            "zh": "盒子里什么也没有。"
+          },
+          {
+            "en": "Without affordable public transport, some residents have nothing to rely on except their own cars.",
+            "role": "ext",
+            "zh": "如果没有价格合理的公共交通，一些居民除了自己的汽车便无可依靠。"
+          }
+        ],
+        "pos": "pron."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnʌθɪŋ/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "notice": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "注意到；察觉",
+          "en": "to see or become aware of something"
+        },
+        "sentences": [
+          {
+            "en": "Notice the bird on the roof.",
+            "role": "basic",
+            "zh": "注意屋顶上的那只鸟。"
+          },
+          {
+            "en": "Residents often notice improvements in air quality when cities restrict traffic in central areas.",
+            "role": "ext",
+            "zh": "城市限制中心区域的交通时，居民常会察觉空气质量有所改善。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtɪs/",
+      "us": "/ˈnoʊtɪs/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "noticeable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "明显的；显著的",
+          "en": "Easy to see or notice."
+        },
+        "sentences": [
+          {
+            "en": "There is a noticeable scratch on my new table.",
+            "role": "basic",
+            "zh": "我的新桌子上有一道明显的划痕。"
+          },
+          {
+            "en": "The introduction of electric buses has led to a noticeable reduction in noise near busy roads.",
+            "role": "ext",
+            "zh": "引入电动公交车后，繁忙道路附近的噪声明显减少了。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtɪsəbəl/",
+      "us": "/ˈnoʊtɪsəbəl/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "noticeboard": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "布告栏；公告板",
+          "en": "A board displaying announcements for people to read."
+        },
+        "sentences": [
+          {
+            "en": "Someone pinned a lost cat poster to the noticeboard.",
+            "role": "basic",
+            "zh": "有人把寻猫启事钉在了布告栏上。"
+          },
+          {
+            "en": "A shared noticeboard can help residents discover local events and participate more actively in community life.",
+            "role": "ext",
+            "zh": "共用布告栏可以帮助居民了解当地活动，更积极地参与社区生活。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtɪsbɔːd/",
+      "us": "/ˈnoʊtɪsbɔːrd/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "notification": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "通知；通告；提醒",
+          "en": "a message or alert that gives information or tells someone about something"
+        },
+        "sentences": [
+          {
+            "en": "I received a notification about the meeting on my phone.",
+            "role": "basic",
+            "zh": "我在手机上收到了关于会议的通知。"
+          },
+          {
+            "en": "You can turn off notifications for this app in the settings.",
+            "role": "ext",
+            "zh": "你可以在设置中关闭这个应用的通知。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnəʊtɪfɪˈkeɪʃn/",
+      "us": "/ˌnoʊtɪfɪˈkeɪʃn/"
+    },
+    "topic": "technology",
+    "level": "B1",
+    "origin": "book:cet6"
+  },
+  "notify": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "通知；告知",
+          "en": "to officially inform someone about something"
+        },
+        "sentences": [
+          {
+            "en": "We will notify you of any change.",
+            "role": "basic",
+            "zh": "如有任何变动，我们会通知你。"
+          },
+          {
+            "en": "The school notified parents that classes were cancelled due to the storm.",
+            "role": "ext",
+            "zh": "学校通知家长，由于暴风雨，课程取消。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊtɪfaɪ/",
+      "us": "/ˈnoʊtɪfaɪ/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "notion": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "概念；想法；看法",
+          "en": "an idea, belief, or understanding of something"
+        },
+        "sentences": [
+          {
+            "en": "He had a notion that the plan would fail.",
+            "role": "basic",
+            "zh": "他有一种想法，认为这个计划会失败。"
+          },
+          {
+            "en": "The notion that success depends only on talent is too simplistic.",
+            "role": "ext",
+            "zh": "认为成功只取决于天赋的观念过于简单化。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊʃən/",
+      "us": "/ˈnoʊʃən/"
+    },
+    "topic": "thinking",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "notional": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "概念上的；理论上的；名义上的",
+          "en": "existing only as an idea or in theory, not real or actual"
+        },
+        "sentences": [
+          {
+            "en": "That number is only notional.",
+            "role": "basic",
+            "zh": "那个数字只是概念上的。"
+          },
+          {
+            "en": "The company's notional value is much higher than its actual market value.",
+            "role": "ext",
+            "zh": "这家公司的名义价值远高于其实际市场价值。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊʃənl/",
+      "us": "/ˈnoʊʃənl/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "notoriety": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "恶名；声名狼藉",
+          "en": "the state of being widely known for something bad"
+        },
+        "sentences": [
+          {
+            "en": "The restaurant gained notoriety for its dirty kitchen.",
+            "role": "basic",
+            "zh": "这家餐馆因厨房脏乱而臭名远扬。"
+          },
+          {
+            "en": "Some companies gain notoriety for environmental damage, making it harder for them to attract skilled workers.",
+            "role": "ext",
+            "zh": "一些企业因破坏环境而声名狼藉，因而更难吸引技术人才。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnəʊtəˈraɪəti/",
+      "us": "/ˌnoʊtəˈraɪəti/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "notorious": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "臭名昭著的；声名狼藉的",
+          "en": "famous or well known for something bad"
+        },
+        "sentences": [
+          {
+            "en": "He is a notorious liar.",
+            "role": "basic",
+            "zh": "他是个臭名昭著的骗子。"
+          },
+          {
+            "en": "Cities notorious for severe air pollution often struggle to attract skilled workers and develop sustainable tourism.",
+            "role": "ext",
+            "zh": "因严重空气污染而臭名昭著的城市往往难以吸引技术人才和发展可持续旅游业。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nəʊˈtɔːriəs/",
+      "us": "/noʊˈtɔːriəs/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "notoriously": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "臭名昭著地；众所周知地（常含贬义）",
+          "en": "in a way that is well known for a bad quality or deed"
+        },
+        "sentences": [
+          {
+            "en": "The company is notoriously slow at responding to complaints.",
+            "role": "basic",
+            "zh": "这家公司以对投诉反应迟缓而臭名昭著。"
+          },
+          {
+            "en": "He is notoriously difficult to work with, but his talent is undeniable.",
+            "role": "ext",
+            "zh": "众所周知他很难共事，但他的才华无可否认。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nəˈtɔːriəsli/",
+      "us": "/noʊˈtɔːriəsli/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "notwithstanding": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "尽管；虽然",
+          "en": "despite something that might prevent or contradict something else"
+        },
+        "sentences": [
+          {
+            "en": "Notwithstanding the rain, we enjoyed our walk by the river.",
+            "role": "basic",
+            "zh": "尽管下着雨，我们仍愉快地在河边散步。"
+          },
+          {
+            "en": "Notwithstanding its initial costs, investment in renewable energy can provide substantial economic and environmental benefits over time.",
+            "role": "ext",
+            "zh": "尽管初期成本较高，可再生能源投资仍能长期带来可观的经济和环境效益。"
+          }
+        ],
+        "pos": "prep."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌnɒtwɪðˈstændɪŋ/",
+      "us": "/ˌnɑːtwɪðˈstændɪŋ/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nought": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "零；无；没有",
+          "en": "the number zero; nothing"
+        },
+        "sentences": [
+          {
+            "en": "We use the word nought in class.",
+            "role": "basic"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɔːt/",
+      "us": "/nɔːt/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "origin": "book:cet6"
+  },
+  "noun": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "名词",
+          "en": "a word naming a person, place, thing, quality, or idea"
+        },
+        "sentences": [
+          {
+            "en": "Our teacher asked us to circle every noun.",
+            "role": "basic",
+            "zh": "老师让我们把每个名词都圈出来。"
+          },
+          {
+            "en": "Understanding whether a noun is countable helps language learners choose appropriate articles and express quantities accurately in academic writing.",
+            "role": "ext",
+            "zh": "了解名词是否可数，有助于语言学习者在学术写作中选用合适的冠词并准确表达数量。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/naʊn/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nourish": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "滋养；为…提供营养",
+          "en": "to give food or other substances needed for health and growth"
+        },
+        "sentences": [
+          {
+            "en": "Milk and eggs nourish growing children.",
+            "role": "basic",
+            "zh": "牛奶和鸡蛋为成长中的孩子提供营养。"
+          },
+          {
+            "en": "Schools can nourish children's curiosity by encouraging questions and providing opportunities for independent exploration.",
+            "role": "ext",
+            "zh": "学校可以通过鼓励提问和提供自主探索的机会来培养儿童的好奇心。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnʌrɪʃ/",
+      "us": "/ˈnɜːrɪʃ/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nourishment": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "营养；滋养品；食物",
+          "en": "food or other substances needed for growth, health, and good condition"
+        },
+        "sentences": [
+          {
+            "en": "Plants get nourishment from the soil.",
+            "role": "basic",
+            "zh": "植物从土壤中获取养分。"
+          },
+          {
+            "en": "A balanced diet provides the nourishment a child needs to grow and develop.",
+            "role": "ext",
+            "zh": "均衡的饮食能为儿童提供生长发育所需的营养。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnʌrɪʃmənt/",
+      "us": "/ˈnɜːrɪʃmənt/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "novel": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "长篇小说",
+          "en": "a long written story about imaginary people and events"
+        },
+        "sentences": [
+          {
+            "en": "I read a long novel last week.",
+            "role": "basic",
+            "zh": "我上周读了一部长篇小说。"
+          },
+          {
+            "en": "Schools can use historical novels to help students understand how ordinary people experienced major social changes.",
+            "role": "ext",
+            "zh": "学校可以利用历史小说，帮助学生理解普通人如何经历重大的社会变革。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɒvl/",
+      "us": "/ˈnɑːvl/"
+    },
+    "topic": "arts",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "novelist": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小说家",
+          "en": "A person who writes novels."
+        },
+        "sentences": [
+          {
+            "en": "The novelist writes at the kitchen table every morning.",
+            "role": "basic",
+            "zh": "这位小说家每天上午都在厨房的桌边写作。"
+          },
+          {
+            "en": "A skilled novelist can reveal social inequalities through characters whose experiences differ greatly from those of readers.",
+            "role": "ext",
+            "zh": "技艺娴熟的小说家可以通过经历与读者大不相同的人物，揭示社会不平等。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɒvəlɪst/"
+    },
+    "topic": "arts",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "novelty": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "新奇；新颖；新鲜感",
+          "en": "the quality of being new and unusual"
+        },
+        "sentences": [
+          {
+            "en": "The novelty of the toy soon faded.",
+            "role": "basic",
+            "zh": "这个玩具的新鲜感很快就消退了。"
+          },
+          {
+            "en": "Although the novelty of new technology attracts consumers, long-term adoption depends on practical benefits and affordability.",
+            "role": "ext",
+            "zh": "虽然新技术的新颖性会吸引消费者，但长期采用仍取决于实际益处和价格是否可负担。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɒvəlti/",
+      "us": "/ˈnɑːvəlti/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "november": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "十一月",
+          "en": "the eleventh month of the year, between October and December"
+        },
+        "sentences": [
+          {
+            "en": "We will move into our new apartment in November.",
+            "role": "basic",
+            "zh": "我们将在十一月搬进新公寓。"
+          },
+          {
+            "en": "The university plans to launch its new scholarship programme in November, allowing more international students to apply.",
+            "role": "ext",
+            "zh": "该大学计划在十一月推出新的奖学金项目，让更多国际学生能够申请。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nəʊˈvembə/",
+      "us": "/noʊˈvembər/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "novice": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "新手；初学者",
+          "en": "someone with little experience in a particular activity"
+        },
+        "sentences": [
+          {
+            "en": "As a gardening novice, I often forget to water seedlings.",
+            "role": "basic",
+            "zh": "作为园艺新手，我常常忘记给幼苗浇水。"
+          },
+          {
+            "en": "Structured mentoring can help a novice develop the confidence needed to manage a classroom effectively.",
+            "role": "ext",
+            "zh": "有系统的指导能帮助新手建立有效管理课堂所需的信心。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɒvɪs/",
+      "us": "/ˈnɑːvɪs/"
+    },
+    "topic": "uncategorized",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "now": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "现在",
+          "en": "at this moment, not later"
+        },
+        "sentences": [
+          {
+            "en": "We start our class now.",
+            "role": "basic",
+            "zh": "我们现在开始上课。"
+          },
+          {
+            "en": "Now that online courses are widely available, more adults can continue their education while working.",
+            "role": "ext",
+            "zh": "既然在线课程已广泛普及，更多成年人就能在工作的同时继续接受教育。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/naʊ/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nowadays": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "如今；现在；现今",
+          "en": "at the present time; these days"
+        },
+        "sentences": [
+          {
+            "en": "Many people shop online nowadays.",
+            "role": "basic",
+            "zh": "如今，许多人在网上购物。"
+          },
+          {
+            "en": "Nowadays, many employees expect flexible working arrangements that allow them to balance professional and family responsibilities.",
+            "role": "ext",
+            "zh": "如今，许多员工希望有灵活的工作安排，以便兼顾工作和家庭责任。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnaʊədeɪz/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nowhere": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无处；哪里都不",
+          "en": "in, at, or to no place"
+        },
+        "sentences": [
+          {
+            "en": "The keys were nowhere in the house.",
+            "role": "basic",
+            "zh": "钥匙在房子里哪儿都找不到。"
+          },
+          {
+            "en": "Without affordable housing, some low-income families have nowhere to live despite having regular paid employment.",
+            "role": "ext",
+            "zh": "如果缺乏可负担的住房，一些低收入家庭即使有固定工作，也无处居住。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊweə(r)/",
+      "us": "/ˈnoʊwer/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "noxious": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有害的；有毒的",
+          "en": "harmful or poisonous to people or other living things"
+        },
+        "sentences": [
+          {
+            "en": "Noxious fumes from the spill forced everyone to leave.",
+            "role": "basic",
+            "zh": "泄漏物产生的有毒烟气迫使所有人离开。"
+          },
+          {
+            "en": "Stricter controls on industrial emissions are needed to protect nearby communities from exposure to noxious gases.",
+            "role": "ext",
+            "zh": "需要更严格地控制工业排放，以保护附近社区免受有毒气体侵害。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɒkʃəs/",
+      "us": "/ˈnɑːkʃəs/"
+    },
+    "topic": "environment",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "nuance": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "细微差别",
+          "en": "a small difference in meaning or feeling"
+        },
+        "sentences": [
+          {
+            "en": "I missed a nuance in her tone.",
+            "role": "basic",
+            "zh": "我没注意到她语气中的细微差别。"
+          },
+          {
+            "en": "Language learners need cultural knowledge to recognise nuances that dictionaries may not fully explain.",
+            "role": "ext",
+            "zh": "语言学习者需要文化知识，才能辨别词典可能无法充分解释的细微差别。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnjuːɑːns/"
+    },
+    "topic": "thinking",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nuclear": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "核能的",
+          "en": "relating to the energy released when atoms are split"
+        },
+        "sentences": [
+          {
+            "en": "The nuclear plant makes electricity.",
+            "role": "basic",
+            "zh": "这座核电站发电。"
+          },
+          {
+            "en": "Nuclear energy can provide reliable electricity, but managing radioactive waste remains a major challenge.",
+            "role": "ext",
+            "zh": "核能可以提供可靠的电力，但处理放射性废物仍是一大挑战。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnjuːkliə/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nucleus": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "原子核；细胞核",
+          "en": "the central part of an atom or cell"
+        },
+        "sentences": [
+          {
+            "en": "The nucleus lies at the center of an atom.",
+            "role": "basic",
+            "zh": "原子核位于原子的中心。"
+          },
+          {
+            "en": "Damage to genetic material in the nucleus can affect how a cell functions and divides.",
+            "role": "ext",
+            "zh": "细胞核中的遗传物质受损会影响细胞的功能和分裂。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːkliəs/",
+      "us": "/ˈnuːkliəs/"
+    },
+    "topic": "science",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nudge": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "轻推（尤指用肘部）",
+          "en": "to push someone gently, especially with your elbow"
+        },
+        "sentences": [
+          {
+            "en": "She gave him a nudge to wake him.",
+            "role": "basic",
+            "zh": "她轻轻推了他一下把他叫醒。"
+          },
+          {
+            "en": "He nudged the door open with his shoulder.",
+            "role": "ext",
+            "zh": "他用肩膀轻轻把门顶开。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nʌdʒ/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nuisance": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "讨厌的人（或事物）；麻烦事",
+          "en": "a person, thing, or situation that annoys you or causes trouble"
+        },
+        "sentences": [
+          {
+            "en": "The loud dog is a nuisance.",
+            "role": "basic",
+            "zh": "那只吵闹的狗真讨厌。"
+          },
+          {
+            "en": "Constant construction noise has become a real nuisance for residents.",
+            "role": "ext",
+            "zh": "持续不断的施工噪音对居民来说已经成了真正的麻烦。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːsns/",
+      "us": "/ˈnuːsns/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "null": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无效的",
+          "en": "having no legal force or value"
+        },
+        "sentences": [
+          {
+            "en": "The old vote is now null.",
+            "role": "basic",
+            "zh": "那次旧投票现在无效了。"
+          },
+          {
+            "en": "A contract may be declared null if one party was forced to accept its terms.",
+            "role": "ext",
+            "zh": "如果一方被迫接受合同条款，该合同可能被宣布无效。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nʌl/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nullify": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "使失去法律效力",
+          "en": "to make an agreement or decision legally invalid"
+        },
+        "sentences": [
+          {
+            "en": "This missing signature could nullify the entire rental agreement.",
+            "role": "basic",
+            "zh": "缺少这个签名可能使整份租赁协议失效。"
+          },
+          {
+            "en": "Rising energy consumption could nullify the environmental benefits achieved through improvements in industrial efficiency.",
+            "role": "ext",
+            "zh": "不断增长的能源消耗可能抵消工业效率提升所带来的环境效益。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnʌlɪfaɪ/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "numb": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "麻木的；失去感觉的",
+          "en": "Unable to feel physical sensations in part of the body."
+        },
+        "sentences": [
+          {
+            "en": "My fingers went numb in the cold.",
+            "role": "basic",
+            "zh": "我的手指在寒冷中冻麻了。"
+          },
+          {
+            "en": "Workers exposed to extreme cold may develop numb fingers, reducing their ability to handle equipment safely.",
+            "role": "ext",
+            "zh": "暴露于严寒中的工人可能出现手指麻木，从而降低安全操作设备的能力。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nʌm/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "number": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "数字",
+          "en": "a word or sign that shows how many"
+        },
+        "sentences": [
+          {
+            "en": "My lucky number is seven.",
+            "role": "basic",
+            "zh": "我的幸运数字是七。"
+          },
+          {
+            "en": "The number of people working from home has increased as digital communication tools have improved.",
+            "role": "ext",
+            "zh": "随着数字通信工具的改进，居家办公的人数有所增加。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnʌmbə/",
+      "us": "/ˈnʌmbər/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "numerate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "具备基本计算能力的",
+          "en": "able to understand and work with numbers"
+        },
+        "sentences": [
+          {
+            "en": "The shop needs numerate staff who can calculate change.",
+            "role": "basic",
+            "zh": "这家店需要会计算找零、具备基本计算能力的员工。"
+          },
+          {
+            "en": "Schools should ensure that all students become numerate enough to manage personal finances and interpret basic statistics.",
+            "role": "ext",
+            "zh": "学校应确保所有学生都具备足够的计算能力，能够管理个人财务并理解基础统计数据。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːmərət/",
+      "us": "/ˈnuːmərət/"
+    },
+    "topic": "education",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "numeric": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "数字的；数值的",
+          "en": "relating to or expressed by numbers"
+        },
+        "sentences": [
+          {
+            "en": "Enter the numeric code on the door.",
+            "role": "basic",
+            "zh": "请输入门上的数字密码。"
+          },
+          {
+            "en": "The software converts text into numeric data for analysis.",
+            "role": "ext",
+            "zh": "该软件将文本转换为数值数据以便分析。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/njuːˈmerɪk/",
+      "us": "/nuːˈmerɪk/"
+    },
+    "topic": "science",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "numerical": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "数字的；用数字表示的",
+          "en": "Relating to numbers or expressed using numbers."
+        },
+        "sentences": [
+          {
+            "en": "Please arrange these raffle tickets in numerical order.",
+            "role": "basic",
+            "zh": "请把这些抽奖券按号码顺序排列。"
+          },
+          {
+            "en": "Researchers need reliable numerical data to assess whether public transport investments have reduced traffic congestion.",
+            "role": "ext",
+            "zh": "研究人员需要可靠的数值数据，以评估公共交通投资是否缓解了交通拥堵。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/njuːˈmerɪkəl/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "numerous": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "许多的；众多的",
+          "en": "existing in large numbers; many"
+        },
+        "sentences": [
+          {
+            "en": "There are numerous books on that shelf.",
+            "role": "basic",
+            "zh": "那个书架上有许多书。"
+          },
+          {
+            "en": "Numerous studies suggest that access to green spaces can improve the mental health of urban residents.",
+            "role": "ext",
+            "zh": "众多研究表明，能方便地接触绿地有助于改善城市居民的心理健康。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːmərəs/",
+      "us": "/ˈnuːmərəs/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nun": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "修女",
+          "en": "a member of a women's religious community"
+        },
+        "sentences": [
+          {
+            "en": "The nun taught children at the village school.",
+            "role": "basic",
+            "zh": "那位修女在乡村学校教孩子们。"
+          },
+          {
+            "en": "She decided to become a nun after years of volunteer work with the church.",
+            "role": "ext",
+            "zh": "在教堂做了多年志愿者后，她决定成为一名修女。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nʌn/"
+    },
+    "topic": "society",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nurse": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "护士",
+          "en": "a person who cares for sick people"
+        },
+        "sentences": [
+          {
+            "en": "The nurse helps the sick boy.",
+            "role": "basic",
+            "zh": "护士帮助生病的男孩。"
+          },
+          {
+            "en": "Employing more community nurses could improve access to healthcare for older people living in rural areas.",
+            "role": "ext",
+            "zh": "增聘社区护士可以改善农村老年人获得医疗服务的机会。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɜːs/",
+      "us": "/nɜːrs/"
+    },
+    "topic": "health",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nursery": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "苗圃；育婴室；托儿所",
+          "en": "a place where plants and young trees are grown and sold; also a room or place where young children are cared for"
+        },
+        "sentences": [
+          {
+            "en": "We bought young trees at the plant nursery.",
+            "role": "basic",
+            "zh": "我们在植物苗圃买了些小树。"
+          },
+          {
+            "en": "Affordable nursery places allow more parents to return to work while their children receive professional care.",
+            "role": "ext",
+            "zh": "价格可负担的托幼名额能让更多父母重返职场，同时让孩子得到专业照护。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɜːsəri/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nursing": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "护理；护理工作",
+          "en": "The work or profession of caring for people who are ill or injured."
+        },
+        "sentences": [
+          {
+            "en": "My sister chose a career in nursing because she likes helping others.",
+            "role": "basic",
+            "zh": "我姐姐选择了护理职业，因为她喜欢帮助别人。"
+          },
+          {
+            "en": "Investment in nursing education is essential to meet the growing healthcare needs of an ageing population.",
+            "role": "ext",
+            "zh": "投资护理教育对于满足老龄化人口日益增长的医疗需求至关重要。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɜːsɪŋ/",
+      "us": "/ˈnɜːrsɪŋ/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nurture": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "培育；养育；培养",
+          "en": "to care for and encourage the growth or development of someone or something"
+        },
+        "sentences": [
+          {
+            "en": "Good teachers nurture young children's talents.",
+            "role": "basic",
+            "zh": "好老师会培养幼儿的才能。"
+          },
+          {
+            "en": "The program aims to nurture creativity in students through hands-on projects.",
+            "role": "ext",
+            "zh": "该项目旨在通过动手实践项目培养学生的创造力。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɜːtʃə/",
+      "us": "/ˈnɜːrtʃər/"
+    },
+    "topic": "education",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nut": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "坚果；果仁",
+          "en": "A hard-shelled fruit with an edible seed inside."
+        },
+        "sentences": [
+          {
+            "en": "She cracked open a nut and shared the kernel with me.",
+            "role": "basic",
+            "zh": "她敲开一颗坚果，把果仁分给我吃。"
+          },
+          {
+            "en": "Nuts provide useful nutrients, although schools must consider food allergies when planning meals for children.",
+            "role": "ext",
+            "zh": "坚果能提供有益的营养物质，但学校为儿童安排餐食时必须考虑食物过敏问题。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nʌt/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nutrient": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "营养素；营养物",
+          "en": "a substance in food that is needed for growth and health"
+        },
+        "sentences": [
+          {
+            "en": "Fruit contains important nutrients.",
+            "role": "basic",
+            "zh": "水果含有重要的营养素。"
+          },
+          {
+            "en": "A balanced diet provides the nutrients your body needs.",
+            "role": "ext",
+            "zh": "均衡的饮食能提供身体所需的营养素。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnjuːtriənt/",
+      "us": "/ˈnuːtriənt/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nutrition": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "营养；营养学",
+          "en": "the process of getting the food necessary for health and growth; the study of this"
+        },
+        "sentences": [
+          {
+            "en": "Good nutrition helps children grow.",
+            "role": "basic",
+            "zh": "良好的营养有助于儿童成长。"
+          },
+          {
+            "en": "Schools should teach nutrition so that young people can make informed choices about their daily diets.",
+            "role": "ext",
+            "zh": "学校应教授营养知识，让年轻人能够在了解相关信息的基础上选择日常饮食。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/njuˈtrɪʃn/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "nutritious": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有营养的；营养丰富的",
+          "en": "containing many of the substances needed for life and growth"
+        },
+        "sentences": [
+          {
+            "en": "Vegetables are nutritious and good for your health.",
+            "role": "basic",
+            "zh": "蔬菜有营养，对健康有益。"
+          },
+          {
+            "en": "A nutritious breakfast can help students concentrate better in class.",
+            "role": "ext",
+            "zh": "营养丰富的早餐能帮助学生在课堂上更好地集中注意力。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/njuːˈtrɪʃəs/",
+      "us": "/nuːˈtrɪʃəs/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "origin": "book:cet4"
+  },
+  "nutty": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有坚果味的；含坚果的",
+          "en": "tasting like nuts or containing nuts"
+        },
+        "sentences": [
+          {
+            "en": "The cake has a nutty flavor.",
+            "role": "basic",
+            "zh": "这块蛋糕有坚果味。"
+          },
+          {
+            "en": "This bread is full of nutty goodness.",
+            "role": "ext",
+            "zh": "这种面包充满坚果的美味。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "古怪的；疯疯癫癫的",
+          "en": "strange or slightly crazy"
+        },
+        "sentences": [
+          {
+            "en": "He has some nutty ideas.",
+            "role": "basic",
+            "zh": "他有一些古怪的想法。"
+          },
+          {
+            "en": "It sounds nutty, but it might actually work.",
+            "role": "ext",
+            "zh": "这听起来很疯狂，但也许真的行得通。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnʌti/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "nylon": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "尼龙（一种合成纤维）",
+          "en": "a strong artificial material used to make clothes, ropes, etc."
+        },
+        "sentences": [
+          {
+            "en": "This jacket is made of nylon.",
+            "role": "basic",
+            "zh": "这件夹克是尼龙做的。"
+          },
+          {
+            "en": "Nylon is strong, light, and quick to dry, so it is often used in outdoor clothing.",
+            "role": "ext",
+            "zh": "尼龙结实、轻便且干得快，因此常用于户外服装。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnaɪlɒn/",
+      "us": "/ˈnaɪlɑːn/"
+    },
+    "topic": "science",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  }
+}

@@ -4,7 +4,7 @@
 
 | 文件 | 作用 |
 | --- | --- |
-| `data/sources/senses.json` | 释义 |
+| `data/sources/senses/{a-z}.json` | 释义（字母分片） |
 | `data/vocabulary/units/mse-ket.json` 等 | 单元顺序 |
 | `data/vocabulary/books/mse-ket.json` 等 | 编排生成的课表 |
 

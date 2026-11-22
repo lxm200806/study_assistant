@@ -23,6 +23,7 @@ import {
   isLexiconSettled,
   loadGlobalSenses,
   missingLexiconFields,
+  saveGlobalSenseShards,
   saveGlobalSenses,
   sensesFilePath,
   type GlobalSense
@@ -106,6 +107,7 @@ async function runLlmVerify(opts: {
   let changed = 0
   let dirtySinceFlush = 0
   let dirty = false
+  const dirtyWords = new Set<string>()
   const failures: Array<{ word: string; error: string }> = []
   const startedAt = Date.now()
   let stopping = false
@@ -132,11 +134,15 @@ async function runLlmVerify(opts: {
   }
 
   function flush(reason: string) {
-    if (!dirty) return
-    saveGlobalSenses(lexicon)
+    if (!dirty || !dirtyWords.size) return
+    const shards = [...dirtyWords]
+    saveGlobalSenseShards(lexicon, dirtyWords)
     dirty = false
     dirtySinceFlush = 0
-    log(`  已写入 senses.json（${reason}；累计成功 ${ok}，失败 ${fail}，修正 ${changed}）`)
+    dirtyWords.clear()
+    log(
+      `  已写入分片 senses/*（${reason}；本批 ${shards.length} 词；累计成功 ${ok}，失败 ${fail}，修正 ${changed}）`
+    )
   }
 
   function progressLine() {
@@ -170,6 +176,7 @@ async function runLlmVerify(opts: {
 
     lexicon[r.word] = r.entry
     dirty = true
+    dirtyWords.add(r.word)
     dirtySinceFlush += 1
     ok += 1
     if (r.changed) changed += 1

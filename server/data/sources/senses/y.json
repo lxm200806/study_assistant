@@ -1,0 +1,1049 @@
+{
+  "yacht": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "游艇；帆船",
+          "en": "a large boat used for sailing or racing, often for pleasure"
+        },
+        "sentences": [
+          {
+            "en": "A white yacht sails on the sea.",
+            "role": "basic",
+            "zh": "一艘白色游艇在海上航行。"
+          },
+          {
+            "en": "The growing popularity of yacht tourism can generate income for coastal communities but may damage marine habitats.",
+            "role": "ext",
+            "zh": "游艇旅游日益流行，能为沿海社区创造收入，但也可能破坏海洋栖息地。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jɒt/",
+      "us": "/jɑːt/"
+    },
+    "topic": "travel",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yard": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "院子；庭院",
+          "en": "an area of open ground around or next to a house"
+        },
+        "sentences": [
+          {
+            "en": "The dog runs in the yard.",
+            "role": "basic",
+            "zh": "那只狗在院子里跑。"
+          },
+          {
+            "en": "Converting an unused school yard into a garden can provide valuable outdoor learning opportunities for urban children.",
+            "role": "ext",
+            "zh": "把闲置的校园庭院改成花园，可以为城市儿童提供宝贵的户外学习机会。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jɑːd/",
+      "us": "/jɑːrd/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yarn": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "纱；纱线；毛线",
+          "en": "Thread used for knitting or weaving cloth."
+        },
+        "sentences": [
+          {
+            "en": "She chose soft blue yarn for the baby's blanket.",
+            "role": "basic",
+            "zh": "她挑了柔软的蓝色毛线来织婴儿毯。"
+          },
+          {
+            "en": "Using yarn made from recycled materials can reduce waste in the textile industry.",
+            "role": "ext",
+            "zh": "使用再生材料制成的纱线可以减少纺织业的废弃物。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/jɑːn/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "yawn": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "打哈欠",
+          "en": "to open your mouth wide and breathe in deeply, usually because you are tired or bored"
+        },
+        "sentences": [
+          {
+            "en": "I yawn when I feel tired.",
+            "role": "basic",
+            "zh": "我累的时候会打哈欠。"
+          },
+          {
+            "en": "Students who regularly yawn during morning lessons may not be getting enough sleep at night.",
+            "role": "ext",
+            "zh": "经常在早课上打哈欠的学生，可能夜间睡眠不足。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/jɔːn/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yeah": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "是的；对（非正式，表示同意或肯定）",
+          "en": "used informally to say yes or to show agreement"
+        },
+        "sentences": [
+          {
+            "en": "Yeah, I'd love to come to the party.",
+            "role": "basic",
+            "zh": "是的，我很想来参加聚会。"
+          },
+          {
+            "en": "“Are you ready?” “Yeah, just give me a second.”",
+            "role": "ext",
+            "zh": "“你准备好了吗？”“是的，稍等我一下。”"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jeə/",
+      "us": "/jeə/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "year": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "年；一年",
+          "en": "a period of twelve months, especially from January to December"
+        },
+        "sentences": [
+          {
+            "en": "I am eight years old this year.",
+            "role": "basic",
+            "zh": "我今年八岁。"
+          },
+          {
+            "en": "A gap year can give students valuable work experience before they begin university studies.",
+            "role": "ext",
+            "zh": "间隔年可以让学生在开始大学学习前获得宝贵的工作经验。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jɪə/",
+      "us": "/jɪr/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yearly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "每年的；一年一次的",
+          "en": "happening once every year"
+        },
+        "sentences": [
+          {
+            "en": "The company holds a yearly meeting in December.",
+            "role": "basic",
+            "zh": "公司每年十二月举行一次年度会议。"
+          },
+          {
+            "en": "The yearly report summarizes the company's performance over the past year.",
+            "role": "ext",
+            "zh": "年度报告总结了过去一年公司的业绩。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "每年；一年一次地",
+          "en": "once a year"
+        },
+        "sentences": [
+          {
+            "en": "The festival is held yearly in this town.",
+            "role": "basic",
+            "zh": "这个节日每年都在这个镇上举行。"
+          },
+          {
+            "en": "The data is updated yearly to reflect the latest trends.",
+            "role": "ext",
+            "zh": "数据每年更新一次，以反映最新趋势。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjɪəli/",
+      "us": "/ˈjɪrli/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:cet4"
+  },
+  "yearn": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "渴望",
+          "en": "to want something very much"
+        },
+        "sentences": [
+          {
+            "en": "I yearn for a quiet holiday.",
+            "role": "basic",
+            "zh": "我渴望一个安静的假期。"
+          },
+          {
+            "en": "Many urban residents yearn for quieter surroundings, which may explain the growing appeal of rural tourism.",
+            "role": "ext",
+            "zh": "许多城市居民渴望更安静的环境，这或许能解释乡村旅游日益增长的吸引力。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/jɜːn/"
+    },
+    "topic": "emotion",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yeast": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "酵母；酵母菌",
+          "en": "A fungus used to make bread rise and produce alcohol."
+        },
+        "sentences": [
+          {
+            "en": "Add the yeast once the water feels slightly warm.",
+            "role": "basic",
+            "zh": "等水摸起来微温时加入酵母。"
+          },
+          {
+            "en": "Scientists use yeast to study basic cellular processes because it grows quickly under controlled laboratory conditions.",
+            "role": "ext",
+            "zh": "科学家利用酵母研究基本细胞过程，因为它在受控实验室条件下生长迅速。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/jiːst/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yell": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "大叫，喊叫",
+          "en": "to shout in a loud voice"
+        },
+        "sentences": [
+          {
+            "en": "Do not yell in the quiet hall.",
+            "role": "basic",
+            "zh": "不要在安静的礼堂里大喊大叫。"
+          },
+          {
+            "en": "Coaches who yell at young athletes may undermine their confidence rather than improve their performance.",
+            "role": "ext",
+            "zh": "对年轻运动员大吼大叫的教练可能会打击他们的信心，而不是提高他们的表现。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/jel/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yellow": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "黄色的",
+          "en": "having the colour of a lemon or gold"
+        },
+        "sentences": [
+          {
+            "en": "She chose a yellow umbrella for her walk in the rain.",
+            "role": "basic",
+            "zh": "她挑了一把黄色雨伞，准备在雨中散步。"
+          },
+          {
+            "en": "Yellow leaves may indicate that urban trees are suffering from water shortages or poor soil conditions.",
+            "role": "ext",
+            "zh": "黄叶可能表明城市树木正受到缺水或土壤条件不佳的影响。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "黄色",
+          "en": "the colour of a lemon or gold"
+        },
+        "sentences": [
+          {
+            "en": "Yellow is her favourite colour.",
+            "role": "basic",
+            "zh": "黄色是她最喜欢的颜色。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjeləʊ/",
+      "us": "/ˈjeloʊ/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yes": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "是，是的（用于肯定回答）",
+          "en": "used to give an affirmative answer or express agreement"
+        },
+        "sentences": [
+          {
+            "en": "Yes, I can help you.",
+            "role": "basic",
+            "zh": "是的，我可以帮你。"
+          },
+          {
+            "en": "She said yes when I asked if she would join us.",
+            "role": "ext",
+            "zh": "我问她是否愿意加入我们时，她答应了。"
+          }
+        ],
+        "pos": "adv."
+      },
+      {
+        "meaning": {
+          "zh": "肯定的回答；赞成",
+          "en": "an affirmative answer or vote"
+        },
+        "sentences": [
+          {
+            "en": "There were ten yeses and two noes.",
+            "role": "ext",
+            "zh": "有十票赞成，两票反对。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/jes/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "yesterday": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "昨天",
+          "en": "the day before today"
+        },
+        "sentences": [
+          {
+            "en": "I played football with Tom yesterday.",
+            "role": "basic",
+            "zh": "我昨天和汤姆一起踢足球了。"
+          },
+          {
+            "en": "The transport survey published yesterday suggests that commuters increasingly prefer cycling to driving in city centres.",
+            "role": "ext",
+            "zh": "昨天发布的交通调查表明，在市中心通勤的人越来越倾向于骑车而非开车。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjestədeɪ/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "function",
+    "origin": "word-atlas"
+  },
+  "yet": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "尚未；还（用于否定句和疑问句）",
+          "en": "until now; still not (used in negative sentences and questions)"
+        },
+        "sentences": [
+          {
+            "en": "The school bus has not come yet.",
+            "role": "basic",
+            "zh": "校车还没来。"
+          },
+          {
+            "en": "Renewable energy is becoming cheaper, yet many countries still depend heavily on fossil fuels.",
+            "role": "ext",
+            "zh": "可再生能源正在变得更便宜，然而许多国家仍严重依赖化石燃料。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/jet/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yield": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "出产；产生（作物、结果或利润）",
+          "en": "to produce a crop, result, or profit"
+        },
+        "sentences": [
+          {
+            "en": "These fields yield wheat every summer.",
+            "role": "basic",
+            "zh": "这些田地每年夏天都出产小麦。"
+          },
+          {
+            "en": "Investment in agricultural research can yield substantial benefits for food security without expanding farmland.",
+            "role": "ext",
+            "zh": "对农业研究的投资可以在不扩大耕地的情况下，为粮食安全带来显著益处。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jiːld/",
+      "us": "/jiːld/"
+    },
+    "topic": "nature",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yog": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "（方言或罕用）瑜伽；也指一种印度教修行方式",
+          "en": "a rare or dialectal variant of yoga; also refers to a Hindu spiritual practice"
+        },
+        "sentences": [
+          {
+            "en": "In some old texts, the word yog is used to refer to yoga.",
+            "role": "basic",
+            "zh": "在一些古老文本中，yog 一词被用来指瑜伽。"
+          },
+          {
+            "en": "The practice of yog, though uncommon in modern English, still appears in regional writings.",
+            "role": "ext",
+            "zh": "yog 这种修行方式在现代英语中虽不常见，但仍出现在地方性作品中。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/jɒɡ/"
+    },
+    "topic": "uncategorized",
+    "level": "C2",
+    "origin": "book:mse-ket"
+  },
+  "yoga": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "瑜伽",
+          "en": "a system of exercises for the body and mind, often involving stretching and breathing control"
+        },
+        "sentences": [
+          {
+            "en": "Mum does yoga in the morning.",
+            "role": "basic",
+            "zh": "妈妈早上练瑜伽。"
+          },
+          {
+            "en": "Offering yoga classes in community centres may help residents manage stress and maintain flexibility.",
+            "role": "ext",
+            "zh": "在社区中心开设瑜伽课可能有助于居民缓解压力并保持身体柔韧。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjəʊɡə/",
+      "us": "/ˈjoʊɡə/"
+    },
+    "topic": "health",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yoghurt": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "酸奶",
+          "en": "a thick, slightly sour food made from milk by adding bacteria"
+        },
+        "sentences": [
+          {
+            "en": "I eat yoghurt with fruit.",
+            "role": "basic",
+            "zh": "我吃酸奶配水果。"
+          },
+          {
+            "en": "She bought a large tub of plain yoghurt at the supermarket.",
+            "role": "ext",
+            "zh": "她在超市买了一大桶原味酸奶。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjɒɡət/",
+      "us": "/ˈjoʊɡərt/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "yogurt": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "酸奶",
+          "en": "a thick, slightly sour food made from milk fermented with bacteria"
+        },
+        "sentences": [
+          {
+            "en": "I eat yogurt with fruit.",
+            "role": "basic",
+            "zh": "我吃酸奶配水果。"
+          },
+          {
+            "en": "Plain yogurt can contribute to a balanced diet by providing protein and calcium without added sugar.",
+            "role": "ext",
+            "zh": "原味酸奶能提供蛋白质和钙，且不含添加糖，有助于实现均衡饮食。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjɒɡət/",
+      "us": "/ˈjoʊɡərt/"
+    },
+    "topic": "health",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yoke": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "轭；枷锁；束缚",
+          "en": "a wooden bar used to join two animals together, or a symbol of control and burden"
+        },
+        "sentences": [
+          {
+            "en": "Oxen pulled the cart under a yoke.",
+            "role": "basic",
+            "zh": "牛在轭下拉着车。"
+          },
+          {
+            "en": "Many communities struggled for generations to free themselves from the yoke of colonial rule.",
+            "role": "ext",
+            "zh": "许多群体为摆脱殖民统治的枷锁，进行了数代人的抗争。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jəʊk/",
+      "us": "/joʊk/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yolk": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "蛋黄",
+          "en": "the yellow part of an egg"
+        },
+        "sentences": [
+          {
+            "en": "The yolk is rich and yellow.",
+            "role": "basic",
+            "zh": "蛋黄营养丰富，呈黄色。"
+          },
+          {
+            "en": "Separate the yolk from the white before beating the eggs.",
+            "role": "ext",
+            "zh": "打蛋前先把蛋黄和蛋清分开。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jəʊk/",
+      "us": "/joʊk/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "you": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "你，你们",
+          "en": "the person or people being spoken to"
+        },
+        "sentences": [
+          {
+            "en": "You are my best friend.",
+            "role": "basic",
+            "zh": "你是我最好的朋友。"
+          },
+          {
+            "en": "If you want to improve your English, you should practice every day.",
+            "role": "ext",
+            "zh": "如果你想提高英语，你应该每天练习。"
+          }
+        ],
+        "pos": "pron."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/juː/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "young": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "年轻的；幼小的",
+          "en": "not old; in the early years of life"
+        },
+        "sentences": [
+          {
+            "en": "The young cat plays with yarn.",
+            "role": "basic",
+            "zh": "这只小猫在玩毛线。"
+          },
+          {
+            "en": "Young people need affordable housing and stable employment to build independent lives in large cities.",
+            "role": "ext",
+            "zh": "年轻人需要负担得起的住房和稳定的工作，才能在大城市独立生活。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/jʌŋ/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "youngster": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "孩子；年轻人",
+          "en": "A child or young person."
+        },
+        "sentences": [
+          {
+            "en": "A cheerful youngster helped me pick up the apples.",
+            "role": "basic",
+            "zh": "一个开朗的孩子帮我捡起了那些苹果。"
+          },
+          {
+            "en": "Community sports programmes give youngsters opportunities to develop teamwork skills and build friendships outside school.",
+            "role": "ext",
+            "zh": "社区体育项目让青少年有机会培养团队协作能力，并在校外建立友谊。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjʌŋstə/",
+      "us": "/ˈjʌŋstər/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "your": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "你的；你们的",
+          "en": "belonging to or connected with the person or people you are speaking to"
+        },
+        "sentences": [
+          {
+            "en": "Please put your shoes by the door.",
+            "role": "basic",
+            "zh": "请把你的鞋放在门边。"
+          },
+          {
+            "en": "Choosing a university near your home can reduce living expenses and make higher education more affordable.",
+            "role": "ext",
+            "zh": "选择离家近的大学可以减少生活开支，让高等教育更负担得起。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jɔː(r)/",
+      "us": "/jʊr/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yours": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "你的（东西）；你们的（东西）",
+          "en": "the one or ones belonging to you"
+        },
+        "sentences": [
+          {
+            "en": "Is this pen yours?",
+            "role": "basic",
+            "zh": "这支笔是你的吗？"
+          },
+          {
+            "en": "My answer was different from yours.",
+            "role": "ext",
+            "zh": "我的答案和你的不一样。"
+          }
+        ],
+        "pos": "pron."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jɔːz/",
+      "us": "/jʊrz/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "yourself": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "你自己（反身代词，用于第二人称单数）",
+          "en": "used as the object of a verb or preposition when the subject is 'you' (singular), referring back to the same person"
+        },
+        "sentences": [
+          {
+            "en": "Be careful with that knife, or you might cut yourself.",
+            "role": "basic",
+            "zh": "用那把刀时要小心，别割伤自己。"
+          },
+          {
+            "en": "Preparing meals yourself can reduce household spending while giving you greater control over nutritional quality.",
+            "role": "ext",
+            "zh": "亲自做饭可以减少家庭开支，同时让你更好地把控营养质量。"
+          }
+        ],
+        "pos": "pron."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jɔːˈself/",
+      "us": "/jʊrˈself/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "yourselves": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "你们自己（用作宾语或强调）",
+          "en": "used as the object of a verb or preposition when the subject is 'you' (plural), or for emphasis"
+        },
+        "sentences": [
+          {
+            "en": "Please help yourselves.",
+            "role": "basic"
+          }
+        ],
+        "pos": "pron."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jɔːˈselvz/",
+      "us": "/jʊrˈselvz/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "youth": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "青春；青年时期",
+          "en": "the period of life before you become an adult"
+        },
+        "sentences": [
+          {
+            "en": "He played football in his youth.",
+            "role": "basic",
+            "zh": "他年轻时踢过足球。"
+          },
+          {
+            "en": "Investment in youth services can give young people valuable skills and strengthen their sense of belonging.",
+            "role": "ext",
+            "zh": "对青年服务的投资能让年轻人掌握实用技能，并增强他们的归属感。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/juːθ/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "youthful": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "年轻的；有青春活力的",
+          "en": "Looking young or showing the energy and qualities of youth."
+        },
+        "sentences": [
+          {
+            "en": "My grandfather still has a youthful smile and boundless energy.",
+            "role": "basic",
+            "zh": "我祖父依然有着年轻的笑容和充沛的精力。"
+          },
+          {
+            "en": "A youthful workforce can bring fresh ideas, while experienced employees contribute valuable practical knowledge.",
+            "role": "ext",
+            "zh": "年轻的员工队伍能带来新想法，而经验丰富的员工则贡献宝贵的实践经验。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjuːθfəl/",
+      "us": "/ˈjuːθfəl/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "yucky": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "令人恶心的；令人不快的",
+          "en": "disgusting or very unpleasant"
+        },
+        "sentences": [
+          {
+            "en": "This old cheese tastes yucky.",
+            "role": "basic",
+            "zh": "这块旧奶酪尝起来很恶心。"
+          },
+          {
+            "en": "The medicine left a yucky taste in my mouth.",
+            "role": "ext",
+            "zh": "这药在我嘴里留下了一股恶心的味道。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjʌki/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "yummy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "美味的；好吃的",
+          "en": "tasting very good; delicious"
+        },
+        "sentences": [
+          {
+            "en": "The cake is yummy and sweet.",
+            "role": "basic",
+            "zh": "这个蛋糕又美味又甜。"
+          },
+          {
+            "en": "She made a yummy soup with fresh vegetables.",
+            "role": "ext",
+            "zh": "她用新鲜蔬菜做了一锅美味的汤。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjʌmi/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  }
+}

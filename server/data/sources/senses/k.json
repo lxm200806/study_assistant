@@ -1,0 +1,2092 @@
+{
+  "kangaroo": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "袋鼠",
+          "en": "a large Australian animal that moves by jumping on its strong back legs and carries its young in a pouch"
+        },
+        "sentences": [
+          {
+            "en": "The kangaroo jumps with its baby.",
+            "role": "basic",
+            "zh": "袋鼠带着幼崽跳跃。"
+          },
+          {
+            "en": "Habitat loss can force kangaroo populations closer to roads, increasing the risk of collisions with vehicles.",
+            "role": "ext",
+            "zh": "栖息地丧失可能迫使袋鼠种群靠近道路，增加它们与车辆相撞的风险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌkæŋɡəˈruː/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kayak": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "皮艇",
+          "en": "A narrow boat moved with a paddle having two blades."
+        },
+        "sentences": [
+          {
+            "en": "She paddled her kayak gently across the quiet lake.",
+            "role": "basic",
+            "zh": "她轻轻划着皮艇穿过平静的湖面。"
+          },
+          {
+            "en": "Exploring coastal areas by kayak allows tourists to enjoy natural scenery without producing engine noise.",
+            "role": "ext",
+            "zh": "乘皮艇探索沿海地区，让游客能在不产生发动机噪声的情况下欣赏自然风光。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkaɪæk/"
+    },
+    "topic": "sport",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "keel": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "龙骨（船底中央的纵向结构梁）",
+          "en": "the long central beam along the bottom of a ship, supporting its structure"
+        },
+        "sentences": [
+          {
+            "en": "The ship's keel hit a rock.",
+            "role": "basic",
+            "zh": "船的龙骨撞上了岩石。"
+          },
+          {
+            "en": "The keel was laid in 2010, marking the start of construction.",
+            "role": "ext",
+            "zh": "龙骨于2010年铺设，标志着建造的开始。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kiːl/"
+    },
+    "topic": "travel",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "keen": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "热切的；渴望的",
+          "en": "eager; wanting to do something"
+        },
+        "sentences": [
+          {
+            "en": "She is keen to join the school choir.",
+            "role": "basic",
+            "zh": "她很想加入学校合唱团。"
+          },
+          {
+            "en": "Students who are keen on science benefit from practical experiments that connect theory with everyday experience.",
+            "role": "ext",
+            "zh": "热爱科学的学生能从将理论与日常经验相结合的实践实验中受益。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/kiːn/",
+      "us": "/kiːn/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "keenly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "敏锐地；强烈地；热切地",
+          "en": "in a sharp, intense, or eager manner"
+        },
+        "sentences": [
+          {
+            "en": "She is keenly aware of the risks involved.",
+            "role": "basic",
+            "zh": "她敏锐地意识到其中的风险。"
+          },
+          {
+            "en": "The team felt the loss keenly and worked harder to improve.",
+            "role": "ext",
+            "zh": "团队强烈地感受到这次失利，并更加努力改进。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkiːnli/",
+      "us": "/ˈkiːnli/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "origin": "book:cet4"
+  },
+  "keep": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "保持；保留",
+          "en": "to continue to have something and not give it away or lose it; to make something stay as it is"
+        },
+        "sentences": [
+          {
+            "en": "Please keep your desk clean.",
+            "role": "basic",
+            "zh": "请保持你的书桌干净。"
+          },
+          {
+            "en": "Governments should keep public transport affordable to encourage residents to leave their cars at home.",
+            "role": "ext",
+            "zh": "政府应使公共交通保持价格实惠，鼓励居民不开私家车出行。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kiːp/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "keep in": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "（使）留在室内；（使）不外出",
+          "en": "to stay indoors or not go out, or to make someone stay indoors"
+        },
+        "sentences": [
+          {
+            "en": "They keep in after class.",
+            "role": "basic"
+          }
+        ],
+        "pos": "phr."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌkiːp ˈɪn/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:mse-pet"
+  },
+  "keep on": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "继续（做某事）；不断（做某事）",
+          "en": "to continue doing something or to do something repeatedly"
+        },
+        "sentences": [
+          {
+            "en": "She keeps on asking questions in class.",
+            "role": "basic",
+            "zh": "她在课堂上不停地问问题。"
+          },
+          {
+            "en": "If you keep on practicing, your English will improve.",
+            "role": "ext",
+            "zh": "如果你坚持练习，你的英语会提高的。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌkiːp ˈɒn/",
+      "us": "/ˌkiːp ˈɑːn/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:mse-pet"
+  },
+  "keep up": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "保持；跟上（进度、水平等）",
+          "en": "to continue to do something or to stay at the same level as someone or something"
+        },
+        "sentences": [
+          {
+            "en": "She runs every morning to keep up her fitness.",
+            "role": "basic",
+            "zh": "她每天早上跑步以保持健康。"
+          },
+          {
+            "en": "It's hard to keep up with the rapid changes in technology.",
+            "role": "ext",
+            "zh": "很难跟上技术的快速变化。"
+          }
+        ],
+        "pos": "phr."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌkiːp ˈʌp/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "origin": "book:mse-pet"
+  },
+  "keep-fit": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "健身锻炼；健身操",
+          "en": "Physical exercises done to stay healthy and fit."
+        },
+        "sentences": [
+          {
+            "en": "My aunt attends keep-fit classes at the community centre.",
+            "role": "basic",
+            "zh": "我姑姑在社区中心参加健身课。"
+          },
+          {
+            "en": "Affordable keep-fit classes can encourage older adults to exercise regularly and maintain social connections within their communities.",
+            "role": "ext",
+            "zh": "收费低廉的健身课可以鼓励老年人定期锻炼，并保持社区内的社交联系。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌkiːp ˈfɪt/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "keeper": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "看守人；保管人；（动物园的）饲养员",
+          "en": "A person who looks after or is responsible for something, such as animals or a place."
+        },
+        "sentences": [
+          {
+            "en": "The keeper feeds the animals every morning.",
+            "role": "basic",
+            "zh": "饲养员每天早上给动物喂食。"
+          },
+          {
+            "en": "He was appointed as the keeper of the museum's rare collections.",
+            "role": "ext",
+            "zh": "他被任命为博物馆珍稀藏品的保管员。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkiːpə/",
+      "us": "/ˈkiːpər/"
+    },
+    "topic": "work",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "kernel": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "果仁；谷粒；（比喻）核心，要点",
+          "en": "The edible inner part of a nut or a grain seed; also the central or most important part of something."
+        },
+        "sentences": [
+          {
+            "en": "She cracked the walnut and carefully removed the kernel.",
+            "role": "basic",
+            "zh": "她敲开核桃，小心地取出果仁。"
+          },
+          {
+            "en": "Even exaggerated media reports may contain a kernel of truth that deserves further investigation by independent researchers.",
+            "role": "ext",
+            "zh": "即使是夸大的媒体报道，也可能包含值得独立研究者进一步调查的些许事实。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkɜːnəl/",
+      "us": "/ˈkɝːnəl/"
+    },
+    "topic": "nature",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kerosene": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "煤油",
+          "en": "A clear oil used as fuel for lamps, heaters, and stoves."
+        },
+        "sentences": [
+          {
+            "en": "We bought kerosene for the old lamp at the cabin.",
+            "role": "basic",
+            "zh": "我们买了煤油，给小屋里的旧油灯用。"
+          },
+          {
+            "en": "Replacing kerosene lamps with solar lighting can reduce indoor air pollution in communities without reliable electricity.",
+            "role": "ext",
+            "zh": "在供电不稳定的社区，用太阳能灯替代煤油灯可以减少室内空气污染。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkerəsiːn/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "ketchup": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "番茄酱",
+          "en": "A thick sauce made from tomatoes, vinegar, sugar, and spices, often eaten with chips or burgers."
+        },
+        "sentences": [
+          {
+            "en": "He squeezed some ketchup onto his plate of chips.",
+            "role": "basic",
+            "zh": "他往那盘薯条上挤了些番茄酱。"
+          },
+          {
+            "en": "Reducing added sugar in everyday products such as ketchup could help consumers make healthier dietary choices.",
+            "role": "ext",
+            "zh": "减少番茄酱等日常食品中的添加糖，有助于消费者作出更健康的饮食选择。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈketʃəp/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "word-atlas"
+  },
+  "kettle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "水壶（烧水用）",
+          "en": "A container with a handle and spout, used for boiling water."
+        },
+        "sentences": [
+          {
+            "en": "Put the kettle on and I'll find some cups.",
+            "role": "basic",
+            "zh": "你先烧水，我来找杯子。"
+          },
+          {
+            "en": "Boiling only the water needed in a kettle can reduce household electricity consumption over time.",
+            "role": "ext",
+            "zh": "每次只烧所需的水，长期下来可以减少家庭用电量。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈket.əl/",
+      "us": "/ˈket̬.əl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "key": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "钥匙",
+          "en": "a small metal object used to open or lock a door, etc."
+        },
+        "sentences": [
+          {
+            "en": "I cannot find my room key.",
+            "role": "basic",
+            "zh": "我找不到我的房间钥匙了。"
+          },
+          {
+            "en": "Access to reliable information is key to helping consumers make informed decisions about their health.",
+            "role": "ext",
+            "zh": "获取可靠信息是帮助消费者就自身健康作出明智决定的关键。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kiː/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "keyboard": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "键盘（电脑或电子琴等的按键装置）",
+          "en": "the set of keys on a computer or musical instrument"
+        },
+        "sentences": [
+          {
+            "en": "I spilled coffee on my keyboard.",
+            "role": "basic",
+            "zh": "我把咖啡洒在键盘上了。"
+          },
+          {
+            "en": "Students with limited mobility may benefit from an adapted keyboard that makes digital learning more accessible.",
+            "role": "ext",
+            "zh": "行动不便的学生可能受益于经过改装的键盘，从而更方便地参与数字化学习。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "电子琴",
+          "en": "an electronic musical instrument with keys like a piano"
+        },
+        "sentences": [
+          {
+            "en": "She played a song on the keyboard.",
+            "role": "basic",
+            "zh": "她用电子琴弹了一首曲子。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkiːbɔːd/",
+      "us": "/ˈkiːbɔːrd/"
+    },
+    "topic": "technology",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "keyhole": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "钥匙孔",
+          "en": "a hole in a lock into which a key fits"
+        },
+        "sentences": [
+          {
+            "en": "I struggled to find the keyhole in the dark.",
+            "role": "basic",
+            "zh": "黑暗中，我费了好大劲才找到钥匙孔。"
+          },
+          {
+            "en": "Modern electronic locks remove the need for a traditional keyhole, although they may create new security risks.",
+            "role": "ext",
+            "zh": "现代电子锁不再需要传统的钥匙孔，不过也可能带来新的安全风险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkiːhəʊl/",
+      "us": "/ˈkiːhoʊl/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "keyword": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "关键词",
+          "en": "a word that represents the main feature or idea of something"
+        },
+        "sentences": [
+          {
+            "en": "Search the website with this keyword.",
+            "role": "basic",
+            "zh": "用这个关键词搜索该网站。"
+          },
+          {
+            "en": "In academic writing, keywords help readers quickly grasp the main topics of a paper.",
+            "role": "ext",
+            "zh": "在学术写作中，关键词有助于读者快速把握论文的主要话题。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkiːwɜːd/"
+    },
+    "topic": "uncategorized",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "kick": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "踢",
+          "en": "to hit something with your foot"
+        },
+        "sentences": [
+          {
+            "en": "Kick the ball to your friend.",
+            "role": "basic",
+            "zh": "把球踢给你的朋友。"
+          },
+          {
+            "en": "Children learn to kick and throw balls through activities that improve coordination and encourage teamwork.",
+            "role": "ext",
+            "zh": "孩子们通过能够改善协调能力、培养团队精神的活动学习踢球和投球。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kɪk/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kid": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小孩",
+          "en": "a child, a young boy or girl"
+        },
+        "sentences": [
+          {
+            "en": "The kid plays in the park.",
+            "role": "basic",
+            "zh": "那个小孩在公园里玩。"
+          },
+          {
+            "en": "Outdoor activities can help kids develop social skills while improving their physical health.",
+            "role": "ext",
+            "zh": "户外活动可以帮助孩子们发展社交技能，同时改善身体健康。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kɪd/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kidnap": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "绑架",
+          "en": "to take a person illegally by force"
+        },
+        "sentences": [
+          {
+            "en": "The police stopped the plan to kidnap him.",
+            "role": "basic",
+            "zh": "警方阻止了绑架他的计划。"
+          },
+          {
+            "en": "International cooperation helps police investigate criminal groups that kidnap people and demand money for their release.",
+            "role": "ext",
+            "zh": "国际合作有助于警方调查绑架他人并索要赎金的犯罪团伙。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkɪdnæp/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kidney": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "肾脏",
+          "en": "an organ that removes waste products and produces urine"
+        },
+        "sentences": [
+          {
+            "en": "The kidney helps clean waste from blood.",
+            "role": "basic",
+            "zh": "肾脏帮助清除血液中的废物。"
+          },
+          {
+            "en": "Public health campaigns should explain how managing blood pressure can help prevent kidney disease.",
+            "role": "ext",
+            "zh": "公共卫生宣传应说明控制血压如何有助于预防肾病。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkɪdni/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kill": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "杀死；使死亡",
+          "en": "to make a living thing die"
+        },
+        "sentences": [
+          {
+            "en": "We kill germs with soap.",
+            "role": "basic",
+            "zh": "我们用肥皂杀灭病菌。"
+          },
+          {
+            "en": "Excessive use of pesticides can kill beneficial insects and disrupt the natural balance of agricultural ecosystems.",
+            "role": "ext",
+            "zh": "过量使用农药会杀死益虫，破坏农业生态系统的自然平衡。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kɪl/"
+    },
+    "topic": "uncategorized",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kilo": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "千克，公斤",
+          "en": "a kilogram"
+        },
+        "sentences": [
+          {
+            "en": "Could you give me half a kilo of tomatoes, please?",
+            "role": "basic",
+            "zh": "请给我半公斤西红柿，好吗？"
+          },
+          {
+            "en": "Comparing food prices per kilo can help households manage their budgets and make more economical purchasing decisions.",
+            "role": "ext",
+            "zh": "比较食品每公斤的价格，有助于家庭管理预算，作出更经济的购买决定。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkiːləʊ/",
+      "us": "/ˈkiːloʊ/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kilogram": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "公斤；千克（质量单位，等于1000克）",
+          "en": "a unit of mass equal to 1,000 grams"
+        },
+        "sentences": [
+          {
+            "en": "This bag weighs one kilogram.",
+            "role": "basic",
+            "zh": "这个包重一公斤。"
+          },
+          {
+            "en": "The recipe calls for two kilograms of flour.",
+            "role": "ext",
+            "zh": "这个食谱需要两公斤面粉。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkɪləɡræm/",
+      "us": "/ˈkɪləɡræm/"
+    },
+    "topic": "science",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "kilogramme": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "千克；公斤",
+          "en": "A unit of mass equal to one thousand grams."
+        },
+        "sentences": [
+          {
+            "en": "We bought a kilogramme of apples at the market.",
+            "role": "basic",
+            "zh": "我们在市场买了一公斤苹果。"
+          },
+          {
+            "en": "Producing a kilogramme of beef generally requires more water than producing the same weight of vegetables.",
+            "role": "ext",
+            "zh": "生产一公斤牛肉通常比生产同等重量的蔬菜需要更多的水。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkɪləɡræm/",
+      "us": "/ˈkɪləɡræm/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "word-atlas"
+  },
+  "kilometer": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "千米，公里",
+          "en": "a unit of length equal to 1,000 meters"
+        },
+        "sentences": [
+          {
+            "en": "The school is two kilometers away.",
+            "role": "basic",
+            "zh": "学校在两公里外。"
+          },
+          {
+            "en": "Providing reliable public transport within a kilometer of residential areas could reduce dependence on private cars.",
+            "role": "ext",
+            "zh": "在居民区一公里范围内提供可靠的公共交通，可以减少人们对私家车的依赖。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkɪləmiːtə/",
+      "us": "/kɪˈlɑːmɪtər/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kilometre": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "公里，千米",
+          "en": "A unit of distance equal to one thousand metres."
+        },
+        "sentences": [
+          {
+            "en": "The nearest bus stop is about a kilometre away.",
+            "role": "basic",
+            "zh": "最近的公交车站大约在一公里外。"
+          },
+          {
+            "en": "Building safe cycle lanes within a kilometre of schools could encourage more children to cycle daily.",
+            "role": "ext",
+            "zh": "在学校周边一公里内修建安全的自行车道，可以鼓励更多孩子每天骑车。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkɪləmiːtə/"
+    },
+    "topic": "travel",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kilowatt": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "千瓦（功率单位，等于1000瓦特）",
+          "en": "a unit of power equal to 1,000 watts"
+        },
+        "sentences": [
+          {
+            "en": "The heater uses about two kilowatts of electricity.",
+            "role": "basic",
+            "zh": "这个加热器大约消耗两千瓦的电。"
+          },
+          {
+            "en": "The solar panels can generate up to five kilowatts on a sunny day.",
+            "role": "ext",
+            "zh": "在晴天，这些太阳能板最多能产生五千瓦的电力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkɪləwɒt/",
+      "us": "/ˈkɪləwɑːt/"
+    },
+    "topic": "science",
+    "level": "B1",
+    "origin": "book:cet6"
+  },
+  "kind": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "友好的；体贴的；善良的",
+          "en": "nice and helpful to other people"
+        },
+        "sentences": [
+          {
+            "en": "She is kind to her classmates.",
+            "role": "basic",
+            "zh": "她对同学很友好。"
+          },
+          {
+            "en": "Schools should encourage students to be kind to others, helping create a more supportive learning environment.",
+            "role": "ext",
+            "zh": "学校应鼓励学生善待他人，帮助营造更有支持性的学习环境。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kaɪnd/"
+    },
+    "topic": "emotion",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kindergarten": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "幼儿园",
+          "en": "a school or class for young children, typically ages 4 to 6"
+        },
+        "sentences": [
+          {
+            "en": "My little sister starts kindergarten next week.",
+            "role": "basic",
+            "zh": "我妹妹下周开始上幼儿园。"
+          },
+          {
+            "en": "High-quality kindergarten education can develop children's social skills and prepare them for more structured learning.",
+            "role": "ext",
+            "zh": "优质的幼儿园教育能培养儿童的社交能力，为他们接受更系统的学习做好准备。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkɪndəɡɑːtn/",
+      "us": "/ˈkɪndərɡɑːrtn/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kindle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "点燃；激起，激发（情感、兴趣等）",
+          "en": "to start a fire; to arouse or inspire (a feeling or interest)"
+        },
+        "sentences": [
+          {
+            "en": "Dry wood will kindle in the wind.",
+            "role": "basic",
+            "zh": "干木头在风中容易点燃。"
+          },
+          {
+            "en": "Visits to science museums can kindle children's curiosity and encourage them to explore unfamiliar scientific ideas.",
+            "role": "ext",
+            "zh": "参观科学博物馆可以激发儿童的好奇心，鼓励他们探索陌生的科学概念。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkɪndl/"
+    },
+    "topic": "nature",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kindly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "友善地；亲切地",
+          "en": "in a kind and friendly way"
+        },
+        "sentences": [
+          {
+            "en": "She kindly shares her lunch with me.",
+            "role": "basic",
+            "zh": "她友善地和我分享她的午餐。"
+          },
+          {
+            "en": "The staff kindly explained the rules to the new students.",
+            "role": "ext",
+            "zh": "工作人员亲切地向新生解释了规则。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkaɪndli/"
+    },
+    "topic": "emotion",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "kindness": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "仁慈；善意；体贴",
+          "en": "the quality of being kind, caring about others and helping them"
+        },
+        "sentences": [
+          {
+            "en": "Her kindness made the new neighbor feel welcome.",
+            "role": "basic",
+            "zh": "她的体贴让新邻居感受到了欢迎。"
+          },
+          {
+            "en": "Schools can encourage kindness by giving students opportunities to support classmates who face personal difficulties.",
+            "role": "ext",
+            "zh": "学校可以让学生有机会帮助遇到个人困难的同学，从而培养他们的善意。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkaɪndnəs/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kindred": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "亲属；家人",
+          "en": "people who are related to you by family ties"
+        },
+        "sentences": [
+          {
+            "en": "She found her kindred in the village.",
+            "role": "basic",
+            "zh": "她在村里找到了自己的亲属。"
+          },
+          {
+            "en": "He felt a deep connection with his kindred after years apart.",
+            "role": "ext",
+            "zh": "多年分离后，他感到与自己的亲属有一种深厚的联系。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "相似的；同类的",
+          "en": "similar in character or nature"
+        },
+        "sentences": [
+          {
+            "en": "They are kindred spirits who share the same love for music.",
+            "role": "ext",
+            "zh": "他们是志趣相投的人，都热爱音乐。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkɪndrəd/",
+      "us": "/ˈkɪndrəd/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "kinetic": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "动力的；运动的",
+          "en": "relating to or resulting from motion"
+        },
+        "sentences": [
+          {
+            "en": "Kinetic energy is the energy of motion.",
+            "role": "basic",
+            "zh": "动能是运动的能量。"
+          },
+          {
+            "en": "The kinetic theory explains the behavior of gases in terms of moving particles.",
+            "role": "ext",
+            "zh": "动理论用运动粒子来解释气体的行为。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/kɪˈnetɪk/",
+      "us": "/kɪˈnetɪk/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "king": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "国王",
+          "en": "a man who rules a country"
+        },
+        "sentences": [
+          {
+            "en": "The king lives in a castle.",
+            "role": "basic",
+            "zh": "国王住在城堡里。"
+          },
+          {
+            "en": "In some countries, the king performs ceremonial duties while elected representatives make political decisions.",
+            "role": "ext",
+            "zh": "在一些国家，国王履行礼仪职责，而民选代表作出政治决策。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kɪŋ/"
+    },
+    "topic": "government",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kingdom": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "王国",
+          "en": "a country or region ruled by a king or queen"
+        },
+        "sentences": [
+          {
+            "en": "The kingdom has a kind queen.",
+            "role": "basic",
+            "zh": "这个王国有一位善良的女王。"
+          },
+          {
+            "en": "Tourism in the small kingdom provides employment, but increasing visitor numbers place pressure on historic buildings.",
+            "role": "ext",
+            "zh": "旅游业为这个小王国提供了就业机会，但游客数量增长也给历史建筑带来了压力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkɪŋdəm/"
+    },
+    "topic": "society",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kiss": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "亲吻",
+          "en": "to touch someone with your lips to show love or affection"
+        },
+        "sentences": [
+          {
+            "en": "Grandma gives me a kiss.",
+            "role": "basic",
+            "zh": "奶奶亲了我一下。"
+          },
+          {
+            "en": "In some cultures, a kiss on the cheek is a common greeting between close friends.",
+            "role": "ext",
+            "zh": "在一些文化中，亲吻脸颊是亲密朋友之间常见的问候方式。"
+          }
+        ],
+        "pos": "v."
+      },
+      {
+        "meaning": {
+          "zh": "吻；亲吻",
+          "en": "an act of touching someone with your lips to show love or affection"
+        },
+        "sentences": [
+          {
+            "en": "She gave her daughter a gentle kiss on the forehead.",
+            "role": "basic",
+            "zh": "她轻轻吻了吻女儿的额头。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kɪs/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kit": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "成套零件；配套元件",
+          "en": "a set of parts ready to be made into something"
+        },
+        "sentences": [
+          {
+            "en": "He built the model from a kit.",
+            "role": "basic",
+            "zh": "他用一套模型零件组装了这个模型。"
+          },
+          {
+            "en": "Schools should provide basic science kits so that all pupils can take part in practical experiments.",
+            "role": "ext",
+            "zh": "学校应提供基础科学实验套件，让所有学生都能参与动手实验。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kɪt/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kitchen": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "厨房",
+          "en": "the room where you cook food"
+        },
+        "sentences": [
+          {
+            "en": "Mum cooks in the kitchen.",
+            "role": "basic",
+            "zh": "妈妈在厨房做饭。"
+          },
+          {
+            "en": "Shared kitchen facilities can encourage social interaction among students living in university accommodation away from home.",
+            "role": "ext",
+            "zh": "共用厨房设施能促进离家住在大学宿舍的学生之间的社交互动。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkɪtʃɪn/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kite": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "风筝",
+          "en": "a light toy that flies on a string in the wind"
+        },
+        "sentences": [
+          {
+            "en": "The kite flies in the wind.",
+            "role": "basic",
+            "zh": "风筝在风中飞翔。"
+          },
+          {
+            "en": "Outdoor activities such as flying kites offer families affordable recreation and encourage children to spend time away from screens.",
+            "role": "ext",
+            "zh": "放风筝等户外活动为家庭提供了经济实惠的娱乐方式，也鼓励孩子暂时远离屏幕。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkaɪt/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kitesurfing": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "风筝冲浪",
+          "en": "The sport of riding on water on a board while being pulled by a large kite."
+        },
+        "sentences": [
+          {
+            "en": "My cousin tried kitesurfing at the beach yesterday.",
+            "role": "basic",
+            "zh": "我表亲昨天在海滩尝试了风筝冲浪。"
+          },
+          {
+            "en": "Coastal resorts offering kitesurfing should separate training areas from swimming zones to reduce accidents.",
+            "role": "ext",
+            "zh": "提供风筝冲浪活动的海滨度假区应将训练区与游泳区分开，以减少事故。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkaɪtsɜːfɪŋ/",
+      "us": "/ˈkaɪtsɜːrfɪŋ/"
+    },
+    "topic": "sport",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "kitten": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小猫",
+          "en": "a baby cat"
+        },
+        "sentences": [
+          {
+            "en": "The kitten drinks milk from a bowl.",
+            "role": "basic",
+            "zh": "小猫从碗里喝牛奶。"
+          },
+          {
+            "en": "She adopted a stray kitten and nursed it back to health.",
+            "role": "ext",
+            "zh": "她收养了一只流浪小猫，并把它照料到恢复健康。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkɪtn/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "kitty": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小猫（口语，尤指幼猫）",
+          "en": "a young cat (informal)"
+        },
+        "sentences": [
+          {
+            "en": "The kitty played with a ball of wool.",
+            "role": "basic",
+            "zh": "小猫玩着一个毛线球。"
+          },
+          {
+            "en": "She adopted a tiny kitty from the animal shelter last week.",
+            "role": "ext",
+            "zh": "她上周从动物收容所领养了一只小猫。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkɪti/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "kiwi": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "猕猴桃",
+          "en": "a small oval fruit with brown fuzzy skin and green flesh"
+        },
+        "sentences": [
+          {
+            "en": "Cut the kiwi with a small knife.",
+            "role": "basic",
+            "zh": "用小刀切猕猴桃。"
+          },
+          {
+            "en": "She added sliced kiwi to the fruit salad for extra flavor.",
+            "role": "ext",
+            "zh": "她在水果沙拉里加了猕猴桃片以增添风味。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkiːwiː/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "km": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "千米，公里（kilometre 的缩写）",
+          "en": "kilometre(s); a unit of length equal to 1,000 metres"
+        },
+        "sentences": [
+          {
+            "en": "The next town is 20 km away.",
+            "role": "basic",
+            "zh": "下一个城镇在20公里外。"
+          },
+          {
+            "en": "The car was travelling at 80 km per hour.",
+            "role": "ext",
+            "zh": "这辆车正以每小时80公里的速度行驶。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌkeɪˈem/"
+    },
+    "topic": "travel",
+    "level": "A2",
+    "origin": "book:mse-ket"
+  },
+  "knack": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "诀窍；本领",
+          "en": "a natural ability or special skill for doing something well"
+        },
+        "sentences": [
+          {
+            "en": "She has a knack for cooking.",
+            "role": "basic",
+            "zh": "她有烹饪的诀窍。"
+          },
+          {
+            "en": "He has a knack for making people feel at ease.",
+            "role": "ext",
+            "zh": "他有一种让人感到自在的本领。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/næk/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "knee": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "膝，膝盖",
+          "en": "the joint in the middle of the leg where it bends"
+        },
+        "sentences": [
+          {
+            "en": "She bent her knee gently before starting the exercise.",
+            "role": "basic",
+            "zh": "开始锻炼前，她轻轻弯了弯膝盖。"
+          },
+          {
+            "en": "Regular low-impact exercise can strengthen the muscles around the knee and help maintain mobility in older adults.",
+            "role": "ext",
+            "zh": "经常进行低冲击运动可以增强膝关节周围的肌肉，帮助老年人保持行动能力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/niː/"
+    },
+    "topic": "health",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "kneel": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "跪下；跪着",
+          "en": "to go down or rest on your knees"
+        },
+        "sentences": [
+          {
+            "en": "Please kneel beside the small child.",
+            "role": "basic",
+            "zh": "请跪在那个小孩旁边。"
+          },
+          {
+            "en": "She knelt down to tie her shoelaces.",
+            "role": "ext",
+            "zh": "她跪下来系鞋带。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/niːl/",
+      "us": "/niːl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "knife": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "刀；刀具",
+          "en": "a tool with a sharp edge for cutting"
+        },
+        "sentences": [
+          {
+            "en": "Cut the apple with a knife.",
+            "role": "basic",
+            "zh": "用刀把苹果切开。"
+          },
+          {
+            "en": "Learning to use a kitchen knife safely is an important part of practical food education.",
+            "role": "ext",
+            "zh": "学习安全使用菜刀是实用饮食教育的重要组成部分。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/naɪf/",
+      "us": "/naɪf/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "knight": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "（欧洲中世纪的）骑士",
+          "en": "a soldier in the past who fought for his king"
+        },
+        "sentences": [
+          {
+            "en": "The knight rides a white horse.",
+            "role": "basic",
+            "zh": "那位骑士骑着一匹白马。"
+          },
+          {
+            "en": "Museum displays about the medieval knight can help students understand how warfare shaped European society.",
+            "role": "ext",
+            "zh": "博物馆关于中世纪骑士的展览可以帮助学生理解战争如何塑造欧洲社会。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/naɪt/"
+    },
+    "topic": "history",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "knit": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "编织",
+          "en": "to make clothes or fabric using two long needles and yarn"
+        },
+        "sentences": [
+          {
+            "en": "Grandma can knit a warm hat.",
+            "role": "basic",
+            "zh": "奶奶会织暖和的帽子。"
+          },
+          {
+            "en": "Community groups that knit blankets for local shelters combine practical support with opportunities for social interaction.",
+            "role": "ext",
+            "zh": "为当地收容所编织毯子的社区团体，将实际援助与社交机会结合起来。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/nɪt/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "knob": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "球形把手；（旋钮）",
+          "en": "a round handle on a door, drawer, or machine"
+        },
+        "sentences": [
+          {
+            "en": "Please turn the brass knob.",
+            "role": "basic",
+            "zh": "请转动那个黄铜把手。"
+          },
+          {
+            "en": "She adjusted the volume knob on the radio.",
+            "role": "ext",
+            "zh": "她调节了收音机上的音量旋钮。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɒb/",
+      "us": "/nɑːb/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "knock": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "敲（门、窗等）",
+          "en": "to hit a door, window, etc. in order to make a sound"
+        },
+        "sentences": [
+          {
+            "en": "Please knock on the door first.",
+            "role": "basic",
+            "zh": "请先敲门。"
+          },
+          {
+            "en": "Strong winds can knock down trees, causing serious disruption to transport networks in urban areas.",
+            "role": "ext",
+            "zh": "强风可能刮倒树木，严重扰乱城市地区的交通网络。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɒk/",
+      "us": "/nɑːk/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "knock down": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "撞倒；击倒；拆毁",
+          "en": "to hit or push someone or something so that they fall to the ground; to demolish a structure"
+        },
+        "sentences": [
+          {
+            "en": "The car knocked down a traffic sign.",
+            "role": "basic",
+            "zh": "那辆车撞倒了一个交通标志。"
+          },
+          {
+            "en": "The old building was knocked down to make room for a new shopping center.",
+            "role": "ext",
+            "zh": "那栋旧楼被拆毁，以便腾出地方建新的购物中心。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɒk daʊn/",
+      "us": "/nɑːk daʊn/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "origin": "book:mse-pet"
+  },
+  "knot": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "绳结",
+          "en": "a join made by tying together the ends of a string, rope, thread, etc."
+        },
+        "sentences": [
+          {
+            "en": "He tied a knot in the thick rope.",
+            "role": "basic",
+            "zh": "他在粗绳上打了一个结。"
+          },
+          {
+            "en": "During outdoor education courses, students learn to tie a secure knot before attempting basic climbing activities.",
+            "role": "ext",
+            "zh": "在户外教育课程中，学生先学习打牢固的绳结，再尝试基础攀爬活动。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nɒt/",
+      "us": "/nɑːt/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "know": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "知道；了解",
+          "en": "to have information or understanding about something in your mind"
+        },
+        "sentences": [
+          {
+            "en": "I know the answer to this.",
+            "role": "basic",
+            "zh": "我知道这个问题的答案。"
+          },
+          {
+            "en": "Consumers need to know how their personal information is collected before they can make informed choices online.",
+            "role": "ext",
+            "zh": "消费者需要了解个人信息的收集方式，才能在网上作出知情选择。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nəʊ/",
+      "us": "/noʊ/"
+    },
+    "topic": "thinking",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "know-how": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "实用技能；专门知识",
+          "en": "Practical knowledge and skills needed to do something successfully"
+        },
+        "sentences": [
+          {
+            "en": "My uncle has the know-how to repair old bicycles.",
+            "role": "basic",
+            "zh": "我叔叔掌握修理旧自行车的技术。"
+          },
+          {
+            "en": "Sharing technical know-how can help small businesses adopt cleaner production methods without relying entirely on outside consultants.",
+            "role": "ext",
+            "zh": "分享技术知识可以帮助小企业采用更清洁的生产方式，而不必完全依赖外部顾问。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnəʊ.haʊ/",
+      "us": "/ˈnoʊ.haʊ/"
+    },
+    "topic": "work",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "knowledge": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "知识；了解",
+          "en": "information, understanding, or skill that you get from experience or education"
+        },
+        "sentences": [
+          {
+            "en": "Books give us useful knowledge.",
+            "role": "basic",
+            "zh": "书籍给我们有用的知识。"
+          },
+          {
+            "en": "Schools should help students apply their knowledge to practical problems rather than simply memorise facts.",
+            "role": "ext",
+            "zh": "学校应帮助学生运用知识解决实际问题，而不只是记忆事实。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnɒlɪdʒ/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "knowledgeable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "知识渊博的；很内行的",
+          "en": "knowing a lot about a particular subject"
+        },
+        "sentences": [
+          {
+            "en": "Our knowledgeable guide explained how each garden plant grows.",
+            "role": "basic",
+            "zh": "我们那位知识丰富的导游讲解了园中每种植物如何生长。"
+          },
+          {
+            "en": "Knowledgeable teachers can help students evaluate online information rather than accept every claim they encounter.",
+            "role": "ext",
+            "zh": "知识渊博的教师能帮助学生评估网络信息，而不是对看到的每种说法都照单全收。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈnɒlɪdʒəbl/",
+      "us": "/ˈnɑːlɪdʒəbl/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "known": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "已知的；知名的",
+          "en": "recognized, familiar, or famous"
+        },
+        "sentences": [
+          {
+            "en": "She is a known expert in this field.",
+            "role": "basic",
+            "zh": "她是这个领域知名的专家。"
+          },
+          {
+            "en": "The known risks of the treatment were explained to the patients.",
+            "role": "ext",
+            "zh": "该治疗已知的风险已向患者说明。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/nəʊn/",
+      "us": "/noʊn/"
+    },
+    "topic": "thinking",
+    "level": "A2",
+    "origin": "book:mse-ket"
+  },
+  "knuckle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "指关节（尤指掌指关节）",
+          "en": "a joint at the base of a finger, especially where the finger joins the hand"
+        },
+        "sentences": [
+          {
+            "en": "He hurt his knuckle on the door.",
+            "role": "basic",
+            "zh": "他在门上弄伤了指关节。"
+          },
+          {
+            "en": "She rapped her knuckles on the table to get everyone's attention.",
+            "role": "ext",
+            "zh": "她用指关节敲桌子以引起大家的注意。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈnʌkl/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "koala": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "考拉，树袋熊（澳大利亚的树栖有袋动物）",
+          "en": "a grey Australian animal that lives in trees and eats leaves"
+        },
+        "sentences": [
+          {
+            "en": "The koala sleeps in the tree.",
+            "role": "basic",
+            "zh": "考拉在树上睡觉。"
+          },
+          {
+            "en": "Koalas are native to Australia and spend most of their lives in eucalyptus trees.",
+            "role": "ext",
+            "zh": "考拉原产于澳大利亚，大部分时间生活在桉树上。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kəʊˈɑːlə/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "korean": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "韩国的；朝鲜的；韩国/朝鲜人的；韩语的",
+          "en": "relating to Korea, its people, or its language"
+        },
+        "sentences": [
+          {
+            "en": "Our neighbour showed us how to make Korean dumplings.",
+            "role": "basic",
+            "zh": "邻居教我们怎样包韩式饺子。"
+          },
+          {
+            "en": "Korean cinema has attracted international audiences, encouraging wider interest in the country's language and cultural traditions.",
+            "role": "ext",
+            "zh": "韩国电影吸引了国际观众，激发了人们对该国语言和文化传统的更广泛兴趣。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kəˈriːən/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "word-atlas"
+  }
+}

@@ -1,0 +1,5691 @@
+{
+  "vacancy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "空缺；空职；空房",
+          "en": "a job or room that is available or not filled"
+        },
+        "sentences": [
+          {
+            "en": "The hotel has one vacancy.",
+            "role": "basic",
+            "zh": "这家酒店有一个空房。"
+          },
+          {
+            "en": "Despite rising unemployment, many employers report difficulty filling vacancies that require advanced technical skills.",
+            "role": "ext",
+            "zh": "尽管失业率上升，许多雇主仍表示难以填补需要高级技术技能的职位空缺。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈveɪkənsi/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vacant": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "空着的；未被使用的",
+          "en": "empty and not being used"
+        },
+        "sentences": [
+          {
+            "en": "There is a vacant seat by the door.",
+            "role": "basic",
+            "zh": "门边有一个空座位。"
+          },
+          {
+            "en": "The apartment has been vacant since the last tenant moved out.",
+            "role": "ext",
+            "zh": "自从上一个租客搬走后，这套公寓就一直空着。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈveɪkənt/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vacation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "假期；休假",
+          "en": "a period of time spent away from work or school for rest or travel"
+        },
+        "sentences": [
+          {
+            "en": "Our vacation is at Grandma's house.",
+            "role": "basic",
+            "zh": "我们的假期是在奶奶家度过的。"
+          },
+          {
+            "en": "Taking a regular vacation may improve employees' mental health and help them return to work with greater motivation.",
+            "role": "ext",
+            "zh": "定期休假可能改善员工的心理健康，并让他们回到工作岗位时更有动力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vəˈkeɪʃn/"
+    },
+    "topic": "travel",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vaccinate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "给……接种疫苗",
+          "en": "To give a vaccine that helps protect against a disease."
+        },
+        "sentences": [
+          {
+            "en": "The vet will vaccinate our puppy during today's appointment.",
+            "role": "basic",
+            "zh": "兽医会在今天的就诊中给我们的小狗接种疫苗。"
+          },
+          {
+            "en": "Public health programmes aim to vaccinate vulnerable populations and reduce the spread of infectious diseases.",
+            "role": "ext",
+            "zh": "公共卫生项目旨在为易感人群接种疫苗，并减少传染病的传播。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvæksɪneɪt/",
+      "us": "/ˈvæksɪneɪt/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vaccination": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "疫苗接种",
+          "en": "the act of giving a vaccine to protect someone against disease"
+        },
+        "sentences": [
+          {
+            "en": "The nurse asked me to relax before my vaccination.",
+            "role": "basic",
+            "zh": "接种疫苗前，护士让我放松。"
+          },
+          {
+            "en": "Accessible vaccination programmes help prevent infectious diseases and reduce pressure on public healthcare services.",
+            "role": "ext",
+            "zh": "便捷可及的疫苗接种计划有助于预防传染病，并减轻公共医疗服务的压力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌvæksɪˈneɪʃən/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "vaccine": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "疫苗",
+          "en": "a substance that is put into the body to protect it from a disease"
+        },
+        "sentences": [
+          {
+            "en": "The child received a vaccine at the clinic.",
+            "role": "basic",
+            "zh": "孩子在诊所接种了疫苗。"
+          },
+          {
+            "en": "Ensuring fair access to vaccines is essential for protecting vulnerable populations and reducing the spread of infectious diseases.",
+            "role": "ext",
+            "zh": "确保公平获得疫苗，对保护易受感染人群和减少传染病传播至关重要。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/væksˈiːn/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vacuum": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "真空；空白",
+          "en": "a space with no matter or air; a gap or emptiness"
+        },
+        "sentences": [
+          {
+            "en": "Sound cannot travel through a vacuum because it needs a medium such as air or water.",
+            "role": "basic",
+            "zh": "声音无法在真空中传播，因为它需要空气或水等介质。"
+          },
+          {
+            "en": "The withdrawal of troops left a power vacuum in the region.",
+            "role": "ext",
+            "zh": "军队撤离后，该地区出现了权力真空。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "吸尘器",
+          "en": "a machine that sucks dirt from the floor"
+        },
+        "sentences": [
+          {
+            "en": "Mum uses the vacuum on the floor.",
+            "role": "basic",
+            "zh": "妈妈用吸尘器清扫地板。"
+          },
+          {
+            "en": "I need to empty the vacuum after cleaning the living room.",
+            "role": "ext",
+            "zh": "打扫完客厅后，我需要清理吸尘器。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvækjuːm/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vague": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "含糊的，不明确的",
+          "en": "not clear or precise"
+        },
+        "sentences": [
+          {
+            "en": "His answer was too vague to be useful.",
+            "role": "basic",
+            "zh": "他的回答太含糊，没什么用。"
+          },
+          {
+            "en": "Vague environmental targets make it difficult for citizens to assess whether government policies are achieving meaningful progress.",
+            "role": "ext",
+            "zh": "含糊的环境目标让公民难以判断政府政策是否取得了实质性进展。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/veɪɡ/",
+      "us": "/veɪɡ/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vain": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "自负的；虚荣的",
+          "en": "having too high an opinion of oneself; overly proud of one's appearance or abilities"
+        },
+        "sentences": [
+          {
+            "en": "The vain actor looked at himself in the mirror all day.",
+            "role": "basic",
+            "zh": "那个自负的演员整天对着镜子看自己。"
+          },
+          {
+            "en": "She was vain about her looks and spent hours on her hair.",
+            "role": "ext",
+            "zh": "她对自己的外貌很虚荣，花好几个小时打理头发。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "徒劳的；白费的",
+          "en": "unsuccessful; producing no result"
+        },
+        "sentences": [
+          {
+            "en": "We tried to fix the umbrella, but our efforts were in vain.",
+            "role": "basic",
+            "zh": "我们试着修伞，却白费了力气。"
+          },
+          {
+            "en": "Without affordable public transport, campaigns to reduce private car use may prove to be vain efforts.",
+            "role": "ext",
+            "zh": "如果没有价格可负担的公共交通，减少私家车使用的宣传活动可能只是徒劳。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/veɪn/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vainly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "徒劳地；白费力气地",
+          "en": "Without achieving the desired result despite effort"
+        },
+        "sentences": [
+          {
+            "en": "I searched vainly for my keys under the sofa.",
+            "role": "basic",
+            "zh": "我在沙发下面找钥匙，却一无所获。"
+          },
+          {
+            "en": "Residents have vainly requested better bus services for years, leaving many dependent on private cars.",
+            "role": "ext",
+            "zh": "居民多年来要求改善公交服务，却始终未果，致使许多人仍然依赖私家车。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈveɪnli/"
+    },
+    "topic": "daily",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "valiant": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "勇敢的，英勇的",
+          "en": "very brave, especially in a difficult or dangerous situation"
+        },
+        "sentences": [
+          {
+            "en": "The valiant soldier saved others.",
+            "role": "basic",
+            "zh": "那位英勇的士兵救了其他人。"
+          },
+          {
+            "en": "Despite the overwhelming odds, the valiant firefighters continued to battle the blaze.",
+            "role": "ext",
+            "zh": "尽管困难重重，英勇的消防员们仍继续与大火搏斗。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvæliənt/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "valid": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有效的；具有法律或官方效力的",
+          "en": "legally or officially acceptable"
+        },
+        "sentences": [
+          {
+            "en": "Your ticket is still valid today.",
+            "role": "basic",
+            "zh": "你的票今天仍然有效。"
+          },
+          {
+            "en": "Although online learning offers flexibility, students have valid concerns about limited interaction with their teachers.",
+            "role": "ext",
+            "zh": "虽然在线学习灵活方便，但学生对师生互动不足的担忧是合理的。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvælɪd/",
+      "us": "/ˈvælɪd/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "validate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "证实；验证",
+          "en": "to prove or confirm that something is true or valid"
+        },
+        "sentences": [
+          {
+            "en": "The test will validate the idea.",
+            "role": "basic",
+            "zh": "这项测试将验证这个想法。"
+          },
+          {
+            "en": "Further research is needed to validate these findings.",
+            "role": "ext",
+            "zh": "需要进一步研究来证实这些发现。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvælɪdeɪt/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "validation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "证实；验证；确认",
+          "en": "the act of proving or confirming that something is true or valid"
+        },
+        "sentences": [
+          {
+            "en": "The validation of the theory required more experiments.",
+            "role": "basic",
+            "zh": "该理论的验证需要更多实验。"
+          },
+          {
+            "en": "Independent validation of the results is essential before publication.",
+            "role": "ext",
+            "zh": "在发表之前，对结果进行独立验证是至关重要的。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌvælɪˈdeɪʃn/",
+      "us": "/ˌvælɪˈdeɪʃn/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "validity": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有效性；正确性；合理性",
+          "en": "the quality of being based on truth or reason, or of being officially acceptable"
+        },
+        "sentences": [
+          {
+            "en": "The validity of the test results has been questioned.",
+            "role": "basic",
+            "zh": "这些测试结果的有效性受到了质疑。"
+          },
+          {
+            "en": "Researchers must establish the validity of their methods before drawing conclusions.",
+            "role": "ext",
+            "zh": "研究人员在得出结论之前必须确立其方法的有效性。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vəˈlɪdəti/",
+      "us": "/vəˈlɪdəti/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "valley": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "山谷；谷地",
+          "en": "low land between hills or mountains"
+        },
+        "sentences": [
+          {
+            "en": "A river runs through the valley.",
+            "role": "basic",
+            "zh": "一条河流穿过山谷。"
+          },
+          {
+            "en": "Farming communities in the valley depend on seasonal rainfall to maintain their crops and support local livelihoods.",
+            "role": "ext",
+            "zh": "河谷中的农业社区依靠季节性降雨维持作物生长，保障当地居民的生计。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvæli/"
+    },
+    "topic": "nature",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "valor": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "英勇；勇气（尤指面对危险时）",
+          "en": "great courage in the face of danger"
+        },
+        "sentences": [
+          {
+            "en": "The medal honors his valor.",
+            "role": "basic",
+            "zh": "这枚奖章表彰他的英勇。"
+          },
+          {
+            "en": "Her valor in saving the drowning child was praised by the whole community.",
+            "role": "ext",
+            "zh": "她勇救溺水儿童的英勇行为受到了整个社区的赞扬。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvælə/",
+      "us": "/ˈvælər/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "valuable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "值钱的，贵重的；宝贵的，有价值的",
+          "en": "Worth a lot of money, or very useful or important."
+        },
+        "sentences": [
+          {
+            "en": "This old watch is very valuable.",
+            "role": "basic",
+            "zh": "这块旧手表非常值钱。"
+          },
+          {
+            "en": "Work placements provide valuable experience that helps students develop practical skills before entering full-time employment.",
+            "role": "ext",
+            "zh": "实习提供宝贵经验，帮助学生在正式就业前培养实践技能。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvæljuəbl/",
+      "us": "/ˈvæljuəbl/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "value": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "价值；价格",
+          "en": "the amount of money that something is worth, or the importance or usefulness of something"
+        },
+        "sentences": [
+          {
+            "en": "The value of the ring is high.",
+            "role": "basic",
+            "zh": "这枚戒指价值很高。"
+          },
+          {
+            "en": "Governments should recognise the value of public parks in improving physical health and strengthening community relationships.",
+            "role": "ext",
+            "zh": "政府应认识到公共公园在改善身体健康和加强社区联系方面的价值。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvæljuː/",
+      "us": "/ˈvæljuː/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "valve": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "阀门；瓣膜",
+          "en": "a device that controls the flow of liquid or gas through a pipe, or a similar structure in the body"
+        },
+        "sentences": [
+          {
+            "en": "Turn the valve to stop the water.",
+            "role": "basic",
+            "zh": "转动这个阀门来关掉水。"
+          },
+          {
+            "en": "Replacing damaged heart valves can improve patients' quality of life and reduce the risk of serious complications.",
+            "role": "ext",
+            "zh": "更换受损的心脏瓣膜可以改善患者的生活质量，并降低严重并发症的风险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vælv/",
+      "us": "/vælv/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vampire": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "吸血鬼",
+          "en": "a creature in legends that drinks the blood of living people"
+        },
+        "sentences": [
+          {
+            "en": "The story is about a hungry vampire.",
+            "role": "basic",
+            "zh": "这个故事讲的是一个饥饿的吸血鬼。"
+          },
+          {
+            "en": "In the novel, the vampire wanders the streets at night, searching for victims.",
+            "role": "ext",
+            "zh": "在这部小说中，吸血鬼夜晚在街上游荡，寻找受害者。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvæmpaɪə(r)/",
+      "us": "/ˈvæmpaɪər/"
+    },
+    "topic": "arts",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "van": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "厢式货车；小型客货车",
+          "en": "a box-shaped vehicle used for carrying goods or people"
+        },
+        "sentences": [
+          {
+            "en": "The van stops at our house.",
+            "role": "basic",
+            "zh": "那辆厢式货车停在我们家门前。"
+          },
+          {
+            "en": "Replacing diesel delivery vans with electric vehicles could help reduce air pollution in densely populated cities.",
+            "role": "ext",
+            "zh": "用电动车替换柴油送货车，有助于减少人口密集城市的空气污染。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/væn/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vandal": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "破坏公物者",
+          "en": "a person who damages property for no reason"
+        },
+        "sentences": [
+          {
+            "en": "A vandal broke the school windows.",
+            "role": "basic",
+            "zh": "一个破坏公物的人打破了学校的窗户。"
+          },
+          {
+            "en": "The council installed cameras to deter vandals in the park.",
+            "role": "ext",
+            "zh": "委员会安装了摄像头以阻止公园里的破坏公物者。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvændl/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vanilla": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "香草；香草精（一种从香草兰种子中提取的甜味香料）",
+          "en": "a sweet flavoring obtained from the seeds of a tropical orchid plant"
+        },
+        "sentences": [
+          {
+            "en": "I like vanilla ice cream best.",
+            "role": "basic",
+            "zh": "我最喜欢香草冰淇淋。"
+          },
+          {
+            "en": "Demand for natural vanilla can provide valuable income for farmers, but unstable prices create financial risks.",
+            "role": "ext",
+            "zh": "对天然香草的需求能为农民带来可观收入，但价格不稳定会造成财务风险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vəˈnɪlə/",
+      "us": "/vəˈnɪlə/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vanish": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "消失；突然不见",
+          "en": "to disappear suddenly, especially in a way that is surprising or cannot be explained"
+        },
+        "sentences": [
+          {
+            "en": "The rabbit seemed to vanish from the hat.",
+            "role": "basic",
+            "zh": "那只兔子似乎从帽子里消失了。"
+          },
+          {
+            "en": "The sun vanished behind the clouds, and the sky turned grey.",
+            "role": "ext",
+            "zh": "太阳消失在云层后面，天空变得灰暗。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvænɪʃ/",
+      "us": "/ˈvænɪʃ/"
+    },
+    "topic": "uncategorized",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vanity": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "虚荣；自负",
+          "en": "too much pride in your own appearance, abilities, or achievements"
+        },
+        "sentences": [
+          {
+            "en": "Her vanity made her buy more clothes.",
+            "role": "basic",
+            "zh": "她的虚荣心让她买了更多衣服。"
+          },
+          {
+            "en": "He was criticized for his vanity and constant need for attention.",
+            "role": "ext",
+            "zh": "他因虚荣和总想引人注意而受到批评。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvænəti/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vanquish": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "彻底击败；征服",
+          "en": "to defeat an opponent completely"
+        },
+        "sentences": [
+          {
+            "en": "Our chess club finally vanquished its strongest rival yesterday.",
+            "role": "basic",
+            "zh": "我们的国际象棋俱乐部昨天终于彻底击败了最强的对手。"
+          },
+          {
+            "en": "Public health campaigns cannot vanquish widespread misinformation without sustained cooperation between educators, researchers, and local communities.",
+            "role": "ext",
+            "zh": "没有教育工作者、研究人员和当地社区的持续合作，公共卫生宣传就无法战胜广泛传播的错误信息。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvæŋkwɪʃ/"
+    },
+    "topic": "society",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "vapor": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "蒸气；水汽",
+          "en": "a gas that escapes from a liquid or solid"
+        },
+        "sentences": [
+          {
+            "en": "Hot vapor rose from the boiling water.",
+            "role": "basic",
+            "zh": "热蒸气从沸水中升起。"
+          },
+          {
+            "en": "The cold air caused the vapor to condense into tiny droplets.",
+            "role": "ext",
+            "zh": "冷空气使水汽凝结成微小的水滴。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈveɪpə/",
+      "us": "/ˈveɪpər/"
+    },
+    "topic": "science",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vapour": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "蒸气；水汽",
+          "en": "A gas formed when a liquid or solid changes state, especially water vapor."
+        },
+        "sentences": [
+          {
+            "en": "Water vapour condensed into droplets on the cold window.",
+            "role": "basic",
+            "zh": "水蒸气在冰冷的窗户上凝结成了水滴。"
+          },
+          {
+            "en": "As global temperatures rise, the atmosphere can hold more water vapour, which further strengthens the greenhouse effect.",
+            "role": "ext",
+            "zh": "随着全球气温上升，大气能容纳更多水蒸气，从而进一步增强温室效应。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈveɪpə/",
+      "us": "/ˈveɪpər/"
+    },
+    "topic": "nature",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "variable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "多变的；可变的",
+          "en": "Likely or able to change rather than remain the same."
+        },
+        "sentences": [
+          {
+            "en": "The weather here is too variable for outdoor plans.",
+            "role": "basic",
+            "zh": "这里天气太多变，不好安排户外活动。"
+          },
+          {
+            "en": "Researchers must control other variables when investigating how class size affects students' progress in primary education.",
+            "role": "ext",
+            "zh": "研究班级规模如何影响小学生的学习进步时，研究人员必须控制其他变量。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "变量；可变因素",
+          "en": "A factor or quantity that can change or be changed, especially in an experiment or mathematical context."
+        },
+        "sentences": [
+          {
+            "en": "Temperature is an important variable in this experiment.",
+            "role": "basic",
+            "zh": "温度是这个实验中的一个重要变量。"
+          },
+          {
+            "en": "Economists often struggle to isolate a single variable when explaining changes in consumer behavior.",
+            "role": "ext",
+            "zh": "经济学家在解释消费者行为变化时，往往难以单独分离出某一个变量。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈveəriəbəl/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "variance": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "差异；不一致",
+          "en": "A difference or disagreement between things."
+        },
+        "sentences": [
+          {
+            "en": "His cheerful smile was at variance with his complaints.",
+            "role": "basic",
+            "zh": "他愉快的笑容与他的抱怨很不相称。"
+          },
+          {
+            "en": "The proposed housing policy is at variance with the government's commitment to protecting green spaces.",
+            "role": "ext",
+            "zh": "拟议的住房政策与政府保护绿地的承诺相矛盾。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈveəriəns/",
+      "us": "/ˈveriəns/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "variant": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "变体；变种",
+          "en": "A form that differs slightly from other related forms."
+        },
+        "sentences": [
+          {
+            "en": "This local variant of the soup includes fresh beans.",
+            "role": "basic",
+            "zh": "这种汤的本地做法加入了新鲜豆子。"
+          },
+          {
+            "en": "A genetic variant may affect how individuals respond to certain medicines, making personalised treatment increasingly important.",
+            "role": "ext",
+            "zh": "某种基因变异可能影响个体对特定药物的反应，因此个性化治疗日益重要。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈveəriənt/",
+      "us": "/ˈveriənt/"
+    },
+    "topic": "uncategorized",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "variation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "差异；变化",
+          "en": "a difference or change in something"
+        },
+        "sentences": [
+          {
+            "en": "There is little variation in the test scores.",
+            "role": "basic",
+            "zh": "考试成绩几乎没有差异。"
+          },
+          {
+            "en": "Seasonal variation in rainfall can significantly affect agricultural productivity, particularly in regions with limited irrigation infrastructure.",
+            "role": "ext",
+            "zh": "降雨量的季节性变化会显著影响农业生产力，尤其是在灌溉设施有限的地区。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌveəriˈeɪʃn/",
+      "us": "/ˌveriˈeɪʃn/"
+    },
+    "topic": "nature",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "variety": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "多样化；种类；品种",
+          "en": "a number of different types of things or people; the quality of being diverse"
+        },
+        "sentences": [
+          {
+            "en": "The market has a variety of fruit.",
+            "role": "basic",
+            "zh": "这个市场有各种各样的水果。"
+          },
+          {
+            "en": "Schools should offer a wide variety of activities to support students with different interests.",
+            "role": "ext",
+            "zh": "学校应提供丰富多样的活动，以支持兴趣各异的学生。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vəˈraɪəti/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "various": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "各种各样的",
+          "en": "of many kinds"
+        },
+        "sentences": [
+          {
+            "en": "The shop sells various kinds of fruit.",
+            "role": "basic",
+            "zh": "这家商店出售各种水果。"
+          },
+          {
+            "en": "Schools should offer various activities to help students discover their interests and develop practical skills.",
+            "role": "ext",
+            "zh": "学校应提供各种活动，帮助学生发现兴趣并培养实用技能。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈveəriəs/",
+      "us": "/ˈveriəs/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vary": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "变化；不同",
+          "en": "to be different or to become different"
+        },
+        "sentences": [
+          {
+            "en": "Prices vary from shop to shop.",
+            "role": "basic",
+            "zh": "价格因商店而异。"
+          },
+          {
+            "en": "Access to affordable housing can vary considerably between regions, affecting where young professionals choose to live.",
+            "role": "ext",
+            "zh": "各地区获得可负担住房的机会可能差别很大，从而影响年轻职场人士的居住选择。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈveəri/",
+      "us": "/ˈveri/"
+    },
+    "topic": "economy",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vase": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "花瓶",
+          "en": "a container, often decorative, used for holding flowers"
+        },
+        "sentences": [
+          {
+            "en": "Put the flowers in the vase.",
+            "role": "basic",
+            "zh": "把花插进花瓶里。"
+          },
+          {
+            "en": "Traditional pottery, including decorative vases, can provide valuable insights into the artistic practices of past societies.",
+            "role": "ext",
+            "zh": "包括装饰花瓶在内的传统陶器，可以为了解过去社会的艺术实践提供宝贵线索。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vɑːz/",
+      "us": "/veɪs/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vast": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "广阔的；巨大的；大量的",
+          "en": "extremely large in area, size, amount, or degree"
+        },
+        "sentences": [
+          {
+            "en": "The desert is a vast empty land.",
+            "role": "basic",
+            "zh": "沙漠是一片广阔的空旷之地。"
+          },
+          {
+            "en": "Digital libraries give students access to vast amounts of information, although evaluating its reliability remains essential.",
+            "role": "ext",
+            "zh": "数字图书馆让学生能够获取海量信息，但评估信息的可靠性仍然至关重要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vɑːst/",
+      "us": "/væst/"
+    },
+    "topic": "nature",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vault": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "拱顶；金库，保险库",
+          "en": "a room with a curved ceiling, especially a secure room for storing valuables"
+        },
+        "sentences": [
+          {
+            "en": "Gold was kept in the bank vault.",
+            "role": "basic",
+            "zh": "黄金存放在银行金库里。"
+          },
+          {
+            "en": "The museum's vault protects rare manuscripts from theft and fire.",
+            "role": "ext",
+            "zh": "博物馆的保险库保护着珍贵手稿免遭盗窃和火灾。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vɔːlt/"
+    },
+    "topic": "economy",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vcd": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "VCD（视频光盘）",
+          "en": "a type of CD used for storing video"
+        },
+        "sentences": [
+          {
+            "en": "We watch a VCD at home.",
+            "role": "basic",
+            "zh": "我们在家看VCD。"
+          },
+          {
+            "en": "Before DVDs became common, many families used VCDs to watch movies.",
+            "role": "ext",
+            "zh": "在DVD普及之前，许多家庭用VCD看电影。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌviː siː ˈdiː/"
+    },
+    "topic": "technology",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "veal": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小牛肉",
+          "en": "meat from a young calf"
+        },
+        "sentences": [
+          {
+            "en": "We had veal for dinner.",
+            "role": "basic",
+            "zh": "我们晚餐吃了小牛肉。"
+          },
+          {
+            "en": "The restaurant is known for its tender veal dishes.",
+            "role": "ext",
+            "zh": "这家餐厅以其嫩滑的小牛肉菜肴而闻名。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/viːl/",
+      "us": "/viːl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vector": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "矢量；向量",
+          "en": "a quantity that has both magnitude and direction"
+        },
+        "sentences": [
+          {
+            "en": "In physics, velocity is a vector because it has both speed and direction.",
+            "role": "basic",
+            "zh": "在物理学中，速度是一个矢量，因为它既有大小又有方向。"
+          },
+          {
+            "en": "The vector from point A to point B can be represented as an arrow.",
+            "role": "ext",
+            "zh": "从点A到点B的向量可以用一个箭头表示。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvektə(r)/",
+      "us": "/ˈvektər/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "veer": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "突然转向；改变方向",
+          "en": "to change direction suddenly or noticeably"
+        },
+        "sentences": [
+          {
+            "en": "The car began to veer left.",
+            "role": "basic",
+            "zh": "汽车开始向左急转。"
+          },
+          {
+            "en": "Public opinion veered sharply after the scandal.",
+            "role": "ext",
+            "zh": "丑闻发生后，公众舆论急剧转向。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vɪə/",
+      "us": "/vɪr/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vegan": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "纯素食者；严格素食者",
+          "en": "A person who eats no animal products, including meat, dairy, and eggs."
+        },
+        "sentences": [
+          {
+            "en": "As a vegan, I cook with beans instead of meat.",
+            "role": "basic",
+            "zh": "作为纯素食者，我用豆类代替肉来做饭。"
+          },
+          {
+            "en": "A carefully planned vegan diet can meet nutritional needs while reducing some environmental impacts of food production.",
+            "role": "ext",
+            "zh": "精心规划的纯素饮食能够满足营养需求，同时减少食品生产带来的部分环境影响。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈviːɡən/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "vegetable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "蔬菜",
+          "en": "a plant or part of a plant eaten as food, such as carrots or cabbage"
+        },
+        "sentences": [
+          {
+            "en": "Eat a vegetable with your rice.",
+            "role": "basic",
+            "zh": "吃米饭时配一份蔬菜。"
+          },
+          {
+            "en": "Schools can encourage healthier eating by serving a wider variety of vegetables at lunchtime.",
+            "role": "ext",
+            "zh": "学校可以在午餐时供应更多种类的蔬菜，鼓励更健康的饮食。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvedʒtəbl/"
+    },
+    "topic": "health",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vegetarian": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "素食者",
+          "en": "a person who does not eat meat or fish"
+        },
+        "sentences": [
+          {
+            "en": "She has been a vegetarian for ten years.",
+            "role": "basic",
+            "zh": "她吃素已经十年了。"
+          },
+          {
+            "en": "Many vegetarians choose their diet for ethical or environmental reasons.",
+            "role": "ext",
+            "zh": "许多素食者出于道德或环境原因选择这种饮食。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "素食的；不含肉类的",
+          "en": "not containing meat or fish"
+        },
+        "sentences": [
+          {
+            "en": "She asked for a vegetarian meal.",
+            "role": "basic",
+            "zh": "她要了一份素食餐。"
+          },
+          {
+            "en": "Providing vegetarian meals in school canteens can accommodate different dietary preferences and reduce environmental impacts.",
+            "role": "ext",
+            "zh": "学校食堂提供素食可以满足不同的饮食偏好，并减少对环境的影响。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌvedʒəˈteəriən/",
+      "us": "/ˌvedʒəˈteriən/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vegetation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "植被；草木",
+          "en": "plants in general, especially those growing in a particular area"
+        },
+        "sentences": [
+          {
+            "en": "Thick vegetation covered the warm wet island.",
+            "role": "basic",
+            "zh": "茂密的植被覆盖着这座温暖湿润的岛屿。"
+          },
+          {
+            "en": "Removing natural vegetation increases soil erosion and reduces the capacity of land to absorb heavy rainfall.",
+            "role": "ext",
+            "zh": "清除天然植被会加剧水土流失，并降低土地吸收强降雨的能力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌvedʒəˈteɪʃn/"
+    },
+    "topic": "environment",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vehement": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "强烈的；激烈的",
+          "en": "showing very strong feeling or forceful expression"
+        },
+        "sentences": [
+          {
+            "en": "She gave a vehement reply.",
+            "role": "basic",
+            "zh": "她给出了一个激烈的回答。"
+          },
+          {
+            "en": "The proposed closure of the community library met with vehement opposition from residents and local educators.",
+            "role": "ext",
+            "zh": "关闭社区图书馆的提议遭到了居民和当地教育工作者的强烈反对。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈviːəmənt/"
+    },
+    "topic": "emotion",
+    "level": "C2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vehicle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "车辆；交通工具",
+          "en": "a machine such as a car, bus, or truck used for carrying people or goods"
+        },
+        "sentences": [
+          {
+            "en": "A bus is a large vehicle.",
+            "role": "basic",
+            "zh": "公共汽车是一种大型车辆。"
+          },
+          {
+            "en": "Electric vehicles can reduce urban air pollution, especially when their electricity comes from renewable sources.",
+            "role": "ext",
+            "zh": "电动车可以减少城市空气污染，尤其是在使用可再生能源发电时。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈviːɪkl/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "veil": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "面纱",
+          "en": "a thin covering for the head and face"
+        },
+        "sentences": [
+          {
+            "en": "The bride wore a white veil over her hair.",
+            "role": "basic",
+            "zh": "新娘头上戴着白色面纱。"
+          },
+          {
+            "en": "A veil of secrecy around major planning decisions can weaken public trust in local government.",
+            "role": "ext",
+            "zh": "重大规划决策被秘密笼罩，会削弱公众对地方政府的信任。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/veɪl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vein": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "静脉",
+          "en": "a tube in the body through which blood travels to the heart"
+        },
+        "sentences": [
+          {
+            "en": "The nurse found a vein in her arm.",
+            "role": "basic",
+            "zh": "护士在她手臂上找到了一条静脉。"
+          },
+          {
+            "en": "Regular movement helps blood flow through the veins and may reduce health risks associated with prolonged sitting.",
+            "role": "ext",
+            "zh": "经常活动有助于静脉血液流动，并可能降低久坐带来的健康风险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/veɪn/",
+      "us": "/veɪn/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "velocity": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "速度（尤指沿某一方向的速度）",
+          "en": "the speed of something in a given direction"
+        },
+        "sentences": [
+          {
+            "en": "The car gained velocity downhill.",
+            "role": "basic",
+            "zh": "汽车下坡时速度越来越快。"
+          },
+          {
+            "en": "Engineers measure the velocity of flowing water to determine whether a site is suitable for generating electricity.",
+            "role": "ext",
+            "zh": "工程师测量水流速度，以判断某处是否适合发电。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vəˈlɒsəti/",
+      "us": "/vəˈlɑːsəti/"
+    },
+    "topic": "science",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "velvet": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "天鹅绒；丝绒",
+          "en": "a soft fabric with a thick short pile"
+        },
+        "sentences": [
+          {
+            "en": "She wore a red velvet dress.",
+            "role": "basic",
+            "zh": "她穿了一条红色天鹅绒连衣裙。"
+          },
+          {
+            "en": "The curtains are made of heavy velvet that blocks out the light.",
+            "role": "ext",
+            "zh": "这些窗帘由厚重的天鹅绒制成，可以遮挡光线。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvelvɪt/"
+    },
+    "topic": "arts",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vendor": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小贩；摊贩；卖方",
+          "en": "a person or company that sells something, especially in a street or at an event"
+        },
+        "sentences": [
+          {
+            "en": "A vendor sold fruit by the station.",
+            "role": "basic",
+            "zh": "一个摊贩在车站旁卖水果。"
+          },
+          {
+            "en": "The company is a major vendor of office equipment.",
+            "role": "ext",
+            "zh": "这家公司是办公设备的主要供应商。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvendə(r)/",
+      "us": "/ˈvendər/"
+    },
+    "topic": "economy",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "venerate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "崇敬；敬仰",
+          "en": "To regard someone or something with deep respect."
+        },
+        "sentences": [
+          {
+            "en": "People here venerate the elder who founded this school.",
+            "role": "basic",
+            "zh": "这里的人们十分敬仰创办这所学校的长者。"
+          },
+          {
+            "en": "Many societies venerate historic buildings because they represent shared cultural achievements and a connection with the past.",
+            "role": "ext",
+            "zh": "许多社会十分尊崇历史建筑，因为它们代表着共同的文化成就以及与过去的联系。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvenəreɪt/"
+    },
+    "topic": "society",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "vengeance": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "复仇，报复",
+          "en": "the act of punishing someone in return for a wrong done to oneself or others"
+        },
+        "sentences": [
+          {
+            "en": "He wanted vengeance for the cruel attack.",
+            "role": "basic",
+            "zh": "他想为那次残忍的袭击复仇。"
+          },
+          {
+            "en": "The villagers swore vengeance on those who had destroyed their homes.",
+            "role": "ext",
+            "zh": "村民们发誓要向那些毁掉他们家园的人报仇。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvendʒəns/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "venom": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "毒液",
+          "en": "poison produced by a snake or insect"
+        },
+        "sentences": [
+          {
+            "en": "The snake injects venom through its fangs.",
+            "role": "basic",
+            "zh": "蛇通过毒牙注入毒液。"
+          },
+          {
+            "en": "Researchers are studying the venom of the Brazilian wandering spider for medical use.",
+            "role": "ext",
+            "zh": "研究人员正在研究巴西流浪蜘蛛的毒液，以用于医学用途。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvenəm/"
+    },
+    "topic": "nature",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vent": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "发泄（情绪）；倾诉",
+          "en": "to express strong feelings, especially anger, forcefully"
+        },
+        "sentences": [
+          {
+            "en": "He needed to vent his anger after the game.",
+            "role": "basic",
+            "zh": "比赛结束后他需要发泄一下怒气。"
+          },
+          {
+            "en": "She called her best friend to vent about the unfair treatment at work.",
+            "role": "ext",
+            "zh": "她打电话给最好的朋友，倾诉工作中受到的不公平对待。"
+          }
+        ],
+        "pos": "v."
+      },
+      {
+        "meaning": {
+          "zh": "通风口；排气口",
+          "en": "an opening that allows air, gas, or liquid to pass in or out"
+        },
+        "sentences": [
+          {
+            "en": "Warm air comes out of the vent on the wall.",
+            "role": "basic",
+            "zh": "暖空气从墙上的通风口出来。"
+          },
+          {
+            "en": "Make sure the vent is not blocked so the machine does not overheat.",
+            "role": "ext",
+            "zh": "确保排气口没有被堵住，以免机器过热。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vent/",
+      "us": "/vent/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "ventilate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "使通风；给…通风",
+          "en": "to allow fresh air to enter and circulate in a room or building"
+        },
+        "sentences": [
+          {
+            "en": "Please ventilate the classroom.",
+            "role": "basic",
+            "zh": "请给教室通风。"
+          },
+          {
+            "en": "Schools should ventilate classrooms regularly to improve indoor air quality and create healthier learning environments.",
+            "role": "ext",
+            "zh": "学校应定期给教室通风，以改善室内空气质量，创造更健康的学习环境。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈventɪleɪt/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "venture": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "冒险事业；风险项目（尤指新的商业活动）",
+          "en": "a new activity, especially in business, that involves risk"
+        },
+        "sentences": [
+          {
+            "en": "The new shop is a risky business venture.",
+            "role": "basic",
+            "zh": "这家新店是一项有风险的商业冒险。"
+          },
+          {
+            "en": "Public funding can help young entrepreneurs launch ventures that address environmental problems in their communities.",
+            "role": "ext",
+            "zh": "公共资金可以帮助年轻创业者开展解决社区环境问题的创业项目。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈventʃə(r)/",
+      "us": "/ˈventʃər/"
+    },
+    "topic": "work",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "venue": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "活动场地；举办地点",
+          "en": "the place where an event happens"
+        },
+        "sentences": [
+          {
+            "en": "The concert venue is downtown.",
+            "role": "basic",
+            "zh": "音乐会的场地在市中心。"
+          },
+          {
+            "en": "The organizers had to change the venue because the original hall was too small.",
+            "role": "ext",
+            "zh": "由于原来的礼堂太小，组织者不得不更换活动场地。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvenjuː/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "venus": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "金星",
+          "en": "The second planet from the Sun."
+        },
+        "sentences": [
+          {
+            "en": "We spotted Venus shining brightly just after sunset.",
+            "role": "basic",
+            "zh": "日落后不久，我们看到了明亮的金星。"
+          },
+          {
+            "en": "Studying the thick atmosphere of Venus helps scientists understand how greenhouse gases influence planetary temperatures.",
+            "role": "ext",
+            "zh": "研究金星浓厚的大气层有助于科学家理解温室气体如何影响行星温度。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈviːnəs/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "verb": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "动词",
+          "en": "a word that describes an action, state, or event"
+        },
+        "sentences": [
+          {
+            "en": "Go is a verb.",
+            "role": "basic",
+            "zh": "go 是一个动词。"
+          },
+          {
+            "en": "In the sentence 'She runs fast', 'runs' is the verb.",
+            "role": "ext",
+            "zh": "在句子“She runs fast”中，runs 是动词。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vɜːb/",
+      "us": "/vɜːrb/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "verbal": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "口头的",
+          "en": "spoken, not written"
+        },
+        "sentences": [
+          {
+            "en": "We had a verbal agreement.",
+            "role": "basic",
+            "zh": "我们有过口头约定。"
+          },
+          {
+            "en": "Employers should confirm verbal agreements in writing to prevent misunderstandings about working hours and responsibilities.",
+            "role": "ext",
+            "zh": "雇主应以书面形式确认口头协议，以防对工作时间和职责产生误解。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɜːbl/",
+      "us": "/ˈvɜːrbl/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "verdict": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "裁决；判决",
+          "en": "the decision of a jury or court"
+        },
+        "sentences": [
+          {
+            "en": "The jury gave its verdict today.",
+            "role": "basic",
+            "zh": "陪审团今天作出了裁决。"
+          },
+          {
+            "en": "A jury should reach its verdict solely on the evidence presented during the trial.",
+            "role": "ext",
+            "zh": "陪审团应仅依据庭审中呈现的证据作出裁决。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɜːdɪkt/",
+      "us": "/ˈvɜːrdɪkt/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "verge": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "边缘；濒临",
+          "en": "the edge or border of something; the point at which something is about to happen"
+        },
+        "sentences": [
+          {
+            "en": "The car stopped at the verge.",
+            "role": "basic",
+            "zh": "她丢了戒指，几乎要哭出来了。"
+          },
+          {
+            "en": "Several native species are on the verge of extinction because their habitats have been severely damaged.",
+            "role": "ext",
+            "zh": "几种本地物种因栖息地遭到严重破坏而濒临灭绝。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vɜːdʒ/",
+      "us": "/vɜːrdʒ/"
+    },
+    "topic": "daily",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "verification": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "核实；验证",
+          "en": "The process of checking that something is true or accurate."
+        },
+        "sentences": [
+          {
+            "en": "The website requires identity verification before I can withdraw money.",
+            "role": "basic",
+            "zh": "这个网站要求先验证身份，我才能提现。"
+          },
+          {
+            "en": "Independent verification of research findings is essential for maintaining public confidence in scientific advice.",
+            "role": "ext",
+            "zh": "对研究结果进行独立验证，对于维持公众对科学建议的信任至关重要。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌverɪfɪˈkeɪʃən/"
+    },
+    "topic": "uncategorized",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "verify": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "核实；查证",
+          "en": "to check that something is true, accurate, or genuine"
+        },
+        "sentences": [
+          {
+            "en": "Please verify your address before we send the parcel.",
+            "role": "basic",
+            "zh": "寄出包裹前，请核实你的地址。"
+          },
+          {
+            "en": "Researchers must verify their findings through repeated experiments before presenting them to the wider scientific community.",
+            "role": "ext",
+            "zh": "研究人员必须通过重复实验核实发现，才能向更广泛的科学界公布。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈverɪfaɪ/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vernacular": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "白话；本地话；方言",
+          "en": "the everyday language or dialect spoken by ordinary people in a particular place"
+        },
+        "sentences": [
+          {
+            "en": "He writes in the local vernacular.",
+            "role": "basic",
+            "zh": "他用当地白话写作。"
+          },
+          {
+            "en": "Teaching in the vernacular can help young children understand lessons while maintaining connections with their cultural heritage.",
+            "role": "ext",
+            "zh": "用本地语言教学能帮助幼童理解课程，同时保持与自身文化传统的联系。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vəˈnækjələ(r)/",
+      "us": "/vərˈnækjələr/"
+    },
+    "topic": "society",
+    "level": "C2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "versatile": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "多才多艺的；多用途的",
+          "en": "Able to do many different things or serve many different purposes."
+        },
+        "sentences": [
+          {
+            "en": "This versatile pan works well for soups and stir-fries.",
+            "role": "basic",
+            "zh": "这个多用途锅做汤、炒菜都很好用。"
+          },
+          {
+            "en": "Employers increasingly value versatile graduates who can adapt to different roles and learn new skills.",
+            "role": "ext",
+            "zh": "雇主越来越重视能适应不同岗位并学习新技能的多面手毕业生。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɜːsətaɪl/"
+    },
+    "topic": "work",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "verse": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "诗节；（歌曲的）段落",
+          "en": "one of the parts that a poem or song is divided into"
+        },
+        "sentences": [
+          {
+            "en": "She learned the first verse of the song.",
+            "role": "basic",
+            "zh": "她学会了这首歌的第一段歌词。"
+          },
+          {
+            "en": "Studying verse can help language learners recognise rhythm and explore how writers convey complex emotions.",
+            "role": "ext",
+            "zh": "学习诗歌可以帮助语言学习者辨识韵律，并探索作家如何传达复杂情感。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vɜːs/",
+      "us": "/vɜːrs/"
+    },
+    "topic": "arts",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "version": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "版本；说法",
+          "en": "a form of something that is slightly different from other forms, or one person's account of an event"
+        },
+        "sentences": [
+          {
+            "en": "I like this version of the song.",
+            "role": "basic",
+            "zh": "我喜欢这首歌的这个版本。"
+          },
+          {
+            "en": "Comparing each witness's version of events helps investigators develop a more accurate understanding of what happened.",
+            "role": "ext",
+            "zh": "比较各位目击者对事件的叙述，有助于调查人员更准确地了解事情的经过。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɜːʃn/",
+      "us": "/ˈvɜːrʒn/"
+    },
+    "topic": "media",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "versus": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "对，对抗；与…相对",
+          "en": "against; as opposed to"
+        },
+        "sentences": [
+          {
+            "en": "Tonight is red versus blue.",
+            "role": "basic",
+            "zh": "今晚是红队对蓝队。"
+          },
+          {
+            "en": "The debate over public versus private transport often centres on cost, convenience, and environmental impact.",
+            "role": "ext",
+            "zh": "关于公共交通与私人交通的讨论往往围绕成本、便利性和环境影响展开。"
+          }
+        ],
+        "pos": "prep."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɜːsəs/",
+      "us": "/ˈvɜːrsəs/"
+    },
+    "topic": "uncategorized",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vertical": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "垂直的；竖直的",
+          "en": "positioned up and down rather than side to side"
+        },
+        "sentences": [
+          {
+            "en": "Draw a vertical line down the page.",
+            "role": "basic",
+            "zh": "在页面上画一条竖线。"
+          },
+          {
+            "en": "Vertical farming could help cities produce fresh vegetables locally while using less land than conventional agricultural methods.",
+            "role": "ext",
+            "zh": "垂直农业可以帮助城市就地生产新鲜蔬菜，同时比传统农业方式占用更少的土地。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɜːtɪkəl/",
+      "us": "/ˈvɜːrtɪkəl/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "very": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "非常，很",
+          "en": "to a high degree; extremely"
+        },
+        "sentences": [
+          {
+            "en": "This cake is very sweet.",
+            "role": "basic",
+            "zh": "这块蛋糕非常甜。"
+          },
+          {
+            "en": "Reliable public transport is very important for residents who cannot afford to own a car.",
+            "role": "ext",
+            "zh": "对于买不起汽车的居民来说，可靠的公共交通非常重要。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈveri/",
+      "us": "/ˈveri/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vessel": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "大船；舰船",
+          "en": "a large ship or boat"
+        },
+        "sentences": [
+          {
+            "en": "A large vessel left the busy harbor.",
+            "role": "basic",
+            "zh": "一艘大型船只离开了繁忙的港口。"
+          },
+          {
+            "en": "Commercial vessels can disturb marine ecosystems through underwater noise, fuel leaks, and the introduction of non-native species.",
+            "role": "ext",
+            "zh": "商船可能通过水下噪声、燃油泄漏和引入外来物种干扰海洋生态系统。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvesəl/",
+      "us": "/ˈvesəl/"
+    },
+    "topic": "travel",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vest": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "背心；汗衫",
+          "en": "a sleeveless garment worn on the upper body, often under a shirt or as underwear"
+        },
+        "sentences": [
+          {
+            "en": "He wore a white vest under his shirt.",
+            "role": "basic",
+            "zh": "他在衬衫里面穿了一件白色背心。"
+          },
+          {
+            "en": "The constitution vests executive authority in elected officials, who remain accountable to the public through regular elections.",
+            "role": "ext",
+            "zh": "宪法将行政权赋予民选官员，他们通过定期选举继续向公众负责。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "授予，赋予（权力等）",
+          "en": "to give someone the legal power or authority to do something"
+        },
+        "sentences": [
+          {
+            "en": "The constitution vests executive authority in elected officials, who remain accountable to the public through regular elections.",
+            "role": "ext",
+            "zh": "宪法将行政权赋予民选官员，他们通过定期选举继续向公众负责。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vest/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vet": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "兽医",
+          "en": "a person trained to treat sick or injured animals"
+        },
+        "sentences": [
+          {
+            "en": "The vet gently checked our puppy's ears and paws.",
+            "role": "basic",
+            "zh": "兽医轻柔地检查了我们小狗的耳朵和爪子。"
+          },
+          {
+            "en": "Organisations should vet potential employees carefully when recruiting people who will work with children or vulnerable adults.",
+            "role": "ext",
+            "zh": "组织在招聘将与儿童或弱势成年人接触的人员时，应仔细审查应聘者。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vet/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "veteran": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "老兵；经验丰富的人",
+          "en": "a person who has long experience, especially in the military"
+        },
+        "sentences": [
+          {
+            "en": "The veteran told war stories.",
+            "role": "basic",
+            "zh": "那位老兵讲述了战争故事。"
+          },
+          {
+            "en": "A veteran of the teaching profession can offer valuable guidance to colleagues entering challenging classroom environments.",
+            "role": "ext",
+            "zh": "教学经验丰富的教师可以为初入充满挑战的课堂环境的同事提供宝贵指导。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvetərən/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "veterinarian": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "兽医",
+          "en": "a doctor who treats animals"
+        },
+        "sentences": [
+          {
+            "en": "The veterinarian helps the sick cat.",
+            "role": "basic",
+            "zh": "兽医帮助那只生病的猫。"
+          },
+          {
+            "en": "She took her dog to the veterinarian for a check-up.",
+            "role": "ext",
+            "zh": "她带狗去兽医那里做检查。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌvetərɪˈneriən/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "veto": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "否决权；否决",
+          "en": "the power or act of rejecting or stopping a decision or proposal"
+        },
+        "sentences": [
+          {
+            "en": "The president used his veto.",
+            "role": "basic",
+            "zh": "总统行使了否决权。"
+          },
+          {
+            "en": "Giving every member a veto can protect minority interests but may also delay urgent collective decisions.",
+            "role": "ext",
+            "zh": "赋予每位成员否决权可以保护少数群体的利益，但也可能拖延紧迫的集体决策。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈviːtəʊ/",
+      "us": "/ˈviːtoʊ/"
+    },
+    "topic": "government",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vex": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "使烦恼；使恼怒",
+          "en": "To make someone annoyed, worried, or frustrated."
+        },
+        "sentences": [
+          {
+            "en": "The constant dripping from the tap began to vex him.",
+            "role": "basic",
+            "zh": "水龙头不停滴水，开始让他心烦。"
+          },
+          {
+            "en": "Disagreements over how to fund public transport continue to vex policymakers in many growing cities.",
+            "role": "ext",
+            "zh": "在许多不断发展的城市，公共交通资金来源的分歧仍困扰着政策制定者。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/veks/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "vexing": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "令人烦恼的；使人苦恼的",
+          "en": "causing worry, annoyance, or difficulty"
+        },
+        "sentences": [
+          {
+            "en": "This is a vexing little problem.",
+            "role": "basic",
+            "zh": "这是一个令人烦恼的小问题。"
+          },
+          {
+            "en": "The most vexing issue for the committee was how to fund the project.",
+            "role": "ext",
+            "zh": "委员会最头疼的问题是该如何为这个项目筹资。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈveksɪŋ/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "via": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "经由；通过",
+          "en": "through; by means of"
+        },
+        "sentences": [
+          {
+            "en": "We flew to Paris via London yesterday.",
+            "role": "basic",
+            "zh": "我们昨天经由伦敦飞往巴黎。"
+          },
+          {
+            "en": "Providing medical advice via video calls can improve access to healthcare for people in remote communities.",
+            "role": "ext",
+            "zh": "通过视频通话提供医疗建议，可以让偏远社区的居民更容易获得医疗服务。"
+          }
+        ],
+        "pos": "prep."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvaɪə/",
+      "us": "/ˈvaɪə/"
+    },
+    "topic": "travel",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "viable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "可行的；能成功的",
+          "en": "able to work successfully; practical and possible"
+        },
+        "sentences": [
+          {
+            "en": "This is a viable plan.",
+            "role": "basic",
+            "zh": "合租公寓似乎是个可行的选择。"
+          },
+          {
+            "en": "Public transport must be affordable and reliable to become a viable alternative to private cars.",
+            "role": "ext",
+            "zh": "公共交通必须价格合理且运行可靠，才能成为私家车的可行替代选择。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvaɪəbl/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vibrant": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "充满活力的；生机勃勃的",
+          "en": "full of energy, life, and enthusiasm"
+        },
+        "sentences": [
+          {
+            "en": "The market is a vibrant place full of colors and sounds.",
+            "role": "basic",
+            "zh": "这个市场是一个充满色彩和声音的生机勃勃的地方。"
+          },
+          {
+            "en": "The city's vibrant arts scene attracts visitors from around the world.",
+            "role": "ext",
+            "zh": "这座城市充满活力的艺术氛围吸引了来自世界各地的游客。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvaɪbrənt/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vibrate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "振动；颤动",
+          "en": "to move or make something move quickly back and forth"
+        },
+        "sentences": [
+          {
+            "en": "The phone will vibrate when a message comes.",
+            "role": "basic",
+            "zh": "有消息来时，手机会振动。"
+          },
+          {
+            "en": "Heavy traffic can cause nearby buildings to vibrate, affecting residents' comfort and potentially damaging older structures.",
+            "role": "ext",
+            "zh": "繁忙的交通会使附近建筑物振动，影响居民的舒适度，并可能损坏老旧建筑。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vaɪˈbreɪt/",
+      "us": "/ˈvaɪbreɪt/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vice": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "恶习；缺点",
+          "en": "a bad habit or immoral quality in someone's character"
+        },
+        "sentences": [
+          {
+            "en": "Lying was a vice he tried to stop.",
+            "role": "basic",
+            "zh": "吃太多巧克力是我唯一的坏习惯。"
+          },
+          {
+            "en": "Excessive consumption is sometimes viewed as a personal vice rather than a consequence of social pressures.",
+            "role": "ext",
+            "zh": "过度消费有时被视为个人恶习，而非社会压力造成的结果。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vaɪs/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vicinity": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "附近，周边地区",
+          "en": "the area around a particular place"
+        },
+        "sentences": [
+          {
+            "en": "There is a shop in the vicinity.",
+            "role": "basic",
+            "zh": "附近有一家商店。"
+          },
+          {
+            "en": "Building new housing in the vicinity of railway stations can reduce car dependence and shorten daily commutes.",
+            "role": "ext",
+            "zh": "在火车站周边新建住房，可以减少对汽车的依赖并缩短日常通勤时间。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vəˈsɪnəti/"
+    },
+    "topic": "city",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vicious": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "恶毒的；凶残的",
+          "en": "cruel and meant to hurt"
+        },
+        "sentences": [
+          {
+            "en": "He made a vicious remark.",
+            "role": "basic",
+            "zh": "他说了一句恶毒的话。"
+          },
+          {
+            "en": "Vicious comments on social media can damage young people's confidence and discourage participation in online discussions.",
+            "role": "ext",
+            "zh": "社交媒体上的恶毒评论可能损害年轻人的自信，使他们不愿参与网上讨论。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪʃəs/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "victim": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "受害者；牺牲品",
+          "en": "a person who is harmed, injured, or killed as a result of a crime, accident, or other event or action"
+        },
+        "sentences": [
+          {
+            "en": "The victim told police the story.",
+            "role": "basic",
+            "zh": "受害者向警方讲述了事情的经过。"
+          },
+          {
+            "en": "Governments should provide practical support for victims of online fraud, including free legal advice.",
+            "role": "ext",
+            "zh": "政府应为网络诈骗受害者提供实际支持，包括免费的法律咨询。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪktɪm/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "victimize": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "使受害；不公平地对待；迫害",
+          "en": "to treat someone unfairly or make them suffer"
+        },
+        "sentences": [
+          {
+            "en": "The workers claimed they were victimized by the company.",
+            "role": "basic",
+            "zh": "工人们声称他们受到了公司的不公平对待。"
+          },
+          {
+            "en": "Laws are needed to protect people who are victimized because of their race or religion.",
+            "role": "ext",
+            "zh": "需要法律来保护那些因种族或宗教而受到迫害的人。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪktɪmaɪz/",
+      "us": "/ˈvɪktɪmaɪz/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "book:cet4"
+  },
+  "victor": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "胜利者，获胜者",
+          "en": "a person who wins a game, battle, or competition"
+        },
+        "sentences": [
+          {
+            "en": "The victor raised the gold cup.",
+            "role": "basic",
+            "zh": "胜利者举起了金杯。"
+          },
+          {
+            "en": "After a long legal battle, she emerged as the victor.",
+            "role": "ext",
+            "zh": "经过漫长的法律斗争，她最终成为胜利者。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪktə/",
+      "us": "/ˈvɪktər/"
+    },
+    "topic": "sport",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "victorious": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "获胜的；胜利的",
+          "en": "Having won a competition, battle, or struggle."
+        },
+        "sentences": [
+          {
+            "en": "The victorious team lifted the trophy above their heads.",
+            "role": "basic",
+            "zh": "获胜的队伍将奖杯高举过头顶。"
+          },
+          {
+            "en": "Athletes who emerge victorious in international competitions often inspire younger generations to participate in sport.",
+            "role": "ext",
+            "zh": "在国际赛事中获胜的运动员往往会激励年轻一代参与体育运动。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vɪkˈtɔːriəs/",
+      "us": "/vɪkˈtɔːriəs/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "victory": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "胜利；成功",
+          "en": "success in a game, contest, election, or war; an occasion when someone wins"
+        },
+        "sentences": [
+          {
+            "en": "The crowd cheered after the victory.",
+            "role": "basic",
+            "zh": "胜利之后人群欢呼起来。"
+          },
+          {
+            "en": "The team's victory in the final was celebrated across the country.",
+            "role": "ext",
+            "zh": "该队在决赛中的胜利在全国各地受到庆祝。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪktəri/"
+    },
+    "topic": "sport",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "video": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "视频；录像",
+          "en": "a recording of moving images and sound that you can watch on a screen"
+        },
+        "sentences": [
+          {
+            "en": "We watch a short video in class.",
+            "role": "basic",
+            "zh": "我们在课堂上看了一段短视频。"
+          },
+          {
+            "en": "Educational videos can make complex processes easier to understand, especially for students with limited background knowledge.",
+            "role": "ext",
+            "zh": "教学视频可以让复杂的过程更容易理解，对背景知识有限的学生尤其如此。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪdiəʊ/",
+      "us": "/ˈvɪdioʊ/"
+    },
+    "topic": "media",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "video clip": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "视频片段；短视频",
+          "en": "a short video recording"
+        },
+        "sentences": [
+          {
+            "en": "She showed us a short video clip of her trip.",
+            "role": "basic",
+            "zh": "她给我们看了一段她旅行的短视频。"
+          },
+          {
+            "en": "The teacher played a video clip to introduce the topic.",
+            "role": "ext",
+            "zh": "老师播放了一段视频片段来引入这个话题。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪdiəʊ klɪp/"
+    },
+    "topic": "media",
+    "level": "A2",
+    "origin": "book:mse-pet"
+  },
+  "video game": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "电子游戏；视频游戏",
+          "en": "a game played on a computer or games console, shown on a screen"
+        },
+        "sentences": [
+          {
+            "en": "He spends too much time playing video games.",
+            "role": "basic",
+            "zh": "他花太多时间玩电子游戏。"
+          },
+          {
+            "en": "The new video game allows players to explore a huge open world.",
+            "role": "ext",
+            "zh": "这款新电子游戏让玩家探索一个巨大的开放世界。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪdiəʊ ɡeɪm/",
+      "us": "/ˈvɪdioʊ ɡeɪm/"
+    },
+    "topic": "arts",
+    "level": "A2",
+    "origin": "book:mse-ket"
+  },
+  "videophone": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "可视电话",
+          "en": "a telephone that allows people to see each other while they talk"
+        },
+        "sentences": [
+          {
+            "en": "A videophone lets you see the person you are talking to.",
+            "role": "basic",
+            "zh": "可视电话让你能看到正在交谈的人。"
+          },
+          {
+            "en": "Before smartphones became common, videophones were often shown in science fiction films.",
+            "role": "ext",
+            "zh": "在智能手机普及之前，可视电话经常出现在科幻电影中。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪdiəʊfəʊn/",
+      "us": "/ˈvɪdioʊfoʊn/"
+    },
+    "topic": "technology",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "videotape": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "录像带",
+          "en": "Magnetic tape used to record moving images and sound."
+        },
+        "sentences": [
+          {
+            "en": "We found an old videotape of our family picnic.",
+            "role": "basic",
+            "zh": "我们找到了一盘记录家庭野餐的旧录像带。"
+          },
+          {
+            "en": "Libraries can preserve recordings stored on videotape by converting them into digital formats for future generations.",
+            "role": "ext",
+            "zh": "图书馆可以将录像带上的影像转成数字格式，为后代保存这些记录。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪdiəʊteɪp/",
+      "us": "/ˈvɪdioʊteɪp/"
+    },
+    "topic": "technology",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "vie": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "激烈竞争；争夺",
+          "en": "to compete eagerly with someone for something"
+        },
+        "sentences": [
+          {
+            "en": "The two teams vie for first place.",
+            "role": "basic",
+            "zh": "这两支队伍争夺第一名。"
+          },
+          {
+            "en": "Several companies are vying for the contract.",
+            "role": "ext",
+            "zh": "几家公司正在争夺这份合同。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vaɪ/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "view": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "景色；视野",
+          "en": "what can be seen from a particular place"
+        },
+        "sentences": [
+          {
+            "en": "The hill has a beautiful view.",
+            "role": "basic",
+            "zh": "这座山上的景色很美。"
+          },
+          {
+            "en": "From the top of the tower, you can get a panoramic view of the whole city.",
+            "role": "ext",
+            "zh": "从塔顶你可以看到整座城市的全景。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "看法；观点",
+          "en": "a personal opinion or way of thinking about something"
+        },
+        "sentences": [
+          {
+            "en": "In my view, we should leave early.",
+            "role": "basic",
+            "zh": "在我看来，我们应该早点出发。"
+          },
+          {
+            "en": "The survey shows that public views on climate change have shifted significantly over the past decade.",
+            "role": "ext",
+            "zh": "调查显示，过去十年公众对气候变化的看法发生了显著变化。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "看待；认为",
+          "en": "to think about something in a particular way"
+        },
+        "sentences": [
+          {
+            "en": "Many residents view investment in public transport as an effective way to reduce urban pollution.",
+            "role": "basic",
+            "zh": "许多居民认为，投资公共交通是减少城市污染的有效方式。"
+          },
+          {
+            "en": "She views the new policy as a step forward, though she acknowledges its potential risks.",
+            "role": "ext",
+            "zh": "她认为新政策是向前迈出的一步，尽管她也承认其潜在风险。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vjuː/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "viewer": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "观众；观看者",
+          "en": "a person who watches television, videos, or a public event"
+        },
+        "sentences": [
+          {
+            "en": "The show attracted millions of viewers.",
+            "role": "basic",
+            "zh": "这个节目吸引了数百万观众。"
+          },
+          {
+            "en": "Viewers can vote for their favorite singer online.",
+            "role": "ext",
+            "zh": "观众可以在网上为他们最喜欢的歌手投票。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvjuːə(r)/",
+      "us": "/ˈvjuːər/"
+    },
+    "topic": "media",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "viewing": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "观看；收看",
+          "en": "The activity of watching television, films, or other visual material."
+        },
+        "sentences": [
+          {
+            "en": "We saved the documentary for our evening viewing.",
+            "role": "basic",
+            "zh": "我们把那部纪录片留到晚上看。"
+          },
+          {
+            "en": "Excessive television viewing may reduce the time children spend exercising and interacting with their families.",
+            "role": "ext",
+            "zh": "看电视过多可能会减少儿童锻炼和与家人互动的时间。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvjuːɪŋ/"
+    },
+    "topic": "media",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "viewpoint": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "观点，看法",
+          "en": "a person's opinion or way of thinking about something"
+        },
+        "sentences": [
+          {
+            "en": "We listened to her viewpoint with care.",
+            "role": "basic",
+            "zh": "我们认真倾听了她的观点。"
+          },
+          {
+            "en": "Considering an issue from another person's viewpoint can help communities resolve disagreements more effectively.",
+            "role": "ext",
+            "zh": "从他人的角度考虑问题，可以帮助社区更有效地解决分歧。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvjuːpɔɪnt/",
+      "us": "/ˈvjuːpɔɪnt/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vigil": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "守夜（尤指为祈祷或看护而保持清醒）",
+          "en": "a period of staying awake to watch or pray, especially at night"
+        },
+        "sentences": [
+          {
+            "en": "They kept a vigil all night.",
+            "role": "basic",
+            "zh": "他们整夜守夜。"
+          },
+          {
+            "en": "Hundreds of people held a candlelit vigil outside the hospital.",
+            "role": "ext",
+            "zh": "数百人在医院外举行了烛光守夜活动。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪdʒɪl/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vigorous": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "精力充沛的；强健的；有力的",
+          "en": "full of energy and strength; strong and active"
+        },
+        "sentences": [
+          {
+            "en": "She took a vigorous walk every morning.",
+            "role": "basic",
+            "zh": "她每天早上都进行一场精力充沛的散步。"
+          },
+          {
+            "en": "The government launched a vigorous campaign against smoking.",
+            "role": "ext",
+            "zh": "政府发起了一场强有力的反吸烟运动。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪɡərəs/",
+      "us": "/ˈvɪɡərəs/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "origin": "book:cet4"
+  },
+  "vigour": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "活力；精力；气势",
+          "en": "great energy, strength, or enthusiasm in action or expression"
+        },
+        "sentences": [
+          {
+            "en": "After a good night's sleep, she returned to work with renewed vigour.",
+            "role": "basic",
+            "zh": "睡了一夜好觉后，她重新精神饱满地回去工作了。"
+          },
+          {
+            "en": "The debate was conducted with intellectual vigour and mutual respect.",
+            "role": "ext",
+            "zh": "这场辩论以思想上的活力和相互尊重的方式进行。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪɡə/",
+      "us": "/ˈvɪɡər/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "vile": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "卑鄙的；恶劣的；令人厌恶的",
+          "en": "extremely unpleasant, morally bad, or evil"
+        },
+        "sentences": [
+          {
+            "en": "That was a vile and cruel trick.",
+            "role": "basic",
+            "zh": "那是一个卑鄙而残忍的恶作剧。"
+          },
+          {
+            "en": "The prisoners were forced to live in vile conditions.",
+            "role": "ext",
+            "zh": "囚犯们被迫生活在极其恶劣的环境中。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vaɪl/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "villa": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "别墅（尤指乡间或度假用的）",
+          "en": "a large house, especially in the country or used for holidays"
+        },
+        "sentences": [
+          {
+            "en": "They rented a villa by the sea.",
+            "role": "basic",
+            "zh": "他们在海边租了一栋别墅。"
+          },
+          {
+            "en": "The family spent the summer at their villa in the south of France.",
+            "role": "ext",
+            "zh": "这家人在法国南部的别墅度过了夏天。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪlə/"
+    },
+    "topic": "travel",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "village": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "村庄；村子",
+          "en": "a small group of houses in the countryside, usually smaller than a town"
+        },
+        "sentences": [
+          {
+            "en": "They live in a small village.",
+            "role": "basic",
+            "zh": "他们住在一个小村庄里。"
+          },
+          {
+            "en": "Reliable public transport can help village residents access employment, education, and healthcare in nearby towns.",
+            "role": "ext",
+            "zh": "可靠的公共交通可以帮助村民前往附近城镇就业、求学和就医。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪlɪdʒ/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "villager": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "村民；乡村居民",
+          "en": "a person who lives in a village"
+        },
+        "sentences": [
+          {
+            "en": "The villagers gather in the square every evening.",
+            "role": "basic",
+            "zh": "村民们每天晚上都聚集在广场上。"
+          },
+          {
+            "en": "The new road has made it easier for villagers to travel to the city.",
+            "role": "ext",
+            "zh": "这条新路使村民去城里更方便了。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪlɪdʒə(r)/",
+      "us": "/ˈvɪlɪdʒər/"
+    },
+    "topic": "society",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "villain": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "恶棍；反派角色",
+          "en": "a wicked person or the main bad character in a story or film"
+        },
+        "sentences": [
+          {
+            "en": "The villain in the story stole the gold.",
+            "role": "basic",
+            "zh": "故事里的反派偷走了金子。"
+          },
+          {
+            "en": "Films often portray a single villain, although real social problems usually have more complex causes.",
+            "role": "ext",
+            "zh": "电影常常塑造一个反派，但现实社会问题的成因通常更加复杂。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪlən/",
+      "us": "/ˈvɪlən/"
+    },
+    "topic": "arts",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vindicate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "证明（某人）清白；证明（某事）正确",
+          "en": "to prove that someone is not guilty or that something is right"
+        },
+        "sentences": [
+          {
+            "en": "New facts vindicate the young scientist.",
+            "role": "basic",
+            "zh": "新的事实证明了这位年轻科学家的清白。"
+          },
+          {
+            "en": "The significant decline in road accidents appears to vindicate the council's decision to introduce lower speed limits.",
+            "role": "ext",
+            "zh": "交通事故显著减少，似乎证明市政委员会降低限速的决定是正确的。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪndɪkeɪt/"
+    },
+    "topic": "society",
+    "level": "C2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vindictive": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "想报复的；怀恨在心的",
+          "en": "having or showing a strong desire to punish someone because you feel you have been wronged"
+        },
+        "sentences": [
+          {
+            "en": "His vindictive words were cruel.",
+            "role": "basic",
+            "zh": "他那些报复性的话很刻薄。"
+          },
+          {
+            "en": "She was accused of taking vindictive action against former colleagues.",
+            "role": "ext",
+            "zh": "她被指责对前同事采取报复性行动。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vɪnˈdɪktɪv/"
+    },
+    "topic": "emotion",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vine": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "藤本植物；藤蔓（尤指葡萄藤）",
+          "en": "a climbing plant, especially one that produces grapes"
+        },
+        "sentences": [
+          {
+            "en": "Grapes grow on a green vine.",
+            "role": "basic",
+            "zh": "葡萄长在绿色的藤蔓上。"
+          },
+          {
+            "en": "The vines in the vineyard were heavy with ripe grapes.",
+            "role": "ext",
+            "zh": "葡萄园里的藤蔓上挂满了成熟的葡萄。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vaɪn/",
+      "us": "/vaɪn/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vinegar": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "醋",
+          "en": "a sour liquid made by fermenting alcohol, used in cooking and food preservation"
+        },
+        "sentences": [
+          {
+            "en": "Add a little vinegar to the salad dressing.",
+            "role": "basic",
+            "zh": "往沙拉酱里加一点醋。"
+          },
+          {
+            "en": "Traditional food preservation methods often use vinegar to slow bacterial growth and extend the storage life of vegetables.",
+            "role": "ext",
+            "zh": "传统食品保存方法常用醋来减缓细菌生长，延长蔬菜的储存时间。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪnɪɡər/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vintage": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "佳酿；（某一年份的）葡萄酒",
+          "en": "wine, especially high-quality wine from a particular year"
+        },
+        "sentences": [
+          {
+            "en": "They opened a vintage bottle of wine.",
+            "role": "basic",
+            "zh": "他们开了一瓶上好的年份葡萄酒。"
+          },
+          {
+            "en": "This vintage is known for its rich flavor and smooth finish.",
+            "role": "ext",
+            "zh": "这款年份葡萄酒以风味浓郁、口感顺滑而闻名。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪntɪdʒ/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "violate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "违反，违背（法律、协议、承诺等）；侵犯",
+          "en": "to break or act against a law, agreement, promise, or principle; to disturb or interfere with something"
+        },
+        "sentences": [
+          {
+            "en": "Do not violate the school safety rules.",
+            "role": "basic",
+            "zh": "不要违反学校的安全规定。"
+          },
+          {
+            "en": "Collecting personal data without informed consent may violate citizens' privacy and undermine public trust in digital services.",
+            "role": "ext",
+            "zh": "未经知情同意收集个人数据，可能侵犯公民隐私，并削弱公众对数字服务的信任。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvaɪəleɪt/",
+      "us": "/ˈvaɪəleɪt/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "violation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "违反；违背",
+          "en": "an act that breaks a law, rule, or agreement"
+        },
+        "sentences": [
+          {
+            "en": "Parking across this entrance is a clear violation.",
+            "role": "basic",
+            "zh": "把车停在这个入口处显然是违规行为。"
+          },
+          {
+            "en": "Collecting personal information without consent may constitute a violation of privacy, even when the data remains confidential.",
+            "role": "ext",
+            "zh": "未经同意收集个人信息，即使数据仍被保密，也可能构成对隐私的侵犯。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌvaɪəˈleɪʃən/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "violence": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "暴力；暴力行为",
+          "en": "behaviour involving physical force intended to hurt, damage, or kill someone or something"
+        },
+        "sentences": [
+          {
+            "en": "The film has too much violence.",
+            "role": "basic",
+            "zh": "这部电影暴力镜头太多。"
+          },
+          {
+            "en": "The government is taking measures to reduce domestic violence.",
+            "role": "ext",
+            "zh": "政府正在采取措施减少家庭暴力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvaɪələns/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "violent": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "暴力的",
+          "en": "using force to hurt or attack"
+        },
+        "sentences": [
+          {
+            "en": "The film is too violent for children.",
+            "role": "basic",
+            "zh": "这部电影对孩子来说太暴力了。"
+          },
+          {
+            "en": "Reducing children's exposure to violent content is a common concern among parents and educators.",
+            "role": "ext",
+            "zh": "减少儿童接触暴力内容，是家长和教育工作者共同关注的问题。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvaɪələnt/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "violet": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "紫罗兰",
+          "en": "a small plant with purple flowers"
+        },
+        "sentences": [
+          {
+            "en": "A violet grew by the stone.",
+            "role": "basic",
+            "zh": "一朵紫罗兰生长在石头旁。"
+          },
+          {
+            "en": "The garden was full of violets in spring.",
+            "role": "ext",
+            "zh": "春天花园里开满了紫罗兰。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvaɪələt/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "violin": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小提琴",
+          "en": "a wooden musical instrument with four strings, played with a bow"
+        },
+        "sentences": [
+          {
+            "en": "My sister practices the violin every evening after dinner.",
+            "role": "basic",
+            "zh": "我姐姐每天晚饭后都练习小提琴。"
+          },
+          {
+            "en": "Learning the violin can help children develop concentration, although regular lessons may be expensive for some families.",
+            "role": "ext",
+            "zh": "学习小提琴有助于儿童培养专注力，但定期上课对某些家庭来说可能费用较高。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌvaɪəˈlɪn/",
+      "us": "/ˌvaɪəˈlɪn/"
+    },
+    "topic": "arts",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "violinist": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小提琴手；小提琴演奏者",
+          "en": "a person who plays the violin"
+        },
+        "sentences": [
+          {
+            "en": "She is a talented violinist.",
+            "role": "basic",
+            "zh": "她是一位有才华的小提琴手。"
+          },
+          {
+            "en": "The violinist performed a solo at the concert last night.",
+            "role": "ext",
+            "zh": "那位小提琴手昨晚在音乐会上演奏了一首独奏曲。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌvaɪəˈlɪnɪst/",
+      "us": "/ˌvaɪəˈlɪnɪst/"
+    },
+    "topic": "arts",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "virgin": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "未开发的；原始状态的",
+          "en": "not yet developed or used by people; in its natural state"
+        },
+        "sentences": [
+          {
+            "en": "They explored a virgin forest in the north.",
+            "role": "basic",
+            "zh": "他们探索了北方的一片原始森林。"
+          },
+          {
+            "en": "The island remains a virgin territory, untouched by tourism.",
+            "role": "ext",
+            "zh": "这座岛屿仍是一片未开发的地区，未受旅游业影响。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɜːdʒɪn/",
+      "us": "/ˈvɜːrdʒɪn/"
+    },
+    "topic": "environment",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "virile": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有男子气概的；刚健的",
+          "en": "having qualities traditionally associated with men, such as strength and energy"
+        },
+        "sentences": [
+          {
+            "en": "The statue shows a virile hero.",
+            "role": "basic",
+            "zh": "这座雕塑刻画了一位充满阳刚之气的英雄。"
+          },
+          {
+            "en": "Advertisements often present a virile male ideal, which may reinforce narrow expectations about men's appearance and behaviour.",
+            "role": "ext",
+            "zh": "广告常常展示阳刚的理想男性形象，这可能强化对男性外貌和行为的狭隘期待。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪraɪl/"
+    },
+    "topic": "society",
+    "level": "C2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "virtual": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "虚拟的；通过计算机或网络进行的",
+          "en": "done, seen, or existing on computers or the internet rather than in the physical world"
+        },
+        "sentences": [
+          {
+            "en": "We had a virtual meeting on the computer.",
+            "role": "basic",
+            "zh": "我们在电脑上开了一个虚拟会议。"
+          },
+          {
+            "en": "Virtual classrooms can widen access to education, although reliable internet connections remain essential for effective participation.",
+            "role": "ext",
+            "zh": "虚拟课堂能够扩大教育覆盖面，但可靠的网络连接仍是有效参与的必要条件。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɜːtʃuəl/",
+      "us": "/ˈvɜːrtʃuəl/"
+    },
+    "topic": "technology",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "virtually": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "几乎；实际上",
+          "en": "Almost completely, or in every important practical way."
+        },
+        "sentences": [
+          {
+            "en": "The fridge was virtually empty when we got home.",
+            "role": "basic",
+            "zh": "我们到家时，冰箱里几乎空了。"
+          },
+          {
+            "en": "Online courses have made educational resources accessible from virtually any location with an internet connection.",
+            "role": "ext",
+            "zh": "在线课程使人们几乎在任何有网络连接的地方都能获取教育资源。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɜːtʃuəli/",
+      "us": "/ˈvɝːtʃuəli/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "virtue": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "美德；优点",
+          "en": "a good quality or way of behaving; an advantage"
+        },
+        "sentences": [
+          {
+            "en": "Honesty is a virtue that people respect.",
+            "role": "basic",
+            "zh": "诚实是一种人们尊重的美德。"
+          },
+          {
+            "en": "One virtue of public transport is its ability to move large numbers of people using relatively little space.",
+            "role": "ext",
+            "zh": "公共交通的一大优点是能利用相对较少的空间运送大量乘客。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɜːtʃuː/",
+      "us": "/ˈvɜːrtʃuː/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "virus": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "病毒",
+          "en": "a very small living thing that causes disease"
+        },
+        "sentences": [
+          {
+            "en": "A virus made the child sick.",
+            "role": "basic",
+            "zh": "一种病毒使这个孩子生病了。"
+          },
+          {
+            "en": "Public health campaigns can limit the spread of a virus by encouraging vaccination and regular handwashing.",
+            "role": "ext",
+            "zh": "公共卫生宣传可以通过鼓励接种疫苗和经常洗手来限制病毒传播。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvaɪrəs/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "visa": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "签证",
+          "en": "Official permission to enter or stay in a foreign country."
+        },
+        "sentences": [
+          {
+            "en": "My student visa was approved shortly before my flight.",
+            "role": "basic",
+            "zh": "我的学生签证在起飞前不久才办下来。"
+          },
+          {
+            "en": "Simpler visa procedures can encourage international students to study abroad and contribute to local economies.",
+            "role": "ext",
+            "zh": "简化签证手续可以鼓励国际学生出国留学，并为当地经济作出贡献。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈviːzə/"
+    },
+    "topic": "travel",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "visceral": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "内脏的；发自内心的；本能的",
+          "en": "relating to the internal organs; based on deep feelings rather than reason"
+        },
+        "sentences": [
+          {
+            "en": "She had a visceral reaction to the bad news.",
+            "role": "basic",
+            "zh": "她对那个坏消息产生了本能的反应。"
+          },
+          {
+            "en": "The film's visceral imagery left a lasting impression on the audience.",
+            "role": "ext",
+            "zh": "这部电影震撼内脏的画面给观众留下了持久的印象。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪsərəl/",
+      "us": "/ˈvɪsərəl/"
+    },
+    "topic": "health",
+    "level": "C1",
+    "origin": "book:cet6"
+  },
+  "viscous": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "黏稠的；黏滞的",
+          "en": "thick and sticky; not flowing easily"
+        },
+        "sentences": [
+          {
+            "en": "The liquid became viscous after it was heated.",
+            "role": "basic",
+            "zh": "这种液体加热后变得黏稠。"
+          },
+          {
+            "en": "Honey is more viscous than water, so it pours more slowly.",
+            "role": "ext",
+            "zh": "蜂蜜比水更黏稠，因此流动得更慢。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪs.kəs/",
+      "us": "/ˈvɪs.kəs/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "visibility": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "可见度；能见度",
+          "en": "the distance or clarity with which objects can be seen, especially in weather conditions"
+        },
+        "sentences": [
+          {
+            "en": "The fog reduced visibility to less than 100 meters.",
+            "role": "basic",
+            "zh": "大雾使能见度降至不到100米。"
+          },
+          {
+            "en": "Poor visibility caused by heavy rain led to several flight delays.",
+            "role": "ext",
+            "zh": "大雨造成的低能见度导致多架航班延误。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌvɪzəˈbɪləti/",
+      "us": "/ˌvɪzəˈbɪləti/"
+    },
+    "topic": "environment",
+    "level": "B2",
+    "origin": "book:cet4"
+  },
+  "visible": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "看得见的；可见的",
+          "en": "able to be seen"
+        },
+        "sentences": [
+          {
+            "en": "The moon is visible tonight.",
+            "role": "basic",
+            "zh": "今晚月亮可见。"
+          },
+          {
+            "en": "Investment in public transport has brought visible improvements to air quality in several major cities.",
+            "role": "ext",
+            "zh": "公共交通投资已使几个大城市的空气质量得到明显改善。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪzəbl/"
+    },
+    "topic": "science",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vision": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "视力",
+          "en": "the ability to see with the eyes"
+        },
+        "sentences": [
+          {
+            "en": "Glasses can improve your vision.",
+            "role": "basic",
+            "zh": "眼镜可以改善你的视力。"
+          },
+          {
+            "en": "Regular eye exams can help detect problems with your vision early.",
+            "role": "ext",
+            "zh": "定期眼科检查有助于及早发现视力问题。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪʒn/"
+    },
+    "topic": "health",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "visit": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "拜访；参观",
+          "en": "to go and see a person or place"
+        },
+        "sentences": [
+          {
+            "en": "We visit Grandma on Sunday.",
+            "role": "basic",
+            "zh": "我们星期天去看望奶奶。"
+          },
+          {
+            "en": "Students who visit science museums can connect classroom theories with practical examples from everyday life.",
+            "role": "ext",
+            "zh": "参观科学博物馆的学生能够把课堂理论与日常生活中的实际例子联系起来。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪzɪt/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "visitor": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "访问者，参观者；来访者",
+          "en": "a person who visits a place or comes to see someone"
+        },
+        "sentences": [
+          {
+            "en": "A visitor left her umbrella by our front door.",
+            "role": "basic",
+            "zh": "一位访客把她的伞落在了我们前门旁。"
+          },
+          {
+            "en": "The museum attracts international visitors by offering exhibitions that explore local history and culture.",
+            "role": "ext",
+            "zh": "这家博物馆通过举办探究当地历史与文化的展览吸引国际游客。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪzɪtə/",
+      "us": "/ˈvɪzɪtər/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vista": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "远景，景色（尤指美丽的）",
+          "en": "a beautiful view, especially a wide one"
+        },
+        "sentences": [
+          {
+            "en": "The hill offers a wide vista of fields.",
+            "role": "basic",
+            "zh": "这座山丘展现出广阔的田野远景。"
+          },
+          {
+            "en": "From the top of the tower, we enjoyed a breathtaking vista of the valley.",
+            "role": "ext",
+            "zh": "从塔顶，我们欣赏到了山谷令人惊叹的景色。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪstə/"
+    },
+    "topic": "nature",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "visual": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "视觉的；视力的",
+          "en": "Relating to sight or things that can be seen."
+        },
+        "sentences": [
+          {
+            "en": "It was a visual example in class.",
+            "role": "basic",
+            "zh": "这是课堂上的一個视觉示例。"
+          },
+          {
+            "en": "Teachers can use visual aids to make complex scientific concepts easier for younger students to understand.",
+            "role": "ext",
+            "zh": "教师可以使用视觉教具，让年龄较小的学生更容易理解复杂的科学概念。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪʒuəl/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "visualize": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "使形象化；想象",
+          "en": "to form a picture of something in your mind"
+        },
+        "sentences": [
+          {
+            "en": "Please visualize a quiet beach.",
+            "role": "basic",
+            "zh": "请想象一片宁静的沙滩。"
+          },
+          {
+            "en": "Digital models help residents visualize how proposed buildings will change the appearance of their neighbourhood.",
+            "role": "ext",
+            "zh": "数字模型帮助居民直观地想象拟建建筑将如何改变社区的面貌。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪʒuəlaɪz/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vital": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "必不可少的；至关重要的",
+          "en": "essential or necessary; extremely important"
+        },
+        "sentences": [
+          {
+            "en": "Clean water is vital for every living person.",
+            "role": "basic",
+            "zh": "清洁的水对每个活着的人都至关重要。"
+          },
+          {
+            "en": "Reliable public transport plays a vital role in reducing urban congestion and improving access to employment.",
+            "role": "ext",
+            "zh": "可靠的公共交通对缓解城市拥堵和改善就业机会的可及性起着至关重要的作用。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvaɪtəl/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vitality": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "活力；生命力；生机",
+          "en": "energy and enthusiasm; the quality of being full of life and strength"
+        },
+        "sentences": [
+          {
+            "en": "The old man still has vitality.",
+            "role": "basic",
+            "zh": "这位老人仍然很有活力。"
+          },
+          {
+            "en": "Regular exercise can improve your vitality and overall health.",
+            "role": "ext",
+            "zh": "经常锻炼可以增强你的活力和整体健康。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vaɪˈtæləti/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vitally": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "极其重要地；至关重要地",
+          "en": "in a way that is extremely important or essential"
+        },
+        "sentences": [
+          {
+            "en": "It is vitally important to keep accurate records.",
+            "role": "basic",
+            "zh": "保持准确的记录至关重要。"
+          },
+          {
+            "en": "Access to clean water is vitally necessary for public health.",
+            "role": "ext",
+            "zh": "获得清洁水对公共卫生极其必要。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvaɪtəli/",
+      "us": "/ˈvaɪtəli/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "origin": "book:cet4"
+  },
+  "vitamin": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "维生素",
+          "en": "a natural substance in food that is essential for good health and growth"
+        },
+        "sentences": [
+          {
+            "en": "Oranges are rich in vitamin C.",
+            "role": "basic",
+            "zh": "橙子富含维生素C。"
+          },
+          {
+            "en": "A varied diet usually provides the vitamins people need without requiring them to take supplements.",
+            "role": "ext",
+            "zh": "多样化饮食通常能够提供人体所需的维生素，无须服用补充剂。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvɪtəmɪn/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vivid": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "生动的；鲜明的；鲜艳的",
+          "en": "producing powerful feelings or strong, clear images in the mind; very bright and clear"
+        },
+        "sentences": [
+          {
+            "en": "She painted the sky in vivid blue.",
+            "role": "basic",
+            "zh": "她把天空画成了鲜艳的蓝色。"
+          },
+          {
+            "en": "Personal accounts provide vivid descriptions of historical events, helping students understand their human impact.",
+            "role": "ext",
+            "zh": "亲历者的叙述生动地描绘了历史事件，帮助学生理解这些事件对人的影响。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɪvɪd/",
+      "us": "/ˈvɪvɪd/"
+    },
+    "topic": "arts",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vocabulary": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "词汇；词汇量",
+          "en": "all the words known and used by a person, or the words used in a particular language or subject"
+        },
+        "sentences": [
+          {
+            "en": "I learn new vocabulary every day.",
+            "role": "basic",
+            "zh": "我每天都学习新词汇。"
+          },
+          {
+            "en": "Students need a broad academic vocabulary to understand lectures and express complex ideas clearly in essays.",
+            "role": "ext",
+            "zh": "学生需要掌握丰富的学术词汇，才能理解讲座并在论文中清晰表达复杂观点。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vəˈkæbjələri/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vocal": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "直言不讳的",
+          "en": "Expressing opinions or complaints openly and strongly."
+        },
+        "sentences": [
+          {
+            "en": "Our neighbours were vocal about plans to close the pool.",
+            "role": "basic",
+            "zh": "邻居们对关闭游泳池的计划明确表达了意见。"
+          },
+          {
+            "en": "Residents have become increasingly vocal in their opposition to developments that threaten local green spaces.",
+            "role": "ext",
+            "zh": "居民们越来越公开、强烈地反对威胁当地绿地的开发项目。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvəʊkəl/",
+      "us": "/ˈvoʊkəl/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vocalist": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "歌手（尤指乐队或合唱团中的主唱）",
+          "en": "a singer, especially the main singer in a band or group"
+        },
+        "sentences": [
+          {
+            "en": "The vocalist sang with a strong voice.",
+            "role": "basic",
+            "zh": "那位歌手用有力的嗓音演唱。"
+          },
+          {
+            "en": "A skilled vocalist can help traditional music reach younger audiences without losing its distinctive cultural character.",
+            "role": "ext",
+            "zh": "技艺娴熟的歌手能让传统音乐吸引年轻听众，同时保留其独特的文化特色。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvəʊkəlɪst/",
+      "us": "/ˈvoʊkəlɪst/"
+    },
+    "topic": "arts",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vocation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "天职；志业",
+          "en": "a job that you do because you feel it is your purpose in life"
+        },
+        "sentences": [
+          {
+            "en": "Teaching felt like a true vocation to her.",
+            "role": "basic",
+            "zh": "对她来说，教书感觉像是一份真正的天职。"
+          },
+          {
+            "en": "Career guidance should help young people discover a vocation that matches their abilities and values.",
+            "role": "ext",
+            "zh": "职业指导应帮助年轻人找到符合自身能力和价值观的志业。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vəʊˈkeɪʃən/",
+      "us": "/voʊˈkeɪʃən/"
+    },
+    "topic": "work",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vocational": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "职业技能的；职业的",
+          "en": "Relating to practical skills and training for a particular job"
+        },
+        "sentences": [
+          {
+            "en": "My cousin chose a vocational course in plumbing.",
+            "role": "basic",
+            "zh": "我表亲选了一门管道安装维修职业课程。"
+          },
+          {
+            "en": "Expanding vocational education can help young people develop practical skills that match the needs of local employers.",
+            "role": "ext",
+            "zh": "扩大职业教育能帮助年轻人掌握符合当地雇主需求的实用技能。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vəʊˈkeɪʃənəl/",
+      "us": "/voʊˈkeɪʃənəl/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vogue": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "时尚；流行",
+          "en": "a popular style or trend at a particular time"
+        },
+        "sentences": [
+          {
+            "en": "Short coats are in vogue this year.",
+            "role": "basic",
+            "zh": "今年短外套很流行。"
+          },
+          {
+            "en": "The current vogue for repairing old furniture may help reduce household waste and encourage more sustainable consumption.",
+            "role": "ext",
+            "zh": "当前修复旧家具的风潮可能有助于减少家庭垃圾，并鼓励更可持续的消费。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vəʊɡ/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "voice": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "声音；嗓音",
+          "en": "the sound you make when you speak"
+        },
+        "sentences": [
+          {
+            "en": "I hear Mum's voice in the kitchen.",
+            "role": "basic",
+            "zh": "我听到妈妈在厨房里的声音。"
+          },
+          {
+            "en": "Public consultations give local residents a voice in decisions that directly affect their communities.",
+            "role": "ext",
+            "zh": "公众咨询让当地居民有机会参与直接影响其社区的决策。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vɔɪs/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "void": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无效的；法律上无效的",
+          "en": "not legally valid"
+        },
+        "sentences": [
+          {
+            "en": "The old contract is now void.",
+            "role": "basic"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vɔɪd/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "volatile": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "易变的；不稳定的",
+          "en": "likely to change suddenly and unpredictably"
+        },
+        "sentences": [
+          {
+            "en": "The market is very volatile.",
+            "role": "basic",
+            "zh": "市场非常不稳定。"
+          },
+          {
+            "en": "Volatile food prices make it difficult for low-income households to plan their spending and maintain a balanced diet.",
+            "role": "ext",
+            "zh": "食品价格波动不定，使低收入家庭难以规划开支并维持均衡饮食。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɒlətaɪl/",
+      "us": "/ˈvɑːlətl/"
+    },
+    "topic": "economy",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "volcanic": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "火山的；火山形成的",
+          "en": "Related to volcanoes or produced by their activity."
+        },
+        "sentences": [
+          {
+            "en": "We walked across dark volcanic rock near the coast.",
+            "role": "basic",
+            "zh": "我们在海岸附近的深色火山岩上行走。"
+          },
+          {
+            "en": "Although volcanic eruptions threaten nearby settlements, the resulting soils can support highly productive agriculture over time.",
+            "role": "ext",
+            "zh": "虽然火山喷发威胁附近的居民区，但其形成的土壤经过一段时间后可支撑高产农业。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vɒlˈkænɪk/",
+      "us": "/vɑːlˈkænɪk/"
+    },
+    "topic": "nature",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "volcano": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "火山",
+          "en": "a mountain or hill with an opening in the earth's crust through which lava, ash, and gases may erupt"
+        },
+        "sentences": [
+          {
+            "en": "The volcano smokes on the island.",
+            "role": "basic",
+            "zh": "岛上的火山冒着烟。"
+          },
+          {
+            "en": "Although an active volcano can threaten nearby communities, volcanic soils often provide valuable land for agriculture.",
+            "role": "ext",
+            "zh": "虽然活火山会威胁附近社区，但火山土壤往往能为农业提供宝贵的土地。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vɒlˈkeɪnəʊ/",
+      "us": "/vɑːlˈkeɪnoʊ/"
+    },
+    "topic": "nature",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "volley": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "截击；凌空击球",
+          "en": "a hit or kick of the ball before it touches the ground"
+        },
+        "sentences": [
+          {
+            "en": "She won the tennis match with a sharp volley.",
+            "role": "basic",
+            "zh": "她凭借一记凌厉的截击赢得了网球比赛。"
+          },
+          {
+            "en": "Learning to volley effectively helps young tennis players develop coordination and respond quickly under pressure.",
+            "role": "ext",
+            "zh": "学习有效截击有助于年轻网球运动员提升协调能力，并在压力下迅速反应。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɒli/",
+      "us": "/ˈvɑːli/"
+    },
+    "topic": "sport",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "volleyball": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "排球（运动）",
+          "en": "a sport in which two teams hit a ball over a high net with their hands"
+        },
+        "sentences": [
+          {
+            "en": "The girls play volleyball at school.",
+            "role": "basic",
+            "zh": "女孩们在学校打排球。"
+          },
+          {
+            "en": "Team sports such as volleyball can help students develop communication skills while encouraging regular physical activity.",
+            "role": "ext",
+            "zh": "排球等团队运动既能帮助学生培养沟通能力，也能鼓励他们定期锻炼。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɒlibɔːl/",
+      "us": "/ˈvɑːlibɔːl/"
+    },
+    "topic": "sport",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "volt": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "伏特（电压单位）",
+          "en": "a unit of electrical potential difference"
+        },
+        "sentences": [
+          {
+            "en": "This small battery supplies just one and a half volts.",
+            "role": "basic",
+            "zh": "这节小电池只能提供一点五伏的电压。"
+          },
+          {
+            "en": "Engineers measure electrical potential difference in volts when designing safe and efficient systems for homes and factories.",
+            "role": "ext",
+            "zh": "工程师为住宅和工厂设计安全高效的系统时，用伏特来计量电势差。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/vəʊlt/",
+      "us": "/voʊlt/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "voltage": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "电压",
+          "en": "the electrical force that pushes current through a circuit, measured in volts"
+        },
+        "sentences": [
+          {
+            "en": "The voltage of this battery is 1.5 volts.",
+            "role": "basic",
+            "zh": "这块电池的电压是1.5伏。"
+          },
+          {
+            "en": "High voltage can be dangerous, so workers must follow safety rules.",
+            "role": "ext",
+            "zh": "高电压可能很危险，因此工作人员必须遵守安全规则。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvəʊltɪdʒ/",
+      "us": "/ˈvoʊltɪdʒ/"
+    },
+    "topic": "science",
+    "level": "B1",
+    "origin": "book:cet4"
+  },
+  "volume": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "音量",
+          "en": "the loudness of a sound"
+        },
+        "sentences": [
+          {
+            "en": "Please turn down the volume of the music.",
+            "role": "basic",
+            "zh": "请把音乐的音量调低。"
+          },
+          {
+            "en": "The growing volume of household waste highlights the need for better recycling facilities in urban areas.",
+            "role": "ext",
+            "zh": "不断增加的生活垃圾量凸显了城市地区改善回收设施的必要性。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɒljuːm/",
+      "us": "/ˈvɑːljuːm/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "voluntary": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "自愿的；志愿的",
+          "en": "done by free choice"
+        },
+        "sentences": [
+          {
+            "en": "The club is a voluntary group of students.",
+            "role": "basic",
+            "zh": "这个俱乐部是一个由学生自愿组成的团体。"
+          },
+          {
+            "en": "Voluntary work can help young people develop practical skills while contributing to their local communities.",
+            "role": "ext",
+            "zh": "志愿工作既能帮助年轻人培养实用技能，也能让他们为当地社区作贡献。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɒləntri/",
+      "us": "/ˈvɑːlənteri/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "volunteer": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "志愿者",
+          "en": "a person who offers to do something without being paid"
+        },
+        "sentences": [
+          {
+            "en": "A volunteer helps at the library.",
+            "role": "basic",
+            "zh": "一位志愿者在图书馆帮忙。"
+          },
+          {
+            "en": "Universities can encourage students to volunteer in their communities by offering flexible schedules and practical support.",
+            "role": "ext",
+            "zh": "大学可以通过提供灵活的时间安排和实际支持，鼓励学生参与社区志愿服务。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌvɒlənˈtɪə/",
+      "us": "/ˌvɑːlənˈtɪr/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vomit": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "呕吐",
+          "en": "to bring food back up from the stomach"
+        },
+        "sentences": [
+          {
+            "en": "The sick child began to vomit after lunch.",
+            "role": "basic",
+            "zh": "那个生病的孩子午饭后开始呕吐。"
+          },
+          {
+            "en": "Patients who vomit repeatedly may become dehydrated and should seek medical advice if symptoms persist.",
+            "role": "ext",
+            "zh": "反复呕吐的患者可能出现脱水，若症状持续，应咨询医生。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɒmɪt/",
+      "us": "/ˈvɑːmɪt/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vortex": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "旋涡；涡流",
+          "en": "A mass of fluid or air that spins rapidly and pulls things toward its center."
+        },
+        "sentences": [
+          {
+            "en": "Leaves spun in a vortex beside the riverbank.",
+            "role": "basic",
+            "zh": "树叶在河岸旁的旋涡中打转。"
+          },
+          {
+            "en": "Without access to affordable credit, some households become trapped in a vortex of debt and financial insecurity.",
+            "role": "ext",
+            "zh": "如果无法获得利率可负担的贷款，一些家庭就会陷入债务与财务不稳定的旋涡。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɔːteks/",
+      "us": "/ˈvɔːrteks/"
+    },
+    "topic": "nature",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "vote": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "投票；表决",
+          "en": "to formally express a choice or opinion, especially in an election or meeting"
+        },
+        "sentences": [
+          {
+            "en": "We vote for a class leader.",
+            "role": "basic",
+            "zh": "我们投票选班长。"
+          },
+          {
+            "en": "Allowing residents to vote on local projects may increase public participation in community development.",
+            "role": "ext",
+            "zh": "允许居民就地方项目投票，可能提高公众参与社区发展的积极性。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vəʊt/"
+    },
+    "topic": "government",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "voter": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "选民；投票人",
+          "en": "Someone who votes or has the right to vote"
+        },
+        "sentences": [
+          {
+            "en": "Each voter placed a folded ballot into the sealed box.",
+            "role": "basic",
+            "zh": "每位投票人都把折好的选票投入密封的票箱。"
+          },
+          {
+            "en": "Clear information about public policies enables each voter to make a more informed choice during elections.",
+            "role": "ext",
+            "zh": "清晰的公共政策信息能让每位选民在选举中作出更明智的选择。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvəʊtə/",
+      "us": "/ˈvoʊtər/"
+    },
+    "topic": "government",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "vouch": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "担保；证明（某人可靠或某事属实）",
+          "en": "to say that you know someone is reliable or that something is true, especially from personal knowledge"
+        },
+        "sentences": [
+          {
+            "en": "I can vouch for her excellent cooking skills.",
+            "role": "basic",
+            "zh": "我可以担保她的厨艺非常好。"
+          },
+          {
+            "en": "Independent experts should examine the research methods before they vouch for the accuracy of the findings.",
+            "role": "ext",
+            "zh": "独立专家应先审查研究方法，再为研究结果的准确性作担保。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vaʊtʃ/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "voucher": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "代金券；优惠券",
+          "en": "a printed piece of paper that can be used instead of money to pay for something, or that entitles the holder to a discount"
+        },
+        "sentences": [
+          {
+            "en": "I paid with a gift voucher.",
+            "role": "basic",
+            "zh": "我用礼品券付了款。"
+          },
+          {
+            "en": "Governments can provide training vouchers to help unemployed adults develop skills required by local employers.",
+            "role": "ext",
+            "zh": "政府可以提供培训券，帮助失业成年人掌握当地雇主所需的技能。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvaʊtʃə/",
+      "us": "/ˈvaʊtʃər/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vow": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "发誓；郑重承诺",
+          "en": "to make a serious promise to do something"
+        },
+        "sentences": [
+          {
+            "en": "They vow to help each other always.",
+            "role": "basic",
+            "zh": "他们发誓永远互相帮助。"
+          },
+          {
+            "en": "Local leaders vowed to protect public parks despite growing pressure to develop more housing.",
+            "role": "ext",
+            "zh": "尽管增加住房建设的压力越来越大，当地领导人仍承诺保护公共公园。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/vaʊ/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vowel": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "元音；元音字母",
+          "en": "A speech sound produced without blocking the flow of air, or a letter representing such a sound."
+        },
+        "sentences": [
+          {
+            "en": "The word 'apple' begins with a vowel.",
+            "role": "basic",
+            "zh": "单词apple以一个元音开头。"
+          },
+          {
+            "en": "Recognising differences between vowel sounds can help language learners understand unfamiliar accents and communicate more clearly.",
+            "role": "ext",
+            "zh": "辨别元音之间的差异有助于语言学习者理解陌生口音，并更清晰地交流。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈvaʊəl/"
+    },
+    "topic": "education",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "voyage": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "航行；远航",
+          "en": "a long journey, especially by sea or in space"
+        },
+        "sentences": [
+          {
+            "en": "The long voyage across the sea began.",
+            "role": "basic",
+            "zh": "横跨大海的漫长航行开始了。"
+          },
+          {
+            "en": "The voyage to the distant island took three weeks.",
+            "role": "ext",
+            "zh": "前往那座遥远岛屿的航行花了三周时间。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvɔɪɪdʒ/",
+      "us": "/ˈvɔɪɪdʒ/"
+    },
+    "topic": "travel",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "vulgar": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "粗俗的；下流的",
+          "en": "rude and offensive, especially in a sexual or crude way"
+        },
+        "sentences": [
+          {
+            "en": "Please do not use vulgar words.",
+            "role": "basic",
+            "zh": "请不要使用粗俗的词语。"
+          },
+          {
+            "en": "Some viewers argue that vulgar humour on television can encourage disrespectful behaviour among younger audiences.",
+            "role": "ext",
+            "zh": "一些观众认为，电视上的粗俗幽默可能会助长年轻观众不尊重他人的行为。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvʌlɡə/",
+      "us": "/ˈvʌlɡər/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "vulnerability": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "脆弱性；易受伤害性",
+          "en": "The state of being easily harmed, affected, or attacked."
+        },
+        "sentences": [
+          {
+            "en": "The storm exposed the vulnerability of our old roof.",
+            "role": "basic",
+            "zh": "暴风雨暴露了我们旧屋顶的脆弱。"
+          },
+          {
+            "en": "Investing in flood defences can reduce the vulnerability of coastal communities to increasingly severe storms.",
+            "role": "ext",
+            "zh": "投资防洪设施可以降低沿海社区面对日益猛烈的风暴时的脆弱性。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌvʌlnərəˈbɪləti/"
+    },
+    "topic": "environment",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "vulnerable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "易受伤害的；脆弱的",
+          "en": "weak and easily hurt physically or emotionally"
+        },
+        "sentences": [
+          {
+            "en": "Young birds are vulnerable to cold weather.",
+            "role": "basic",
+            "zh": "幼鸟容易受到寒冷天气的伤害。"
+          },
+          {
+            "en": "Local authorities should provide additional support for vulnerable residents during periods of extreme heat.",
+            "role": "ext",
+            "zh": "在极端高温期间，地方政府应为易受影响的居民提供额外支持。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈvʌlnərəbl/",
+      "us": "/ˈvʌlnərəbl/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  }
+}

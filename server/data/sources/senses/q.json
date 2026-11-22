@@ -1,0 +1,1526 @@
+{
+  "quagmire": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "困境；难以摆脱的局面",
+          "en": "A complicated, unpleasant situation that is difficult to escape."
+        },
+        "sentences": [
+          {
+            "en": "Our simple kitchen renovation became a quagmire of unexpected expenses.",
+            "role": "basic",
+            "zh": "我们原本简单的厨房翻修变成了意外开支不断的困局。"
+          },
+          {
+            "en": "Without clear regulations, major infrastructure projects can become trapped in a quagmire of legal disputes and financial uncertainty.",
+            "role": "ext",
+            "zh": "缺乏明确法规，大型基础设施项目可能陷入法律纠纷与财务不确定性交织的困境。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒɡmaɪə/",
+      "us": "/ˈkwæɡmaɪər/"
+    },
+    "topic": "society",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "quaint": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "古雅的；古色古香的",
+          "en": "attractive because of being old-fashioned or unusual"
+        },
+        "sentences": [
+          {
+            "en": "We stayed in a quaint village inn.",
+            "role": "basic",
+            "zh": "我们住在一家古色古香的乡村客栈里。"
+          },
+          {
+            "en": "The town is known for its quaint cobblestone streets and tiny shops.",
+            "role": "ext",
+            "zh": "这个小镇以古色古香的鹅卵石街道和小店铺而闻名。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kweɪnt/"
+    },
+    "topic": "travel",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "quake": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "震动；颤抖",
+          "en": "to shake or tremble, especially because of fear or a strong force"
+        },
+        "sentences": [
+          {
+            "en": "The ground began to quake under our feet.",
+            "role": "basic",
+            "zh": "大地开始在我们脚下震动。"
+          },
+          {
+            "en": "She quaked with fear when she heard the strange noise.",
+            "role": "ext",
+            "zh": "听到那奇怪的声音时，她害怕得发抖。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kweɪk/"
+    },
+    "topic": "nature",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "qualification": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "资格；资格证书；学历",
+          "en": "An official award or certificate showing that someone has successfully completed a course of education or training."
+        },
+        "sentences": [
+          {
+            "en": "This qualification helped me get a job at a kindergarten.",
+            "role": "basic",
+            "zh": "这个资格证书帮助我在一家幼儿园找到了工作。"
+          },
+          {
+            "en": "Employers increasingly value practical experience alongside formal qualifications when recruiting graduates for demanding professional roles.",
+            "role": "ext",
+            "zh": "招聘毕业生担任要求较高的专业岗位时，雇主越来越重视实际经验与正式学历。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌkwɒlɪfɪˈkeɪʃən/",
+      "us": "/ˌkwɑːlɪfɪˈkeɪʃən/"
+    },
+    "topic": "work",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "qualified": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有资格的；能胜任的",
+          "en": "having the training, skills, or experience needed for something"
+        },
+        "sentences": [
+          {
+            "en": "Only a qualified electrician should repair that damaged socket.",
+            "role": "basic",
+            "zh": "只有具备资质的电工才应该修理那个损坏的插座。"
+          },
+          {
+            "en": "Governments should invest in teacher training to ensure that every school has enough qualified staff.",
+            "role": "ext",
+            "zh": "政府应投入资金培训教师，确保每所学校都有足够的合格教职人员。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒlɪfaɪd/",
+      "us": "/ˈkwɑːlɪfaɪd/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "qualify": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有资格；符合条件",
+          "en": "to have the right or meet the conditions to do or receive something"
+        },
+        "sentences": [
+          {
+            "en": "You must qualify before the final race.",
+            "role": "basic",
+            "zh": "我们队还需要再赢一场才能进入决赛。"
+          },
+          {
+            "en": "Students from low-income households may qualify for financial support that covers tuition fees and essential living costs.",
+            "role": "ext",
+            "zh": "低收入家庭的学生可能符合获得经济资助的条件，用以支付学费和基本生活开支。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒlɪfaɪ/",
+      "us": "/ˈkwɑːlɪfaɪ/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "qualitative": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "定性的；与性质有关的",
+          "en": "relating to the quality or nature of something, rather than to quantities or numbers"
+        },
+        "sentences": [
+          {
+            "en": "We need qualitative research to understand people's opinions.",
+            "role": "basic",
+            "zh": "我们需要定性研究来了解人们的观点。"
+          },
+          {
+            "en": "The study combined qualitative interviews with quantitative surveys.",
+            "role": "ext",
+            "zh": "该研究将定性访谈与定量调查结合起来。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒlɪtətɪv/",
+      "us": "/ˈkwɑːlɪteɪtɪv/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "quality": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "质量；品质",
+          "en": "how good or bad something is"
+        },
+        "sentences": [
+          {
+            "en": "This bread has a high quality.",
+            "role": "basic",
+            "zh": "这种面包质量很好。"
+          },
+          {
+            "en": "Governments should improve the quality of public transport before encouraging people to give up driving.",
+            "role": "ext",
+            "zh": "政府应先提高公共交通的质量，再鼓励人们放弃开车。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒləti/",
+      "us": "/ˈkwɑːləti/"
+    },
+    "topic": "uncategorized",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quantifiable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "可量化的；可以定量表示的",
+          "en": "able to be measured or expressed as a quantity"
+        },
+        "sentences": [
+          {
+            "en": "The benefits of the new system are quantifiable.",
+            "role": "basic",
+            "zh": "新系统的好处是可以量化的。"
+          },
+          {
+            "en": "Customer satisfaction is not always easily quantifiable.",
+            "role": "ext",
+            "zh": "客户满意度并不总是容易量化的。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒntɪfaɪəbl/",
+      "us": "/ˈkwɑːntɪfaɪəbl/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "quantify": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "量化；确定数量",
+          "en": "to measure or express the amount of something"
+        },
+        "sentences": [
+          {
+            "en": "This app helps me quantify how much water I drink.",
+            "role": "basic",
+            "zh": "这个应用帮我量化每天的饮水量。"
+          },
+          {
+            "en": "Researchers find it difficult to quantify the long-term social benefits of investing in public libraries.",
+            "role": "ext",
+            "zh": "研究人员发现，投资公共图书馆的长期社会效益很难量化。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒntɪfaɪ/",
+      "us": "/ˈkwɑːntɪfaɪ/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quantitative": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "定量的；数量的",
+          "en": "relating to amounts that can be measured or counted"
+        },
+        "sentences": [
+          {
+            "en": "Our coach uses quantitative data to track our progress.",
+            "role": "basic",
+            "zh": "我们的教练用定量数据跟踪我们的进步。"
+          },
+          {
+            "en": "Quantitative research allows policymakers to compare employment trends across regions using consistent statistical measures.",
+            "role": "ext",
+            "zh": "定量研究使政策制定者能够使用统一的统计指标，比较不同地区的就业趋势。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒntɪtətɪv/",
+      "us": "/ˈkwɑːntəteɪtɪv/"
+    },
+    "topic": "education",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quantity": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "数量；量",
+          "en": "an amount or number of something"
+        },
+        "sentences": [
+          {
+            "en": "We need a large quantity of rice.",
+            "role": "basic",
+            "zh": "我们需要大量大米。"
+          },
+          {
+            "en": "Reducing the quantity of food wasted by households could lower both environmental damage and living costs.",
+            "role": "ext",
+            "zh": "减少家庭食物浪费量，既能减轻环境损害，也能降低生活成本。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒntəti/",
+      "us": "/ˈkwɑːntəti/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quantum": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "量子（物理学中能量等的最小不可分割单位）",
+          "en": "the smallest discrete unit of energy or other physical quantity in physics"
+        },
+        "sentences": [
+          {
+            "en": "He studies quantum physics at college.",
+            "role": "basic",
+            "zh": "他在大学学习量子物理。"
+          },
+          {
+            "en": "A photon is a quantum of light energy.",
+            "role": "ext",
+            "zh": "光子是光能的一个量子。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒntəm/",
+      "us": "/ˈkwɑːntəm/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "quarrel": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "争吵，口角",
+          "en": "an angry argument or disagreement between people"
+        },
+        "sentences": [
+          {
+            "en": "The two friends had a short quarrel.",
+            "role": "basic",
+            "zh": "两个朋友发生了短暂的争吵。"
+          },
+          {
+            "en": "Their quarrel over money lasted for years.",
+            "role": "ext",
+            "zh": "他们因钱而起的争吵持续了多年。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒrəl/",
+      "us": "/ˈkwɔːrəl/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "quarry": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "采石场",
+          "en": "a place where stone is cut from the ground"
+        },
+        "sentences": [
+          {
+            "en": "Workers cut rock at the quarry.",
+            "role": "basic",
+            "zh": "工人们在采石场开采岩石。"
+          },
+          {
+            "en": "Restoring an abandoned quarry can create valuable wildlife habitats while reducing risks to nearby communities.",
+            "role": "ext",
+            "zh": "修复废弃采石场可以创造宝贵的野生动物栖息地，同时降低周边社区面临的风险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɒri/",
+      "us": "/ˈkwɔːri/"
+    },
+    "topic": "environment",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quart": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "夸脱（容量单位，约等于1.14升）",
+          "en": "a unit of liquid capacity equal to about 1.14 liters"
+        },
+        "sentences": [
+          {
+            "en": "She bought a quart of milk at the store.",
+            "role": "basic",
+            "zh": "她在商店买了一夸脱牛奶。"
+          },
+          {
+            "en": "The recipe calls for two quarts of water.",
+            "role": "ext",
+            "zh": "这个食谱需要两夸脱水。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/kwɔːt/",
+      "us": "/kwɔːrt/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:cet6"
+  },
+  "quarter": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "一刻钟；四分之一",
+          "en": "fifteen minutes; one of four equal parts"
+        },
+        "sentences": [
+          {
+            "en": "It is a quarter past three now.",
+            "role": "basic",
+            "zh": "现在三点一刻。"
+          },
+          {
+            "en": "Almost a quarter of the city's residents depend on public transport for their daily commute.",
+            "role": "ext",
+            "zh": "这座城市近四分之一的居民依靠公共交通日常通勤。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɔːtə/",
+      "us": "/ˈkwɔːrtər/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quarterly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "每季度的",
+          "en": "Happening or produced every three months."
+        },
+        "sentences": [
+          {
+            "en": "Our club holds quarterly meetings at the local library.",
+            "role": "basic",
+            "zh": "我们俱乐部每季度在当地的图书馆开一次会。"
+          },
+          {
+            "en": "Quarterly reports allow investors to monitor company performance and identify emerging financial risks throughout the year.",
+            "role": "ext",
+            "zh": "季度报告让投资者能够全年跟踪公司的表现，并识别新出现的财务风险。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɔːtəli/",
+      "us": "/ˈkwɔːrtərli/"
+    },
+    "topic": "economy",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quartz": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "石英",
+          "en": "a hard mineral common in rocks and used in electronics"
+        },
+        "sentences": [
+          {
+            "en": "She found a piece of quartz beside the stream.",
+            "role": "basic",
+            "zh": "她在小溪旁发现了一块石英。"
+          },
+          {
+            "en": "Quartz crystals are used in electronic devices because their regular vibrations enable highly accurate time measurement.",
+            "role": "ext",
+            "zh": "石英晶体被用于电子设备，因为其规律的振动能实现高度精确的时间测量。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/kwɔːts/",
+      "us": "/kwɔːrts/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quash": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "撤销，废止（法律决定、命令等）；镇压，平息",
+          "en": "to officially cancel or reject a legal decision or order; to forcefully stop or suppress something"
+        },
+        "sentences": [
+          {
+            "en": "The court will quash the order.",
+            "role": "basic"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kwɒʃ/"
+    },
+    "topic": "government",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "quay": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "码头；靠岸装卸平台",
+          "en": "A solid waterside platform where boats stop for loading or unloading"
+        },
+        "sentences": [
+          {
+            "en": "We watched the ferry arrive from the stone quay.",
+            "role": "basic",
+            "zh": "我们站在石砌码头上，看着渡船驶来。"
+          },
+          {
+            "en": "Converting an unused quay into a public promenade can reconnect urban residents with their waterfront.",
+            "role": "ext",
+            "zh": "将闲置码头改造成公共步道，可以让城市居民重新亲近滨水空间。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/kiː/",
+      "us": "/kiː/"
+    },
+    "topic": "travel",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "queen": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "女王；王后",
+          "en": "a female ruler of a country, or the wife of a king"
+        },
+        "sentences": [
+          {
+            "en": "The queen waves to the children.",
+            "role": "basic",
+            "zh": "女王向孩子们挥手。"
+          },
+          {
+            "en": "In some constitutional monarchies, the queen performs ceremonial duties while elected representatives make political decisions.",
+            "role": "ext",
+            "zh": "在一些君主立宪制国家，女王履行礼仪职责，而民选代表作出政治决策。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kwiːn/"
+    },
+    "topic": "government",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "queer": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "古怪的；奇怪的",
+          "en": "strange or unusual"
+        },
+        "sentences": [
+          {
+            "en": "There was a queer noise outside.",
+            "role": "basic",
+            "zh": "外面传来一阵奇怪的声音。"
+          },
+          {
+            "en": "It felt queer to be back in the old house after so many years.",
+            "role": "ext",
+            "zh": "多年后回到那栋老房子，感觉怪怪的。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "酷儿的；性少数群体的",
+          "en": "relating to people who are not heterosexual or are not cisgender"
+        },
+        "sentences": [
+          {
+            "en": "The festival celebrates queer culture and community.",
+            "role": "basic",
+            "zh": "这个节日庆祝酷儿文化与社群。"
+          },
+          {
+            "en": "Museums increasingly include queer perspectives to reflect a broader range of experiences in their exhibitions.",
+            "role": "ext",
+            "zh": "博物馆越来越多地纳入酷儿视角，以在展览中呈现更广泛的人生经历。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/kwɪə/",
+      "us": "/kwɪr/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quell": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "平息，镇压（骚乱、冲突等）；消除（恐惧、疑虑等）",
+          "en": "to stop or suppress something such as unrest, violence, or a strong feeling"
+        },
+        "sentences": [
+          {
+            "en": "Police quell the street fight.",
+            "role": "basic"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/kwel/",
+      "us": "/kwel/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "quench": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "解渴；满足（渴望）",
+          "en": "To satisfy thirst or a strong desire."
+        },
+        "sentences": [
+          {
+            "en": "Cold water quenched my thirst after the long walk.",
+            "role": "basic",
+            "zh": "走了很长一段路后，凉水解了我的渴。"
+          },
+          {
+            "en": "Public drinking fountains allow residents to quench their thirst without buying bottled water, reducing plastic waste.",
+            "role": "ext",
+            "zh": "公共饮水设施让居民无需购买瓶装水就能解渴，从而减少塑料垃圾。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kwentʃ/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "query": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "询问；疑问",
+          "en": "a question about something"
+        },
+        "sentences": [
+          {
+            "en": "I have a query about the bill.",
+            "role": "basic",
+            "zh": "我对账单有一个疑问。"
+          },
+          {
+            "en": "Consumers should query unexpected charges on their bills rather than assume that automated payment systems are always accurate.",
+            "role": "ext",
+            "zh": "消费者应对账单上的意外收费提出疑问，而不是认为自动支付系统总是准确的。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɪəri/",
+      "us": "/ˈkwɪri/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quest": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "寻求；探索",
+          "en": "a long search for something"
+        },
+        "sentences": [
+          {
+            "en": "Their quest for gold was hard.",
+            "role": "basic",
+            "zh": "他们寻找黄金的过程很艰难。"
+          },
+          {
+            "en": "The quest for cleaner energy has encouraged governments to invest heavily in new storage technologies.",
+            "role": "ext",
+            "zh": "对更清洁能源的追求促使各国政府大力投资新型储能技术。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkwest/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "question": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "问题；疑问",
+          "en": "a sentence or phrase used to ask for information"
+        },
+        "sentences": [
+          {
+            "en": "The teacher asks a question.",
+            "role": "basic",
+            "zh": "老师问了一个问题。"
+          },
+          {
+            "en": "Students are encouraged to ask questions when they do not understand the material.",
+            "role": "ext",
+            "zh": "学生被鼓励在不懂材料时提出问题。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkwestʃən/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "questionable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "可疑的；有问题的；未必真实的",
+          "en": "likely to be dishonest, wrong, or not true; open to doubt"
+        },
+        "sentences": [
+          {
+            "en": "The company made a questionable decision to cut safety checks.",
+            "role": "basic",
+            "zh": "公司削减安全检查的决定是有问题的。"
+          },
+          {
+            "en": "His claim about the results is questionable because no data was provided.",
+            "role": "ext",
+            "zh": "他关于结果的声明值得怀疑，因为没有提供任何数据。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwestʃənəbl/",
+      "us": "/ˈkwestʃənəbl/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "questionnaire": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "问卷",
+          "en": "a written set of questions designed to gather information"
+        },
+        "sentences": [
+          {
+            "en": "Please fill in this questionnaire after the talk.",
+            "role": "basic",
+            "zh": "请在讲座后填写这份问卷。"
+          },
+          {
+            "en": "Researchers distributed a questionnaire to investigate how commuting time affects workers' wellbeing and satisfaction with their jobs.",
+            "role": "ext",
+            "zh": "研究人员发放了问卷，调查通勤时间如何影响员工的幸福感和工作满意度。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌkwestʃəˈneə/",
+      "us": "/ˌkwestʃəˈner/"
+    },
+    "topic": "education",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "queue": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "行列；排队等候的人群",
+          "en": "a line of people waiting for something"
+        },
+        "sentences": [
+          {
+            "en": "We joined the queue outside the bakery this morning.",
+            "role": "basic",
+            "zh": "今天早上我们加入了面包店外的队伍。"
+          },
+          {
+            "en": "Improved ticketing systems can reduce the time passengers spend waiting in a queue at busy stations.",
+            "role": "ext",
+            "zh": "改进售票系统可以减少乘客在繁忙车站排队等候的时间。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kjuː/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quick": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "快的；迅速的",
+          "en": "moving or doing something fast"
+        },
+        "sentences": [
+          {
+            "en": "Be quick or we will be late.",
+            "role": "basic",
+            "zh": "她反应敏捷，及时接住了差点掉落的玻璃杯。"
+          },
+          {
+            "en": "A quick response to reports of water pollution can prevent serious damage to nearby ecosystems.",
+            "role": "ext",
+            "zh": "对水污染报告作出迅速回应，可以防止附近生态系统遭受严重破坏。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kwɪk/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quicken": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "加快；使加速",
+          "en": "to become faster, or to make something happen faster"
+        },
+        "sentences": [
+          {
+            "en": "I quickened my pace when the rain started.",
+            "role": "basic",
+            "zh": "开始下雨时，我加快了脚步。"
+          },
+          {
+            "en": "Improved transport links can quicken the pace of economic development by connecting rural producers with urban markets.",
+            "role": "ext",
+            "zh": "改善交通联系可以将农村生产者与城市市场连接起来，从而加快经济发展的步伐。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkwɪkən/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quickly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "快速地；迅速地",
+          "en": "At a fast speed or after only a short time."
+        },
+        "sentences": [
+          {
+            "en": "She quickly finished her homework and went out to play.",
+            "role": "basic",
+            "zh": "她迅速完成作业，然后出去玩了。"
+          },
+          {
+            "en": "Cities must respond quickly to extreme weather events to protect vulnerable residents and maintain essential services.",
+            "role": "ext",
+            "zh": "城市必须迅速应对极端天气事件，以保护弱势居民并维持基本服务。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkwɪkli/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quiet": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "安静的",
+          "en": "with little or no sound"
+        },
+        "sentences": [
+          {
+            "en": "Please be quiet in the library.",
+            "role": "basic",
+            "zh": "在图书馆里请保持安静。"
+          },
+          {
+            "en": "Quiet study spaces in public libraries are essential for students who cannot concentrate at home.",
+            "role": "ext",
+            "zh": "公共图书馆内安静的学习空间对无法在家集中注意力的学生至关重要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkwaɪət/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quietly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "安静地，轻声地",
+          "en": "with little or no noise"
+        },
+        "sentences": [
+          {
+            "en": "Please close the door quietly; the baby is sleeping.",
+            "role": "basic",
+            "zh": "请轻轻关门，宝宝正在睡觉。"
+          },
+          {
+            "en": "Students who work quietly in shared study areas help create an environment that supports concentration.",
+            "role": "ext",
+            "zh": "在公共学习区域安静学习的学生有助于营造利于专注的环境。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkwaɪətli/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quietness": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "安静；宁静",
+          "en": "The state of having little noise or disturbance"
+        },
+        "sentences": [
+          {
+            "en": "I enjoyed the quietness of the garden before breakfast.",
+            "role": "basic",
+            "zh": "早饭前，我享受着花园里的宁静。"
+          },
+          {
+            "en": "The quietness of rural areas attracts residents seeking relief from the constant noise of urban life.",
+            "role": "ext",
+            "zh": "乡村的宁静吸引着希望摆脱城市生活持续噪声的居民。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈkwaɪətnəs/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "quilt": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "被子；棉被",
+          "en": "a warm cover for a bed, made of two layers with soft material between them"
+        },
+        "sentences": [
+          {
+            "en": "A thick quilt kept her warm at night.",
+            "role": "basic",
+            "zh": "一床厚被子让她在夜里很暖和。"
+          },
+          {
+            "en": "She folded the quilt neatly and put it in the cupboard.",
+            "role": "ext",
+            "zh": "她把被子叠得整整齐齐，放进了柜子里。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kwɪlt/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "quip": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "俏皮话；妙语",
+          "en": "a short, clever, and often amusing remark"
+        },
+        "sentences": [
+          {
+            "en": "She answered with a quick quip.",
+            "role": "basic",
+            "zh": "她用一句俏皮话迅速回应。"
+          },
+          {
+            "en": "His speech was full of witty quips that kept the audience laughing.",
+            "role": "ext",
+            "zh": "他的演讲充满了妙语，让观众笑声不断。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kwɪp/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "quirk": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "怪癖；古怪的习惯或行为",
+          "en": "a strange habit or unusual part of someone's behavior"
+        },
+        "sentences": [
+          {
+            "en": "His only quirk is talking to plants.",
+            "role": "basic",
+            "zh": "他唯一的怪癖是和植物说话。"
+          },
+          {
+            "en": "A quirk of the housing market has left some coastal villages cheaper than nearby inland towns.",
+            "role": "ext",
+            "zh": "住房市场的一个反常现象是，有些沿海村庄的房价竟低于附近的内陆城镇。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/kwɜːk/",
+      "us": "/kwɜːrk/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quit": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "离开（工作、组织等）；辞职",
+          "en": "to leave a job, organization, etc."
+        },
+        "sentences": [
+          {
+            "en": "He will not quit the football team.",
+            "role": "basic",
+            "zh": "他不会退出足球队。"
+          },
+          {
+            "en": "She decided to quit her job and travel for a year.",
+            "role": "ext",
+            "zh": "她决定辞掉工作，去旅行一年。"
+          }
+        ],
+        "pos": "v."
+      },
+      {
+        "meaning": {
+          "zh": "停止；戒除",
+          "en": "to stop doing or using something"
+        },
+        "sentences": [
+          {
+            "en": "He is trying to quit smoking.",
+            "role": "basic",
+            "zh": "他正在努力戒烟。"
+          },
+          {
+            "en": "It is hard to quit a habit that you have had for years.",
+            "role": "ext",
+            "zh": "戒掉多年的习惯很难。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kwɪt/"
+    },
+    "topic": "work",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "quite": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "相当，颇",
+          "en": "to a certain degree; more than a little but not very"
+        },
+        "sentences": [
+          {
+            "en": "This bag is quite heavy for me.",
+            "role": "basic",
+            "zh": "这汤挺辣的，不过我喜欢。"
+          },
+          {
+            "en": "Although cycling is quite popular among students, inadequate infrastructure prevents many commuters from choosing this sustainable option.",
+            "role": "ext",
+            "zh": "虽然骑行在学生中颇受欢迎，但基础设施不足使许多通勤者无法选择这种可持续的出行方式。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kwaɪt/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quiver": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "颤抖；轻微抖动",
+          "en": "to shake slightly, often because of emotion, cold, or weakness"
+        },
+        "sentences": [
+          {
+            "en": "Her hands began to quiver.",
+            "role": "basic",
+            "zh": "她的双手开始颤抖。"
+          },
+          {
+            "en": "A speaker's voice may quiver under pressure, even when they have prepared thoroughly for a public presentation.",
+            "role": "ext",
+            "zh": "即使为公开演讲做了充分准备，演讲者的声音也可能因压力而颤抖。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwɪvə/",
+      "us": "/ˈkwɪvər/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quiz": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "小测验",
+          "en": "a short test in class"
+        },
+        "sentences": [
+          {
+            "en": "We have a quiz every Friday.",
+            "role": "basic",
+            "zh": "我们每周五都有一个小测验。"
+          },
+          {
+            "en": "A short quiz at the beginning of each lesson can help teachers identify gaps in students' understanding.",
+            "role": "ext",
+            "zh": "每节课开始时的小测验可以帮助教师发现学生理解上的不足。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/kwɪz/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quota": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "配额；定额；限额",
+          "en": "a fixed maximum or minimum amount of something that is allowed or required"
+        },
+        "sentences": [
+          {
+            "en": "Each shop has a sales quota.",
+            "role": "basic",
+            "zh": "每家商店都有销售配额。"
+          },
+          {
+            "en": "Fishing quotas can protect marine populations, provided that governments monitor catches and enforce the limits consistently.",
+            "role": "ext",
+            "zh": "只要政府监测捕捞量并始终严格执行限额，捕捞配额就能保护海洋生物种群。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈkwəʊtə/",
+      "us": "/ˈkwoʊtə/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quotation": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "引语；引用",
+          "en": "words repeated exactly from another person or source"
+        },
+        "sentences": [
+          {
+            "en": "She opened her speech with a quotation from a poem.",
+            "role": "basic",
+            "zh": "她引用了一句诗作为演讲的开场白。"
+          },
+          {
+            "en": "The essay begins with a quotation from Shakespeare, which the author then explains in detail.",
+            "role": "ext",
+            "zh": "这篇文章以莎士比亚的一句引文开头，作者随后对此作了详细解释。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/kwəʊˈteɪʃən/",
+      "us": "/kwoʊˈteɪʃən/"
+    },
+    "topic": "education",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "quote": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "引语，引文",
+          "en": "words that someone else has said or written that you repeat"
+        },
+        "sentences": [
+          {
+            "en": "The article begins with a famous quote.",
+            "role": "basic",
+            "zh": "这篇文章以一句名言开头。"
+          },
+          {
+            "en": "Students should quote reliable sources accurately and explain how the evidence supports their arguments in academic essays.",
+            "role": "ext",
+            "zh": "学生在学术论文中应准确引用可靠来源，并解释证据如何支持自己的论点。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "引用，引述",
+          "en": "to repeat the words that someone else has said or written"
+        },
+        "sentences": [
+          {
+            "en": "She likes to quote lines from old movies.",
+            "role": "basic",
+            "zh": "她喜欢引用老电影里的台词。"
+          },
+          {
+            "en": "In his speech, the manager quoted several customers to show how the new service had helped them.",
+            "role": "ext",
+            "zh": "经理在讲话中引述了几位顾客的话，以说明新服务如何帮助了他们。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/kwəʊt/",
+      "us": "/kwoʊt/"
+    },
+    "topic": "education",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  }
+}

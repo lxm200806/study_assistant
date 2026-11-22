@@ -77,16 +77,101 @@ export interface FlatSenseView {
   origin?: string
 }
 
-const SENSES_PATH = path.join(__dirname, '../../../data/sources/senses.json')
+/** 旧单文件（迁移后可删） */
+const LEGACY_SENSES_PATH = path.join(__dirname, '../../../data/sources/senses.json')
+/** 字母分片目录：a.json … z.json + _.json（非字母开头） */
+const SENSES_DIR = path.join(__dirname, '../../../data/sources/senses')
 
 let cached: Record<string, GlobalSense> | null = null
 
 export function sensesFilePath(): string {
-  return SENSES_PATH
+  return fs.existsSync(SENSES_DIR) ? SENSES_DIR : LEGACY_SENSES_PATH
+}
+
+export function sensesDirPath(): string {
+  return SENSES_DIR
 }
 
 export function clearSensesCache() {
   cached = null
+}
+
+/** 词 → 分片键：a–z，其它归 _ */
+export function senseShardKey(word: string): string {
+  const ch = word.trim().toLowerCase().charAt(0)
+  if (ch >= 'a' && ch <= 'z') return ch
+  return '_'
+}
+
+export function senseShardPath(shard: string): string {
+  return path.join(SENSES_DIR, `${shard}.json`)
+}
+
+function listShardFiles(): string[] {
+  if (!fs.existsSync(SENSES_DIR)) return []
+  return fs
+    .readdirSync(SENSES_DIR)
+    .filter(name => /^[a-z_]\.json$/i.test(name))
+    .map(name => path.join(SENSES_DIR, name))
+}
+
+function readShardFile(file: string): Record<string, GlobalSense> {
+  const raw = JSON.parse(fs.readFileSync(file, 'utf-8')) as Record<string, unknown>
+  const out: Record<string, GlobalSense> = {}
+  for (const [key, value] of Object.entries(raw)) {
+    const word = key.trim().toLowerCase()
+    if (!word) continue
+    out[word] = normalizeSenseEntry(value)
+  }
+  return out
+}
+
+function writeShardFile(shard: string, entries: Record<string, GlobalSense>) {
+  fs.mkdirSync(SENSES_DIR, { recursive: true })
+  const sorted: Record<string, GlobalSense> = {}
+  for (const key of Object.keys(entries).sort()) {
+    sorted[key] = normalizeSenseEntry(entries[key])
+  }
+  fs.writeFileSync(senseShardPath(shard), `${JSON.stringify(sorted, null, 2)}\n`)
+}
+
+/** 把旧 senses.json 拆进 senses/*.json；若目录已有分片则跳过 */
+export function migrateSensesToShards(opts: { force?: boolean } = {}): {
+  shards: number
+  words: number
+  from: string
+} {
+  const existing = listShardFiles()
+  if (existing.length && !opts.force) {
+    let words = 0
+    for (const file of existing) {
+      words += Object.keys(JSON.parse(fs.readFileSync(file, 'utf-8'))).length
+    }
+    return { shards: existing.length, words, from: SENSES_DIR }
+  }
+  if (!fs.existsSync(LEGACY_SENSES_PATH)) {
+    fs.mkdirSync(SENSES_DIR, { recursive: true })
+    return { shards: 0, words: 0, from: 'empty' }
+  }
+  const raw = JSON.parse(fs.readFileSync(LEGACY_SENSES_PATH, 'utf-8')) as Record<string, unknown>
+  const buckets: Record<string, Record<string, GlobalSense>> = {}
+  for (const [key, value] of Object.entries(raw)) {
+    const word = key.trim().toLowerCase()
+    if (!word) continue
+    const shard = senseShardKey(word)
+    if (!buckets[shard]) buckets[shard] = {}
+    buckets[shard][word] = normalizeSenseEntry(value)
+  }
+  fs.mkdirSync(SENSES_DIR, { recursive: true })
+  for (const [shard, entries] of Object.entries(buckets)) {
+    writeShardFile(shard, entries)
+  }
+  clearSensesCache()
+  return {
+    shards: Object.keys(buckets).length,
+    words: Object.keys(raw).length,
+    from: LEGACY_SENSES_PATH
+  }
 }
 
 function trimStr(v: unknown): string {
@@ -294,28 +379,76 @@ export function senseWithExamples(
 
 export function loadGlobalSenses(): Record<string, GlobalSense> {
   if (cached) return cached
-  if (!fs.existsSync(SENSES_PATH)) {
-    cached = {}
-    return cached
+
+  let files = listShardFiles()
+  if (!files.length && fs.existsSync(LEGACY_SENSES_PATH)) {
+    migrateSensesToShards()
+    files = listShardFiles()
   }
-  const raw = JSON.parse(fs.readFileSync(SENSES_PATH, 'utf-8')) as Record<string, unknown>
+
   const normalized: Record<string, GlobalSense> = {}
-  for (const [key, value] of Object.entries(raw)) {
-    const word = key.trim().toLowerCase()
-    if (!word) continue
-    normalized[word] = normalizeSenseEntry(value)
+  if (files.length) {
+    for (const file of files) {
+      Object.assign(normalized, readShardFile(file))
+    }
+  } else if (fs.existsSync(LEGACY_SENSES_PATH)) {
+    const raw = JSON.parse(fs.readFileSync(LEGACY_SENSES_PATH, 'utf-8')) as Record<string, unknown>
+    for (const [key, value] of Object.entries(raw)) {
+      const word = key.trim().toLowerCase()
+      if (!word) continue
+      normalized[word] = normalizeSenseEntry(value)
+    }
   }
+
   cached = normalized
   return cached
 }
 
-export function saveGlobalSenses(map: Record<string, GlobalSense>) {
-  const sorted: Record<string, GlobalSense> = {}
-  for (const key of Object.keys(map).sort()) {
-    sorted[key] = normalizeSenseEntry(map[key])
+function bucketByShard(map: Record<string, GlobalSense>): Record<string, Record<string, GlobalSense>> {
+  const buckets: Record<string, Record<string, GlobalSense>> = {}
+  for (const [key, value] of Object.entries(map)) {
+    const word = key.trim().toLowerCase()
+    if (!word) continue
+    const shard = senseShardKey(word)
+    if (!buckets[shard]) buckets[shard] = {}
+    buckets[shard][word] = value
   }
-  fs.writeFileSync(SENSES_PATH, `${JSON.stringify(sorted, null, 2)}\n`)
-  cached = sorted
+  return buckets
+}
+
+function refreshCache(map: Record<string, GlobalSense>) {
+  const next: Record<string, GlobalSense> = {}
+  for (const [key, value] of Object.entries(map)) {
+    const word = key.trim().toLowerCase()
+    if (!word) continue
+    next[word] = normalizeSenseEntry(value)
+  }
+  cached = next
+}
+
+/** 整库落盘到字母分片；可选只写部分片（传入片键 a–z/_ 或单词） */
+export function saveGlobalSenses(map: Record<string, GlobalSense>, onlyShardsOrWords?: Iterable<string>) {
+  const buckets = bucketByShard(map)
+  const shardSet = new Set<string>()
+  if (onlyShardsOrWords) {
+    for (const item of onlyShardsOrWords) {
+      const s = String(item).trim().toLowerCase()
+      if (!s) continue
+      if ((s.length === 1 && s >= 'a' && s <= 'z') || s === '_') shardSet.add(s)
+      else shardSet.add(senseShardKey(s))
+    }
+  } else {
+    for (const shard of Object.keys(buckets)) shardSet.add(shard)
+  }
+  for (const shard of shardSet) {
+    writeShardFile(shard, buckets[shard] || {})
+  }
+  refreshCache(map)
+}
+
+/** 只重写变更过的字母分片（LLM 校验落盘用） */
+export function saveGlobalSenseShards(map: Record<string, GlobalSense>, changedWords: Iterable<string>) {
+  saveGlobalSenses(map, changedWords)
 }
 
 export function lookupSense(word: string): GlobalSense | undefined {

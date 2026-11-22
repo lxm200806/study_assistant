@@ -17,4 +17,4 @@ npm run cishu:bianpai -- --init       # 缺 units 时从现有 books 生成
 npm run tongbu:cishu -- --force 书号
 ```
 
-释义不在这里，在 `data/sources/senses.json`。
+释义不在这里，在 `data/sources/senses/{a-z}.json`（字母分片）。

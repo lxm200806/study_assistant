@@ -7,7 +7,7 @@
 | 四级 | `vocabulary/units/cet4.json` | `books/cet4.json` |
 | 六级 | `vocabulary/units/cet6.json` | `books/cet6.json` |
 
-释义在 `senses.json`。改单元顺序后：
+释义在 `senses/{a-z}.json`（字母分片）。改单元顺序后：
 
 ```bash
 npm run cishu:bianpai -- zhongkao

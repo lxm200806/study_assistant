@@ -1,0 +1,6420 @@
+{
+  "ubiquitous": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无处不在的；普遍存在的",
+          "en": "present or seeming to be present everywhere"
+        },
+        "sentences": [
+          {
+            "en": "Phones are ubiquitous today.",
+            "role": "basic",
+            "zh": "如今手机无处不在。"
+          },
+          {
+            "en": "In modern cities, surveillance cameras have become so ubiquitous that people hardly notice them.",
+            "role": "ext",
+            "zh": "在现代城市中，监控摄像头已变得如此普遍，以至于人们几乎注意不到它们。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/juːˈbɪkwɪtəs/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "ugly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "难看的，丑陋的",
+          "en": "not pleasant to look at; unattractive"
+        },
+        "sentences": [
+          {
+            "en": "The broken toy looks ugly.",
+            "role": "basic",
+            "zh": "那个坏掉的玩具看起来很难看。"
+          },
+          {
+            "en": "Poorly planned developments can create ugly urban landscapes that reduce residents' satisfaction with their neighbourhoods.",
+            "role": "ext",
+            "zh": "规划不善的开发项目可能形成难看的城市景观，降低居民对社区的满意度。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌɡli/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "uk": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "联合王国；英国（United Kingdom 的缩写）",
+          "en": "abbreviation for United Kingdom; a country in Europe"
+        },
+        "sentences": [
+          {
+            "en": "She moved to the UK last year.",
+            "role": "basic",
+            "zh": "她去年搬到了英国。"
+          },
+          {
+            "en": "The UK is made up of England, Scotland, Wales and Northern Ireland.",
+            "role": "ext",
+            "zh": "英国由英格兰、苏格兰、威尔士和北爱尔兰组成。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌjuː ˈkeɪ/",
+      "us": "/ˌjuː ˈkeɪ/"
+    },
+    "topic": "society",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "ulcer": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "溃疡",
+          "en": "a sore area on the skin or inside the body that may become infected"
+        },
+        "sentences": [
+          {
+            "en": "The doctor treated the ulcer.",
+            "role": "basic",
+            "zh": "医生治疗了那个溃疡。"
+          },
+          {
+            "en": "Early diagnosis of a stomach ulcer can help patients receive appropriate treatment and avoid complications.",
+            "role": "ext",
+            "zh": "及早诊断胃溃疡有助于患者接受适当治疗并避免并发症。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌlsə/",
+      "us": "/ˈʌlsər/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "ultimate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "最终的；终极的",
+          "en": "Final; happening at the end of a process."
+        },
+        "sentences": [
+          {
+            "en": "Our ultimate goal is to buy a small house.",
+            "role": "basic",
+            "zh": "我们的最终目标是买一栋小房子。"
+          },
+          {
+            "en": "The ultimate aim of public transport investment should be to provide affordable and reliable travel for everyone.",
+            "role": "ext",
+            "zh": "公共交通投资的最终目标应是为所有人提供价格合理、可靠的出行服务。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌltɪmət/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "ultimately": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "最终；归根结底",
+          "en": "finally; in the end; fundamentally"
+        },
+        "sentences": [
+          {
+            "en": "Ultimately, they chose the cheaper plan.",
+            "role": "basic",
+            "zh": "我们看了好几套公寓，但最终选了这栋小房子。"
+          },
+          {
+            "en": "Although technology can support classroom learning, educational success ultimately depends on effective teaching and student engagement.",
+            "role": "ext",
+            "zh": "虽然技术可以辅助课堂学习，但教育成效归根结底取决于有效教学和学生参与。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌltɪmətli/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "ultimatum": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "最后通牒",
+          "en": "a final demand threatening consequences if it is not accepted"
+        },
+        "sentences": [
+          {
+            "en": "The coach gave us an ultimatum: attend practice or leave.",
+            "role": "basic",
+            "zh": "教练向我们下了最后通牒：参加训练，否则离队。"
+          },
+          {
+            "en": "The council issued an ultimatum requiring the factory to improve waste treatment or face closure.",
+            "role": "ext",
+            "zh": "市政委员会下达了最后通牒，要求工厂改善废物处理，否则将被关闭。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌltɪˈmeɪtəm/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "ultrasonic": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "超声的；超声波（用于医学成像、清洗等）",
+          "en": "relating to sound waves with frequencies above the upper limit of human hearing"
+        },
+        "sentences": [
+          {
+            "en": "The doctor used an ultrasonic device to examine the baby.",
+            "role": "basic",
+            "zh": "医生使用超声波设备检查婴儿。"
+          },
+          {
+            "en": "Ultrasonic cleaning is effective for removing dirt from delicate parts.",
+            "role": "ext",
+            "zh": "超声波清洗能有效去除精密零件上的污垢。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌltrəˈsɒnɪk/",
+      "us": "/ˌʌltrəˈsɑːnɪk/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "ultrasound": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "超声波",
+          "en": "sound with frequencies too high for humans to hear"
+        },
+        "sentences": [
+          {
+            "en": "The doctor used ultrasound to examine my shoulder.",
+            "role": "basic",
+            "zh": "医生用超声波检查了我的肩膀。"
+          },
+          {
+            "en": "Ultrasound allows doctors to examine internal organs without exposing patients to the radiation used in conventional X-rays.",
+            "role": "ext",
+            "zh": "超声检查让医生能够观察内脏，而不使患者接触常规X光检查所用的辐射。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌltrəsaʊnd/",
+      "us": "/ˈʌltrəsaʊnd/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "ultraviolet": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "紫外线的；紫外的",
+          "en": "Relating to invisible radiation with wavelengths shorter than visible violet light."
+        },
+        "sentences": [
+          {
+            "en": "These sunglasses protect your eyes from harmful ultraviolet rays.",
+            "role": "basic",
+            "zh": "这副太阳镜能保护眼睛免受有害紫外线的伤害。"
+          },
+          {
+            "en": "Excessive exposure to ultraviolet radiation increases the risk of skin damage, making sun protection essential.",
+            "role": "ext",
+            "zh": "过度暴露于紫外线辐射会增加皮肤受损的风险，因此防晒至关重要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌltrəˈvaɪələt/"
+    },
+    "topic": "science",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "umbrella": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "雨伞",
+          "en": "a cover you hold to stay dry in rain"
+        },
+        "sentences": [
+          {
+            "en": "Take an umbrella if it rains.",
+            "role": "basic",
+            "zh": "如果下雨就带把伞。"
+          },
+          {
+            "en": "An umbrella organisation can help small charities coordinate their activities and share resources more effectively.",
+            "role": "ext",
+            "zh": "一个联合组织可以帮助小型慈善机构协调活动，更有效地共享资源。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌmˈbrelə/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "un": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "联合国（United Nations 的缩写）",
+          "en": "the United Nations"
+        },
+        "sentences": [
+          {
+            "en": "The UN works to keep peace around the world.",
+            "role": "basic",
+            "zh": "联合国致力于维护世界和平。"
+          },
+          {
+            "en": "Many countries sent representatives to the UN meeting in New York.",
+            "role": "ext",
+            "zh": "许多国家派代表参加了在纽约举行的联合国会议。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌjuː ˈen/",
+      "us": "/ˌjuː ˈen/"
+    },
+    "topic": "society",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不能的，不会的",
+          "en": "not able to do something"
+        },
+        "sentences": [
+          {
+            "en": "I was unable to open the tightly sealed jar.",
+            "role": "basic",
+            "zh": "我打不开那个封得很紧的罐子。"
+          },
+          {
+            "en": "Without affordable internet access, many students are unable to participate fully in online learning programmes.",
+            "role": "ext",
+            "zh": "如果没有负担得起的网络服务，许多学生就无法充分参与在线学习课程。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈeɪbəl/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unaccommodating": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不肯通融的；不配合的",
+          "en": "Unwilling to help others or adjust to their needs."
+        },
+        "sentences": [
+          {
+            "en": "The unaccommodating host refused to provide an extra chair.",
+            "role": "basic",
+            "zh": "那位不肯通融的主人拒绝再提供一把椅子。"
+          },
+          {
+            "en": "Unaccommodating employers may struggle to retain skilled workers who need flexible schedules to manage family responsibilities.",
+            "role": "ext",
+            "zh": "不肯通融的雇主可能难以留住需要灵活时间安排来承担家庭责任的熟练员工。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnəˈkɒmədeɪtɪŋ/",
+      "us": "/ˌʌnəˈkɑːmədeɪtɪŋ/"
+    },
+    "topic": "society",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "unaffordable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "负担不起的；太贵的",
+          "en": "Too expensive for someone to afford."
+        },
+        "sentences": [
+          {
+            "en": "The larger flat was unaffordable on my salary.",
+            "role": "basic",
+            "zh": "以我的工资，负担不起那套更大的公寓。"
+          },
+          {
+            "en": "When housing becomes unaffordable, essential workers may be forced to move far from their workplaces.",
+            "role": "ext",
+            "zh": "当住房变得难以负担时，关键岗位工作人员可能被迫搬到离工作地点很远的地方。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnəˈfɔːdəbl/",
+      "us": "/ˌʌnəˈfɔːrdəbl/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unanimous": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "一致的；全体同意的",
+          "en": "agreed by every person in a group"
+        },
+        "sentences": [
+          {
+            "en": "The vote was unanimous.",
+            "role": "basic",
+            "zh": "投票结果是一致的。"
+          },
+          {
+            "en": "The committee reached a unanimous decision to improve public transport rather than expand the existing road network.",
+            "role": "ext",
+            "zh": "委员会一致决定改善公共交通，而不是扩建现有道路网。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/juˈnænɪməs/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unaware": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不知道的；未察觉的",
+          "en": "Not knowing or noticing that something exists or is happening."
+        },
+        "sentences": [
+          {
+            "en": "I was unaware that my umbrella was still outside.",
+            "role": "basic",
+            "zh": "我没意识到自己的伞还在外面。"
+          },
+          {
+            "en": "Many consumers remain unaware of the environmental damage caused by the production of cheap clothing.",
+            "role": "ext",
+            "zh": "许多消费者仍不了解廉价服装生产造成的环境破坏。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnəˈweə/",
+      "us": "/ˌʌnəˈwer/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "unbearable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无法忍受的",
+          "en": "Too unpleasant, painful, or intense to tolerate"
+        },
+        "sentences": [
+          {
+            "en": "The heat was unbearable, so we rested in the shade.",
+            "role": "basic",
+            "zh": "天气热得让人受不了，于是我们到阴凉处休息。"
+          },
+          {
+            "en": "Without adequate ventilation, summer temperatures in crowded housing can become unbearable, especially for older residents.",
+            "role": "ext",
+            "zh": "如果通风不足，拥挤住宅内的夏季高温会令人难以忍受，尤其是对老年住户而言。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈbeərəbl/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unbelievable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "难以置信的；惊人的",
+          "en": "Too surprising or extraordinary to be believed; amazing."
+        },
+        "sentences": [
+          {
+            "en": "The view from the mountain at sunrise was unbelievable.",
+            "role": "basic",
+            "zh": "日出时山上的景色美得令人难以置信。"
+          },
+          {
+            "en": "Some online advertisements promise unbelievable results, making it difficult for consumers to distinguish evidence from exaggeration.",
+            "role": "ext",
+            "zh": "一些网络广告承诺令人难以置信的效果，使消费者难以区分实证与夸大宣传。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnbɪˈliːvəbl/",
+      "us": "/ˌʌnbɪˈliːvəbl/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unbiased": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "公正的；无偏见的",
+          "en": "fair and not influenced by personal opinions or feelings"
+        },
+        "sentences": [
+          {
+            "en": "It was an unbiased example in class.",
+            "role": "basic",
+            "zh": "那是课堂上的一个公正的例子。"
+          },
+          {
+            "en": "A good journalist should remain unbiased when reporting the news.",
+            "role": "ext",
+            "zh": "优秀的记者在报道新闻时应保持公正。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈbaɪəst/",
+      "us": "/ʌnˈbaɪəst/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "uncalled-for": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无理的；不必要的",
+          "en": "Unfair, unnecessary, or inappropriate in a particular situation."
+        },
+        "sentences": [
+          {
+            "en": "Your uncalled-for remark upset everyone at the table.",
+            "role": "basic",
+            "zh": "你那句无理的话让在座的每个人都很不快。"
+          },
+          {
+            "en": "Uncalled-for criticism from teachers can discourage students from participating actively in classroom discussions.",
+            "role": "ext",
+            "zh": "教师无端的批评可能会打击学生积极参与课堂讨论的意愿。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈkɔːld fɔː/",
+      "us": "/ʌnˈkɔːld fɔːr/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "uncanny": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "神秘的；离奇的；不可思议的",
+          "en": "strange or mysterious in a way that is difficult to explain and often slightly unsettling"
+        },
+        "sentences": [
+          {
+            "en": "She has an uncanny gift for names.",
+            "role": "basic",
+            "zh": "她有一种不可思议的记名字的天赋。"
+          },
+          {
+            "en": "The old house had an uncanny atmosphere that made visitors uneasy.",
+            "role": "ext",
+            "zh": "那座老房子有一种令人不安的诡异气氛。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈkæni/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "uncap": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "取下盖子",
+          "en": "To remove the cap from a container or pen."
+        },
+        "sentences": [
+          {
+            "en": "She uncapped the bottle and poured everyone some juice.",
+            "role": "basic",
+            "zh": "她打开瓶盖，给大家倒了些果汁。"
+          },
+          {
+            "en": "Laboratory staff should uncap sample containers carefully to prevent contamination and maintain reliable research results.",
+            "role": "ext",
+            "zh": "实验室工作人员应小心打开样本容器的盖子，以防污染并确保研究结果可靠。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈkæp/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "uncertain": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不确定的；拿不准的",
+          "en": "not sure or not known for certain"
+        },
+        "sentences": [
+          {
+            "en": "I am uncertain about the time.",
+            "role": "basic",
+            "zh": "我不确定时间。"
+          },
+          {
+            "en": "The long-term effects of remote working remain uncertain, particularly for younger employees entering the labour market.",
+            "role": "ext",
+            "zh": "远程工作的长期影响仍不明确，对刚进入劳动力市场的年轻员工而言尤其如此。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈsɜːtn/",
+      "us": "/ʌnˈsɜːrtn/"
+    },
+    "topic": "emotion",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "uncertainty": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不确定；无把握",
+          "en": "a state of not knowing what is true or will happen"
+        },
+        "sentences": [
+          {
+            "en": "The delayed flight left us facing hours of uncertainty.",
+            "role": "basic",
+            "zh": "航班延误让我们好几个小时都不知道接下来会怎样。"
+          },
+          {
+            "en": "Economic uncertainty can discourage businesses from investing in new equipment or hiring additional staff.",
+            "role": "ext",
+            "zh": "经济的不确定性可能使企业不愿投资新设备或增聘员工。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈsɜːtnti/",
+      "us": "/ʌnˈsɜːrtnti/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "uncle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "叔叔；伯伯；舅舅；姑父；姨父",
+          "en": "the brother of your mother or father, or the husband of your aunt"
+        },
+        "sentences": [
+          {
+            "en": "My uncle tells a funny story.",
+            "role": "basic",
+            "zh": "我叔叔讲了一个有趣的故事。"
+          },
+          {
+            "en": "An uncle or aunt can provide valuable emotional support when parents are busy with work commitments.",
+            "role": "ext",
+            "zh": "父母忙于工作时，叔伯姑姨等亲属可以提供宝贵的情感支持。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌŋkl/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "uncomfortable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不舒服的；不自在的",
+          "en": "not comfortable; feeling slight pain or awkwardness"
+        },
+        "sentences": [
+          {
+            "en": "This chair is uncomfortable and hard.",
+            "role": "basic",
+            "zh": "这把椅子又硬又不舒服。"
+          },
+          {
+            "en": "Students may feel uncomfortable asking questions in large classes, which can limit their participation and understanding.",
+            "role": "ext",
+            "zh": "学生在大班课堂上提问时可能感到不自在，这会影响他们的参与和理解。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈkʌmftəbl/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unconditional": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无条件的；绝对的",
+          "en": "not limited by any conditions; complete and absolute"
+        },
+        "sentences": [
+          {
+            "en": "A parent's love for a child is usually unconditional.",
+            "role": "basic",
+            "zh": "父母对孩子的爱通常是无条件的。"
+          },
+          {
+            "en": "The agreement offers unconditional support for the project, with no further requirements.",
+            "role": "ext",
+            "zh": "该协议为这个项目提供无条件支持，没有附加要求。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnkənˈdɪʃənl/",
+      "us": "/ˌʌnkənˈdɪʃənl/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unconfirmed": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "未经证实的；未确认的",
+          "en": "not confirmed or verified"
+        },
+        "sentences": [
+          {
+            "en": "The story is still unconfirmed.",
+            "role": "basic",
+            "zh": "这个故事仍未得到证实。"
+          },
+          {
+            "en": "Reports of the accident remain unconfirmed by local authorities.",
+            "role": "ext",
+            "zh": "有关这起事故的报道尚未得到当地政府的证实。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnkənˈfɜːmd/",
+      "us": "/ˌʌnkənˈfɜːrmd/"
+    },
+    "topic": "media",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unconscious": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不省人事的；失去知觉的",
+          "en": "unable to see, hear, or respond because awareness is lost"
+        },
+        "sentences": [
+          {
+            "en": "The patient was unconscious after the accident and was rushed to hospital.",
+            "role": "basic",
+            "zh": "事故后病人不省人事，被紧急送往医院。"
+          },
+          {
+            "en": "Unconscious bias can influence recruitment decisions, even when employers aim to treat all applicants fairly.",
+            "role": "ext",
+            "zh": "即使雇主力求公平对待所有求职者，无意识的偏见仍可能影响招聘决定。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈkɒnʃəs/",
+      "us": "/ʌnˈkɑːnʃəs/"
+    },
+    "topic": "health",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "uncover": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "发现；揭露",
+          "en": "to discover something previously hidden or unknown"
+        },
+        "sentences": [
+          {
+            "en": "Our kitchen repairs helped uncover a hidden water leak.",
+            "role": "basic",
+            "zh": "维修厨房时，我们发现了一处隐蔽的漏水点。"
+          },
+          {
+            "en": "Independent research can uncover environmental risks that are overlooked during the early stages of industrial development.",
+            "role": "ext",
+            "zh": "独立研究能够发现工业发展初期被忽视的环境风险。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈkʌvə/",
+      "us": "/ʌnˈkʌvər/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "undecided": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "未决定的；犹豫不决的",
+          "en": "not having made a decision; not yet settled"
+        },
+        "sentences": [
+          {
+            "en": "She is still undecided about which university to attend.",
+            "role": "basic",
+            "zh": "她仍未决定上哪所大学。"
+          },
+          {
+            "en": "The committee remained undecided on the proposal after a long debate.",
+            "role": "ext",
+            "zh": "经过长时间辩论，委员会对该提案仍未做出决定。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndɪˈsaɪdɪd/",
+      "us": "/ˌʌndɪˈsaɪdɪd/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "origin": "book:cet6"
+  },
+  "under": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "在……下面；在……之下",
+          "en": "in or to a position below something"
+        },
+        "sentences": [
+          {
+            "en": "The cat sleeps under the table.",
+            "role": "basic",
+            "zh": "猫在桌子下面睡觉。"
+          },
+          {
+            "en": "Under the new policy, local authorities must provide safer cycling routes near schools and residential areas.",
+            "role": "ext",
+            "zh": "根据新政策，地方政府必须在学校和住宅区附近提供更安全的骑行路线。"
+          }
+        ],
+        "pos": "prep."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌndə(r)/",
+      "us": "/ˈʌndər/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "undercover": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "秘密工作的；卧底的",
+          "en": "working secretly, especially to catch criminals"
+        },
+        "sentences": [
+          {
+            "en": "An undercover officer joined the gang.",
+            "role": "basic",
+            "zh": "一名卧底警员加入了该团伙。"
+          },
+          {
+            "en": "The journalist went undercover to expose corruption in the company.",
+            "role": "ext",
+            "zh": "那名记者进行卧底调查，以揭露公司的腐败行为。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndəˈkʌvə(r)/",
+      "us": "/ˌʌndərˈkʌvər/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "undercut": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "以低于（竞争对手）的价格出售；削价竞争",
+          "en": "to sell goods or services at a lower price than a competitor"
+        },
+        "sentences": [
+          {
+            "en": "Shops undercut each other's prices.",
+            "role": "basic",
+            "zh": "商店之间互相削价竞争。"
+          },
+          {
+            "en": "The company undercut its rivals by offering the same service at half the price.",
+            "role": "ext",
+            "zh": "该公司以一半的价格提供同样的服务，从而压低了竞争对手的价格。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈkʌt/"
+    },
+    "topic": "economy",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "underestimate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "低估；对…估计不足",
+          "en": "to think that something is smaller, less important, or less able than it really is"
+        },
+        "sentences": [
+          {
+            "en": "Do not underestimate the work.",
+            "role": "basic",
+            "zh": "不要低估这项工作。"
+          },
+          {
+            "en": "Policymakers should not underestimate the long-term effects of poor housing on children's health and educational achievement.",
+            "role": "ext",
+            "zh": "政策制定者不应低估恶劣住房条件对儿童健康和学业表现的长期影响。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndərˈestɪmeɪt/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "underfunded": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "资金不足的",
+          "en": "not having enough money to operate or function properly"
+        },
+        "sentences": [
+          {
+            "en": "The school is underfunded and lacks basic supplies.",
+            "role": "basic",
+            "zh": "这所学校资金不足，缺少基本用品。"
+          },
+          {
+            "en": "Many public health programs remain underfunded despite growing demand.",
+            "role": "ext",
+            "zh": "尽管需求日益增长，许多公共卫生项目仍然资金不足。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndəˈfʌndɪd/",
+      "us": "/ˌʌndərˈfʌndɪd/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "undergo": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "经历，经受（常指不愉快的事）",
+          "en": "to experience something, especially something unpleasant or difficult"
+        },
+        "sentences": [
+          {
+            "en": "She will undergo a small operation tomorrow.",
+            "role": "basic",
+            "zh": "她明天将接受一个小手术。"
+          },
+          {
+            "en": "Many coastal cities will undergo significant changes as rising sea levels force governments to reconsider urban planning.",
+            "role": "ext",
+            "zh": "随着海平面上升迫使政府重新考虑城市规划，许多沿海城市将经历重大变化。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndəˈɡəʊ/",
+      "us": "/ˌʌndərˈɡoʊ/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "undergraduate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "大学本科生",
+          "en": "a university student studying for a first degree"
+        },
+        "sentences": [
+          {
+            "en": "My sister is an undergraduate studying chemistry nearby.",
+            "role": "basic",
+            "zh": "我姐姐在附近的一所大学读化学本科。"
+          },
+          {
+            "en": "Many undergraduate courses now include practical placements to help students prepare for their future careers.",
+            "role": "ext",
+            "zh": "如今许多本科课程都包含实习，以帮助学生为未来的职业生涯做好准备。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndəˈɡrædʒuət/",
+      "us": "/ˌʌndərˈɡrædʒuət/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "underground": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "地下的",
+          "en": "beneath the surface of the earth"
+        },
+        "sentences": [
+          {
+            "en": "The underground train is very fast.",
+            "role": "basic",
+            "zh": "地下火车非常快。"
+          },
+          {
+            "en": "Underground transport systems can ease congestion, although constructing tunnels requires substantial investment and careful planning.",
+            "role": "ext",
+            "zh": "地下交通系统能缓解拥堵，但隧道建设需要大量投资和周密规划。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈɡraʊnd/"
+    },
+    "topic": "city",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "underline": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "在…下划线；强调",
+          "en": "to draw a line under a word or phrase; to emphasize"
+        },
+        "sentences": [
+          {
+            "en": "Please underline the new words.",
+            "role": "basic",
+            "zh": "请在新单词下面画线。"
+          },
+          {
+            "en": "These findings underline the importance of providing affordable housing near public transport for families on low incomes.",
+            "role": "ext",
+            "zh": "这些发现凸显了在公共交通附近为低收入家庭提供可负担住房的重要性。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈlaɪn/"
+    },
+    "topic": "education",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "underlying": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "根本的；潜在的",
+          "en": "causing or influencing something without being immediately obvious"
+        },
+        "sentences": [
+          {
+            "en": "The mechanic found the underlying cause of the noise.",
+            "role": "basic",
+            "zh": "机械师找到了异响的根本原因。"
+          },
+          {
+            "en": "Addressing the underlying causes of poverty requires sustained investment in education, healthcare, and secure employment.",
+            "role": "ext",
+            "zh": "解决贫困的根本原因需要持续投资于教育、医疗和稳定就业。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈlaɪɪŋ/"
+    },
+    "topic": "uncategorized",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "undermine": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "逐渐削弱；损害（信心、权威、信任等）",
+          "en": "to gradually make something weaker or less effective"
+        },
+        "sentences": [
+          {
+            "en": "Lies can undermine our trust.",
+            "role": "basic",
+            "zh": "谎言会削弱我们的信任。"
+          },
+          {
+            "en": "A lack of transparency can undermine public trust in institutions and reduce support for important policy changes.",
+            "role": "ext",
+            "zh": "缺乏透明度可能损害公众对机构的信任，并减少对重要政策调整的支持。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈmaɪn/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "underneath": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "在……下面；在……底下",
+          "en": "under or below something else"
+        },
+        "sentences": [
+          {
+            "en": "The cat hid underneath the table.",
+            "role": "basic",
+            "zh": "猫躲在桌子下面。"
+          },
+          {
+            "en": "Insulation installed underneath floors can reduce heat loss and improve energy efficiency in older homes.",
+            "role": "ext",
+            "zh": "在地板下面铺设保温材料，可以减少老房屋的热量流失并提高能源效率。"
+          }
+        ],
+        "pos": "prep."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈniːθ/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "underpants": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "内裤（尤指男式）",
+          "en": "a piece of underwear worn by men or boys, covering the lower part of the body"
+        },
+        "sentences": [
+          {
+            "en": "He packed a clean pair of underpants for the trip.",
+            "role": "basic",
+            "zh": "他为旅行带了一条干净的内裤。"
+          },
+          {
+            "en": "The label on the underpants says to wash them in cold water.",
+            "role": "ext",
+            "zh": "内裤上的标签写着要用冷水洗涤。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌndəpænts/",
+      "us": "/ˈʌndərpænts/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:mse-pet"
+  },
+  "underpin": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "支撑；构成…的基础",
+          "en": "to support or form the basis for something"
+        },
+        "sentences": [
+          {
+            "en": "Facts underpin this argument.",
+            "role": "basic",
+            "zh": "事实支撑着这一论点。"
+          },
+          {
+            "en": "Trust and communication underpin a healthy relationship.",
+            "role": "ext",
+            "zh": "信任和沟通是健康关系的基础。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈpɪn/"
+    },
+    "topic": "uncategorized",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "underrepresented": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "未被充分代表的；代表人数不足的",
+          "en": "not having enough people to represent a group, especially in a decision-making body or field"
+        },
+        "sentences": [
+          {
+            "en": "Women are still underrepresented in science and engineering.",
+            "role": "basic",
+            "zh": "女性在科学和工程领域仍然代表不足。"
+          },
+          {
+            "en": "The report highlights that ethnic minorities are underrepresented among senior managers.",
+            "role": "ext",
+            "zh": "报告强调，少数族裔在高级管理人员中代表不足。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndərˌreprɪˈzentɪd/",
+      "us": "/ˌʌndərˌreprɪˈzentɪd/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "underscore": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "强调；突出",
+          "en": "to emphasize or show the importance of something"
+        },
+        "sentences": [
+          {
+            "en": "The teacher underscored the importance of daily practice.",
+            "role": "basic",
+            "zh": "老师强调了每日练习的重要性。"
+          },
+          {
+            "en": "The report underscores the need for better communication between departments.",
+            "role": "ext",
+            "zh": "这份报告突显了部门之间加强沟通的必要性。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndəˈskɔː(r)/",
+      "us": "/ˌʌndərˈskɔːr/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "undersea": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "海面下的；海底的",
+          "en": "Located or happening below the surface of the sea"
+        },
+        "sentences": [
+          {
+            "en": "The documentary showed colourful fish around an undersea cave.",
+            "role": "basic",
+            "zh": "这部纪录片展示了海底洞穴周围色彩斑斓的鱼。"
+          },
+          {
+            "en": "Undersea cables connect continents and provide essential infrastructure for global communication and international trade.",
+            "role": "ext",
+            "zh": "海底电缆连接各大洲，为全球通信和国际贸易提供重要基础设施。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈsiː/"
+    },
+    "topic": "technology",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "understand": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "明白；理解",
+          "en": "to know the meaning of something"
+        },
+        "sentences": [
+          {
+            "en": "I understand the math problem.",
+            "role": "basic",
+            "zh": "我理解这道数学题。"
+          },
+          {
+            "en": "Schools should help students understand how their daily choices affect the natural environment.",
+            "role": "ext",
+            "zh": "学校应帮助学生理解自己的日常选择如何影响自然环境。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈstænd/"
+    },
+    "topic": "thinking",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "understanding": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "理解；了解",
+          "en": "the ability to comprehend or know something"
+        },
+        "sentences": [
+          {
+            "en": "Her understanding of the problem helped us find a solution.",
+            "role": "basic",
+            "zh": "她对问题的理解帮助我们找到了解决办法。"
+          },
+          {
+            "en": "A deeper understanding of cultural differences can improve communication between people from different backgrounds.",
+            "role": "ext",
+            "zh": "对文化差异的更深入理解可以改善不同背景的人之间的沟通。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "谅解；体谅",
+          "en": "a sympathetic awareness or forgiveness of someone's situation or feelings"
+        },
+        "sentences": [
+          {
+            "en": "Thank you for your understanding about my being late yesterday.",
+            "role": "basic",
+            "zh": "谢谢你体谅我昨天迟到的事。"
+          },
+          {
+            "en": "The two sides reached an understanding after hours of negotiation.",
+            "role": "ext",
+            "zh": "经过数小时的谈判，双方达成了谅解。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈstændɪŋ/"
+    },
+    "topic": "thinking",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "undertake": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "承担；着手做",
+          "en": "to accept responsibility for a task and start doing it"
+        },
+        "sentences": [
+          {
+            "en": "She agreed to undertake the difficult task.",
+            "role": "basic",
+            "zh": "她同意承担这项艰巨的任务。"
+          },
+          {
+            "en": "Universities should undertake further research before recommending major changes to national education policy.",
+            "role": "ext",
+            "zh": "大学应在建议对国家教育政策作重大调整之前开展进一步研究。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈteɪk/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "undertaking": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "重大任务；事业",
+          "en": "A task or project, especially one requiring considerable effort."
+        },
+        "sentences": [
+          {
+            "en": "Renovating this old house is a much bigger undertaking.",
+            "role": "basic",
+            "zh": "翻修这栋老房子是一项艰巨得多的任务。"
+          },
+          {
+            "en": "Building a nationwide railway network is a major undertaking that requires sustained investment and careful planning.",
+            "role": "ext",
+            "zh": "建设全国性铁路网是一项重大工程，需要持续投资和周密规划。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈteɪkɪŋ/"
+    },
+    "topic": "work",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "undervalue": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "低估；轻视；不重视",
+          "en": "to fail to recognize the true value or importance of someone or something"
+        },
+        "sentences": [
+          {
+            "en": "Don't undervalue your own skills.",
+            "role": "basic",
+            "zh": "不要低估你自己的技能。"
+          },
+          {
+            "en": "Companies that undervalue employee feedback may lose talented staff.",
+            "role": "ext",
+            "zh": "不重视员工反馈的公司可能会失去优秀员工。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndəˈvæljuː/",
+      "us": "/ˌʌndərˈvæljuː/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "origin": "book:cet4"
+  },
+  "underwater": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "水下的；在水面以下的",
+          "en": "located or happening below the surface of water"
+        },
+        "sentences": [
+          {
+            "en": "Fish swim underwater in the lake.",
+            "role": "basic",
+            "zh": "鱼在湖里水下游泳。"
+          },
+          {
+            "en": "The underwater world is full of amazing creatures.",
+            "role": "ext",
+            "zh": "水下世界充满了奇妙的生物。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "在水下；在水面以下",
+          "en": "below the surface of water"
+        },
+        "sentences": [
+          {
+            "en": "She can swim underwater for a long time.",
+            "role": "basic",
+            "zh": "她能在水下游泳很长时间。"
+          },
+          {
+            "en": "The submarine traveled underwater for days.",
+            "role": "ext",
+            "zh": "潜艇在水下航行了好几天。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndəˈwɔːtə/",
+      "us": "/ˌʌndərˈwɔːtər/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "underway": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "在进行中的；已开始的",
+          "en": "having started and currently happening or in progress"
+        },
+        "sentences": [
+          {
+            "en": "Repair work is already underway on the road.",
+            "role": "basic",
+            "zh": "这条路的维修工作已经开始了。"
+          },
+          {
+            "en": "With the investigation still underway, officials declined to comment further.",
+            "role": "ext",
+            "zh": "由于调查仍在进行中，官员们拒绝进一步置评。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌndəˈweɪ/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "underwear": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "内衣",
+          "en": "Clothes worn next to the skin, underneath outer clothing."
+        },
+        "sentences": [
+          {
+            "en": "I packed clean underwear in my travel bag.",
+            "role": "basic",
+            "zh": "我把干净的内衣装进了旅行包。"
+          },
+          {
+            "en": "Consumers increasingly prefer underwear made from breathable fabrics, encouraging manufacturers to improve comfort and durability.",
+            "role": "ext",
+            "zh": "消费者越来越偏爱透气面料制成的内衣，这促使制造商提升舒适度和耐用性。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌndəweə/",
+      "us": "/ˈʌndərwer/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "underwriter": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "保险承保人；承保机构",
+          "en": "A person or company that accepts insurance risks."
+        },
+        "sentences": [
+          {
+            "en": "The underwriter checked our roof before approving the insurance.",
+            "role": "basic",
+            "zh": "承保人在批准保险之前检查了我们的屋顶。"
+          },
+          {
+            "en": "An underwriter assesses potential losses before deciding whether to offer insurance for buildings in areas prone to flooding.",
+            "role": "ext",
+            "zh": "承保人会评估潜在损失，再决定是否为易受洪灾地区的建筑提供保险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌndəraɪtə/",
+      "us": "/ˈʌndərˌraɪtər/"
+    },
+    "topic": "work",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "undesirable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不受欢迎的；不可取的；令人不快的",
+          "en": "not wanted or considered acceptable; unpleasant or harmful"
+        },
+        "sentences": [
+          {
+            "en": "The new policy had several undesirable effects on local businesses.",
+            "role": "basic",
+            "zh": "这项新政策对当地企业产生了几个不良影响。"
+          },
+          {
+            "en": "It is undesirable to rely on a single source of information when making important decisions.",
+            "role": "ext",
+            "zh": "在做重要决定时，依赖单一信息来源是不可取的。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndɪˈzaɪərəbl/",
+      "us": "/ˌʌndɪˈzaɪrəbl/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "undivided": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "专心的；全部的；未分开的",
+          "en": "complete or total; not divided or shared"
+        },
+        "sentences": [
+          {
+            "en": "She gave the project her undivided attention.",
+            "role": "basic",
+            "zh": "她全身心地投入到这个项目中。"
+          },
+          {
+            "en": "The country remained undivided despite the political tensions.",
+            "role": "ext",
+            "zh": "尽管政治局势紧张，这个国家仍然保持统一。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌndɪˈvaɪdɪd/",
+      "us": "/ˌʌndɪˈvaɪdɪd/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "undo": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "取消；撤销（已做的操作或效果）",
+          "en": "to cancel or reverse the effect of something done"
+        },
+        "sentences": [
+          {
+            "en": "You can undo your last change by pressing this button.",
+            "role": "basic",
+            "zh": "你可以按这个按钮撤销上一次修改。"
+          },
+          {
+            "en": "The damage caused by the mistake was hard to undo.",
+            "role": "ext",
+            "zh": "这个错误造成的损害很难挽回。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈduː/",
+      "us": "/ʌnˈduː/"
+    },
+    "topic": "technology",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "undocumented": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无证明文件的；无合法证件的",
+          "en": "not having official documents, especially permission to live or work in a country"
+        },
+        "sentences": [
+          {
+            "en": "Many undocumented workers live in fear of being caught.",
+            "role": "basic",
+            "zh": "许多无合法证件的工人生活在被抓住的恐惧中。"
+          },
+          {
+            "en": "The government announced new measures to support undocumented immigrants.",
+            "role": "ext",
+            "zh": "政府宣布了支持无合法证件移民的新措施。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnˈdɒkjumentɪd/",
+      "us": "/ˌʌnˈdɑːkjumentɪd/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "undoubtedly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无疑；毫无疑问地",
+          "en": "Without doubt; certainly."
+        },
+        "sentences": [
+          {
+            "en": "This is undoubtedly the warmest coat I have ever owned.",
+            "role": "basic",
+            "zh": "这无疑是我穿过的最暖和的外套。"
+          },
+          {
+            "en": "Access to clean drinking water undoubtedly improves public health, particularly in communities with limited medical services.",
+            "role": "ext",
+            "zh": "获得清洁饮用水无疑能改善公共健康，尤其是在医疗服务有限的社区。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈdaʊtɪdli/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "undress": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "脱衣服；给某人脱衣服",
+          "en": "To take off your own clothes or someone else's clothes."
+        },
+        "sentences": [
+          {
+            "en": "I undressed behind the curtain and put on pyjamas.",
+            "role": "basic",
+            "zh": "我在帘子后脱下衣服，换上睡衣。"
+          },
+          {
+            "en": "Healthcare staff should provide private spaces where patients can undress comfortably before a physical examination.",
+            "role": "ext",
+            "zh": "医护人员应提供私密空间，让患者在体检前安心脱衣。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈdres/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "undulate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "波动；呈波浪状起伏",
+          "en": "To move or rise and fall in a smooth, wave-like pattern."
+        },
+        "sentences": [
+          {
+            "en": "Long strands of seaweed undulate gently beneath the water.",
+            "role": "basic",
+            "zh": "长长的海藻在水下轻轻起伏。"
+          },
+          {
+            "en": "The grasslands undulate towards the distant mountains, providing varied habitats for a wide range of species.",
+            "role": "ext",
+            "zh": "草原绵延起伏，伸向远山，为众多物种提供了多样的栖息地。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌndjʊleɪt/"
+    },
+    "topic": "nature",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "uneasy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不安的；忧虑的",
+          "en": "Feeling worried or uncomfortable about a situation."
+        },
+        "sentences": [
+          {
+            "en": "I felt uneasy walking through the empty station.",
+            "role": "basic",
+            "zh": "走过空荡荡的车站时，我感到有些不安。"
+          },
+          {
+            "en": "Many residents remain uneasy about the proposed factory because its environmental effects have not been fully assessed.",
+            "role": "ext",
+            "zh": "许多居民仍对拟建工厂感到不安，因为其环境影响尚未得到全面评估。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈiːzi/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unemployed": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "失业的；未被利用的",
+          "en": "Without a paid job but available for work"
+        },
+        "sentences": [
+          {
+            "en": "My neighbour has been unemployed since the factory closed.",
+            "role": "basic",
+            "zh": "自从工厂关闭后，我的邻居就一直失业。"
+          },
+          {
+            "en": "Providing affordable training for unemployed adults can help them develop skills that match changing labour market demands.",
+            "role": "ext",
+            "zh": "为失业成年人提供负担得起的培训，可以帮助他们掌握符合劳动力市场变化需求的技能。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌnɪmˈplɔɪd/"
+    },
+    "topic": "work",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unemployment": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "失业；失业率",
+          "en": "the state of not having a job, or the number of people without jobs"
+        },
+        "sentences": [
+          {
+            "en": "Unemployment rose after the factory closed.",
+            "role": "basic",
+            "zh": "工厂关闭后，失业率上升了。"
+          },
+          {
+            "en": "The government has promised to tackle youth unemployment.",
+            "role": "ext",
+            "zh": "政府已承诺解决青年失业问题。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnɪmˈplɔɪmənt/",
+      "us": "/ˌʌnɪmˈplɔɪmənt/"
+    },
+    "topic": "work",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unethical": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不道德的；不合伦理的",
+          "en": "not morally right or acceptable"
+        },
+        "sentences": [
+          {
+            "en": "Lying to customers is unethical and wrong.",
+            "role": "basic",
+            "zh": "对顾客撒谎是不道德且错误的。"
+          },
+          {
+            "en": "The company was criticized for its unethical treatment of workers.",
+            "role": "ext",
+            "zh": "这家公司因不道德地对待工人而受到批评。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈeθɪkəl/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "uneven": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不平坦的；不平整的",
+          "en": "not level, flat, or smooth"
+        },
+        "sentences": [
+          {
+            "en": "Watch your step on the uneven stones outside.",
+            "role": "basic",
+            "zh": "外面的石头高低不平，走路时要小心。"
+          },
+          {
+            "en": "Uneven access to digital technology can widen educational inequalities between urban and rural communities.",
+            "role": "ext",
+            "zh": "数字技术获取机会不均等，可能扩大城乡社区之间的教育差距。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈiːvən/",
+      "us": "/ʌnˈiːvən/"
+    },
+    "topic": "nature",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unexpected": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "想不到的，意外的",
+          "en": "Happening without being expected or predicted."
+        },
+        "sentences": [
+          {
+            "en": "We had an unexpected visitor just after lunch.",
+            "role": "basic",
+            "zh": "我们刚吃完午饭，一位意想不到的客人就来了。"
+          },
+          {
+            "en": "Governments need emergency funds to manage unexpected events without reducing essential spending on healthcare and education.",
+            "role": "ext",
+            "zh": "政府需要应急资金来应对意外事件，避免削减医疗和教育方面的必要支出。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌnɪkˈspektɪd/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unfair": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不公平的，不公正的",
+          "en": "not fair or just; treating people unequally"
+        },
+        "sentences": [
+          {
+            "en": "It seems unfair that I always have to wash the dishes.",
+            "role": "basic",
+            "zh": "总是让我洗碗，这似乎不公平。"
+          },
+          {
+            "en": "Unfair hiring practices can prevent qualified applicants from accessing employment opportunities and reduce diversity in the workplace.",
+            "role": "ext",
+            "zh": "不公平的招聘做法可能使合格的求职者失去就业机会，并降低职场的多样性。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈfeə(r)/",
+      "us": "/ʌnˈfer/"
+    },
+    "topic": "society",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unfamiliar": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不熟悉的；陌生的",
+          "en": "not familiar; not known or recognized"
+        },
+        "sentences": [
+          {
+            "en": "This street is unfamiliar to me.",
+            "role": "basic",
+            "zh": "这条街对我来说很陌生。"
+          },
+          {
+            "en": "The software interface felt unfamiliar at first, but I soon got used to it.",
+            "role": "ext",
+            "zh": "这个软件界面起初让我觉得陌生，但我很快就习惯了。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnfəˈmɪliə/",
+      "us": "/ˌʌnfəˈmɪliər/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unfit": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不适宜的，不相宜的；不健康的，体格不佳的",
+          "en": "Not suitable or appropriate for a particular purpose or situation; not physically healthy or strong."
+        },
+        "sentences": [
+          {
+            "en": "The old building is unfit for people to live in.",
+            "role": "basic",
+            "zh": "这座旧建筑不适合人们居住。"
+          },
+          {
+            "en": "Poor maintenance can make public housing unfit for occupation, putting additional pressure on local authorities.",
+            "role": "ext",
+            "zh": "维护不善可能使公共住房不宜居住，给地方政府带来额外压力。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈfɪt/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unflattering": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不讨喜的；贬损的；使显得不好看的",
+          "en": "making someone or something seem less attractive, good, or favorable than they really are"
+        },
+        "sentences": [
+          {
+            "en": "The unflattering photo made her look tired.",
+            "role": "basic",
+            "zh": "那张拍得不好看的照片让她显得很疲惫。"
+          },
+          {
+            "en": "He avoided making unflattering remarks about his colleague's work in public.",
+            "role": "ext",
+            "zh": "他避免在公开场合对同事的工作发表贬损性的评论。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈflætərɪŋ/",
+      "us": "/ʌnˈflætərɪŋ/"
+    },
+    "topic": "media",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unfold": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "打开；展开",
+          "en": "to open or spread out something that was folded"
+        },
+        "sentences": [
+          {
+            "en": "She unfolded the map on the table.",
+            "role": "basic",
+            "zh": "她把地图在桌子上展开。"
+          },
+          {
+            "en": "He unfolded the letter carefully and read it again.",
+            "role": "ext",
+            "zh": "他小心地展开那封信，又读了一遍。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈfəʊld/",
+      "us": "/ʌnˈfoʊld/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unforgettable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "难忘的",
+          "en": "so special or powerful that you will always remember it"
+        },
+        "sentences": [
+          {
+            "en": "Watching whales from the boat was an unforgettable experience.",
+            "role": "basic",
+            "zh": "在船上看鲸鱼是一次难忘的经历。"
+          },
+          {
+            "en": "School trips can provide unforgettable experiences that strengthen students' understanding of history beyond the classroom.",
+            "role": "ext",
+            "zh": "学校组织的旅行能带来难忘的体验，让学生在课堂之外加深对历史的理解。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌnfəˈɡetəbl/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unforgiving": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不宽恕的；严厉的；不容错的",
+          "en": "not willing to forgive or show mercy; harsh and unrelenting"
+        },
+        "sentences": [
+          {
+            "en": "An unforgiving person stays angry.",
+            "role": "basic",
+            "zh": "一个不宽恕别人的人会一直生气。"
+          },
+          {
+            "en": "The desert is an unforgiving environment for inexperienced hikers.",
+            "role": "ext",
+            "zh": "对于没有经验的徒步者来说，沙漠是一个严酷无情的环境。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌnfəˈɡɪvɪŋ/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unfortunate": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不幸的；令人遗憾的",
+          "en": "Having bad luck, or causing sadness or regret."
+        },
+        "sentences": [
+          {
+            "en": "It was an unfortunate accident that badly damaged my bicycle wheel.",
+            "role": "basic",
+            "zh": "一次不幸的意外把我的自行车车轮撞得严重变形。"
+          },
+          {
+            "en": "It is unfortunate that many rural communities still lack reliable access to essential healthcare services.",
+            "role": "ext",
+            "zh": "令人遗憾的是，许多农村社区仍无法稳定获得基本医疗服务。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈfɔːtʃənət/"
+    },
+    "topic": "uncategorized",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unfortunately": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不幸地；遗憾地",
+          "en": "used to say that something is sad, unlucky, or disappointing"
+        },
+        "sentences": [
+          {
+            "en": "Unfortunately, the shop is closed.",
+            "role": "basic",
+            "zh": "遗憾的是，商店关门了。"
+          },
+          {
+            "en": "Unfortunately, many rural schools lack the resources needed to provide students with reliable internet access.",
+            "role": "ext",
+            "zh": "遗憾的是，许多乡村学校缺乏为学生提供可靠网络连接所需的资源。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈfɔːtʃənətli/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unfriendly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不友好的，冷漠的",
+          "en": "not kind or pleasant to other people"
+        },
+        "sentences": [
+          {
+            "en": "The new neighbor seemed unfriendly at first, but she was just shy.",
+            "role": "basic",
+            "zh": "新邻居起初看起来不友好，其实她只是害羞。"
+          },
+          {
+            "en": "An unfriendly working environment can discourage employees from sharing ideas and seeking support.",
+            "role": "ext",
+            "zh": "不友好的工作环境可能使员工不愿分享想法或寻求支持。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈfrendli/",
+      "us": "/ʌnˈfrendli/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "ungainly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "笨拙的；姿态不雅的",
+          "en": "Awkward in movement, shape, or appearance."
+        },
+        "sentences": [
+          {
+            "en": "The young camel rose slowly on its ungainly legs.",
+            "role": "basic",
+            "zh": "小骆驼用它那笨拙的长腿慢慢站了起来。"
+          },
+          {
+            "en": "Although early electric vehicles appeared ungainly, improvements in design have made them more attractive to consumers.",
+            "role": "ext",
+            "zh": "虽然早期电动汽车外形笨拙，但设计上的改进使它们更能吸引消费者。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈɡeɪnli/"
+    },
+    "topic": "uncategorized",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "ungrateful": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "忘恩负义的；不感激的",
+          "en": "not showing or feeling gratitude; not thankful"
+        },
+        "sentences": [
+          {
+            "en": "The ungrateful boy forgot the gift.",
+            "role": "basic",
+            "zh": "那个忘恩负义的男孩忘记了礼物。"
+          },
+          {
+            "en": "It is ungrateful to complain about the help you received.",
+            "role": "ext",
+            "zh": "抱怨你得到的帮助是忘恩负义的。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈɡreɪtfl/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unhappy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不快乐的；不满意的",
+          "en": "not happy or pleased"
+        },
+        "sentences": [
+          {
+            "en": "He looked unhappy after the picnic was canceled.",
+            "role": "basic",
+            "zh": "野餐取消后，他显得很不开心。"
+          },
+          {
+            "en": "Residents are unhappy with the proposed road expansion because it would remove valuable green space.",
+            "role": "ext",
+            "zh": "居民对拟议中的道路扩建不满意，因为它会占用宝贵的绿地。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈhæpi/"
+    },
+    "topic": "emotion",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unhealthy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不健康的；对健康有害的",
+          "en": "not good for your health; likely to make you ill"
+        },
+        "sentences": [
+          {
+            "en": "Eating only biscuits for dinner is an unhealthy habit.",
+            "role": "basic",
+            "zh": "晚餐只吃饼干是个不健康的习惯。"
+          },
+          {
+            "en": "Advertising unhealthy foods to children may contribute to poor dietary habits and higher rates of obesity.",
+            "role": "ext",
+            "zh": "向儿童投放不健康食品广告，可能导致不良饮食习惯和更高的肥胖率。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈhel.θi/",
+      "us": "/ʌnˈhel.θi/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unhelpful": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无帮助的；不肯帮忙的；无用的",
+          "en": "not helpful; not willing to help, or not useful"
+        },
+        "sentences": [
+          {
+            "en": "The clerk was unhelpful and would not answer my questions.",
+            "role": "basic",
+            "zh": "那个职员不肯帮忙，不愿回答我的问题。"
+          },
+          {
+            "en": "His unhelpful comments made the discussion more confusing.",
+            "role": "ext",
+            "zh": "他那些毫无帮助的评论让讨论更加混乱。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈhelpfl/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unified": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "统一的；联合的",
+          "en": "joined together to form a single unit"
+        },
+        "sentences": [
+          {
+            "en": "The two groups formed a unified team.",
+            "role": "basic",
+            "zh": "这两个团体组成了一个统一的团队。"
+          },
+          {
+            "en": "The country adopted a unified currency to strengthen its economy.",
+            "role": "ext",
+            "zh": "该国采用统一货币以增强经济。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjuːnɪfaɪd/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "uniform": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "制服",
+          "en": "a set of clothes for members of a group to wear"
+        },
+        "sentences": [
+          {
+            "en": "The team wears a blue uniform.",
+            "role": "basic",
+            "zh": "这支队伍穿着蓝色制服。"
+          },
+          {
+            "en": "Uniform safety standards across all factories can help protect workers and improve overall working conditions.",
+            "role": "ext",
+            "zh": "所有工厂实行统一的安全标准，有助于保护工人并改善整体工作条件。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjuːnɪfɔːm/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "uniformly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "均匀地；一致地",
+          "en": "equally or in the same way throughout"
+        },
+        "sentences": [
+          {
+            "en": "Spread the butter uniformly across the warm bread.",
+            "role": "basic",
+            "zh": "把黄油均匀地涂在温热的面包上。"
+          },
+          {
+            "en": "Environmental regulations must be applied uniformly to all companies to ensure fair competition.",
+            "role": "ext",
+            "zh": "环境法规必须统一适用于所有公司，以确保公平竞争。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjuːnɪfɔːmli/",
+      "us": "/ˈjuːnɪfɔːrmli/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unify": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "统一；使联合",
+          "en": "To bring separate parts or groups together as one."
+        },
+        "sentences": [
+          {
+            "en": "The neighbourhood festival helped unify our divided community.",
+            "role": "basic",
+            "zh": "邻里节庆帮助我们这个存在隔阂的社区团结起来。"
+          },
+          {
+            "en": "A shared public transport network could unify the region while improving access to employment.",
+            "role": "ext",
+            "zh": "共享的公共交通网络既能将该地区连成一体，也能让人们更方便地获得就业机会。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjuːnɪfaɪ/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unilateral": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "单方面的；单边的",
+          "en": "done by or affecting only one side"
+        },
+        "sentences": [
+          {
+            "en": "They made a unilateral decision to leave.",
+            "role": "basic",
+            "zh": "他们单方面决定离开。"
+          },
+          {
+            "en": "The government was criticized for taking unilateral action without consulting its allies.",
+            "role": "ext",
+            "zh": "该政府因未与盟友协商就采取单边行动而受到批评。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌjuːnɪˈlætrəl/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unimportant": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不重要的，琐碎的",
+          "en": "not important"
+        },
+        "sentences": [
+          {
+            "en": "This detail is unimportant; focus on the main idea.",
+            "role": "basic",
+            "zh": "这个细节不重要，请关注主要观点。"
+          },
+          {
+            "en": "Although the meeting seemed unimportant at first, it later proved to be crucial.",
+            "role": "ext",
+            "zh": "尽管这个会议起初看起来不重要，但后来证明它至关重要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnɪmˈpɔːtnt/",
+      "us": "/ˌʌnɪmˈpɔːrtnt/"
+    },
+    "topic": "uncategorized",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "uninformed": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "未获知的；不了解情况的；无知的",
+          "en": "not having enough knowledge or information about something"
+        },
+        "sentences": [
+          {
+            "en": "He made an uninformed decision without checking the facts.",
+            "role": "basic",
+            "zh": "他没有核实事实就做出了一个不明情况的决定。"
+          },
+          {
+            "en": "The article was criticized for giving an uninformed view of the crisis.",
+            "role": "ext",
+            "zh": "这篇文章因对这场危机给出了无知的看法而受到批评。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnɪnˈfɔːmd/",
+      "us": "/ˌʌnɪnˈfɔːrmd/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "unintended": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "非计划中的；无意的",
+          "en": "not planned or intended; happening without being meant"
+        },
+        "sentences": [
+          {
+            "en": "The joke had an unintended effect.",
+            "role": "basic",
+            "zh": "这个玩笑产生了意想不到的后果。"
+          },
+          {
+            "en": "The new policy led to several unintended consequences.",
+            "role": "ext",
+            "zh": "这项新政策导致了一些非预期的后果。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌnɪnˈtendɪd/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unintentionally": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无意地；并非故意地",
+          "en": "without intending to; not deliberately"
+        },
+        "sentences": [
+          {
+            "en": "She unintentionally hurt his feelings during the interview.",
+            "role": "basic",
+            "zh": "她在面试中无意间伤害了他的感情。"
+          },
+          {
+            "en": "The company unintentionally leaked some users' personal data.",
+            "role": "ext",
+            "zh": "该公司无意中泄露了一些用户的个人数据。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnɪnˈtenʃənəli/",
+      "us": "/ˌʌnɪnˈtenʃənəli/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "uninterested": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不感兴趣的",
+          "en": "not interested; having no interest in something"
+        },
+        "sentences": [
+          {
+            "en": "Leo seemed uninterested in the game and went outside.",
+            "role": "basic",
+            "zh": "利奥似乎对游戏不感兴趣，便出去了。"
+          },
+          {
+            "en": "Students may appear uninterested in science when lessons offer few opportunities for practical experiments.",
+            "role": "ext",
+            "zh": "如果课堂很少提供动手实验的机会，学生可能会显得对科学不感兴趣。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈɪntrəstɪd/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "uninteresting": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无趣味的，乏味的",
+          "en": "not interesting; boring"
+        },
+        "sentences": [
+          {
+            "en": "The movie was long and uninteresting.",
+            "role": "basic",
+            "zh": "这部电影又长又乏味。"
+          },
+          {
+            "en": "He found the lecture uninteresting and started to daydream.",
+            "role": "ext",
+            "zh": "他觉得讲座很乏味，开始走神。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈɪntrəstɪŋ/",
+      "us": "/ʌnˈɪntrəstɪŋ/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "union": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "工会",
+          "en": "an organization that protects workers' rights"
+        },
+        "sentences": [
+          {
+            "en": "The union asked for fair pay.",
+            "role": "basic",
+            "zh": "工会要求公平的薪酬。"
+          },
+          {
+            "en": "Joining a union can give employees greater influence over decisions concerning workplace safety and fair pay.",
+            "role": "ext",
+            "zh": "加入工会能让员工在涉及工作场所安全和公平薪酬的决策中拥有更大的影响力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjuːniən/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unique": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "独特的；唯一的",
+          "en": "being the only one of its kind; unlike anything else"
+        },
+        "sentences": [
+          {
+            "en": "Each snowflake has a unique shape.",
+            "role": "basic",
+            "zh": "每片雪花都有独特的形状。"
+          },
+          {
+            "en": "Protecting local crafts helps communities preserve their unique cultural identity in an increasingly globalised world.",
+            "role": "ext",
+            "zh": "在日益全球化的世界中，保护地方手工艺有助于社区保留独特的文化认同。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/juˈniːk/"
+    },
+    "topic": "uncategorized",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unit": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "单元（教材或课程中的一部分）",
+          "en": "one part of a book or course"
+        },
+        "sentences": [
+          {
+            "en": "This is unit five in our book.",
+            "role": "basic",
+            "zh": "这是我们书里的第五单元。"
+          },
+          {
+            "en": "Each unit of the course introduces practical skills that students can apply in the workplace.",
+            "role": "ext",
+            "zh": "这门课程的每个单元都介绍学生可以在工作中运用的实用技能。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjuːnɪt/"
+    },
+    "topic": "education",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unite": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "联合；团结",
+          "en": "to join together as one group"
+        },
+        "sentences": [
+          {
+            "en": "The two teams unite after the game.",
+            "role": "basic",
+            "zh": "比赛结束后，两支队伍联合起来。"
+          },
+          {
+            "en": "Shared environmental goals can unite communities that otherwise have very different economic and political interests.",
+            "role": "ext",
+            "zh": "共同的环境目标能让经济和政治利益原本大不相同的社区团结起来。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/juːˈnaɪt/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "united": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "团结的；一致的",
+          "en": "Joined together by shared aims, feelings, or actions; in agreement."
+        },
+        "sentences": [
+          {
+            "en": "Our neighbours remained united despite disagreements about the garden.",
+            "role": "basic",
+            "zh": "尽管对花园有不同意见，我们的邻居们仍然保持团结。"
+          },
+          {
+            "en": "A united response from governments and communities is essential for addressing the long-term challenges of climate change.",
+            "role": "ext",
+            "zh": "政府与社区一致行动，对于应对气候变化带来的长期挑战至关重要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/juˈnaɪtɪd/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "united kingdom": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "英国；联合王国",
+          "en": "The country comprising England, Scotland, Wales, and Northern Ireland."
+        },
+        "sentences": [
+          {
+            "en": "We travelled around the United Kingdom by train last summer.",
+            "role": "basic",
+            "zh": "去年夏天，我们乘火车游览了英国各地。"
+          },
+          {
+            "en": "International students in the United Kingdom contribute to university communities through their diverse experiences and perspectives.",
+            "role": "ext",
+            "zh": "在英国的国际学生以多样的经历和视角为大学社区作出贡献。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/juˌnaɪtɪd ˈkɪŋdəm/"
+    },
+    "topic": "travel",
+    "level": "A2",
+    "origin": "word-atlas"
+  },
+  "unity": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "团结；一致",
+          "en": "the state of being joined together or in agreement"
+        },
+        "sentences": [
+          {
+            "en": "The team showed unity during the hard game.",
+            "role": "basic",
+            "zh": "球队在这场艰苦的比赛中表现出了团结。"
+          },
+          {
+            "en": "The speech called for unity among all members of the community.",
+            "role": "ext",
+            "zh": "演讲呼吁社区所有成员团结一致。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjuːnəti/",
+      "us": "/ˈjuːnəti/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "universal": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "普遍的；全体的；通用的",
+          "en": "Existing everywhere or applying to everyone."
+        },
+        "sentences": [
+          {
+            "en": "The desire for safety is universal.",
+            "role": "basic",
+            "zh": "对安全的渴望是普遍存在的。"
+          },
+          {
+            "en": "Universal access to affordable healthcare can reduce inequality and improve the overall wellbeing of a population.",
+            "role": "ext",
+            "zh": "人人都能获得负担得起的医疗服务，可以减少不平等并改善全民的整体福祉。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌjuːnɪˈvɜːsəl/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "universally": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "普遍地；全体一致地",
+          "en": "by everyone or in every place or situation"
+        },
+        "sentences": [
+          {
+            "en": "Her homemade cakes are universally loved by our neighbours.",
+            "role": "basic",
+            "zh": "我们邻居普遍都很喜欢她自制的蛋糕。"
+          },
+          {
+            "en": "Although education is universally recognised as valuable, access to quality schooling remains unequal across regions.",
+            "role": "ext",
+            "zh": "尽管教育的价值获得普遍认可，各地区获得优质学校教育的机会仍不平等。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌjuːnɪˈvɜːsəli/",
+      "us": "/ˌjuːnɪˈvɜːrsəli/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "universe": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "宇宙",
+          "en": "all of space and everything in it, including the earth and the stars"
+        },
+        "sentences": [
+          {
+            "en": "Stars fill the dark universe.",
+            "role": "basic",
+            "zh": "星星布满了黑暗的宇宙。"
+          },
+          {
+            "en": "Research into the origins of the universe has driven advances in telescope technology and data analysis.",
+            "role": "ext",
+            "zh": "对宇宙起源的研究推动了望远镜技术和数据分析的进步。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjuːnɪvɜːs/",
+      "us": "/ˈjuːnɪvɜːrs/"
+    },
+    "topic": "science",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "university": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "大学",
+          "en": "an institution of higher education where students study for degrees and research is done"
+        },
+        "sentences": [
+          {
+            "en": "He studies law at the university.",
+            "role": "basic",
+            "zh": "他在大学学习法律。"
+          },
+          {
+            "en": "Governments should improve access to university so that talented students are not excluded by financial barriers.",
+            "role": "ext",
+            "zh": "政府应扩大接受大学教育的机会，避免有才华的学生因经济障碍被拒之门外。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌjuːnɪˈvɜːsəti/",
+      "us": "/ˌjuːnɪˈvɜːrsəti/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unjust": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不公正的；不公平的",
+          "en": "not fair or morally right"
+        },
+        "sentences": [
+          {
+            "en": "It seemed unjust to blame her for everyone's mistakes.",
+            "role": "basic",
+            "zh": "把大家的错误都归咎于她，似乎很不公平。"
+          },
+          {
+            "en": "An unjust legal system can weaken public trust and discourage citizens from seeking help through official channels.",
+            "role": "ext",
+            "zh": "不公正的法律制度会削弱公众信任，并使公民不愿通过官方渠道寻求帮助。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈdʒʌst/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "unkind": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不友善的；刻薄的",
+          "en": "not caring about others' feelings or treating them kindly"
+        },
+        "sentences": [
+          {
+            "en": "It was unkind to laugh at his first drawing.",
+            "role": "basic",
+            "zh": "嘲笑他第一次画的画很不友善。"
+          },
+          {
+            "en": "Schools should teach children how unkind comments online can affect the emotional wellbeing of their classmates.",
+            "role": "ext",
+            "zh": "学校应教导孩子认识到，网上刻薄的评论会如何影响同学的心理健康。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌnˈkaɪnd/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unknown": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "未知的；不为人知的",
+          "en": "Not known or familiar; not identified or discovered."
+        },
+        "sentences": [
+          {
+            "en": "The cause of the fire is still unknown.",
+            "role": "basic",
+            "zh": "火灾的原因仍然未知。"
+          },
+          {
+            "en": "The long-term effects of some new materials remain unknown, so further research is essential before widespread use.",
+            "role": "ext",
+            "zh": "某些新材料的长期影响仍不明确，因此在广泛使用前必须进一步研究。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈnəʊn/",
+      "us": "/ʌnˈnoʊn/"
+    },
+    "topic": "uncategorized",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unless": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "除非",
+          "en": "except if"
+        },
+        "sentences": [
+          {
+            "en": "We stay home unless the sun comes out.",
+            "role": "basic",
+            "zh": "除非太阳出来，否则我们就待在家里。"
+          },
+          {
+            "en": "Public transport will remain unpopular unless local authorities improve its reliability and make fares more affordable.",
+            "role": "ext",
+            "zh": "除非地方政府提高公共交通的可靠性并降低票价，否则它仍不会受欢迎。"
+          }
+        ],
+        "pos": "conj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ənˈles/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unlike": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不像；与……不同",
+          "en": "different from; not like"
+        },
+        "sentences": [
+          {
+            "en": "Unlike her brother, Lena likes getting up early.",
+            "role": "basic",
+            "zh": "莉娜和她哥哥不同，她喜欢早起。"
+          },
+          {
+            "en": "Unlike private cars, public transport can move large groups of people while using relatively little road space.",
+            "role": "ext",
+            "zh": "与私家车不同，公共交通能在占用较少道路空间的同时运送大量乘客。"
+          }
+        ],
+        "pos": "prep."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌnˈlaɪk/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unlikely": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不太可能的；未必会发生的",
+          "en": "Not likely to happen or be true."
+        },
+        "sentences": [
+          {
+            "en": "It is unlikely that it will rain this afternoon.",
+            "role": "basic",
+            "zh": "今天下午不太可能下雨。"
+          },
+          {
+            "en": "Public transport use is unlikely to increase unless services become more reliable and affordable.",
+            "role": "ext",
+            "zh": "除非服务变得更可靠、票价更实惠，否则公共交通的使用量不太可能增加。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈlaɪkli/"
+    },
+    "topic": "thinking",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unlimited": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无限的；不限量的",
+          "en": "not restricted in amount, number, or extent"
+        },
+        "sentences": [
+          {
+            "en": "Our hotel offers unlimited coffee with breakfast each morning.",
+            "role": "basic",
+            "zh": "我们住的酒店每天早餐都提供不限量的咖啡。"
+          },
+          {
+            "en": "Economic growth cannot rely on unlimited consumption of natural resources without causing serious environmental damage.",
+            "role": "ext",
+            "zh": "经济增长若依赖无限消耗自然资源，就必然会造成严重的环境破坏。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈlɪmɪtɪd/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unload": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "卸货；从…卸下货物",
+          "en": "to remove goods from a vehicle, ship, etc."
+        },
+        "sentences": [
+          {
+            "en": "The workers unloaded the boxes from the truck.",
+            "role": "basic",
+            "zh": "工人们从卡车上卸下箱子。"
+          },
+          {
+            "en": "The ship will unload its cargo at the port tomorrow.",
+            "role": "ext",
+            "zh": "这艘船明天将在港口卸货。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnˈləʊd/",
+      "us": "/ˌʌnˈloʊd/"
+    },
+    "topic": "work",
+    "level": "B1",
+    "origin": "book:cet4"
+  },
+  "unlock": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "开…的锁；解锁",
+          "en": "to open a lock with a key or code"
+        },
+        "sentences": [
+          {
+            "en": "She unlocked the door and went inside.",
+            "role": "basic",
+            "zh": "她打开门锁走了进去。"
+          },
+          {
+            "en": "You can unlock the phone with your fingerprint.",
+            "role": "ext",
+            "zh": "你可以用指纹解锁手机。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnˈlɒk/",
+      "us": "/ˌʌnˈlɑːk/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:cet6"
+  },
+  "unlucky": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不幸的；倒霉的",
+          "en": "having bad luck; experiencing bad things by chance"
+        },
+        "sentences": [
+          {
+            "en": "I am unlucky to miss the bus.",
+            "role": "basic",
+            "zh": "我真倒霉，错过了公交车。"
+          },
+          {
+            "en": "Students who are unlucky enough to fall ill during examinations should be offered alternative assessment arrangements.",
+            "role": "ext",
+            "zh": "不幸在考试期间生病的学生应获得其他考核安排。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈlʌki/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unmarried": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "未婚的；没有结婚的",
+          "en": "not married"
+        },
+        "sentences": [
+          {
+            "en": "She is still unmarried and lives with her parents.",
+            "role": "basic",
+            "zh": "她仍然未婚，和父母住在一起。"
+          },
+          {
+            "en": "The survey shows that more unmarried adults are choosing to live alone in big cities.",
+            "role": "ext",
+            "zh": "调查显示，越来越多未婚成年人选择在大城市独居。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnˈmærid/",
+      "us": "/ˌʌnˈmærid/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unnecessary": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不必要的，多余的",
+          "en": "Not needed or not useful."
+        },
+        "sentences": [
+          {
+            "en": "Take a light jacket, but thick boots are unnecessary.",
+            "role": "basic",
+            "zh": "带一件薄外套吧，但厚靴子就没必要了。"
+          },
+          {
+            "en": "Clear instructions can prevent unnecessary delays and help public services operate more efficiently.",
+            "role": "ext",
+            "zh": "清晰的指引可以避免不必要的延误，帮助公共服务更高效地运作。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈnesəsəri/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unpack": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "打开行李取出物品",
+          "en": "take things out of a bag, box, or other container"
+        },
+        "sentences": [
+          {
+            "en": "I unpacked my suitcase and hung up my shirts.",
+            "role": "basic",
+            "zh": "我把衣物从行李箱里拿出来，挂好了衬衫。"
+          },
+          {
+            "en": "Teachers can help students unpack complex arguments by examining the evidence and assumptions behind each claim.",
+            "role": "ext",
+            "zh": "教师可以通过审视每个论点背后的证据和假设，帮助学生剖析复杂的论证。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈpæk/",
+      "us": "/ʌnˈpæk/"
+    },
+    "topic": "travel",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unpaid": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无薪的；无偿的",
+          "en": "Not receiving or giving money for work done."
+        },
+        "sentences": [
+          {
+            "en": "She does unpaid work at the animal shelter every Saturday.",
+            "role": "basic",
+            "zh": "她每周六都在动物收容所做无偿工作。"
+          },
+          {
+            "en": "Unpaid internships can disadvantage students who cannot afford to work without a regular income.",
+            "role": "ext",
+            "zh": "无薪实习可能使那些无法承受没有固定收入的学生处于不利地位。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈpeɪd/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unpleasant": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "使人不愉快的；令人不舒服的",
+          "en": "not pleasant; making you feel uncomfortable or unhappy"
+        },
+        "sentences": [
+          {
+            "en": "The smoke has an unpleasant smell.",
+            "role": "basic",
+            "zh": "这烟有一股难闻的气味。"
+          },
+          {
+            "en": "Although commuting can be unpleasant, reliable public transport can reduce stress and improve the daily experience of workers.",
+            "role": "ext",
+            "zh": "虽然通勤可能令人不快，但可靠的公共交通能减轻压力，改善上班族的日常体验。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈpleznt/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unprecedented": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "前所未有的",
+          "en": "not having happened before"
+        },
+        "sentences": [
+          {
+            "en": "The heat this summer is unprecedented.",
+            "role": "basic",
+            "zh": "今年夏天的炎热是前所未有的。"
+          },
+          {
+            "en": "Many coastal communities face unprecedented challenges as rising sea levels threaten homes, infrastructure, and local livelihoods.",
+            "role": "ext",
+            "zh": "随着海平面上升威胁住房、基础设施和当地生计，许多沿海社区面临前所未有的挑战。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈpresɪdentɪd/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unqualified": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不合格的；不胜任的",
+          "en": "not having the necessary qualifications or skills for a particular job or activity"
+        },
+        "sentences": [
+          {
+            "en": "He is unqualified for the teaching position.",
+            "role": "basic",
+            "zh": "他不具备担任教师职位的资格。"
+          },
+          {
+            "en": "The hospital refused to hire unqualified nurses.",
+            "role": "ext",
+            "zh": "医院拒绝聘用不合格的护士。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈkwɒlɪfaɪd/",
+      "us": "/ʌnˈkwɑːlɪfaɪd/"
+    },
+    "topic": "education",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "unravel": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "解开；阐明，解决",
+          "en": "to undo twisted or knitted threads; to solve or explain something complicated"
+        },
+        "sentences": [
+          {
+            "en": "She helped unravel the old knot.",
+            "role": "basic",
+            "zh": "她帮忙解开了那个旧结。"
+          },
+          {
+            "en": "Detectives worked for months to unravel the mystery.",
+            "role": "ext",
+            "zh": "侦探们花了几个月时间解开这个谜团。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈrævl/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unrealistic": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不现实的；不切实际的",
+          "en": "not showing a sensible idea of what can be achieved or expected"
+        },
+        "sentences": [
+          {
+            "en": "It was an unrealistic example in class.",
+            "role": "basic",
+            "zh": "课堂上那个例子不切实际。"
+          },
+          {
+            "en": "Setting unrealistic goals can lead to disappointment.",
+            "role": "ext",
+            "zh": "设定不切实际的目标可能会导致失望。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnrɪəˈlɪstɪk/",
+      "us": "/ˌʌnriəˈlɪstɪk/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "unreasonable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不合理的；不讲理的",
+          "en": "Not fair, sensible, or willing to accept good reasons."
+        },
+        "sentences": [
+          {
+            "en": "It seems unreasonable to blame you for the weather.",
+            "role": "basic",
+            "zh": "因为天气不好而责怪你，似乎很不讲理。"
+          },
+          {
+            "en": "Expecting employees to answer messages throughout their holidays places unreasonable demands on their time and harms wellbeing.",
+            "role": "ext",
+            "zh": "要求员工整个假期都回复消息，是对其时间的过分索取，也会损害身心健康。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈriːzənəbl/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unrest": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "动荡；动乱；不安",
+          "en": "a state of dissatisfaction, disturbance, or protest, especially among a group of people"
+        },
+        "sentences": [
+          {
+            "en": "Political unrest spread through the city.",
+            "role": "basic",
+            "zh": "政治动乱蔓延到整座城市。"
+          },
+          {
+            "en": "The government introduced reforms to ease social unrest.",
+            "role": "ext",
+            "zh": "政府推行改革以缓解社会动荡。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈrest/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unsafe": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不安全的；有危险的",
+          "en": "not safe; likely to cause harm or danger"
+        },
+        "sentences": [
+          {
+            "en": "It is unsafe to swim in this river.",
+            "role": "basic",
+            "zh": "在这条河里游泳不安全。"
+          },
+          {
+            "en": "The building was declared unsafe after the earthquake.",
+            "role": "ext",
+            "zh": "地震后，这栋建筑被宣布为不安全。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈseɪf/",
+      "us": "/ʌnˈseɪf/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unsatisfactory": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不令人满意的；不合格的",
+          "en": "Not good enough to meet expectations or requirements."
+        },
+        "sentences": [
+          {
+            "en": "The repair was unsatisfactory, so I called the mechanic again.",
+            "role": "basic",
+            "zh": "维修效果不理想，所以我又给修理工打了电话。"
+          },
+          {
+            "en": "Unsatisfactory housing conditions can negatively affect children's health and their ability to concentrate at school.",
+            "role": "ext",
+            "zh": "不良的居住条件可能损害儿童健康，并影响他们在学校集中注意力的能力。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌnsætɪsˈfæktəri/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "unscrew": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "拧开；旋松",
+          "en": "to loosen or remove something by turning it, especially a screw or lid"
+        },
+        "sentences": [
+          {
+            "en": "Please unscrew the lid of the jam jar.",
+            "role": "basic",
+            "zh": "请拧开果酱罐的盖子。"
+          },
+          {
+            "en": "He used a screwdriver to unscrew the back panel of the computer.",
+            "role": "ext",
+            "zh": "他用螺丝刀拧开了电脑的后面板。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnˈskruː/",
+      "us": "/ˌʌnˈskruː/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unstable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不稳定的；不稳固的",
+          "en": "Likely to change, move, fall, or collapse; not steady or reliable."
+        },
+        "sentences": [
+          {
+            "en": "This unstable chair wobbles whenever I sit on it.",
+            "role": "basic",
+            "zh": "这把椅子不稳，我一坐上去就晃。"
+          },
+          {
+            "en": "An unstable economy can discourage investment and make long-term planning difficult for small businesses.",
+            "role": "ext",
+            "zh": "经济不稳定会抑制投资，并使小企业难以制定长期计划。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈsteɪbl/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unsuccessful": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不成功的；失败的",
+          "en": "not achieving the desired result or goal"
+        },
+        "sentences": [
+          {
+            "en": "It was an unsuccessful example in class.",
+            "role": "basic",
+            "zh": "那是课堂上（举的）一个不成功的例子。"
+          },
+          {
+            "en": "Despite months of preparation, the project remained unsuccessful because the team lacked clear goals.",
+            "role": "ext",
+            "zh": "尽管准备了数月，这个项目仍然不成功，因为团队缺乏明确的目标。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnsəkˈsesfl/",
+      "us": "/ˌʌnsəkˈsesfl/"
+    },
+    "topic": "uncategorized",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unsuitable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不适合的；不适宜的",
+          "en": "not right or appropriate for a particular person or purpose"
+        },
+        "sentences": [
+          {
+            "en": "These thin shoes are unsuitable for walking through deep snow.",
+            "role": "basic",
+            "zh": "这双薄鞋不适合在深雪中行走。"
+          },
+          {
+            "en": "Some traditional teaching methods are unsuitable for large classes because they offer limited opportunities for individual feedback.",
+            "role": "ext",
+            "zh": "一些传统教学方法不适合大班教学，因为它们提供个别反馈的机会有限。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈsuːtəbl/",
+      "us": "/ʌnˈsuːtəbl/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "unsure": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "没有自信的；不确定的",
+          "en": "not confident or not certain about something"
+        },
+        "sentences": [
+          {
+            "en": "She felt unsure about the answer.",
+            "role": "basic",
+            "zh": "她对那个答案感到不确定。"
+          },
+          {
+            "en": "He was unsure whether to accept the job offer.",
+            "role": "ext",
+            "zh": "他不确定是否应该接受那份工作邀请。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnˈʃʊə/",
+      "us": "/ˌʌnˈʃʊr/"
+    },
+    "topic": "emotion",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "unthinkable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "难以想象的；不可接受的",
+          "en": "too unlikely or unacceptable to imagine or consider seriously"
+        },
+        "sentences": [
+          {
+            "en": "Leaving our dog behind during the move was unthinkable.",
+            "role": "basic",
+            "zh": "搬家时丢下我们的狗是绝对不可接受的。"
+          },
+          {
+            "en": "For many communities, closing the only local hospital would be unthinkable because residents depend on its services.",
+            "role": "ext",
+            "zh": "对许多社区来说，关闭当地唯一的医院是不可接受的，因为居民依赖其服务。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈθɪŋkəbl/"
+    },
+    "topic": "thinking",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "untidy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "凌乱的；不整洁的",
+          "en": "not neat or well arranged"
+        },
+        "sentences": [
+          {
+            "en": "Her untidy desk was covered with cups and notebooks.",
+            "role": "basic",
+            "zh": "她凌乱的书桌上堆满了杯子和笔记本。"
+          },
+          {
+            "en": "Shared workspaces can quickly become untidy unless employees take responsibility for keeping communal areas clean and organised.",
+            "role": "ext",
+            "zh": "如果员工不主动保持公共区域干净有序，共享办公空间很快就会变得凌乱。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈtaɪdi/",
+      "us": "/ʌnˈtaɪdi/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "untie": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "解开（绳结、鞋带等）",
+          "en": "to undo a knot, string, etc."
+        },
+        "sentences": [
+          {
+            "en": "She bent down to untie her shoelaces.",
+            "role": "basic",
+            "zh": "她弯下腰解开鞋带。"
+          },
+          {
+            "en": "The sailor quickly untied the rope from the dock.",
+            "role": "ext",
+            "zh": "水手迅速解开系在码头上的绳子。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈtaɪ/",
+      "us": "/ʌnˈtaɪ/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:cet6"
+  },
+  "until": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "直到",
+          "en": "up to a certain time"
+        },
+        "sentences": [
+          {
+            "en": "We wait until the bell rings.",
+            "role": "basic",
+            "zh": "我们一直等到铃响。"
+          },
+          {
+            "en": "Governments should continue supporting renewable energy until cleaner technologies become affordable for the majority of households.",
+            "role": "ext",
+            "zh": "政府应持续支持可再生能源，直到大多数家庭都能负担得起更清洁的技术。"
+          }
+        ],
+        "pos": "prep./conj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ənˈtɪl/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "untiring": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不知疲倦的；不懈的",
+          "en": "continuing to work or try hard without becoming tired"
+        },
+        "sentences": [
+          {
+            "en": "She is an untiring worker who never gives up.",
+            "role": "basic",
+            "zh": "她是一个不知疲倦、从不放弃的工作者。"
+          },
+          {
+            "en": "His untiring efforts finally led to the success of the project.",
+            "role": "ext",
+            "zh": "他不懈的努力最终使这个项目获得了成功。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈtaɪərɪŋ/",
+      "us": "/ʌnˈtaɪrɪŋ/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "untreated": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "未经处理的；未治疗的",
+          "en": "not treated or processed; not given medical treatment"
+        },
+        "sentences": [
+          {
+            "en": "The untreated water is not safe to drink.",
+            "role": "basic",
+            "zh": "未经处理的水不能安全饮用。"
+          },
+          {
+            "en": "If left untreated, the infection can spread quickly.",
+            "role": "ext",
+            "zh": "如果不治疗，感染会迅速蔓延。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌnˈtriːtɪd/",
+      "us": "/ˌʌnˈtriːtɪd/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "origin": "book:cet6"
+  },
+  "untrue": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不真实的；虚假的",
+          "en": "not true; false"
+        },
+        "sentences": [
+          {
+            "en": "It was an untrue example in class.",
+            "role": "basic",
+            "zh": "课堂上那个例子是不真实的。"
+          },
+          {
+            "en": "The rumor that spread online was completely untrue.",
+            "role": "ext",
+            "zh": "网上传播的谣言完全不真实。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈtruː/",
+      "us": "/ʌnˈtruː/"
+    },
+    "topic": "thinking",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "untrustworthy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不值得信任的；不可靠的",
+          "en": "not able to be trusted or relied on"
+        },
+        "sentences": [
+          {
+            "en": "He is an untrustworthy person who often lies.",
+            "role": "basic",
+            "zh": "他是一个经常撒谎、不值得信任的人。"
+          },
+          {
+            "en": "The company was accused of providing untrustworthy information to its customers.",
+            "role": "ext",
+            "zh": "该公司被指控向客户提供不可靠的信息。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈtrʌstwɜːði/",
+      "us": "/ʌnˈtrʌstwɜːrði/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "unusual": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不平常的，少有的；异常的",
+          "en": "not common or ordinary; different from what is usual"
+        },
+        "sentences": [
+          {
+            "en": "It is unusual for him to be late.",
+            "role": "basic",
+            "zh": "他迟到是不寻常的。"
+          },
+          {
+            "en": "Scientists are investigating unusual weather patterns that may be linked to rising global temperatures.",
+            "role": "ext",
+            "zh": "科学家正在研究可能与全球气温上升有关的异常天气模式。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈjuːʒuəl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unwarranted": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无正当理由的；无根据的",
+          "en": "not justified by the facts or circumstances"
+        },
+        "sentences": [
+          {
+            "en": "His unwarranted criticism upset everyone who had worked hard.",
+            "role": "basic",
+            "zh": "他无端的批评让所有辛苦付出的人都很难过。"
+          },
+          {
+            "en": "Unwarranted restrictions on public access to information can weaken trust in government and limit informed debate.",
+            "role": "ext",
+            "zh": "对公众获取信息施加无正当理由的限制，会削弱对政府的信任并妨碍理性讨论。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌnˈwɒrəntɪd/",
+      "us": "/ʌnˈwɔːrəntɪd/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "unwelcome": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不受欢迎的；令人不快的",
+          "en": "not wanted or acceptable"
+        },
+        "sentences": [
+          {
+            "en": "The loud music was an unwelcome interruption during dinner.",
+            "role": "basic",
+            "zh": "晚餐时响起的吵闹音乐令人扫兴。"
+          },
+          {
+            "en": "For many residents, rising rents are an unwelcome consequence of rapid development in urban areas.",
+            "role": "ext",
+            "zh": "对许多居民而言，租金上涨是城市快速发展带来的不受欢迎的后果。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈwelkəm/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "unwell": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不舒服的；生病的",
+          "en": "feeling ill or not in good health"
+        },
+        "sentences": [
+          {
+            "en": "I felt unwell and went home before lunch.",
+            "role": "basic",
+            "zh": "我感觉身体不适，午饭前就回家了。"
+          },
+          {
+            "en": "Employees who feel unwell should be encouraged to stay home to prevent infections spreading at work.",
+            "role": "ext",
+            "zh": "应鼓励身体不适的员工居家休息，以防感染在工作场所传播。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈwel/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "unwilling": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "不愿意的；不乐意的",
+          "en": "not wanting or agreeing to do something"
+        },
+        "sentences": [
+          {
+            "en": "He was unwilling to lend his new bike to others.",
+            "role": "basic",
+            "zh": "他不愿意把自己的新自行车借给别人。"
+          },
+          {
+            "en": "Some commuters are unwilling to cycle to work because busy roads lack safe lanes and secure bicycle parking.",
+            "role": "ext",
+            "zh": "一些通勤者不愿骑车上班，因为繁忙的道路缺乏安全的车道和可靠的自行车停放设施。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌnˈwɪlɪŋ/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "up": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "向上；在高处",
+          "en": "toward a higher place or position"
+        },
+        "sentences": [
+          {
+            "en": "Please stand up.",
+            "role": "basic",
+            "zh": "请站起来。"
+          },
+          {
+            "en": "As housing costs go up, many young adults find it harder to live independently.",
+            "role": "ext",
+            "zh": "随着住房成本上涨，许多年轻人发现独立生活变得更加困难。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌp/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "up-to-date": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "最新的；现代化的；跟上时代的",
+          "en": "modern, current, or including the latest information"
+        },
+        "sentences": [
+          {
+            "en": "The library has an up-to-date collection of books.",
+            "role": "basic",
+            "zh": "这家图书馆有最新的藏书。"
+          },
+          {
+            "en": "Make sure your software is up-to-date to protect against security threats.",
+            "role": "ext",
+            "zh": "确保你的软件是最新的，以防安全威胁。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌp tə ˈdeɪt/",
+      "us": "/ˌʌp tə ˈdeɪt/"
+    },
+    "topic": "technology",
+    "level": "B1",
+    "origin": "book:cet4"
+  },
+  "upbeat": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "乐观的；愉快的",
+          "en": "positive and cheerful"
+        },
+        "sentences": [
+          {
+            "en": "She stayed upbeat after the loss.",
+            "role": "basic",
+            "zh": "失利后她依然保持乐观。"
+          },
+          {
+            "en": "Despite the bad news, he gave an upbeat speech to encourage the team.",
+            "role": "ext",
+            "zh": "尽管消息不好，他还是发表了一番鼓舞人心的乐观讲话来激励团队。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌpbiːt/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "upbringing": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "养育；教养",
+          "en": "the way in which a child is cared for and educated while growing up"
+        },
+        "sentences": [
+          {
+            "en": "A kind upbringing shaped her.",
+            "role": "basic",
+            "zh": "温和的教养塑造了她。"
+          },
+          {
+            "en": "A supportive upbringing can help children develop confidence and cope more effectively with challenges at school.",
+            "role": "ext",
+            "zh": "充满支持的家庭养育有助于孩子建立自信，更有效地应对学校里的挑战。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌpbrɪŋɪŋ/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "upcoming": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "即将到来的；即将发生的",
+          "en": "happening or appearing soon"
+        },
+        "sentences": [
+          {
+            "en": "We prepared for the upcoming school concert.",
+            "role": "basic",
+            "zh": "我们为即将到来的学校音乐会做了准备。"
+          },
+          {
+            "en": "The company is hiring extra staff to handle the upcoming holiday season.",
+            "role": "ext",
+            "zh": "公司正在招聘额外员工以应对即将到来的假日季。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌpˈkʌmɪŋ/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "update": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "更新；使现代化",
+          "en": "to make something more modern or better suited for use now"
+        },
+        "sentences": [
+          {
+            "en": "Please update the app on your phone.",
+            "role": "basic",
+            "zh": "请更新你手机上的应用程序。"
+          },
+          {
+            "en": "Governments should regularly update environmental regulations to reflect scientific discoveries and respond to emerging risks.",
+            "role": "ext",
+            "zh": "政府应定期更新环境法规，以反映科学发现并应对新出现的风险。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌpˈdeɪt/"
+    },
+    "topic": "technology",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "upgrade": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "升级；提高（质量或用途）",
+          "en": "to improve the quality or usefulness of something"
+        },
+        "sentences": [
+          {
+            "en": "We will upgrade the old computer this year.",
+            "role": "basic",
+            "zh": "我们今年将升级这台旧电脑。"
+          },
+          {
+            "en": "Governments should upgrade ageing water systems to reduce waste and provide reliable supplies for growing urban populations.",
+            "role": "ext",
+            "zh": "政府应升级老旧供水系统，以减少浪费，并为不断增长的城市人口提供可靠供水。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌpˈɡreɪd/"
+    },
+    "topic": "technology",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "upheaval": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "剧变；动乱",
+          "en": "a sudden, violent or major change that causes disruption"
+        },
+        "sentences": [
+          {
+            "en": "The war caused social upheaval.",
+            "role": "basic",
+            "zh": "战争引发了社会剧变。"
+          },
+          {
+            "en": "The country went through a period of political upheaval after the election.",
+            "role": "ext",
+            "zh": "选举后，这个国家经历了一段政治动乱时期。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌpˈhiːvl/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "uphold": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "维护，支持（法律、原则、决定等）",
+          "en": "to support or defend a law, principle, or decision"
+        },
+        "sentences": [
+          {
+            "en": "Judges must uphold the law.",
+            "role": "basic",
+            "zh": "法官必须维护法律。"
+          },
+          {
+            "en": "Independent courts help uphold citizens' rights by ensuring that public authorities act within the law.",
+            "role": "ext",
+            "zh": "独立的法院通过确保公共机构依法行事，帮助维护公民权利。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌpˈhəʊld/",
+      "us": "/ʌpˈhoʊld/"
+    },
+    "topic": "government",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "upholster": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "给（家具）装软垫（或面套）",
+          "en": "to cover furniture with padding, fabric, or leather"
+        },
+        "sentences": [
+          {
+            "en": "They upholster the old chair.",
+            "role": "basic",
+            "zh": "他们给那把旧椅子装软垫。"
+          },
+          {
+            "en": "Learning to upholster furniture can help people extend its useful life and reduce household waste.",
+            "role": "ext",
+            "zh": "学习给家具加装软垫和面料，有助于延长家具的使用寿命并减少家庭垃圾。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ʌpˈhəʊlstə/",
+      "us": "/ʌpˈhoʊlstər/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "upkeep": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "保养；维修；维护费用",
+          "en": "work or money needed to keep something in good condition"
+        },
+        "sentences": [
+          {
+            "en": "This old house needs regular upkeep throughout the year.",
+            "role": "basic",
+            "zh": "这栋老房子一年到头都需要定期维护。"
+          },
+          {
+            "en": "Local authorities must budget for the upkeep of public parks to ensure they remain safe and accessible.",
+            "role": "ext",
+            "zh": "地方政府必须为公园维护编列预算，确保公园保持安全并方便公众使用。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌpkiːp/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "uplift": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "振奋；使精神振奋",
+          "en": "to make someone feel more hopeful or happy"
+        },
+        "sentences": [
+          {
+            "en": "The song will uplift the crowd.",
+            "role": "basic"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌplɪft/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "upload": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "上传",
+          "en": "to transfer files from a device to an online system"
+        },
+        "sentences": [
+          {
+            "en": "I uploaded our picnic photos to a shared folder.",
+            "role": "basic",
+            "zh": "我把我们野餐的照片上传到了共享文件夹。"
+          },
+          {
+            "en": "Students can upload their assignments to a secure platform, allowing teachers to provide timely feedback.",
+            "role": "ext",
+            "zh": "学生可以将作业上传至安全平台，方便教师及时提供反馈。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌpˈləʊd/",
+      "us": "/ˌʌpˈloʊd/"
+    },
+    "topic": "technology",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "upon": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "在…之上；一…就",
+          "en": "on; used to show that something happens immediately after something else"
+        },
+        "sentences": [
+          {
+            "en": "The cat is sleeping upon the cushion by the window.",
+            "role": "basic",
+            "zh": "猫趴在窗边的垫子上休息。"
+          },
+          {
+            "en": "Upon completing their training, new teachers should receive ongoing support from experienced colleagues at school.",
+            "role": "ext",
+            "zh": "新教师完成培训后，应持续获得校内资深同事的支持。"
+          }
+        ],
+        "pos": "prep."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/əˈpɒn/",
+      "us": "/əˈpɑːn/"
+    },
+    "topic": "education",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "upper": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "较高的；上层的",
+          "en": "higher in position or rank; located above something else"
+        },
+        "sentences": [
+          {
+            "en": "My room is on the upper floor.",
+            "role": "basic",
+            "zh": "我的房间在楼上。"
+          },
+          {
+            "en": "Residents on the upper floors of apartment buildings may face difficulties when lifts stop working.",
+            "role": "ext",
+            "zh": "公寓楼高层住户在电梯停运时可能会遇到困难。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌpə/",
+      "us": "/ˈʌpər/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "upright": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "直立的，竖直的",
+          "en": "standing or pointing straight up"
+        },
+        "sentences": [
+          {
+            "en": "Keep the bottle upright on the table.",
+            "role": "basic",
+            "zh": "把瓶子直立在桌子上。"
+          },
+          {
+            "en": "The old man sat upright in his chair, listening carefully.",
+            "role": "ext",
+            "zh": "老人笔直地坐在椅子上，仔细听着。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌpraɪt/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "uprising": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "起义；暴动",
+          "en": "a violent or organized rebellion by a group of people against those in power"
+        },
+        "sentences": [
+          {
+            "en": "The uprising lasted three days.",
+            "role": "basic",
+            "zh": "这场起义持续了三天。"
+          },
+          {
+            "en": "Historians argue that food shortages and political exclusion contributed to the uprising against the ruling authorities.",
+            "role": "ext",
+            "zh": "历史学家认为，粮食短缺和政治排斥促成了反抗统治当局的起义。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌpraɪzɪŋ/"
+    },
+    "topic": "history",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "uproar": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "骚动；喧闹；强烈抗议",
+          "en": "a lot of noise and angry talk, often caused by something surprising or controversial"
+        },
+        "sentences": [
+          {
+            "en": "The news caused an uproar.",
+            "role": "basic",
+            "zh": "这条消息引起了轩然大波。"
+          },
+          {
+            "en": "There was an uproar in the hall when the decision was announced.",
+            "role": "ext",
+            "zh": "决定宣布时，大厅里一片哗然。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌprɔː/",
+      "us": "/ˈʌprɔːr/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "upset": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "难过的；心烦的",
+          "en": "unhappy or a little angry"
+        },
+        "sentences": [
+          {
+            "en": "She feels upset about the test.",
+            "role": "basic",
+            "zh": "她因为考试而感到难过。"
+          },
+          {
+            "en": "Sudden changes to school routines can upset younger children, who often rely on predictable daily activities.",
+            "role": "ext",
+            "zh": "学校作息突然改变可能让年幼的孩子不安，因为他们往往依赖可预期的日常活动。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ʌpˈset/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "upshot": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "（事情的）结果，结局",
+          "en": "the final result or outcome of a situation or series of events"
+        },
+        "sentences": [
+          {
+            "en": "The upshot was a new rule.",
+            "role": "basic",
+            "zh": "结果是出台了一条新规定。"
+          },
+          {
+            "en": "The upshot of the long discussion was that no one was willing to compromise.",
+            "role": "ext",
+            "zh": "这场漫长讨论的结果是没有人愿意妥协。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌpʃɒt/",
+      "us": "/ˈʌpʃɑːt/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "upside down": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "倒置地；颠倒地",
+          "en": "in a position with the top at the bottom and the bottom at the top"
+        },
+        "sentences": [
+          {
+            "en": "The picture is hanging upside down on the wall.",
+            "role": "basic",
+            "zh": "那幅画倒挂在墙上。"
+          },
+          {
+            "en": "He turned the box upside down to empty out the contents.",
+            "role": "ext",
+            "zh": "他把箱子倒过来，把里面的东西倒空。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌpsaɪd ˈdaʊn/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "upside-down": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "上下颠倒的；倒置的",
+          "en": "With the top part at the bottom; inverted"
+        },
+        "sentences": [
+          {
+            "en": "An upside-down bowl covered the last slice of cake.",
+            "role": "basic",
+            "zh": "一个倒扣的碗盖住了最后一块蛋糕。"
+          },
+          {
+            "en": "In a classroom experiment, students used an upside-down glass of water to explore the effects of air pressure.",
+            "role": "ext",
+            "zh": "在一次课堂实验中，学生用一杯倒置的水来探究气压的作用。"
+          }
+        ],
+        "pos": "adj./adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌʌpsaɪd ˈdaʊn/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "origin": "word-atlas"
+  },
+  "upstairs": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "在楼上；到楼上",
+          "en": "on or to a higher floor of a building"
+        },
+        "sentences": [
+          {
+            "en": "My room is upstairs in this house.",
+            "role": "basic",
+            "zh": "在这栋房子里，我的房间在楼上。"
+          },
+          {
+            "en": "Moving bedrooms upstairs can provide greater privacy in homes where the ground floor is used for work.",
+            "role": "ext",
+            "zh": "在底层用于办公的住宅中，把卧室搬到楼上可以提供更多私密空间。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌʌpˈsteəz/",
+      "us": "/ˌʌpˈsterz/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "upward": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "向上的；上升的",
+          "en": "moving or directed toward a higher place or level"
+        },
+        "sentences": [
+          {
+            "en": "The bird flew in an upward path.",
+            "role": "basic",
+            "zh": "那只鸟沿着向上的路径飞行。"
+          },
+          {
+            "en": "The company reported an upward trend in sales.",
+            "role": "ext",
+            "zh": "公司报告销售额呈上升趋势。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌpwəd/",
+      "us": "/ˈʌpwərd/"
+    },
+    "topic": "uncategorized",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "upwards": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "向上；朝上",
+          "en": "towards a higher place or position"
+        },
+        "sentences": [
+          {
+            "en": "The balloon floated upwards into the sky.",
+            "role": "basic",
+            "zh": "气球向上飘向天空。"
+          },
+          {
+            "en": "Prices have been moving upwards since the beginning of the year.",
+            "role": "ext",
+            "zh": "自年初以来，价格一直在上涨。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌpwədz/",
+      "us": "/ˈʌpwərdz/"
+    },
+    "topic": "uncategorized",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "uranium": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "铀（一种放射性化学元素，用于核能等）",
+          "en": "a radioactive chemical element used especially as a fuel in nuclear reactors"
+        },
+        "sentences": [
+          {
+            "en": "Uranium is used as fuel in nuclear power plants.",
+            "role": "basic",
+            "zh": "铀被用作核电站的燃料。"
+          },
+          {
+            "en": "Scientists are studying safer ways to handle uranium and its waste.",
+            "role": "ext",
+            "zh": "科学家正在研究更安全地处理铀及其废料的方法。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/jʊˈreɪniəm/",
+      "us": "/jʊˈreɪniəm/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "urban": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "城市的",
+          "en": "connected with a town or city"
+        },
+        "sentences": [
+          {
+            "en": "Urban life can be very busy.",
+            "role": "basic",
+            "zh": "城市生活可能非常忙碌。"
+          },
+          {
+            "en": "Rapid urban growth can increase pressure on public transport, housing, and essential services.",
+            "role": "ext",
+            "zh": "城市的快速发展可能加重公共交通、住房及基本服务的压力。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈɜːbən/",
+      "us": "/ˈɜːrbən/"
+    },
+    "topic": "city",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "urbane": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "温文尔雅的；善于应酬的",
+          "en": "Polite, confident, and comfortable in social situations."
+        },
+        "sentences": [
+          {
+            "en": "Our urbane host welcomed everyone with a warm smile.",
+            "role": "basic",
+            "zh": "我们温文尔雅的主人面带温暖的微笑欢迎每一位客人。"
+          },
+          {
+            "en": "An urbane manner can help diplomats build trust, although successful negotiations also require substantial expertise.",
+            "role": "ext",
+            "zh": "温文尔雅的举止能帮助外交官建立信任，不过成功的谈判也需要扎实的专业知识。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ɜːˈbeɪn/"
+    },
+    "topic": "society",
+    "level": "C2",
+    "origin": "word-atlas"
+  },
+  "urbanization": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "城市化；都市化",
+          "en": "the process by which towns and cities grow as more people move from rural areas to live and work in them"
+        },
+        "sentences": [
+          {
+            "en": "Urbanization has changed the way many people live.",
+            "role": "basic",
+            "zh": "城市化改变了许多人的生活方式。"
+          },
+          {
+            "en": "Rapid urbanization in developing countries has put pressure on housing and public services.",
+            "role": "ext",
+            "zh": "发展中国家的快速城市化给住房和公共服务带来了压力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌɜːbənaɪˈzeɪʃn/",
+      "us": "/ˌɜːrbənəˈzeɪʃn/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "urge": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "力劝，敦促",
+          "en": "to try hard to persuade someone to do something"
+        },
+        "sentences": [
+          {
+            "en": "I urge you to see a doctor today.",
+            "role": "basic",
+            "zh": "我力劝你今天去看医生。"
+          },
+          {
+            "en": "Health experts urge governments to invest in preventive care rather than focus solely on treating diseases.",
+            "role": "ext",
+            "zh": "健康专家敦促政府投资预防保健，而不是只关注疾病治疗。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈɜːdʒ/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "urgent": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "紧急的",
+          "en": "needing immediate attention or care"
+        },
+        "sentences": [
+          {
+            "en": "This is an urgent message for the doctor.",
+            "role": "basic",
+            "zh": "这是给医生的紧急消息。"
+          },
+          {
+            "en": "There is an urgent need for affordable housing as urban populations continue to grow.",
+            "role": "ext",
+            "zh": "随着城市人口持续增长，人们迫切需要负担得起的住房。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈɜːdʒənt/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "urgently": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "紧急地；迫切地",
+          "en": "in a way that requires immediate action or attention"
+        },
+        "sentences": [
+          {
+            "en": "We urgently need a plumber to fix this leak.",
+            "role": "basic",
+            "zh": "我们急需一位水管工来修好这处漏水。"
+          },
+          {
+            "en": "Governments must urgently address water shortages through improved infrastructure and policies that encourage responsible consumption.",
+            "role": "ext",
+            "zh": "政府必须通过改善基础设施和鼓励合理用水的政策，紧急应对缺水问题。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈɜːdʒəntli/",
+      "us": "/ˈɜːrdʒəntli/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "urine": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "尿，尿液",
+          "en": "the yellowish liquid waste that is produced by the kidneys and passed out of the body"
+        },
+        "sentences": [
+          {
+            "en": "The test uses a urine sample.",
+            "role": "basic",
+            "zh": "这项检测使用尿液样本。"
+          },
+          {
+            "en": "Doctors can detect dehydration by checking the colour and concentration of urine.",
+            "role": "ext",
+            "zh": "医生可以通过检查尿液的颜色和浓度来判断是否脱水。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjʊərɪn/",
+      "us": "/ˈjʊrɪn/"
+    },
+    "topic": "health",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "urt": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "使受伤；伤害；疼痛",
+          "en": "to cause physical pain or injury to; to feel pain"
+        },
+        "sentences": [
+          {
+            "en": "Be careful not to hurt yourself with that knife.",
+            "role": "basic",
+            "zh": "小心别让那把刀伤到自己。"
+          },
+          {
+            "en": "His words hurt her deeply, though he didn't mean to.",
+            "role": "ext",
+            "zh": "他的话深深伤害了她，尽管他并非有意。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/hɜːt/",
+      "us": "/hɜːrt/"
+    },
+    "topic": "health",
+    "level": "A2",
+    "origin": "book:mse-ket"
+  },
+  "us": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "我们（宾格）",
+          "en": "the object form of “we”"
+        },
+        "sentences": [
+          {
+            "en": "Students study the word us in this book.",
+            "role": "basic"
+          }
+        ],
+        "pos": "pron."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/əs/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "usage": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "用法；使用方式",
+          "en": "the way in which words are used, or the way something is used"
+        },
+        "sentences": [
+          {
+            "en": "This book explains the usage of new words.",
+            "role": "basic",
+            "zh": "这本书解释了新词的用法。"
+          },
+          {
+            "en": "Installing efficient appliances can reduce household energy usage without requiring major changes to everyday routines.",
+            "role": "ext",
+            "zh": "安装高效电器可以减少家庭能源使用量，而无需大幅改变日常习惯。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjuːsɪdʒ/",
+      "us": "/ˈjuːsɪdʒ/"
+    },
+    "topic": "education",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "use": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "使用；利用",
+          "en": "to do something with a tool, object, or method for a purpose"
+        },
+        "sentences": [
+          {
+            "en": "We use a pencil to write.",
+            "role": "basic",
+            "zh": "我可以用你的剪刀打开这个包裹吗？"
+          },
+          {
+            "en": "Governments should encourage people to use public transport by making services more reliable and affordable.",
+            "role": "ext",
+            "zh": "政府应提高公共交通服务的可靠性和可负担性，鼓励人们使用公共交通。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/juːz/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "used": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "用过的；二手的",
+          "en": "not new; having been owned or used by someone else"
+        },
+        "sentences": [
+          {
+            "en": "This is a used bike.",
+            "role": "basic",
+            "zh": "这是一辆二手自行车。"
+          },
+          {
+            "en": "He bought a used car to save money.",
+            "role": "ext",
+            "zh": "为了省钱，他买了一辆二手车。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/juːzd/",
+      "us": "/juːzd/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "used to": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "过去常常（做某事）",
+          "en": "used to say that something happened regularly or was true in the past but is not true now"
+        },
+        "sentences": [
+          {
+            "en": "I used to walk to school when I was a child.",
+            "role": "basic",
+            "zh": "我小时候常常步行去上学。"
+          },
+          {
+            "en": "She used to live in a small village before she moved to the city.",
+            "role": "ext",
+            "zh": "她搬到城市之前曾住在一个小村庄里。"
+          }
+        ],
+        "pos": "modal phrase"
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjuːst tə/",
+      "us": "/ˈjuːst tə/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "useful": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有用的，有益的",
+          "en": "helping you do or achieve something"
+        },
+        "sentences": [
+          {
+            "en": "This small flashlight is very useful during a power cut.",
+            "role": "basic",
+            "zh": "停电时，这个小手电筒很有用。"
+          },
+          {
+            "en": "Reliable online resources can be useful for learners who lack access to well-equipped libraries.",
+            "role": "ext",
+            "zh": "对于无法使用设备完善的图书馆的学习者来说，可靠的网络资源可能很有帮助。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjuːsfəl/"
+    },
+    "topic": "education",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "useless": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "无用的；没用的",
+          "en": "not useful or effective; not achieving the intended purpose"
+        },
+        "sentences": [
+          {
+            "en": "A broken pen is useless.",
+            "role": "basic",
+            "zh": "一支坏了的钢笔是没用的。"
+          },
+          {
+            "en": "Collecting environmental data is useless unless governments use the findings to guide effective policies.",
+            "role": "ext",
+            "zh": "收集环境数据毫无用处，除非政府利用研究结果来指导制定有效政策。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjuːsləs/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "user": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "用户",
+          "en": "A person who uses a product, service, or facility."
+        },
+        "sentences": [
+          {
+            "en": "Each user can choose a different color for their profile.",
+            "role": "basic",
+            "zh": "每位用户都可以为自己的个人资料选择不同的颜色。"
+          },
+          {
+            "en": "Software developers should consider the needs of every user, including people with limited technical skills.",
+            "role": "ext",
+            "zh": "软件开发者应考虑每位用户的需求，包括技术能力有限的人。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjuːzə/",
+      "us": "/ˈjuːzər/"
+    },
+    "topic": "technology",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "usher": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "引领；引导",
+          "en": "to show or guide someone to a place"
+        },
+        "sentences": [
+          {
+            "en": "Guides usher guests to their seats.",
+            "role": "basic",
+            "zh": "引导员把客人领到他们的座位上。"
+          },
+          {
+            "en": "The waiter ushered us into a quiet corner of the restaurant.",
+            "role": "ext",
+            "zh": "服务员把我们领到了餐厅一个安静的角落。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌʃə/",
+      "us": "/ˈʌʃər/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "usual": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "平常的，通常的",
+          "en": "happening most of the time, not special"
+        },
+        "sentences": [
+          {
+            "en": "We take the usual bus home.",
+            "role": "basic",
+            "zh": "我们坐平时那趟公交车回家。"
+          },
+          {
+            "en": "Working from home has become the usual arrangement for some employees in the technology sector.",
+            "role": "ext",
+            "zh": "对科技行业的一些员工来说，居家办公已成为常规安排。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjuːʒuəl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "usually": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "通常，经常",
+          "en": "Most of the time; less than always, but more than occasionally."
+        },
+        "sentences": [
+          {
+            "en": "I usually walk to work unless it rains.",
+            "role": "basic",
+            "zh": "除非下雨，我通常步行上班。"
+          },
+          {
+            "en": "People usually find it easier to maintain healthy habits when their friends and family offer support.",
+            "role": "ext",
+            "zh": "有朋友和家人的支持，人们通常更容易保持健康的习惯。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈjuːʒuəli/",
+      "us": "/ˈjuːʒuəli/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "utensil": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "用具；（尤指厨房）器皿",
+          "en": "a tool or container used for cooking or eating"
+        },
+        "sentences": [
+          {
+            "en": "A spoon is a kitchen utensil.",
+            "role": "basic",
+            "zh": "勺子是一种厨房用具。"
+          },
+          {
+            "en": "Make sure all cooking utensils are clean before you start.",
+            "role": "ext",
+            "zh": "开始前请确保所有炊具都是干净的。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/juːˈtensɪl/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "utilise": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "利用；使用",
+          "en": "to use something effectively for a particular purpose"
+        },
+        "sentences": [
+          {
+            "en": "We utilise the spare room as a small office.",
+            "role": "basic",
+            "zh": "我们把空房间用作小办公室。"
+          },
+          {
+            "en": "Cities can utilise empty buildings to provide affordable housing and reduce pressure on surrounding farmland.",
+            "role": "ext",
+            "zh": "城市可以利用空置建筑提供经济适用的住房，并减轻周边农田的压力。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjuːtəlaɪz/"
+    },
+    "topic": "work",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "utility": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "公用事业",
+          "en": "a service such as water, electricity, gas, etc."
+        },
+        "sentences": [
+          {
+            "en": "Water is a utility that every home needs.",
+            "role": "basic",
+            "zh": "水是每个家庭都需要的公用事业。"
+          },
+          {
+            "en": "Reliable access to basic utilities is essential for improving public health and supporting economic development in rural communities.",
+            "role": "ext",
+            "zh": "稳定获得基本公共服务，对于改善农村社区的公共卫生和支持经济发展至关重要。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/juːˈtɪləti/",
+      "us": "/juːˈtɪləti/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "utilization": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "利用；使用",
+          "en": "the act of using something, especially in an effective or practical way"
+        },
+        "sentences": [
+          {
+            "en": "The utilization of solar energy is increasing in many countries.",
+            "role": "basic",
+            "zh": "许多国家正在越来越多地利用太阳能。"
+          },
+          {
+            "en": "Better utilization of existing resources can reduce costs without lowering quality.",
+            "role": "ext",
+            "zh": "更好地利用现有资源可以在不降低质量的情况下降低成本。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌjuːtɪlaɪˈzeɪʃn/",
+      "us": "/ˌjuːtələˈzeɪʃn/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "utilize": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "利用；使用",
+          "en": "to use something in a practical or effective way"
+        },
+        "sentences": [
+          {
+            "en": "Students utilize the library after class.",
+            "role": "basic",
+            "zh": "学生们课后利用图书馆。"
+          },
+          {
+            "en": "Schools can utilize existing buildings more efficiently by sharing facilities with local communities after lessons.",
+            "role": "ext",
+            "zh": "学校可以在课后与当地社区共享设施，从而更高效地利用现有建筑。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈjuːtɪlaɪz/"
+    },
+    "topic": "education",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "utmost": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "极度的；最大的",
+          "en": "the greatest possible"
+        },
+        "sentences": [
+          {
+            "en": "This is of the utmost importance.",
+            "role": "basic",
+            "zh": "这至关重要。"
+          },
+          {
+            "en": "Protecting patient privacy is of the utmost importance when hospitals introduce digital systems for storing medical records.",
+            "role": "ext",
+            "zh": "医院引入电子病历存储系统时，保护患者隐私至关重要。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌtməʊst/",
+      "us": "/ˈʌtmoʊst/"
+    },
+    "topic": "uncategorized",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "utopian": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "乌托邦的；空想的",
+          "en": "relating to or aiming for a perfect society; idealistic and often impractical"
+        },
+        "sentences": [
+          {
+            "en": "The novel describes a utopian society where everyone is equal.",
+            "role": "basic",
+            "zh": "这部小说描述了一个人人平等的乌托邦社会。"
+          },
+          {
+            "en": "His utopian vision of a world without conflict seemed unrealistic to many.",
+            "role": "ext",
+            "zh": "他那种没有冲突的乌托邦愿景在许多人看来不切实际。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/juːˈtəʊpiən/",
+      "us": "/juːˈtoʊpiən/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "origin": "book:cet6"
+  },
+  "utter": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "完全的；彻底的",
+          "en": "complete; total (used for emphasis)"
+        },
+        "sentences": [
+          {
+            "en": "That is utter nonsense.",
+            "role": "basic",
+            "zh": "那完全是胡说八道。"
+          },
+          {
+            "en": "Without adequate planning, rapid urban expansion can result in utter confusion over land ownership and infrastructure responsibilities.",
+            "role": "ext",
+            "zh": "如果缺乏充分规划，快速的城市扩张可能导致土地所有权与基础设施责任划分完全混乱。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "说出；发出（声音）",
+          "en": "to say something or make a sound"
+        },
+        "sentences": [
+          {
+            "en": "She left without uttering a word.",
+            "role": "basic",
+            "zh": "她一句话也没说就离开了。"
+          },
+          {
+            "en": "He was too shocked to utter a single sound.",
+            "role": "ext",
+            "zh": "他震惊得连一个声音都发不出来。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌtə/",
+      "us": "/ˈʌtər/"
+    },
+    "topic": "thinking",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "utterance": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "话语；言论",
+          "en": "A spoken word, phrase, or sentence; something that is said."
+        },
+        "sentences": [
+          {
+            "en": "The baby's first clear utterance made everyone smile.",
+            "role": "basic",
+            "zh": "宝宝第一次清楚地说出话来，让大家都笑了。"
+          },
+          {
+            "en": "Analysing each utterance in classroom discussions can reveal how teachers encourage students to express their ideas.",
+            "role": "ext",
+            "zh": "分析课堂讨论中的每一段话语，可以揭示教师如何鼓励学生表达想法。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈʌtərəns/"
+    },
+    "topic": "uncategorized",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "utterly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "完全地；彻底地",
+          "en": "completely; in every way"
+        },
+        "sentences": [
+          {
+            "en": "I am utterly tired of this.",
+            "role": "basic",
+            "zh": "我对此完全厌倦了。"
+          },
+          {
+            "en": "Without reliable internet access, some rural students feel utterly excluded from opportunities offered by online education.",
+            "role": "ext",
+            "zh": "由于缺乏可靠的网络连接，一些农村学生觉得自己完全无法获得在线教育提供的机会。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈʌtəli/",
+      "us": "/ˈʌtərli/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  }
+}

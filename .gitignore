@@ -19,6 +19,8 @@ server/tmp/
 server/materials/
 server/data/tts-cache/
 server/data/chinese/official/
+server/data/sources/senses.json.bak
+
 
 # 词光插画：thumb 已入库（约 84MB），clone 即可用
 # public/atlas 若为构建拷贝则仍忽略，源文件在 src/static/atlas/thumb/

@@ -1,0 +1,79 @@
+{
+  "x-ray": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "X光；X射线照片",
+          "en": "a photograph made with X-rays, especially of bones inside the body"
+        },
+        "sentences": [
+          {
+            "en": "The doctor took an X-ray of my arm.",
+            "role": "basic",
+            "zh": "医生给我的手臂拍了X光片。"
+          },
+          {
+            "en": "The X-ray showed that the bone was not broken.",
+            "role": "ext",
+            "zh": "X光片显示骨头没有骨折。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈeks reɪ/",
+      "us": "/ˈeks reɪ/"
+    },
+    "topic": "health",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "xerox": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "用静电复印（常指用施乐复印机复印）",
+          "en": "to make a copy of a document using a xerographic process, especially a Xerox machine"
+        },
+        "sentences": [
+          {
+            "en": "Please xerox this report for the meeting.",
+            "role": "basic",
+            "zh": "请把这份报告复印一下用于会议。"
+          },
+          {
+            "en": "She xeroxed the contract and filed the copy.",
+            "role": "ext",
+            "zh": "她复印了合同并把副本归档了。"
+          }
+        ],
+        "pos": "v."
+      },
+      {
+        "meaning": {
+          "zh": "复印件；施乐复印机（商标名）",
+          "en": "a copy made by a xerographic process, or a Xerox machine (trademark)"
+        },
+        "sentences": [
+          {
+            "en": "Could you make a xerox of this page?",
+            "role": "basic",
+            "zh": "你能复印一下这一页吗？"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈzɪərɒks/",
+      "us": "/ˈzɪrɑːks/"
+    },
+    "topic": "technology",
+    "level": "B1",
+    "origin": "book:cet6"
+  }
+}

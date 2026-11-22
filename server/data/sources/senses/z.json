@@ -1,0 +1,481 @@
+{
+  "zeal": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "热情；热忱",
+          "en": "great energy or enthusiasm for a cause or activity"
+        },
+        "sentences": [
+          {
+            "en": "She works with real zeal.",
+            "role": "basic",
+            "zh": "她以真正的热情工作。"
+          },
+          {
+            "en": "Volunteers' zeal can strengthen community projects, but sustained progress also requires reliable funding and professional support.",
+            "role": "ext",
+            "zh": "志愿者的热忱能推动社区项目，但持续进展也需要稳定的资金和专业支持。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ziːl/"
+    },
+    "topic": "emotion",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "zealous": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "热忱的；积极投入的",
+          "en": "Showing great enthusiasm and commitment to a cause or activity."
+        },
+        "sentences": [
+          {
+            "en": "A zealous volunteer cleaned the entire beach before lunch.",
+            "role": "basic",
+            "zh": "一位热忱的志愿者午饭前就清理了整片海滩。"
+          },
+          {
+            "en": "Zealous campaigners can raise public awareness, but lasting environmental progress also requires effective government policies.",
+            "role": "ext",
+            "zh": "热心的倡导者能够提高公众意识，但持久的环境改善还需要有效的政府政策。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈzeləs/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "zebra": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "斑马",
+          "en": "an African wild animal like a horse with black and white stripes"
+        },
+        "sentences": [
+          {
+            "en": "The zebra has black and white lines.",
+            "role": "basic",
+            "zh": "这匹斑马有黑白相间的条纹。"
+          },
+          {
+            "en": "Protecting grasslands helps zebra populations survive while preserving habitats for many other wild animals.",
+            "role": "ext",
+            "zh": "保护草原有助于斑马种群生存，同时也为许多其他野生动物保留栖息地。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈzebrə/",
+      "us": "/ˈziːbrə/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "zenith": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "顶峰；顶点；最高点",
+          "en": "the highest point or state of something"
+        },
+        "sentences": [
+          {
+            "en": "His career reached its zenith.",
+            "role": "basic",
+            "zh": "他的事业达到了顶峰。"
+          },
+          {
+            "en": "The empire was at its zenith in the second century.",
+            "role": "ext",
+            "zh": "这个帝国在二世纪处于鼎盛时期。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈzenɪθ/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "zero": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "零；零点；零度",
+          "en": "the number 0; the point marked 0 on a scale, especially a temperature scale"
+        },
+        "sentences": [
+          {
+            "en": "The temperature fell below zero last night.",
+            "role": "basic",
+            "zh": "昨晚气温降到了零度以下。"
+          },
+          {
+            "en": "Achieving zero carbon emissions will require substantial investment in renewable energy, public transport, and more efficient buildings.",
+            "role": "ext",
+            "zh": "实现零碳排放需要对可再生能源、公共交通和能效更高的建筑进行大量投资。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈzɪərəʊ/",
+      "us": "/ˈzɪroʊ/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "zigzag": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "之字形；锯齿形",
+          "en": "a line or pattern that turns sharply left and right"
+        },
+        "sentences": [
+          {
+            "en": "The path is a zigzag.",
+            "role": "basic",
+            "zh": "这条小路呈之字形。"
+          },
+          {
+            "en": "The road went up the mountain in a series of zigzags.",
+            "role": "ext",
+            "zh": "那条路呈一连串之字形向山上延伸。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "曲折行进；呈之字形移动",
+          "en": "to move forward with sharp turns left and right"
+        },
+        "sentences": [
+          {
+            "en": "The cyclist zigzagged through the traffic.",
+            "role": "basic",
+            "zh": "那个骑自行车的人在车流中曲折穿行。"
+          },
+          {
+            "en": "The river zigzags across the valley before reaching the sea.",
+            "role": "ext",
+            "zh": "那条河蜿蜒穿过山谷，最后流入大海。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈzɪɡzæɡ/",
+      "us": "/ˈzɪɡzæɡ/"
+    },
+    "topic": "travel",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "zinc": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "锌",
+          "en": "A bluish-white metal that is an essential nutrient in small amounts and is used in alloys and coatings."
+        },
+        "sentences": [
+          {
+            "en": "These pumpkin seeds contain zinc and make a tasty snack.",
+            "role": "basic",
+            "zh": "这些南瓜籽含有锌，吃起来也是美味的零食。"
+          },
+          {
+            "en": "Zinc coatings protect steel from corrosion, extending the lifespan of structures exposed to rain and moisture.",
+            "role": "ext",
+            "zh": "锌涂层能保护钢材免受腐蚀，延长暴露于雨水和潮气中的结构的使用寿命。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/zɪŋk/"
+    },
+    "topic": "science",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "zip": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "拉上（或拉开）拉链",
+          "en": "to fasten or unfasten clothes, bags, etc. with a zip"
+        },
+        "sentences": [
+          {
+            "en": "She zipped up her jacket before going out.",
+            "role": "basic",
+            "zh": "她出门前拉上了夹克的拉链。"
+          },
+          {
+            "en": "He zipped the tent shut to keep the insects out.",
+            "role": "ext",
+            "zh": "他把帐篷拉链拉上，防止昆虫进来。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/zɪp/",
+      "us": "/zɪp/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "zip code": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "（美国）邮政编码",
+          "en": "A code of letters and/or digits used by the US Postal Service to identify a delivery area."
+        },
+        "sentences": [
+          {
+            "en": "Please include your ZIP code when entering your address.",
+            "role": "basic",
+            "zh": "填写地址时，请附上你的邮政编码。"
+          },
+          {
+            "en": "Researchers grouped households by ZIP code to examine geographical differences in access to healthcare services.",
+            "role": "ext",
+            "zh": "研究人员按邮政编码对住户进行分组，以考察医疗服务可及性的地区差异。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈzɪp kəʊd/",
+      "us": "/ˈzɪp koʊd/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "word-atlas"
+  },
+  "zipper": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "拉链",
+          "en": "a fastening device with interlocking teeth, used on clothes, bags, etc."
+        },
+        "sentences": [
+          {
+            "en": "The zipper on my bag is broken.",
+            "role": "basic",
+            "zh": "我包上的拉链坏了。"
+          },
+          {
+            "en": "Designing clothing with replaceable buttons and zippers could extend its lifespan and reduce household textile waste.",
+            "role": "ext",
+            "zh": "采用可更换纽扣和拉链的服装设计，可以延长衣物寿命并减少家庭纺织品废弃物。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈzɪpə(r)/",
+      "us": "/ˈzɪpər/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "zone": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "区域；地带",
+          "en": "an area that is different from others or used for a particular purpose"
+        },
+        "sentences": [
+          {
+            "en": "This is a quiet zone at night.",
+            "role": "basic",
+            "zh": "这里是夜间安静区域。"
+          },
+          {
+            "en": "Creating a low-emission zone can reduce air pollution, provided that affordable public transport is available.",
+            "role": "ext",
+            "zh": "只要有价格合理的公共交通，设立低排放区就能减少空气污染。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/zəʊn/",
+      "us": "/zoʊn/"
+    },
+    "topic": "city",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "zoo": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "动物园",
+          "en": "a place where wild animals are kept for people to see"
+        },
+        "sentences": [
+          {
+            "en": "We see a panda at the zoo.",
+            "role": "basic",
+            "zh": "我们在动物园看到一只熊猫。"
+          },
+          {
+            "en": "The city zoo is planning a new area for elephants.",
+            "role": "ext",
+            "zh": "这座城市动物园正计划为大象建一个新区域。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/zuː/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "zoology": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "动物学",
+          "en": "the scientific study of animals"
+        },
+        "sentences": [
+          {
+            "en": "She studies zoology at college.",
+            "role": "basic",
+            "zh": "她在大学学习动物学。"
+          },
+          {
+            "en": "Research in zoology helps scientists understand animal behaviour and design more effective strategies for protecting endangered species.",
+            "role": "ext",
+            "zh": "动物学研究帮助科学家理解动物行为，并制定更有效的濒危物种保护策略。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/zuˈɒlədʒi/",
+      "us": "/zoʊˈɑːlədʒi/"
+    },
+    "topic": "science",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "zoom": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "快速移动；迅速前往",
+          "en": "to move or travel very quickly"
+        },
+        "sentences": [
+          {
+            "en": "The car zoomed past us on the highway.",
+            "role": "basic",
+            "zh": "那辆车在高速公路上从我们旁边疾驰而过。"
+          },
+          {
+            "en": "She zoomed through her homework so she could go out and play.",
+            "role": "ext",
+            "zh": "她飞快地做完作业，好出去玩。"
+          }
+        ],
+        "pos": "v."
+      },
+      {
+        "meaning": {
+          "zh": "（用变焦镜头）拉近或推远；调整焦距",
+          "en": "to adjust a camera lens to make the subject appear closer or farther away"
+        },
+        "sentences": [
+          {
+            "en": "The photographer zoomed in on the bird in the tree.",
+            "role": "basic",
+            "zh": "摄影师把镜头拉近，对准树上的鸟。"
+          },
+          {
+            "en": "You can zoom out to see the whole map on the screen.",
+            "role": "ext",
+            "zh": "你可以缩小视图来看到屏幕上的整张地图。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/zuːm/",
+      "us": "/zuːm/"
+    },
+    "topic": "technology",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  }
+}

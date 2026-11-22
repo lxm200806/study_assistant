@@ -6,7 +6,7 @@
 
 | 文件 | 作用 |
 | --- | --- |
-| `data/sources/senses.json` | 总词典（释义） |
+| `data/sources/senses/{a-z}.json` | 总词典（按字母分片） |
 | `data/vocabulary/units/kew1200.json` 等 | **单元顺序**（权威） |
 | `data/vocabulary/books/kew1200.json` 等 | 编排生成的课表 |
 

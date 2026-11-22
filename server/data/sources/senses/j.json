@@ -1,0 +1,2794 @@
+{
+  "jab": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "（用尖物）刺，戳",
+          "en": "to push a pointed object quickly and forcefully into someone or something"
+        },
+        "sentences": [
+          {
+            "en": "Do not jab me with that stick.",
+            "role": "basic",
+            "zh": "别用那根棍子戳我。"
+          },
+          {
+            "en": "She jabbed her finger at the map to show the route.",
+            "role": "ext",
+            "zh": "她用手指戳着地图指出路线。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒæb/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jack": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "千斤顶；起重器",
+          "en": "a device for lifting heavy objects, especially one for raising the axle of a motor vehicle"
+        },
+        "sentences": [
+          {
+            "en": "He used a jack to lift the car and change the tire.",
+            "role": "basic",
+            "zh": "他用千斤顶把汽车顶起来换轮胎。"
+          },
+          {
+            "en": "The mechanic placed a hydraulic jack under the chassis before crawling underneath.",
+            "role": "ext",
+            "zh": "机械师在底盘下放了一个液压千斤顶，然后爬了进去。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒæk/",
+      "us": "/dʒæk/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "origin": "book:cet6"
+  },
+  "jacket": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "夹克；短外套",
+          "en": "a short coat worn over a shirt or other clothes"
+        },
+        "sentences": [
+          {
+            "en": "He hangs his jacket on the hook.",
+            "role": "basic",
+            "zh": "他把夹克挂在钩子上。"
+          },
+          {
+            "en": "A durable jacket made from recycled materials can offer consumers a more sustainable clothing choice.",
+            "role": "ext",
+            "zh": "用再生材料制成的耐穿夹克可以为消费者提供更可持续的服装选择。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒækɪt/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jagged": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "锯齿状的；参差不齐的",
+          "en": "having a rough, uneven edge with sharp points"
+        },
+        "sentences": [
+          {
+            "en": "We climbed the jagged rocks by the sea.",
+            "role": "basic",
+            "zh": "我们攀爬了海边的嶙峋岩石。"
+          },
+          {
+            "en": "The mountain path was narrow and jagged, making the hike difficult.",
+            "role": "ext",
+            "zh": "这条山路狭窄而崎岖，使徒步变得困难。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒæɡɪd/"
+    },
+    "topic": "nature",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jail": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "监狱",
+          "en": "a place where people are kept as punishment for crimes"
+        },
+        "sentences": [
+          {
+            "en": "The thief is sent to jail.",
+            "role": "basic",
+            "zh": "小偷被送进了监狱。"
+          },
+          {
+            "en": "Education programmes in jail can help prisoners develop skills and improve their chances of finding work after release.",
+            "role": "ext",
+            "zh": "监狱中的教育项目能帮助服刑人员培养技能，提高他们获释后找到工作的机会。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒeɪl/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jam": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "果酱",
+          "en": "a sweet spread made from fruit and sugar, often eaten on bread"
+        },
+        "sentences": [
+          {
+            "en": "I put jam on my bread.",
+            "role": "basic",
+            "zh": "我在面包上抹了果酱。"
+          },
+          {
+            "en": "She made homemade strawberry jam and gave a jar to her neighbor.",
+            "role": "ext",
+            "zh": "她做了自制草莓酱，还送了一罐给邻居。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒæm/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "janitor": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "清洁工；大楼管理员",
+          "en": "a person whose job is to clean and take care of a building"
+        },
+        "sentences": [
+          {
+            "en": "The janitor unlocked the school.",
+            "role": "basic",
+            "zh": "清洁工打开了学校的门。"
+          },
+          {
+            "en": "The janitor mopped the corridor after the students left.",
+            "role": "ext",
+            "zh": "学生离开后，清洁工拖了走廊的地。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒænɪtə/",
+      "us": "/ˈdʒænɪtər/"
+    },
+    "topic": "work",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "january": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "一月",
+          "en": "the first month of the year"
+        },
+        "sentences": [
+          {
+            "en": "Our swimming class starts in January.",
+            "role": "basic",
+            "zh": "我们的游泳课从一月开始。"
+          },
+          {
+            "en": "Many people set health goals in January, but maintaining new habits requires consistent support.",
+            "role": "ext",
+            "zh": "许多人在一月设定健康目标，但保持新习惯需要持续的支持。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒænjuəri/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "japan": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "给（木器等）涂日本漆；把…漆成黑色并发亮",
+          "en": "to coat (wood or metal) with a hard black varnish, especially in the style of Japanese lacquer"
+        },
+        "sentences": [
+          {
+            "en": "The craftsman japanned the wooden box to give it a glossy black finish.",
+            "role": "basic",
+            "zh": "工匠给木盒涂上日本漆，使其表面呈现光亮的黑色。"
+          },
+          {
+            "en": "In the 18th century, many European furniture makers japanned cabinets to imitate imported Asian lacquerware.",
+            "role": "ext",
+            "zh": "18世纪时，许多欧洲家具制造商给橱柜涂上日本漆，以仿制进口的亚洲漆器。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒəˈpæn/"
+    },
+    "topic": "arts",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "japanese": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "日本的；日本人的；日语的",
+          "en": "relating to Japan, its people, or its language"
+        },
+        "sentences": [
+          {
+            "en": "I like Japanese cartoons.",
+            "role": "basic",
+            "zh": "我喜欢日本动画片。"
+          },
+          {
+            "en": "Studying Japanese architecture can help students understand how traditional design responds to local environmental conditions.",
+            "role": "ext",
+            "zh": "研究日本建筑可以帮助学生理解传统设计如何适应当地环境条件。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "日本人；日语",
+          "en": "a person from Japan; the language of Japan"
+        },
+        "sentences": [
+          {
+            "en": "She is Japanese, but she has lived in China for years.",
+            "role": "basic",
+            "zh": "她是日本人，但已经在中国生活多年。"
+          },
+          {
+            "en": "Learning Japanese can open up career opportunities in international trade and tourism.",
+            "role": "ext",
+            "zh": "学习日语可以为国际贸易和旅游业带来职业机会。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌdʒæpəˈniːz/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jar": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "玻璃罐；广口瓶",
+          "en": "a glass container with a lid, used for storing food"
+        },
+        "sentences": [
+          {
+            "en": "Put the cookies in a jar.",
+            "role": "basic",
+            "zh": "把饼干放进玻璃罐里。"
+          },
+          {
+            "en": "Reusing glass jars for food storage can help households reduce their reliance on disposable plastic packaging.",
+            "role": "ext",
+            "zh": "重复使用玻璃罐储存食品可以帮助家庭减少对一次性塑料包装的依赖。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒɑː/",
+      "us": "/dʒɑːr/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jargon": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "行话；专业术语（某一群体使用的、外人难以理解的专门用语）",
+          "en": "special words or expressions used by a particular group that are difficult for others to understand"
+        },
+        "sentences": [
+          {
+            "en": "Doctors use a lot of jargon.",
+            "role": "basic",
+            "zh": "医生使用很多行话。"
+          },
+          {
+            "en": "The manual is full of technical jargon that ordinary users find confusing.",
+            "role": "ext",
+            "zh": "这本手册满是普通用户觉得困惑的技术术语。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒɑːɡən/",
+      "us": "/ˈdʒɑːrɡən/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jaw": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "颌；下颌；上颌",
+          "en": "either of the two bones in your mouth that hold your teeth"
+        },
+        "sentences": [
+          {
+            "en": "A crocodile has a strong jaw.",
+            "role": "basic",
+            "zh": "鳄鱼有强壮的下颌。"
+          },
+          {
+            "en": "Protective equipment can reduce the risk of jaw injuries among people who participate in contact sports.",
+            "role": "ext",
+            "zh": "防护装备可以降低接触性运动参与者颌部受伤的风险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒɔː/",
+      "us": "/dʒɔː/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jazz": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "爵士乐",
+          "en": "a type of music with strong rhythm and improvisation, originating from African American communities"
+        },
+        "sentences": [
+          {
+            "en": "We listened to jazz while making dinner.",
+            "role": "basic",
+            "zh": "我们做晚饭时听了爵士乐。"
+          },
+          {
+            "en": "Community jazz festivals can attract visitors while giving local musicians valuable opportunities to perform.",
+            "role": "ext",
+            "zh": "社区爵士音乐节既能吸引游客，也能为当地音乐人提供宝贵的演出机会。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒæz/"
+    },
+    "topic": "arts",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jealous": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "妒忌的；嫉妒的",
+          "en": "unhappy or angry because someone else has something you want or because you fear losing someone's attention or love"
+        },
+        "sentences": [
+          {
+            "en": "He felt jealous of her prize.",
+            "role": "basic",
+            "zh": "他嫉妒她获得的奖品。"
+          },
+          {
+            "en": "Social media can make users jealous of others whose lives appear more successful or exciting.",
+            "role": "ext",
+            "zh": "社交媒体可能让用户嫉妒那些生活看起来更成功或更精彩的人。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒeləs/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jealousy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "嫉妒；妒忌",
+          "en": "a feeling of unhappiness and anger because someone has something that you want"
+        },
+        "sentences": [
+          {
+            "en": "Jealousy can hurt a close friendship quickly.",
+            "role": "basic",
+            "zh": "嫉妒会很快伤害一段亲密的友谊。"
+          },
+          {
+            "en": "Her jealousy of her colleague's success made it hard for her to work with him.",
+            "role": "ext",
+            "zh": "她对同事成功的嫉妒使她很难与他共事。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒeləsi/",
+      "us": "/ˈdʒeləsi/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jean": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "牛仔布；斜纹棉布",
+          "en": "a strong cotton cloth used especially for making jeans"
+        },
+        "sentences": [
+          {
+            "en": "This jacket is made of jean.",
+            "role": "basic",
+            "zh": "这件夹克是牛仔布做的。"
+          },
+          {
+            "en": "The factory produces denim and jean for the clothing industry.",
+            "role": "ext",
+            "zh": "这家工厂为服装行业生产牛仔布和斜纹棉布。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒiːn/",
+      "us": "/dʒiːn/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:cet6"
+  },
+  "jeans": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "牛仔裤",
+          "en": "strong blue pants made of denim"
+        },
+        "sentences": [
+          {
+            "en": "She wears jeans to the park.",
+            "role": "basic",
+            "zh": "她穿牛仔裤去公园。"
+          },
+          {
+            "en": "Allowing employees to wear jeans may create a more relaxed workplace without necessarily reducing professional standards.",
+            "role": "ext",
+            "zh": "允许员工穿牛仔裤可能营造更轻松的工作环境，而不一定降低职业标准。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒiːnz/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jeep": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "吉普车；一种小型越野汽车",
+          "en": "a small, strong car made for driving over rough ground"
+        },
+        "sentences": [
+          {
+            "en": "They drove a jeep across the desert.",
+            "role": "basic",
+            "zh": "他们开着一辆吉普车穿越沙漠。"
+          },
+          {
+            "en": "The rescue team used a jeep to reach the mountain village after the storm.",
+            "role": "ext",
+            "zh": "暴风雨过后，救援队用一辆吉普车抵达了那个山村。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒiːp/",
+      "us": "/dʒiːp/"
+    },
+    "topic": "travel",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jeer": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "嘲笑；讥讽",
+          "en": "to laugh or shout at someone in a rude or mocking way"
+        },
+        "sentences": [
+          {
+            "en": "The crowd began to jeer at the player.",
+            "role": "basic",
+            "zh": "人群开始嘲笑那名球员。"
+          },
+          {
+            "en": "When spectators jeer at inexperienced players, they create an atmosphere that discourages participation in community sport.",
+            "role": "ext",
+            "zh": "当观众嘲笑缺乏经验的球员时，他们会营造出一种让人不愿参加社区体育活动的氛围。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒɪə/",
+      "us": "/dʒɪr/"
+    },
+    "topic": "sport",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jelly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "果冻；胶状物",
+          "en": "a soft, transparent food made from fruit juice and sugar, or a similar substance"
+        },
+        "sentences": [
+          {
+            "en": "The children ate jelly and ice cream.",
+            "role": "basic",
+            "zh": "孩子们吃了果冻和冰淇淋。"
+          },
+          {
+            "en": "The jelly wobbled on the plate as she carried it.",
+            "role": "ext",
+            "zh": "她端盘子时，果冻在盘子里晃来晃去。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒeli/",
+      "us": "/ˈdʒeli/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "origin": "book:cet6"
+  },
+  "jellyfish": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "水母",
+          "en": "a soft sea animal with long stinging arms"
+        },
+        "sentences": [
+          {
+            "en": "The jellyfish floats in the sea.",
+            "role": "basic",
+            "zh": "水母在海里漂浮。"
+          },
+          {
+            "en": "Rising ocean temperatures may encourage jellyfish populations to grow, potentially disrupting marine ecosystems and coastal tourism.",
+            "role": "ext",
+            "zh": "海洋温度上升可能促使水母数量增加，进而扰乱海洋生态系统并影响沿海旅游业。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒelifɪʃ/"
+    },
+    "topic": "nature",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jeopardise": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "危及；损害",
+          "en": "To put something at risk of harm, loss, or failure."
+        },
+        "sentences": [
+          {
+            "en": "Skipping practice could jeopardise your place on the team.",
+            "role": "basic",
+            "zh": "缺席训练可能会危及你在队中的位置。"
+          },
+          {
+            "en": "Reducing investment in public transport could jeopardise efforts to cut urban air pollution and traffic congestion.",
+            "role": "ext",
+            "zh": "减少公共交通投资可能会妨碍减少城市空气污染和交通拥堵的努力。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒepədaɪz/",
+      "us": "/ˈdʒepərdaɪz/"
+    },
+    "topic": "work",
+    "level": "C1",
+    "origin": "word-atlas"
+  },
+  "jeopardize": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "危及；使陷入危险",
+          "en": "To put something valuable at risk of harm or loss."
+        },
+        "sentences": [
+          {
+            "en": "Skipping these safety checks could jeopardize the whole trip.",
+            "role": "basic",
+            "zh": "省略这些安全检查可能危及整个行程。"
+          },
+          {
+            "en": "Excessive use of groundwater could jeopardize future food production in regions already affected by drought.",
+            "role": "ext",
+            "zh": "过度开采地下水可能危及已受干旱影响地区未来的粮食生产。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒepədaɪz/",
+      "us": "/ˈdʒepərdaɪz/"
+    },
+    "topic": "environment",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jeopardy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "危险；风险（常指可能遭受伤害或损失）",
+          "en": "danger of harm or loss"
+        },
+        "sentences": [
+          {
+            "en": "The delay put the plan in jeopardy.",
+            "role": "basic",
+            "zh": "这次延误使计划面临风险。"
+          },
+          {
+            "en": "Thousands of jobs are in jeopardy because of the factory closure.",
+            "role": "ext",
+            "zh": "由于工厂关闭，数千个工作岗位面临危险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒepədi/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jerk": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "猛拉；急扯",
+          "en": "a sudden sharp pull"
+        },
+        "sentences": [
+          {
+            "en": "He felt a jerk on the rope.",
+            "role": "basic",
+            "zh": "他感到绳子被猛拉了一下。"
+          },
+          {
+            "en": "Poorly maintained trains may jerk unexpectedly, increasing the risk of falls among passengers who are standing.",
+            "role": "ext",
+            "zh": "维护不善的列车可能突然颠动，增加站立乘客跌倒的风险。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒɜːk/",
+      "us": "/dʒɝːk/"
+    },
+    "topic": "daily",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jest": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "玩笑；戏谑",
+          "en": "something said or done as a joke"
+        },
+        "sentences": [
+          {
+            "en": "He said it only in jest.",
+            "role": "basic"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒest/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jesus": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "耶稣（基督教信仰的核心人物）",
+          "en": "the central figure of Christianity, believed by Christians to be the Son of God"
+        },
+        "sentences": [
+          {
+            "en": "Jesus is a central figure in Christianity.",
+            "role": "basic",
+            "zh": "耶稣是基督教的核心人物。"
+          },
+          {
+            "en": "Many people around the world pray to Jesus.",
+            "role": "ext",
+            "zh": "世界上许多人向耶稣祈祷。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒiːzəs/",
+      "us": "/ˈdʒiːzəs/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "origin": "book:cet6"
+  },
+  "jet": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "喷气式飞机；喷射",
+          "en": "A fast aircraft powered by jet engines; a strong stream of liquid or gas forced out of a small opening."
+        },
+        "sentences": [
+          {
+            "en": "A jet flew low over the beach this morning.",
+            "role": "basic",
+            "zh": "今天早上一架喷气式飞机低空飞过海滩。"
+          },
+          {
+            "en": "Replacing older passenger jets with more efficient aircraft could reduce fuel consumption across the aviation industry.",
+            "role": "ext",
+            "zh": "用效率更高的飞机替换老旧客机，可以降低整个航空业的燃料消耗。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒet/"
+    },
+    "topic": "travel",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jew": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "犹太人",
+          "en": "a person of the Jewish people"
+        },
+        "sentences": [
+          {
+            "en": "He is a Jew from New York.",
+            "role": "basic",
+            "zh": "他是一个来自纽约的犹太人。"
+          },
+          {
+            "en": "The museum exhibition tells the story of a Jew who survived the Holocaust.",
+            "role": "ext",
+            "zh": "博物馆的展览讲述了一位在大屠杀中幸存下来的犹太人的故事。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒuː/",
+      "us": "/dʒuː/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jewel": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "宝石",
+          "en": "a precious stone"
+        },
+        "sentences": [
+          {
+            "en": "A red jewel shines on the ring.",
+            "role": "basic",
+            "zh": "戒指上的一颗红宝石闪闪发光。"
+          },
+          {
+            "en": "The restored theatre is a cultural jewel that attracts visitors and supports local businesses.",
+            "role": "ext",
+            "zh": "修复后的剧院是一颗文化明珠，吸引着游客，也带动了当地商业。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒuːəl/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jewellery": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "珠宝；首饰",
+          "en": "Decorative objects worn on the body, such as rings and necklaces."
+        },
+        "sentences": [
+          {
+            "en": "She keeps her jewellery in a small wooden box.",
+            "role": "basic",
+            "zh": "她把首饰放在一个小木盒里。"
+          },
+          {
+            "en": "Traditional jewellery can reflect cultural identity while providing income for skilled craftspeople in rural communities.",
+            "role": "ext",
+            "zh": "传统首饰既能体现文化认同，也能为农村社区的熟练手工艺人带来收入。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒuːəlri/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jewelry": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "首饰；珠宝",
+          "en": "decorative objects such as rings, necklaces, and bracelets, typically made of precious metals or stones"
+        },
+        "sentences": [
+          {
+            "en": "She keeps her jewelry in a box.",
+            "role": "basic",
+            "zh": "她把首饰放在一个盒子里。"
+          },
+          {
+            "en": "Consumers increasingly want assurance that the materials used in jewelry are sourced responsibly and without environmental damage.",
+            "role": "ext",
+            "zh": "消费者越来越希望得到保证：首饰所用材料的来源负责任，且不损害环境。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒuːəlri/",
+      "us": "/ˈdʒuːəlri/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jewish": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "犹太人的；犹太教的",
+          "en": "relating to Jews, their religion, or their culture"
+        },
+        "sentences": [
+          {
+            "en": "She comes from a Jewish family.",
+            "role": "basic",
+            "zh": "她来自一个犹太家庭。"
+          },
+          {
+            "en": "The Jewish community celebrates many holidays throughout the year.",
+            "role": "ext",
+            "zh": "犹太社区一年中庆祝许多节日。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒuːɪʃ/",
+      "us": "/ˈdʒuːɪʃ/"
+    },
+    "topic": "society",
+    "level": "A2",
+    "origin": "book:cet4"
+  },
+  "jigsaw": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "拼图；拼图玩具",
+          "en": "a puzzle made of many small pieces that fit together to form a picture"
+        },
+        "sentences": [
+          {
+            "en": "The children finished the jigsaw.",
+            "role": "basic",
+            "zh": "孩子们完成了这幅拼图。"
+          },
+          {
+            "en": "We spent the rainy afternoon putting together a 500-piece jigsaw.",
+            "role": "ext",
+            "zh": "我们花了一个下雨的下午拼完了一幅500片的拼图。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒɪɡsɔː/",
+      "us": "/ˈdʒɪɡsɔː/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jingle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "发出叮当声；使叮当作响",
+          "en": "to make or cause to make a light ringing sound"
+        },
+        "sentences": [
+          {
+            "en": "Keys jingle in his pocket.",
+            "role": "basic",
+            "zh": "钥匙在他口袋里叮当作响。"
+          },
+          {
+            "en": "A memorable advertising jingle can influence consumer choices long after a campaign has ended.",
+            "role": "ext",
+            "zh": "即使广告活动早已结束，令人难忘的广告短歌仍能影响消费者的选择。"
+          }
+        ],
+        "pos": "v."
+      },
+      {
+        "meaning": {
+          "zh": "叮当声；（广告）短歌，顺口溜",
+          "en": "a light ringing sound; a short catchy song used in advertising"
+        },
+        "sentences": [
+          {
+            "en": "A memorable advertising jingle can influence consumer choices long after a campaign has ended.",
+            "role": "ext",
+            "zh": "即使广告活动早已结束，令人难忘的广告短歌仍能影响消费者的选择。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒɪŋɡl/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "job": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "工作；职业",
+          "en": "work that a person does for money"
+        },
+        "sentences": [
+          {
+            "en": "Her job is to help kids.",
+            "role": "basic",
+            "zh": "她的工作是帮助孩子们。"
+          },
+          {
+            "en": "Access to practical training can help young people secure a job in a competitive labour market.",
+            "role": "ext",
+            "zh": "获得实用技能培训能帮助年轻人在竞争激烈的劳动力市场中找到工作。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒɒb/",
+      "us": "/dʒɑːb/"
+    },
+    "topic": "work",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jobless": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "失业的；无工作的",
+          "en": "Without paid employment, especially when wanting to work."
+        },
+        "sentences": [
+          {
+            "en": "She was jobless for months after the factory closed.",
+            "role": "basic",
+            "zh": "工厂关闭后，她失业了好几个月。"
+          },
+          {
+            "en": "Governments should offer affordable retraining programmes to help jobless workers adapt to changes in the labour market.",
+            "role": "ext",
+            "zh": "政府应提供费用可负担的再培训项目，帮助失业者适应劳动力市场的变化。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒɒbləs/",
+      "us": "/ˈdʒɑːbləs/"
+    },
+    "topic": "work",
+    "level": "B2",
+    "origin": "word-atlas"
+  },
+  "jockey": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "赛马骑师",
+          "en": "a person who rides horses in races, especially as a profession"
+        },
+        "sentences": [
+          {
+            "en": "The jockey rode the horse to victory.",
+            "role": "basic",
+            "zh": "骑师骑着那匹马赢得了比赛。"
+          },
+          {
+            "en": "She dreamed of becoming a jockey despite the risks.",
+            "role": "ext",
+            "zh": "尽管有风险，她仍梦想成为一名骑师。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "（为获得优势而）巧妙地周旋，运用手段",
+          "en": "to try to gain an advantage by skillful or unfair maneuvering"
+        },
+        "sentences": [
+          {
+            "en": "Politicians jockeyed for position before the election.",
+            "role": "ext",
+            "zh": "政客们在选举前争抢有利位置。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒɒki/",
+      "us": "/ˈdʒɑːki/"
+    },
+    "topic": "sport",
+    "level": "B1",
+    "origin": "book:mse-pet"
+  },
+  "jog": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "慢跑（作为锻炼）",
+          "en": "to run slowly and steadily, especially as exercise"
+        },
+        "sentences": [
+          {
+            "en": "I jog in the park every morning.",
+            "role": "basic",
+            "zh": "我每天早上在公园慢跑。"
+          },
+          {
+            "en": "People who jog regularly may improve their cardiovascular health without needing expensive equipment or gym memberships.",
+            "role": "ext",
+            "zh": "经常慢跑的人无需昂贵的器材或健身房会员资格，也能改善心血管健康。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒɒɡ/",
+      "us": "/dʒɑːɡ/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jogging": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "慢跑",
+          "en": "Running slowly and steadily as a form of exercise."
+        },
+        "sentences": [
+          {
+            "en": "She goes jogging around the park before breakfast.",
+            "role": "basic",
+            "zh": "她早饭前会绕着公园慢跑。"
+          },
+          {
+            "en": "Regular jogging can improve physical fitness, especially when combined with a balanced diet and adequate rest.",
+            "role": "ext",
+            "zh": "经常慢跑可以改善体能，尤其是在配合均衡饮食和充足休息的情况下。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒɒɡɪŋ/",
+      "us": "/ˈdʒɑːɡɪŋ/"
+    },
+    "topic": "sport",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "join": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "加入；参加",
+          "en": "to become part of a group or take part in an activity"
+        },
+        "sentences": [
+          {
+            "en": "Please join our game after class.",
+            "role": "basic",
+            "zh": "请课后加入我们的游戏。"
+          },
+          {
+            "en": "Students who join local volunteer groups can develop practical skills while contributing to their communities.",
+            "role": "ext",
+            "zh": "加入当地志愿者团体的学生可以在服务社区的同时培养实用技能。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒɔɪn/",
+      "us": "/dʒɔɪn/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "joining": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "加入；参加",
+          "en": "Becoming a member of a group or taking part."
+        },
+        "sentences": [
+          {
+            "en": "I'm joining a swimming club near my house.",
+            "role": "basic",
+            "zh": "我正准备加入家附近的一家游泳俱乐部。"
+          },
+          {
+            "en": "Joining local volunteer groups allows young people to gain practical experience while contributing to their communities.",
+            "role": "ext",
+            "zh": "加入当地志愿者团体能让年轻人在服务社区的同时积累实践经验。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒɔɪnɪŋ/"
+    },
+    "topic": "society",
+    "level": "A2",
+    "origin": "word-atlas"
+  },
+  "joint": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "关节",
+          "en": "a place where two bones are joined together in the body"
+        },
+        "sentences": [
+          {
+            "en": "The knee is a large joint in the leg.",
+            "role": "basic",
+            "zh": "膝盖是腿部的一个大关节。"
+          },
+          {
+            "en": "Joint research projects allow universities to share resources and address environmental problems more effectively.",
+            "role": "ext",
+            "zh": "联合研究项目使大学能够共享资源，更有效地应对环境问题。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒɔɪnt/",
+      "us": "/dʒɔɪnt/"
+    },
+    "topic": "health",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "joke": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "笑话",
+          "en": "something funny you say to make people laugh"
+        },
+        "sentences": [
+          {
+            "en": "He tells a joke to the class.",
+            "role": "basic",
+            "zh": "他给全班讲了一个笑话。"
+          },
+          {
+            "en": "Teachers sometimes use jokes to reduce anxiety and create a more relaxed classroom atmosphere.",
+            "role": "ext",
+            "zh": "教师有时会用笑话缓解焦虑，营造更轻松的课堂氛围。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒəʊk/",
+      "us": "/dʒoʊk/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jolly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "快活的；愉快的",
+          "en": "happy and cheerful"
+        },
+        "sentences": [
+          {
+            "en": "She has a jolly smile.",
+            "role": "basic",
+            "zh": "她有着愉快的笑容。"
+          },
+          {
+            "en": "The party was a jolly affair with music and laughter.",
+            "role": "ext",
+            "zh": "聚会充满音乐和笑声，非常愉快。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒɒli/",
+      "us": "/ˈdʒɑːli/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "origin": "book:cet4"
+  },
+  "jolt": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "颠簸；震动；猛然一击",
+          "en": "a sudden rough movement or shock"
+        },
+        "sentences": [
+          {
+            "en": "The bus hit a hole with a hard jolt.",
+            "role": "basic",
+            "zh": "公共汽车撞到一个坑，猛地颠了一下。"
+          },
+          {
+            "en": "The news gave her a jolt, but she quickly regained her composure.",
+            "role": "ext",
+            "zh": "这个消息让她一震，但她很快恢复了镇定。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒəʊlt/",
+      "us": "/dʒoʊlt/"
+    },
+    "topic": "daily",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "journal": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "日记；期刊，杂志",
+          "en": "a book for personal thoughts, or a magazine about a particular subject"
+        },
+        "sentences": [
+          {
+            "en": "She writes in her journal every night.",
+            "role": "basic",
+            "zh": "她每晚都在日记里写东西。"
+          },
+          {
+            "en": "Researchers publish their findings in academic journals so that other experts can evaluate the evidence.",
+            "role": "ext",
+            "zh": "研究人员在学术期刊上发表成果，以便其他专家评估相关证据。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒɜːnl/",
+      "us": "/ˈdʒɜːrnl/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "journalism": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "新闻业；新闻工作",
+          "en": "the activity or profession of gathering, writing, and reporting news"
+        },
+        "sentences": [
+          {
+            "en": "He studied journalism at college.",
+            "role": "basic",
+            "zh": "他在大学学习新闻学。"
+          },
+          {
+            "en": "Investigative journalism plays a vital role in holding power accountable.",
+            "role": "ext",
+            "zh": "调查性新闻在监督权力方面发挥着至关重要的作用。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒɜːnəlɪzəm/",
+      "us": "/ˈdʒɜːrnəlɪzəm/"
+    },
+    "topic": "media",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "journalist": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "记者",
+          "en": "a person who collects news and writes about it"
+        },
+        "sentences": [
+          {
+            "en": "The journalist asked many careful questions.",
+            "role": "basic",
+            "zh": "那位记者问了许多谨慎的问题。"
+          },
+          {
+            "en": "A responsible journalist should verify information carefully before publishing stories that could influence public opinion.",
+            "role": "ext",
+            "zh": "负责任的记者在发表可能影响公众舆论的报道前，应仔细核实信息。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒɜːnəlɪst/",
+      "us": "/ˈdʒɜːrnəlɪst/"
+    },
+    "topic": "media",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "journey": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "旅程，行程",
+          "en": "a trip from one place to another"
+        },
+        "sentences": [
+          {
+            "en": "Our journey to the zoo is long.",
+            "role": "basic",
+            "zh": "我们去动物园的旅程很长。"
+          },
+          {
+            "en": "Improved rail services could shorten the daily journey to work and encourage commuters to leave their cars at home.",
+            "role": "ext",
+            "zh": "改善铁路服务可以缩短每日通勤时间，并鼓励通勤者不开车出门。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒɜːni/",
+      "us": "/ˈdʒɜːrni/"
+    },
+    "topic": "travel",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "joy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "欢乐；喜悦",
+          "en": "a feeling of great happiness"
+        },
+        "sentences": [
+          {
+            "en": "The news fills the family with joy.",
+            "role": "basic",
+            "zh": "这个消息让全家人充满了喜悦。"
+          },
+          {
+            "en": "Community gardens can bring joy to residents while strengthening social connections and encouraging healthier lifestyles.",
+            "role": "ext",
+            "zh": "社区花园既能给居民带来欢乐，也能加强社会联系并鼓励更健康的生活方式。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒɔɪ/"
+    },
+    "topic": "emotion",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "joyful": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "喜悦的；令人高兴的",
+          "en": "Feeling, expressing, or causing great happiness."
+        },
+        "sentences": [
+          {
+            "en": "We heard joyful laughter coming from the kitchen.",
+            "role": "basic",
+            "zh": "我们听到厨房里传来欢快的笑声。"
+          },
+          {
+            "en": "Community festivals create joyful shared experiences that can strengthen social connections among residents of different backgrounds.",
+            "role": "ext",
+            "zh": "社区节庆活动创造共同的欢乐体验，有助于加强不同背景居民之间的社会联系。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒɔɪfl/"
+    },
+    "topic": "emotion",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "judge": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "法官",
+          "en": "a person who makes decisions in a court of law"
+        },
+        "sentences": [
+          {
+            "en": "The judge listens to both sides.",
+            "role": "basic",
+            "zh": "法官听取双方的意见。"
+          },
+          {
+            "en": "The judge sentenced the man to five years in prison.",
+            "role": "ext",
+            "zh": "法官判处该男子五年监禁。"
+          }
+        ],
+        "pos": "n."
+      },
+      {
+        "meaning": {
+          "zh": "判断；评价",
+          "en": "to form an opinion about someone or something based on evidence"
+        },
+        "sentences": [
+          {
+            "en": "Don't judge a book by its cover.",
+            "role": "basic",
+            "zh": "不要以貌取人。"
+          },
+          {
+            "en": "Schools should judge students on a range of abilities rather than relying entirely on examination results.",
+            "role": "ext",
+            "zh": "学校应根据学生的多方面能力作出评价，而不是完全依赖考试成绩。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒʌdʒ/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "judgement": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "判断力；明智决策的能力",
+          "en": "the ability to make sensible decisions after considering information"
+        },
+        "sentences": [
+          {
+            "en": "I trust your judgement when choosing a reliable bike.",
+            "role": "basic",
+            "zh": "挑选可靠的自行车时，我相信你的判断力。"
+          },
+          {
+            "en": "Schools should teach students to exercise independent judgement when evaluating information from unfamiliar online sources.",
+            "role": "ext",
+            "zh": "学校应教导学生在评估陌生网络来源的信息时作出独立判断。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒʌdʒmənt/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "judgment": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "判断力；决断力",
+          "en": "the ability to form opinions and make decisions"
+        },
+        "sentences": [
+          {
+            "en": "Use good judgment when you cross the road.",
+            "role": "basic",
+            "zh": "过马路时要运用良好的判断力。"
+          },
+          {
+            "en": "The manager showed excellent judgment in handling the crisis.",
+            "role": "ext",
+            "zh": "经理在处理危机时表现出卓越的判断力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒʌdʒmənt/"
+    },
+    "topic": "thinking",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "judicial": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "司法的",
+          "en": "relating to courts and judges"
+        },
+        "sentences": [
+          {
+            "en": "This is a judicial decision.",
+            "role": "basic",
+            "zh": "这是一项司法裁决。"
+          },
+          {
+            "en": "An independent judicial system helps protect individual rights and ensures that governments remain accountable.",
+            "role": "ext",
+            "zh": "独立的司法体系有助于保护个人权利，并确保政府承担责任。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒuˈdɪʃl/",
+      "us": "/dʒuˈdɪʃl/"
+    },
+    "topic": "government",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "judiciary": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "司法机关；司法系统",
+          "en": "the judges and courts of a country"
+        },
+        "sentences": [
+          {
+            "en": "The judiciary must stay independent.",
+            "role": "basic",
+            "zh": "司法机关必须保持独立。"
+          },
+          {
+            "en": "The reform aims to make the judiciary more transparent and accountable.",
+            "role": "ext",
+            "zh": "这项改革旨在使司法系统更加透明和负责。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒuˈdɪʃəri/"
+    },
+    "topic": "government",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "judicious": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "明智的；审慎的",
+          "en": "showing good judgment; wise and careful"
+        },
+        "sentences": [
+          {
+            "en": "That was a judicious choice.",
+            "role": "basic",
+            "zh": "那是一个明智的选择。"
+          },
+          {
+            "en": "The committee made a judicious use of limited resources.",
+            "role": "ext",
+            "zh": "委员会审慎地使用了有限的资源。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒuˈdɪʃəs/"
+    },
+    "topic": "thinking",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "judo": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "柔道",
+          "en": "A sport using throws and holds to overcome an opponent."
+        },
+        "sentences": [
+          {
+            "en": "Our judo teacher showed us how to fall safely.",
+            "role": "basic",
+            "zh": "我们的柔道老师教了我们如何安全地倒地。"
+          },
+          {
+            "en": "Practising judo under qualified supervision can help young people develop balance, self-discipline, and respect for others.",
+            "role": "ext",
+            "zh": "在合格教练的指导下练习柔道，可以帮助年轻人提高平衡能力、自律性以及对他人的尊重。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒuːdəʊ/",
+      "us": "/ˈdʒuːdoʊ/"
+    },
+    "topic": "sport",
+    "level": "A2",
+    "origin": "word-atlas"
+  },
+  "jug": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "（有柄的）壶，罐（常用于盛液体）",
+          "en": "a container with a handle, used for holding and pouring liquids"
+        },
+        "sentences": [
+          {
+            "en": "She poured water from a large jug.",
+            "role": "basic",
+            "zh": "她从一个大水壶里倒水。"
+          },
+          {
+            "en": "Serving tap water in a reusable jug can help restaurants reduce their reliance on disposable plastic bottles.",
+            "role": "ext",
+            "zh": "用可重复使用的水壶供应自来水，有助于餐馆减少对一次性塑料瓶的依赖。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒʌɡ/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "juggle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "玩杂耍；连续抛接（多个物体）",
+          "en": "to keep several objects in the air by throwing and catching them"
+        },
+        "sentences": [
+          {
+            "en": "He can juggle three red balls easily.",
+            "role": "basic",
+            "zh": "他能轻松地连续抛接三个红球。"
+          },
+          {
+            "en": "She learned to juggle while riding a unicycle.",
+            "role": "ext",
+            "zh": "她学会了骑独轮车时玩杂耍。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒʌɡl/"
+    },
+    "topic": "sport",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "juice": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "果汁",
+          "en": "the drink that comes from fruit"
+        },
+        "sentences": [
+          {
+            "en": "I drink orange juice at breakfast.",
+            "role": "basic",
+            "zh": "我早餐时喝橙汁。"
+          },
+          {
+            "en": "Although fruit juice contains vitamins, eating whole fruit usually provides more fibre and helps limit sugar intake.",
+            "role": "ext",
+            "zh": "虽然果汁含有维生素，但吃完整的水果通常能摄入更多膳食纤维，并有助于限制糖分摄入。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒuːs/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "juicy": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "多汁的",
+          "en": "containing a lot of juice and therefore soft and pleasant to eat"
+        },
+        "sentences": [
+          {
+            "en": "This peach is very juicy.",
+            "role": "basic",
+            "zh": "这个桃子很多汁。"
+          },
+          {
+            "en": "The restaurant is famous for its juicy burgers.",
+            "role": "ext",
+            "zh": "这家餐厅以其多汁的汉堡而闻名。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒuːsi/",
+      "us": "/ˈdʒuːsi/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "july": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "七月",
+          "en": "the seventh month of the year, between June and August"
+        },
+        "sentences": [
+          {
+            "en": "We usually visit our cousins for a week in July.",
+            "role": "basic",
+            "zh": "我们通常在七月去表亲家住一周。"
+          },
+          {
+            "en": "In many northern countries, tourism peaks in July, creating seasonal jobs but increasing pressure on local services.",
+            "role": "ext",
+            "zh": "在许多北方国家，旅游业在七月达到高峰，创造了季节性岗位，却也增加了当地公共服务的压力。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/dʒuˈlaɪ/",
+      "us": "/dʒuˈlaɪ/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jump": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "跳；跳跃",
+          "en": "to push yourself off the ground or another surface using your legs"
+        },
+        "sentences": [
+          {
+            "en": "The children jump in the yard.",
+            "role": "basic",
+            "zh": "狗跳过了大门旁的一摊积水。"
+          },
+          {
+            "en": "Housing costs have jumped sharply in cities where demand continues to exceed the supply of affordable homes.",
+            "role": "ext",
+            "zh": "在住房需求持续超过可负担住房供应的城市，住房成本已大幅上涨。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒʌmp/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jumper": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "套头毛衣（英式英语）",
+          "en": "A knitted garment for the upper body, usually pulled on over the head."
+        },
+        "sentences": [
+          {
+            "en": "I packed a warm jumper for the camping trip.",
+            "role": "basic",
+            "zh": "我为这次露营带了一件暖和的套头毛衣。"
+          },
+          {
+            "en": "Wearing a jumper indoors can reduce the need for heating during colder months.",
+            "role": "ext",
+            "zh": "在寒冷的月份，室内穿毛衣可以减少供暖需求。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒʌmpə/",
+      "us": "/ˈdʒʌmpər/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "junction": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "交叉口；路口；（铁路）枢纽",
+          "en": "a place where roads, railway lines, or other routes meet"
+        },
+        "sentences": [
+          {
+            "en": "Turn left at the next junction.",
+            "role": "basic",
+            "zh": "在下一个路口左转。"
+          },
+          {
+            "en": "Installing better lighting at busy junctions could reduce accidents involving cyclists and pedestrians.",
+            "role": "ext",
+            "zh": "在繁忙路口安装更好的照明设施，可以减少涉及骑行者和行人的事故。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒʌŋkʃn/"
+    },
+    "topic": "city",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "june": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "六月",
+          "en": "the sixth month of the year, between May and July"
+        },
+        "sentences": [
+          {
+            "en": "My sister is getting married in June.",
+            "role": "basic",
+            "zh": "我姐姐今年六月要结婚。"
+          },
+          {
+            "en": "The community centre will open in June, providing local residents with affordable exercise classes.",
+            "role": "ext",
+            "zh": "社区中心将于六月开放，为当地居民提供价格实惠的健身课程。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒuːn/"
+    },
+    "topic": "daily",
+    "level": "A1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "jungle": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "丛林；热带密林",
+          "en": "a thick tropical forest with many plants and trees"
+        },
+        "sentences": [
+          {
+            "en": "Tigers live in the thick jungle.",
+            "role": "basic",
+            "zh": "老虎生活在茂密的热带丛林中。"
+          },
+          {
+            "en": "Clearing jungle for agriculture destroys wildlife habitats and can reduce biodiversity across an entire region.",
+            "role": "ext",
+            "zh": "清除热带丛林以开辟农田会破坏野生动物栖息地，并可能降低整个地区的生物多样性。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒʌŋɡl/"
+    },
+    "topic": "nature",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "junior": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "较年幼的；级别较低的",
+          "en": "younger or lower in rank"
+        },
+        "sentences": [
+          {
+            "en": "The junior player sat on the bench.",
+            "role": "basic",
+            "zh": "那名年轻队员坐在替补席上。"
+          },
+          {
+            "en": "Companies should provide junior employees with structured training and regular opportunities to learn from experienced colleagues.",
+            "role": "ext",
+            "zh": "公司应为初级员工提供系统培训，并定期安排他们向经验丰富的同事学习。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒuːniə/",
+      "us": "/ˈdʒuːniər/"
+    },
+    "topic": "work",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "junk": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "废旧物品；垃圾；破烂",
+          "en": "old or unwanted things that are considered useless or of little value"
+        },
+        "sentences": [
+          {
+            "en": "The yard is full of old junk.",
+            "role": "basic",
+            "zh": "院子里堆满了旧破烂。"
+          },
+          {
+            "en": "We should clear out all the junk in the garage before moving.",
+            "role": "ext",
+            "zh": "搬家前我们应该把车库里的废旧杂物都清理掉。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒʌŋk/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jupiter": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "木星（太阳系中最大的行星）",
+          "en": "the largest planet in the solar system, fifth from the sun"
+        },
+        "sentences": [
+          {
+            "en": "Jupiter is the largest planet in our solar system.",
+            "role": "basic",
+            "zh": "木星是太阳系中最大的行星。"
+          },
+          {
+            "en": "Through a telescope, you can see Jupiter's four largest moons.",
+            "role": "ext",
+            "zh": "通过望远镜，你可以看到木星的四颗最大的卫星。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒuːpɪtə/",
+      "us": "/ˈdʒuːpɪtər/"
+    },
+    "topic": "science",
+    "level": "A2",
+    "origin": "book:cet6"
+  },
+  "jurisdiction": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "管辖权；司法权；管辖范围",
+          "en": "the official legal power to make decisions and judgments, or the area over which this power applies"
+        },
+        "sentences": [
+          {
+            "en": "This court has no jurisdiction here.",
+            "role": "basic",
+            "zh": "这家法院在此地没有管辖权。"
+          },
+          {
+            "en": "The case falls outside the jurisdiction of the local court.",
+            "role": "ext",
+            "zh": "该案件不属于地方法院的管辖范围。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˌdʒʊərɪsˈdɪkʃn/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "juror": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "陪审员",
+          "en": "a member of a jury in a court case"
+        },
+        "sentences": [
+          {
+            "en": "Each juror listened carefully to the evidence.",
+            "role": "basic",
+            "zh": "每位陪审员都仔细听取了证据。"
+          },
+          {
+            "en": "The judge reminded the jurors not to discuss the case with anyone.",
+            "role": "ext",
+            "zh": "法官提醒陪审员不要与任何人讨论此案。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒʊərə/",
+      "us": "/ˈdʒʊrər/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jury": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "陪审团",
+          "en": "a group of people chosen to decide guilt or innocence in a court case"
+        },
+        "sentences": [
+          {
+            "en": "The jury listened to the case in court.",
+            "role": "basic",
+            "zh": "陪审团在法庭上听取了案件陈述。"
+          },
+          {
+            "en": "Serving on a jury allows ordinary citizens to participate directly in the administration of justice.",
+            "role": "ext",
+            "zh": "担任陪审员让普通公民能够直接参与司法工作。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒʊəri/",
+      "us": "/ˈdʒʊri/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "just": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "刚刚；刚才",
+          "en": "a very short time before now"
+        },
+        "sentences": [
+          {
+            "en": "We just got home from school.",
+            "role": "basic",
+            "zh": "我们刚放学回到家。"
+          },
+          {
+            "en": "I've just finished my homework, so I can go out now.",
+            "role": "ext",
+            "zh": "我刚刚做完作业，所以现在可以出去了。"
+          }
+        ],
+        "pos": "adv."
+      },
+      {
+        "meaning": {
+          "zh": "公正的；公平的",
+          "en": "fair and morally right"
+        },
+        "sentences": [
+          {
+            "en": "A just society should ensure that all children can access quality education, regardless of family income.",
+            "role": "ext",
+            "zh": "一个公正的社会应确保所有儿童都能获得优质教育，不受家庭收入影响。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒʌst/"
+    },
+    "topic": "daily",
+    "level": "A2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "justice": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "公正；正义",
+          "en": "fairness in the way people are treated or in the way decisions are made"
+        },
+        "sentences": [
+          {
+            "en": "People want justice in every court case.",
+            "role": "basic",
+            "zh": "人们希望每个法庭案件都能得到公正审判。"
+          },
+          {
+            "en": "The victims' families are still fighting for justice.",
+            "role": "ext",
+            "zh": "受害者家属仍在为正义而抗争。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒʌstɪs/",
+      "us": "/ˈdʒʌstɪs/"
+    },
+    "topic": "society",
+    "level": "B1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "justifiable": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "可证明为正当的；有理由的",
+          "en": "able to be shown to be right or reasonable"
+        },
+        "sentences": [
+          {
+            "en": "Her anger was justifiable because she had been treated unfairly.",
+            "role": "basic",
+            "zh": "她的愤怒是有理由的，因为她受到了不公平的对待。"
+          },
+          {
+            "en": "The court found that the use of force was justifiable in self-defense.",
+            "role": "ext",
+            "zh": "法院认定，在自卫情况下使用武力是正当的。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒʌstɪfaɪəbl/",
+      "us": "/ˈdʒʌstɪfaɪəbl/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "justification": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "正当理由；合理依据",
+          "en": "A good reason explaining why something is acceptable or necessary."
+        },
+        "sentences": [
+          {
+            "en": "There is no justification for leaving this mess behind.",
+            "role": "basic",
+            "zh": "把这里弄得一团糟却不收拾，没有任何正当理由。"
+          },
+          {
+            "en": "Governments must provide clear justification for policies that restrict individual freedom in the interests of public safety.",
+            "role": "ext",
+            "zh": "政府必须为那些以公共安全为由限制个人自由的政策提供明确的合理依据。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌdʒʌstɪfɪˈkeɪʃən/",
+      "us": "/ˌdʒʌstɪfɪˈkeɪʃən/"
+    },
+    "topic": "society",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "justified": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "有正当理由的；合理的",
+          "en": "having a good reason; reasonable or acceptable"
+        },
+        "sentences": [
+          {
+            "en": "Her anger was justified because he lied to her.",
+            "role": "basic",
+            "zh": "她的愤怒是有正当理由的，因为他对她撒了谎。"
+          },
+          {
+            "en": "The court found that the police action was justified under the circumstances.",
+            "role": "ext",
+            "zh": "法院认定警方的行动在当时情况下是合理的。"
+          }
+        ],
+        "pos": "adj."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒʌstɪfaɪd/",
+      "us": "/ˈdʒʌstəfaɪd/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "origin": "book:cet6"
+  },
+  "justify": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "证明合理；为…辩护",
+          "en": "Show that an action, decision, or belief is right or reasonable."
+        },
+        "sentences": [
+          {
+            "en": "I cannot justify buying another coat this winter.",
+            "role": "basic",
+            "zh": "我无法为今年冬天再买一件外套找到正当理由。"
+          },
+          {
+            "en": "Governments must justify major infrastructure spending by demonstrating clear benefits for the wider community.",
+            "role": "ext",
+            "zh": "政府必须通过展示对整个社区的明确益处，来证明重大基础设施支出的合理性。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒʌstɪfaɪ/"
+    },
+    "topic": "thinking",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "word-atlas"
+  },
+  "justly": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "公正地；正当地",
+          "en": "in a fair and right way"
+        },
+        "sentences": [
+          {
+            "en": "He was justly proud of his work.",
+            "role": "basic",
+            "zh": "他有理由为自己的工作感到自豪。"
+          },
+          {
+            "en": "The criminal was justly punished for his crimes.",
+            "role": "ext",
+            "zh": "那个罪犯因其所犯罪行受到了公正的惩罚。"
+          }
+        ],
+        "pos": "adv."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/ˈdʒʌstli/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "jut": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "（使）突出，伸出",
+          "en": "to stick out from a surface"
+        },
+        "sentences": [
+          {
+            "en": "Rocks jut from the cliff.",
+            "role": "basic",
+            "zh": "岩石从悬崖上突出来。"
+          },
+          {
+            "en": "A narrow balcony juts out over the street.",
+            "role": "ext",
+            "zh": "一个狭窄的阳台向街道上方伸出。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "g": "/dʒʌt/"
+    },
+    "topic": "nature",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "juvenile": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "幼稚的；孩子气的",
+          "en": "behaving in a silly or childish way, not mature"
+        },
+        "sentences": [
+          {
+            "en": "That was a juvenile and silly remark.",
+            "role": "basic",
+            "zh": "那是一个幼稚愚蠢的评论。"
+          },
+          {
+            "en": "His juvenile behavior at the meeting embarrassed his colleagues.",
+            "role": "ext",
+            "zh": "他在会议上的幼稚行为让同事们很尴尬。"
+          }
+        ],
+        "pos": "adj."
+      },
+      {
+        "meaning": {
+          "zh": "青少年",
+          "en": "a young person, especially one below the age of legal responsibility"
+        },
+        "sentences": [
+          {
+            "en": "The juvenile was arrested for shoplifting.",
+            "role": "basic",
+            "zh": "那个青少年因入店行窃被捕。"
+          },
+          {
+            "en": "The court specializes in cases involving juveniles.",
+            "role": "ext",
+            "zh": "该法院专门审理涉及青少年的案件。"
+          }
+        ],
+        "pos": "n."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˈdʒuːvənaɪl/",
+      "us": "/ˈdʒuːvənəl/"
+    },
+    "topic": "society",
+    "level": "B2",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  },
+  "juxtapose": {
+    "meanings": [
+      {
+        "meaning": {
+          "zh": "并置；把…并列放置（以形成对比）",
+          "en": "to place two or more things side by side, especially to compare or contrast them"
+        },
+        "sentences": [
+          {
+            "en": "Artists often juxtapose light and dark to create strong visual effects.",
+            "role": "basic",
+            "zh": "艺术家常常把明与暗并置，以营造强烈的视觉效果。"
+          },
+          {
+            "en": "The exhibition juxtaposes traditional paintings with modern digital art, inviting viewers to compare different eras.",
+            "role": "ext",
+            "zh": "这场展览将传统绘画与现代数字艺术并置，邀请观众比较不同时代。"
+          }
+        ],
+        "pos": "v."
+      }
+    ],
+    "status": "llm",
+    "phonetic": {
+      "uk": "/ˌdʒʌkstəˈpəʊz/",
+      "us": "/ˌdʒʌkstəˈpoʊz/"
+    },
+    "topic": "arts",
+    "level": "C1",
+    "contentType": "non-fiction",
+    "origin": "llm-verify"
+  }
+}
