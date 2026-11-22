@@ -154,7 +154,7 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .container {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: var(--pc-main-bg, #f4f1ea);
   padding: 20rpx;
 }
 

@@ -378,7 +378,7 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 .atlas-page {
-  --atlas-paper: #f6f1e7;
+  --atlas-paper: var(--pc-main-bg, #f6f1e7);
   --atlas-card: #fffdf8;
   --atlas-ink: #1a2035;
   --atlas-ink-2: #434b65;
@@ -390,9 +390,7 @@ onMounted(async () => {
   --gutter: 28px;
 
   min-height: 100vh;
-  background:
-    radial-gradient(1200px 560px at 50% -220px, rgba(255, 200, 110, 0.26), transparent 72%) no-repeat,
-    var(--atlas-paper);
+  background: var(--atlas-paper);
   color: var(--atlas-ink);
   font-family: var(--atlas-sans);
   padding-bottom: 80px;

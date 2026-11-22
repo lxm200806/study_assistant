@@ -21,8 +21,8 @@
 <script setup lang="ts">
 import { onMounted, watch, computed } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
-import { useUserStore } from '@/stores/user'
 import { isBookAccessible } from '@/composables/useTrainingStart'
+import { openBooksTab } from '@/utils/navigation'
 
 const props = withDefaults(defineProps<{
   trainingType?: 'listening' | 'speaking' | 'reading' | 'writing'
@@ -33,12 +33,11 @@ const props = withDefaults(defineProps<{
   showDue: true
 })
 
-const emit = defineEmits<{
+defineEmits<{
   change: [code: string]
 }>()
 
 const vocabStore = useVocabularyStore()
-const userStore = useUserStore()
 
 const currentBookLocked = computed(() => {
   const book = vocabStore.getCurrentBook
@@ -54,40 +53,7 @@ const refreshBookMeta = async (code: string) => {
 }
 
 const openPicker = () => {
-  const list = vocabStore.books
-  if (list.length === 0) {
-    uni.showToast({ title: '词书加载中', icon: 'none' })
-    return
-  }
-
-  uni.showActionSheet({
-    itemList: list.map(b => {
-      const locked = !isBookAccessible(b.code, b.isFree)
-      return `${locked ? '🔒 ' : ''}${b.name} (${b.level})`
-    }),
-    success: async (res) => {
-      const book = list[res.tapIndex]
-      if (!book || book.code === vocabStore.currentBookCode) return
-      if (!isBookAccessible(book.code, book.isFree)) {
-        uni.showModal({
-          title: '词书未解锁',
-          content: `「${book.name}」需开通会员，免费用户可使用 KET 词书。`,
-          confirmText: '了解会员',
-          cancelText: '取消',
-          success: (modal) => {
-            if (modal.confirm) {
-              uni.navigateTo({ url: '/pages/membership/membership' })
-            }
-          }
-        })
-        return
-      }
-      vocabStore.setCurrentBook(book.code)
-      await refreshBookMeta(book.code)
-      emit('change', book.code)
-      uni.showToast({ title: `已切换 ${book.name}`, icon: 'success' })
-    }
-  })
+  openBooksTab()
 }
 
 onMounted(() => {
@@ -106,11 +72,12 @@ watch(() => vocabStore.currentBookCode, (code) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: white;
+  background: var(--pc-surface-2, #fff);
   border-radius: 20rpx;
   padding: 24rpx 28rpx;
   margin-bottom: 24rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+  box-shadow: var(--pc-shadow, 0 2rpx 12rpx rgba(0, 0, 0, 0.06));
+  border: 1px solid var(--pc-border, transparent);
 }
 
 .book-switcher.compact {
@@ -139,7 +106,7 @@ watch(() => vocabStore.currentBookCode, (code) => {
 .book-name {
   font-size: 30rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--pc-text, #333);
   display: block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -147,19 +114,19 @@ watch(() => vocabStore.currentBookCode, (code) => {
 }
 
 .book-name.placeholder {
-  color: #667eea;
+  color: var(--pc-accent, #0f6e6a);
 }
 
 .book-meta {
   font-size: 22rpx;
-  color: #999;
+  color: var(--pc-text-3, #999);
   display: block;
   margin-top: 6rpx;
 }
 
 .switch-hint {
   font-size: 24rpx;
-  color: #667eea;
+  color: var(--pc-accent, #0f6e6a);
   flex-shrink: 0;
   margin-left: 16rpx;
 }

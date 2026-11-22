@@ -10,6 +10,9 @@ source ./scripts/stop-port.sh
 
 stop_port 5173 "前端 H5"
 
+# 避免 uni/Vite 在部分环境下因 networkInterfaces 崩掉
+export NODE_OPTIONS="--require $(pwd)/scripts/patch-os-ni.cjs${NODE_OPTIONS:+ $NODE_OPTIONS}"
+
 echo ""
 echo "🚀 启动前端客户端..."
 echo ""

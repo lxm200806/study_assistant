@@ -6,6 +6,8 @@ set -e
 cd "$(dirname "$0")"
 source ./scripts/node-env.sh
 
+export NODE_OPTIONS="--require $(pwd)/scripts/patch-os-ni.cjs${NODE_OPTIONS:+ $NODE_OPTIONS}"
+
 echo "🚀 启动前端 H5 开发服务器..."
 echo "📍 Node: $(command -v node) ($(node --version))"
 echo "📂 目录: $(pwd)"

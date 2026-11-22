@@ -29,11 +29,19 @@
 - **复习算法**: ts-fsrs
 - **AI/语音**: OpenAI-compatible LLM、Edge TTS、讯飞 ASR/Whisper 兼容 ASR
 
+## 前端布局（PC 壳层）
+
+宽屏左侧导航 + 右侧页面；**只有右侧滚动**。改业务页时不要动壳层。
+
+详见：[doc/pc-shell-layout.md](doc/pc-shell-layout.md)
+
 ## 项目结构
 
 ```text
 src/
-├── pages/                    # 前端页面
+├── windows/left-window.vue   # PC 侧栏壳（导航），非业务页
+├── App.vue                   # 全局样式；含 pc-shell 滚动隔离
+├── pages/                    # 前端页面（只改本页内容）
 │   ├── login/                # 登录
 │   ├── register/             # 注册
 │   ├── onboarding/           # 新手引导

@@ -79,6 +79,7 @@ import PcRailIcon from '@/components/PcRailIcon.vue'
 import { useUserStore } from '@/stores/user'
 import { isTabPage } from '@/utils/navigation'
 import { applyRailWidth, installPcRouteSync, pcPath } from '@/utils/pc-route'
+import { applyPcTheme } from '@/utils/pc-theme'
 import type { Subject } from '@/utils/subject'
 
 type RailItem = {
@@ -98,6 +99,9 @@ const switchOpen = ref(false)
 const accountName = computed(() => userStore.displayName || userStore.username || '账号')
 const expanded = computed(() => pinned.value || hovering.value)
 
+const themeItem = (): RailItem =>
+  item('theme', '主题', '/pages/theme/theme', 'theme')
+
 const mainItems = computed<RailItem[]>(() => {
   const chinese = userStore.isChinese
   const student = userStore.isStudentRole
@@ -108,19 +112,26 @@ const mainItems = computed<RailItem[]>(() => {
       item('students', '角色', '/pages/family/students', 'users'),
       item('member', '会员', '/pages/membership/membership', 'crown')
     )
+    if (!chinese) {
+      items.push(item('books', '词书', '/pages/books/books', 'library'))
+    }
+    items.push(themeItem())
     if (userStore.isAdmin) items.push(item('admin', '词库', '/pages/admin/admin', 'gear'))
     return items
   }
   // 英语：侧栏直接进认读/拼读，不再放今日。语文仍用今日看课程。
   if (chinese && student) {
-    items.push({
-      key: 'home',
-      label: '今日',
-      url: '/pages/home/home',
-      icon: 'home',
-      show: () => true,
-      match: (path) => path === '/pages/home/home'
-    })
+    items.push(
+      {
+        key: 'home',
+        label: '今日',
+        url: '/pages/home/home',
+        icon: 'home',
+        show: () => true,
+        match: (path) => path === '/pages/home/home'
+      },
+      themeItem()
+    )
   }
   if (!chinese && student) {
     items.push(
@@ -141,6 +152,14 @@ const mainItems = computed<RailItem[]>(() => {
         match: (path) => path.startsWith('/pages/typing/')
       },
       {
+        key: 'books',
+        label: '词书',
+        url: '/pages/books/books',
+        icon: 'library',
+        show: () => true,
+        match: (path) => path === '/pages/books/books'
+      },
+      {
         key: 'atlas',
         label: '图鉴',
         url: '/pages/vocabulary-map/vocabulary-map',
@@ -149,7 +168,8 @@ const mainItems = computed<RailItem[]>(() => {
         match: (path) =>
           path === '/pages/vocabulary-map/vocabulary-map' ||
           path === '/pages/vocabulary/vocabulary'
-      }
+      },
+      themeItem()
     )
   }
   return items.filter((item) => item.show())
@@ -181,6 +201,7 @@ watch(pcPath, (path) => {
 onMounted(() => {
   installPcRouteSync()
   applyRailWidth(expanded.value)
+  applyPcTheme()
 })
 
 function item(key: string, label: string, url: string, icon: string): RailItem {
@@ -260,8 +281,8 @@ function readPinned() {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #f7f7f7;
-  color: #2c3338;
+  background: var(--pc-rail-bg, #e8eaed);
+  color: var(--pc-rail-text, #2c3338);
   box-sizing: border-box;
   user-select: none;
   overflow: hidden;
@@ -278,7 +299,7 @@ function readPinned() {
 .rail-foot {
   position: relative;
   padding: 8px 12px 14px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  border-top: 1px solid var(--pc-rail-border, rgba(44, 51, 56, 0.08));
 }
 
 .switch-pop {
@@ -289,7 +310,7 @@ function readPinned() {
   max-height: 280px;
   overflow: auto;
   background: #fff;
-  border: 1px solid #e0d7cb;
+  border: 1px solid var(--pc-rail-border, rgba(44, 51, 56, 0.08));
   border-radius: 12px;
   padding: 6px;
   box-shadow: 0 8px 24px rgba(31, 26, 20, 0.08);
@@ -307,12 +328,12 @@ function readPinned() {
 }
 
 .switch-item:hover {
-  background: #eceef0;
+  background: var(--pc-rail-hover, #dfe2e6);
 }
 
 .switch-name {
   font-size: 14px;
-  color: #1f1a14;
+  color: var(--pc-rail-text, #2c3338);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -320,7 +341,7 @@ function readPinned() {
 
 .switch-note, .switch-empty {
   font-size: 12px;
-  color: #8a8175;
+  color: var(--pc-rail-muted, #6b7280);
 }
 
 .switch-empty {
@@ -349,9 +370,9 @@ function readPinned() {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #d5d8dc;
+  border: 1px solid var(--pc-rail-border, rgba(44, 51, 56, 0.12));
   border-radius: 8px;
-  color: #6b7280;
+  color: var(--pc-rail-muted, #6b7280);
   cursor: pointer;
   flex: 0 0 auto;
 }
@@ -370,17 +391,17 @@ function readPinned() {
   margin: 4px 0;
   padding: 8px 10px;
   border-radius: 8px;
-  color: #2c3338;
+  color: var(--pc-rail-text, #2c3338);
   cursor: pointer;
   box-sizing: border-box;
 }
 
 .row:hover {
-  background: #eceef0;
+  background: var(--pc-rail-hover, #dfe2e6);
 }
 
 .row.is-on {
-  background: #dadcde;
+  background: var(--pc-rail-on, #d4d8dd);
   font-weight: 600;
 }
 
@@ -392,7 +413,7 @@ function readPinned() {
 
 .chev {
   margin-left: auto;
-  color: #8b9198;
+  color: var(--pc-rail-muted, #6b7280);
   font-size: 11px;
 }
 
@@ -405,7 +426,7 @@ function readPinned() {
   gap: 4px;
   padding: 4px;
   margin-bottom: 6px;
-  background: #eceef0;
+  background: var(--pc-rail-hover, #dfe2e6);
   border-radius: 999px;
 }
 
@@ -416,13 +437,13 @@ function readPinned() {
   line-height: 28px;
   border-radius: 999px;
   font-size: 13px;
-  color: #5c6570;
+  color: var(--pc-rail-muted, #5c6570);
   cursor: pointer;
 }
 
 .subject-btn.is-on {
-  background: #fff;
-  color: #1f1a14;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--pc-rail-text, #1f1a14);
   font-weight: 650;
 }
 

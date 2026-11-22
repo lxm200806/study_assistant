@@ -1,34 +1,33 @@
 <template>
   <view class="container">
-    <view class="header">
-      <text class="header-title">选择词汇书</text>
-      <text class="header-subtitle">选择适合您的词汇学习目标</text>
+    <view class="current-bar" v-if="currentBook">
+      <view class="current-text">
+        <text class="current-label">当前</text>
+        <text class="current-name">{{ currentBook.name }}</text>
+        <text class="current-meta">{{ currentBook.level }} · {{ currentBook.wordCount }} 词</text>
+      </view>
     </view>
 
-    <view class="current-book" v-if="vocabStore.currentBookCode">
-      <view class="current-book-label">当前词汇书</view>
-      <view class="current-book-name">{{ vocabStore.getCurrentBook?.name || vocabStore.currentBookCode }}</view>
-    </view>
-
-    <view class="books-list">
-      <view 
-        v-for="book in vocabStore.books" 
-        :key="book.id"
-        :class="['book-card', vocabStore.currentBookCode === book.code ? 'selected' : '']"
-        @tap="selectBook(book)"
-      >
-        <view class="book-icon">📚</view>
-        <view class="book-info">
-          <text class="book-name">{{ book.name }}</text>
-          <text class="book-level">{{ book.level }}</text>
-          <text class="book-desc">{{ book.description }}</text>
-          <view class="book-meta">
-            <text class="book-count">共 {{ book.wordCount }} 词</text>
+    <view v-for="group in bookGroups" :key="group.key" class="group">
+      <text class="group-title">{{ group.title }}</text>
+      <view class="books-grid">
+        <view
+          v-for="book in group.books"
+          :key="book.id"
+          :class="['book-card', isSelected(book.code) ? 'selected' : '', isLocked(book) ? 'locked' : '']"
+          @tap="selectBook(book)"
+        >
+          <view class="book-top">
+            <text class="book-name">{{ book.name }}</text>
+            <text v-if="isSelected(book.code)" class="badge on">✓</text>
+            <text v-else-if="isLocked(book)" class="badge lock">锁</text>
           </view>
-        </view>
-        <view v-if="vocabStore.currentBookCode === book.code" class="selected-badge">✓</view>
-        <view class="map-link" @tap.stop="goToBookMap(book.code)">
-          <text>掌握图谱</text>
+          <text class="book-level">{{ book.level }}</text>
+          <text class="book-count">{{ book.wordCount }} 词</text>
+          <text class="book-desc">{{ book.description }}</text>
+          <view class="book-actions" @tap.stop>
+            <text class="map-link" @tap="goToBookMap(book.code)">图谱</text>
+          </view>
         </view>
       </view>
     </view>
@@ -36,7 +35,7 @@
     <view class="section">
       <text class="section-title">解释方式</text>
       <view class="options-group">
-        <view 
+        <view
           :class="['option-item', vocabStore.meaningType === 'chinese' ? 'selected' : '']"
           @tap="setMeaningType('chinese')"
         >
@@ -44,12 +43,12 @@
           <text class="option-desc">用中文解释单词含义</text>
           <view v-if="vocabStore.meaningType === 'chinese'" class="check-mark">✓</view>
         </view>
-        <view 
+        <view
           :class="['option-item', vocabStore.meaningType === 'english' ? 'selected' : '']"
           @tap="setMeaningType('english')"
         >
           <text class="option-label">英文解释</text>
-          <text class="option-desc">用英文解释单词含义，提升英文思维</text>
+          <text class="option-desc">用英文解释，练英文思维</text>
           <view v-if="vocabStore.meaningType === 'english'" class="check-mark">✓</view>
         </view>
       </view>
@@ -60,14 +59,70 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { computed } from 'vue'
+import { onShow } from '@dcloudio/uni-app'
 import { requireSubject } from '@/utils/subject'
 import { useVocabularyStore, type MeaningType } from '@/stores/vocabulary'
 import { openMapTab } from '@/utils/navigation'
+import { isBookAccessible } from '@/composables/useTrainingStart'
 
 const vocabStore = useVocabularyStore()
 
-const selectBook = (book: any) => {
+type BookItem = {
+  id: string
+  code: string
+  name: string
+  level: string
+  description: string
+  wordCount: number
+  isFree?: boolean
+}
+
+const GROUP_DEFS: { key: string; title: string; codes: string[] }[] = [
+  { key: 'mse', title: '剑桥 MSE', codes: ['mse-ket', 'mse-pet'] },
+  { key: 'cn', title: '课标 · 考纲', codes: ['zhongkao', 'gaokao', 'cet4', 'cet6'] },
+  { key: 'kew', title: '高频词 KEW', codes: ['kew1200', 'kew4500', 'kew7200'] }
+]
+
+const bookGroups = computed(() => {
+  const byCode = new Map(vocabStore.books.map(b => [b.code, b as BookItem]))
+  const used = new Set<string>()
+  const groups = GROUP_DEFS.map(def => {
+    const books = def.codes
+      .map(code => byCode.get(code))
+      .filter((b): b is BookItem => !!b)
+    books.forEach(b => used.add(b.code))
+    return { key: def.key, title: def.title, books }
+  }).filter(g => g.books.length > 0)
+
+  const rest = vocabStore.books.filter(b => !used.has(b.code)) as BookItem[]
+  if (rest.length) {
+    groups.push({ key: 'other', title: '其他', books: rest })
+  }
+  return groups
+})
+
+const currentBook = computed(() => vocabStore.getCurrentBook)
+
+const isSelected = (code: string) => vocabStore.currentBookCode === code
+const isLocked = (book: BookItem) => !isBookAccessible(book.code, book.isFree)
+
+const selectBook = (book: BookItem) => {
+  if (isLocked(book)) {
+    uni.showModal({
+      title: '词书未解锁',
+      content: `「${book.name}」需开通会员，免费用户可使用 KET 词书。`,
+      confirmText: '了解会员',
+      cancelText: '取消',
+      success: (modal) => {
+        if (modal.confirm) {
+          uni.navigateTo({ url: '/pages/membership/membership' })
+        }
+      }
+    })
+    return
+  }
+  if (book.code === vocabStore.currentBookCode) return
   vocabStore.setCurrentBook(book.code)
   uni.showToast({ title: `已选择 ${book.name}`, icon: 'success' })
 }
@@ -78,14 +133,14 @@ const goToBookMap = (code: string) => {
 
 const setMeaningType = (type: MeaningType) => {
   vocabStore.setMeaningType(type)
-  uni.showToast({ 
-    title: type === 'chinese' ? '已切换为中文解释' : '已切换为英文解释', 
-    icon: 'success' 
+  uni.showToast({
+    title: type === 'chinese' ? '已切换为中文解释' : '已切换为英文解释',
+    icon: 'success'
   })
 }
 
-onMounted(async () => {
-  if (!(await requireSubject('english', 'parent'))) return
+onShow(async () => {
+  if (!(await requireSubject('english', 'any'))) return
   vocabStore.loadBooks()
   vocabStore.loadSettings()
 })
@@ -94,195 +149,203 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .container {
   min-height: 100vh;
-  background: #f5f5f5;
-  padding: 30rpx;
+  background: var(--pc-main-bg, #f4f1ea);
+  padding: 24rpx 24rpx 0;
+  box-sizing: border-box;
 }
 
-.header {
-  padding: 40rpx 0 30rpx;
-}
-
-.header-title {
-  font-size: 44rpx;
-  font-weight: 600;
-  color: #333;
-  display: block;
-  margin-bottom: 10rpx;
-}
-
-.header-subtitle {
-  font-size: 28rpx;
-  color: #999;
-}
-
-.current-book {
+.current-bar {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20rpx;
-  padding: 30rpx;
-  margin-bottom: 30rpx;
+  border-radius: 16rpx;
+  padding: 22rpx 28rpx;
+  margin-bottom: 28rpx;
 }
 
-.current-book-label {
-  font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 10rpx;
+.current-label {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.75);
+  margin-right: 12rpx;
 }
 
-.current-book-name {
-  font-size: 36rpx;
+.current-name {
+  font-size: 32rpx;
   font-weight: 600;
-  color: white;
+  color: #fff;
+  margin-right: 16rpx;
 }
 
-.books-list {
-  margin-bottom: 40rpx;
+.current-meta {
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.group {
+  margin-bottom: 28rpx;
+}
+
+.group-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #666;
+  display: block;
+  margin: 0 4rpx 16rpx;
+}
+
+.books-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
 }
 
 .book-card {
-  background: white;
-  border-radius: 20rpx;
-  padding: 30rpx;
-  margin-bottom: 20rpx;
-  display: flex;
-  align-items: center;
-  border: 3rpx solid transparent;
-  transition: all 0.3s ease;
-  
+  width: calc(50% - 8rpx);
+  box-sizing: border-box;
+  background: var(--pc-surface-2, #fff);
+  border-radius: 16rpx;
+  padding: 22rpx 20rpx 18rpx;
+  border: 2rpx solid transparent;
+  position: relative;
+
   &.selected {
-    border-color: #667eea;
-    background: #f8f9ff;
+    border-color: var(--pc-accent, #0f6e6a);
+    background: var(--pc-accent-soft, #e7f3ef);
+  }
+
+  &.locked {
+    opacity: 0.72;
   }
 }
 
-.book-icon {
-  font-size: 60rpx;
-  margin-right: 25rpx;
-}
-
-.book-info {
-  flex: 1;
+.book-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 8rpx;
+  margin-bottom: 6rpx;
 }
 
 .book-name {
-  font-size: 32rpx;
+  flex: 1;
+  font-size: 28rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--pc-text, #333);
+  line-height: 1.3;
+}
+
+.badge {
+  flex-shrink: 0;
+  font-size: 20rpx;
+  padding: 2rpx 10rpx;
+  border-radius: 999rpx;
+  line-height: 1.4;
+
+  &.on {
+    background: var(--pc-accent, #0f6e6a);
+    color: var(--pc-on-accent, #fff);
+  }
+
+  &.lock {
+    background: var(--pc-surface-1, #f0f0f0);
+    color: var(--pc-text-3, #999);
+  }
+}
+
+.book-level {
+  font-size: 22rpx;
+  color: var(--pc-accent, #0f6e6a);
+  display: block;
+  margin-bottom: 4rpx;
+}
+
+.book-count {
+  font-size: 22rpx;
+  color: var(--pc-text-3, #888);
   display: block;
   margin-bottom: 8rpx;
 }
 
-.book-level {
-  font-size: 24rpx;
-  color: #667eea;
-  display: block;
-  margin-bottom: 10rpx;
-}
-
 .book-desc {
-  font-size: 26rpx;
-  color: #999;
+  font-size: 22rpx;
+  color: var(--pc-text-3, #999);
   display: block;
-  margin-bottom: 15rpx;
+  line-height: 1.35;
+  min-height: 60rpx;
+  overflow: hidden;
 }
 
-.book-meta {
-  display: flex;
-  gap: 20rpx;
-}
-
-.book-count {
-  font-size: 24rpx;
-  color: #666;
-}
-
-.book-target {
-  font-size: 24rpx;
-  color: #999;
-}
-
-.selected-badge {
-  width: 48rpx;
-  height: 48rpx;
-  background: #667eea;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 28rpx;
+.book-actions {
+  margin-top: 12rpx;
 }
 
 .map-link {
-  margin-left: 16rpx;
-  padding: 12rpx 20rpx;
-  background: #eef2ff;
-  border-radius: 20rpx;
   font-size: 22rpx;
-  color: #667eea;
-  flex-shrink: 0;
+  color: var(--pc-accent, #0f6e6a);
+  padding: 6rpx 0;
 }
 
 .section {
-  background: white;
-  border-radius: 20rpx;
-  padding: 30rpx;
+  background: var(--pc-surface-2, #fff);
+  border-radius: 16rpx;
+  padding: 28rpx;
+  margin-bottom: 20rpx;
+  border: 1px solid var(--pc-border, transparent);
 }
 
 .section-title {
-  font-size: 32rpx;
+  font-size: 30rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--pc-text, #333);
   display: block;
-  margin-bottom: 25rpx;
+  margin-bottom: 20rpx;
 }
 
 .options-group {
   display: flex;
   flex-direction: column;
-  gap: 15rpx;
+  gap: 12rpx;
 }
 
 .option-item {
   display: flex;
   align-items: center;
-  padding: 25rpx;
-  background: #f8f9fa;
-  border-radius: 16rpx;
+  padding: 22rpx;
+  background: var(--pc-surface-1, #f8f9fa);
+  border-radius: 14rpx;
   border: 2rpx solid transparent;
-  transition: all 0.3s ease;
-  
+
   &.selected {
-    background: #eef2ff;
-    border-color: #667eea;
+    background: var(--pc-accent-soft, #e7f3ef);
+    border-color: var(--pc-accent, #0f6e6a);
   }
 }
 
 .option-label {
-  font-size: 30rpx;
+  font-size: 28rpx;
   font-weight: 500;
-  color: #333;
-  margin-right: 15rpx;
+  color: var(--pc-text, #333);
+  margin-right: 12rpx;
+  flex-shrink: 0;
 }
 
 .option-desc {
   flex: 1;
-  font-size: 26rpx;
-  color: #999;
+  font-size: 24rpx;
+  color: var(--pc-text-3, #999);
 }
 
 .check-mark {
-  width: 40rpx;
-  height: 40rpx;
-  background: #667eea;
+  width: 36rpx;
+  height: 36rpx;
+  background: var(--pc-accent, #0f6e6a);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 24rpx;
+  color: var(--pc-on-accent, #fff);
+  font-size: 22rpx;
+  flex-shrink: 0;
 }
 
 .bottom-space {
-  height: 120rpx;
+  height: 140rpx;
 }
 </style>

@@ -1,45 +1,38 @@
 ---
-description: 改代码后按端自动重启服务，确保改动生效
+description: 改代码后按端重启；勿把布局改动搞成反复杀前端
 alwaysApply: true
 ---
 
 # 改代码后自动重启对应服务
 
-完成修改后**自行重启**，不要只告诉用户手动重启。
+完成修改后**自行保证可访问**，不要只甩给用户。
 
-## 服务端（必须重启才生效）
+## 后端（端口 3005）
 
-改动 `server/**`、`server/.env`、Prisma schema / 迁移、词库导入脚本等 → **重启后端**：
+改动 `server/**`、`server/.env`、Prisma、词库导入等 → `./restart-server.sh`（或 `./start-dev.sh`）。
 
-```bash
-./restart-server.sh
-# 或首次/两端都未运行：./start-dev.sh
-```
-
-后端 dev 已用 nodemon 监听 `server/src` 与 `.env`，进程在跑时会自动重启；若未启动或重启失败，执行 `./restart-server.sh`。
-
-## 客户端
-
-- **`src/**` 大部分 `.vue` / `.ts`**：Vite HMR 热更新，**无需**重启。
-- **需全量重启前端** 时再执行 `./restart-client.sh`：
-  - `vite.config.*`、`pages.json`、`manifest.json`
-  - 根目录 `package.json` / 新增依赖
-  - `dev-h5.sh`、环境变量、全局样式入口等
+验证：
 
 ```bash
-./restart-client.sh
+curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3005/api/books   # 期望 200
 ```
 
-## Agent 工作流
+## 前端（端口 5173）
 
-1. 只改 `server/` → 改完后运行 `./restart-server.sh` 并 curl 验证 3004
-2. 只改 `src/` 且为普通页面/组件 → 通常不必重启；告知用户刷新浏览器即可
-3. 改前端配置/依赖 → `./restart-client.sh` 并 curl 验证 5173
-4. 同时改前后端 → `./restart-server.sh` + 按需 `./restart-client.sh`，或 `./start-dev.sh`
+- 大部分 `src/**/*.vue` / `.ts`：**HMR，不要重启**；让用户刷新即可  
+- 仅这些才 `./restart-client.sh`：`pages.json`、`vite.config.*`、`manifest.json`、根 `package.json`/新依赖、`dev-h5.sh`  
+- 重启必须用仓库脚本（内部 `setsid`），重启后 **curl 5173**；失败看 `logs/client.log`  
+- **禁止**为改一点布局/主题色反复 stop 5173；进程挂了再重启，不要当成要改更多代码  
 
-## 验证
+验证：
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3004/api/books  # 200
-curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:5173/            # 200
+curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:5173/   # 期望 200
 ```
+
+## 工作流摘要
+
+1. 只改 `server/` → 重启后端 + curl 3005  
+2. 只改普通页面 → 不重启，刷新  
+3. 改了 `pages.json` 等 → `./restart-client.sh` + curl 5173  
+4. 用户说打不开 → **先 curl**，再重启，最后才查代码  

@@ -1,0 +1,33 @@
+---
+description: PC 壳层与页面分离；改布局勿越界；打不开先查进程
+alwaysApply: true
+---
+
+# PC 壳层 / 布局改动纪律
+
+完整说明：`doc/pc-shell-layout.md`（必读）。
+
+## 打不开 ≠ 布局写坏了
+
+1. 先：`curl` `http://127.0.0.1:5173/` → 不是 200 则 `./restart-client.sh`，再 curl  
+2. API：`http://127.0.0.1:3005/api/books`（注意端口 **3005**）  
+3. **禁止**在「页面打不开」时去大改 `App.vue` / 侧栏 / 启动脚本「碰运气」
+
+## 改什么只动什么
+
+| 任务 | 只许动 |
+|------|--------|
+| 词书 UI | `pages/books/books.vue` |
+| 主题色 / 左右背景 | `pages/theme/theme.vue`、`utils/pc-theme.ts` |
+| 侧栏菜单项 | `windows/left-window.vue`（+ 新页时 `pages.json` 一条） |
+| 左右滚动隔离 | `App.vue` 的 `pc-shell`、`pc-route.ts` |
+
+壳层文件非任务点名 **不要动**：`App.vue` 壳层 CSS、`left-window`、`pc-route`、`pages.json` 的 tabBar/leftWindow 结构、`start-*.sh` / `restart-*.sh`。
+
+业务页 **禁止** 写 `html`/`body`/`uni-main`/`uni-left-window` 全局样式。  
+整页底色用 `var(--pc-main-bg)`；官方主题 4 套只读，自定义只能增删选用。
+
+## 重启
+
+- 改普通 `.vue`：刷新即可，**不要**无故 `restart-client`  
+- 仅 `pages.json` / vite / 依赖：才 `./restart-client.sh`，且必须确认 5173=200  

@@ -12,8 +12,9 @@ export function isChineseSubject(value?: string | null) {
 export function applySubjectTabBar(subject: Subject | string) {
   if (typeof uni.setTabBarItem !== 'function') return
   const chinese = isChineseSubject(subject)
-  uni.setTabBarItem({ index: 1, text: chinese ? '掌握' : '统计' })
-  uni.setTabBarItem({ index: 2, text: chinese ? '覆盖' : '图谱' })
+  // 0 首页 · 1 词书 · 2 统计/掌握 · 3 图谱/覆盖 · 4 账号
+  uni.setTabBarItem({ index: 2, text: chinese ? '掌握' : '统计' })
+  uni.setTabBarItem({ index: 3, text: chinese ? '覆盖' : '图谱' })
 }
 
 export function applyAppShell() {

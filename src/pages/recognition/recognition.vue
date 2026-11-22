@@ -702,8 +702,8 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .desk {
   min-height: 100vh;
-  background: #f4f1ea;
-  color: #1f1a14;
+  background: var(--pc-main-bg, var(--pc-main-bg, #f4f1ea));
+  color: var(--pc-text);
   font-family: "Avenir Next", "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
 }
 
@@ -719,19 +719,19 @@ onUnmounted(() => {
   font-size: 13px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #8a8175;
+  color: var(--pc-text-3);
 }
 
 .lede, .hint, .key-hint {
   display: block;
-  color: #6d645b;
+  color: var(--pc-text-2);
   font-size: 14px;
   line-height: 1.6;
   margin: 8px 0 18px;
 }
 
 .hint.link {
-  color: #0f6e6a;
+  color: var(--pc-accent);
   cursor: pointer;
 }
 
@@ -749,19 +749,19 @@ onUnmounted(() => {
 }
 
 .chip {
-  border: 1px solid #ddd4c6;
+  border: 1px solid var(--pc-border-strong);
   background: transparent;
   border-radius: 999px;
   padding: 8px 14px;
   font-size: 14px;
-  color: #1f1a14;
+  color: var(--pc-text);
   cursor: pointer;
 }
 
 .chip.on {
-  background: #1f1a14;
-  color: #f4f1ea;
-  border-color: #1f1a14;
+  background: var(--pc-solid);
+  color: var(--pc-on-solid);
+  border-color: var(--pc-solid);
 }
 
 .summary {
@@ -769,7 +769,7 @@ onUnmounted(() => {
   flex-wrap: wrap;
   gap: 12px;
   margin: 14px 0;
-  color: #3d4f4d;
+  color: var(--pc-text-2);
   font-size: 14px;
 }
 
@@ -782,15 +782,15 @@ onUnmounted(() => {
 }
 
 .start {
-  background: #0f6e6a;
-  color: #fff;
+  background: var(--pc-accent);
+  color: var(--pc-on-accent);
   border: none;
 }
 
 .ghost {
   background: transparent;
-  color: #1f1a14;
-  border: 1px solid #cfc6b8;
+  color: var(--pc-text);
+  border: 1px solid var(--pc-border-strong);
 }
 
 .start.know {
@@ -816,14 +816,14 @@ onUnmounted(() => {
 
 .progress-track {
   height: 8px;
-  background: #efe6d6;
+  background: var(--pc-surface-1);
   border-radius: 999px;
   overflow: hidden;
 }
 
 .progress-fill {
   height: 100%;
-  background: #0f6e6a;
+  background: var(--pc-accent);
   border-radius: inherit;
   transition: width 0.25s ease;
 }
@@ -837,12 +837,12 @@ onUnmounted(() => {
 
 .top-meta {
   font-size: 14px;
-  color: #6d645b;
+  color: var(--pc-text-2);
   font-variant-numeric: tabular-nums;
 }
 
 .top-link {
-  color: #0f6e6a;
+  color: var(--pc-accent);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -864,7 +864,7 @@ onUnmounted(() => {
   padding: 8px 12px 10px;
   border: none;
   background: transparent;
-  color: #8a8175;
+  color: var(--pc-text-3);
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
@@ -876,12 +876,12 @@ onUnmounted(() => {
 }
 
 .rail-tab.is-off {
-  color: #8a8175;
+  color: var(--pc-text-3);
   font-weight: 500;
 }
 
 .rail-tab.is-on {
-  color: #0f6e6a;
+  color: var(--pc-accent);
   font-weight: 650;
 }
 
@@ -893,31 +893,31 @@ onUnmounted(() => {
   bottom: 2px;
   height: 3px;
   border-radius: 999px;
-  background: #0f6e6a;
+  background: var(--pc-accent);
 }
 
 .rail-gap {
   width: 1px;
   align-self: stretch;
   margin: 6px 8px;
-  background: #e0d7cb;
+  background: var(--pc-surface-1);
   flex: 0 0 auto;
 }
 
 .rail-toggle {
-  color: #8a8175;
+  color: var(--pc-text-3);
   font-weight: 500;
 }
 
 .rail-toggle.is-picked {
-  color: #0f6e6a;
+  color: var(--pc-accent);
   font-weight: 650;
 }
 
 .auto-skip-hint {
   flex: 0 0 auto;
   font-size: 13px;
-  color: #0f6e6a;
+  color: var(--pc-accent);
   white-space: nowrap;
 }
 
@@ -950,7 +950,7 @@ onUnmounted(() => {
   margin-bottom: 16px;
   font-size: 13px;
   font-weight: 650;
-  color: #8a8175;
+  color: var(--pc-text-3);
 }
 
 .dot {
@@ -959,7 +959,7 @@ onUnmounted(() => {
   height: 8px;
   margin-right: 8px;
   border-radius: 50%;
-  background: #0f6e6a;
+  background: var(--pc-accent);
   vertical-align: middle;
 }
 
@@ -968,7 +968,7 @@ onUnmounted(() => {
   height: 160px;
   border-radius: 20px;
   margin-bottom: 16px;
-  background: #efe6d6;
+  background: var(--pc-surface-1);
   object-fit: cover;
 }
 
@@ -987,8 +987,8 @@ onUnmounted(() => {
   padding: 0 10px;
   border-radius: 999px;
   border: 1px solid rgba(31, 26, 20, 0.18);
-  background: #fffdf8;
-  color: #6d645b;
+  background: var(--pc-surface-2);
+  color: var(--pc-text-2);
   font-size: 12px;
   font-weight: 650;
   line-height: 28px;
@@ -998,16 +998,16 @@ onUnmounted(() => {
 }
 
 .speak-mark.is-on {
-  border-color: #0f6e6a;
-  color: #0f6e6a;
-  background: #e7f3ef;
+  border-color: var(--pc-accent);
+  color: var(--pc-accent);
+  background: var(--pc-accent-soft);
 }
 
 .phonetic {
   display: block;
   margin-top: 6px;
   font-size: 16px;
-  color: #8a8175;
+  color: var(--pc-text-3);
 }
 
 .intro-zh {
@@ -1016,7 +1016,7 @@ onUnmounted(() => {
   max-width: 18em;
   font-size: 22px;
   line-height: 1.4;
-  color: #1f1a14;
+  color: var(--pc-text);
 }
 
 .intro-en {
@@ -1025,7 +1025,7 @@ onUnmounted(() => {
   max-width: 22em;
   font-size: 15px;
   line-height: 1.45;
-  color: #6d645b;
+  color: var(--pc-text-2);
 }
 
 .big-meaning,
@@ -1035,7 +1035,7 @@ onUnmounted(() => {
   font-family: "Iowan Old Style", Palatino, "Songti SC", "Noto Serif SC", serif;
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.25;
-  color: #1f1a14;
+  color: var(--pc-text);
 }
 
 .big-word {
@@ -1049,12 +1049,12 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1f1a14;
-  color: #f4f1ea;
+  background: var(--pc-solid);
+  color: var(--pc-on-solid);
   font-size: 28px;
   font-weight: 650;
   cursor: pointer;
-  box-shadow: 0 18px 40px -18px rgba(26, 32, 53, 0.7);
+  box-shadow: var(--pc-shadow);
 }
 
 .options {
@@ -1071,7 +1071,7 @@ onUnmounted(() => {
   gap: 12px;
   padding: 14px 16px;
   border-radius: 16px;
-  background: #fffdf8;
+  background: var(--pc-surface-2);
   border: 1.5px solid rgba(31, 26, 20, 0.14);
   border-bottom-width: 3px;
   cursor: pointer;
@@ -1079,13 +1079,13 @@ onUnmounted(() => {
 }
 
 .option.correct {
-  background: #e7f3ef;
-  border-color: #0f6e6a;
+  background: var(--pc-accent-soft);
+  border-color: var(--pc-accent);
 }
 
 .option.wrong {
-  background: #f8ebe6;
-  border-color: #9a3b2f;
+  background: var(--pc-danger-soft);
+  border-color: var(--pc-danger);
 }
 
 .kbd {
@@ -1094,11 +1094,11 @@ onUnmounted(() => {
   flex: 0 0 auto;
   border-radius: 8px;
   border: 1px solid rgba(31, 26, 20, 0.16);
-  background: #f4f1ea;
+  background: var(--pc-main-bg, #f4f1ea);
   text-align: center;
   line-height: 28px;
   font-size: 13px;
-  color: #6d645b;
+  color: var(--pc-text-2);
 }
 
 .option-label {
@@ -1121,19 +1121,19 @@ onUnmounted(() => {
   margin-top: 18px;
   padding: 14px 16px;
   border-radius: 18px;
-  background: #fffdf8;
+  background: var(--pc-surface-2);
   border: 1px solid rgba(26, 32, 53, 0.08);
 }
 
-.feedback.good { box-shadow: inset 3px 0 0 #0f6e6a; }
-.feedback.bad { box-shadow: inset 3px 0 0 #9a3b2f; }
+.feedback.good { box-shadow: inset 3px 0 0 var(--pc-accent); }
+.feedback.bad { box-shadow: inset 3px 0 0 var(--pc-danger); }
 
 .feedback-art {
   width: 72px;
   height: 72px;
   border-radius: 14px;
   flex: 0 0 auto;
-  background: #efe6d6;
+  background: var(--pc-surface-1);
 }
 
 .feedback-copy {
@@ -1143,7 +1143,7 @@ onUnmounted(() => {
 
 .verdict, .feedback-zh, .feedback-ex {
   display: block;
-  color: #6d645b;
+  color: var(--pc-text-2);
   font-size: 13px;
   line-height: 1.45;
 }
@@ -1153,13 +1153,13 @@ onUnmounted(() => {
   margin: 2px 0;
   font-family: Palatino, "Iowan Old Style", "Songti SC", serif;
   font-size: 28px;
-  color: #1f1a14;
+  color: var(--pc-text);
 }
 
 .next {
   flex: 0 0 auto;
   margin: 0;
-  background: #0f6e6a;
+  background: var(--pc-accent);
   color: white;
   border: none;
   border-radius: 999px;
@@ -1175,7 +1175,7 @@ onUnmounted(() => {
   font-family: Palatino, "Songti SC", serif;
   font-size: 72px;
   line-height: 1;
-  color: #1f1a14;
+  color: var(--pc-text);
 }
 
 .score-soft {
@@ -1184,7 +1184,7 @@ onUnmounted(() => {
   font-family: Palatino, "Songti SC", serif;
   font-size: 64px;
   line-height: 1;
-  color: #1f1a14;
+  color: var(--pc-text);
 }
 
 .bridge .lede {

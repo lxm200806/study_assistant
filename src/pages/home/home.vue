@@ -283,7 +283,7 @@ async function enterCurrentStudent() {
 }
 
 const goToBooks = () => {
-  uni.navigateTo({ url: '/pages/books/books' })
+  uni.switchTab({ url: '/pages/books/books' })
 }
 
 const goToVocabulary = () => {
@@ -336,7 +336,7 @@ const onBookChange = async () => {
   max-width: 880px;
   margin: 0 auto;
   padding: 28px 22px 80px;
-  background: #f4f1ea;
+  background: var(--pc-main-bg, #f4f1ea);
   color: #1f1a14;
 }
 

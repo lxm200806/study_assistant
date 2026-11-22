@@ -17,6 +17,7 @@ export const PC_CHROMELESS_PAGES = new Set([
   '/pages/vocabulary/vocabulary',
   '/pages/mine/mine',
   '/pages/books/books',
+  '/pages/theme/theme',
   '/pages/family/students',
   '/pages/membership/membership',
   '/pages/admin/admin'
@@ -60,8 +61,12 @@ export function syncPcRoute() {
   if (typeof document === 'undefined') return
   const path = readPcPath()
   pcPath.value = path
-  const chromeless = isWidePc() && !!path && PC_CHROMELESS_PAGES.has(path)
+  const wide = isWidePc()
+  const chromeless = wide && !!path && PC_CHROMELESS_PAGES.has(path)
+  // PC + 有侧栏：锁死壳层，只让 uni-main 滚动（避免左栏跟着页面滚）
+  const shell = wide && !isBarePath(path)
   document.documentElement.classList.toggle('pc-chromeless', chromeless)
+  document.documentElement.classList.toggle('pc-shell', shell)
 }
 
 export function applyRailWidth(wide: boolean) {

@@ -88,6 +88,11 @@
       <path d="m9 4 6 6-2 1-4 6-1-1 2-4-3-1z" />
       <path d="m8 16-3 3" />
     </template>
+    <template v-else-if="name === 'theme'">
+      <circle cx="12" cy="12" r="8" />
+      <path d="M12 4v16" />
+      <path d="M12 4a8 8 0 0 1 0 16" fill="currentColor" opacity="0.22" stroke="none" />
+    </template>
   </svg>
 </template>
 

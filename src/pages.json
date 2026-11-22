@@ -21,6 +21,18 @@
       }
     },
     {
+      "path": "pages/books/books",
+      "style": {
+        "navigationBarTitleText": "词书"
+      }
+    },
+    {
+      "path": "pages/theme/theme",
+      "style": {
+        "navigationBarTitleText": "主题"
+      }
+    },
+    {
       "path": "pages/vocabulary/vocabulary",
       "style": {
         "navigationBarTitleText": "统计"
@@ -115,12 +127,6 @@
       }
     },
     {
-      "path": "pages/books/books",
-      "style": {
-        "navigationBarTitleText": "词汇书"
-      }
-    },
-    {
       "path": "pages/admin/admin",
       "style": {
         "navigationBarTitleText": "词库",
@@ -211,10 +217,16 @@
         "selectedIconPath": "static/icons/home-active.png"
       },
       {
-        "pagePath": "pages/vocabulary/vocabulary",
-        "text": "统计",
+        "pagePath": "pages/books/books",
+        "text": "词书",
         "iconPath": "static/icons/book.png",
         "selectedIconPath": "static/icons/book-active.png"
+      },
+      {
+        "pagePath": "pages/vocabulary/vocabulary",
+        "text": "统计",
+        "iconPath": "static/icons/listen.png",
+        "selectedIconPath": "static/icons/listen-active.png"
       },
       {
         "pagePath": "pages/vocabulary-map/vocabulary-map",

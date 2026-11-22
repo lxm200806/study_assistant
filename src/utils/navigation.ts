@@ -1,9 +1,14 @@
 const TAB_PAGES = new Set([
   '/pages/home/home',
+  '/pages/books/books',
   '/pages/vocabulary/vocabulary',
   '/pages/vocabulary-map/vocabulary-map',
   '/pages/mine/mine'
 ])
+
+export function openBooksTab(): void {
+  uni.switchTab({ url: '/pages/books/books' })
+}
 
 export function isTabPage(url: string): boolean {
   const path = url.split('?')[0]
