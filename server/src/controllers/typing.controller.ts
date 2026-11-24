@@ -292,15 +292,16 @@ export async function typingArticleAnswerHandler(req: Request, res: Response) {
   try {
     const learnerId = studyOrReply(req, res)
     if (!learnerId) return
-    const { articleKey, sentenceIndex, isCorrect } = req.body as {
+    const { articleKey, sentenceIndex, isCorrect, linear } = req.body as {
       articleKey?: string
       sentenceIndex?: number
       isCorrect?: boolean
+      linear?: boolean
     }
     if (!articleKey || typeof sentenceIndex !== 'number' || typeof isCorrect !== 'boolean') {
       return res.status(400).json({ success: false, error: 'Invalid request body' })
     }
-    const data = await submitSentenceAnswer(learnerId, articleKey, sentenceIndex, isCorrect)
+    const data = await submitSentenceAnswer(learnerId, articleKey, sentenceIndex, isCorrect, linear === true)
     res.status(200).json({ success: true, data })
   } catch (error) {
     sendTypingError(res, error)

@@ -37,7 +37,6 @@
         </view>
         <view class="actions" @tap.stop>
           <button class="btn ghost" @tap="openUnit(unit.id)">查看内容</button>
-          <button class="btn primary" @tap="startVocab(unit)">词汇练习</button>
           <button class="btn ghost" @tap="startPassage(unit)">课文练习</button>
         </view>
       </view>
@@ -48,14 +47,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
-import { useVocabularyStore } from '@/stores/vocabulary'
 import { usePepTextMode } from '@/composables/usePepTextMode'
 import { requireSubject } from '@/utils/subject'
 import { openPage } from '@/utils/navigation'
 import { getPepBook, type PepUnit } from '@/data/primary/load'
-import { rememberPrimaryBook } from '@/utils/primary-session'
+import { rememberPrimaryBook, rememberPrimaryUnit } from '@/utils/primary-session'
 
-const vocabStore = useVocabularyStore()
 const { mode, setMode } = usePepTextMode()
 const code = ref('pep-g3a-2024')
 const book = computed(() => getPepBook(code.value))
@@ -67,7 +64,6 @@ onLoad((query) => {
 
 onShow(async () => {
   if (!(await requireSubject('english', 'student'))) return
-  await vocabStore.loadBooks()
 })
 
 function activePassages(unit: PepUnit) {
@@ -87,13 +83,8 @@ function openCatalog() {
 }
 
 function openUnit(id: string) {
+  rememberPrimaryUnit(code.value, id)
   openPage(`/pages/primary/unit?code=${encodeURIComponent(code.value)}&id=${encodeURIComponent(id)}`)
-}
-
-function startVocab(unit: PepUnit) {
-  openPage(
-    `/pages/recognition/recognition?autoStart=1&flow=unit&unit=${encodeURIComponent(unit.id)}&book=${encodeURIComponent(code.value)}`
-  )
 }
 
 function startPassage(unit: PepUnit) {
@@ -102,6 +93,7 @@ function startPassage(unit: PepUnit) {
     uni.showToast({ title: mode.value === 'textbook' ? '原文尚未填入' : '暂无课文', icon: 'none' })
     return
   }
+  rememberPrimaryUnit(code.value, unit.id)
   openPage(
     `/pages/typing/typing?lane=article&article=${encodeURIComponent(`builtin:${list[0].key}`)}&autoStart=1&book=${encodeURIComponent(code.value)}`
   )

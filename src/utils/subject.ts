@@ -63,7 +63,7 @@ export function goToLanding() {
     return
   }
   if (userStore.isStudentRole) {
-    uni.reLaunch({ url: '/pages/recognition/recognition' })
+    uni.reLaunch({ url: '/pages/vocabulary-practice/index' })
     return
   }
   uni.reLaunch({ url: '/pages/family/students' })

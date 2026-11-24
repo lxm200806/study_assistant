@@ -11,6 +11,7 @@ export const PC_BARE_PAGES = new Set([
 /** These pages already have their own title, so the mobile nav bar is hidden on PC. */
 export const PC_CHROMELESS_PAGES = new Set([
   '/pages/home/home',
+  '/pages/vocabulary-practice/index',
   '/pages/typing/typing',
   '/pages/recognition/recognition',
   '/pages/vocabulary-map/vocabulary-map',
@@ -33,6 +34,7 @@ export const PC_RAIL_NARROW = '72px'
 export const PC_MIN_WIDTH = 768
 
 export const pcPath = ref('')
+export const pcQuery = ref('')
 
 const listeners = new Set<() => void>()
 let installed = false
@@ -58,6 +60,13 @@ export function readPcPath(): string {
   return ''
 }
 
+export function readPcQuery(): string {
+  if (typeof location === 'undefined') return ''
+  let raw = location.hash || ''
+  if (raw.startsWith('#')) raw = raw.slice(1)
+  return raw.split('?')[1] || ''
+}
+
 export function isBarePath(path = pcPath.value): boolean {
   return !path || PC_BARE_PAGES.has(path)
 }
@@ -66,6 +75,7 @@ export function syncPcRoute() {
   if (typeof document === 'undefined') return
   const path = readPcPath()
   pcPath.value = path
+  pcQuery.value = readPcQuery()
   const wide = isWidePc()
   const chromeless = wide && !!path && PC_CHROMELESS_PAGES.has(path)
   // PC + 有侧栏：锁死壳层，只让 uni-main 滚动（避免左栏跟着页面滚）

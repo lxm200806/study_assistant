@@ -23,8 +23,7 @@
       </view>
 
       <view class="actions">
-        <button class="btn primary" @tap="startVocab">词汇练习</button>
-        <button class="btn ghost" @tap="startPassage" :disabled="!articleId">课文练习</button>
+        <button class="btn primary" @tap="startPassage" :disabled="!articleId">课文练习</button>
       </view>
 
       <view class="section">
@@ -78,13 +77,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
-import { useVocabularyStore } from '@/stores/vocabulary'
 import { usePepTextMode } from '@/composables/usePepTextMode'
 import { requireSubject } from '@/utils/subject'
 import { openPage } from '@/utils/navigation'
 import { getPepBook, type PepPassage } from '@/data/primary/load'
+import { rememberPrimaryBook, rememberPrimaryUnit } from '@/utils/primary-session'
 
-const vocabStore = useVocabularyStore()
 const { mode, setMode } = usePepTextMode()
 const code = ref('pep-g3a-2024')
 const unitId = ref('')
@@ -107,11 +105,12 @@ const articleId = computed(() => {
 onLoad((query) => {
   code.value = String(query?.code || 'pep-g3a-2024')
   unitId.value = String(query?.id || query?.unit || '')
+  rememberPrimaryBook(code.value)
+  if (unitId.value) rememberPrimaryUnit(code.value, unitId.value)
 })
 
 onShow(async () => {
   if (!(await requireSubject('english', 'student'))) return
-  await vocabStore.loadBooks()
 })
 
 function isReady(passage: PepPassage) {
@@ -122,14 +121,6 @@ function passageLines(passage: PepPassage) {
   const en = passage.body.split(/\n+/).map(s => s.trim()).filter(Boolean)
   const zh = (passage.translation || '').split(/\n+/).map(s => s.trim()).filter(Boolean)
   return en.map((line, i) => ({ en: line, zh: zh[i] || '' }))
-}
-
-function startVocab() {
-  if (!unit.value || !book.value) return
-  // 不改认读/拼读的 currentBook；仅通过 URL 临时指定文章用书
-  openPage(
-    `/pages/recognition/recognition?autoStart=1&flow=unit&unit=${encodeURIComponent(unit.value.id)}&book=${encodeURIComponent(book.value.code)}`
-  )
 }
 
 function startPassage() {

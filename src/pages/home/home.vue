@@ -119,7 +119,7 @@
           <view class="action-card" @tap="goPepPrimary">
             <view class="action-icon">📗</view>
             <text class="action-title">小学 PEP</text>
-            <text class="action-desc">三上～五上 · 词汇课文</text>
+            <text class="action-desc">三上～五上 · 课文练习</text>
           </view>
           <view class="action-card" @tap="goToBooks">
             <view class="action-icon">📚</view>

@@ -446,9 +446,8 @@ export const typingAPI = {
   previewArticle: (id: string, body: string, translation: string) =>
     request(`/typing/articles/${encodeURIComponent(id)}/preview`, 'POST', { body, translation }),
   deleteArticle: (id: string) => request(`/typing/articles/${encodeURIComponent(id)}`, 'DELETE'),
-  dueArticles: (count: number) => request(`/typing/articles/due?count=${count}`, 'GET'),
-  articleAnswer: (articleKey: string, sentenceIndex: number, isCorrect: boolean) =>
-    request('/typing/articles/answer', 'POST', { articleKey, sentenceIndex, isCorrect }),
+  articleAnswer: (articleKey: string, sentenceIndex: number, isCorrect: boolean, linear = false) =>
+    request('/typing/articles/answer', 'POST', { articleKey, sentenceIndex, isCorrect, linear }),
   history: (end: string) => request(`/typing/history?end=${encodeURIComponent(end)}&days=112`, 'GET'),
   session: (body: {
     date: string

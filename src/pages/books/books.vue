@@ -150,6 +150,7 @@ const GRADE_ORDER = ['三年级', '四年级', '五年级', '六年级']
 
 const category = ref('全部')
 const grade = ref('全部')
+const pickingBook = ref(false)
 
 const categoryOptions = computed(() => [
   { key: '全部', label: '全部' },
@@ -211,6 +212,13 @@ const currentBook = computed(() => vocabStore.getCurrentBook)
 const isSelected = (code: string) => vocabStore.currentBookCode === code
 const isLocked = (book: BookItem) => !isBookAccessible(book.code, book.isFree)
 
+function returnToVocabulary(name: string) {
+  pickingBook.value = false
+  uni.removeStorageSync('pickVocabularyBook')
+  uni.showToast({ title: `已选择 ${name}`, icon: 'success' })
+  setTimeout(() => uni.reLaunch({ url: '/pages/vocabulary-practice/index' }), 400)
+}
+
 const selectBook = (book: BookItem) => {
   if (isLocked(book)) {
     uni.showModal({
@@ -224,6 +232,11 @@ const selectBook = (book: BookItem) => {
         }
       }
     })
+    return
+  }
+  if (pickingBook.value) {
+    vocabStore.setCurrentBook(book.code)
+    returnToVocabulary(book.name)
     return
   }
   if (book.code === vocabStore.currentBookCode) return
@@ -248,6 +261,8 @@ const goToBookMap = (code: string) => {
 
 const goPepBook = (code: string) => {
   // 只打开文章课本，不改认读/拼读用的 currentBook
+  pickingBook.value = false
+  uni.removeStorageSync('pickVocabularyBook')
   rememberPrimaryBook(code)
   openPage(`/pages/primary/book?code=${encodeURIComponent(code)}`)
 }
@@ -262,6 +277,8 @@ const setMeaningType = (type: MeaningType) => {
 
 onShow(async () => {
   if (!(await requireSubject('english', 'any'))) return
+  pickingBook.value = uni.getStorageSync('pickVocabularyBook') === '1'
+  if (pickingBook.value) uni.removeStorageSync('pickVocabularyBook')
   vocabStore.loadBooks()
   vocabStore.loadSettings()
 })

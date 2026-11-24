@@ -314,7 +314,8 @@ export async function submitSentenceAnswer(
   learnerId: string,
   articleKey: string,
   sentenceIndex: number,
-  isCorrect: boolean
+  isCorrect: boolean,
+  linear = false
 ) {
   if (!articleKey || !Number.isInteger(sentenceIndex) || sentenceIndex < 0) throw new Error('BAD_INPUT')
   const parsed = articleKeyFor(articleKey)
@@ -336,8 +337,18 @@ export async function submitSentenceAnswer(
     }
   })
   if (!row) throw new Error('NOT_FOUND')
-  const fields = scheduleCard(cardInputFrom(row), isCorrect)
-  const wrongWords = isCorrect ? [] : await markSentenceContentWrong(learnerId, row.text)
+  const now = new Date()
+  // 线性文章练习不改词汇错词本；只返回本句没写对的词用于提示。
+  const wrongWords = isCorrect ? [] : await markSentenceContentWrong(learnerId, row.text, !linear)
+  // 文章练习按单元线性推进，不使用记忆曲线：只记录练习次数与最近结果，不写 due/FSRS。
+  const fields = linear
+    ? {
+        practiceCount: { increment: 1 },
+        ...(isCorrect ? { correctCount: { increment: 1 } } : {}),
+        lastPractice: now,
+        recentLapse: !isCorrect
+      }
+    : scheduleCard(cardInputFrom(row), isCorrect)
   const updated = await prisma.articleSentenceCard.update({
     where: {
       learnerId_articleKey_sentenceIndex: {

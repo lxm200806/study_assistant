@@ -2,7 +2,7 @@
   <view class="container">
     <view class="hero">
       <text class="hero-title">选择文章课本</text>
-      <text class="hero-desc">第一次请先选一册；之后侧栏「文章练习」会直接进入上次选中的课本。</text>
+      <text class="hero-desc">第一次请先选一册；之后侧栏「文章练习」会直接进入上次选中的课本。文章练习按单元顺序推进，不使用记忆曲线，与词汇书进度独立。</text>
     </view>
 
     <view class="filters">

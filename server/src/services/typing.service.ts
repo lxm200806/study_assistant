@@ -390,7 +390,11 @@ export async function updateTypingMark(
   return { wordId, ...flags }
 }
 
-export async function markSentenceContentWrong(learnerId: string, sentence: string): Promise<string[]> {
+export async function markSentenceContentWrong(
+  learnerId: string,
+  sentence: string,
+  persist = true
+): Promise<string[]> {
   const tokens = contentWords(sentence)
   if (!tokens.length) return []
   const found = await prisma.vocabulary.findMany({
@@ -413,6 +417,10 @@ export async function markSentenceContentWrong(learnerId: string, sentence: stri
   for (const spelling of wordsForWrongBook(sentence, new Set(bySpelling.keys()), already)) {
     const word = bySpelling.get(spelling)
     if (!word) continue
+    if (!persist) {
+      added.push(word.word)
+      continue
+    }
     const existing = await prisma.learnerWordMark.findUnique({
       where: { learnerId_wordId: { learnerId, wordId: word.id } }
     })

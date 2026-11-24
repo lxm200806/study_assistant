@@ -1,15 +1,10 @@
 <template>
   <view class="desk">
     <view v-if="stage === 'setup'" class="setup">
-      <text class="eyebrow">拼读练习</text>
-      <text class="lede">有键盘时先学后考：跟写→自测学一遍，再默写或听写检测。有空格时词间单独按空格；小程序仍用输入框。</text>
+      <text class="eyebrow">{{ lane === 'article' ? '文章练习' : '拼读练习' }}</text>
+      <text class="lede">{{ lane === 'article' ? '按单元顺序逐句练习，不使用记忆曲线，也不计入词汇复习进度。' : '有键盘时先学后考：跟写→自测学一遍，再默写或听写检测。有空格时词间单独按空格；小程序仍用输入框。' }}</text>
 
-      <BookSwitcher training-type="writing" @change="onBookChange" />
-
-      <view class="segment">
-        <view :class="['seg', lane === 'words' ? 'on' : '']" @tap="lane = 'words'">单词</view>
-        <view :class="['seg', lane === 'article' ? 'on' : '']" @tap="lane = 'article'">短文</view>
-      </view>
+      <BookSwitcher v-if="lane === 'words'" training-type="writing" @change="onBookChange" />
 
       <template v-if="lane === 'words'">
         <view class="summary" v-if="summary">
@@ -72,11 +67,6 @@
 
       <template v-else>
         <text class="hint">一句一句输入。开始后可随时切换跟写 / 听写。能朗读的句子会出声；译文句数一致时会对照显示。</text>
-        <view class="summary" v-if="articleDue">
-          <text>到期句子 {{ articleDue }}</text>
-        </view>
-        <button class="start" :disabled="busy" @tap="startDueReview">复习到期句子</button>
-        <text v-if="!articleDue" class="hint">到了复习时间的句子会出现在这里，并单独记复习，不占用单词的书写记录。</text>
 
         <view class="panel">
           <text class="panel-title">短文</text>
@@ -323,7 +313,7 @@
         <text class="result-title">{{ isCorrect ? '正确' : '再看一眼' }}</text>
         <text class="result-word">{{ expectedText }}</text>
         <text v-if="!isCorrect && currentWord" class="hint">已记入错词本，之后可用「错词」复习。</text>
-        <text v-else-if="!isCorrect && sentenceWrongWords.length" class="hint">已把认识的实词放进错词本：{{ sentenceWrongWords.join('、') }}</text>
+        <text v-else-if="!isCorrect && sentenceWrongWords.length" class="hint">这一句没写对的词：{{ sentenceWrongWords.join('、') }}</text>
         <text v-else-if="clearedWrong" class="hint">这一题写对了，已从错词本移出。</text>
         <view v-if="graded.length" class="live-line result-line">
           <text v-for="(mark, index) in graded" :key="'g' + index" :class="['glyph', mark.kind]">{{ mark.ch }}</text>
@@ -359,14 +349,14 @@
     </view>
 
     <view v-else class="setup done">
-      <text class="eyebrow">这一组完成</text>
+      <text class="eyebrow">{{ lane === 'article' ? '这一篇完成' : '这一组完成' }}</text>
       <text class="score">{{ correctCount }}/{{ answered.length }}</text>
       <text class="lede">正确率 {{ accuracy }}%</text>
       <view v-if="missed.length" class="panel">
         <text class="panel-title">写错的</text>
         <text v-for="item in missed" :key="item.id" class="missed">{{ item.label }}</text>
       </view>
-      <button class="start" @tap="again">再来一组</button>
+      <button class="start" @tap="again">{{ lane === 'article' ? '再练一遍' : '再来一组' }}</button>
       <button v-if="lane === 'words'" class="ghost" @tap="againWrong">只练错词</button>
       <button class="ghost" @tap="backToSetup">返回选择</button>
     </view>
@@ -445,7 +435,6 @@ interface ArticleRow {
   sentenceCount: number
   builtin?: boolean
   source?: string
-  dueCount?: number
 }
 interface SentenceItem {
   text: string
@@ -579,7 +568,6 @@ const ttsGender = ref<TtsGender>(loadTtsGender())
 setTtsGender(ttsGender.value)
 const scopedToBook = ref(false)
 const activeListId = ref('')
-const roundKind = ref<'words' | 'article' | 'due'>('words')
 const answered = ref<Answered[]>([])
 const correctCount = ref(0)
 const suspendKeys = ref(false)
@@ -751,7 +739,6 @@ const showAside = computed(() => (
   || !!(currentWord.value?.note || currentWord.value?.synonyms || currentWord.value?.roots
     || currentWord.value?.etymology || currentWord.value?.phrases || currentWord.value?.topic)
 ))
-const articleDue = computed(() => articles.value.reduce((sum, item) => sum + (item.dueCount || 0), 0))
 const hasHistory = computed(() => history.value.days.some(day => day.items > 0) || history.value.speed.length > 0)
 const maxSpeed = computed(() => history.value.speed.reduce((max, point) => Math.max(max, point.charsPerMinute), 0))
 const promptKicker = computed(() => {
@@ -1001,8 +988,7 @@ function switchArticleMode(key: ArticleMode) {
 }
 
 function articleLabel(item: ArticleRow) {
-  const due = item.dueCount ? ` · 到期 ${item.dueCount}` : ''
-  return `${item.title} · ${item.sentenceCount} 句${due}`
+  return `${item.title} · ${item.sentenceCount} 句`
 }
 
 const REJECT_LABEL: Record<string, string> = {
@@ -1141,7 +1127,6 @@ async function startWords() {
     const why = rejectionNote(data?.rejected)
     if (why) toast(`有些内容不能使用：${why}`)
     lane.value = 'words'
-    roundKind.value = 'words'
     capturing.value = null
     resetRound()
     wordPhase.value = 'learn'
@@ -1150,33 +1135,6 @@ async function startWords() {
     prepareCard()
   } catch (error) {
     toast((error as Error).message || '没能开始')
-  } finally {
-    busy.value = false
-  }
-}
-
-async function startDueReview() {
-  busy.value = true
-  try {
-    const result = await typingAPI.dueArticles(groupSize.value)
-    const data = result.data as { total?: number; sentences?: SentenceItem[] }
-    sentences.value = data?.sentences || []
-    fullTranslation.value = ''
-    words.value = []
-    scopedToBook.value = false
-    if (!sentences.value.length) {
-      toast('现在没有到期的句子')
-      await refreshArticles()
-      return
-    }
-    lane.value = 'article'
-    roundKind.value = 'due'
-    capturing.value = null
-    resetRound()
-    stage.value = 'practice'
-    prepareCard()
-  } catch (error) {
-    toast((error as Error).message || '没能打开复习')
   } finally {
     busy.value = false
   }
@@ -1199,7 +1157,6 @@ async function startArticle(id: string) {
     words.value = []
     scopedToBook.value = false
     activeArticleId.value = id
-    roundKind.value = 'article'
     if (!sentences.value.length) {
       toast('这篇短文没有英文句子')
       return
@@ -1411,11 +1368,11 @@ async function commitTyped(typed: string, ok: boolean) {
     const sentence = currentSentence.value
     if (sentence) {
       try {
-        const result = await typingAPI.articleAnswer(sentence.articleKey, sentence.index, ok)
+        const result = await typingAPI.articleAnswer(sentence.articleKey, sentence.index, ok, true)
         const data = result.data as { wrongWords?: string[] }
         sentenceWrongWords.value = data?.wrongWords || []
       } catch {
-        toast('这句的复习没保存')
+        toast('这句没保存')
       }
     }
     committing.value = false
@@ -1523,7 +1480,7 @@ async function finishRound() {
   try {
     if (scopedToBook.value && ids.length) {
       await vocabStore.completeSession(ids)
-    } else if (answered.value.length) {
+    } else if (lane.value === 'words' && answered.value.length) {
       await typingAPI.activity(answered.value.length)
     }
   } catch {
@@ -1546,10 +1503,6 @@ function finishEarly() {
 }
 
 function again() {
-  if (roundKind.value === 'due') {
-    void startDueReview()
-    return
-  }
   if (lane.value === 'article' && activeArticleId.value) {
     void startArticle(activeArticleId.value)
     return
@@ -1646,7 +1599,8 @@ onLoad((query) => {
     vocabStore.setSessionUnitId(undefined)
     vocabStore.setSessionBookCode(undefined)
   } else {
-    // 文章短文练习：不写入会话词书，避免影响认读/拼读
+    // 文章短文练习：不写入会话词书/单元，避免影响认读/拼读
+    vocabStore.setSessionUnitId(undefined)
     vocabStore.setSessionBookCode(undefined)
   }
 })
@@ -1714,7 +1668,7 @@ onUnmounted(() => {
   font-weight: 650;
 }
 
-.segment, .chips, .accent-switch {
+.chips, .accent-switch {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
@@ -1787,7 +1741,7 @@ onUnmounted(() => {
   font-weight: 650;
 }
 
-.seg, .chip, .mini, .keycap {
+.chip, .mini, .keycap {
   border: 1px solid var(--pc-border-strong);
   background: transparent;
   border-radius: 999px;
@@ -1795,7 +1749,7 @@ onUnmounted(() => {
   font-size: 14px;
 }
 
-.seg.on, .chip.on, .mini.on {
+.chip.on, .mini.on {
   background: var(--pc-solid);
   color: var(--pc-on-solid);
   border-color: var(--pc-solid);
