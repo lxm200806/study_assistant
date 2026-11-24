@@ -7,7 +7,7 @@
     "dev": "bash dev.sh",
     "db:migrate": "bash ../scripts/db-migrate.sh",
     "db:studio": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/prisma/build/index.js studio'",
-    "build": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/typescript/bin/tsc'",
+    "build": "node ./node_modules/typescript/bin/tsc",
     "start": "bash -c 'source ../scripts/node-env.sh && node dist/app.js'",
     "prisma:init": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/prisma/build/index.js init'",
     "prisma:migrate": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/prisma/build/index.js migrate dev'",
@@ -65,8 +65,8 @@
     "fill:meanings": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/ts-node/dist/bin.js scripts/fill-missing-meanings.ts'",
     "build:idioms": "node scripts/idiom-rebuild/build-pack.js",
     "audit:idioms": "node scripts/idiom-rebuild/audit-cards.js",
-    "test": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/vitest/vitest.mjs run'",
-    "test:watch": "bash -c 'source ../scripts/node-env.sh && node ./node_modules/vitest/vitest.mjs'"
+    "test": "node ./node_modules/vitest/vitest.mjs run",
+    "test:watch": "node ./node_modules/vitest/vitest.mjs"
   },
   "keywords": [
     "learning",

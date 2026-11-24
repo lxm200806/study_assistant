@@ -237,7 +237,7 @@ export async function getTypingQueue(
   if ((source === 'smart' || source === 'random') && !bookCode) {
     throw new Error('BOOK_REQUIRED')
   }
-  if (bookCode && (source === 'smart' || source === 'random')) {
+  if (bookCode) {
     await assertBookAccess(learnerId, bookCode)
   }
 

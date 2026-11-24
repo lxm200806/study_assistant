@@ -77,7 +77,7 @@ model AccountDailyActive {
 
 model Book {
   id          String   @id @default(uuid())
-  name        String   @unique
+  name        String
   code        String   @unique
   description String?
   level       String

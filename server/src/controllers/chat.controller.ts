@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { sendChatMessage, getChatHistory, getChatRemaining, type ChatMode } from '../services/chat.service'
 import { streamChatMessage } from '../services/chat-stream.service'
+import { assertBookAccess } from '../services/book-access.service'
 
 export async function streamMessageHandler(req: Request, res: Response) {
   const userId = req.learnerId
@@ -14,6 +15,18 @@ export async function streamMessageHandler(req: Request, res: Response) {
 
   if (!content) {
     return res.status(400).json({ success: false, error: 'Message content is required' })
+  }
+
+  if (bookCode) {
+    try {
+      await assertBookAccess(userId, bookCode)
+    } catch (error) {
+      const message = (error as Error).message
+      return res.status(message === 'BOOK_LOCKED' ? 403 : 500).json({
+        success: false,
+        error: message
+      })
+    }
   }
 
   await streamChatMessage(res, userId, content, bookCode, mode || 'free', scenario)
@@ -34,6 +47,10 @@ export async function sendMessageHandler(req: Request, res: Response) {
       return res.status(400).json({ error: 'Message content is required' })
     }
 
+    if (bookCode) {
+      await assertBookAccess(userId, bookCode)
+    }
+
     const result = await sendChatMessage(
       userId,
       content,
@@ -44,7 +61,7 @@ export async function sendMessageHandler(req: Request, res: Response) {
     res.status(200).json({ success: true, data: result })
   } catch (error) {
     const msg = (error as Error).message
-    res.status(msg === 'CHAT_LIMIT' ? 429 : 500).json({
+    res.status(msg === 'BOOK_LOCKED' ? 403 : msg === 'CHAT_LIMIT' ? 429 : 500).json({
       success: false,
       error: msg === 'CHAT_LIMIT' ? '今日免费对话次数已用完' : msg
     })

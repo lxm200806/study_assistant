@@ -299,8 +299,15 @@ export async function getBookMap(userId: string, bookCode: string) {
  * Mastery comes from learner stats when present; otherwise unpracticed.
  * `groups` lists which books contain each word.
  */
-export async function getGlobalMap(userId: string, limit = 8000) {
+export async function getGlobalMap(
+  userId: string,
+  limit = 8000,
+  allowedBookCodes?: ReadonlySet<string>
+) {
   const bvRows = await prisma.bookVocabulary.findMany({
+    where: allowedBookCodes
+      ? { book: { code: { in: [...allowedBookCodes] } } }
+      : undefined,
     include: {
       word: true,
       book: { select: { code: true, name: true } }

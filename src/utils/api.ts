@@ -277,16 +277,16 @@ export const adminAPI = {
 
 export const vocabularyAPI = {
   list: async (page: number = 1, limit: number = 20) => {
-    return request(`/vocabulary?page=${page}&limit=${limit}`, 'GET')
+    return request(`/vocab?page=${page}&limit=${limit}`, 'GET')
   },
   detail: async (id: string) => {
-    return request(`/vocabulary/${id}`, 'GET')
+    return request(`/vocab/${id}`, 'GET')
   },
   random: async (count: number = 10) => {
-    return request(`/vocabulary/random?count=${count}`, 'GET')
+    return request(`/vocab/random?count=${count}`, 'GET')
   },
   stats: async () => {
-    return request('/vocabulary/stats', 'GET')
+    return request('/vocab/stats', 'GET')
   }
 }
 

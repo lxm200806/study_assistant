@@ -14,7 +14,12 @@ async function main() {
   const force = raw.includes('--force')
   const args = raw.filter(a => !a.startsWith('-'))
   console.log(`同步词书: ${args.length ? args.join(', ') : '全部注册书'}${force ? ' (force)' : ''}`)
-  await initBooks(args.length ? args : undefined, { force })
+  const result = await initBooks(args.length ? args : undefined, { force })
+  if (result.failures.length > 0) {
+    console.error(`Book sync failed for: ${result.failures.map(item => item.code).join(', ')}`)
+    process.exit(1)
+  }
+  console.log(`Synced ${result.synced}/${result.total} books`)
   console.log('完成')
   process.exit(0)
 }

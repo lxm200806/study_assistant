@@ -245,13 +245,29 @@ export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
 export async function initBooks(onlyCodes?: string[], opts?: { force?: boolean }) {
   try {
     await migrateLegacyBookCodes()
-    const codes = onlyCodes?.length ? onlyCodes : [...VOCABULARY_BOOK_CODES]
-    for (const code of codes) {
-      await syncBookByCode(code, opts)
-    }
   } catch (error) {
-    console.error('Error initializing books:', error)
+    console.error('Error migrating legacy book codes:', error)
   }
+
+  const codes = onlyCodes?.length ? onlyCodes : [...VOCABULARY_BOOK_CODES]
+  const failures: Array<{ code: string; error: unknown }> = []
+
+  for (const code of codes) {
+    try {
+      await syncBookByCode(code, opts)
+    } catch (error) {
+      failures.push({ code, error })
+      console.error(`Error syncing book ${code}:`, error)
+    }
+  }
+
+  if (failures.length > 0) {
+    console.error(
+      `Book sync finished with ${failures.length} failure(s): ${failures.map(item => item.code).join(', ')}`
+    )
+  }
+
+  return { total: codes.length, synced: codes.length - failures.length, failures }
 }
 
 export async function getBooks() {
@@ -276,6 +292,21 @@ export async function getBooks() {
       name: meta?.name || book.name,
       wordCount: book.wordCount,
       description: meta?.description || book.description
+    }
+  })
+}
+
+export async function getBookMetaByCode(code: string) {
+  return prisma.book.findUnique({
+    where: { code },
+    select: {
+      id: true,
+      code: true,
+      name: true,
+      description: true,
+      level: true,
+      wordCount: true,
+      isFree: true
     }
   })
 }

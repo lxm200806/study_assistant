@@ -6,13 +6,13 @@ import { authMiddleware } from '../middleware/auth'
 const router = Router()
 
 // ── Fixed routes (must come before catch-all /:id) ──
-router.get('/', getVocabularyListHandler)
-router.get('/random', getRandomWordsHandler)
+router.get('/', authMiddleware, getVocabularyListHandler)
+router.get('/random', authMiddleware, getRandomWordsHandler)
 router.get('/stats', authMiddleware, getStatsHandler)
 router.get('/maps/book/:code', authMiddleware, getBookMapHandler)
 router.get('/maps/global', authMiddleware, getGlobalMapHandler)
 
 // ── Catch-all: vocabulary detail by ID (must be LAST) ──
-router.get('/:id', getVocabularyDetailHandler)
+router.get('/:id', authMiddleware, getVocabularyDetailHandler)
 
 export default router

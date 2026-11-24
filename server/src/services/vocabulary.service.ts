@@ -1,24 +1,33 @@
 import prisma from '../prisma/client'
 import { WordType } from '../types'
 
-export async function getVocabulary(page: number = 1, limit: number = 20) {
+function visibleWordWhere(learnerId?: string) {
+  return {
+    OR: [{ ownerLearnerId: null }, ...(learnerId ? [{ ownerLearnerId: learnerId }] : [])]
+  }
+}
+
+export async function getVocabulary(page: number = 1, limit: number = 20, learnerId?: string) {
   const skip = (page - 1) * limit
-  
+
   return prisma.vocabulary.findMany({
+    where: visibleWordWhere(learnerId),
     skip,
     take: limit,
     orderBy: { createdAt: 'desc' }
   })
 }
 
-export async function getVocabularyById(id: string) {
-  return prisma.vocabulary.findUnique({
-    where: { id }
+export async function getVocabularyById(id: string, learnerId?: string) {
+  return prisma.vocabulary.findFirst({
+    where: { id, ...visibleWordWhere(learnerId) }
   })
 }
 
-export async function getRandomVocabulary(count: number = 10) {
-  const allWords = await prisma.vocabulary.findMany()
+export async function getRandomVocabulary(count: number = 10, learnerId?: string) {
+  const allWords = await prisma.vocabulary.findMany({
+    where: visibleWordWhere(learnerId)
+  })
   const shuffled = allWords.sort(() => Math.random() - 0.5)
   return shuffled.slice(0, count)
 }

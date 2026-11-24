@@ -6,6 +6,12 @@ set -e
 cd "$(dirname "$0")/.."
 source ./scripts/node-env.sh
 
+# 仅在 Linux/WSL 下补装 Linux 原生二进制；Windows/macOS 下安装依赖时已自带对应平台二进制
+if [ "$(uname -s)" != "Linux" ]; then
+  echo "✅ 当前平台 $(uname -s)，无需补装 Linux 原生依赖"
+  exit 0
+fi
+
 install_pkg() {
   local scope="$1"
   local name="$2"
