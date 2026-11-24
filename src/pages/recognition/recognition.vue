@@ -242,7 +242,7 @@ function shuffleIndices(n: number): number[] {
 
 const vocabStore = useVocabularyStore()
 const { recordAnswer, getAnalysis, resetSession } = useSessionAnalysis('reading')
-const { newlyCovered, resetFlow, loadGroup } = useTrainingFlow('reading')
+const { newlyCovered, resetFlow, loadGroup, finishSession } = useTrainingFlow('reading')
 
 const phase = ref<Phase>('setup')
 const showResult = ref(false)
