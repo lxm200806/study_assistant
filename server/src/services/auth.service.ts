@@ -1,8 +1,9 @@
 import prisma from '../prisma/client'
 import { hashPassword, comparePassword } from '../utils/password'
-import { generateAccessToken, generateRefreshToken, verifyToken } from '../utils/jwt'
+import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '../utils/jwt'
 import { LoginDto, RegisterDto, TokenResponse } from '../types'
 import { ensureActiveLearner, setActiveLearner, type LearnerSummary } from './family.service'
+import { isProduction } from '../config/env'
 
 function normalizeSubject(value?: string | null) {
   return value === 'chinese' ? 'chinese' : 'english'
@@ -111,7 +112,7 @@ export async function login(dto: LoginDto): Promise<TokenResponse> {
 }
 
 export async function refreshToken(refreshToken: string): Promise<{ accessToken: string }> {
-  const decoded = verifyToken(refreshToken)
+  const decoded = verifyRefreshToken(refreshToken)
 
   if (!decoded) {
     throw new Error('Invalid refresh token')
@@ -201,6 +202,9 @@ export async function setActiveRole(userId: string, role?: string, studentId?: s
 }
 
 export async function wechatLoginStub(code: string) {
+  if (isProduction()) {
+    throw new Error('Wechat login is not configured')
+  }
   if (!code) throw new Error('Invalid wechat code')
   const openId = `wx_${code.slice(0, 16)}`
   let user = await prisma.user.findUnique({ where: { wxOpenId: openId } })

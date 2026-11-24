@@ -1,6 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
-import { verifyToken } from '../utils/jwt'
+import { verifyAccessToken } from '../utils/jwt'
+import { assertAuthConfig } from '../config/env'
 import prisma from '../prisma/client'
+
+assertAuthConfig()
 
 declare global {
   namespace Express {
@@ -34,7 +37,7 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
   }
   
   const token = authHeader.split(' ')[1]
-  const decoded = verifyToken(token)
+  const decoded = verifyAccessToken(token)
   
   if (!decoded) {
     return res.status(401).json({ error: 'Invalid token' })

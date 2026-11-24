@@ -4,7 +4,10 @@ import { transcribeWithXfyun, type XfyunAudioEncoding } from './asr-xfyun.servic
 import { getBillingUser } from './billing-user'
 
 const FREE_DAILY_SPEECH = 10
-const PASS_THRESHOLD = Number(process.env.SPEECH_PASS_THRESHOLD || 70)
+
+function passThreshold(): number {
+  return Number(process.env.SPEECH_PASS_THRESHOLD || 70)
+}
 
 export interface TranscribeResult {
   text: string
@@ -203,7 +206,7 @@ export async function assessPronunciation(
   }
 
   const score = computeSpeechScore(referenceText, transcript)
-  const passed = score >= PASS_THRESHOLD
+  const passed = score >= passThreshold()
 
   let feedback = passed
     ? '发音不错，继续保持！'
@@ -216,5 +219,5 @@ export async function assessPronunciation(
 }
 
 export function getPassThreshold(): number {
-  return PASS_THRESHOLD
+  return passThreshold()
 }
