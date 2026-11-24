@@ -37,32 +37,6 @@
         </view>
 
         <button class="start" :disabled="busy" @tap="startWords">开始</button>
-
-        <view class="panel">
-          <text class="panel-title">词表</text>
-          <view v-for="item in lists" :key="item.id" class="saved-row">
-            <text class="saved-name" @tap="startList(item.id)">{{ item.name }} · {{ item.count }}</text>
-            <text class="saved-delete" @tap="removeList(item.id)">删除</text>
-          </view>
-          <text v-if="!lists.length" class="hint">还没有词表。词书里没有的拼写也会保存，并可以一起练习。</text>
-          <input
-            class="field"
-            v-model="listName"
-            placeholder="词表名称"
-            @focus="suspendKeys = true"
-            @blur="suspendKeys = false"
-          />
-          <textarea
-            class="area"
-            v-model="listText"
-            placeholder="每行一个，或用逗号分隔。释义写成：单词 | 中文 | syn: 同义 | uk: 英音 | us: 美音"
-            @focus="suspendKeys = true"
-            @blur="suspendKeys = false"
-          />
-          <button class="ghost" @tap="saveList">保存词表</button>
-          <button class="ghost" @tap="pickListFile">从文件导入</button>
-          <text v-if="listNote" class="hint">{{ listNote }}</text>
-        </view>
       </template>
 
       <template v-else>
@@ -428,7 +402,6 @@ interface Summary {
   favorite: number
 }
 
-interface ListRow { id: string; name: string; count: number }
 interface ArticleRow {
   id: string
   title: string
@@ -448,7 +421,7 @@ interface Answered { id: string; label: string; ok: boolean }
 
 type WordMode = PersistedWordMode
 type ArticleMode = 'follow' | 'dictation'
-type Source = 'smart' | 'wrong' | 'favorite' | 'random' | 'list'
+type Source = 'smart' | 'wrong' | 'favorite' | 'random'
 type Stage = 'setup' | 'practice' | 'bridge' | 'done'
 type WordPhase = 'learn' | 'exam'
 type ExamMode = 'recall' | 'dictation'
@@ -520,16 +493,11 @@ const sources: Array<{ key: Source; label: string }> = [
   { key: 'smart', label: '智能' },
   { key: 'wrong', label: '错词' },
   { key: 'favorite', label: '收藏' },
-  { key: 'random', label: '随机' },
-  { key: 'list', label: '词表' }
+  { key: 'random', label: '随机' }
 ]
 
 const summary = ref<Summary | null>(null)
-const lists = ref<ListRow[]>([])
 const articles = ref<ArticleRow[]>([])
-const listName = ref('')
-const listText = ref('')
-const listNote = ref('')
 const articleTitle = ref('')
 const articleBody = ref('')
 const articleTranslation = ref('')
@@ -567,7 +535,6 @@ const accent = ref<'us' | 'uk'>('us')
 const ttsGender = ref<TtsGender>(loadTtsGender())
 setTtsGender(ttsGender.value)
 const scopedToBook = ref(false)
-const activeListId = ref('')
 const answered = ref<Answered[]>([])
 const correctCount = ref(0)
 const suspendKeys = ref(false)
@@ -765,7 +732,7 @@ function toast(title: string) {
 async function loadSetup() {
   vocabStore.loadSettings()
   await vocabStore.loadBooks()
-  await Promise.all([refreshSummary(), refreshLists(), refreshArticles(), refreshHistory()])
+  await Promise.all([refreshSummary(), refreshArticles(), refreshHistory()])
 }
 
 async function refreshSummary() {
@@ -775,15 +742,6 @@ async function refreshSummary() {
     summary.value = (result.data as Summary) || null
   } catch {
     summary.value = null
-  }
-}
-
-async function refreshLists() {
-  try {
-    const result = await typingAPI.lists()
-    lists.value = (result.data as ListRow[]) || []
-  } catch {
-    lists.value = []
   }
 }
 
@@ -1026,13 +984,6 @@ function readTextFile(limit: number, assign: (text: string) => void) {
   input.click()
 }
 
-function pickListFile() {
-  readTextFile(20000, text => {
-    listText.value = text
-    toast('已放入词表，确认后保存')
-  })
-}
-
 function pickArticleFile() {
   readTextFile(8000, text => {
     articleBody.value = text
@@ -1098,11 +1049,6 @@ function prepareCard() {
 }
 
 async function startWords() {
-  if (source.value === 'list' && !activeListId.value && !lists.value[0]) {
-    toast('先保存一个词表')
-    return
-  }
-  const listId = source.value === 'list' ? (activeListId.value || lists.value[0]?.id) : undefined
   busy.value = true
   try {
     wordPhase.value = 'learn'
@@ -1111,7 +1057,6 @@ async function startWords() {
       bookCode: vocabStore.currentBookCode,
       source: source.value,
       count: groupSize.value,
-      listId,
       mode: wordMode.value
     })
     const data = result.data as { words: TypingWord[]; scopedToBook: boolean; missing?: string[]; rejected?: RejectedToken[] }
@@ -1140,12 +1085,6 @@ async function startWords() {
   }
 }
 
-async function startList(id: string) {
-  activeListId.value = id
-  source.value = 'list'
-  await startWords()
-}
-
 async function startArticle(id: string) {
   busy.value = true
   try {
@@ -1171,37 +1110,6 @@ async function startArticle(id: string) {
   } finally {
     busy.value = false
   }
-}
-
-async function saveList() {
-  if (!listText.value.trim()) {
-    toast('先粘贴单词')
-    return
-  }
-  try {
-    const result = await typingAPI.createList(listName.value, listText.value)
-    const data = result.data as {
-      id: string
-      count?: number
-      created?: string[]
-      rejected?: RejectedToken[]
-    }
-    listText.value = ''
-    listName.value = ''
-    const created = data?.created?.length ? `新收录 ${data.created.length} 个。` : ''
-    const rejected = rejectionNote(data?.rejected)
-    listNote.value = `已保存 ${data?.count || 0} 个。${created}${rejected ? `不能使用：${rejected}` : '都能练习。'}`
-    if (data?.id) activeListId.value = data.id
-    await refreshLists()
-  } catch (error) {
-    toast((error as Error).message || '没能保存')
-  }
-}
-
-async function removeList(id: string) {
-  await typingAPI.deleteList(id)
-  if (activeListId.value === id) activeListId.value = ''
-  await refreshLists()
 }
 
 async function beginEdit(item: ArticleRow) {
@@ -1423,7 +1331,7 @@ async function toggleMastered() {
   word.skipMastered = next
   try {
     await typingAPI.mark(word.id, { skipMastered: next })
-    toast(next ? '之后的智能、随机和词表会跳过它' : '已取消跳过')
+    toast(next ? '之后的智能和随机会跳过它' : '已取消跳过')
   } catch {
     word.skipMastered = !next
     toast('没能保存')
@@ -1519,7 +1427,6 @@ function backToSetup() {
   stage.value = 'setup'
   void refreshSummary()
   void refreshArticles()
-  void refreshLists()
   void refreshHistory()
 }
 
