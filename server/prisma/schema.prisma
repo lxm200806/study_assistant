@@ -60,6 +60,7 @@ model Learner {
   typingModeStats     TypingModeStat[]
   typingSessions      TypingSessionLog[]
   ownedWords          Vocabulary[]          @relation("LearnerOwnedWords")
+  bookWordChecks      BookWordCheck[]
 
   @@index([accountId])
 }
@@ -88,6 +89,7 @@ model Book {
   vocabulary    BookVocabulary[]
   studyProgress BookStudyProgress[]
   unlocks       UserBookUnlock[]
+  wordChecks    BookWordCheck[]
 }
 
 model BookVocabulary {
@@ -139,6 +141,7 @@ model Vocabulary {
   wordMarks       LearnerWordMark[]
   listItems       PracticeListItem[]
   typingModeStats TypingModeStat[]
+  wordChecks      BookWordCheck[]
   owner           Learner?             @relation("LearnerOwnedWords", fields: [ownerLearnerId], references: [id], onDelete: SetNull)
 
   @@index([ownerLearnerId])
@@ -176,6 +179,8 @@ model VocabularyStat {
   lastReview     DateTime?
   retrievability Float     @default(0)
   recentLapse    Boolean   @default(false)
+  /// 跨书核对未通过：仍然算练过，但掌握度按待复习处理。
+  needsReconfirm Boolean   @default(false)
   learningSteps  Int       @default(0)
   scheduledDays  Int       @default(0)
 
@@ -184,6 +189,27 @@ model VocabularyStat {
 
   @@unique([learnerId, wordId, type])
   @@index([learnerId, type, due])
+}
+
+/// 每本书、每个词、每个技能的跨书核对结果。通过后这本书不再把该词当作待确认。
+model BookWordCheck {
+  id         String   @id @default(uuid())
+  learnerId  String
+  bookId     String
+  wordId     String
+  type       String
+  passed     Boolean  @default(false)
+  failStreak Int      @default(0)
+  checkedAt  DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  learner Learner    @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+  book    Book       @relation(fields: [bookId], references: [id], onDelete: Cascade)
+  word    Vocabulary @relation(fields: [wordId], references: [id], onDelete: Cascade)
+
+  @@unique([learnerId, bookId, wordId, type])
+  @@index([learnerId, bookId, type])
+  @@map("book_word_checks")
 }
 
 model TrainingRecord {

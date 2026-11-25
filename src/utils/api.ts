@@ -294,6 +294,9 @@ export const trainingAPI = {
   practice: async (wordId: string, type: string, isCorrect: boolean) => {
     return request('/training/practice', 'POST', { wordId, type, isCorrect })
   },
+  recheck: async (bookCode: string, wordId: string, type: string, isCorrect: boolean) => {
+    return request('/training/recheck', 'POST', { bookCode, wordId, type, isCorrect })
+  },
   review: async (type?: string, bookCode?: string, limit?: number) => {
     const params = new URLSearchParams()
     if (type) params.set('type', type)

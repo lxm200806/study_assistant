@@ -22,7 +22,9 @@
           @tap="setSessionMode(item.key)"
         >{{ item.label }}</view>
       </view>
-      <text class="hint">点开始即可。先学后测；检测题型默认全开，测的时候可随时关掉某一种。智能先练错词和到期词。</text>
+      <text class="hint">{{ vocabStore.studySettings.sessionMode === 'recheck'
+        ? '跨书核对：只测不学。别的书学过、这本书还没确认的词，答对掌握度 +1，答错进入待复习。'
+        : '点开始即可。先学后测；检测题型默认全开，测的时候可随时关掉某一种。智能先练错词和到期词。' }}</text>
 
       <text class="label">这一组</text>
       <view class="chips">
@@ -245,6 +247,8 @@ const { recordAnswer, getAnalysis, resetSession } = useSessionAnalysis('reading'
 const { newlyCovered, resetFlow, loadGroup, finishSession } = useTrainingFlow('reading')
 
 const phase = ref<Phase>('setup')
+/** 本组是否用「跨书核对」：只测不学，答案直接写 BookWordCheck。 */
+const recheckAtStart = ref(false)
 const showResult = ref(false)
 const showFinish = ref(false)
 const selectedOption = ref(-1)
@@ -285,7 +289,8 @@ const sessionModes: Array<{ key: SessionMode; label: string }> = [
   { key: 'smart', label: SESSION_MODE_LABELS.smart },
   { key: 'review', label: SESSION_MODE_LABELS.review },
   { key: 'weak', label: SESSION_MODE_LABELS.weak },
-  { key: 'coverage', label: SESSION_MODE_LABELS.coverage }
+  { key: 'coverage', label: SESSION_MODE_LABELS.coverage },
+  { key: 'recheck', label: SESSION_MODE_LABELS.recheck }
 ]
 
 const sessionAnalysis = computed(() => getAnalysis())
@@ -366,7 +371,7 @@ const isLastQuiz = computed(() => {
 const progressPct = computed(() => {
   const n = words.value.length
   if (!n) return 0
-  const totalSteps = n * 2
+  const totalSteps = recheckAtStart.value ? n : n * 2
   if (phase.value === 'study') {
     return Math.min(100, Math.round(((studyIndex.value) / totalSteps) * 100))
   }
@@ -375,7 +380,8 @@ const progressPct = computed(() => {
   }
   if (phase.value === 'quiz') {
     const done = showResult.value ? 1 : 0
-    return Math.min(100, Math.round(((n + quizIndex.value + done) / totalSteps) * 100))
+    const base = recheckAtStart.value ? 0 : n
+    return Math.min(100, Math.round(((base + quizIndex.value + done) / totalSteps) * 100))
   }
   return 100
 })
@@ -419,13 +425,18 @@ const selectOption = (index: number) => {
 
   const wordId = currentWord.value?.id || ''
   const wordText = currentWord.value?.word || ''
-  // 汉语、英语、听音都计入「认识」。听音另外留一条听力记录。
-  vocabStore.updateWordStats(wordId, wordText, 'reading', isCorrect.value)
-  vocabStore.addTrainingRecord('reading', wordText, isCorrect.value)
-  if (quizMode.value === 'listen') {
-    vocabStore.updateWordStats(wordId, wordText, 'listening', isCorrect.value)
-    vocabStore.addTrainingRecord('listening', wordText, isCorrect.value)
+  if (recheckAtStart.value) {
+    // 跨书核对只写 reading 的核对结果；听音答题也不额外累加 listening。
+    void vocabStore.recheckWord(wordId, wordText, 'reading', isCorrect.value)
+  } else {
+    // 汉语、英语、听音都计入「认识」。听音另外留一条听力记录。
+    vocabStore.updateWordStats(wordId, wordText, 'reading', isCorrect.value)
+    if (quizMode.value === 'listen') {
+      vocabStore.updateWordStats(wordId, wordText, 'listening', isCorrect.value)
+      vocabStore.addTrainingRecord('listening', wordText, isCorrect.value)
+    }
   }
+  vocabStore.addTrainingRecord('reading', wordText, isCorrect.value)
   recordAnswer(
     currentWord.value!,
     isCorrect.value,
@@ -601,9 +612,22 @@ function onKeyDown(event: KeyboardEvent) {
   }
 }
 
-const startGroup = async () => {
+const startGroup = async (): Promise<boolean> => {
   // 词汇练习：按设置的一组数量走记忆曲线队列
-  words.value = await loadGroup(vocabStore.studySettings.wordsPerGroup)
+  const mode = vocabStore.studySettings.sessionMode
+  recheckAtStart.value = mode === 'recheck'
+  words.value = await loadGroup(vocabStore.studySettings.wordsPerGroup, { mode })
+  if (!words.value.length) {
+    if (recheckAtStart.value) {
+      const meta = vocabStore.lastRecheckMeta
+      uni.showToast({
+        title: meta?.complete ? '本书已全部核对完成' : '暂无可核对的词',
+        icon: 'none'
+      })
+    }
+    return false
+  }
+  return true
 }
 
 const { ensureAccessibleBook } = useDailySession()
@@ -619,6 +643,19 @@ function beginStudyPhase() {
   prepareStudyCard()
 }
 
+function beginRecheckQuiz() {
+  studyIndex.value = 0
+  quizIndex.value = 0
+  quizOrder.value = shuffleIndices(words.value.length)
+  selectedOption.value = -1
+  showResult.value = false
+  showFinish.value = false
+  modeCursor.value = 0
+  quizMode.value = pickQuizModeForIndex(0)
+  phase.value = 'quiz'
+  prepareQuizCard()
+}
+
 const startTraining = async () => {
   if (!vocabStore.ensureBookSelected()) return
   ensureAccessibleBook()
@@ -628,12 +665,17 @@ const startTraining = async () => {
   resetFlow()
 
   await vocabStore.loadBookProgress()
-  await startGroup()
+  const hasWords = await startGroup()
+  if (!hasWords) {
+    phase.value = 'setup'
+    return
+  }
   totalCount.value = words.value.length || vocabStore.studySettings.wordsPerGroup
 
   if (!(await ensureTrainingWords(words.value))) return
 
-  beginStudyPhase()
+  if (recheckAtStart.value) beginRecheckQuiz()
+  else beginStudyPhase()
 }
 
 const nextGroupTraining = async () => {
@@ -641,17 +683,28 @@ const nextGroupTraining = async () => {
   resetSession()
   resetFlow()
   totalCorrect.value = 0
-  await startGroup()
+  const hasWords = await startGroup()
+  if (!hasWords) {
+    phase.value = 'setup'
+    return
+  }
   totalCount.value = words.value.length || vocabStore.studySettings.wordsPerGroup
   if (!(await ensureTrainingWords(words.value))) {
     phase.value = 'setup'
     return
   }
-  beginStudyPhase()
+  if (recheckAtStart.value) beginRecheckQuiz()
+  else beginStudyPhase()
+}
+
+/** 跨书核对只测不学：不写本书覆盖进度，也不重复累计每日学习量。 */
+const finishSessionForMode = async () => {
+  if (recheckAtStart.value) return
+  await finishSession()
 }
 
 const { completeAndNextGroup, completeAndFinish } = useGroupComplete({
-  finishSession,
+  finishSession: finishSessionForMode,
   nextGroupTraining,
   showFinish,
   showResult,

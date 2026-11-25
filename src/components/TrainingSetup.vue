@@ -124,7 +124,8 @@ const sessionModes = [
   { key: 'coverage' as SessionMode, label: SESSION_MODE_LABELS.coverage, desc: '优先练未覆盖的词' },
   { key: 'review' as SessionMode, label: SESSION_MODE_LABELS.review, desc: '到期词优先，不足时补薄弱词' },
   { key: 'weak' as SessionMode, label: SESSION_MODE_LABELS.weak, desc: '先练学过的薄弱词，没有时才补新词' },
-  { key: 'smart' as SessionMode, label: SESSION_MODE_LABELS.smart, desc: '到期、薄弱、新词按比例混合' }
+  { key: 'smart' as SessionMode, label: SESSION_MODE_LABELS.smart, desc: '到期、薄弱、新词按比例混合' },
+  { key: 'recheck' as SessionMode, label: SESSION_MODE_LABELS.recheck, desc: '别的书学过、这本还没确认的词；答对加分，答错降到待复习' }
 ]
 
 const setWordsPerGroup = (num: number) => {

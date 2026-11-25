@@ -5,6 +5,7 @@ import {
   aggregateBookWordStats,
   getPriorityScore,
   getMasteryStatus,
+  practicedForType,
   type WordStatEntry
 } from './mastery-aggregate.service'
 import {
@@ -14,8 +15,9 @@ import {
 } from './review-engine.service'
 import { pickSmartQueue, stableUnit, type SmartQueueCandidate } from './smart-queue'
 import { getBookByCode } from './book.service'
+import { pickRecheckCandidates } from './recheck-queue'
 
-export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review' | 'unit'
+export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review' | 'unit' | 'recheck'
 
 export interface BookProgressInfo {
   bookCode: string
@@ -80,7 +82,8 @@ async function loadUserWordStats(userId: string, wordIds: string[]): Promise<Map
       fsrsState: stat.fsrsState,
       lastReview: stat.lastReview,
       retrievability: stat.retrievability,
-      recentLapse: stat.recentLapse
+      recentLapse: stat.recentLapse,
+      needsReconfirm: stat.needsReconfirm
     })
     map.set(stat.wordId, list)
   }
@@ -137,6 +140,7 @@ function computeSmartScore(
   bvWordId: string,
   statsMap: Map<string, WordStatEntry[]>,
   aggregated: ReturnType<typeof aggregateBookWordStats> extends Map<string, infer V> ? V : never,
+  practiced: boolean,
   inCycle: boolean,
   trainingType: string | undefined,
   dayKey: string
@@ -158,7 +162,7 @@ function computeSmartScore(
   }
 
   // 生词优先；其它书已学过且未到期 → 大幅降权，不当新学刷
-  if (!aggregated.practiced) {
+  if (!practiced) {
     score += SMART_NEW_BASE
     if (!inCycle) score += SMART_NEW_NOT_IN_CYCLE
   } else if (!due) {
@@ -308,10 +312,40 @@ export async function getSessionWords(
   }
 
   const cycleSet = new Set(progress.practicedWordIds)
-  // 全局已练 = 跨书已学过，覆盖/新学时视同本轮已勾选
+  const practicedByType = (wordId: string) =>
+    practicedForType(statsMap.get(wordId) ?? [], trainingType)
+  // 全局已练（同一技能）= 跨书已学过，覆盖/新学时视同本轮已勾选
   const coveredSet = new Set(cycleSet)
-  for (const [wordId, mastery] of aggregated) {
-    if (mastery.practiced) coveredSet.add(wordId)
+  for (const [wordId] of aggregated) {
+    if (practicedByType(wordId)) coveredSet.add(wordId)
+  }
+
+  // 跨书核对：别的书学过、这本书还没通过确认的词。答对加分，答错降到待复习。
+  if (mode === 'recheck') {
+    const targetType = trainingType || 'reading'
+    const checks = await prisma.bookWordCheck.findMany({
+      where: { learnerId: userId, bookId: book.id, type: targetType },
+      select: { wordId: true, passed: true, failStreak: true }
+    })
+    const practicedWords = bookWords.filter(bv =>
+      practicedForType(statsMap.get(bv.wordId) ?? [], targetType)
+    )
+    const { selected, meta } = pickRecheckCandidates(
+      practicedWords,
+      checks,
+      wordId =>
+        computeScore(wordId, statsMap, aggregated.get(wordId)!, true, 'weak', targetType),
+      count
+    )
+    const progressInfo = await getBookProgress(userId, bookCode)
+    return {
+      words: selected.map(bv =>
+        formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${todayKey(now)}`, rotate: true })
+      ),
+      progress: progressInfo,
+      mode,
+      recheck: meta
+    }
   }
 
   if (mode === 'smart') {
@@ -325,8 +359,17 @@ export async function getSessionWords(
       return {
         id: bv.wordId,
         order: bv.sortOrder,
-        score: computeSmartScore(userId, bv.wordId, statsMap, mastery, inCycle, trainingType, dayKey),
-        isNew: !mastery.practiced,
+        score: computeSmartScore(
+          userId,
+          bv.wordId,
+          statsMap,
+          mastery,
+          practicedByType(bv.wordId),
+          inCycle,
+          trainingType,
+          dayKey
+        ),
+        isNew: !practicedByType(bv.wordId),
         due,
         weak: due || (fsrs ? getWeakReason(fsrs, now) != null : false),
         recentWrong: typeStat?.recentLapse === true,
@@ -348,7 +391,7 @@ export async function getSessionWords(
   }
 
   if (mode === 'review') {
-    const practicedBookWords = bookWords.filter(bv => aggregated.get(bv.wordId)!.practiced)
+    const practicedBookWords = bookWords.filter(bv => practicedByType(bv.wordId))
     const dueWords = bookWords.filter(bv => {
       const typeStat = getTypeStat(statsMap, bv.wordId, trainingType)
       return typeStat?.due != null && typeStat.due.getTime() <= now.getTime()
@@ -361,7 +404,7 @@ export async function getSessionWords(
       // 整本从未学过时没有可复习的词，退回新学兜底，避免空会话
       const fallbackPool = practicedBookWords.length > 0
         ? practicedBookWords
-        : bookWords.filter(bv => !aggregated.get(bv.wordId)!.practiced)
+        : bookWords.filter(bv => !practicedByType(bv.wordId))
       const scored = fallbackPool
         .filter(bv => !dueIds.has(bv.wordId))
         .map(bv => ({
@@ -386,7 +429,7 @@ export async function getSessionWords(
   // weak：先按薄弱度练已学词；没有已学词或数量不足时，才补新词。
   if (mode === 'weak') {
     const scoredWeak = bookWords
-      .filter(bv => aggregated.get(bv.wordId)!.practiced)
+      .filter(bv => practicedByType(bv.wordId))
       .map(bv => ({
         bv,
         score: computeScore(bv.wordId, statsMap, aggregated.get(bv.wordId)!, coveredSet.has(bv.wordId), 'weak', trainingType)
@@ -398,7 +441,7 @@ export async function getSessionWords(
     if (selectedBookWords.length < count) {
       const taken = new Set(selectedBookWords.map(bv => bv.wordId))
       const scoredNew = bookWords
-        .filter(bv => !aggregated.get(bv.wordId)!.practiced && !taken.has(bv.wordId))
+        .filter(bv => !practicedByType(bv.wordId) && !taken.has(bv.wordId))
         .map(bv => ({
           bv,
           score: computeScore(
@@ -426,9 +469,9 @@ export async function getSessionWords(
   }
 
   // coverage：新学只抽「全局未练」；缺口再用到期复习补，避免 KET 词在 PET 当生词
-  const newLearning = bookWords.filter(bv => !aggregated.get(bv.wordId)!.practiced)
+  const newLearning = bookWords.filter(bv => !practicedByType(bv.wordId))
   const dueReview = bookWords.filter(bv => {
-    if (!aggregated.get(bv.wordId)!.practiced) return false
+    if (!practicedByType(bv.wordId)) return false
     const typeStat = getTypeStat(statsMap, bv.wordId, trainingType)
     return typeStat?.due != null && typeStat.due.getTime() <= now.getTime()
   })

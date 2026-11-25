@@ -50,6 +50,8 @@ export interface WordStatEntry {
   lastReview?: Date | null
   retrievability?: number
   recentLapse?: boolean
+  /** 跨书核对未通过：算练过，但掌握度按待复习处理。 */
+  needsReconfirm?: boolean
   weakReason?: WeakReason
 }
 
@@ -60,6 +62,7 @@ export interface AggregatedWordMastery {
   mastery: number
   practiced: boolean
   practiceCount: number
+  needsReconfirm: boolean
   byType: Partial<Record<WordType | 'recognize' | 'write', number>>
   recognize: number | null
   write: number | null
@@ -73,7 +76,14 @@ export interface AggregatedWordMastery {
 
 function practicedMastery(stat: WordStatEntry | undefined): number | null {
   if (!stat || stat.practiceCount <= 0) return null
+  if (stat.needsReconfirm) return 0
   return stat.mastery
+}
+
+/** 是否练过。指定 type 时只认该技能，避免「别的书练过认读」把拼写也当成已学。 */
+export function practicedForType(stats: WordStatEntry[], type?: string): boolean {
+  if (!type) return stats.some(s => s.practiceCount > 0)
+  return stats.some(s => s.type === type && s.practiceCount > 0)
 }
 
 /** 认识 = 认读（没有认读记录时用听力兜底）。会写 = 拼写。总览取更弱的一项。 */
@@ -81,38 +91,57 @@ export function skillSnapshot(stats: WordStatEntry[]) {
   const reading = practicedMastery(stats.find(s => s.type === 'reading'))
   const listening = practicedMastery(stats.find(s => s.type === 'listening'))
   const writing = practicedMastery(stats.find(s => s.type === 'writing'))
+  const needsReconfirm = stats.some(s => s.practiceCount > 0 && s.needsReconfirm === true)
   const recognize = reading ?? listening
   const write = writing
   const recognizeOk = recognize != null && recognize >= 4
   const writeOk = write != null && write >= 4
 
+  const settle = <T extends {
+    recognize: number | null
+    write: number | null
+    mastery: number
+    practiced: boolean
+    skill: SkillView
+    skillLabel: string
+  }>(snapshot: T): T & { needsReconfirm: boolean } => {
+    if (!needsReconfirm) return { ...snapshot, needsReconfirm: false }
+    return {
+      ...snapshot,
+      mastery: 0,
+      skill: snapshot.skill === 'mastered' ? 'partial' : snapshot.skill,
+      skillLabel: `${snapshot.skillLabel}（待核对）`,
+      needsReconfirm: true
+    }
+  }
+
   if (recognize == null && write == null) {
-    return { recognize, write, mastery: 0, practiced: false, skill: 'none' as SkillView, skillLabel: '未练习' }
+    return settle({ recognize, write, mastery: 0, practiced: false, skill: 'none' as SkillView, skillLabel: '未练习' })
   }
   if (recognizeOk && writeOk) {
-    return {
+    return settle({
       recognize,
       write,
       mastery: Math.min(recognize!, write!),
       practiced: true,
       skill: 'mastered' as SkillView,
       skillLabel: '认识且会写'
-    }
+    })
   }
   if (recognize != null && write != null) {
-    return {
+    return settle({
       recognize,
       write,
       mastery: Math.min(recognize, write),
       practiced: true,
       skill: 'partial' as SkillView,
       skillLabel: '两项都练过'
-    }
+    })
   }
   if (recognize != null) {
-    return { recognize, write, mastery: recognize, practiced: true, skill: 'recognize' as SkillView, skillLabel: '只会认' }
+    return settle({ recognize, write, mastery: recognize, practiced: true, skill: 'recognize' as SkillView, skillLabel: '只会认' })
   }
-  return { recognize, write, mastery: write!, practiced: true, skill: 'write' as SkillView, skillLabel: '只会写' }
+  return settle({ recognize, write, mastery: write!, practiced: true, skill: 'write' as SkillView, skillLabel: '只会写' })
 }
 
 export function aggregateWordMastery(stats: WordStatEntry[]): AggregatedWordMastery | null {
@@ -127,7 +156,7 @@ export function aggregateWordMastery(stats: WordStatEntry[]): AggregatedWordMast
   let primaryState = 'New'
 
   for (const stat of stats) {
-    byType[stat.type] = stat.mastery
+    byType[stat.type] = stat.needsReconfirm ? 0 : stat.mastery
     totalPractice += stat.practiceCount
     if (stat.lastPractice && (!lastPractice || stat.lastPractice > lastPractice)) {
       lastPractice = stat.lastPractice
@@ -153,6 +182,7 @@ export function aggregateWordMastery(stats: WordStatEntry[]): AggregatedWordMast
     write: skill.write,
     skill: skill.skill,
     skillLabel: skill.skillLabel,
+    needsReconfirm: skill.needsReconfirm,
     lastPractice,
     retrievability: skill.practiced ? lowestRetrievability : 0,
     due: earliestDue,
@@ -179,6 +209,7 @@ export function aggregateBookWordStats(
       write: null,
       skill: 'none',
       skillLabel: '未练习',
+      needsReconfirm: false,
       lastPractice: null
     })
   }
@@ -222,7 +253,7 @@ export function buildTypeStatsFromEntry(entry?: WordStatEntry) {
   return {
     practiceCount: entry.practiceCount,
     correctCount: entry.correctCount,
-    mastery: fields.mastery,
+    mastery: entry.needsReconfirm ? 0 : fields.mastery,
     accuracy: Math.round((entry.correctCount / entry.practiceCount) * 100),
     due: fields.due,
     retrievability: fields.retrievability,

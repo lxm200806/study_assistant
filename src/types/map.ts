@@ -1,4 +1,4 @@
-export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review' | 'unit'
+export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review' | 'unit' | 'recheck'
 
 export type MasteryStatus = 'mastered' | 'learning' | 'unfamiliar' | 'unpracticed'
 export type WeakReason = 'overdue' | 'low_retention' | 'recent_lapse'
@@ -25,6 +25,15 @@ export interface SessionResponse {
   progress: BookProgress
   mode: SessionMode
   unit?: SessionUnitMeta
+  recheck?: SessionRecheckMeta
+}
+
+export interface SessionRecheckMeta {
+  total: number
+  remaining: number
+  passed: number
+  failed: number
+  complete?: boolean
 }
 
 export interface CategoryStats {
@@ -103,7 +112,8 @@ export const SESSION_MODE_LABELS: Record<SessionMode, string> = {
   smart: '智能推荐',
   weak: '薄弱优先',
   review: '到期优先',
-  unit: '单元顺序'
+  unit: '单元顺序',
+  recheck: '跨书核对'
 }
 
 export const STATUS_LABELS: Record<MasteryStatus, string> = {

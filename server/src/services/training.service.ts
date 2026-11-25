@@ -16,6 +16,7 @@ export interface PracticeResult extends FsrsStatFields {
   type: WordType
   status: ReturnType<typeof getMasteryStatus>
   weakReason?: ReturnType<typeof getWeakReason>
+  needsReconfirm?: boolean
 }
 
 function toPracticeResult(
@@ -56,6 +57,8 @@ export async function practice(userId: string, dto: PracticeDto): Promise<Practi
   }
 
   const fields = processPractice(input, dto.isCorrect, now)
+  // 答对即视为完成跨书核对；答错保留现状，由 recheck 接口置为待核对。
+  const needsReconfirm = dto.isCorrect ? false : (existingStat?.needsReconfirm ?? false)
 
   const updatedStat = existingStat
     ? await prisma.vocabularyStat.update({
@@ -74,6 +77,7 @@ export async function practice(userId: string, dto: PracticeDto): Promise<Practi
           lastReview: fields.lastReview,
           retrievability: fields.retrievability,
           recentLapse: fields.recentLapse,
+          needsReconfirm,
           learningSteps: fields.learningSteps,
           scheduledDays: fields.scheduledDays
         },
@@ -97,6 +101,7 @@ export async function practice(userId: string, dto: PracticeDto): Promise<Practi
           lastReview: fields.lastReview,
           retrievability: fields.retrievability,
           recentLapse: fields.recentLapse,
+          needsReconfirm,
           learningSteps: fields.learningSteps,
           scheduledDays: fields.scheduledDays
         },
@@ -112,7 +117,7 @@ export async function practice(userId: string, dto: PracticeDto): Promise<Practi
     }
   })
 
-  return toPracticeResult(updatedStat.wordId, dto.type, fields)
+  return { ...toPracticeResult(updatedStat.wordId, dto.type, fields), needsReconfirm }
 }
 
 export interface ReviewWordsOptions {

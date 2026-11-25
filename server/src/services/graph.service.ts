@@ -111,7 +111,8 @@ function statToWordEntry(stat: any): WordStatEntry {
     fsrsState: stat.fsrsState,
     lastReview: stat.lastReview,
     retrievability: stat.retrievability,
-    recentLapse: stat.recentLapse
+    recentLapse: stat.recentLapse,
+    needsReconfirm: stat.needsReconfirm
   }
 }
 
@@ -202,6 +203,7 @@ function emptyAggregated(wordId: string): NonNullable<ReturnType<typeof aggregat
     write: null,
     skill: 'none',
     skillLabel: '未练习',
+    needsReconfirm: false,
     lastPractice: null
   }
 }

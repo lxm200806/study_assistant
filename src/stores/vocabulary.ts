@@ -3,7 +3,13 @@ import { ref, computed } from 'vue'
 import type { Vocabulary, VocabularyStats, TrainingRecord, MeaningType } from '@/types'
 import { vocabularyAPI, trainingAPI, bookAPI, statsAPI } from '@/utils/api'
 import { getBookList } from '@/data/vocabulary'
-import type { SessionMode, BookProgress, VocabularyMapData, SessionResponse } from '@/types/map'
+import type {
+  SessionMode,
+  BookProgress,
+  VocabularyMapData,
+  SessionResponse,
+  SessionRecheckMeta
+} from '@/types/map'
 import { unwrapStorage } from '@/utils/storage'
 
 export interface Book {
@@ -48,6 +54,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   /** 文章单元练习临时用的书，不写入 currentBookCode / 本地存储 */
   const sessionBookCode = ref<string | undefined>(undefined)
   const lastSessionUnit = ref<import('@/types/map').SessionUnitMeta | null>(null)
+  const lastRecheckMeta = ref<SessionRecheckMeta | null>(null)
 
   const books = ref<Book[]>(getBookList())
   const currentBookCode = ref<string>(DEFAULT_BOOK_CODE)
@@ -107,15 +114,18 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
         vocabularyList.value = data?.words || []
         bookProgress.value = data?.progress || null
         lastSessionUnit.value = data?.unit || null
+        lastRecheckMeta.value = data?.recheck || null
         return vocabularyList.value
       }
 
+      lastRecheckMeta.value = null
       const result = await vocabularyAPI.random(count)
       vocabularyList.value = (result.data as Vocabulary[]) || []
       return vocabularyList.value
     } catch (error) {
       console.error('Failed to load session vocabulary:', error)
       vocabularyList.value = []
+      lastRecheckMeta.value = null
       const message = (error as Error).message || '加载词汇失败'
       if (message.includes('会员') || message.includes('BOOK_LOCKED') || message.includes('403')) {
         throw new Error('BOOK_LOCKED')
@@ -373,6 +383,53 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     void loadServerStats()
   }
 
+  /**
+   * 跨书核对：答对掌握度 +1，答错进入待复习。返回服务端的核对结果。
+   */
+  const recheckWord = async (
+    wordId: string,
+    word: string,
+    type: 'listening' | 'speaking' | 'reading' | 'writing',
+    correct: boolean
+  ) => {
+    const bookCode = resolveBookCode()
+    if (!bookCode) return null
+
+    let data: {
+      mastery?: number
+      practiceCount?: number
+      correctCount?: number
+      needsReconfirm?: boolean
+      passed?: boolean
+      failStreak?: number
+    } | null = null
+
+    try {
+      const result = await trainingAPI.recheck(bookCode, wordId, type, correct)
+      data = (result.data as typeof data) || null
+    } catch (error) {
+      console.error('Failed to recheck word:', error)
+      return null
+    }
+
+    if (!stats.value[type][word]) {
+      stats.value[type][word] = {
+        count: 0,
+        correctCount: 0,
+        lastPractice: Date.now(),
+        mastery: 0
+      }
+    }
+    const entry = stats.value[type][word]
+    entry.count = data?.practiceCount ?? entry.count + 1
+    entry.correctCount = data?.correctCount ?? entry.correctCount + (correct ? 1 : 0)
+    entry.mastery = data?.mastery ?? entry.mastery
+    entry.lastPractice = Date.now()
+    saveStats()
+    void loadServerStats()
+    return data
+  }
+
   const getWordMastery = (word: string, type: 'listening' | 'speaking' | 'reading' | 'writing') => {
     return stats.value[type][word]?.mastery || 0
   }
@@ -489,6 +546,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     sessionUnitId,
     sessionBookCode,
     lastSessionUnit,
+    lastRecheckMeta,
     trainingRecords,
     books,
     currentBookCode,
@@ -516,6 +574,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     loadStats,
     saveStats,
     updateWordStats,
+    recheckWord,
     getWordMastery,
     getWordStats,
     getTypeStats,
