@@ -54,6 +54,7 @@ export async function completeChat(
         'Content-Type': 'application/json',
         Authorization: `Bearer ${apiKey}`
       },
+      signal: AbortSignal.timeout(30_000),
       body: JSON.stringify(buildChatCompletionBody(messages, false, options))
     })
     if (!res.ok) {
@@ -84,6 +85,7 @@ export async function streamChatCompletion(
       'Content-Type': 'application/json',
       Authorization: `Bearer ${apiKey}`
     },
+    signal: AbortSignal.timeout(60_000),
     body: JSON.stringify(buildChatCompletionBody(messages, true, options))
   })
 

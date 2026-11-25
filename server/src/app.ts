@@ -17,6 +17,7 @@ import chineseRoutes from './chinese/chinese.routes'
 import { errorMiddleware } from './middleware/error'
 import { requestContext } from './middleware/request-context'
 import { accessLog } from './middleware/access-log'
+import { metricsMiddleware, renderMetrics } from './middleware/metrics'
 import { securityHeaders } from './middleware/security-headers'
 import { getBootState } from './bootstrap'
 import { isProduction } from './config/env'
@@ -39,6 +40,7 @@ export function createApp() {
   const app = express()
 
   app.use(requestContext())
+  app.use(metricsMiddleware())
   app.use(accessLog())
   app.use(securityHeaders())
   app.use(cors({ origin: resolveCorsOrigin(), credentials: true }))
@@ -73,6 +75,19 @@ export function createApp() {
 
   app.get('/health', (_req, res) => {
     res.json({ success: true, data: { status: 'ok' } })
+  })
+
+  app.get('/metrics', (req, res) => {
+    const token = process.env.METRICS_TOKEN
+    if (token) {
+      const header = req.headers.authorization
+      const queryToken = typeof req.query.token === 'string' ? req.query.token : ''
+      if (header !== `Bearer ${token}` && queryToken !== token) {
+        res.status(404).end()
+        return
+      }
+    }
+    res.type('text/plain; version=0.0.4').send(renderMetrics())
   })
 
   app.get('/ready', async (_req, res) => {

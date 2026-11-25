@@ -87,3 +87,29 @@ compose 里同时保留了 `build:` 与 `image:`：`up -d --build` 走本地构�
 `pull` 则只拉取 CI 产物、不会重新构建。镜像地址可用 `API_IMAGE` / `WEB_IMAGE` 覆盖，默认是
 `ghcr.io/lxm200806/study_assistant/{api,web}:${IMAGE_TAG:-latest}`。
 若服务器只允许使用预构建镜像，可把 compose 里的 `build:` 段删掉，避免误触发本地构建。
+
+## 备份与恢复
+
+发布前先备份数据库：
+
+```bash
+docker exec study-assistant-db pg_dump -U study -d study_assistant -Fc > backup-$(date +%F).dump
+```
+
+恢复（会覆盖现有数据，先停 API）：
+
+```bash
+docker compose -f docker-compose.prod.yml stop api
+cat backup-YYYY-MM-DD.dump | docker exec -i study-assistant-db pg_restore -U study -d study_assistant --clean --if-exists
+docker compose -f docker-compose.prod.yml start api
+```
+
+`api` 容器启动时会执行 `prisma migrate deploy`。涉及破坏性迁移时，先备份并在预发环境演练；多实例部署应把迁移拆成独立 job，避免并发迁移。
+
+## 监控与告警
+
+- `GET /health`：进程存活；`GET /ready`：数据库可用且启动同步完成。
+- `GET /metrics`：Prometheus 文本格式（请求计数、延迟直方图、进程 uptime）。设置 `METRICS_TOKEN` 后需带 `Authorization: Bearer <token>` 或 `?token=`。
+- Docker 日志已限制为 `json-file` 10MB × 3；长期审计请接集中日志。
+- 建议告警：`/ready` 连续失败、5xx 比例、`http_request_duration_ms` P95、数据库连接数、磁盘空间。
+- 当前没有内置 Sentry/APM；需要时通过环境变量接入，避免把 DSN 写入代码。

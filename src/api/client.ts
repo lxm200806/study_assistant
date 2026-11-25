@@ -54,6 +54,11 @@ let sessionExpiredPromptOpen = false
 let networkHintAt = 0
 let refreshInFlight: Promise<boolean> | null = null
 let refreshFailedByNetwork = false
+let lastRequestId = ''
+
+export function getLastRequestId(): string {
+  return lastRequestId
+}
 
 type ApiError = Error & { status?: number; network?: boolean }
 
@@ -195,6 +200,10 @@ export async function request<T>(
     uni.request({
       ...req,
       success: async (res) => {
+        const headers = (res.header || {}) as Record<string, string>
+        const requestId = headers['X-Request-Id'] || headers['x-request-id'] || ''
+        if (requestId) lastRequestId = String(requestId)
+
         if (res.statusCode === 200 || res.statusCode === 201) {
           resolve(res.data as ResponseData<T>)
           return
@@ -234,7 +243,8 @@ export async function request<T>(
           return
         }
 
-        reject(apiError(errMsg, res.statusCode))
+        const suffix = res.statusCode >= 500 && requestId ? `（请求 ${requestId}）` : ''
+        reject(apiError(`${errMsg}${suffix}`, res.statusCode))
       },
       fail: (err) => {
         hintServerUnavailable()

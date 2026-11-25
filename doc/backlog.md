@@ -16,7 +16,8 @@
 | M8a | 安全：管理审计、账号导出/注销、密码策略、HSTS、Dependabot、合规清单 | DONE |
 | M8b | 安全：TTS token 鉴权、CSP Report-Only、gitleaks + npm audit CI | DONE |
 | M8c | 安全残余：管理员 TOTP 2FA | TODO |
-| M9 | 可观测/运维：Metrics、Sentry、超时熔断、优雅退出、备份/迁移/告警 | TODO |
+| M9a | 可观测/运维：Metrics、外部超时、优雅退出、Web healthcheck、备份/告警、request id | DONE |
+| M9b | 可观测残余：Sentry/APM（需 DSN/账号） | BLOCKED |
 | M10 | 性能/扩展：Redis、对象存储、图谱 SQL、缓存、同步 job、索引审查、包体积 | 部分 BLOCKED |
 | M11 | 前端重构/体验：typing 逻辑、course/typing service、错误边界、流式降级、布局回归、清理 | TODO |
 | M12 | App/商业化：app-plus、原生音频、推送、支付/IAP、会员、商店合规、埋点 | BLOCKED（需产品/账号决策） |

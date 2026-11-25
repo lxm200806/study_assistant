@@ -174,6 +174,7 @@ export async function transcribeAudio(userId: string, audioBase64: string, mimeT
     const res = await fetch(`${config.baseUrl}/audio/transcriptions`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${config.apiKey}` },
+      signal: AbortSignal.timeout(60_000),
       body: form
     })
 
