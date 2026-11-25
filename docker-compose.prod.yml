@@ -26,6 +26,26 @@ services:
     networks:
       - internal
 
+  redis:
+    image: redis:7-alpine
+    container_name: study-assistant-redis
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - internal
+
   api:
     build:
       context: .
@@ -40,14 +60,19 @@ services:
       DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL in .env.prod and URL-encode the password}
       PORT: "3004"
       NODE_ENV: production
+      REDIS_URL: redis://redis:6379
+      OBJECT_STORAGE_DIR: /app/data/object-store
     depends_on:
       postgres:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     # 只在内网暴露，外部流量统一经 Nginx（TLS/限流/统一入口）
     expose:
       - "3004"
     volumes:
       - tts_cache:/app/data/tts-cache
+      - object_store:/app/data/object-store
     logging:
       driver: json-file
       options:
@@ -84,6 +109,8 @@ services:
 volumes:
   postgres_data:
   tts_cache:
+  object_store:
+  redis_data:
 
 networks:
   internal:

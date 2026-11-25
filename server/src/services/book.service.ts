@@ -6,6 +6,7 @@ import { resolveSense } from '../data/vocabulary/senses'
 import { isWeakTopic, normalizeTopic } from '../data/taxonomy'
 import { resolveWordTaxonomy } from '../data/taxonomy/word-tags'
 import { formatBookWord, isPlaceholderExample } from '../utils/wordFormat'
+import { TtlCache } from '../utils/ttl-cache'
 
 /** 全局词行主题：强主题不被弱主题覆盖，避免多书同步互相冲掉。 */
 function preferTopic(existing: string | null | undefined, next: string | null | undefined): string {
@@ -255,6 +256,24 @@ export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
   console.log(`Book ${bookData.name} synced with ${entries.length} words`)
 }
 
+interface BookListRow {
+  id: string
+  name: string
+  code: string
+  description: string | null
+  level: string
+  wordCount: number
+  isFree: boolean
+  createdAt: Date
+}
+
+type BooksResult = BookListRow[]
+const booksCache = new TtlCache<string, BooksResult>(60_000)
+
+export function clearBooksCache(): void {
+  booksCache.clear()
+}
+
 export async function initBooks(onlyCodes?: string[], opts?: { force?: boolean }) {
   try {
     await migrateLegacyBookCodes()
@@ -280,10 +299,14 @@ export async function initBooks(onlyCodes?: string[], opts?: { force?: boolean }
     )
   }
 
+  clearBooksCache()
   return { total: codes.length, synced: codes.length - failures.length, failures }
 }
 
-export async function getBooks() {
+export async function getBooks(): Promise<BooksResult> {
+  const cached = booksCache.get('all')
+  if (cached) return cached
+
   const books = await prisma.book.findMany({
     select: {
       id: true,
@@ -298,7 +321,7 @@ export async function getBooks() {
     orderBy: { createdAt: 'asc' }
   })
 
-  return books.map(book => {
+  const result = books.map(book => {
     const meta = loadBook(book.code)
     return {
       ...book,
@@ -307,6 +330,8 @@ export async function getBooks() {
       description: meta?.description || book.description
     }
   })
+  booksCache.set('all', result)
+  return result
 }
 
 export async function getBookMetaByCode(code: string) {
