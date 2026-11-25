@@ -13,6 +13,7 @@
 - Dependabot 每周检查 npm 依赖和 GitHub Actions。
 - `Security` CI 工作流运行 gitleaks 和 `npm audit --omit=dev --audit-level=critical`。
 - Nginx 已配置 CSP Report-Only，观察后再切换强制 CSP。
+- 设置 `SENTRY_DSN` 后 5xx 自动上报 Sentry/APM。
 
 ## 待办 / 风险
 

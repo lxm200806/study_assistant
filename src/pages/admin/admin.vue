@@ -49,9 +49,7 @@
       </view>
     </view>
 
-    <view v-else class="empty">
-      <text>{{ emptyText }}</text>
-    </view>
+    <StateHint v-else tone="empty" :text="emptyText" />
 
     <view v-if="totalPages > 1" class="pagination">
       <view :class="['page-btn', page <= 1 ? 'disabled' : '']" @tap="goPage(page - 1)">
@@ -100,6 +98,7 @@ import { ref, computed, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import { adminAPI, authAPI } from '@/utils/api'
 import { requireReadySession } from '@/utils/subject'
+import StateHint from '@/components/StateHint.vue'
 
 const userStore = useUserStore()
 

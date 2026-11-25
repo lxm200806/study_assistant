@@ -97,8 +97,12 @@
 
       <view class="panel">
         <text class="panel-title">练习记录</text>
-        <text v-if="!historyLoaded" class="hint">正在读取练习记录。</text>
-        <text v-else-if="!hasHistory" class="hint">完成一组后，这里会显示速度和每天练了多少。</text>
+        <StateHint v-if="!historyLoaded" tone="loading" text="正在读取练习记录。" />
+        <StateHint
+          v-else-if="!hasHistory"
+          tone="empty"
+          text="完成一组后，这里会显示速度和每天练了多少。"
+        />
         <template v-else>
           <text class="label">速度 · 每分钟正确字符</text>
           <view v-if="history.speed.length" class="speed-chart">
@@ -360,6 +364,7 @@
 import { computed, onUnmounted, ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import BookSwitcher from '@/components/BookSwitcher.vue'
+import StateHint from '@/components/StateHint.vue'
 import TypingWordCore from '@/components/typing/TypingWordCore.vue'
 import TypingPassageCore from '@/components/typing/TypingPassageCore.vue'
 import { WordPracticeType } from '@/typing-engine/types'

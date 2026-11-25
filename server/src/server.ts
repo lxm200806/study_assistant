@@ -1,4 +1,5 @@
 import 'dotenv/config'
+import './instrument'
 import { createApp } from './app'
 import { bootstrap } from './bootstrap'
 import { isProduction } from './config/env'
