@@ -15,16 +15,20 @@ import {
   setRoleHandler,
   logoutHandler,
   logoutAllHandler,
-  sessionsHandler
+  sessionsHandler,
+  exportAccountHandler,
+  deleteAccountHandler
 } from '../controllers/auth.controller'
 import { authMiddleware } from '../middleware/auth'
 import { rateLimit } from '../middleware/rate-limit'
 import { validateBody, validateParams } from '../validation/validate'
 import {
   credentialsBodySchema,
+  deleteAccountBodySchema,
   idParamsSchema,
   onboardBodySchema,
   refreshBodySchema,
+  registerBodySchema,
   roleBodySchema,
   setActiveStudentBodySchema,
   studentNameBodySchema,
@@ -43,13 +47,15 @@ const loginLimit = rateLimit({
 })
 const refreshLimit = rateLimit({ windowMs: 15 * 60 * 1000, max: 60, keyPrefix: 'auth-refresh' })
 
-router.post('/register', registerLimit, validateBody(credentialsBodySchema), registerHandler)
+router.post('/register', registerLimit, validateBody(registerBodySchema), registerHandler)
 router.post('/login', loginLimit, validateBody(credentialsBodySchema), loginHandler)
 router.post('/refresh', refreshLimit, validateBody(refreshBodySchema), refreshHandler)
 router.get('/profile', authMiddleware, profileHandler)
 router.post('/logout', authMiddleware, logoutHandler)
 router.post('/logout-all', authMiddleware, logoutAllHandler)
 router.get('/sessions', authMiddleware, sessionsHandler)
+router.get('/account/export', authMiddleware, exportAccountHandler)
+router.post('/account/delete', authMiddleware, validateBody(deleteAccountBodySchema), deleteAccountHandler)
 router.post('/onboard', authMiddleware, validateBody(onboardBodySchema), onboardHandler)
 router.put('/subject', authMiddleware, validateBody(subjectBodySchema), setSubjectHandler)
 router.get('/students', authMiddleware, listStudentsHandler)

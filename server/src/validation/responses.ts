@@ -46,6 +46,11 @@ export const sessionsResponseSchema = z.object({
   data: z.array(anyObject)
 })
 
+export const anyDataResponseSchema = z.object({
+  success: z.literal(true),
+  data: anyObject
+})
+
 export const setActiveStudentResponseSchema = z.object({
   success: z.literal(true),
   learner: learnerSummarySchema,

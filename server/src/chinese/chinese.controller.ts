@@ -32,6 +32,22 @@ import type {
   ChineseLibraryQuery,
   ChineseTodayQuery
 } from '../validation/schemas'
+import { auditAdminAction } from '../services/audit.service'
+
+async function audit(
+  req: Request,
+  action: string,
+  target: string,
+  detail?: Record<string, unknown>
+) {
+  await auditAdminAction({
+    actorId: req.userId,
+    action,
+    target,
+    detail,
+    ip: req.ip
+  })
+}
 
 async function withUser(req: Request) {
   const user = await prisma.user.findUnique({
@@ -69,7 +85,11 @@ export const libraryHandler = wrap(async (req, res) => {
 export const patchLibraryHandler = wrap(async req => {
   const user = await withUser(req)
   if (!user.isAdmin) throw new HttpError(403, 'Admin access required')
-  return patchPublished(req.params.pointId, req.body || {})
+  const result = await patchPublished(req.params.pointId, req.body || {})
+  await audit(req, 'chinese.library.patch', req.params.pointId, {
+    fields: Object.keys(req.body || {})
+  })
+  return result
 })
 
 export const createCourseHandler = wrap(async req => {
@@ -142,19 +162,25 @@ export const resourcesHandler = wrap(async req => {
 export const syncIncrementalHandler = wrap(async req => {
   const user = await withUser(req)
   if (!user.isAdmin) throw new HttpError(403, 'Admin access required')
-  return summarizeSync(await syncAllOfficial(false), 'incremental')
+  const result = summarizeSync(await syncAllOfficial(false), 'incremental')
+  await audit(req, 'chinese.resources.sync-incremental', 'official')
+  return result
 })
 
 export const syncAllHandler = wrap(async req => {
   const user = await withUser(req)
   if (!user.isAdmin) throw new HttpError(403, 'Admin access required')
-  return summarizeSync(await syncAllOfficial(true), 'all')
+  const result = summarizeSync(await syncAllOfficial(true), 'all')
+  await audit(req, 'chinese.resources.sync-all', 'official')
+  return result
 })
 
 export const seedHandler = wrap(async req => {
   const user = await withUser(req)
   if (!user.isAdmin) throw new HttpError(403, 'Admin access required')
-  return seedChineseIfEmpty()
+  const result = await seedChineseIfEmpty()
+  await audit(req, 'chinese.resources.seed', 'official')
+  return result
 })
 
 export const getResourceHandler = wrap(async req => {
@@ -166,14 +192,26 @@ export const getResourceHandler = wrap(async req => {
 export const syncResourceHandler = wrap(async req => {
   const user = await withUser(req)
   if (!user.isAdmin) throw new HttpError(403, 'Admin access required')
-  return syncResourceById(req.params.resourceId, true)
+  const result = await syncResourceById(req.params.resourceId, true)
+  await audit(req, 'chinese.resources.sync', req.params.resourceId)
+  return result
 })
 
 export const importDraftsHandler = wrap(async req => {
   const user = await withUser(req)
   if (!user.isAdmin) throw new HttpError(403, 'Admin access required')
   const body = req.body || {}
-  return importDrafts(user.id, String(body.text || ''), body.resourceId ? String(body.resourceId) : undefined)
+  const result = await importDrafts(
+    user.id,
+    String(body.text || ''),
+    body.resourceId ? String(body.resourceId) : undefined
+  )
+  await audit(req, 'chinese.drafts.import', String(body.resourceId || ''), {
+    imported: Array.isArray((result as { items?: unknown[] }).items)
+      ? (result as { items: unknown[] }).items.length
+      : undefined
+  })
+  return result
 })
 
 export const listDraftsHandler = wrap(async (req, res) => {
@@ -186,17 +224,26 @@ export const listDraftsHandler = wrap(async (req, res) => {
 export const patchDraftHandler = wrap(async req => {
   const user = await withUser(req)
   if (!user.isAdmin) throw new HttpError(403, 'Admin access required')
-  return patchDraft(req.params.draftId, req.body || {})
+  const result = await patchDraft(req.params.draftId, req.body || {})
+  await audit(req, 'chinese.drafts.patch', req.params.draftId, {
+    fields: Object.keys(req.body || {})
+  })
+  return result
 })
 
 export const publishDraftHandler = wrap(async req => {
   const user = await withUser(req)
   if (!user.isAdmin) throw new HttpError(403, 'Admin access required')
-  return publishDraft(req.params.draftId)
+  const result = await publishDraft(req.params.draftId)
+  await audit(req, 'chinese.drafts.publish', req.params.draftId)
+  return result
 })
 
 export const publishDraftsBatchHandler = wrap(async req => {
   const user = await withUser(req)
   if (!user.isAdmin) throw new HttpError(403, 'Admin access required')
-  return publishDraftsBatch(Array.isArray(req.body?.ids) ? req.body.ids : [])
+  const ids = Array.isArray(req.body?.ids) ? req.body.ids : []
+  const result = await publishDraftsBatch(ids)
+  await audit(req, 'chinese.drafts.publish-batch', '', { count: ids.length })
+  return result
 })

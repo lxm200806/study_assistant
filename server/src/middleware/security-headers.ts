@@ -8,6 +8,9 @@ export function securityHeaders(): RequestHandler {
     res.setHeader('Referrer-Policy', 'no-referrer')
     res.setHeader('Cross-Origin-Resource-Policy', 'same-site')
     res.setHeader('Permissions-Policy', 'geolocation=(), camera=(), microphone=(self)')
+    if (process.env.NODE_ENV === 'production') {
+      res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
+    }
     next()
   }
 }

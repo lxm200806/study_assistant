@@ -1,12 +1,23 @@
 import { Request, Response } from 'express'
 import { getMissingMeaningSummary, getMissingMeaningWords } from '../services/admin.service'
+import { listAdminAudit } from '../services/audit.service'
 import { internalError } from '../utils/http-errors'
 import { validatedQuery } from '../validation/validate'
-import type { AdminMissingWordsQuery } from '../validation/schemas'
+import type { AdminAuditQuery, AdminMissingWordsQuery } from '../validation/schemas'
 
 export async function getMissingSummaryHandler(req: Request, res: Response) {
   try {
     const data = await getMissingMeaningSummary()
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    internalError(res, error)
+  }
+}
+
+export async function getAuditHandler(req: Request, res: Response) {
+  try {
+    const { page, limit } = validatedQuery<AdminAuditQuery>(res)
+    const data = await listAdminAudit(page, limit)
     res.status(200).json({ success: true, data })
   } catch (error) {
     internalError(res, error)

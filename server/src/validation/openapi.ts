@@ -5,6 +5,7 @@ import {
 } from '@asteasolutions/zod-to-openapi'
 import { z } from 'zod'
 import {
+  adminAuditQuerySchema,
   adminMissingWordsQuerySchema,
   asrChunkBodySchema,
   asrEndBodySchema,
@@ -28,6 +29,7 @@ import {
   completeSessionBodySchema,
   courseIdParamsSchema,
   credentialsBodySchema,
+  deleteAccountBodySchema,
   draftIdParamsSchema,
   dueCountQuerySchema,
   globalMapQuerySchema,
@@ -64,6 +66,7 @@ import {
 } from './schemas'
 import {
   adminResponseSchema,
+  anyDataResponseSchema,
   bookDetailResponseSchema,
   bookListResponseSchema,
   chineseArrayResponseSchema,
@@ -196,6 +199,8 @@ const adminMissingWordsQuery = registry.register(
   'AdminMissingWordsQuery',
   adminMissingWordsQuerySchema
 )
+const adminAuditQuery = registry.register('AdminAuditQuery', adminAuditQuerySchema)
+const deleteAccountBody = registry.register('DeleteAccountBody', deleteAccountBodySchema)
 const asrStartBody = registry.register('AsrStartBody', asrStartBodySchema)
 const asrChunkBody = registry.register('AsrChunkBody', asrChunkBodySchema)
 const asrEndBody = registry.register('AsrEndBody', asrEndBodySchema)
@@ -218,6 +223,7 @@ const simpleSuccessResponse = registry.register(
   simpleSuccessResponseSchema
 )
 const sessionsResponse = registry.register('SessionsResponse', sessionsResponseSchema)
+const anyDataResponse = registry.register('AnyDataResponse', anyDataResponseSchema)
 const activeStudentResponse = registry.register(
   'SetActiveStudentResponse',
   setActiveStudentResponseSchema
@@ -372,6 +378,25 @@ registry.registerPath({
   summary: '当前账号设备会话',
   security: [{ bearerAuth: [] }],
   responses: { 200: success(sessionsResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/auth/account/export',
+  tags: ['auth'],
+  summary: '导出账号数据',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(anyDataResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/auth/account/delete',
+  tags: ['auth'],
+  summary: '注销账号',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: deleteAccountBody } } } },
+  responses: { 200: success(simpleSuccessResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -1129,6 +1154,16 @@ registry.registerPath({
   security: [{ bearerAuth: [] }],
   request: { query: adminMissingWordsQuery },
   responses: { 200: success(adminResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/admin/audit',
+  tags: ['admin'],
+  summary: '管理端审计日志',
+  security: [{ bearerAuth: [] }],
+  request: { query: adminAuditQuery },
+  responses: { 200: success(anyDataResponse), 400: badRequest }
 })
 
 registry.registerPath({

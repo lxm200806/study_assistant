@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { register, login, refreshToken, getProfile, completeOnboarding, wechatLoginStub, setActiveSubject, setActiveRole } from '../services/auth.service'
 import { archiveChild, createChild, listChildren, renameChild, setActiveLearner } from '../services/family.service'
 import { listSessions, revokeAllSessions, revokeSession, type SessionContext } from '../services/auth-session.service'
+import { deleteAccount, exportAccount } from '../services/account.service'
 
 function sessionContext(req: Request): SessionContext {
   return {
@@ -77,6 +78,24 @@ export async function sessionsHandler(req: Request, res: Response) {
   try {
     const data = await listSessions(req.userId!, req.sessionId)
     res.status(200).json({ success: true, data })
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function exportAccountHandler(req: Request, res: Response) {
+  try {
+    const data = await exportAccount(req.userId!)
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function deleteAccountHandler(req: Request, res: Response) {
+  try {
+    await deleteAccount(req.userId!, String(req.body?.password || ''))
+    res.status(200).json({ success: true })
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
   }

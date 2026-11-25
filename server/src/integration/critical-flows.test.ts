@@ -45,6 +45,7 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
   let pointAnswer = ''
   let accessToken = ''
   let refreshToken = ''
+  let accountUserId = ''
   let learnerId = ''
   let sessionToken = ''
   let sessionWordIds: string[] = []
@@ -157,6 +158,7 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
 
     accessToken = registered.body.accessToken
     refreshToken = registered.body.refreshToken
+    accountUserId = registered.body.user.id
 
     const login = await api
       .post('/api/auth/login')
@@ -637,5 +639,47 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
       .set('Authorization', `Bearer ${loggedIn.body.accessToken}`)
     expect(afterAll.status).toBe(401)
     expect(afterAll.body.code).toBe('SESSION_REVOKED')
+  })
+
+  it('records admin audit logs for Chinese writes', async () => {
+    await prisma.user.update({ where: { id: accountUserId }, data: { isAdmin: true } })
+    const patched = await authed(api.put(`/api/chinese/library/${pointId}`)).send({
+      prompt: '床前明月光'
+    })
+    expect(patched.status).toBe(200)
+
+    const audit = await authed(api.get('/api/admin/audit')).query({ page: 1, limit: 20 })
+    expect(audit.status).toBe(200)
+    expect(
+      audit.body.data.items.some(
+        (item: { action: string }) => item.action === 'chinese.library.patch'
+      )
+    ).toBe(true)
+  })
+
+  it('exports and deletes an account', async () => {
+    const username = `delete_${Date.now()}`
+    const registered = await api
+      .post('/api/auth/register')
+      .send({ username, password: 'TestPass123!' })
+    expect(registered.status).toBe(201)
+    const token = registered.body.accessToken as string
+
+    const exported = await api
+      .get('/api/auth/account/export')
+      .set('Authorization', `Bearer ${token}`)
+    expect(exported.status).toBe(200)
+    expect(exported.body.data.user.username).toBe(username)
+
+    const deleted = await api
+      .post('/api/auth/account/delete')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ password: 'TestPass123!' })
+    expect(deleted.status).toBe(200)
+
+    const afterDelete = await api
+      .get('/api/auth/profile')
+      .set('Authorization', `Bearer ${token}`)
+    expect(afterDelete.status).toBe(401)
   })
 })

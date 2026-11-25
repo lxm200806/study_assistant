@@ -10,8 +10,22 @@ export const credentialsBodySchema = z.object({
   password: z.string().min(1, '密码不能为空').max(200, '密码过长')
 })
 
+export const registerBodySchema = z.object({
+  username: z.string().trim().min(1, '用户名不能为空').max(64, '用户名过长'),
+  password: z.string().min(8, '密码至少 8 位').max(200, '密码过长')
+})
+
 export const refreshBodySchema = z.object({
   refreshToken: z.string().min(1, '缺少 refreshToken')
+})
+
+export const deleteAccountBodySchema = z.object({
+  password: z.string().min(1, '请输入密码').max(200)
+})
+
+export const adminAuditQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).max(100_000).default(1),
+  limit: z.coerce.number().int().min(1).max(200).default(50)
 })
 
 export const setActiveStudentBodySchema = z
@@ -350,6 +364,9 @@ export const ttsQuerySchema = z.object({
 })
 
 export type CredentialsBody = z.infer<typeof credentialsBodySchema>
+export type RegisterBody = z.infer<typeof registerBodySchema>
+export type DeleteAccountBody = z.infer<typeof deleteAccountBodySchema>
+export type AdminAuditQuery = z.infer<typeof adminAuditQuerySchema>
 export type RefreshBody = z.infer<typeof refreshBodySchema>
 export type SetActiveStudentBody = z.infer<typeof setActiveStudentBodySchema>
 export type BookSessionQuery = z.infer<typeof bookSessionQuerySchema>

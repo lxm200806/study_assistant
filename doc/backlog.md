@@ -13,7 +13,8 @@
 | M6a | Playwright：quiz + PC 侧栏、真实 API+DB E2E | DONE |
 | M6b | Playwright：recognition / 语文 drill 页面冒烟 | DONE |
 | M7 | 安全：refresh token 轮换/撤销、设备会话、logout/logout-all | DONE |
-| M8 | 安全：TTS 鉴权、审计日志、CSP/HSTS、账号注销/导出、2FA、依赖/密钥扫描、合规检查 | TODO |
+| M8a | 安全：管理审计、账号导出/注销、密码策略、HSTS、Dependabot、合规清单 | DONE |
+| M8b | 安全残余：TTS 鉴权、2FA、CSP、secret scanning | TODO |
 | M9 | 可观测/运维：Metrics、Sentry、超时熔断、优雅退出、备份/迁移/告警 | TODO |
 | M10 | 性能/扩展：Redis、对象存储、图谱 SQL、缓存、同步 job、索引审查、包体积 | 部分 BLOCKED |
 | M11 | 前端重构/体验：typing 逻辑、course/typing service、错误边界、流式降级、布局回归、清理 | TODO |

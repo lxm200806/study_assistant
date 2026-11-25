@@ -33,6 +33,12 @@ export const authAPI = {
   sessions: async () => {
     return request('/auth/sessions', 'GET')
   },
+  exportData: async () => {
+    return request('/auth/account/export', 'GET')
+  },
+  deleteAccount: async (password: string) => {
+    return request('/auth/account/delete', 'POST', { password })
+  },
   onboard: async (subject?: string) => {
     const body: Record<string, string> = {}
     if (subject) body.subject = subject

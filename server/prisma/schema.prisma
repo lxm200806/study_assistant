@@ -30,8 +30,25 @@ model User {
   bookUnlocks   UserBookUnlock[]
   dailyActives  AccountDailyActive[]
   sessions      AuthSession[]
+  adminAuditLogs AdminAuditLog[]
   chineseUploads ChineseResource[]  @relation("ChineseResourceUploader")
   chineseCards  ChinesePublished[]  @relation("ChineseCardCreator")
+}
+
+/// 管理端写操作审计。actor 删除后保留记录，actorId 置空。
+model AdminAuditLog {
+  id        String   @id @default(uuid())
+  actorId   String?
+  action    String
+  target    String   @default("")
+  detail    Json     @default("{}")
+  ip        String   @default("")
+  createdAt DateTime @default(now())
+
+  actor User? @relation(fields: [actorId], references: [id], onDelete: SetNull)
+
+  @@index([actorId, createdAt])
+  @@map("admin_audit_logs")
 }
 
 /// 设备会话：每个 refresh token 对应一行，轮换时更新哈希，撤销后立即失效。
