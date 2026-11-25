@@ -184,6 +184,6 @@ npm run test:e2e
 
 涉及数据库链路时再跑 `cd server && npm run test:db`；CI 会自动执行这套集成测试。
 
-前端单元测试使用 Vitest + happy-dom + uni mock：`npm run test:frontend` 运行 7 个文件、17 个测试，覆盖 user/vocabulary store 和 storage、quiz-options、tts-text、speech-text、normalize-word 等纯逻辑。Playwright H5 冒烟测试 `e2e/smoke.spec.ts` 有 6 个用例：登录页、登录错误、未登录守卫、模拟登录进入角色页、登录后词书列表、学生拼读设置 → 开始练习。Windows 本地默认使用系统 Edge，其他平台/CI 使用安装的 Chromium；可通过 `PLAYWRIGHT_CHANNEL` 覆盖。
+前端单元测试使用 Vitest + happy-dom + uni mock：`npm run test:frontend` 运行 7 个文件、17 个测试，覆盖 user/vocabulary store 和 storage、quiz-options、tts-text、speech-text、normalize-word 等纯逻辑。Playwright H5 冒烟测试 `e2e/smoke.spec.ts` 有 7 个用例：登录页、登录错误、未登录守卫、模拟登录进入角色页、quiz 开始页 + PC 侧栏、登录后词书列表、学生拼读设置 → 开始练习；`e2e/real-api.spec.ts` 是可选的真实 API + PostgreSQL 测试（`E2E_REAL_API=1`，CI 独立 job 执行）。Windows 本地默认使用系统 Edge，其他平台/CI 使用安装的 Chromium；可通过 `PLAYWRIGHT_CHANNEL` 覆盖。
 
 后端有 31 个 Vitest 文件（30 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（177 个通过，14 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 191 个测试）。API 同时挂载 `/api` 与 `/api/v1`；练习和结算支持可选 `Idempotency-Key`。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；同时构建 H5 和微信小程序、检查 API 生成类型是否最新、运行 Playwright 冒烟，并运行成语内容审计 `npm run audit:idioms`。

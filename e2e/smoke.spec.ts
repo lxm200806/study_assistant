@@ -113,6 +113,43 @@ test('logs in and lands on the role page', async ({ page }) => {
   await loginAsDemo(page)
 })
 
+test('renders the quiz start screen and PC rail', async ({ page }) => {
+  await loginAsDemo(page)
+  await page.route(isApiRequest, route =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ success: true, data: null })
+    })
+  )
+  await page.route(
+    (url: URL) => url.pathname === '/api/books',
+    route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          data: [
+            {
+              id: 'b-e2e',
+              code: 'pep-g3a-2024',
+              name: '人教 PEP 三上',
+              description: 'E2E 测试词书',
+              level: '小学三上',
+              wordCount: 120,
+              isFree: true
+            }
+          ]
+        })
+      })
+  )
+
+  await page.goto('/#/pages/quiz/quiz')
+  await expect(page.getByText('阶段模拟小测', { exact: true })).toBeVisible()
+  await expect(page.locator('uni-left-window')).toBeVisible()
+})
+
 test('renders the authenticated book list', async ({ page }) => {
   await loginAsDemo(page)
   await page.route(
