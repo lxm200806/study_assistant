@@ -15,6 +15,8 @@ model User {
   isAdmin         Boolean   @default(false)
   plan            String    @default("free")
   planExpiresAt   DateTime?
+  paymentOrders   PaymentOrder[]
+  pushTokens      PushToken[]
   wxOpenId        String?   @unique
   hasOnboarded    Boolean   @default(false)
   activeSubject   String    @default("english")
@@ -638,4 +640,52 @@ model TypingSessionLog {
 
   @@index([learnerId, date])
   @@map("typing_session_logs")
+}
+
+// 会员套餐：价格和时长在数据库维护，便于运营调整。
+model MembershipPlan {
+  code       String         @id
+  name       String
+  days       Int
+  priceCents Int
+  active     Boolean        @default(true)
+  createdAt  DateTime       @default(now())
+  orders     PaymentOrder[]
+
+  @@map("membership_plans")
+}
+
+// 支付订单。当前 mock 渠道用于开发/演示，真实渠道接入后沿用同一张表。
+model PaymentOrder {
+  id              String         @id @default(uuid())
+  userId          String
+  planCode        String
+  amountCents     Int
+  status          String         @default("pending")
+  provider        String         @default("mock")
+  providerOrderId String?
+  createdAt       DateTime       @default(now())
+  paidAt          DateTime?
+
+  user User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan MembershipPlan @relation(fields: [planCode], references: [code])
+
+  @@index([userId, createdAt])
+  @@map("payment_orders")
+}
+
+// App/小程序推送 token；真实下发由 APNs/FCM/厂商服务完成。
+model PushToken {
+  id         String   @id @default(uuid())
+  userId     String
+  token      String   @unique
+  platform   String   @default("unknown")
+  provider   String   @default("unknown")
+  createdAt  DateTime @default(now())
+  lastSeenAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("push_tokens")
 }

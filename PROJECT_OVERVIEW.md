@@ -238,6 +238,6 @@ bash deploy.sh
 - 基础设施：JWT、限流、分页、日期键、词形格式化、zod 校验、request id
 - 关键链路集成：注册/登录/刷新 → 学生 → 取书会话 → 提交练习 → 结算会话；语文今日队列 → 提交复习；拼读队列/答题/标记/词表；聊天发送/历史/配额/SSE
 
-`npm test` 默认跳过数据库集成（192 个通过，18 个跳过）；`npm run test:db` 使用临时 `it_*` schema 跑全部 210 个测试。API 同时挂载 `/api` 与 `/api/v1`，练习/结算支持可选 `Idempotency-Key`；登录会话支持 refresh 轮换、设备列表、单设备/全设备退出；支持账号导出/注销和管理端审计日志。CI 的 PostgreSQL 16 服务会自动执行集成测试，并构建 H5 与微信小程序、检查 API 生成类型是否最新。
+`npm test` 默认跳过数据库集成（192 个通过，20 个跳过）；`npm run test:db` 使用临时 `it_*` schema 跑全部 212 个测试。API 同时挂载 `/api` 与 `/api/v1`，练习/结算支持可选 `Idempotency-Key`；登录会话支持 refresh 轮换、设备列表、单设备/全设备退出；支持账号导出/注销和管理端审计日志。CI 的 PostgreSQL 16 服务会自动执行集成测试，并构建 H5 与微信小程序、检查 API 生成类型是否最新。
 
 前端已有 Vitest 单测（8 个文件 / 19 个测试，覆盖 user/vocabulary store、StateHint 和纯逻辑），通过 `npm run test:frontend` 运行；Playwright H5 冒烟测试（`e2e/smoke.spec.ts`，9 个用例，含 quiz/PC 侧栏、认读、语文 drill、拼读）通过 `npm run test:e2e` 运行，另有可选的真实 API + PostgreSQL 测试 `e2e/real-api.spec.ts`（CI 独立 job）。

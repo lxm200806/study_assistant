@@ -14,6 +14,8 @@ import ttsRoutes from './routes/tts.routes'
 import speechRoutes from './routes/speech.routes'
 import typingRoutes from './routes/typing.routes'
 import chineseRoutes from './chinese/chinese.routes'
+import billingRoutes from './routes/billing.routes'
+import pushRoutes from './routes/push.routes'
 import { errorMiddleware } from './middleware/error'
 import { requestContext } from './middleware/request-context'
 import { accessLog } from './middleware/access-log'
@@ -61,6 +63,8 @@ export function createApp() {
     app.use(`${base}/speech`, speechRoutes)
     app.use(`${base}/typing`, typingRoutes)
     app.use(`${base}/chinese`, chineseRoutes)
+    app.use(`${base}/billing`, billingRoutes)
+    app.use(`${base}/push`, pushRoutes)
   }
   mountApi('/api')
   mountApi('/api/v1')

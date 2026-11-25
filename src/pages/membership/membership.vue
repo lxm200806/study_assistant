@@ -5,10 +5,16 @@
       <text class="title">会员</text>
       <text class="lede">开通后，这个账号下的角色都可以用。</text>
 
-      <view class="plan featured">
-        <text class="plan-name">Premium · ¥29.9 / 月</text>
+      <view
+        v-for="plan in plans"
+        :key="plan.code"
+        :class="['plan', plans.length === 1 ? 'featured' : '']"
+      >
+        <text class="plan-name">{{ plan.name }} · ¥{{ priceLabel(plan) }} / {{ plan.days }} 天</text>
         <text class="plan-line">全部英语词书 · AI 陪聊不限 · 阶段小测报告 · 学习周报</text>
-        <button class="start" @tap="subscribe">开通会员（演示）</button>
+        <button class="start" :disabled="paying" @tap="subscribe(plan.code)">
+          {{ paying ? '处理中…' : userStore.plan === 'premium' ? '续费会员' : '开通会员' }}
+        </button>
       </view>
 
       <view class="plan">
@@ -40,13 +46,16 @@ import { ref, onMounted } from 'vue'
 import { onLoad } from '@dcloudio/uni-app'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { useUserStore } from '@/stores/user'
-import { statsAPI } from '@/utils/api'
+import { billingAPI, statsAPI } from '@/utils/api'
+import type { BillingPlan } from '@/api'
 import { requireReadySession } from '@/utils/subject'
 
 const vocabStore = useVocabularyStore()
 const userStore = useUserStore()
 
 const books = ref<Array<{ code: string; name: string; unlockType?: string }>>([])
+const plans = ref<BillingPlan[]>([])
+const paying = ref(false)
 const weeklyReport = ref<{
   totalWords: number
   activeDays: number
@@ -59,8 +68,25 @@ function isUnlocked(book: { unlockType?: string }) {
   return book.unlockType === 'free' || !book.unlockType
 }
 
-function subscribe() {
-  uni.showToast({ title: '演示：会员已开通', icon: 'none' })
+function priceLabel(plan: BillingPlan) {
+  return (plan.priceCents / 100).toFixed(2).replace(/\.00$/, '')
+}
+
+async function subscribe(planCode: string) {
+  if (paying.value) return
+  paying.value = true
+  try {
+    const created = await billingAPI.createOrder(planCode)
+    const order = created.data
+    if (!order?.id) throw new Error('创建订单失败')
+    await billingAPI.payOrder(order.id)
+    await userStore.refreshProfile()
+    uni.showToast({ title: '会员已开通', icon: 'success' })
+  } catch (error) {
+    uni.showToast({ title: (error as Error).message || '支付失败', icon: 'none' })
+  } finally {
+    paying.value = false
+  }
 }
 
 function shareReport() {
@@ -93,6 +119,12 @@ onMounted(async () => {
     books.value = vocabStore.books as typeof books.value
   } catch {
     books.value = []
+  }
+  try {
+    const result = await billingAPI.plans()
+    plans.value = (result.data as BillingPlan[]) || []
+  } catch {
+    plans.value = []
   }
   try {
     const res = await statsAPI.weeklyReport()

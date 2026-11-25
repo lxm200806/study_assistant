@@ -2,6 +2,7 @@ import { seedChineseIfEmpty } from './chinese/materials'
 import { ensureAdminUser } from './services/admin-seed.service'
 import { initBooks } from './services/book.service'
 import { initVocabulary } from './utils/seed'
+import { ensureBillingPlans } from './services/billing.service'
 
 export interface BootState {
   ready: boolean
@@ -45,6 +46,7 @@ export async function bootstrap(): Promise<void> {
     }
   })
   await runStep('chinese', () => seedChineseIfEmpty())
+  await runStep('billing', () => ensureBillingPlans())
   state.ready = true
   state.finishedAt = new Date().toISOString()
 }

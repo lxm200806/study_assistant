@@ -730,4 +730,39 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
       .set('Authorization', `Bearer ${token}`)
     expect(afterDelete.status).toBe(401)
   })
+
+  it('creates and pays a mock membership order', async () => {
+    const plans = await api.get('/api/billing/plans')
+    expect(plans.status).toBe(200)
+    const planCode = plans.body.data[0]?.code
+    expect(planCode).toBeTruthy()
+
+    const created = await authed(api.post('/api/billing/orders')).send({ planCode })
+    expect(created.status).toBe(201)
+    const orderId = created.body.data.id as string
+    expect(created.body.data.status).toBe('pending')
+
+    const paid = await authed(api.post(`/api/billing/orders/${orderId}/pay`)).send({
+      provider: 'mock'
+    })
+    expect(paid.status).toBe(200)
+    expect(paid.body.data.status).toBe('paid')
+
+    const profile = await authed(api.get('/api/auth/profile'))
+    expect(profile.body.data.plan).toBe('premium')
+  })
+
+  it('registers and removes a push token', async () => {
+    const token = `push_${Date.now()}`
+    const registered = await authed(api.post('/api/push/register')).send({
+      token,
+      platform: 'app',
+      provider: 'apns'
+    })
+    expect(registered.status).toBe(201)
+
+    const removed = await authed(api.delete('/api/push/register')).send({ token })
+    expect(removed.status).toBe(200)
+    expect(removed.body.data.removed).toBe(true)
+  })
 })

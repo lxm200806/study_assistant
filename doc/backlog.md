@@ -25,9 +25,10 @@
 | M11b | typing 设置页统计/短文/历史逻辑抽 composable | DONE |
 | M11c | course/typing service 拆分、共享 StateHint 加载/空态 | DONE |
 | M12a | App 脚手架：app-plus manifest、app 构建脚本、支付/推送适配接口、就绪清单 | DONE |
-| M12b | 商业化接入：商户号/IAP/推送证书/商店合规/会员权益 | BLOCKED（需账号与产品决策） |
+| M12b | 商业化：会员套餐/订单、mock 支付开通、推送 token 注册；真实商户/IAP/推送证书留部署配置 | DONE |
 
-## 阻塞说明
+## 说明
 
-- M10 的 Redis、对象存储、CDN 需要部署资源；先做可选适配与文档，不实际接入生产。
+- Redis、对象存储、Sentry 均通过环境变量启用；未配置时使用内存/本地回退。
+- 真实微信/支付宝/Apple IAP、APNs/FCM 和商店发布需要账号与证书，代码侧已保留 provider 边界。
 - M12 的支付、推送、App 上架、隐私合规需要商户号、证书、产品定价与应用商店账号。

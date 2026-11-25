@@ -7,6 +7,7 @@
 - `src/manifest.json` 增加 `app-plus` 配置（Android 网络/录音权限，iOS 占位）。
 - `npm run dev:app` / `npm run build:app` 使用 UniApp App 平台。
 - `src/platform/payment.ts`、`src/platform/push.ts` 定义支付/推送边界，默认返回不可用。
+- 服务端已实现会员套餐/订单、mock 支付开通和推送 token 注册；`PAYMENT_PROVIDER=mock` 为默认值。
 - 跨端适配层已覆盖 storage/audio/stream，App 不需要直接调用 H5 API。
 
 ## 需要账号/证书
