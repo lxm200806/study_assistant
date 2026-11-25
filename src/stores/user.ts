@@ -203,9 +203,9 @@ export const useUserStore = defineStore('user', () => {
     }, 400)
   }
 
-  const login = async (user: string, password: string) => {
+  const login = async (user: string, password: string, code?: string) => {
     try {
-      const result = await authAPI.login(user, password)
+      const result = await authAPI.login(user, password, code)
 
       if (result.accessToken) {
         uni.setStorageSync('accessToken', result.accessToken)

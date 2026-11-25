@@ -17,7 +17,11 @@ import {
   logoutAllHandler,
   sessionsHandler,
   exportAccountHandler,
-  deleteAccountHandler
+  deleteAccountHandler,
+  twoFactorStatusHandler,
+  twoFactorSetupHandler,
+  twoFactorEnableHandler,
+  twoFactorDisableHandler
 } from '../controllers/auth.controller'
 import { authMiddleware } from '../middleware/auth'
 import { rateLimit } from '../middleware/rate-limit'
@@ -25,6 +29,7 @@ import { validateBody, validateParams } from '../validation/validate'
 import {
   credentialsBodySchema,
   deleteAccountBodySchema,
+  disableTwoFactorBodySchema,
   idParamsSchema,
   onboardBodySchema,
   refreshBodySchema,
@@ -32,7 +37,8 @@ import {
   roleBodySchema,
   setActiveStudentBodySchema,
   studentNameBodySchema,
-  subjectBodySchema
+  subjectBodySchema,
+  twoFactorCodeBodySchema
 } from '../validation/schemas'
 import { isProduction } from '../config/env'
 
@@ -54,6 +60,10 @@ router.get('/profile', authMiddleware, profileHandler)
 router.post('/logout', authMiddleware, logoutHandler)
 router.post('/logout-all', authMiddleware, logoutAllHandler)
 router.get('/sessions', authMiddleware, sessionsHandler)
+router.get('/2fa/status', authMiddleware, twoFactorStatusHandler)
+router.post('/2fa/setup', authMiddleware, twoFactorSetupHandler)
+router.post('/2fa/enable', authMiddleware, validateBody(twoFactorCodeBodySchema), twoFactorEnableHandler)
+router.post('/2fa/disable', authMiddleware, validateBody(disableTwoFactorBodySchema), twoFactorDisableHandler)
 router.get('/account/export', authMiddleware, exportAccountHandler)
 router.post('/account/delete', authMiddleware, validateBody(deleteAccountBodySchema), deleteAccountHandler)
 router.post('/onboard', authMiddleware, validateBody(onboardBodySchema), onboardHandler)

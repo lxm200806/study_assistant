@@ -30,6 +30,7 @@ import {
   courseIdParamsSchema,
   credentialsBodySchema,
   deleteAccountBodySchema,
+  disableTwoFactorBodySchema,
   draftIdParamsSchema,
   dueCountQuerySchema,
   globalMapQuerySchema,
@@ -50,6 +51,7 @@ import {
   subjectBodySchema,
   transcribeBodySchema,
   ttsQuerySchema,
+  twoFactorCodeBodySchema,
   typingActivityBodySchema,
   typingAnswerBodySchema,
   typingArticleAnswerBodySchema,
@@ -94,6 +96,9 @@ import {
   setActiveStudentResponseSchema,
   simpleSuccessResponseSchema,
   speechResponseSchema,
+  twoFactorSetupResponseSchema,
+  twoFactorStatusResponseSchema,
+  twoFactorToggleResponseSchema,
   studentMutationResponseSchema,
   studentsResponseSchema,
   tokenResponseSchema,
@@ -201,6 +206,11 @@ const adminMissingWordsQuery = registry.register(
 )
 const adminAuditQuery = registry.register('AdminAuditQuery', adminAuditQuerySchema)
 const deleteAccountBody = registry.register('DeleteAccountBody', deleteAccountBodySchema)
+const disableTwoFactorBody = registry.register(
+  'DisableTwoFactorBody',
+  disableTwoFactorBodySchema
+)
+const twoFactorCodeBody = registry.register('TwoFactorCodeBody', twoFactorCodeBodySchema)
 const asrStartBody = registry.register('AsrStartBody', asrStartBodySchema)
 const asrChunkBody = registry.register('AsrChunkBody', asrChunkBodySchema)
 const asrEndBody = registry.register('AsrEndBody', asrEndBodySchema)
@@ -224,6 +234,18 @@ const simpleSuccessResponse = registry.register(
 )
 const sessionsResponse = registry.register('SessionsResponse', sessionsResponseSchema)
 const anyDataResponse = registry.register('AnyDataResponse', anyDataResponseSchema)
+const twoFactorStatusResponse = registry.register(
+  'TwoFactorStatusResponse',
+  twoFactorStatusResponseSchema
+)
+const twoFactorSetupResponse = registry.register(
+  'TwoFactorSetupResponse',
+  twoFactorSetupResponseSchema
+)
+const twoFactorToggleResponse = registry.register(
+  'TwoFactorToggleResponse',
+  twoFactorToggleResponseSchema
+)
 const activeStudentResponse = registry.register(
   'SetActiveStudentResponse',
   setActiveStudentResponseSchema
@@ -378,6 +400,44 @@ registry.registerPath({
   summary: '当前账号设备会话',
   security: [{ bearerAuth: [] }],
   responses: { 200: success(sessionsResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/auth/2fa/status',
+  tags: ['auth'],
+  summary: '管理员两步验证状态',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(twoFactorStatusResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/auth/2fa/setup',
+  tags: ['auth'],
+  summary: '生成管理员两步验证密钥',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(twoFactorSetupResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/auth/2fa/enable',
+  tags: ['auth'],
+  summary: '启用管理员两步验证',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: twoFactorCodeBody } } } },
+  responses: { 200: success(twoFactorToggleResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/auth/2fa/disable',
+  tags: ['auth'],
+  summary: '关闭管理员两步验证',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: disableTwoFactorBody } } } },
+  responses: { 200: success(twoFactorToggleResponse), 400: badRequest }
 })
 
 registry.registerPath({

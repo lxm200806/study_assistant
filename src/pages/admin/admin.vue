@@ -63,6 +63,34 @@
       </view>
     </view>
 
+    <view class="security-panel">
+      <text class="security-title">管理员两步验证</text>
+      <text class="security-hint">
+        {{ twoFactorEnabled ? '已开启：登录时需要 6 位动态验证码' : twoFactorSecret ? '请把密钥加入验证器，再输入 6 位验证码启用' : '开启后登录需要验证器生成的 6 位验证码' }}
+      </text>
+      <text v-if="twoFactorSecret" class="secret">{{ twoFactorSecret }}</text>
+      <input
+        v-if="!twoFactorEnabled"
+        v-model="twoFactorCode"
+        class="security-input"
+        maxlength="6"
+        placeholder="6 位验证码"
+      />
+      <button v-if="!twoFactorEnabled" class="security-btn" @tap="twoFactorSecret ? enableTwoFactor : setupTwoFactor">
+        {{ twoFactorSecret ? '启用两步验证' : '生成密钥' }}
+      </button>
+      <input
+        v-if="twoFactorEnabled"
+        v-model="disablePassword"
+        class="security-input"
+        type="password"
+        placeholder="输入密码以关闭"
+      />
+      <button v-if="twoFactorEnabled" class="security-btn danger" @tap="disableTwoFactor">
+        关闭两步验证
+      </button>
+    </view>
+
     </view>
   </view>
 </template>
@@ -70,7 +98,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
-import { adminAPI } from '@/utils/api'
+import { adminAPI, authAPI } from '@/utils/api'
 import { requireReadySession } from '@/utils/subject'
 
 const userStore = useUserStore()
@@ -109,6 +137,10 @@ const activeBook = ref('')
 const activeIssue = ref<IssueFilter>('')
 const page = ref(1)
 const total = ref(0)
+const twoFactorEnabled = ref(false)
+const twoFactorSecret = ref('')
+const twoFactorCode = ref('')
+const disablePassword = ref('')
 const limit = 40
 
 const totalPages = computed(() => Math.max(1, Math.ceil(total.value / limit)))
@@ -160,6 +192,50 @@ const goPage = async (p: number) => {
   await loadWords()
 }
 
+const loadTwoFactor = async () => {
+  try {
+    const result = await authAPI.twoFactorStatus()
+    const data = result.data as { enabled?: boolean } | undefined
+    twoFactorEnabled.value = !!data?.enabled
+  } catch {
+    twoFactorEnabled.value = false
+  }
+}
+
+const setupTwoFactor = async () => {
+  try {
+    const result = await authAPI.twoFactorSetup()
+    const data = result.data as { secret?: string } | undefined
+    twoFactorSecret.value = data?.secret || ''
+    if (!twoFactorSecret.value) throw new Error('生成密钥失败')
+  } catch (error) {
+    uni.showToast({ title: (error as Error).message || '生成失败', icon: 'none' })
+  }
+}
+
+const enableTwoFactor = async () => {
+  try {
+    await authAPI.twoFactorEnable(twoFactorCode.value)
+    twoFactorEnabled.value = true
+    twoFactorSecret.value = ''
+    twoFactorCode.value = ''
+    uni.showToast({ title: '两步验证已开启', icon: 'success' })
+  } catch (error) {
+    uni.showToast({ title: (error as Error).message || '验证码不正确', icon: 'none' })
+  }
+}
+
+const disableTwoFactor = async () => {
+  try {
+    await authAPI.twoFactorDisable(disablePassword.value)
+    twoFactorEnabled.value = false
+    disablePassword.value = ''
+    uni.showToast({ title: '两步验证已关闭', icon: 'success' })
+  } catch (error) {
+    uni.showToast({ title: (error as Error).message || '关闭失败', icon: 'none' })
+  }
+}
+
 onMounted(async () => {
   if (!(await requireReadySession({ allowNoStudents: true, allowMissingRole: true }))) return
   if (!userStore.isParent) {
@@ -174,7 +250,7 @@ onMounted(async () => {
     setTimeout(() => uni.reLaunch({ url: '/pages/login/login' }), 800)
     return
   }
-  await loadSummary()
+  await Promise.all([loadSummary(), loadTwoFactor()])
   await loadWords()
 })
 </script>
@@ -370,6 +446,59 @@ onMounted(async () => {
 .page-info {
   font-size: 24rpx;
   color: #666;
+}
+
+.security-panel {
+  margin-top: 24rpx;
+  padding: 24rpx;
+  background: white;
+  border-radius: 16rpx;
+}
+
+.security-title {
+  display: block;
+  font-size: 30rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+
+.security-hint {
+  display: block;
+  font-size: 24rpx;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 16rpx;
+}
+
+.secret {
+  display: block;
+  padding: 12rpx;
+  margin-bottom: 12rpx;
+  border-radius: 8rpx;
+  background: #f4f1ea;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.security-input {
+  display: block;
+  height: 80rpx;
+  padding: 0 20rpx;
+  margin-bottom: 12rpx;
+  border: 1px solid #ddd;
+  border-radius: 12rpx;
+}
+
+.security-btn {
+  background: #667eea;
+  color: white;
+  border-radius: 24rpx;
+  font-size: 26rpx;
+  line-height: 72rpx;
+
+  &.danger {
+    background: #f56c6c;
+  }
 }
 
 </style>

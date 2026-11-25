@@ -51,6 +51,27 @@ export const anyDataResponseSchema = z.object({
   data: anyObject
 })
 
+export const twoFactorStatusResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    isAdmin: z.boolean(),
+    enabled: z.boolean()
+  })
+})
+
+export const twoFactorSetupResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    secret: z.string(),
+    otpauth: z.string()
+  })
+})
+
+export const twoFactorToggleResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({ enabled: z.boolean() })
+})
+
 export const setActiveStudentResponseSchema = z.object({
   success: z.literal(true),
   learner: learnerSummarySchema,

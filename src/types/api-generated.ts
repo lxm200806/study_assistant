@@ -336,6 +336,172 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/auth/2fa/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 管理员两步验证状态 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TwoFactorStatusResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/2fa/setup": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 生成管理员两步验证密钥 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TwoFactorSetupResponse"];
+                    };
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/2fa/enable": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 启用管理员两步验证 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TwoFactorCodeBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TwoFactorToggleResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/2fa/disable": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 关闭管理员两步验证 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["DisableTwoFactorBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TwoFactorToggleResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/auth/account/export": {
         parameters: {
             query?: never;
@@ -3985,6 +4151,7 @@ export interface components {
         CredentialsBody: {
             username: string;
             password: string;
+            code?: string;
         };
         RefreshBody: {
             refreshToken: string;
@@ -4259,6 +4426,12 @@ export interface components {
         DeleteAccountBody: {
             password: string;
         };
+        DisableTwoFactorBody: {
+            password: string;
+        };
+        TwoFactorCodeBody: {
+            code: string;
+        };
         AsrStartBody: {
             /** @enum {string} */
             encoding?: "lame" | "raw";
@@ -4375,6 +4548,29 @@ export interface components {
             success: true;
             data: {
                 [key: string]: unknown;
+            };
+        };
+        TwoFactorStatusResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                isAdmin: boolean;
+                enabled: boolean;
+            };
+        };
+        TwoFactorSetupResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                secret: string;
+                otpauth: string;
+            };
+        };
+        TwoFactorToggleResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                enabled: boolean;
             };
         };
         SetActiveStudentResponse: {

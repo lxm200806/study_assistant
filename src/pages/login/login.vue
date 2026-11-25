@@ -30,6 +30,15 @@
           @input="onPassword"
           @confirm="handleLogin"
         />
+        <text class="label">两步验证码（管理员，可选）</text>
+        <input
+          class="field"
+          type="number"
+          :value="code"
+          placeholder="6 位数字"
+          maxlength="6"
+          @input="onCode"
+        />
         <button class="start" @tap="handleLogin">登录</button>
         <button class="ghost" @tap="showRegister">注册账号</button>
       </view>
@@ -45,6 +54,7 @@ const userStore = useUserStore()
 
 const username = ref('')
 const password = ref('')
+const code = ref('')
 
 function onUsername(e: any) {
   username.value = String(e?.detail?.value ?? '')
@@ -54,12 +64,16 @@ function onPassword(e: any) {
   password.value = String(e?.detail?.value ?? '')
 }
 
+function onCode(e: any) {
+  code.value = String(e?.detail?.value ?? '')
+}
+
 const handleLogin = () => {
   if (!username.value || !password.value) {
     uni.showToast({ title: '请输入用户名和密码', icon: 'none' })
     return
   }
-  userStore.login(username.value, password.value)
+  userStore.login(username.value, password.value, code.value || undefined)
 }
 
 const showRegister = () => {

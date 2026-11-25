@@ -7,7 +7,16 @@ export const typingSourceSchema = z.enum(['smart', 'wrong', 'favorite', 'random'
 
 export const credentialsBodySchema = z.object({
   username: z.string().trim().min(1, '用户名不能为空').max(64, '用户名过长'),
-  password: z.string().min(1, '密码不能为空').max(200, '密码过长')
+  password: z.string().min(1, '密码不能为空').max(200, '密码过长'),
+  code: z.string().regex(/^\d{6}$/, '两步验证码应为 6 位数字').optional()
+})
+
+export const twoFactorCodeBodySchema = z.object({
+  code: z.string().regex(/^\d{6}$/, '两步验证码应为 6 位数字')
+})
+
+export const disableTwoFactorBodySchema = z.object({
+  password: z.string().min(1, '请输入密码').max(200)
 })
 
 export const registerBodySchema = z.object({
@@ -365,6 +374,8 @@ export const ttsQuerySchema = z.object({
 
 export type CredentialsBody = z.infer<typeof credentialsBodySchema>
 export type RegisterBody = z.infer<typeof registerBodySchema>
+export type TwoFactorCodeBody = z.infer<typeof twoFactorCodeBodySchema>
+export type DisableTwoFactorBody = z.infer<typeof disableTwoFactorBodySchema>
 export type DeleteAccountBody = z.infer<typeof deleteAccountBodySchema>
 export type AdminAuditQuery = z.infer<typeof adminAuditQuerySchema>
 export type RefreshBody = z.infer<typeof refreshBodySchema>

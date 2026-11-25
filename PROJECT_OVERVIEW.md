@@ -130,7 +130,7 @@ server/
 
 `GET /api/books`、`GET /api/chinese/meta`、`GET /api/tts` 和注册/登录/刷新接口无需登录；其余 `/api` 接口需要 Bearer token。
 
-开发环境 `/api-docs` 由 `server/src/validation/openapi.ts` 的 zod 注册表生成，当前覆盖 84 个核心接口；其余接口以路由文件为准。
+开发环境 `/api-docs` 由 `server/src/validation/openapi.ts` 的 zod 注册表生成，当前覆盖 88 个核心接口；其余接口以路由文件为准。
 
 ## 核心数据模型
 
@@ -238,6 +238,6 @@ bash deploy.sh
 - 基础设施：JWT、限流、分页、日期键、词形格式化、zod 校验、request id
 - 关键链路集成：注册/登录/刷新 → 学生 → 取书会话 → 提交练习 → 结算会话；语文今日队列 → 提交复习；拼读队列/答题/标记/词表；聊天发送/历史/配额/SSE
 
-`npm test` 默认跳过数据库集成（179 个通过，17 个跳过）；`npm run test:db` 使用临时 `it_*` schema 跑全部 196 个测试。API 同时挂载 `/api` 与 `/api/v1`，练习/结算支持可选 `Idempotency-Key`；登录会话支持 refresh 轮换、设备列表、单设备/全设备退出；支持账号导出/注销和管理端审计日志。CI 的 PostgreSQL 16 服务会自动执行集成测试，并构建 H5 与微信小程序、检查 API 生成类型是否最新。
+`npm test` 默认跳过数据库集成（183 个通过，18 个跳过）；`npm run test:db` 使用临时 `it_*` schema 跑全部 201 个测试。API 同时挂载 `/api` 与 `/api/v1`，练习/结算支持可选 `Idempotency-Key`；登录会话支持 refresh 轮换、设备列表、单设备/全设备退出；支持账号导出/注销和管理端审计日志。CI 的 PostgreSQL 16 服务会自动执行集成测试，并构建 H5 与微信小程序、检查 API 生成类型是否最新。
 
 前端已有 Vitest 单测（7 个文件 / 17 个测试，覆盖 user/vocabulary store 和纯逻辑），通过 `npm run test:frontend` 运行；Playwright H5 冒烟测试（`e2e/smoke.spec.ts`，9 个用例，含 quiz/PC 侧栏、认读、语文 drill、拼读）通过 `npm run test:e2e` 运行，另有可选的真实 API + PostgreSQL 测试 `e2e/real-api.spec.ts`（CI 独立 job）。

@@ -8,6 +8,7 @@ import {
   rotateSessionTokens,
   type SessionContext
 } from './auth-session.service'
+import { buildTotpUri, generateTotpSecret, verifyTotp } from '../utils/totp'
 
 function normalizeSubject(value?: string | null) {
   return value === 'chinese' ? 'chinese' : 'english'
@@ -103,6 +104,13 @@ export async function login(dto: LoginDto, context?: SessionContext): Promise<To
 
   if (!isPasswordValid) {
     throw new Error('Invalid credentials')
+  }
+
+  if (user.twoFactorEnabled) {
+    if (!dto.code) throw new Error('请输入两步验证码')
+    if (!verifyTotp(user.twoFactorSecret || '', dto.code)) {
+      throw new Error('两步验证码不正确')
+    }
   }
 
   const tokens = await issueSessionTokens(user, context)
@@ -208,4 +216,53 @@ export async function wechatLoginStub(code: string, context?: SessionContext) {
   }
   const tokens = await issueSessionTokens(user, context)
   return { ...tokens, user: await withFamily(user) }
+}
+
+export async function getTwoFactorStatus(userId: string) {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { isAdmin: true, twoFactorEnabled: true }
+  })
+  if (!user) throw new Error('User not found')
+  return { isAdmin: user.isAdmin, enabled: user.twoFactorEnabled }
+}
+
+export async function setupTwoFactor(userId: string) {
+  const user = await prisma.user.findUnique({ where: { id: userId } })
+  if (!user) throw new Error('User not found')
+  if (!user.isAdmin) throw new Error('仅管理员可以开启两步验证')
+  if (user.twoFactorEnabled) throw new Error('两步验证已开启')
+  const secret = generateTotpSecret()
+  await prisma.user.update({
+    where: { id: userId },
+    data: { twoFactorSecret: secret, twoFactorEnabled: false }
+  })
+  return {
+    secret,
+    otpauth: buildTotpUri(secret, user.username)
+  }
+}
+
+export async function enableTwoFactor(userId: string, code: string) {
+  const user = await prisma.user.findUnique({ where: { id: userId } })
+  if (!user) throw new Error('User not found')
+  if (!user.isAdmin) throw new Error('仅管理员可以开启两步验证')
+  if (!user.twoFactorSecret) throw new Error('请先生成两步验证密钥')
+  if (!verifyTotp(user.twoFactorSecret, code)) throw new Error('两步验证码不正确')
+  await prisma.user.update({
+    where: { id: userId },
+    data: { twoFactorEnabled: true }
+  })
+  return { enabled: true }
+}
+
+export async function disableTwoFactor(userId: string, password: string) {
+  const user = await prisma.user.findUnique({ where: { id: userId } })
+  if (!user) throw new Error('User not found')
+  if (!(await comparePassword(password, user.passwordHash))) throw new Error('密码不正确')
+  await prisma.user.update({
+    where: { id: userId },
+    data: { twoFactorSecret: null, twoFactorEnabled: false }
+  })
+  return { enabled: false }
 }

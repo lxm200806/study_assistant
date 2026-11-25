@@ -3,6 +3,7 @@ export type WordType = 'listening' | 'speaking' | 'reading' | 'writing'
 export interface LoginDto {
   username: string
   password: string
+  code?: string
 }
 
 export interface RegisterDto {

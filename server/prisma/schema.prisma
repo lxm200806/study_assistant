@@ -22,6 +22,8 @@ model User {
   activeLearnerId String?   @unique
   activeRole      String    @default("parent")
   tokenVersion    Int       @default(0)
+  twoFactorSecret String?
+  twoFactorEnabled Boolean  @default(false)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 

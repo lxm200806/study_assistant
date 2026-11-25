@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { register, login, refreshToken, getProfile, completeOnboarding, wechatLoginStub, setActiveSubject, setActiveRole } from '../services/auth.service'
+import { register, login, refreshToken, getProfile, completeOnboarding, wechatLoginStub, setActiveSubject, setActiveRole, getTwoFactorStatus, setupTwoFactor, enableTwoFactor, disableTwoFactor } from '../services/auth.service'
 import { archiveChild, createChild, listChildren, renameChild, setActiveLearner } from '../services/family.service'
 import { listSessions, revokeAllSessions, revokeSession, type SessionContext } from '../services/auth-session.service'
 import { deleteAccount, exportAccount } from '../services/account.service'
@@ -28,13 +28,13 @@ export async function registerHandler(req: Request, res: Response) {
 
 export async function loginHandler(req: Request, res: Response) {
   try {
-    const { username, password } = req.body
+    const { username, password, code } = req.body
 
     if (!username || !password) {
       return res.status(400).json({ error: 'Username and password are required' })
     }
 
-    const result = await login({ username, password }, sessionContext(req))
+    const result = await login({ username, password, code }, sessionContext(req))
     res.status(200).json(result)
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
@@ -77,6 +77,42 @@ export async function logoutAllHandler(req: Request, res: Response) {
 export async function sessionsHandler(req: Request, res: Response) {
   try {
     const data = await listSessions(req.userId!, req.sessionId)
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function twoFactorStatusHandler(req: Request, res: Response) {
+  try {
+    const data = await getTwoFactorStatus(req.userId!)
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function twoFactorSetupHandler(req: Request, res: Response) {
+  try {
+    const data = await setupTwoFactor(req.userId!)
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function twoFactorEnableHandler(req: Request, res: Response) {
+  try {
+    const data = await enableTwoFactor(req.userId!, String(req.body?.code || ''))
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function twoFactorDisableHandler(req: Request, res: Response) {
+  try {
+    const data = await disableTwoFactor(req.userId!, String(req.body?.password || ''))
     res.status(200).json({ success: true, data })
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })

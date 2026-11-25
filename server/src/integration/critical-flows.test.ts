@@ -5,6 +5,7 @@ import path from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import request from 'supertest'
 import { PrismaClient } from '@prisma/client'
+import { generateTotp } from '../utils/totp'
 
 const TEST_BASE_URL = process.env.TEST_DATABASE_URL || process.env.DATABASE_URL || ''
 const DB_TESTS_ENABLED =
@@ -46,6 +47,7 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
   let accessToken = ''
   let refreshToken = ''
   let accountUserId = ''
+  let accountUsername = ''
   let learnerId = ''
   let sessionToken = ''
   let sessionWordIds: string[] = []
@@ -159,6 +161,7 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     accessToken = registered.body.accessToken
     refreshToken = registered.body.refreshToken
     accountUserId = registered.body.user.id
+    accountUsername = username
 
     const login = await api
       .post('/api/auth/login')
@@ -658,6 +661,48 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
         (item: { action: string }) => item.action === 'chinese.library.patch'
       )
     ).toBe(true)
+  })
+
+  it('supports admin TOTP two-factor login', async () => {
+    await prisma.user.update({
+      where: { id: accountUserId },
+      data: { isAdmin: true, twoFactorEnabled: false, twoFactorSecret: null }
+    })
+
+    const setup = await authed(api.post('/api/auth/2fa/setup'))
+    expect(setup.status).toBe(200)
+    const secret = String(setup.body.data.secret)
+    expect(secret).toBeTruthy()
+
+    const enabled = await authed(api.post('/api/auth/2fa/enable')).send({
+      code: generateTotp(secret)
+    })
+    expect(enabled.status).toBe(200)
+
+    const missing = await api.post('/api/auth/login').send({
+      username: accountUsername,
+      password: 'TestPass123!'
+    })
+    expect(missing.status).toBe(400)
+
+    const loggedIn = await api.post('/api/auth/login').send({
+      username: accountUsername,
+      password: 'TestPass123!',
+      code: generateTotp(secret)
+    })
+    expect(loggedIn.status).toBe(200)
+    expect(loggedIn.body.accessToken).toBeTruthy()
+
+    const disabled = await authed(api.post('/api/auth/2fa/disable')).send({
+      password: 'TestPass123!'
+    })
+    expect(disabled.status).toBe(200)
+
+    const afterDisable = await api.post('/api/auth/login').send({
+      username: accountUsername,
+      password: 'TestPass123!'
+    })
+    expect(afterDisable.status).toBe(200)
   })
 
   it('exports and deletes an account', async () => {

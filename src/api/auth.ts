@@ -9,8 +9,8 @@ import type {
 } from '@/types/api-contract'
 
 export const authAPI = {
-  login: async (username: string, password: string) => {
-    const body: CredentialsBody = { username, password }
+  login: async (username: string, password: string, code?: string) => {
+    const body: CredentialsBody = { username, password, ...(code ? { code } : {}) }
     return requestDirect<TokenResponse>('/auth/login', 'POST', body)
   },
   register: async (username: string, password: string) => {
@@ -38,6 +38,18 @@ export const authAPI = {
   },
   deleteAccount: async (password: string) => {
     return request('/auth/account/delete', 'POST', { password })
+  },
+  twoFactorStatus: async () => {
+    return request('/auth/2fa/status', 'GET')
+  },
+  twoFactorSetup: async () => {
+    return request('/auth/2fa/setup', 'POST')
+  },
+  twoFactorEnable: async (code: string) => {
+    return request('/auth/2fa/enable', 'POST', { code })
+  },
+  twoFactorDisable: async (password: string) => {
+    return request('/auth/2fa/disable', 'POST', { password })
   },
   onboard: async (subject?: string) => {
     const body: Record<string, string> = {}

@@ -15,7 +15,7 @@
 | M7 | 安全：refresh token 轮换/撤销、设备会话、logout/logout-all | DONE |
 | M8a | 安全：管理审计、账号导出/注销、密码策略、HSTS、Dependabot、合规清单 | DONE |
 | M8b | 安全：TTS token 鉴权、CSP Report-Only、gitleaks + npm audit CI | DONE |
-| M8c | 安全残余：管理员 TOTP 2FA | TODO |
+| M8c | 管理员 TOTP 2FA（登录、绑定、关闭、管理端 UI） | DONE |
 | M9a | 可观测/运维：Metrics、外部超时、优雅退出、Web healthcheck、备份/告警、request id | DONE |
 | M9b | 可观测残余：Sentry/APM（需 DSN/账号） | BLOCKED |
 | M10a | 性能/扩展：内容同步 CLI、多实例扩展文档 | DONE |
