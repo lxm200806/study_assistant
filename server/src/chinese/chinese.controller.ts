@@ -13,10 +13,10 @@ import {
   patchCourse,
   patchPublished,
   previewCourse,
-  reviewPoint,
   syncCourse,
   todayQueue
 } from './course.service'
+import { reviewPoint } from './review.service'
 import {
   importDrafts,
   listDrafts,
