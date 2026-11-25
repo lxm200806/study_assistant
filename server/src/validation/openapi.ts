@@ -28,9 +28,17 @@ import {
   setActiveStudentBodySchema,
   studentNameBodySchema,
   subjectBodySchema,
+  typingActivityBodySchema,
   typingAnswerBodySchema,
+  typingArticleAnswerBodySchema,
+  typingArticleCreateBodySchema,
+  typingArticleUpdateBodySchema,
+  typingDueQuerySchema,
+  typingHistoryQuerySchema,
   typingListBodySchema,
+  typingMarkBodySchema,
   typingQueueQuerySchema,
+  typingSessionBodySchema,
   typingSummaryQuerySchema,
   vocabListQuerySchema
 } from './schemas'
@@ -64,11 +72,20 @@ import {
   vocabDetailResponseSchema,
   vocabListResponseSchema,
   vocabStatsResponseSchema,
+  typingActivityResponseSchema,
   typingAnswerResponseSchema,
+  typingArticleAnswerResponseSchema,
+  typingArticleResponseSchema,
+  typingArticlesResponseSchema,
   typingCreateListResponseSchema,
   typingDeleteListResponseSchema,
+  typingDeleteResponseSchema,
+  typingDueArticlesResponseSchema,
+  typingHistoryResponseSchema,
   typingListsResponseSchema,
+  typingMarkResponseSchema,
   typingQueueResponseSchema,
+  typingSessionResponseSchema,
   typingSummaryResponseSchema
 } from './responses'
 
@@ -97,6 +114,23 @@ const quizWordsQuery = registry.register('QuizWordsQuery', quizWordsQuerySchema)
 const quizSubmitBody = registry.register('QuizSubmitBody', quizSubmitBodySchema)
 const typingSummaryQuery = registry.register('TypingSummaryQuery', typingSummaryQuerySchema)
 const typingListBody = registry.register('TypingListBody', typingListBodySchema)
+const typingMarkBody = registry.register('TypingMarkBody', typingMarkBodySchema)
+const typingActivityBody = registry.register('TypingActivityBody', typingActivityBodySchema)
+const typingHistoryQuery = registry.register('TypingHistoryQuery', typingHistoryQuerySchema)
+const typingSessionBody = registry.register('TypingSessionBody', typingSessionBodySchema)
+const typingArticleCreateBody = registry.register(
+  'TypingArticleCreateBody',
+  typingArticleCreateBodySchema
+)
+const typingArticleUpdateBody = registry.register(
+  'TypingArticleUpdateBody',
+  typingArticleUpdateBodySchema
+)
+const typingArticleAnswerBody = registry.register(
+  'TypingArticleAnswerBody',
+  typingArticleAnswerBodySchema
+)
+const typingDueQuery = registry.register('TypingDueQuery', typingDueQuerySchema)
 const idParams = registry.register('IdParams', idParamsSchema)
 const chatSendBody = registry.register('ChatSendBody', chatSendBodySchema)
 const chatHistoryQuery = registry.register('ChatHistoryQuery', chatHistoryQuerySchema)
@@ -157,6 +191,27 @@ const typingDeleteListResponse = registry.register(
 const chatSendResponse = registry.register('ChatSendResponse', chatSendResponseSchema)
 const chatHistoryResponse = registry.register('ChatHistoryResponse', chatHistoryResponseSchema)
 const chatQuotaResponse = registry.register('ChatQuotaResponse', chatQuotaResponseSchema)
+const typingMarkResponse = registry.register('TypingMarkResponse', typingMarkResponseSchema)
+const typingActivityResponse = registry.register(
+  'TypingActivityResponse',
+  typingActivityResponseSchema
+)
+const typingHistoryResponse = registry.register('TypingHistoryResponse', typingHistoryResponseSchema)
+const typingSessionResponse = registry.register('TypingSessionResponse', typingSessionResponseSchema)
+const typingArticlesResponse = registry.register(
+  'TypingArticlesResponse',
+  typingArticlesResponseSchema
+)
+const typingArticleResponse = registry.register('TypingArticleResponse', typingArticleResponseSchema)
+const typingDueArticlesResponse = registry.register(
+  'TypingDueArticlesResponse',
+  typingDueArticlesResponseSchema
+)
+const typingArticleAnswerResponse = registry.register(
+  'TypingArticleAnswerResponse',
+  typingArticleAnswerResponseSchema
+)
+const typingDeleteResponse = registry.register('TypingDeleteResponse', typingDeleteResponseSchema)
 
 const badRequest = { description: '请求参数不正确' }
 const success = (schema: z.ZodTypeAny) => ({
@@ -516,6 +571,131 @@ registry.registerPath({
   security: [{ bearerAuth: [] }],
   request: { body: { content: { 'application/json': { schema: typingAnswerBody } } } },
   responses: { 200: success(typingAnswerResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'put',
+  path: '/api/typing/marks',
+  tags: ['typing'],
+  summary: '收藏/跳过标记',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: typingMarkBody } } } },
+  responses: { 200: success(typingMarkResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/typing/activity',
+  tags: ['typing'],
+  summary: '记录拼读活动',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: typingActivityBody } } } },
+  responses: { 200: success(typingActivityResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/typing/history',
+  tags: ['typing'],
+  summary: '拼读历史',
+  security: [{ bearerAuth: [] }],
+  request: { query: typingHistoryQuery },
+  responses: { 200: success(typingHistoryResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/typing/sessions',
+  tags: ['typing'],
+  summary: '记录拼读会话',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: typingSessionBody } } } },
+  responses: { 201: success(typingSessionResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/typing/articles',
+  tags: ['typing'],
+  summary: '短文列表',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(typingArticlesResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/typing/articles',
+  tags: ['typing'],
+  summary: '创建短文',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: typingArticleCreateBody } } } },
+  responses: { 201: success(typingArticleResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/typing/articles/due',
+  tags: ['typing'],
+  summary: '到期短文句子',
+  security: [{ bearerAuth: [] }],
+  request: { query: typingDueQuery },
+  responses: { 200: success(typingDueArticlesResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/typing/articles/answer',
+  tags: ['typing'],
+  summary: '提交短文句子答案',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: typingArticleAnswerBody } } } },
+  responses: { 200: success(typingArticleAnswerResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/typing/articles/{id}/preview',
+  tags: ['typing'],
+  summary: '预览短文编辑影响',
+  security: [{ bearerAuth: [] }],
+  request: {
+    params: idParams,
+    body: { content: { 'application/json': { schema: typingArticleUpdateBody } } }
+  },
+  responses: { 200: success(typingArticleResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'put',
+  path: '/api/typing/articles/{id}',
+  tags: ['typing'],
+  summary: '更新短文',
+  security: [{ bearerAuth: [] }],
+  request: {
+    params: idParams,
+    body: { content: { 'application/json': { schema: typingArticleUpdateBody } } }
+  },
+  responses: { 200: success(typingArticleResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/typing/articles/{id}',
+  tags: ['typing'],
+  summary: '短文详情',
+  security: [{ bearerAuth: [] }],
+  request: { params: idParams },
+  responses: { 200: success(typingArticleResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'delete',
+  path: '/api/typing/articles/{id}',
+  tags: ['typing'],
+  summary: '删除短文',
+  security: [{ bearerAuth: [] }],
+  request: { params: idParams },
+  responses: { 200: success(typingDeleteResponse), 400: badRequest }
 })
 
 registry.registerPath({

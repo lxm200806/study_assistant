@@ -437,3 +437,63 @@ export const bookRandomResponseSchema = z.object({
   success: z.literal(true),
   data: z.array(bookWordSchema)
 })
+
+export const typingMarkResponseSchema = z.object({
+  success: z.literal(true),
+  data: z
+    .object({
+      wordId: z.string(),
+      favorite: z.boolean(),
+      skipMastered: z.boolean(),
+      inWrongBook: z.boolean(),
+      wrongSource: z.string().optional(),
+      wrongStreak: z.number().optional()
+    })
+    .passthrough()
+})
+
+export const typingActivityResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({ recorded: z.number() })
+})
+
+export const typingHistoryResponseSchema = z.object({
+  success: z.literal(true),
+  data: anyObject
+})
+
+export const typingSessionResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    id: z.string(),
+    date: z.string(),
+    charsPerMinute: z.number()
+  })
+})
+
+export const typingArticlesResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(anyObject)
+})
+
+export const typingArticleResponseSchema = z.object({
+  success: z.literal(true),
+  data: anyObject
+})
+
+export const typingDueArticlesResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    total: z.number(),
+    sentences: z.array(anyObject)
+  })
+})
+
+export const typingArticleAnswerResponseSchema = z.object({
+  success: z.literal(true),
+  data: anyObject
+})
+
+export const typingDeleteResponseSchema = z.object({
+  success: z.literal(true)
+})

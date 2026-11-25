@@ -1586,6 +1586,508 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/typing/marks": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** 收藏/跳过标记 */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TypingMarkBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingMarkResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/activity": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 记录拼读活动 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TypingActivityBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingActivityResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 拼读历史 */
+        get: {
+            parameters: {
+                query: {
+                    end: string;
+                    days?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingHistoryResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/sessions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 记录拼读会话 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TypingSessionBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingSessionResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/articles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 短文列表 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingArticlesResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        /** 创建短文 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TypingArticleCreateBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingArticleResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/articles/due": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 到期短文句子 */
+        get: {
+            parameters: {
+                query?: {
+                    count?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingDueArticlesResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/articles/answer": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 提交短文句子答案 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TypingArticleAnswerBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingArticleAnswerResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/articles/{id}/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 预览短文编辑影响 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TypingArticleUpdateBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingArticleResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/articles/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 短文详情 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingArticleResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        /** 更新短文 */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TypingArticleUpdateBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingArticleResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        post?: never;
+        /** 删除短文 */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingDeleteResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/chinese/courses/{courseId}/today": {
         parameters: {
             query?: never;
@@ -1991,6 +2493,49 @@ export interface components {
         TypingListBody: {
             name?: string;
             text: string;
+        };
+        TypingMarkBody: {
+            wordId: string;
+            favorite?: boolean;
+            skipMastered?: boolean;
+        };
+        TypingActivityBody: {
+            count: number | null;
+        };
+        TypingHistoryQuery: {
+            end: string;
+            /** @default 112 */
+            days: number;
+        };
+        TypingSessionBody: {
+            date: string;
+            durationMs: number | null;
+            typedChars: number | null;
+            correctChars: number | null;
+            itemCount: number;
+            correctCount: number | null;
+            /** @enum {string} */
+            kind: "words" | "article";
+        };
+        TypingArticleCreateBody: {
+            title?: string;
+            body: string;
+            translation?: string;
+        };
+        TypingArticleUpdateBody: {
+            title?: string;
+            body?: string;
+            translation?: string;
+        };
+        TypingArticleAnswerBody: {
+            articleKey: string;
+            sentenceIndex: number | null;
+            isCorrect: boolean;
+            linear?: boolean;
+        };
+        TypingDueQuery: {
+            /** @default 20 */
+            count: number;
         };
         IdParams: {
             id: string;
@@ -2589,6 +3134,76 @@ export interface components {
                 remaining: number;
                 isPremium: boolean;
             };
+        };
+        TypingMarkResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                wordId: string;
+                favorite: boolean;
+                skipMastered: boolean;
+                inWrongBook: boolean;
+                wrongSource?: string;
+                wrongStreak?: number;
+            };
+        };
+        TypingActivityResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                recorded: number;
+            };
+        };
+        TypingHistoryResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                [key: string]: unknown;
+            };
+        };
+        TypingSessionResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                date: string;
+                charsPerMinute: number;
+            };
+        };
+        TypingArticlesResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                [key: string]: unknown;
+            }[];
+        };
+        TypingArticleResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                [key: string]: unknown;
+            };
+        };
+        TypingDueArticlesResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                total: number;
+                sentences: {
+                    [key: string]: unknown;
+                }[];
+            };
+        };
+        TypingArticleAnswerResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                [key: string]: unknown;
+            };
+        };
+        TypingDeleteResponse: {
+            /** @enum {boolean} */
+            success: true;
         };
     };
     responses: never;

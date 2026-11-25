@@ -339,6 +339,59 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     expect(deleted.status).toBe(200)
   })
 
+  it('runs the typing activity, history, session and article flow', async () => {
+    const today = new Date().toISOString().slice(0, 10)
+
+    const activity = await authed(api.post('/api/typing/activity')).send({ count: 1 })
+    expect(activity.status).toBe(200)
+    expect(activity.body.data.recorded).toBe(1)
+
+    const session = await authed(api.post('/api/typing/sessions')).send({
+      date: today,
+      durationMs: 1000,
+      typedChars: 10,
+      correctChars: 9,
+      itemCount: 1,
+      correctCount: 1,
+      kind: 'words'
+    })
+    expect(session.status).toBe(201)
+
+    const history = await authed(api.get('/api/typing/history')).query({
+      end: today,
+      days: 7
+    })
+    expect(history.status).toBe(200)
+
+    const created = await authed(api.post('/api/typing/articles')).send({
+      title: '集成测试短文',
+      body: 'This is a test sentence.',
+      translation: ''
+    })
+    expect(created.status).toBe(201)
+    const articleId = String(created.body.data.id)
+
+    const articles = await authed(api.get('/api/typing/articles'))
+    expect(articles.status).toBe(200)
+    expect(articles.body.data.some((item: { id: string }) => item.id === articleId)).toBe(true)
+
+    const due = await authed(api.get('/api/typing/articles/due')).query({ count: 10 })
+    expect(due.status).toBe(200)
+
+    const article = await authed(api.get(`/api/typing/articles/${articleId}`))
+    expect(article.status).toBe(200)
+    expect(article.body.data.body).toContain('test sentence')
+
+    const preview = await authed(api.post(`/api/typing/articles/${articleId}/preview`)).send({
+      body: 'This is a test sentence.',
+      translation: ''
+    })
+    expect(preview.status).toBe(200)
+
+    const removed = await authed(api.delete(`/api/typing/articles/${articleId}`))
+    expect(removed.status).toBe(200)
+  })
+
   it('runs the chat send, history, quota and SSE stream flow', async () => {
     const sent = await authed(api.post('/api/chat/send')).send({
       content: 'hello',

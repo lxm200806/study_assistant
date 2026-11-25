@@ -5,7 +5,8 @@
 | 模块 | 范围 | 状态 |
 | --- | --- | --- |
 | M1 | 接口契约：auth/家庭、词汇、词书剩余接口 + 对应测试 | DONE |
-| M2 | 接口契约：拼读/短文、语文资源/草稿、admin、speech/TTS | TODO |
+| M2a | 接口契约：拼读标记/历史/会话、短文 CRUD + 对应测试 | DONE |
+| M2b | 接口契约：语文课程/资源/草稿、admin、speech/TTS | TODO |
 | M3 | 错误信封统一、API 版本策略、分页与幂等 | TODO |
 | M4 | 异常链路集成测试：401/403/409、recheck、短文、资源/草稿、admin | TODO |
 | M5 | 前端 Vitest：stores、composables、纯逻辑 | TODO |

@@ -2,15 +2,13 @@ import { Request, Response } from 'express'
 import { studyUserId } from '../middleware/auth'
 import { signSessionToken } from '../services/session-token'
 import {
-  clampCount,
-  parseHistoryDate,
   parseTypingMode,
   REJECT_TEXT,
   type RejectReason
 } from '../services/typing-logic'
 import { internalError } from '../utils/http-errors'
 import { validatedQuery } from '../validation/validate'
-import type { TypingQueueQuery, TypingSummaryQuery } from '../validation/schemas'
+import type { TypingDueQuery, TypingHistoryQuery, TypingQueueQuery, TypingSummaryQuery } from '../validation/schemas'
 import {
   createPracticeArticle,
   deletePracticeArticle,
@@ -241,7 +239,8 @@ export async function typingDueArticlesHandler(req: Request, res: Response) {
   try {
     const learnerId = studyOrReply(req, res)
     if (!learnerId) return
-    const data = await getDueArticleSentences(learnerId, clampCount(req.query.count, 20))
+    const { count } = validatedQuery<TypingDueQuery>(res)
+    const data = await getDueArticleSentences(learnerId, count)
     res.status(200).json({ success: true, data })
   } catch (error) {
     sendTypingError(res, error)
@@ -274,10 +273,7 @@ export async function typingHistoryHandler(req: Request, res: Response) {
   try {
     const learnerId = studyOrReply(req, res)
     if (!learnerId) return
-    const end = parseHistoryDate(req.query.end)
-    if (!end) return res.status(400).json({ success: false, error: '请检查练习内容' })
-    const requested = Number(req.query.days)
-    const days = Number.isFinite(requested) ? Math.min(140, Math.max(7, Math.floor(requested))) : 112
+    const { end, days } = validatedQuery<TypingHistoryQuery>(res)
     const data = await getTypingHistory(learnerId, end, days)
     res.status(200).json({ success: true, data })
   } catch (error) {

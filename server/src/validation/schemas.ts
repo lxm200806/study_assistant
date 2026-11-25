@@ -179,6 +179,54 @@ export const chatHistoryQuerySchema = z.object({
   limit: z.coerce.number().int().min(1).max(100).default(20)
 })
 
+export const typingMarkBodySchema = z.object({
+  wordId: z.string().min(1, '缺少 wordId'),
+  favorite: z.boolean().optional(),
+  skipMastered: z.boolean().optional()
+})
+
+export const typingActivityBodySchema = z.object({
+  count: z.coerce.number().int().min(0).max(10_000)
+})
+
+export const typingHistoryQuerySchema = z.object({
+  end: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, '日期格式应为 YYYY-MM-DD'),
+  days: z.coerce.number().int().min(7).max(140).default(112)
+})
+
+export const typingSessionBodySchema = z.object({
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, '日期格式应为 YYYY-MM-DD'),
+  durationMs: z.coerce.number().int().min(0).max(2 * 60 * 60 * 1000),
+  typedChars: z.coerce.number().int().min(0).max(20_000),
+  correctChars: z.coerce.number().int().min(0).max(20_000),
+  itemCount: z.coerce.number().int().min(1).max(200),
+  correctCount: z.coerce.number().int().min(0).max(200),
+  kind: z.enum(['words', 'article'])
+})
+
+export const typingArticleCreateBodySchema = z.object({
+  title: z.string().trim().max(40).optional(),
+  body: z.string().trim().min(1, '短文内容不能为空').max(20_000),
+  translation: z.string().max(20_000).optional()
+})
+
+export const typingArticleUpdateBodySchema = z.object({
+  title: z.string().trim().max(40).optional(),
+  body: z.string().trim().min(1).max(20_000).optional(),
+  translation: z.string().max(20_000).optional()
+})
+
+export const typingArticleAnswerBodySchema = z.object({
+  articleKey: z.string().min(1),
+  sentenceIndex: z.coerce.number().int().min(0),
+  isCorrect: z.boolean(),
+  linear: z.boolean().optional()
+})
+
+export const typingDueQuerySchema = z.object({
+  count: z.coerce.number().int().min(1).max(50).default(20)
+})
+
 export type CredentialsBody = z.infer<typeof credentialsBodySchema>
 export type RefreshBody = z.infer<typeof refreshBodySchema>
 export type SetActiveStudentBody = z.infer<typeof setActiveStudentBodySchema>
@@ -208,3 +256,11 @@ export type TypingSummaryQuery = z.infer<typeof typingSummaryQuerySchema>
 export type TypingListBody = z.infer<typeof typingListBodySchema>
 export type ChatSendBody = z.infer<typeof chatSendBodySchema>
 export type ChatHistoryQuery = z.infer<typeof chatHistoryQuerySchema>
+export type TypingMarkBody = z.infer<typeof typingMarkBodySchema>
+export type TypingActivityBody = z.infer<typeof typingActivityBodySchema>
+export type TypingHistoryQuery = z.infer<typeof typingHistoryQuerySchema>
+export type TypingSessionBody = z.infer<typeof typingSessionBodySchema>
+export type TypingArticleCreateBody = z.infer<typeof typingArticleCreateBodySchema>
+export type TypingArticleUpdateBody = z.infer<typeof typingArticleUpdateBodySchema>
+export type TypingArticleAnswerBody = z.infer<typeof typingArticleAnswerBodySchema>
+export type TypingDueQuery = z.infer<typeof typingDueQuerySchema>
