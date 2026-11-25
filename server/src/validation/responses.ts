@@ -497,3 +497,17 @@ export const typingArticleAnswerResponseSchema = z.object({
 export const typingDeleteResponseSchema = z.object({
   success: z.literal(true)
 })
+
+/** 语文接口直接返回业务对象，不包 success/data。 */
+export const chineseObjectResponseSchema = anyObject
+export const chineseArrayResponseSchema = z.array(anyObject)
+
+export const adminResponseSchema = z.object({
+  success: z.literal(true),
+  data: anyObject
+})
+
+export const speechResponseSchema = z.object({
+  success: z.literal(true),
+  data: anyObject
+})

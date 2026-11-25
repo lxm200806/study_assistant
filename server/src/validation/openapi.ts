@@ -5,29 +5,49 @@ import {
 } from '@asteasolutions/zod-to-openapi'
 import { z } from 'zod'
 import {
+  adminMissingWordsQuerySchema,
+  asrChunkBodySchema,
+  asrEndBodySchema,
+  asrStartBodySchema,
+  assessBodySchema,
   bookMapQuerySchema,
   bookSessionQuerySchema,
   chatHistoryQuerySchema,
   chatSendBodySchema,
+  chineseAdminPatchBodySchema,
+  chineseCourseBodySchema,
+  chineseCoursePatchBodySchema,
+  chineseCoursePreviewBodySchema,
+  chineseDraftImportBodySchema,
+  chineseDraftListQuerySchema,
+  chineseDraftPatchBodySchema,
+  chineseLibraryQuerySchema,
+  chinesePublishBatchBodySchema,
   chineseReviewBodySchema,
   chineseTodayQuerySchema,
   completeSessionBodySchema,
+  courseIdParamsSchema,
   credentialsBodySchema,
+  draftIdParamsSchema,
   dueCountQuerySchema,
   globalMapQuerySchema,
   historyQuerySchema,
   idParamsSchema,
   onboardBodySchema,
+  pointIdParamsSchema,
   practiceBodySchema,
   quizSubmitBodySchema,
   quizWordsQuerySchema,
   randomCountQuerySchema,
   refreshBodySchema,
+  resourceIdParamsSchema,
   reviewQuerySchema,
   roleBodySchema,
   setActiveStudentBodySchema,
   studentNameBodySchema,
   subjectBodySchema,
+  transcribeBodySchema,
+  ttsQuerySchema,
   typingActivityBodySchema,
   typingAnswerBodySchema,
   typingArticleAnswerBodySchema,
@@ -43,8 +63,11 @@ import {
   vocabListQuerySchema
 } from './schemas'
 import {
+  adminResponseSchema,
   bookDetailResponseSchema,
   bookListResponseSchema,
+  chineseArrayResponseSchema,
+  chineseObjectResponseSchema,
   bookMapResponseSchema,
   bookProgressResponseSchema,
   bookRandomResponseSchema,
@@ -65,6 +88,7 @@ import {
   refreshResponseSchema,
   reviewResponseSchema,
   setActiveStudentResponseSchema,
+  speechResponseSchema,
   studentMutationResponseSchema,
   studentsResponseSchema,
   tokenResponseSchema,
@@ -132,6 +156,50 @@ const typingArticleAnswerBody = registry.register(
 )
 const typingDueQuery = registry.register('TypingDueQuery', typingDueQuerySchema)
 const idParams = registry.register('IdParams', idParamsSchema)
+const pointIdParams = registry.register('PointIdParams', pointIdParamsSchema)
+const courseIdParams = registry.register('CourseIdParams', courseIdParamsSchema)
+const resourceIdParams = registry.register('ResourceIdParams', resourceIdParamsSchema)
+const draftIdParams = registry.register('DraftIdParams', draftIdParamsSchema)
+const chineseCourseBody = registry.register('ChineseCourseBody', chineseCourseBodySchema)
+const chineseCoursePreviewBody = registry.register(
+  'ChineseCoursePreviewBody',
+  chineseCoursePreviewBodySchema
+)
+const chineseCoursePatchBody = registry.register(
+  'ChineseCoursePatchBody',
+  chineseCoursePatchBodySchema
+)
+const chineseLibraryQuery = registry.register('ChineseLibraryQuery', chineseLibraryQuerySchema)
+const chineseAdminPatchBody = registry.register(
+  'ChineseAdminPatchBody',
+  chineseAdminPatchBodySchema
+)
+const chineseDraftImportBody = registry.register(
+  'ChineseDraftImportBody',
+  chineseDraftImportBodySchema
+)
+const chineseDraftListQuery = registry.register(
+  'ChineseDraftListQuery',
+  chineseDraftListQuerySchema
+)
+const chineseDraftPatchBody = registry.register(
+  'ChineseDraftPatchBody',
+  chineseDraftPatchBodySchema
+)
+const chinesePublishBatchBody = registry.register(
+  'ChinesePublishBatchBody',
+  chinesePublishBatchBodySchema
+)
+const adminMissingWordsQuery = registry.register(
+  'AdminMissingWordsQuery',
+  adminMissingWordsQuerySchema
+)
+const asrStartBody = registry.register('AsrStartBody', asrStartBodySchema)
+const asrChunkBody = registry.register('AsrChunkBody', asrChunkBodySchema)
+const asrEndBody = registry.register('AsrEndBody', asrEndBodySchema)
+const transcribeBody = registry.register('TranscribeBody', transcribeBodySchema)
+const assessBody = registry.register('AssessBody', assessBodySchema)
+const ttsQuery = registry.register('TtsQuery', ttsQuerySchema)
 const chatSendBody = registry.register('ChatSendBody', chatSendBodySchema)
 const chatHistoryQuery = registry.register('ChatHistoryQuery', chatHistoryQuerySchema)
 const practiceBody = registry.register('PracticeBody', practiceBodySchema)
@@ -212,6 +280,13 @@ const typingArticleAnswerResponse = registry.register(
   typingArticleAnswerResponseSchema
 )
 const typingDeleteResponse = registry.register('TypingDeleteResponse', typingDeleteResponseSchema)
+const chineseObjectResponse = registry.register(
+  'ChineseObjectResponse',
+  chineseObjectResponseSchema
+)
+const chineseArrayResponse = registry.register('ChineseArrayResponse', chineseArrayResponseSchema)
+const adminResponse = registry.register('AdminResponse', adminResponseSchema)
+const speechResponse = registry.register('SpeechResponse', speechResponseSchema)
 
 const badRequest = { description: '请求参数不正确' }
 const success = (schema: z.ZodTypeAny) => ({
@@ -764,6 +839,336 @@ registry.registerPath({
   summary: '聊天剩余额度',
   security: [{ bearerAuth: [] }],
   responses: { 200: success(chatQuotaResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chinese/meta',
+  tags: ['chinese'],
+  summary: '语文元数据',
+  responses: { 200: success(chineseObjectResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chinese/library',
+  tags: ['chinese'],
+  summary: '语文题库',
+  security: [{ bearerAuth: [] }],
+  request: { query: chineseLibraryQuery },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'patch',
+  path: '/api/chinese/library/{pointId}',
+  tags: ['chinese'],
+  summary: '编辑知识点卡',
+  security: [{ bearerAuth: [] }],
+  request: {
+    params: pointIdParams,
+    body: { content: { 'application/json': { schema: chineseAdminPatchBody } } }
+  },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chinese/library/coverage',
+  tags: ['chinese'],
+  summary: '语文题库覆盖度',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(chineseObjectResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chinese/courses',
+  tags: ['chinese'],
+  summary: '创建语文课程',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: chineseCourseBody } } } },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chinese/courses',
+  tags: ['chinese'],
+  summary: '语文课程列表',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(chineseArrayResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chinese/courses/preview',
+  tags: ['chinese'],
+  summary: '预览语文课程',
+  security: [{ bearerAuth: [] }],
+  request: {
+    body: { content: { 'application/json': { schema: chineseCoursePreviewBody } } }
+  },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'patch',
+  path: '/api/chinese/courses/{courseId}',
+  tags: ['chinese'],
+  summary: '修改语文课程',
+  security: [{ bearerAuth: [] }],
+  request: {
+    params: courseIdParams,
+    body: { content: { 'application/json': { schema: chineseCoursePatchBody } } }
+  },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'delete',
+  path: '/api/chinese/courses/{courseId}',
+  tags: ['chinese'],
+  summary: '删除语文课程',
+  security: [{ bearerAuth: [] }],
+  request: { params: courseIdParams },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chinese/courses/{courseId}/sync',
+  tags: ['chinese'],
+  summary: '同步课程题卡',
+  security: [{ bearerAuth: [] }],
+  request: { params: courseIdParams },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chinese/courses/{courseId}/plan',
+  tags: ['chinese'],
+  summary: '语文课程计划',
+  security: [{ bearerAuth: [] }],
+  request: { params: courseIdParams },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chinese/courses/{courseId}/stats',
+  tags: ['chinese'],
+  summary: '语文课程统计',
+  security: [{ bearerAuth: [] }],
+  request: { params: courseIdParams },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chinese/resources',
+  tags: ['chinese'],
+  summary: '语文资源列表',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(chineseArrayResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chinese/resources/sync-incremental',
+  tags: ['chinese'],
+  summary: '增量同步官方资源',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(chineseObjectResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chinese/resources/sync-all',
+  tags: ['chinese'],
+  summary: '全量同步官方资源',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(chineseObjectResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chinese/resources/seed',
+  tags: ['chinese'],
+  summary: '初始化语文资源',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(chineseObjectResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chinese/resources/{resourceId}',
+  tags: ['chinese'],
+  summary: '语文资源详情',
+  security: [{ bearerAuth: [] }],
+  request: { params: resourceIdParams },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chinese/resources/{resourceId}/sync',
+  tags: ['chinese'],
+  summary: '同步单个语文资源',
+  security: [{ bearerAuth: [] }],
+  request: { params: resourceIdParams },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chinese/drafts/import',
+  tags: ['chinese'],
+  summary: '导入题卡草稿',
+  security: [{ bearerAuth: [] }],
+  request: {
+    body: { content: { 'application/json': { schema: chineseDraftImportBody } } }
+  },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chinese/drafts',
+  tags: ['chinese'],
+  summary: '草稿列表',
+  security: [{ bearerAuth: [] }],
+  request: { query: chineseDraftListQuery },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chinese/drafts/publish-batch',
+  tags: ['chinese'],
+  summary: '批量发布草稿',
+  security: [{ bearerAuth: [] }],
+  request: {
+    body: { content: { 'application/json': { schema: chinesePublishBatchBody } } }
+  },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'patch',
+  path: '/api/chinese/drafts/{draftId}',
+  tags: ['chinese'],
+  summary: '编辑草稿',
+  security: [{ bearerAuth: [] }],
+  request: {
+    params: draftIdParams,
+    body: { content: { 'application/json': { schema: chineseDraftPatchBody } } }
+  },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chinese/drafts/{draftId}/publish',
+  tags: ['chinese'],
+  summary: '发布草稿',
+  security: [{ bearerAuth: [] }],
+  request: { params: draftIdParams },
+  responses: { 200: success(chineseObjectResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/admin/vocabulary/missing/summary',
+  tags: ['admin'],
+  summary: '缺词摘要',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(adminResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/admin/vocabulary/missing',
+  tags: ['admin'],
+  summary: '缺词列表',
+  security: [{ bearerAuth: [] }],
+  request: { query: adminMissingWordsQuery },
+  responses: { 200: success(adminResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/speech/asr/config',
+  tags: ['speech'],
+  summary: 'ASR 配置',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(speechResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/speech/asr/session/start',
+  tags: ['speech'],
+  summary: '开始 ASR 会话',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: asrStartBody } } } },
+  responses: { 200: success(speechResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/speech/asr/session/chunk',
+  tags: ['speech'],
+  summary: '推送 ASR 音频分片',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: asrChunkBody } } } },
+  responses: { 200: success(speechResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/speech/asr/session/end',
+  tags: ['speech'],
+  summary: '结束 ASR 会话',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: asrEndBody } } } },
+  responses: { 200: success(speechResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/speech/transcribe',
+  tags: ['speech'],
+  summary: '整段语音转写',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: transcribeBody } } } },
+  responses: { 200: success(speechResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/speech/assess',
+  tags: ['speech'],
+  summary: '口语评分',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: assessBody } } } },
+  responses: { 200: success(speechResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/tts',
+  tags: ['tts'],
+  summary: '文本转语音',
+  request: { query: ttsQuery },
+  responses: {
+    200: {
+      description: 'MP3 音频',
+      content: { 'audio/mpeg': { schema: z.string().openapi({ format: 'binary' }) } }
+    },
+    400: badRequest
+  }
 })
 
 const generator = new OpenApiGeneratorV3(registry.definitions)

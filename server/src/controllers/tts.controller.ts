@@ -2,18 +2,16 @@ import fs from 'fs'
 import { Request, Response, NextFunction } from 'express'
 import { getWordAudioPath } from '../services/tts.service'
 import { parseTtsAccent, parseTtsGender } from '../services/tts-accent'
+import { validatedQuery } from '../validation/validate'
+import type { TtsQuery } from '../validation/schemas'
 
 export async function getTtsHandler(req: Request, res: Response, next: NextFunction) {
   try {
-    const word = String(req.query.word || '').trim()
-    if (!word) {
-      return res.status(400).json({ error: 'word is required' })
-    }
-
+    const { word, accent, gender } = validatedQuery<TtsQuery>(res)
     const filePath = await getWordAudioPath(
       word,
-      parseTtsAccent(req.query.accent),
-      parseTtsGender(req.query.gender)
+      parseTtsAccent(accent),
+      parseTtsGender(gender)
     )
     res.setHeader('Content-Type', 'audio/mpeg')
     res.setHeader('Cache-Control', 'public, max-age=31536000, immutable')

@@ -227,6 +227,128 @@ export const typingDueQuerySchema = z.object({
   count: z.coerce.number().int().min(1).max(50).default(20)
 })
 
+const courseFilters = {
+  kinds: z.array(z.string().trim().min(1).max(20)).max(20).optional(),
+  levels: z.array(z.string().trim().min(1).max(20)).max(20).optional(),
+  grades: z.array(z.string().trim().min(1).max(20)).max(20).optional(),
+  difficulties: z.array(z.string().trim().min(1).max(20)).max(20).optional(),
+  dailyMinutes: z.coerce.number().int().min(5).max(120).optional(),
+  newEnergy: z.coerce.number().int().min(0).max(10_000).optional(),
+  reviewEnergy: z.coerce.number().int().min(0).max(10_000).optional()
+}
+
+export const chineseCourseBodySchema = z.object({
+  name: z.string().trim().min(1, '请填写课程名称').max(60),
+  note: z.string().trim().max(300).optional(),
+  ...courseFilters,
+  reviewDefaultTest: z.boolean().optional()
+})
+
+export const chineseCoursePreviewBodySchema = z.object({
+  ...courseFilters
+})
+
+export const chineseCoursePatchBodySchema = z.object({
+  name: z.string().trim().min(1).max(60).optional(),
+  note: z.string().trim().max(300).optional(),
+  ...courseFilters,
+  reviewDefaultTest: z.boolean().optional()
+})
+
+const flagSchema = z.enum(['0', '1', 'true', 'false']).transform(value => value === '1' || value === 'true')
+
+export const chineseLibraryQuerySchema = z.object({
+  kinds: z.string().optional(),
+  levels: z.string().optional(),
+  grades: z.string().optional(),
+  kind: z.string().optional(),
+  level: z.string().optional(),
+  grade: z.string().optional(),
+  difficulty: z.string().optional(),
+  difficulties: z.string().optional(),
+  questionType: z.string().optional(),
+  audience: z.string().optional(),
+  limit: z.coerce.number().int().min(1).max(500).optional(),
+  offset: z.coerce.number().int().min(0).max(100_000).optional(),
+  answers: flagSchema.optional(),
+  includeInactive: flagSchema.optional(),
+  unlinked: flagSchema.optional(),
+  resourceId: z.string().trim().min(1).optional()
+})
+
+export const chineseAdminPatchBodySchema = z.record(z.string(), z.any())
+
+export const chineseDraftImportBodySchema = z.object({
+  text: z.string().trim().min(1, '导入内容不能为空').max(200_000),
+  resourceId: z.string().trim().min(1).optional()
+})
+
+export const chineseDraftListQuerySchema = z.object({
+  status: z.enum(['draft', 'published', 'discarded']).optional(),
+  limit: z.coerce.number().int().min(1).max(200).optional(),
+  offset: z.coerce.number().int().min(0).max(100_000).optional()
+})
+
+export const chineseDraftPatchBodySchema = z.record(z.string(), z.any())
+
+export const chinesePublishBatchBodySchema = z.object({
+  ids: z.array(z.string().min(1)).min(1, '请选择要发布的草稿').max(200)
+})
+
+export const pointIdParamsSchema = z.object({
+  pointId: z.string().trim().min(1).max(64)
+})
+
+export const courseIdParamsSchema = z.object({
+  courseId: z.string().trim().min(1).max(64)
+})
+
+export const resourceIdParamsSchema = z.object({
+  resourceId: z.string().trim().min(1).max(64)
+})
+
+export const draftIdParamsSchema = z.object({
+  draftId: z.string().trim().min(1).max(64)
+})
+
+export const adminMissingWordsQuerySchema = z.object({
+  bookCode: z.string().trim().min(1).max(64).optional(),
+  page: z.coerce.number().int().min(1).max(100_000).default(1),
+  limit: z.coerce.number().int().min(1).max(200).default(50),
+  issueType: z.enum(['missing_cn', 'parse_error']).optional()
+})
+
+export const asrStartBodySchema = z.object({
+  encoding: z.enum(['lame', 'raw']).optional()
+})
+
+export const asrChunkBodySchema = z.object({
+  sessionId: z.string().min(1),
+  audioBase64: z.string().min(1).max(20_000_000),
+  isLast: z.boolean().optional()
+})
+
+export const asrEndBodySchema = z.object({
+  sessionId: z.string().min(1)
+})
+
+export const transcribeBodySchema = z.object({
+  audioBase64: z.string().min(1).max(20_000_000),
+  mimeType: z.string().trim().max(100).optional()
+})
+
+export const assessBodySchema = z.object({
+  referenceText: z.string().trim().min(1).max(5_000),
+  audioBase64: z.string().min(1).max(20_000_000),
+  mimeType: z.string().trim().max(100).optional()
+})
+
+export const ttsQuerySchema = z.object({
+  word: z.string().trim().min(1, '缺少 word').max(200),
+  accent: z.enum(['us', 'uk']).optional(),
+  gender: z.enum(['female', 'male']).optional()
+})
+
 export type CredentialsBody = z.infer<typeof credentialsBodySchema>
 export type RefreshBody = z.infer<typeof refreshBodySchema>
 export type SetActiveStudentBody = z.infer<typeof setActiveStudentBodySchema>
@@ -264,3 +386,17 @@ export type TypingArticleCreateBody = z.infer<typeof typingArticleCreateBodySche
 export type TypingArticleUpdateBody = z.infer<typeof typingArticleUpdateBodySchema>
 export type TypingArticleAnswerBody = z.infer<typeof typingArticleAnswerBodySchema>
 export type TypingDueQuery = z.infer<typeof typingDueQuerySchema>
+export type ChineseCourseBody = z.infer<typeof chineseCourseBodySchema>
+export type ChineseCoursePreviewBody = z.infer<typeof chineseCoursePreviewBodySchema>
+export type ChineseCoursePatchBody = z.infer<typeof chineseCoursePatchBodySchema>
+export type ChineseLibraryQuery = z.infer<typeof chineseLibraryQuerySchema>
+export type ChineseDraftImportBody = z.infer<typeof chineseDraftImportBodySchema>
+export type ChineseDraftListQuery = z.infer<typeof chineseDraftListQuerySchema>
+export type ChinesePublishBatchBody = z.infer<typeof chinesePublishBatchBodySchema>
+export type AdminMissingWordsQuery = z.infer<typeof adminMissingWordsQuerySchema>
+export type AsrStartBody = z.infer<typeof asrStartBodySchema>
+export type AsrChunkBody = z.infer<typeof asrChunkBodySchema>
+export type AsrEndBody = z.infer<typeof asrEndBodySchema>
+export type TranscribeBody = z.infer<typeof transcribeBodySchema>
+export type AssessBody = z.infer<typeof assessBodySchema>
+export type TtsQuery = z.infer<typeof ttsQuerySchema>

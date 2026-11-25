@@ -475,4 +475,34 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     const archived = await authed(api.delete(`/api/auth/students/${studentId}`))
     expect(archived.status).toBe(200)
   })
+
+  it('serves Chinese/library endpoints and enforces admin/speech/tts boundaries', async () => {
+    const meta = await api.get('/api/chinese/meta')
+    expect(meta.status).toBe(200)
+
+    const library = await authed(api.get('/api/chinese/library')).query({ limit: 5 })
+    expect(library.status).toBe(200)
+
+    const courses = await authed(api.get('/api/chinese/courses'))
+    expect(courses.status).toBe(200)
+    expect(Array.isArray(courses.body)).toBe(true)
+
+    const resources = await authed(api.get('/api/chinese/resources'))
+    expect(resources.status).toBe(200)
+
+    const drafts = await authed(api.get('/api/chinese/drafts'))
+    expect(drafts.status).toBe(403)
+
+    const admin = await authed(api.get('/api/admin/vocabulary/missing/summary'))
+    expect(admin.status).toBe(403)
+
+    const asrConfig = await authed(api.get('/api/speech/asr/config'))
+    expect(asrConfig.status).toBe(200)
+
+    const ttsMissing = await api.get('/api/tts')
+    expect(ttsMissing.status).toBe(400)
+
+    const transcribeInvalid = await authed(api.post('/api/speech/transcribe')).send({})
+    expect(transcribeInvalid.status).toBe(400)
+  })
 })

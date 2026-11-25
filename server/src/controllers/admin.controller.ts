@@ -1,6 +1,8 @@
 import { Request, Response } from 'express'
 import { getMissingMeaningSummary, getMissingMeaningWords } from '../services/admin.service'
 import { internalError } from '../utils/http-errors'
+import { validatedQuery } from '../validation/validate'
+import type { AdminMissingWordsQuery } from '../validation/schemas'
 
 export async function getMissingSummaryHandler(req: Request, res: Response) {
   try {
@@ -13,10 +15,8 @@ export async function getMissingSummaryHandler(req: Request, res: Response) {
 
 export async function getMissingWordsHandler(req: Request, res: Response) {
   try {
-    const bookCode = req.query.bookCode as string | undefined
-    const page = parseInt(req.query.page as string) || 1
-    const limit = parseInt(req.query.limit as string) || 50
-    const issueType = req.query.issueType as 'missing_cn' | 'parse_error' | undefined
+    const { bookCode, page, limit, issueType } =
+      validatedQuery<AdminMissingWordsQuery>(res)
 
     const data = await getMissingMeaningWords(bookCode, page, limit, issueType)
     res.status(200).json({ success: true, data })

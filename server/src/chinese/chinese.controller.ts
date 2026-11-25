@@ -27,7 +27,11 @@ import {
 import { HttpError } from './http'
 import { getResource, seedChineseIfEmpty, summarizeSync, syncAllOfficial, syncResourceById } from './materials'
 import { validatedQuery } from '../validation/validate'
-import type { ChineseTodayQuery } from '../validation/schemas'
+import type {
+  ChineseDraftListQuery,
+  ChineseLibraryQuery,
+  ChineseTodayQuery
+} from '../validation/schemas'
 
 async function withUser(req: Request) {
   const user = await prisma.user.findUnique({
@@ -56,9 +60,10 @@ function wrap(handler: (req: Request, res: Response) => Promise<unknown>) {
 
 export const metaHandler = wrap(async () => metaPayload())
 
-export const libraryHandler = wrap(async req => {
+export const libraryHandler = wrap(async (req, res) => {
   const user = await withUser(req)
-  return listLibrary(req.query as Record<string, unknown>, user.isAdmin)
+  const query = validatedQuery<ChineseLibraryQuery>(res)
+  return listLibrary(query as Record<string, unknown>, user.isAdmin)
 })
 
 export const patchLibraryHandler = wrap(async req => {
@@ -171,10 +176,11 @@ export const importDraftsHandler = wrap(async req => {
   return importDrafts(user.id, String(body.text || ''), body.resourceId ? String(body.resourceId) : undefined)
 })
 
-export const listDraftsHandler = wrap(async req => {
+export const listDraftsHandler = wrap(async (req, res) => {
   const user = await withUser(req)
   if (!user.isAdmin) throw new HttpError(403, 'Admin access required')
-  return listDrafts(String(req.query.status || 'draft'), req.query.limit, req.query.offset)
+  const { status, limit, offset } = validatedQuery<ChineseDraftListQuery>(res)
+  return listDrafts(status || 'draft', limit, offset)
 })
 
 export const patchDraftHandler = wrap(async req => {
