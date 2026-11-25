@@ -9,6 +9,8 @@
         "lint:server": "eslint --config server/.eslintrc.cjs --resolve-plugins-relative-to . \"server/src/**/*.ts\" --max-warnings 0",
         "test": "npm --prefix server run test",
         "test:db": "npm --prefix server run test:db",
+        "test:frontend": "vitest run",
+        "test:frontend:watch": "vitest",
         "test:e2e": "playwright test",
         "gen:api": "npm --prefix server run openapi:export && openapi-typescript server/openapi.json -o src/types/api-generated.ts",
         "build:mp-weixin": "node scripts/run-uni.mjs build -p mp-weixin",
@@ -34,16 +36,19 @@
         "@types/node": "^20.11.0",
         "@typescript-eslint/eslint-plugin": "^7.18.0",
         "@typescript-eslint/parser": "^7.18.0",
+        "@vue/test-utils": "^2.6.0",
         "eslint": "^8.57.1",
         "eslint-config-prettier": "^9.1.2",
         "eslint-plugin-prettier": "^5.5.6",
         "eslint-plugin-vue": "^9.32.0",
+        "happy-dom": "^15.11.7",
         "openapi-typescript": "^7.13.0",
         "prettier": "^3.8.4",
         "sass": "^1.100.0",
         "sass-embedded": "^1.100.0",
         "typescript": "^5.3.3",
         "vite": "^5.0.12",
+        "vitest": "^3.2.7",
         "vue-tsc": "^2.2.0"
     }
 }

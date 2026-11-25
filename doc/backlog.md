@@ -9,7 +9,7 @@
 | M2b | 接口契约：语文课程/资源/草稿、admin、speech/TTS | DONE |
 | M3 | 错误信封统一、`/api/v1` 别名、幂等键（单实例） | DONE |
 | M4 | 异常链路集成测试：401/403/404/409、recheck、admin/speech/tts 边界 | DONE |
-| M5 | 前端 Vitest：stores、composables、纯逻辑 | TODO |
+| M5 | 前端 Vitest：stores、纯逻辑（7 个文件 / 17 个测试） | DONE |
 | M6 | Playwright：quiz/recognition/语文页面、真实 API+DB E2E | TODO |
 | M7 | 安全：refresh token 撤销/轮换、设备会话 | TODO |
 | M8 | 安全：TTS 鉴权、审计日志、CSP/HSTS、账号注销/导出、2FA、依赖/密钥扫描、合规检查 | TODO |

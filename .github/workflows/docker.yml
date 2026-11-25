@@ -56,6 +56,9 @@ jobs:
       - name: Lint backend
         run: npm run lint:server
 
+      - name: Frontend unit tests
+        run: npm run test:frontend
+
       - name: Build H5
         run: npm run build:h5
 
