@@ -401,11 +401,11 @@ import type {
   SentenceItem,
   Source,
   Stage,
-  Summary,
   TypingWord,
   WordMode,
   WordPhase
 } from './typing.types'
+import { useTypingSetup } from './useTypingSetup'
 
 const LEARN_MODE_ORDER: WordMode[] = ['follow', 'self']
 const EXAM_MODE_ORDER: ExamMode[] = ['recall', 'dictation']
@@ -501,8 +501,19 @@ function isDueWord(value?: string | null) {
   return Number.isFinite(time) && time <= Date.now()
 }
 
-const summary = ref<Summary | null>(null)
-const articles = ref<ArticleRow[]>([])
+const {
+  summary,
+  articles,
+  historyLoaded,
+  history,
+  hasHistory,
+  maxSpeed,
+  refreshSummary,
+  refreshArticles,
+  refreshHistory,
+  localDate,
+  barHeight
+} = useTypingSetup(wordMode)
 const articleTitle = ref('')
 const articleBody = ref('')
 const articleTranslation = ref('')
@@ -513,11 +524,6 @@ const sentenceWrongWords = ref<string[]>([])
 const roundStartedAt = ref(0)
 const typedChars = ref(0)
 const correctChars = ref(0)
-const historyLoaded = ref(false)
-const history = ref<{
-  days: Array<{ date: string; items: number; level: number }>
-  speed: Array<{ at: string; charsPerMinute: number; items: number }>
-}>({ days: [], speed: [] })
 const busy = ref(false)
 const ready = ref(false)
 
@@ -711,8 +717,6 @@ const showAside = computed(() => (
   || !!(currentWord.value?.note || currentWord.value?.synonyms || currentWord.value?.roots
     || currentWord.value?.etymology || currentWord.value?.phrases || currentWord.value?.topic)
 ))
-const hasHistory = computed(() => history.value.days.some(day => day.items > 0) || history.value.speed.length > 0)
-const maxSpeed = computed(() => history.value.speed.reduce((max, point) => Math.max(max, point.charsPerMinute), 0))
 const promptKicker = computed(() => {
   if (lane.value === 'article') {
     const title = currentSentence.value?.title ? `${currentSentence.value.title} · ` : ''
@@ -738,52 +742,6 @@ async function loadSetup() {
   vocabStore.loadSettings()
   await vocabStore.loadBooks()
   await Promise.all([refreshSummary(), refreshArticles(), refreshHistory()])
-}
-
-async function refreshSummary() {
-  if (!vocabStore.currentBookCode) return
-  try {
-    const result = await typingAPI.summary(vocabStore.currentBookCode, wordMode.value)
-    summary.value = (result.data as Summary) || null
-  } catch {
-    summary.value = null
-  }
-}
-
-async function refreshArticles() {
-  try {
-    const result = await typingAPI.articles()
-    articles.value = (result.data as ArticleRow[]) || []
-  } catch {
-    articles.value = []
-  }
-}
-
-function localDate() {
-  const now = new Date()
-  const month = String(now.getMonth() + 1).padStart(2, '0')
-  const day = String(now.getDate()).padStart(2, '0')
-  return `${now.getFullYear()}-${month}-${day}`
-}
-
-function barHeight(speed: number) {
-  const top = Math.max(maxSpeed.value, 1)
-  return `${Math.max(8, Math.round((speed / top) * 100))}%`
-}
-
-async function refreshHistory() {
-  try {
-    const result = await typingAPI.history(localDate())
-    const data = result.data as typeof history.value
-    history.value = {
-      days: data?.days || [],
-      speed: data?.speed || []
-    }
-  } catch {
-    history.value = { days: [], speed: [] }
-  } finally {
-    historyLoaded.value = true
-  }
 }
 
 function onBookChange() {

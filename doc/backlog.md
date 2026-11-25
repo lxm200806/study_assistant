@@ -21,7 +21,8 @@
 | M10a | 性能/扩展：内容同步 CLI、多实例扩展文档 | DONE |
 | M10b | 性能/扩展残余：Redis、对象存储、图谱 SQL、缓存、包体积 | BLOCKED |
 | M11a | 前端体验：小程序分块流式、全局错误处理、清理空目录/历史文档/未用依赖 | DONE |
-| M11b | 前端重构残余：typing 逻辑、course/typing service、加载/空态统一 | TODO |
+| M11b | typing 设置页统计/短文/历史逻辑抽 composable | DONE |
+| M11c | 重构残余：course/typing service 拆分、加载/空态统一 | TODO |
 | M12 | App/商业化：app-plus、原生音频、推送、支付/IAP、会员、商店合规、埋点 | BLOCKED（需产品/账号决策） |
 
 ## 阻塞说明
