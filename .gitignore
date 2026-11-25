@@ -10,6 +10,7 @@
 *.DS_Store
 *.pid
 *:Zone.Identifier
+.claude/
 .env
 .env.prod
 dist/
