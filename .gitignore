@@ -7,6 +7,8 @@
 # 编译产物
 # 词光插画：thumb 已入库（约 84MB），clone 即可用
 **/__pycache__/
+.npm-cache/
+server/.npm-cache/
 *.DS_Store
 *.pid
 *:Zone.Identifier

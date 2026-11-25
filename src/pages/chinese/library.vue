@@ -205,20 +205,20 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .header { padding: 12rpx 8rpx 24rpx; }
 .title { display: block; font-size: 40rpx; font-weight: 700; }
-.subtitle { display: block; margin-top: 8rpx; color: #888; font-size: 24rpx; }
-.label { display: block; margin: 20rpx 0 12rpx; font-size: 26rpx; color: #555; }
-.input { background: #f7f7f7; border-radius: 12rpx; padding: 18rpx 20rpx; font-size: 28rpx; }
+.subtitle { display: block; margin-top: 8rpx; color: var(--pc-text-3); font-size: 24rpx; }
+.label { display: block; margin: 20rpx 0 12rpx; font-size: 26rpx; color: var(--pc-text-2); }
+.input { background: var(--pc-surface-1); border-radius: 12rpx; padding: 18rpx 20rpx; font-size: 28rpx; }
 .chips { display: flex; flex-wrap: wrap; gap: 12rpx; }
-.chip { padding: 10rpx 18rpx; border-radius: 999rpx; background: #f3f3f3; font-size: 24rpx; color: #555; }
-.chip.active { background: #667eea; color: #fff; }
-.muted { display: block; margin: 16rpx 0; color: #888; font-size: 24rpx; }
+.chip { padding: 10rpx 18rpx; border-radius: 999rpx; background: var(--pc-surface-1); font-size: 24rpx; color: var(--pc-text-2); }
+.chip.active { background: var(--pc-accent); color: var(--pc-on-accent); }
+.muted { display: block; margin: 16rpx 0; color: var(--pc-text-3); font-size: 24rpx; }
 .warning {
   display: block;
   margin: 0 0 16rpx;
   padding: 16rpx 18rpx;
   border-radius: 12rpx;
-  background: #fff7ed;
-  color: #9a3412;
+  background: var(--pc-danger-soft);
+  color: var(--pc-danger);
   font-size: 24rpx;
   line-height: 1.55;
 }

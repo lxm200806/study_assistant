@@ -103,12 +103,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch } from 'vue'
 import { useVocabularyStore, type MeaningType } from '@/stores/vocabulary'
 import type { SessionMode } from '@/types/map'
 import { SESSION_MODE_LABELS } from '@/types/map'
 
-const props = withDefaults(defineProps<{
+withDefaults(defineProps<{
   showMeaningType?: boolean
   trainingType?: 'listening' | 'speaking' | 'reading' | 'writing'
   compact?: boolean
@@ -144,24 +143,11 @@ const setFullBookRound = () => {
   vocabStore.setFullBookRound()
   uni.showToast({ title: '已设为全书一轮', icon: 'success' })
 }
-
-onMounted(() => {
-  if (vocabStore.currentBookCode) {
-    vocabStore.loadBookProgress()
-    vocabStore.loadDueCount(vocabStore.currentBookCode, props.trainingType)
-  }
-})
-
-watch(() => vocabStore.currentBookCode, (code) => {
-  if (code) {
-    vocabStore.loadDueCount(code, props.trainingType)
-  }
-})
 </script>
 
 <style lang="scss" scoped>
 .progress-banner {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--pc-accent);
   border-radius: 20rpx;
   padding: 24rpx 30rpx;
   margin-bottom: 25rpx;
@@ -169,7 +155,7 @@ watch(() => vocabStore.currentBookCode, (code) => {
 
 .progress-text {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--pc-on-accent);
   display: block;
   margin-bottom: 16rpx;
 }
@@ -183,13 +169,13 @@ watch(() => vocabStore.currentBookCode, (code) => {
 
 .progress-fill {
   height: 100%;
-  background: white;
+  background: var(--pc-on-accent);
   border-radius: 6rpx;
   transition: width 0.3s ease;
 }
 
 .settings-section {
-  background: white;
+  background: var(--pc-surface-2);
   border-radius: 20rpx;
   padding: 30rpx;
   margin-bottom: 25rpx;
@@ -202,10 +188,10 @@ watch(() => vocabStore.currentBookCode, (code) => {
 
 .progress-inline {
   font-size: 22rpx;
-  color: #667eea;
+  color: var(--pc-accent);
   margin-bottom: 20rpx;
   padding-bottom: 16rpx;
-  border-bottom: 1rpx solid #f0f0f0;
+  border-bottom: 1rpx solid var(--pc-border);
 }
 
 .section-block {
@@ -223,7 +209,7 @@ watch(() => vocabStore.currentBookCode, (code) => {
 .section-title {
   font-size: 26rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--pc-text);
   display: block;
   margin-bottom: 12rpx;
 }
@@ -241,13 +227,13 @@ watch(() => vocabStore.currentBookCode, (code) => {
 
 .mode-option {
   padding: 20rpx 24rpx;
-  background: #f8f9fa;
+  background: var(--pc-surface-1);
   border-radius: 14rpx;
   border: 2rpx solid transparent;
 
   &.selected {
-    border-color: #667eea;
-    background: #eef2ff;
+    border-color: var(--pc-accent);
+    background: var(--pc-accent-soft);
   }
 }
 
@@ -258,7 +244,7 @@ watch(() => vocabStore.currentBookCode, (code) => {
 .mode-name {
   font-size: 28rpx;
   font-weight: 500;
-  color: #333;
+  color: var(--pc-text);
   display: block;
 }
 
@@ -268,7 +254,7 @@ watch(() => vocabStore.currentBookCode, (code) => {
 
 .mode-desc {
   font-size: 22rpx;
-  color: #999;
+  color: var(--pc-text-3);
   display: block;
   margin-top: 4rpx;
 }
@@ -287,15 +273,15 @@ watch(() => vocabStore.currentBookCode, (code) => {
   flex: 1;
   text-align: center;
   padding: 20rpx;
-  background: #f8f9fa;
+  background: var(--pc-surface-1);
   border-radius: 12rpx;
   font-size: 28rpx;
-  color: #666;
+  color: var(--pc-text-2);
   border: 2rpx solid transparent;
 
   &.selected {
-    background: #667eea;
-    color: white;
+    background: var(--pc-accent);
+    color: var(--pc-on-accent);
   }
 }
 
@@ -306,7 +292,7 @@ watch(() => vocabStore.currentBookCode, (code) => {
 
 .meaning-toggle {
   display: flex;
-  background: #f8f9fa;
+  background: var(--pc-surface-1);
   border-radius: 12rpx;
   padding: 4rpx;
 }
@@ -316,12 +302,12 @@ watch(() => vocabStore.currentBookCode, (code) => {
   text-align: center;
   padding: 14rpx 0;
   font-size: 26rpx;
-  color: #666;
+  color: var(--pc-text-2);
   border-radius: 10rpx;
 
   &.selected {
-    background: white;
-    color: #667eea;
+    background: var(--pc-surface-2);
+    color: var(--pc-accent);
     font-weight: 600;
     box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
   }
@@ -332,7 +318,7 @@ watch(() => vocabStore.currentBookCode, (code) => {
   margin-top: 12rpx;
   text-align: center;
   font-size: 24rpx;
-  color: #667eea;
+  color: var(--pc-accent);
 }
 
 .full-round-btn {
@@ -340,19 +326,19 @@ watch(() => vocabStore.currentBookCode, (code) => {
   margin-top: 16rpx;
   text-align: center;
   font-size: 26rpx;
-  color: #667eea;
+  color: var(--pc-accent);
   font-weight: 500;
 }
 
 .settings-summary {
   margin-top: 20rpx;
   padding-top: 20rpx;
-  border-top: 1rpx solid #eee;
+  border-top: 1rpx solid var(--pc-border);
 }
 
 .summary-text {
   font-size: 26rpx;
-  color: #999;
+  color: var(--pc-text-3);
   text-align: center;
 }
 
@@ -367,13 +353,13 @@ watch(() => vocabStore.currentBookCode, (code) => {
   align-items: center;
   justify-content: space-between;
   padding: 25rpx;
-  background: #f8f9fa;
+  background: var(--pc-surface-1);
   border-radius: 16rpx;
   border: 2rpx solid transparent;
 
   &.selected {
-    background: #eef2ff;
-    border-color: #667eea;
+    background: var(--pc-accent-soft);
+    border-color: var(--pc-accent);
   }
 }
 
@@ -384,13 +370,13 @@ watch(() => vocabStore.currentBookCode, (code) => {
 .option-label {
   font-size: 30rpx;
   font-weight: 500;
-  color: #333;
+  color: var(--pc-text);
   display: block;
 }
 
 .option-desc {
   font-size: 24rpx;
-  color: #999;
+  color: var(--pc-text-3);
   display: block;
   margin-top: 6rpx;
 }
@@ -398,12 +384,12 @@ watch(() => vocabStore.currentBookCode, (code) => {
 .check-mark {
   width: 40rpx;
   height: 40rpx;
-  background: #667eea;
+  background: var(--pc-accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--pc-on-accent);
   font-size: 24rpx;
   flex-shrink: 0;
   margin-left: 15rpx;

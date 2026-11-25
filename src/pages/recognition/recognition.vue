@@ -444,8 +444,6 @@ const selectOption = (index: number) => {
     'chinese'
   )
 
-  void vocabStore.loadBookProgress()
-
   if (isCorrect.value) {
     totalCorrect.value++
     // 答对：闪一下反馈后自动下一题；最后一题仍停住选下一组/完成
@@ -737,9 +735,7 @@ onMounted(async () => {
   vocabStore.loadBooks()
   vocabStore.loadStats()
   vocabStore.loadSettings()
-  const progressBook = vocabStore.currentBookCode
-  await vocabStore.loadBookProgress(progressBook)
-  await vocabStore.loadDueCount(progressBook, 'reading')
+  // BookSwitcher 挂载时已加载本进度与到期数，这里不重复请求
   await vocabStore.loadServerStats()
   readingStats.value = vocabStore.getTypeStats('reading')
   if (autoStart.value) {
@@ -1217,7 +1213,7 @@ onUnmounted(() => {
   flex: 0 0 auto;
   margin: 0;
   background: var(--pc-accent);
-  color: white;
+  color: var(--pc-on-accent);
   border: none;
   border-radius: 999px;
   padding: 0 22px;

@@ -31,7 +31,7 @@
     </view>
 
     <view v-else class="result-screen">
-      <view class="result-icon">{{ result?.accuracy >= 80 ? '🎉' : '💪' }}</view>
+      <view class="result-icon">{{ (result?.accuracy ?? 0) >= 80 ? '🎉' : '💪' }}</view>
       <text class="result-title">测验完成</text>
       <text class="result-score">{{ result?.correct }}/{{ result?.total }} · {{ result?.accuracy }}%</text>
       <button class="btn-primary" @tap="goToMap">查看薄弱分析</button>
@@ -88,7 +88,7 @@ const selectOption = (i: number) => {
 }
 
 const nextQuestion = () => {
-  if (currentIndex.value >= words.length - 1) {
+  if (currentIndex.value >= words.value.length - 1) {
     void submitQuiz()
     return
   }

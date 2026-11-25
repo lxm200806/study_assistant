@@ -2,6 +2,7 @@
 import { getBookMap, getGlobalMap, getBookWordStats } from '../services/graph.service'
 import { getBookMetaByCode } from '../services/book.service'
 import { assertBookAccess, getBookAccessScope } from '../services/book-access.service'
+import { internalError } from '../utils/http-errors'
 
 export async function getBookMapHandler(req: Request, res: Response) {
   try {
@@ -24,7 +25,10 @@ export async function getBookMapHandler(req: Request, res: Response) {
     if (message === 'BOOK_LOCKED') {
       return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
     }
-    res.status(message === 'Book not found' ? 404 : 500).json({ success: false, error: message })
+    if (message === 'Book not found') {
+      return res.status(404).json({ success: false, error: message })
+    }
+    internalError(res, error)
   }
 }
 
@@ -38,6 +42,6 @@ export async function getGlobalMapHandler(req: Request, res: Response) {
     const data = await getGlobalMap(userId, limit, scope.all ? undefined : scope.codes)
     res.status(200).json({ success: true, data })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }

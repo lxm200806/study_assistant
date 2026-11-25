@@ -32,14 +32,25 @@ export interface StudySettings {
 
 const DEFAULT_BOOK_CODE = 'mse-ket'
 
+function currentLearnerScope(): string {
+  const raw = uni.getStorageSync('user')
+  const user = unwrapStorage<{ id?: string; activeLearnerId?: string | null }>(raw)
+    ?? (raw as { id?: string; activeLearnerId?: string | null } | undefined)
+  const account = user?.id || 'anon'
+  return user?.activeLearnerId ? `${account}:${user.activeLearnerId}` : account
+}
+
+function scopedKey(key: string): string {
+  return `${key}:${currentLearnerScope()}`
+}
+
+function emptyStats(): VocabularyStats {
+  return { listening: {}, speaking: {}, reading: {}, writing: {} }
+}
+
 export const useVocabularyStore = defineStore('vocabulary', () => {
   const vocabularyList = ref<Vocabulary[]>([])
-  const stats = ref<VocabularyStats>({
-    listening: {},
-    speaking: {},
-    reading: {},
-    writing: {}
-  })
+  const stats = ref<VocabularyStats>(emptyStats())
   const trainingRecords = ref<TrainingRecord[]>([])
   const serverStats = ref({
     listening: { total: 0, mastered: 0, avgMastery: 0 },
@@ -55,6 +66,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   const sessionBookCode = ref<string | undefined>(undefined)
   const lastSessionUnit = ref<import('@/types/map').SessionUnitMeta | null>(null)
   const lastRecheckMeta = ref<SessionRecheckMeta | null>(null)
+  /** 当前练习会话的词表凭证，完成会话时回传服务端校验。 */
+  const sessionTokens = ref<string[]>([])
 
   const books = ref<Book[]>(getBookList())
   const currentBookCode = ref<string>(DEFAULT_BOOK_CODE)
@@ -74,7 +87,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   const loadVocabulary = async () => {
     try {
       const result = await vocabularyAPI.list()
-      vocabularyList.value = result.data || []
+      vocabularyList.value = (result.data as Vocabulary[] | undefined) || []
     } catch (error) {
       console.error('Failed to load vocabulary:', error)
     }
@@ -115,6 +128,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
         bookProgress.value = data?.progress || null
         lastSessionUnit.value = data?.unit || null
         lastRecheckMeta.value = data?.recheck || null
+        if (data?.sessionToken) addSessionToken(data.sessionToken)
         return vocabularyList.value
       }
 
@@ -180,12 +194,26 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     }
   }
 
+  const addSessionToken = (token: string) => {
+    if (!token || sessionTokens.value.includes(token)) return
+    sessionTokens.value = [...sessionTokens.value, token].slice(-50)
+  }
+
+  const resetSessionTokens = () => {
+    sessionTokens.value = []
+  }
+
   const completeSession = async (wordIds: string[]) => {
     const bookCode = resolveBookCode()
     if (!bookCode || wordIds.length === 0) return 0
+    if (sessionTokens.value.length === 0) {
+      console.warn('Skipped session completion: no session token')
+      return 0
+    }
     try {
-      const result = await trainingAPI.completeSession(bookCode, wordIds)
+      const result = await trainingAPI.completeSession(bookCode, wordIds, sessionTokens.value)
       await loadBookProgress(bookCode)
+      void loadServerStats()
       return (result as { newlyCovered?: number }).newlyCovered || 0
     } catch (error) {
       console.error('Failed to complete session:', error)
@@ -205,7 +233,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   const loadBooks = async () => {
     try {
       const result = await bookAPI.list()
-      books.value = result.data || books.value
+      books.value = (result.data as Book[] | undefined) || books.value
     } catch (error) {
       console.error('Failed to load books:', error)
     }
@@ -235,12 +263,15 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
 
   const setCurrentBook = (code: string) => {
     const next = canonicalBookCode(code)
+    if (next !== currentBookCode.value) resetSessionTokens()
     currentBookCode.value = next
     uni.setStorageSync('currentBookCode', next)
   }
 
   const setSessionBookCode = (code?: string) => {
-    sessionBookCode.value = code ? canonicalBookCode(code) : undefined
+    const next = code ? canonicalBookCode(code) : undefined
+    if (next !== sessionBookCode.value) resetSessionTokens()
+    sessionBookCode.value = next
   }
 
   const setMeaningType = (type: MeaningType) => {
@@ -292,10 +323,99 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     return true
   }
 
+  type PracticeType = 'listening' | 'speaking' | 'reading' | 'writing'
+  type PracticeApiResult = {
+    mastery?: number
+    practiceCount?: number
+    correctCount?: number
+    due?: string
+    retrievability?: number
+  }
+  type PendingPractice = {
+    id: string
+    wordId: string
+    word: string
+    type: PracticeType
+    correct: boolean
+    at: number
+  }
+
+  const PRACTICE_QUEUE_LIMIT = 500
+  let practiceFlush: Promise<void> | null = null
+  let lastPracticeSyncToastAt = 0
+
+  const readPracticeQueue = (key = scopedKey('practiceQueue')): PendingPractice[] => {
+    const raw = uni.getStorageSync(key)
+    const list = unwrapStorage<PendingPractice[]>(raw) ?? (raw as PendingPractice[] | undefined)
+    if (!Array.isArray(list)) return []
+    return list.filter(item => item && item.wordId && item.type)
+  }
+
+  const writePracticeQueue = (items: PendingPractice[], key = scopedKey('practiceQueue')) => {
+    if (items.length) uni.setStorageSync(key, items.slice(-PRACTICE_QUEUE_LIMIT))
+    else uni.removeStorageSync(key)
+  }
+
+  const notifyPracticeSyncFailure = () => {
+    const now = Date.now()
+    if (now - lastPracticeSyncToastAt < 10_000) return
+    lastPracticeSyncToastAt = now
+    uni.showToast({ title: '学习记录暂未同步，联网后会自动重试', icon: 'none', duration: 2600 })
+  }
+
+  const ensureWordStat = (type: PracticeType, word: string) => {
+    if (!stats.value[type][word]) {
+      stats.value[type][word] = { count: 0, correctCount: 0, lastPractice: Date.now(), mastery: 0 }
+    }
+    return stats.value[type][word]
+  }
+
+  const applyPracticeResult = (event: PendingPractice, result?: PracticeApiResult | null) => {
+    const entry = ensureWordStat(event.type, event.word)
+    if (result) {
+      entry.count = result.practiceCount ?? entry.count
+      entry.correctCount = result.correctCount ?? entry.correctCount
+      entry.mastery = result.mastery ?? entry.mastery
+    }
+    entry.lastPractice = Date.now()
+  }
+
+  /**
+   * 按答题顺序串行补传，避免同一张卡片的并发写造成 FSRS 状态乱序。
+   * 失败时把事件留在本地队列，下次回到前台/加载统计时继续重试。
+   */
+  const flushPracticeQueue = async (): Promise<void> => {
+    if (practiceFlush) return practiceFlush
+    const queueKey = scopedKey('practiceQueue')
+    practiceFlush = (async () => {
+      let queue = readPracticeQueue(queueKey)
+      let synced = false
+      while (queue.length) {
+        const event = queue[0]
+        try {
+          const response = await trainingAPI.practice(event.wordId, event.type, event.correct)
+          applyPracticeResult(event, response.data as PracticeApiResult | undefined)
+          queue = queue.slice(1)
+          writePracticeQueue(queue, queueKey)
+          synced = true
+        } catch (error) {
+          console.error('Failed to sync practice:', error)
+          notifyPracticeSyncFailure()
+          break
+        }
+      }
+      if (synced) saveStats()
+    })().finally(() => {
+      practiceFlush = null
+    })
+    return practiceFlush
+  }
+
   const loadServerStats = async () => {
+    await flushPracticeQueue()
     try {
       const result = await vocabularyAPI.stats()
-      serverStats.value = result.data || serverStats.value
+      serverStats.value = (result.data as typeof serverStats.value | undefined) || serverStats.value
       serverStatsLoaded.value = true
     } catch (error) {
       console.error('Failed to load server stats:', error)
@@ -331,56 +451,42 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   }
 
   const loadStats = () => {
-    const saved = uni.getStorageSync('vocabularyStats')
+    const saved = uni.getStorageSync(scopedKey('vocabularyStats'))
     if (saved) {
       stats.value = saved
+    } else {
+      stats.value = emptyStats()
     }
   }
 
   const saveStats = () => {
-    uni.setStorageSync('vocabularyStats', stats.value)
+    uni.setStorageSync(scopedKey('vocabularyStats'), stats.value)
   }
 
-  const updateWordStats = async (wordId: string, word: string, type: 'listening' | 'speaking' | 'reading' | 'writing', correct: boolean) => {
-    let apiResult: {
-      mastery?: number
-      practiceCount?: number
-      correctCount?: number
-      due?: string
-      retrievability?: number
-    } | null = null
-
-    try {
-      const result = await trainingAPI.practice(wordId, type, correct)
-      apiResult = (result.data as typeof apiResult) || null
-    } catch (error) {
-      console.error('Failed to update server stats:', error)
-    }
-
-    if (!stats.value[type][word]) {
-      stats.value[type][word] = {
-        count: 0,
-        correctCount: 0,
-        lastPractice: Date.now(),
-        mastery: 0
-      }
-    }
-
-    if (apiResult) {
-      stats.value[type][word].count = apiResult.practiceCount ?? stats.value[type][word].count + 1
-      stats.value[type][word].correctCount = apiResult.correctCount ?? stats.value[type][word].correctCount
-      stats.value[type][word].mastery = apiResult.mastery ?? stats.value[type][word].mastery
-      stats.value[type][word].lastPractice = Date.now()
-    } else {
-      stats.value[type][word].count++
-      if (correct) {
-        stats.value[type][word].correctCount++
-      }
-      stats.value[type][word].lastPractice = Date.now()
-    }
-
+  const updateWordStats = async (
+    wordId: string,
+    word: string,
+    type: PracticeType,
+    correct: boolean
+  ) => {
+    const entry = ensureWordStat(type, word)
+    // 先乐观更新本地视图；服务端返回计数后会覆盖为权威值
+    entry.count++
+    if (correct) entry.correctCount++
+    entry.lastPractice = Date.now()
     saveStats()
-    void loadServerStats()
+
+    const queue = readPracticeQueue()
+    queue.push({
+      id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+      wordId,
+      word,
+      type,
+      correct,
+      at: Date.now()
+    })
+    writePracticeQueue(queue)
+    return flushPracticeQueue()
   }
 
   /**
@@ -395,18 +501,19 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     const bookCode = resolveBookCode()
     if (!bookCode) return null
 
-    let data: {
+    type RecheckApiResult = {
       mastery?: number
       practiceCount?: number
       correctCount?: number
       needsReconfirm?: boolean
       passed?: boolean
       failStreak?: number
-    } | null = null
+    }
+    let data: RecheckApiResult | null = null
 
     try {
       const result = await trainingAPI.recheck(bookCode, wordId, type, correct)
-      data = (result.data as typeof data) || null
+      data = (result.data as RecheckApiResult | undefined) || null
     } catch (error) {
       console.error('Failed to recheck word:', error)
       return null
@@ -426,7 +533,6 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     entry.mastery = data?.mastery ?? entry.mastery
     entry.lastPractice = Date.now()
     saveStats()
-    void loadServerStats()
     return data
   }
 
@@ -456,7 +562,8 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   const getDueReviewWords = async (limit: number = 20) => {
     try {
       const result = await trainingAPI.review(undefined, currentBookCode.value, limit)
-      const reviewWords = result.data || []
+      const reviewWords =
+        (result.data as Array<{ word?: { word?: string } }> | undefined) || []
       return reviewWords
         .map((r: { word?: { word?: string } }) => r.word?.word)
         .filter((word): word is string => !!word)
@@ -469,8 +576,9 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
   const getWordsForReview = async (type: 'listening' | 'speaking' | 'reading' | 'writing', limit: number = 5) => {
     try {
       const result = await trainingAPI.review(type, currentBookCode.value, limit)
-      const reviewWords = result.data || []
-      return reviewWords.slice(0, limit).map((r: any) => r.word?.word || r.wordId)
+      const reviewWords =
+        (result.data as Array<{ word?: { word?: string }; wordId?: string }> | undefined) || []
+      return reviewWords.slice(0, limit).map(r => r.word?.word || r.wordId)
     } catch (error) {
       console.error('Failed to get review words:', error)
       return []
@@ -485,17 +593,52 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
       correct,
       timestamp: Date.now()
     }
-    trainingRecords.value.unshift(record)
-    if (trainingRecords.value.length > 100) {
-      trainingRecords.value.pop()
-    }
-    uni.setStorageSync('trainingRecords', trainingRecords.value)
+    const cutoff = Date.now() - 14 * 24 * 60 * 60 * 1000
+    const kept = trainingRecords.value.filter(item => item.timestamp >= cutoff)
+    kept.unshift(record)
+    trainingRecords.value = kept.slice(0, 5000)
+    uni.setStorageSync(scopedKey('trainingRecords'), trainingRecords.value)
   }
 
   const loadTrainingRecords = () => {
-    const saved = uni.getStorageSync('trainingRecords')
+    const saved = uni.getStorageSync(scopedKey('trainingRecords'))
     if (saved) {
       trainingRecords.value = saved
+    } else {
+      trainingRecords.value = []
+    }
+  }
+
+  /**
+   * 清空当前孩子的内存态。登出或切换孩子时必须调用。
+   * clearStorage 仅用于登出，避免把刚切换到的孩子的本地缓存一起删掉。
+   */
+  const resetLearnerState = (options?: { clearStorage?: boolean }) => {
+    vocabularyList.value = []
+    stats.value = emptyStats()
+    trainingRecords.value = []
+    serverStats.value = {
+      listening: { total: 0, mastered: 0, avgMastery: 0 },
+      speaking: { total: 0, mastered: 0, avgMastery: 0 },
+      reading: { total: 0, mastered: 0, avgMastery: 0 },
+      writing: { total: 0, mastered: 0, avgMastery: 0 }
+    }
+    serverStatsLoaded.value = false
+    dailyStats.value = { date: '', wordCount: 0, goal: 30, streak: 0, progress: 0 }
+    bookProgress.value = null
+    dueCount.value = { dueCount: 0, overdueCount: 0 }
+    bookMapData.value = null
+    globalMapData.value = null
+    sessionTopic.value = undefined
+    sessionUnitId.value = undefined
+    sessionBookCode.value = undefined
+    lastSessionUnit.value = null
+    lastRecheckMeta.value = null
+    sessionTokens.value = []
+    if (options?.clearStorage) {
+      uni.removeStorageSync(scopedKey('vocabularyStats'))
+      uni.removeStorageSync(scopedKey('trainingRecords'))
+      uni.removeStorageSync(scopedKey('practiceQueue'))
     }
   }
 
@@ -564,6 +707,9 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     loadBookMap,
     loadGlobalMap,
     completeSession,
+    sessionTokens,
+    addSessionToken,
+    resetSessionTokens,
     setFullBookRound,
     setSessionMode,
     loadServerStats,
@@ -573,6 +719,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     setSessionBookCode,
     loadStats,
     saveStats,
+    flushPracticeQueue,
     updateWordStats,
     recheckWord,
     getWordMastery,
@@ -582,6 +729,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     getDueReviewWords,
     addTrainingRecord,
     loadTrainingRecords,
+    resetLearnerState,
     getTodayRecords,
     getTodayStats,
     loadBooks,

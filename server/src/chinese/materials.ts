@@ -539,13 +539,12 @@ export async function syncResourceById(resourceId: string, force = true) {
 }
 
 export async function seedChineseIfEmpty() {
-  const count = await prisma.chinesePublished.count()
-  if (count > 0) {
-    console.log(`Chinese library already has ${count} points`)
-    return { skipped: true, count }
-  }
-  const results = await syncAllOfficial(true)
+  // 按每个内容包的 contentHash 判断是否同步；已有草稿/半次同步也不会再永久跳过，
+  // 官方内容包更新后重启即可自动生效。
+  const results = await syncAllOfficial(false)
   const summary = summarizeSync(results, 'seed')
-  console.log(`Chinese library seeded: inserted ${summary.inserted}, updated ${summary.updated}`)
+  console.log(
+    `Chinese library sync: inserted ${summary.inserted}, updated ${summary.updated}, skipped packs ${summary.skipped}`
+  )
   return summary
 }

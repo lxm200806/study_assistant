@@ -47,21 +47,17 @@ export type PepCatalogBook = {
   unitCount: number
 }
 
+type LocalTextbookOverlay = { bookCode?: string; passages?: PepPassage[] }
+
 const bookModules = import.meta.glob('./*.json', {
-  eager: true,
   import: 'default'
-}) as Record<string, PepBook>
+}) as Record<string, () => Promise<PepBook>>
 
 const localTextbookModules = import.meta.glob('./local/*-textbook.json', {
-  eager: true,
   import: 'default'
-}) as Record<string, { bookCode?: string; passages?: PepPassage[] }>
+}) as Record<string, () => Promise<LocalTextbookOverlay>>
 
-function applyLocalTextbookOverlay(book: PepBook): PepBook {
-  const entry = Object.entries(localTextbookModules).find(([file]) =>
-    file.includes(`${book.code}-textbook.json`)
-  )
-  const overlay = entry?.[1]
+function applyLocalTextbookOverlay(book: PepBook, overlay: LocalTextbookOverlay | null): PepBook {
   if (!overlay?.passages?.length) return book
 
   const byKey = new Map(
@@ -90,32 +86,11 @@ function applyLocalTextbookOverlay(book: PepBook): PepBook {
   }
 }
 
-function loadBookModule(code: string): PepBook | null {
-  const entry = Object.entries(bookModules).find(([file]) => {
-    if (file.includes('catalog.json')) return false
-    if (file.includes('/local/')) return false
-    return file.endsWith(`/${code}.json`) || file.endsWith(`${code}.json`)
-  })
-  return entry?.[1] || null
-}
-
-const BOOKS_WITH_LOCAL: Record<string, PepBook> = {}
-for (const item of catalog.books as PepCatalogBook[]) {
-  const raw = loadBookModule(item.code)
-  if (!raw) continue
-  BOOKS_WITH_LOCAL[item.code] = applyLocalTextbookOverlay({
-    ...raw,
-    code: raw.code || item.code,
-    name: raw.name || item.name,
-    level: raw.level || item.level,
-    shortLabel: raw.shortLabel || item.shortLabel,
-    year: raw.year ?? item.year,
-    series: raw.series || item.series,
-    seriesLabel: raw.seriesLabel || item.seriesLabel,
-    grade: raw.grade || item.grade,
-    term: raw.term || item.term
-  })
-}
+const CATALOG_BOOKS = new Map(
+  (catalog.books as PepCatalogBook[]).map(book => [book.code, book])
+)
+const bookCache = new Map<string, PepBook | null>()
+const pendingBooks = new Map<string, Promise<PepBook | null>>()
 
 export function listPepBooks(): PepCatalogBook[] {
   return (catalog.books as PepCatalogBook[]).map(b => ({
@@ -127,12 +102,59 @@ export function listPepBooks(): PepCatalogBook[] {
   }))
 }
 
-export function getPepBook(code: string): PepBook | null {
-  return BOOKS_WITH_LOCAL[code] || null
+export function hasPepBook(code: string): boolean {
+  return CATALOG_BOOKS.has(code)
 }
 
-export function getPepUnit(code: string, unitId: string): PepUnit | null {
-  const book = getPepBook(code)
+export function getLoadedPepBook(code: string): PepBook | null {
+  return bookCache.get(code) || null
+}
+
+export async function loadPepBook(code: string): Promise<PepBook | null> {
+  if (bookCache.has(code)) return bookCache.get(code) || null
+  const inFlight = pendingBooks.get(code)
+  if (inFlight) return inFlight
+
+  const meta = CATALOG_BOOKS.get(code)
+  const loader = bookModules[`./${code}.json`]
+  if (!meta || !loader) {
+    bookCache.set(code, null)
+    return null
+  }
+
+  const task = (async () => {
+    const raw = await loader()
+    const overlayLoader = localTextbookModules[`./local/${code}-textbook.json`]
+    const overlay = overlayLoader ? await overlayLoader() : null
+    const book = applyLocalTextbookOverlay(
+      {
+        ...raw,
+        code: raw.code || meta.code,
+        name: raw.name || meta.name,
+        level: raw.level || meta.level,
+        shortLabel: raw.shortLabel || meta.shortLabel,
+        year: raw.year ?? meta.year,
+        series: raw.series || meta.series,
+        seriesLabel: raw.seriesLabel || meta.seriesLabel,
+        grade: raw.grade || meta.grade,
+        term: raw.term || meta.term
+      },
+      overlay
+    )
+    bookCache.set(code, book)
+    return book
+  })()
+
+  pendingBooks.set(code, task)
+  try {
+    return await task
+  } finally {
+    pendingBooks.delete(code)
+  }
+}
+
+export async function loadPepUnit(code: string, unitId: string): Promise<PepUnit | null> {
+  const book = await loadPepBook(code)
   if (!book) return null
   return book.units.find(u => u.id === unitId) || null
 }

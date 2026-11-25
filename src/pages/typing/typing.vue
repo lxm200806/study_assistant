@@ -1103,6 +1103,7 @@ async function startWords() {
   try {
     wordPhase.value = 'learn'
     wordMode.value = 'follow'
+    vocabStore.resetSessionTokens()
     const result = await typingAPI.queue({
       bookCode: vocabStore.currentBookCode,
       source: source.value,
@@ -1110,11 +1111,18 @@ async function startWords() {
       mode: wordMode.value,
       allBooks: allBooks.value
     })
-    const data = result.data as { words: TypingWord[]; scopedToBook: boolean; missing?: string[]; rejected?: RejectedToken[] }
+    const data = result.data as {
+      words: TypingWord[]
+      scopedToBook: boolean
+      sessionToken?: string
+      missing?: string[]
+      rejected?: RejectedToken[]
+    }
     words.value = data?.words || []
     sentences.value = []
     fullTranslation.value = ''
     scopedToBook.value = !!data?.scopedToBook
+    if (data?.sessionToken) vocabStore.addSessionToken(data.sessionToken)
     if (!words.value.length) {
       const why = rejectionNote(data?.rejected)
       toast(why ? `没有可练的词：${why}` : (source.value === 'wrong' ? '错词本是空的' : '这一组没有可练的词'))

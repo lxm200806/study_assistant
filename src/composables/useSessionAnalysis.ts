@@ -1,18 +1,18 @@
 import { ref } from 'vue'
 import type { TrainingType, SessionWordResult } from '@/utils/mastery'
 import { buildSessionAnalysis, wordStatsToSessionResult } from '@/utils/mastery'
-import type { Vocabulary } from '@/types'
+import type { Vocabulary, WordStats } from '@/types'
 import { getWordMeaning } from '@/utils/vocabulary'
 import type { MeaningType } from '@/types'
 
-export function useSessionAnalysis(trainingType: TrainingType) {
+export function useSessionAnalysis(_trainingType: TrainingType) {
   const sessionResults = ref<SessionWordResult[]>([])
   const previousMastery = ref<Record<string, number>>({})
 
   const recordAnswer = (
     word: Vocabulary,
     correct: boolean,
-    getStats: (word: string) => { count: number; correctCount: number; mastery: number } | undefined,
+    getStats: (word: string) => WordStats | undefined,
     meaningType: MeaningType
   ) => {
     if (!previousMastery.value[word.word]) {

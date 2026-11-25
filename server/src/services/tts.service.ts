@@ -11,8 +11,34 @@ import {
 } from './tts-accent'
 
 const CACHE_DIR = path.join(__dirname, '../../data/tts-cache')
+const MAX_CACHE_FILES = 3000
+const PRUNE_EVERY_WRITES = 25
 
 const pendingJobs = new Map<string, Promise<string>>()
+let writesSincePrune = 0
+
+async function pruneCache(): Promise<void> {
+  try {
+    const names = await fs.promises.readdir(CACHE_DIR)
+    if (names.length <= MAX_CACHE_FILES) return
+    const files = await Promise.all(
+      names.map(async name => {
+        const fullPath = path.join(CACHE_DIR, name)
+        const stat = await fs.promises.stat(fullPath).catch(() => null)
+        return stat?.isFile() ? { fullPath, mtime: stat.mtimeMs } : null
+      })
+    )
+    const removable = files
+      .filter((item): item is { fullPath: string; mtime: number } => !!item)
+      .sort((a, b) => a.mtime - b.mtime)
+    const removeCount = names.length - MAX_CACHE_FILES
+    for (const item of removable.slice(0, removeCount)) {
+      await fs.promises.unlink(item.fullPath).catch(() => undefined)
+    }
+  } catch {
+    // ignore cache pruning errors
+  }
+}
 
 function ensureCacheDir(): void {
   if (!fs.existsSync(CACHE_DIR)) {
@@ -171,6 +197,11 @@ async function synthesizeToFile(
       }
     }
     await fs.promises.writeFile(filePath, buffer)
+    writesSincePrune += 1
+    if (writesSincePrune >= PRUNE_EVERY_WRITES) {
+      writesSincePrune = 0
+      void pruneCache()
+    }
   } catch {
     throw new Error('TTS_SYNTHESIS_FAILED')
   }

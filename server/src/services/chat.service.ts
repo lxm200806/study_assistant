@@ -4,7 +4,7 @@ import { getReviewWords } from './training.service'
 import { recordChatVocabulary, type MatchedWord } from './vocab-match.service'
 import { getLlmApiKey } from './llm-config.service'
 import { completeChat } from './llm-chat.service'
-import { buildFallbackResponse, loadRecentChatHistory } from './chat-context.service'
+import { buildFallbackResponse, loadRecentChatHistory, reserveUserChatMessage } from './chat-context.service'
 import { buildSystemPrompt, getLearnerChatContext } from './chat-learner-context.service'
 import { sanitizeFreeChatReply } from './chat-reply-sanitize.service'
 import { getBillingUser } from './billing-user'
@@ -31,19 +31,7 @@ export async function sendChatMessage(
   const user = await getBillingUser(userId)
   const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
 
-  if (!isPremium) {
-    const todayStart = startOfToday()
-    const todayCount = await prisma.chatRecord.count({
-      where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
-    })
-    if (todayCount >= FREE_DAILY_CHAT) {
-      throw new Error('CHAT_LIMIT')
-    }
-  }
-
-  await prisma.chatRecord.create({
-    data: { learnerId: userId, role: 'user', content, mode }
-  })
+  await reserveUserChatMessage(userId, content, mode)
 
   const history = await loadRecentChatHistory(userId, mode)
   const learnerContext = await getLearnerChatContext(userId, bookCode)

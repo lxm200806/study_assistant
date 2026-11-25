@@ -160,17 +160,17 @@ onShow(async () => {
 <style lang="scss" scoped>
 .header { padding: 12rpx 8rpx 24rpx; }
 .title { display: block; font-size: 40rpx; font-weight: 700; }
-.subtitle, .muted { display: block; color: #888; font-size: 24rpx; margin-top: 8rpx; }
+.subtitle, .muted { display: block; color: var(--pc-text-3); font-size: 24rpx; margin-top: 8rpx; }
 .toolbar { display: flex; gap: 16rpx; margin-bottom: 16rpx; }
 .compact { flex: 1; margin: 0; }
 .name { display: block; font-weight: 600; flex: 1; }
-.banner { display: block; margin-bottom: 16rpx; color: #667eea; }
+.banner { display: block; margin-bottom: 16rpx; color: var(--pc-accent); }
 .row-between { display: flex; align-items: center; gap: 12rpx; }
-.sync-tag { font-size: 22rpx; padding: 4rpx 12rpx; border-radius: 999rpx; background: #eee; color: #666; }
-.sync-tag.synced { background: #dcfce7; color: #166534; }
-.sync-tag.outdated { background: #fee2e2; color: #b91c1c; }
-.sync-tag.pending { background: #e5e7eb; color: #4b5563; }
-.warn { display: block; margin-top: 8rpx; color: #b91c1c; font-size: 24rpx; }
+.sync-tag { font-size: 22rpx; padding: 4rpx 12rpx; border-radius: 999rpx; background: var(--pc-surface-1); color: var(--pc-text-2); }
+.sync-tag.synced { background: var(--pc-accent-soft); color: var(--pc-accent); }
+.sync-tag.outdated { background: var(--pc-danger-soft); color: var(--pc-danger); }
+.sync-tag.pending { background: var(--pc-surface-1); color: var(--pc-text-2); }
+.warn { display: block; margin-top: 8rpx; color: var(--pc-danger); font-size: 24rpx; }
 .actions { display: flex; flex-wrap: wrap; gap: 12rpx; margin-top: 16rpx; }
 .actions .compact { flex: 1 1 30%; }
 .section { display: block; margin: 16rpx 8rpx 8rpx; font-weight: 600; }

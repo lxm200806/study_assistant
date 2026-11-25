@@ -8,10 +8,13 @@ export function getAuthToken(): string | null {
 
 export function getApiBaseUrl(): string {
   // Dev: Vite proxy; Prod: Nginx proxies /api → backend (same origin).
+  const configured = (import.meta.env.VITE_API_BASE as string | undefined)?.trim()
+  if (configured) return configured.replace(/\/+$/, '')
   if (typeof window !== 'undefined' && window.location?.origin) {
     return `${window.location.origin}/api`
   }
-  return import.meta.env.DEV ? '/api' : 'http://localhost:3004/api'
+  // 非 H5（小程序/App）没有同源概念，必须显式配置 VITE_API_BASE
+  return import.meta.env.DEV ? '/api' : ''
 }
 
 export interface ResponseData<T = any> {
@@ -48,6 +51,21 @@ const AUTH_CREDENTIAL_PATHS = new Set([
 let sessionExpiredPromptOpen = false
 let networkHintAt = 0
 let refreshInFlight: Promise<boolean> | null = null
+let refreshFailedByNetwork = false
+
+type ApiError = Error & { status?: number; network?: boolean }
+
+function apiError(message: string, status?: number): ApiError {
+  const error = new Error(message) as ApiError
+  if (status != null) error.status = status
+  return error
+}
+
+function networkError(message: string): ApiError {
+  const error = apiError(message)
+  error.network = true
+  return error
+}
 
 function clearLocalSession() {
   uni.removeStorageSync('accessToken')
@@ -100,7 +118,7 @@ function hintServerUnavailable() {
   if (now - networkHintAt < 4000) return
   networkHintAt = now
   uni.showToast({
-    title: '后端未启动（3005），请稍后再试',
+    title: '网络连接异常，请稍后重试',
     icon: 'none',
     duration: 2800
   })
@@ -112,11 +130,12 @@ function getRefreshToken(): string | null {
   return token || null
 }
 
-async function tryRefreshAccessToken(): Promise<boolean> {
+export async function tryRefreshAccessToken(): Promise<boolean> {
   const refreshToken = getRefreshToken()
   if (!refreshToken) return false
   if (refreshInFlight) return refreshInFlight
 
+  refreshFailedByNetwork = false
   refreshInFlight = (async () => {
     try {
       const result = await request('/auth/refresh', 'POST', { refreshToken }, undefined, {
@@ -128,7 +147,9 @@ async function tryRefreshAccessToken(): Promise<boolean> {
         return true
       }
       return false
-    } catch {
+    } catch (error) {
+      const failure = error as ApiError
+      refreshFailedByNetwork = !!failure.network || (failure.status ?? 0) >= 500
       return false
     } finally {
       refreshInFlight = null
@@ -151,6 +172,10 @@ export async function request<T>(
   headers?: Record<string, string>,
   options: RequestOptions = {}
 ): Promise<ResponseData<T>> {
+  const baseUrl = getApiBaseUrl()
+  if (!baseUrl) {
+    throw apiError('未配置 API 地址：请设置 VITE_API_BASE 环境变量', 0)
+  }
   const token = getAuthToken()
 
   const defaultHeaders: Record<string, string> = {
@@ -159,9 +184,9 @@ export async function request<T>(
   }
 
   const req: UniApp.RequestOptions = {
-    url: getApiBaseUrl() + url,
+    url: baseUrl + url,
     method,
-    timeout: 120000,
+    timeout: 30000,
     header: { ...defaultHeaders, ...headers },
     data: data ? JSON.stringify(data) : undefined
   }
@@ -192,23 +217,28 @@ export async function request<T>(
                   return
                 }
               }
+              // 网络/服务端故障时不要清登录态，只有 refresh token 明确失效才登出
+              if (refreshFailedByNetwork) {
+                reject(networkError('Network error'))
+                return
+              }
             }
             promptSessionExpired()
           }
-          reject(new Error(`Unauthorized: ${errMsg}`))
+          reject(apiError(`Unauthorized: ${errMsg}`, 401))
           return
         }
 
         if (res.statusCode === 403) {
-          reject(new Error(`BOOK_LOCKED: ${errMsg}`))
+          reject(apiError(`BOOK_LOCKED: ${errMsg}`, 403))
           return
         }
 
-        reject(new Error(errMsg))
+        reject(apiError(errMsg, res.statusCode))
       },
       fail: (err) => {
         hintServerUnavailable()
-        reject(new Error(err.errMsg || 'Network error'))
+        reject(networkError(err.errMsg || 'Network error'))
       }
     })
   })
@@ -305,8 +335,8 @@ export const trainingAPI = {
     const query = params.toString()
     return request(`/training/review${query ? `?${query}` : ''}`, 'GET')
   },
-  completeSession: async (bookCode: string, wordIds: string[]) => {
-    return request('/training/session/complete', 'POST', { bookCode, wordIds })
+  completeSession: async (bookCode: string, wordIds: string[], sessionTokens: string[] = []) => {
+    return request('/training/session/complete', 'POST', { bookCode, wordIds, sessionTokens })
   },
   history: async (page: number = 1, limit: number = 20) => {
     return request(`/training/history?page=${page}&limit=${limit}`, 'GET')

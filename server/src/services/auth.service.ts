@@ -202,7 +202,7 @@ export async function setActiveRole(userId: string, role?: string, studentId?: s
 }
 
 export async function wechatLoginStub(code: string) {
-  if (isProduction()) {
+  if (isProduction() || process.env.WECHAT_LOGIN_STUB !== 'true') {
     throw new Error('Wechat login is not configured')
   }
   if (!code) throw new Error('Invalid wechat code')

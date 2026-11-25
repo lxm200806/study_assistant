@@ -1,12 +1,13 @@
 import { Request, Response } from 'express'
 import { practice, getReviewWords, getTrainingHistory } from '../services/training.service'
-import { markWordsPracticed, getNewlyCoveredCount } from '../services/coverage.service'
-import { recordDailyStudy } from '../services/daily-study.service'
+import { completeBookSession } from '../services/coverage.service'
 import { assertBookAccess } from '../services/book-access.service'
+import { verifySessionToken } from '../services/session-token'
 import prisma from '../prisma/client'
 import { clampInt } from '../utils/pagination'
 import type { WordType } from '../types'
 import { studyUserId } from '../middleware/auth'
+import { internalError } from '../utils/http-errors'
 
 const MAX_SESSION_WORDS = 200
 const TRAINING_TYPES: WordType[] = ['listening', 'speaking', 'reading', 'writing']
@@ -33,7 +34,7 @@ export async function practiceHandler(req: Request, res: Response) {
     const result = await practice(userId, { wordId, type, isCorrect })
     res.status(200).json({ success: true, data: result })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -53,7 +54,10 @@ export async function getReviewHandler(req: Request, res: Response) {
     res.status(200).json({ success: true, data: words })
   } catch (error) {
     const message = (error as Error).message
-    res.status(message === 'BOOK_LOCKED' ? 403 : 500).json({ success: false, error: message })
+    if (message === 'BOOK_LOCKED') {
+      return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
+    }
+    internalError(res, error)
   }
 }
 
@@ -67,7 +71,7 @@ export async function getHistoryHandler(req: Request, res: Response) {
     const history = await getTrainingHistory(userId, page, limit)
     res.status(200).json({ success: true, data: history })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -172,7 +176,10 @@ export async function recheckHandler(req: Request, res: Response) {
     })
   } catch (error) {
     const message = (error as Error).message
-    res.status(message === 'BOOK_LOCKED' ? 403 : 500).json({ success: false, error: message })
+    if (message === 'BOOK_LOCKED') {
+      return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
+    }
+    internalError(res, error)
   }
 }
 
@@ -180,7 +187,12 @@ export async function completeSessionHandler(req: Request, res: Response) {
   try {
     const userId = studyOrReply(req, res)
     if (!userId) return
-    const { bookCode, wordIds } = req.body as { bookCode?: string; wordIds?: string[] }
+    const { bookCode, wordIds, sessionToken, sessionTokens } = req.body as {
+      bookCode?: string
+      wordIds?: string[]
+      sessionToken?: string
+      sessionTokens?: string[]
+    }
 
     if (!bookCode || !Array.isArray(wordIds)) {
       return res.status(400).json({ success: false, error: 'bookCode and wordIds are required' })
@@ -201,8 +213,46 @@ export async function completeSessionHandler(req: Request, res: Response) {
       })
     }
 
-    await assertBookAccess(userId, bookCode)
-    const book = await prisma.book.findUnique({ where: { code: bookCode }, select: { id: true } })
+    // 只接受取词接口签发的词表凭证，防止伪造 wordIds 直接把整本书标记为已学。
+    const rawTokens = [
+      ...(Array.isArray(sessionTokens) ? sessionTokens : []),
+      ...(typeof sessionToken === 'string' ? [sessionToken] : [])
+    ].filter((token): token is string => typeof token === 'string' && token.length > 0)
+    if (rawTokens.length === 0) {
+      return res.status(400).json({ success: false, error: 'sessionToken is required' })
+    }
+    if (rawTokens.length > 50) {
+      return res.status(400).json({ success: false, error: 'too many sessionTokens' })
+    }
+
+    const code = bookCode.trim()
+    const tokenWordIds = new Set<string>()
+    for (const token of rawTokens) {
+      let payload
+      try {
+        payload = verifySessionToken(token)
+      } catch (error) {
+        return res.status(400).json({ success: false, error: (error as Error).message })
+      }
+      if (payload.learnerId !== userId) {
+        return res.status(403).json({ success: false, error: 'session token belongs to another learner' })
+      }
+      if (payload.bookCode !== code) {
+        return res.status(400).json({ success: false, error: 'session token does not match this book' })
+      }
+      for (const id of payload.wordIds) tokenWordIds.add(id)
+    }
+
+    const outsideSession = uniqueWordIds.filter(id => !tokenWordIds.has(id))
+    if (outsideSession.length > 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'wordIds are not part of an active session'
+      })
+    }
+
+    await assertBookAccess(userId, code)
+    const book = await prisma.book.findUnique({ where: { code }, select: { id: true } })
     if (!book) {
       return res.status(404).json({ success: false, error: 'Book not found' })
     }
@@ -218,13 +268,13 @@ export async function completeSessionHandler(req: Request, res: Response) {
       })
     }
 
-    const newlyCovered = await getNewlyCoveredCount(userId, bookCode, uniqueWordIds)
-    await markWordsPracticed(userId, bookCode, uniqueWordIds)
-    await recordDailyStudy(userId, uniqueWordIds.length)
-
-    res.status(200).json({ success: true, data: { newlyCovered }, newlyCovered })
+    const result = await completeBookSession(userId, code, uniqueWordIds)
+    res.status(200).json({ success: true, data: result, newlyCovered: result.newlyCovered })
   } catch (error) {
     const message = (error as Error).message
-    res.status(message === 'BOOK_LOCKED' ? 403 : 500).json({ success: false, error: message })
+    if (message === 'BOOK_LOCKED') {
+      return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
+    }
+    internalError(res, error)
   }
 }

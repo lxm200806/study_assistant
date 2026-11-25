@@ -16,6 +16,7 @@ export function useGroupComplete(deps: {
   const loadFinishMeta = async () => {
     await vocabStore.loadDueCount()
     await vocabStore.loadBookMap()
+    void vocabStore.loadServerStats()
     if (deps.finishDueCount) {
       deps.finishDueCount.value = vocabStore.dueCount.dueCount
     }

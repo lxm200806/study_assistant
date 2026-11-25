@@ -344,19 +344,19 @@ onLoad(async (query) => {
 
 <style lang="scss" scoped>
 .mode-switch { display: flex; flex-wrap: wrap; gap: 12rpx; margin-bottom: 16rpx; }
-.mode-btn { flex: 1 1 40%; background: #fff; border-radius: 16rpx; padding: 16rpx; text-align: center; }
-.mode-btn.active { background: #667eea; }
-.mode-btn.active .mode-label, .mode-btn.active .mode-hint { color: #fff; }
+.mode-btn { flex: 1 1 40%; background: var(--pc-surface-2); border-radius: 16rpx; padding: 16rpx; text-align: center; }
+.mode-btn.active { background: var(--pc-accent); }
+.mode-btn.active .mode-label, .mode-btn.active .mode-hint { color: var(--pc-on-accent); }
 .mode-label { display: block; font-weight: 700; font-size: 28rpx; }
 .mode-count { display: inline-block; min-width: 32rpx; margin-left: 6rpx; padding: 0 8rpx; border-radius: 999rpx; background: rgba(102, 126, 234, .12); font-size: 20rpx; }
 .mode-btn.active .mode-count { background: rgba(255, 255, 255, .24); }
-.mode-hint { display: block; font-size: 22rpx; color: #888; }
-.muted, .hint { display: block; color: #888; font-size: 24rpx; margin-top: 8rpx; }
-.course-name { display: block; font-size: 36rpx; font-weight: 700; color: #222; margin: 8rpx 8rpx 16rpx; }
+.mode-hint { display: block; font-size: 22rpx; color: var(--pc-text-3); }
+.muted, .hint { display: block; color: var(--pc-text-3); font-size: 24rpx; margin-top: 8rpx; }
+.course-name { display: block; font-size: 36rpx; font-weight: 700; color: var(--pc-text); margin: 8rpx 8rpx 16rpx; }
 .today-title { display: block; font-size: 32rpx; font-weight: 700; }
-.cheer { display: block; margin-top: 8rpx; color: #667eea; }
+.cheer { display: block; margin-top: 8rpx; color: var(--pc-accent); }
 .prompt { display: block; margin: 24rpx 0; font-size: 36rpx; font-weight: 700; }
-.answer { width: 100%; min-height: 180rpx; background: #fff; border-radius: 16rpx; padding: 20rpx; margin: 16rpx 0; }
+.answer { width: 100%; min-height: 180rpx; background: var(--pc-surface-2); color: var(--pc-text); border-radius: 16rpx; padding: 20rpx; margin: 16rpx 0; }
 .judge { display: block; font-size: 48rpx; text-align: center; margin: 24rpx 0; }
 .choice-row, .recite-lines { margin: 16rpx 0; }
 .recite-line { display: block; padding: 12rpx 0; font-size: 30rpx; }
@@ -364,9 +364,9 @@ onLoad(async (query) => {
 .choice { margin: 8rpx 0; }
 .pinyin-choice { letter-spacing: 2rpx; word-break: keep-all; }
 .diff { margin-top: 12rpx; font-size: 32rpx; letter-spacing: 4rpx; }
-.ok { color: #16a34a; }
-.bad { color: #dc2626; }
-.result.ok { border-left: 8rpx solid #16a34a; }
-.result.error { border-left: 8rpx solid #dc2626; }
-.result.warn { border-left: 8rpx solid #d97706; }
+.ok { color: var(--pc-accent); }
+.bad { color: var(--pc-danger); }
+.result.ok { border-left: 8rpx solid var(--pc-accent); }
+.result.error { border-left: 8rpx solid var(--pc-danger); }
+.result.warn { border-left: 8rpx solid var(--pc-danger); }
 </style>

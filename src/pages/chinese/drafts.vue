@@ -218,25 +218,25 @@ onShow(async () => {
 <style lang="scss" scoped>
 .header { padding: 12rpx 8rpx 24rpx; }
 .title { display: block; font-size: 40rpx; font-weight: 700; }
-.subtitle, .muted { display: block; color: #888; font-size: 24rpx; margin-top: 8rpx; }
-.label { display: block; margin: 16rpx 0 8rpx; font-size: 26rpx; color: #555; }
-.input, .import-box { background: #f7f7f7; border-radius: 12rpx; padding: 18rpx 20rpx; font-size: 26rpx; width: 100%; box-sizing: border-box; }
+.subtitle, .muted { display: block; color: var(--pc-text-3); font-size: 24rpx; margin-top: 8rpx; }
+.label { display: block; margin: 16rpx 0 8rpx; font-size: 26rpx; color: var(--pc-text-2); }
+.input, .import-box { background: var(--pc-surface-1); border-radius: 12rpx; padding: 18rpx 20rpx; font-size: 26rpx; width: 100%; box-sizing: border-box; }
 .import-box { min-height: 220rpx; }
 .compact { margin: 16rpx 0 0; }
-.banner { display: block; margin-top: 16rpx; color: #667eea; }
+.banner { display: block; margin-top: 16rpx; color: var(--pc-accent); }
 .section { display: block; font-weight: 600; font-size: 30rpx; }
 .toolbar { display: flex; gap: 16rpx; margin: 16rpx 0; }
 .toolbar .compact { flex: 1; margin: 0; }
-.draft-item { padding: 16rpx 0; border-top: 1rpx solid #f0f0f0; }
+.draft-item { padding: 16rpx 0; border-top: 1rpx solid var(--pc-border); }
 .pick { display: flex; gap: 16rpx; }
-.check { font-size: 36rpx; color: #667eea; }
+.check { font-size: 36rpx; color: var(--pc-accent); }
 .lib-body { flex: 1; }
 .name { display: block; font-weight: 600; }
 .hint-block { padding: 12rpx 0; }
 .actions { display: flex; gap: 12rpx; margin-top: 12rpx; }
 .actions .compact { flex: 1; margin: 0; }
 .pagination { display: flex; align-items: center; justify-content: center; gap: 24rpx; margin-top: 24rpx; }
-.page-btn { color: #667eea; }
-.page-btn.disabled { color: #ccc; }
-.page-info { color: #888; font-size: 24rpx; }
+.page-btn { color: var(--pc-accent); }
+.page-btn.disabled { color: var(--pc-text-3); opacity: 0.6; }
+.page-info { color: var(--pc-text-3); font-size: 24rpx; }
 </style>

@@ -1,5 +1,4 @@
 import { useVocabularyStore } from '@/stores/vocabulary'
-import { openPage } from '@/utils/navigation'
 import { isBookAccessible } from '@/composables/useTrainingStart'
 
 export interface DailySessionPlan {
@@ -49,23 +48,9 @@ export function useDailySession() {
     }
   }
 
-  const startDailyTraining = async (type: DailySessionPlan['trainingType'] = 'reading') => {
-    if (!vocabStore.ensureBookSelected()) return
-    if (!ensureAccessibleBook()) return
-    await prepareDailySession()
-    const pages: Record<string, string> = {
-      reading: '/pages/recognition/recognition',
-      listening: '/pages/listening/listening',
-      writing: '/pages/spelling/spelling',
-      speaking: '/pages/speaking/speaking'
-    }
-    openPage(`${pages[type]}?autoStart=1`)
-  }
-
   return {
     getDailyGoal,
     ensureAccessibleBook,
-    prepareDailySession,
-    startDailyTraining
+    prepareDailySession
   }
 }

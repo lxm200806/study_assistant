@@ -16,6 +16,9 @@ import {
 import { pickSmartQueue, stableUnit, type SmartQueueCandidate } from './smart-queue'
 import { getBookByCode } from './book.service'
 import { pickRecheckCandidates } from './recheck-queue'
+import { runSerializable } from '../prisma/tx'
+import { recordDailyStudyInTx } from './daily-study.service'
+import type { Prisma } from '@prisma/client'
 
 export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review' | 'unit' | 'recheck'
 
@@ -539,54 +542,82 @@ export async function getSessionWords(
   }
 }
 
-export async function markWordsPracticed(userId: string, bookCode: string, wordIds: string[]) {
-  const book = await prisma.book.findUnique({ where: { code: bookCode } })
-  if (!book) return
+interface AppliedPractice {
+  newlyCovered: number
+  cycleReset: boolean
+}
 
-  let progress = await prisma.bookStudyProgress.findUnique({
-    where: { learnerId_bookId: { learnerId: userId, bookId: book.id } }
+/** 在事务内合并已练词，并计算本次真正新增的覆盖数。 */
+async function applyPracticedWords(
+  tx: Prisma.TransactionClient,
+  userId: string,
+  bookId: string,
+  wordIds: string[]
+): Promise<AppliedPractice> {
+  const uniqueWordIds = [...new Set(wordIds)]
+  const progress = await tx.bookStudyProgress.findUnique({
+    where: { learnerId_bookId: { learnerId: userId, bookId } }
   })
+  const previous = new Set(progress?.practicedWordIds || [])
+  const newlyCovered = uniqueWordIds.filter(id => !previous.has(id)).length
 
   if (!progress) {
-    progress = await prisma.bookStudyProgress.create({
-      data: { learnerId: userId, bookId: book.id, practicedWordIds: wordIds }
+    await tx.bookStudyProgress.create({
+      data: { learnerId: userId, bookId, practicedWordIds: uniqueWordIds }
     })
-    return progress
+    return { newlyCovered, cycleReset: false }
   }
 
-  const bookWordCount = await prisma.bookVocabulary.count({ where: { bookId: book.id } })
-  const merged = [...new Set([...progress.practicedWordIds, ...wordIds])]
+  const bookWordCount = await tx.bookVocabulary.count({ where: { bookId } })
+  const merged = [...new Set([...progress.practicedWordIds, ...uniqueWordIds])]
 
   if (merged.length >= bookWordCount) {
-    return prisma.bookStudyProgress.update({
+    await tx.bookStudyProgress.update({
       where: { id: progress.id },
       data: {
-        practicedWordIds: wordIds,
+        practicedWordIds: uniqueWordIds,
         cycleStartedAt: new Date()
       }
     })
+    return { newlyCovered, cycleReset: true }
   }
 
-  return prisma.bookStudyProgress.update({
+  await tx.bookStudyProgress.update({
     where: { id: progress.id },
     data: { practicedWordIds: merged }
   })
+  return { newlyCovered, cycleReset: false }
 }
 
-export async function getNewlyCoveredCount(
-  userId: string,
-  bookCode: string,
-  wordIds: string[]
-): Promise<number> {
-  const book = await prisma.book.findUnique({ where: { code: bookCode } })
-  if (!book) return 0
+/**
+ * 完成一次词汇练习会话：
+ * - 已练词合并与当日学习量写入在同一事务内完成，避免并发覆盖；
+ * - 当日学习量只累加本次真正新增的词，重复提交同一批词不再重复计数。
+ */
+export async function completeBookSession(userId: string, bookCode: string, wordIds: string[]) {
+  return runSerializable(async tx => {
+    const book = await tx.book.findUnique({ where: { code: bookCode }, select: { id: true } })
+    if (!book) throw new Error('Book not found')
 
-  const progress = await prisma.bookStudyProgress.findUnique({
-    where: { learnerId_bookId: { learnerId: userId, bookId: book.id } }
+    const { newlyCovered, cycleReset } = await applyPracticedWords(
+      tx,
+      userId,
+      book.id,
+      wordIds
+    )
+
+    if (newlyCovered === 0) {
+      return { newlyCovered, cycleReset, dailyWordCount: null, streak: null }
+    }
+
+    const log = await recordDailyStudyInTx(tx, userId, newlyCovered)
+    return {
+      newlyCovered,
+      cycleReset,
+      dailyWordCount: log.wordCount,
+      streak: log.streak
+    }
   })
-
-  const previous = new Set(progress?.practicedWordIds || [])
-  return wordIds.filter(id => !previous.has(id)).length
 }
 
 export { getMasteryStatus }

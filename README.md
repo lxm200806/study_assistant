@@ -24,13 +24,14 @@ deploy/              生产 Nginx 与 Web 镜像配置
 
 ## 本地开发
 
-项目脚本默认面向 WSL/Linux shell，Windows 下建议在 WSL 中运行。
+启停脚本已跨平台化：Linux/macOS 任意 shell、Windows 的 Git Bash 或 PowerShell 均可。
+Windows 下请直接运行 `node scripts/dev.mjs ...`（或 `bash start-dev.sh`），不要依赖 WSL。
 
 ### 两种运行模式
 
 | 模式 | 入口 | 说明 |
 |------|------|------|
-| 本地测试 | `bash start-dev.sh` | 启动本地后端 `3005` + 前端 `5173`，连接本机数据库 |
+| 本地测试 | `bash start-dev.sh` / `node scripts/dev.mjs start all` | 启动本地后端 `3005` + 前端 `5173`，连接本机数据库 |
 | Docker 发布 | `docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --build` | 启动 Docker 后端 `3004` + Web `80`，连接 Docker 内数据库 |
 
 1. 安装依赖：
@@ -45,14 +46,14 @@ cd ..
 2. 创建后端环境变量文件：
 
 ```bash
-touch server/.env
+cp server/.env.example server/.env
 ```
 
 至少需要在 `server/.env` 中配置：
 
 ```env
 DATABASE_URL="postgresql://study:study123@localhost:5432/study_assistant?schema=public"
-PORT=3004
+PORT=3005
 JWT_SECRET="change_me_at_least_32_characters_long"
 ```
 
@@ -72,6 +73,15 @@ bash start-dev.sh
 | PostgreSQL | localhost:5432 |
 
 ## 常用命令
+
+### 启停（跨平台）
+
+```bash
+node scripts/dev.mjs start all     # 数据库检查 + generate + migrate + API + H5
+node scripts/dev.mjs status        # 查看端口与真实 PID
+node scripts/dev.mjs restart api   # 只重启后端（web/all 同理）
+node scripts/dev.mjs stop all      # 同时回收 nodemon 启动器与监听进程
+```
 
 ### 前端
 
@@ -135,5 +145,7 @@ cd server
 npm run test
 npm run build
 cd ..
+npm run typecheck
+npm run lint
 npm run build:h5
 ```

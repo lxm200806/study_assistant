@@ -1,9 +1,9 @@
 <template>
-  <view :class="['rail', expanded ? '' : 'is-narrow']" @mouseenter="hovering = true" @mouseleave="hovering = false">
+  <view :class="['rail', expanded ? '' : 'is-narrow']" @mouseenter="hovering = true" @mouseleave="hovering = false" @focusin="focusWithin = true" @focusout="onRailFocusOut">
     <view class="rail-top">
       <view v-if="expanded" class="brand">
-        <text class="brand-name" @tap="userStore.goHome()">学习助手</text>
-        <view class="pin" :title="pinned ? '取消固定' : '固定侧栏'" @tap="togglePin">
+        <text class="brand-name" role="button" tabindex="0" @tap="userStore.goHome()" @keydown.enter.prevent="userStore.goHome()" @keydown.space.prevent="userStore.goHome()">学习助手</text>
+        <view class="pin" role="button" tabindex="0" @keydown.enter.prevent="togglePin" @keydown.space.prevent="togglePin" :title="pinned ? '取消固定' : '固定侧栏'" @tap="togglePin">
           <PcRailIcon name="pin" />
         </view>
       </view>
@@ -13,7 +13,12 @@
         :key="item.key"
         :class="['row', isCurrent(item) ? 'is-on' : '']"
         :title="item.label"
+        role="button"
+        tabindex="0"
+        :aria-current="isCurrent(item) ? 'page' : undefined"
         @tap="openMain(item)"
+        @keydown.enter.prevent="openMain(item)"
+        @keydown.space.prevent="openMain(item)"
       >
         <PcRailIcon :name="item.icon" />
         <text class="label">{{ item.label }}</text>
@@ -23,7 +28,12 @@
         <view
           :class="['row', 'more-toggle', !moreOpen && moreCurrent ? 'is-on' : '']"
           title="发展"
+          role="button"
+          tabindex="0"
+          :aria-expanded="moreOpen"
           @tap="moreOpen = !moreOpen"
+          @keydown.enter.prevent="moreOpen = !moreOpen"
+          @keydown.space.prevent="moreOpen = !moreOpen"
         >
           <PcRailIcon name="layers" />
           <text class="label">发展</text>
@@ -35,7 +45,12 @@
             :key="item.key"
             :class="['row', 'sub', isCurrent(item) ? 'is-on' : '']"
             :title="item.label"
+            role="button"
+            tabindex="0"
+            :aria-current="isCurrent(item) ? 'page' : undefined"
             @tap="open(item.url)"
+            @keydown.enter.prevent="open(item.url)"
+            @keydown.space.prevent="open(item.url)"
           >
             <PcRailIcon :name="item.icon" />
             <text class="label">{{ item.label }}</text>
@@ -46,11 +61,11 @@
 
     <view class="rail-foot">
       <view v-if="expanded && userStore.isParent" class="subject">
-        <text :class="['subject-btn', !userStore.isChinese ? 'is-on' : '']" @tap="switchSubject('english')">英语</text>
-        <text :class="['subject-btn', userStore.isChinese ? 'is-on' : '']" @tap="switchSubject('chinese')">语文</text>
+        <text role="button" tabindex="0" :class="['subject-btn', !userStore.isChinese ? 'is-on' : '']" @tap="switchSubject('english')" @keydown.enter.prevent="switchSubject('english')" @keydown.space.prevent="switchSubject('english')">英语</text>
+        <text role="button" tabindex="0" :class="['subject-btn', userStore.isChinese ? 'is-on' : '']" @tap="switchSubject('chinese')" @keydown.enter.prevent="switchSubject('chinese')" @keydown.space.prevent="switchSubject('chinese')">语文</text>
       </view>
       <view v-if="switchOpen" class="switch-pop" @tap.stop>
-        <view class="switch-item" @tap="enterAccount">
+        <view class="switch-item" role="button" tabindex="0" @tap="enterAccount" @keydown.enter.prevent="enterAccount" @keydown.space.prevent="enterAccount">
           <text class="switch-name">{{ accountName }}</text>
           <text class="switch-note">账号</text>
         </view>
@@ -58,13 +73,17 @@
           v-for="item in userStore.children"
           :key="item.id"
           class="switch-item"
+          role="button"
+          tabindex="0"
           @tap="enterRole(item.id)"
+          @keydown.enter.prevent="enterRole(item.id)"
+          @keydown.space.prevent="enterRole(item.id)"
         >
           <text class="switch-name">{{ item.name }}</text>
         </view>
         <text v-if="!userStore.children.length" class="switch-empty">还没有角色</text>
       </view>
-      <view :class="['row', switchOpen ? 'is-on' : '']" title="切换" @tap.stop="switchOpen = !switchOpen">
+      <view role="button" tabindex="0" :aria-expanded="switchOpen" :class="['row', switchOpen ? 'is-on' : '']" title="切换" @tap.stop="switchOpen = !switchOpen" @keydown.enter.prevent="switchOpen = !switchOpen" @keydown.space.prevent="switchOpen = !switchOpen">
         <PcRailIcon name="mine" />
         <text class="label">{{ footLabel }}</text>
       </view>
@@ -95,10 +114,11 @@ type RailItem = {
 const userStore = useUserStore()
 const pinned = ref(readPinned())
 const hovering = ref(false)
+const focusWithin = ref(false)
 const moreOpen = ref(false)
 const switchOpen = ref(false)
 const accountName = computed(() => userStore.displayName || userStore.username || '账号')
-const expanded = computed(() => pinned.value || hovering.value)
+const expanded = computed(() => pinned.value || hovering.value || focusWithin.value)
 
 const themeItem = (): RailItem =>
   item('theme', '主题', '/pages/theme/theme', 'theme')
@@ -289,6 +309,13 @@ async function switchSubject(subject: Subject) {
   await userStore.setSubject(subject)
 }
 
+function onRailFocusOut(event: FocusEvent) {
+  const rail = event.currentTarget as HTMLElement | null
+  const next = event.relatedTarget as Node | null
+  if (next && rail && rail.contains(next)) return
+  focusWithin.value = false
+}
+
 function readPinned() {
   try {
     return localStorage.getItem('pc-rail-pinned') !== '0'
@@ -332,7 +359,7 @@ function readPinned() {
   bottom: calc(100% - 4px);
   max-height: 280px;
   overflow: auto;
-  background: #fff;
+  background: var(--pc-surface-2);
   border: 1px solid var(--pc-rail-border, rgba(44, 51, 56, 0.08));
   border-radius: 12px;
   padding: 6px;
@@ -423,6 +450,15 @@ function readPinned() {
   background: var(--pc-rail-hover, #dfe2e6);
 }
 
+.row:focus-visible,
+.brand-name:focus-visible,
+.pin:focus-visible,
+.subject-btn:focus-visible,
+.switch-item:focus-visible {
+  outline: 2px solid var(--pc-accent, #0f6e6a);
+  outline-offset: 2px;
+}
+
 .row.is-on {
   background: var(--pc-rail-on, #d4d8dd);
   font-weight: 600;
@@ -465,7 +501,7 @@ function readPinned() {
 }
 
 .subject-btn.is-on {
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--pc-surface-2);
   color: var(--pc-rail-text, #1f1a14);
   font-weight: 650;
 }

@@ -21,6 +21,7 @@ export function useTrainingFlow(trainingType: 'listening' | 'speaking' | 'readin
     allSessionWords.value = []
     newlyCovered.value = 0
     unitMeta.value = null
+    vocabStore.resetSessionTokens()
   }
 
   const loadGroup = async (

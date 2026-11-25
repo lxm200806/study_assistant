@@ -105,14 +105,14 @@ onLoad(async query => {
 <style lang="scss" scoped>
 .header { padding: 12rpx 8rpx 24rpx; }
 .title { display: block; font-size: 40rpx; font-weight: 700; }
-.subtitle, .hint, .muted { display: block; color: #888; font-size: 24rpx; margin-top: 8rpx; }
+.subtitle, .hint, .muted { display: block; color: var(--pc-text-3); font-size: 24rpx; margin-top: 8rpx; }
 .today-title, .prompt { display: block; font-size: 30rpx; font-weight: 600; }
 .stats { display: flex; flex-wrap: wrap; gap: 16rpx; margin-top: 16rpx; }
 .stat { flex: 1 1 40%; }
-.num { display: block; font-size: 36rpx; font-weight: 700; color: #667eea; }
-.cheer { display: block; margin-top: 12rpx; color: #667eea; }
+.num { display: block; font-size: 36rpx; font-weight: 700; color: var(--pc-accent); }
+.cheer { display: block; margin-top: 12rpx; color: var(--pc-accent); }
 .pref { display: flex; align-items: center; gap: 12rpx; margin-top: 16rpx; }
-.check { color: #667eea; font-size: 32rpx; }
-.bar { height: 10rpx; margin-top: 12rpx; background: #eee; border-radius: 999rpx; overflow: hidden; }
-.fill { height: 100%; background: #667eea; }
+.check { color: var(--pc-accent); font-size: 32rpx; }
+.bar { height: 10rpx; margin-top: 12rpx; background: var(--pc-surface-1); border-radius: 999rpx; overflow: hidden; }
+.fill { height: 100%; background: var(--pc-accent); }
 </style>

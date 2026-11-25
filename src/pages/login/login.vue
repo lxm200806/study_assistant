@@ -46,11 +46,11 @@ const userStore = useUserStore()
 const username = ref('')
 const password = ref('')
 
-function onUsername(e: { detail?: { value?: string } }) {
+function onUsername(e: any) {
   username.value = String(e?.detail?.value ?? '')
 }
 
-function onPassword(e: { detail?: { value?: string } }) {
+function onPassword(e: any) {
   password.value = String(e?.detail?.value ?? '')
 }
 

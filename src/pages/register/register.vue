@@ -59,17 +59,17 @@ const usernameError = ref('')
 const passwordError = ref('')
 const confirmPasswordError = ref('')
 
-function onUsername(e: { detail?: { value?: string } }) {
+function onUsername(e: any) {
   username.value = String(e?.detail?.value ?? '')
   validateUsername()
 }
 
-function onPassword(e: { detail?: { value?: string } }) {
+function onPassword(e: any) {
   password.value = String(e?.detail?.value ?? '')
   validatePassword()
 }
 
-function onConfirm(e: { detail?: { value?: string } }) {
+function onConfirm(e: any) {
   confirmPassword.value = String(e?.detail?.value ?? '')
   validateConfirmPassword()
 }

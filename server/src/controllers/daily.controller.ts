@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { getDailyStats, getWeeklyReport } from '../services/daily-study.service'
+import { internalError } from '../utils/http-errors'
 
 export async function getDailyStatsHandler(req: Request, res: Response) {
   try {
@@ -8,7 +9,7 @@ export async function getDailyStatsHandler(req: Request, res: Response) {
     const data = await getDailyStats(userId)
     res.status(200).json({ success: true, data })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -19,6 +20,6 @@ export async function getWeeklyReportHandler(req: Request, res: Response) {
     const data = await getWeeklyReport(userId)
     res.status(200).json({ success: true, data })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }

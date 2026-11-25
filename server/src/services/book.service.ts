@@ -1,4 +1,5 @@
 import prisma from '../prisma/client'
+import { createHash } from 'crypto'
 import { VOCABULARY_BOOK_CODES, isFreeBookCode, loadBook } from '../data/vocabulary'
 import { collectBookWordEntries } from '../data/vocabulary/book-entries'
 import { resolveSense } from '../data/vocabulary/senses'
@@ -111,28 +112,39 @@ export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
   }
 
   const entries = collectBookWordEntries(bookData.words)
+  const contentHash = createHash('sha256')
+    .update(
+      JSON.stringify({
+        name: bookData.name,
+        description: bookData.description || '',
+        level: bookData.level,
+        entries
+      })
+    )
+    .digest('hex')
   let book = await prisma.book.findUnique({ where: { code: bookData.code } })
 
-  // 词数已对齐则跳过全量重写，避免每次启动卡死 API
+  // 内容指纹一致才跳过全量重写，避免每次启动卡死 API
   if (book && !opts?.force) {
     const linked = await prisma.bookVocabulary.count({ where: { bookId: book.id } })
-    if (book.wordCount === entries.length && linked === entries.length) {
-      if (
-        book.name !== bookData.name ||
-        book.description !== bookData.description ||
-        book.level !== bookData.level
-      ) {
-        await prisma.book.update({
-          where: { id: book.id },
-          data: {
-            name: bookData.name,
-            description: bookData.description,
-            level: bookData.level,
-            isFree: isFreeBookCode(bookData.code) ? true : book.isFree
-          }
-        })
-      }
-      console.log(`Skip sync ${bookData.code}: already ${entries.length} words`)
+    const countsMatch = book.wordCount === entries.length && linked === entries.length
+    if (countsMatch && book.contentHash === contentHash) {
+      console.log(`Skip sync ${bookData.code}: unchanged (${entries.length} words)`)
+      return
+    }
+    if (countsMatch && !book.contentHash) {
+      // 历史数据没有指纹：补写一次，后续按内容变化决定是否重写
+      await prisma.book.update({
+        where: { id: book.id },
+        data: {
+          name: bookData.name,
+          description: bookData.description,
+          level: bookData.level,
+          isFree: isFreeBookCode(bookData.code) ? true : book.isFree,
+          contentHash
+        }
+      })
+      console.log(`Adopt sync fingerprint ${bookData.code}: ${entries.length} words`)
       return
     }
   }
@@ -239,6 +251,7 @@ export async function syncBookByCode(code: string, opts?: { force?: boolean }) {
     where: { bookId: book.id, wordId: { notIn: linkedWordIds } }
   })
 
+  await prisma.book.update({ where: { id: book.id }, data: { contentHash } })
   console.log(`Book ${bookData.name} synced with ${entries.length} words`)
 }
 

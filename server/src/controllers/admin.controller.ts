@@ -1,12 +1,13 @@
 import { Request, Response } from 'express'
 import { getMissingMeaningSummary, getMissingMeaningWords } from '../services/admin.service'
+import { internalError } from '../utils/http-errors'
 
 export async function getMissingSummaryHandler(req: Request, res: Response) {
   try {
     const data = await getMissingMeaningSummary()
     res.status(200).json({ success: true, data })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -21,6 +22,9 @@ export async function getMissingWordsHandler(req: Request, res: Response) {
     res.status(200).json({ success: true, data })
   } catch (error) {
     const message = (error as Error).message
-    res.status(message === 'Book not found' ? 404 : 500).json({ success: false, error: message })
+    if (message === 'Book not found') {
+      return res.status(404).json({ success: false, error: message })
+    }
+    internalError(res, error)
   }
 }

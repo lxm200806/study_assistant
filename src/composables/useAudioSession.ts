@@ -20,6 +20,7 @@ export function useAudioSession() {
   let h5Stream: MediaStream | null = null
   let h5Chunks: Blob[] = []
   let h5MimeType = 'audio/webm'
+  let h5Audio: HTMLAudioElement | null = null
 
   const ensureUniRecorder = () => {
     if (isBrowserH5()) {
@@ -152,6 +153,14 @@ export function useAudioSession() {
   }
 
   const stopPlay = () => {
+    if (h5Audio) {
+      try {
+        h5Audio.pause()
+      } catch {
+        // ignore
+      }
+      h5Audio = null
+    }
     if (!localAudio) return
     try {
       localAudio.stop()
@@ -169,9 +178,16 @@ export function useAudioSession() {
     if (isBrowserH5() && path.startsWith('blob:')) {
       return new Promise((resolve, reject) => {
         const el = new Audio(path)
+        h5Audio = el
         el.volume = 1
-        el.addEventListener('ended', () => resolve())
-        el.addEventListener('error', () => reject(new Error('播放失败')))
+        el.addEventListener('ended', () => {
+          if (h5Audio === el) h5Audio = null
+          resolve()
+        })
+        el.addEventListener('error', () => {
+          if (h5Audio === el) h5Audio = null
+          reject(new Error('播放失败'))
+        })
         const playPromise = el.play()
         if (playPromise !== undefined) {
           playPromise.catch((err: DOMException | Error) => {
@@ -224,11 +240,40 @@ export function useAudioSession() {
     return result.data
   }
 
+  /** 停止录音/播放并释放麦克风，页面卸载时调用。 */
+  const release = () => {
+    if (h5MediaRecorder) {
+      h5MediaRecorder.onstop = null
+      try {
+        if (h5MediaRecorder.state !== 'inactive') h5MediaRecorder.stop()
+      } catch {
+        // ignore
+      }
+      h5MediaRecorder = null
+    }
+    if (recordBackend !== 'h5' && recorder) {
+      try {
+        recorder.stop()
+      } catch {
+        // ignore
+      }
+    }
+    stopH5Stream()
+    stopPlay()
+    if (recordReject) {
+      const reject = recordReject
+      recordResolve = null
+      recordReject = null
+      reject(new Error('录音已取消'))
+    }
+  }
+
   return {
     startRecord,
     stopRecord,
     playLocal,
     stopPlay,
+    release,
     uploadTranscribe,
     assessPronunciation,
     getAuthToken

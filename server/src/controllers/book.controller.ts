@@ -1,17 +1,19 @@
 import { Request, Response } from 'express'
 import { getBooks, getBookByCode, getBookMetaByCode, getRandomWordsFromBook } from '../services/book.service'
 import { getSessionWords, getBookProgress, type SessionMode } from '../services/coverage.service'
+import { signSessionToken } from '../services/session-token'
 import { getDueCount } from '../services/training.service'
 import { assertBookAccess } from '../services/book-access.service'
 import { formatBookWord, formatWordForClient } from '../utils/wordFormat'
 import { clampInt } from '../utils/pagination'
+import { internalError } from '../utils/http-errors'
 
 export async function getBooksHandler(req: Request, res: Response) {
   try {
     const books = await getBooks()
     res.status(200).json({ success: true, data: books })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -53,7 +55,7 @@ export async function getBookDetailHandler(req: Request, res: Response) {
     if ((error as Error).message === 'BOOK_LOCKED') {
       return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
     }
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -84,7 +86,7 @@ export async function getRandomWordsFromBookHandler(req: Request, res: Response)
     if (message === 'Book not found') {
       return res.status(404).json({ success: false, error: message })
     }
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -106,7 +108,13 @@ export async function getBookSessionHandler(req: Request, res: Response) {
 
     await assertBookAccess(userId, code)
     const result = await getSessionWords(userId, code, count, mode, type, topic, { unitId, excludeIds })
-    res.status(200).json({ success: true, data: result })
+    // 词表凭证：完成会话时只接受本次下发过的词，防止客户端伪造 wordIds。
+    const sessionToken = signSessionToken(
+      userId,
+      code,
+      result.words.map(word => word.id)
+    )
+    res.status(200).json({ success: true, data: { ...result, sessionToken } })
   } catch (error) {
     const message = (error as Error).message
     if (message === 'BOOK_LOCKED') {
@@ -118,7 +126,7 @@ export async function getBookSessionHandler(req: Request, res: Response) {
     if (message === 'Book not found') {
       return res.status(404).json({ success: false, error: message })
     }
-    res.status(500).json({ success: false, error: message })
+    internalError(res, error)
   }
 }
 
@@ -137,7 +145,10 @@ export async function getBookProgressHandler(req: Request, res: Response) {
     if (message === 'BOOK_LOCKED') {
       return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
     }
-    res.status(message === 'Book not found' ? 404 : 500).json({ success: false, error: message })
+    if (message === 'Book not found') {
+      return res.status(404).json({ success: false, error: message })
+    }
+    internalError(res, error)
   }
 }
 
@@ -157,6 +168,9 @@ export async function getBookDueCountHandler(req: Request, res: Response) {
     if (message === 'BOOK_LOCKED') {
       return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
     }
-    res.status(message === 'Book not found' ? 404 : 500).json({ success: false, error: message })
+    if (message === 'Book not found') {
+      return res.status(404).json({ success: false, error: message })
+    }
+    internalError(res, error)
   }
 }

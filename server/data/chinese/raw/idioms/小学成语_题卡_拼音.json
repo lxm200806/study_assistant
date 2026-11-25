@@ -443,7 +443,7 @@
       "answer": "zhī yán piàn yǔ",
       "question_type": "pinyin_choice",
       "audience": "all",
-      "options": "{\"choices\":[\"zhī yán piàng yǔ\",\"zhī yán piàn yǔ\",\"zhǐ yán piàn yǔ\",\"zhī yán pián yǔ\"]}"
+      "options": "{\"choices\":[\"zhī yàn piàn yǔ\",\"zhī yán piàn yǔ\",\"zhǐ yán piàn yǔ\",\"zhī yán pián yǔ\"]}"
     },
     {
       "key": "idiom-l3-0934:pinyin_choice",
@@ -6842,7 +6842,7 @@
       "answer": "bù xiū biān fú",
       "question_type": "pinyin_choice",
       "audience": "all",
-      "options": "{\"choices\":[\"bù xōu biān fú\",\"bú xiū biān fú\",\"bù xiū bián fú\",\"bù xiū biān fú\"]}"
+      "options": "{\"choices\":[\"bú xiū biān fú\",\"bù xiū bián fú\",\"bù xiū biān fù\",\"bù xiū biān fú\"]}"
     },
     {
       "key": "idiom-l3-0707:pinyin_choice",
@@ -12503,7 +12503,7 @@
       "answer": "yǒng chuí bù xiǔ",
       "question_type": "pinyin_choice",
       "audience": "all",
-      "options": "{\"choices\":[\"yǒng chuí bù xǒu\",\"yǒng chuí bù xiú\",\"yǒng chuí bù xiū\",\"yǒng chuí bù xiǔ\"]}"
+      "options": "{\"choices\":[\"yǒng chuí bù xiú\",\"yǒng chuí bū xiǔ\",\"yǒng chuí bù xiū\",\"yǒng chuí bù xiǔ\"]}"
     },
     {
       "key": "idiom-l3-1415:pinyin_choice",

@@ -421,23 +421,23 @@ onShow(async () => {
 <style lang="scss" scoped>
 .header { padding: 12rpx 8rpx 24rpx; }
 .title { display: block; font-size: 40rpx; font-weight: 700; }
-.subtitle, .muted { display: block; color: #888; font-size: 24rpx; margin-top: 8rpx; }
-.label { display: block; margin: 20rpx 0 12rpx; font-size: 26rpx; color: #555; }
+.subtitle, .muted { display: block; color: var(--pc-text-3); font-size: 24rpx; margin-top: 8rpx; }
+.label { display: block; margin: 20rpx 0 12rpx; font-size: 26rpx; color: var(--pc-text-2); }
 .chips { display: flex; flex-wrap: wrap; gap: 12rpx; }
-.chip { padding: 10rpx 18rpx; border-radius: 999rpx; background: #f3f3f3; font-size: 24rpx; color: #555; }
-.chip.active { background: #667eea; color: #fff; }
+.chip { padding: 10rpx 18rpx; border-radius: 999rpx; background: var(--pc-surface-1); font-size: 24rpx; color: var(--pc-text-2); }
+.chip.active { background: var(--pc-accent); color: var(--pc-on-accent); }
 .check-row { display: flex; align-items: center; gap: 12rpx; margin-top: 20rpx; }
-.check { color: #667eea; font-size: 32rpx; }
-.banner { display: block; margin-top: 12rpx; color: #667eea; }
+.check { color: var(--pc-accent); font-size: 32rpx; }
+.banner { display: block; margin-top: 12rpx; color: var(--pc-accent); }
 .section { display: block; font-weight: 600; font-size: 30rpx; }
 .name { display: block; font-weight: 600; margin-bottom: 8rpx; }
-.point-item { padding: 16rpx 0; border-top: 1rpx solid #f0f0f0; }
-.input, .import-box { background: #f7f7f7; border-radius: 12rpx; padding: 18rpx 20rpx; font-size: 26rpx; width: 100%; box-sizing: border-box; }
+.point-item { padding: 16rpx 0; border-top: 1rpx solid var(--pc-border); }
+.input, .import-box { background: var(--pc-surface-1); border-radius: 12rpx; padding: 18rpx 20rpx; font-size: 26rpx; width: 100%; box-sizing: border-box; }
 .import-box { min-height: 160rpx; }
 .toolbar { display: flex; gap: 16rpx; margin-top: 16rpx; }
 .toolbar .compact, .compact { flex: 1; margin: 16rpx 0 0; }
 .pagination { display: flex; align-items: center; justify-content: center; gap: 24rpx; margin: 24rpx 0 40rpx; }
-.page-btn { color: #667eea; }
-.page-btn.disabled { color: #ccc; }
-.page-info { color: #888; font-size: 24rpx; }
+.page-btn { color: var(--pc-accent); }
+.page-btn.disabled { color: var(--pc-text-3); opacity: 0.6; }
+.page-info { color: var(--pc-text-3); font-size: 24rpx; }
 </style>

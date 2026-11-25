@@ -118,7 +118,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed, onUnmounted, watch } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
+import { onLoad, onUnload } from '@dcloudio/uni-app'
 import { useUserStore } from '@/stores/user'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { chatAPI } from '@/utils/api'
@@ -134,6 +134,10 @@ import { requireSubject } from '@/utils/subject'
 const userStore = useUserStore()
 const vocabStore = useVocabularyStore()
 const audio = useAudioSession()
+
+onUnload(() => {
+  audio.release()
+})
 const streamingTts = useStreamingTts()
 const streamingAsr = useStreamingAsr()
 const { partialText: asrPartialText, asrProvider, loadConfig, startLiveRecording, stopLiveRecording, stopLiveRecognition } = streamingAsr
@@ -571,11 +575,11 @@ onUnmounted(() => {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #f5f5f5;
+  background: var(--pc-main-bg);
 }
 
 .chat-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--pc-accent);
   padding: 30rpx 24rpx 20rpx;
   text-align: center;
 }
@@ -583,13 +587,14 @@ onUnmounted(() => {
 .header-title {
   font-size: 36rpx;
   font-weight: 600;
-  color: white;
+  color: var(--pc-on-accent);
   display: block;
 }
 
 .header-subtitle {
   font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--pc-on-accent);
+  opacity: 0.85;
   display: block;
   margin-top: 6rpx;
 }
@@ -603,14 +608,16 @@ onUnmounted(() => {
 
 .mode-tab, .ui-tab {
   font-size: 22rpx;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--pc-on-accent);
+  opacity: 0.75;
   padding: 8rpx 20rpx;
   border-radius: 24rpx;
   background: rgba(255, 255, 255, 0.15);
 
   &.active {
-    color: #667eea;
-    background: white;
+    color: var(--pc-accent);
+    background: var(--pc-surface-2);
+    opacity: 1;
     font-weight: 600;
   }
 }
@@ -627,11 +634,11 @@ onUnmounted(() => {
 
   &.user {
     flex-direction: row-reverse;
-    .avatar { background: #667eea; }
+    .avatar { background: var(--pc-accent); }
     .message-content {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      .message-text { color: white; }
-      .message-time { color: rgba(255, 255, 255, 0.7); }
+      background: var(--pc-accent);
+      .message-text { color: var(--pc-on-accent); }
+      .message-time { color: var(--pc-on-accent); opacity: 0.7; }
     }
   }
 
@@ -651,13 +658,13 @@ onUnmounted(() => {
 
 .avatar text {
   font-size: 28rpx;
-  color: white;
+  color: var(--pc-on-accent);
   font-weight: 600;
 }
 
 .message-content {
   max-width: 70%;
-  background: white;
+  background: var(--pc-surface-2);
   border-radius: 20rpx;
   padding: 20rpx;
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.08);
@@ -665,7 +672,7 @@ onUnmounted(() => {
 
 .message-text {
   font-size: 30rpx;
-  color: #333;
+  color: var(--pc-text);
   display: block;
   margin-bottom: 10rpx;
 }
@@ -676,7 +683,7 @@ onUnmounted(() => {
   justify-content: space-between;
 }
 
-.message-time { font-size: 22rpx; color: #999; }
+.message-time { font-size: 22rpx; color: var(--pc-text-3); }
 
 .message-actions {
   display: flex;
@@ -686,20 +693,20 @@ onUnmounted(() => {
 
 .msg-action-btn {
   font-size: 24rpx;
-  color: #667eea;
+  color: var(--pc-accent);
   padding: 4rpx 8rpx;
 }
 
 .status-banner {
-  background: #eef2ff;
+  background: var(--pc-accent-soft);
   border-radius: 16rpx;
   padding: 16rpx 20rpx;
   font-size: 26rpx;
-  color: #667eea;
+  color: var(--pc-accent);
 }
 
 .voice-panel {
-  background: white;
+  background: var(--pc-surface-2);
   padding: 32rpx 24rpx 48rpx;
   display: flex;
   flex-direction: column;
@@ -709,13 +716,13 @@ onUnmounted(() => {
 
 .voice-status {
   font-size: 28rpx;
-  color: #333;
+  color: var(--pc-text);
   margin-bottom: 8rpx;
 }
 
 .voice-provider {
   font-size: 22rpx;
-  color: #999;
+  color: var(--pc-text-3);
   margin-bottom: 24rpx;
 }
 
@@ -723,7 +730,7 @@ onUnmounted(() => {
   width: 160rpx;
   height: 160rpx;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--pc-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -741,16 +748,16 @@ onUnmounted(() => {
 
 .voice-mic-icon {
   font-size: 64rpx;
-  color: white;
+  color: var(--pc-on-accent);
 }
 
 .voice-hint {
   font-size: 24rpx;
-  color: #999;
+  color: var(--pc-text-3);
 }
 
 .chat-input-bar {
-  background: white;
+  background: var(--pc-surface-2);
   padding: 20rpx;
   display: flex;
   gap: 20rpx;
@@ -762,7 +769,8 @@ onUnmounted(() => {
 .chat-input {
   width: 100%;
   height: 80rpx;
-  background: #f5f5f5;
+  background: var(--pc-surface-1);
+  color: var(--pc-text);
   border-radius: 40rpx;
   padding: 0 30rpx;
   font-size: 30rpx;
@@ -771,8 +779,8 @@ onUnmounted(() => {
 .send-btn {
   height: 80rpx;
   padding: 0 40rpx;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--pc-accent);
+  color: var(--pc-on-accent);
   border: none;
   border-radius: 40rpx;
   font-size: 28rpx;
@@ -792,7 +800,7 @@ onUnmounted(() => {
 .scenario-picker-title {
   font-size: 34rpx;
   font-weight: 600;
-  color: #333;
+  color: var(--pc-text);
   text-align: center;
   margin-bottom: 36rpx;
   display: block;
@@ -806,7 +814,7 @@ onUnmounted(() => {
 }
 
 .scenario-card {
-  background: white;
+  background: var(--pc-surface-2);
   border-radius: 24rpx;
   padding: 32rpx 20rpx;
   display: flex;
@@ -823,7 +831,7 @@ onUnmounted(() => {
 
 .scenario-card-label {
   font-size: 28rpx;
-  color: #333;
+  color: var(--pc-text);
   font-weight: 500;
   text-align: center;
 }
@@ -837,7 +845,8 @@ onUnmounted(() => {
 .scenario-custom-input {
   flex: 1;
   height: 80rpx;
-  background: white;
+  background: var(--pc-surface-2);
+  color: var(--pc-text);
   border-radius: 40rpx;
   padding: 0 30rpx;
   font-size: 28rpx;
@@ -846,8 +855,8 @@ onUnmounted(() => {
 
 .scenario-custom-btn {
   font-size: 28rpx;
-  color: white;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: var(--pc-on-accent);
+  background: var(--pc-accent);
   padding: 18rpx 32rpx;
   border-radius: 40rpx;
   font-weight: 500;

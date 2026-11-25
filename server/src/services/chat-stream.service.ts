@@ -2,8 +2,7 @@ import type { Response } from 'express'
 import { recordChatVocabulary, type MatchedWord } from './vocab-match.service'
 import type { ChatMode } from './chat.service'
 import {
-  assertChatQuota,
-  saveUserChatMessage,
+  reserveUserChatMessage,
   saveAiChatMessage,
   buildLlmMessages,
   buildFallbackResponse
@@ -35,8 +34,7 @@ export async function streamChatMessage(
   }
 
   try {
-    await assertChatQuota(userId)
-    await saveUserChatMessage(userId, content, mode)
+    await reserveUserChatMessage(userId, content, mode)
 
     const messages = await buildLlmMessages(userId, content, bookCode, mode, scenario)
     let fullText = ''

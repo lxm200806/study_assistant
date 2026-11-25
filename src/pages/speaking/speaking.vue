@@ -80,7 +80,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { onLoad } from '@dcloudio/uni-app'
+import { onLoad, onUnload } from '@dcloudio/uni-app'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import type { Vocabulary } from '@/types'
 import { getWordMeaning, getWordHeadword } from '@/utils/vocabulary'
@@ -102,6 +102,10 @@ import { useAudioSession } from '@/composables/useAudioSession'
 
 const vocabStore = useVocabularyStore()
 const audio = useAudioSession()
+
+onUnload(() => {
+  audio.release()
+})
 const { recordAnswer, getAnalysis, resetSession } = useSessionAnalysis('speaking')
 const { newlyCovered, resetFlow, loadGroup, finishSession } = useTrainingFlow('speaking')
 

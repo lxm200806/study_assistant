@@ -73,7 +73,7 @@
 import { computed, onMounted } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import { useUserStore } from '@/stores/user'
-import { applyAppShell, requireReadySession } from '@/utils/subject'
+import { requireReadySession } from '@/utils/subject'
 
 const userStore = useUserStore()
 

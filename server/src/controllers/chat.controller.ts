@@ -2,6 +2,16 @@ import { Request, Response } from 'express'
 import { sendChatMessage, getChatHistory, getChatRemaining, type ChatMode } from '../services/chat.service'
 import { streamChatMessage } from '../services/chat-stream.service'
 import { assertBookAccess } from '../services/book-access.service'
+import { internalError } from '../utils/http-errors'
+
+const MAX_MESSAGE_LENGTH = 2000
+
+function normalizeContent(raw: unknown): string | null {
+  if (typeof raw !== 'string') return null
+  const content = raw.trim()
+  if (!content || content.length > MAX_MESSAGE_LENGTH) return null
+  return content
+}
 
 export async function streamMessageHandler(req: Request, res: Response) {
   const userId = req.learnerId
@@ -13,8 +23,12 @@ export async function streamMessageHandler(req: Request, res: Response) {
     scenario?: string
   }
 
-  if (!content) {
-    return res.status(400).json({ success: false, error: 'Message content is required' })
+  const text = normalizeContent(content)
+  if (!text) {
+    return res.status(400).json({
+      success: false,
+      error: `Message content must be 1-${MAX_MESSAGE_LENGTH} characters`
+    })
   }
 
   if (bookCode) {
@@ -22,14 +36,14 @@ export async function streamMessageHandler(req: Request, res: Response) {
       await assertBookAccess(userId, bookCode)
     } catch (error) {
       const message = (error as Error).message
-      return res.status(message === 'BOOK_LOCKED' ? 403 : 500).json({
-        success: false,
-        error: message
-      })
+      if (message === 'BOOK_LOCKED') {
+        return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
+      }
+      return internalError(res, error)
     }
   }
 
-  await streamChatMessage(res, userId, content, bookCode, mode || 'free', scenario)
+  await streamChatMessage(res, userId, text, bookCode, mode || 'free', scenario)
 }
 
 export async function sendMessageHandler(req: Request, res: Response) {
@@ -43,8 +57,12 @@ export async function sendMessageHandler(req: Request, res: Response) {
       scenario?: string
     }
 
-    if (!content) {
-      return res.status(400).json({ error: 'Message content is required' })
+    const text = normalizeContent(content)
+    if (!text) {
+      return res.status(400).json({
+        success: false,
+        error: `Message content must be 1-${MAX_MESSAGE_LENGTH} characters`
+      })
     }
 
     if (bookCode) {
@@ -53,7 +71,7 @@ export async function sendMessageHandler(req: Request, res: Response) {
 
     const result = await sendChatMessage(
       userId,
-      content,
+      text,
       bookCode,
       mode || 'free',
       scenario
@@ -61,10 +79,13 @@ export async function sendMessageHandler(req: Request, res: Response) {
     res.status(200).json({ success: true, data: result })
   } catch (error) {
     const msg = (error as Error).message
-    res.status(msg === 'BOOK_LOCKED' ? 403 : msg === 'CHAT_LIMIT' ? 429 : 500).json({
-      success: false,
-      error: msg === 'CHAT_LIMIT' ? '今日免费对话次数已用完' : msg
-    })
+    if (msg === 'BOOK_LOCKED') {
+      return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
+    }
+    if (msg === 'CHAT_LIMIT') {
+      return res.status(429).json({ success: false, error: '今日免费对话次数已用完' })
+    }
+    internalError(res, error)
   }
 }
 
@@ -78,7 +99,7 @@ export async function getHistoryHandler(req: Request, res: Response) {
     const history = await getChatHistory(userId, page, limit)
     res.status(200).json({ success: true, data: history })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -89,6 +110,6 @@ export async function getChatQuotaHandler(req: Request, res: Response) {
     const quota = await getChatRemaining(userId)
     res.status(200).json({ success: true, data: quota })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }

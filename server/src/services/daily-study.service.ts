@@ -1,29 +1,46 @@
 import prisma from '../prisma/client'
 import { addDaysToKey, todayKey } from '../utils/date-key'
+import { runSerializable } from '../prisma/tx'
+import type { Prisma } from '@prisma/client'
 
-export async function recordDailyStudy(userId: string, wordCount: number) {
+/** 在调用方事务内累加当日学习量；返回写入后的当日记录。 */
+export async function recordDailyStudyInTx(
+  tx: Prisma.TransactionClient,
+  userId: string,
+  wordCount: number
+) {
   const today = todayKey()
-  const existing = await prisma.dailyStudyLog.findUnique({
+  const existing = await tx.dailyStudyLog.findUnique({
     where: { learnerId_date: { learnerId: userId, date: today } }
   })
 
   if (existing) {
-    return prisma.dailyStudyLog.update({
+    return tx.dailyStudyLog.update({
       where: { id: existing.id },
-      data: { wordCount: existing.wordCount + wordCount }
+      data: { wordCount: { increment: wordCount } }
     })
   }
 
   const yesterday = addDaysToKey(today, -1)
-  const prev = await prisma.dailyStudyLog.findUnique({
+  const prev = await tx.dailyStudyLog.findUnique({
     where: { learnerId_date: { learnerId: userId, date: yesterday } }
   })
 
   const streak = prev && prev.wordCount > 0 ? prev.streak + 1 : 1
 
-  return prisma.dailyStudyLog.create({
+  return tx.dailyStudyLog.create({
     data: { learnerId: userId, date: today, wordCount, streak }
   })
+}
+
+export async function recordDailyStudy(userId: string, wordCount: number) {
+  const safe = Math.max(0, Math.floor(wordCount))
+  if (safe === 0) {
+    return prisma.dailyStudyLog.findUnique({
+      where: { learnerId_date: { learnerId: userId, date: todayKey() } }
+    })
+  }
+  return runSerializable(tx => recordDailyStudyInTx(tx, userId, safe))
 }
 
 export async function getDailyStats(userId: string) {

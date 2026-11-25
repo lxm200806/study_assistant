@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { getQuizWords, submitQuiz } from '../services/quiz.service'
 import { assertBookAccess } from '../services/book-access.service'
+import { internalError } from '../utils/http-errors'
 
 export async function getQuizWordsHandler(req: Request, res: Response) {
   try {
@@ -16,7 +17,10 @@ export async function getQuizWordsHandler(req: Request, res: Response) {
     res.status(200).json({ success: true, data: words })
   } catch (error) {
     const msg = (error as Error).message
-    res.status(msg === 'BOOK_LOCKED' ? 403 : 500).json({ success: false, error: msg })
+    if (msg === 'BOOK_LOCKED') {
+      return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
+    }
+    internalError(res, error)
   }
 }
 
@@ -33,6 +37,9 @@ export async function submitQuizHandler(req: Request, res: Response) {
     res.status(200).json({ success: true, data: result })
   } catch (error) {
     const msg = (error as Error).message
-    res.status(msg === 'BOOK_LOCKED' ? 403 : 500).json({ success: false, error: msg })
+    if (msg === 'BOOK_LOCKED') {
+      return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
+    }
+    internalError(res, error)
   }
 }

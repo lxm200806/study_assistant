@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { getVocabulary, getVocabularyById, getRandomVocabulary, getTrainingStats } from '../services/vocabulary.service'
 import { getEmoji } from '../utils/emojiMap'
 import { clampInt } from '../utils/pagination'
+import { internalError } from '../utils/http-errors'
 
 export async function getVocabularyListHandler(req: Request, res: Response) {
   try {
@@ -22,7 +23,7 @@ export async function getVocabularyListHandler(req: Request, res: Response) {
     
     res.status(200).json({ success: true, data: formattedWords })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -48,7 +49,7 @@ export async function getVocabularyDetailHandler(req: Request, res: Response) {
     
     res.status(200).json({ success: true, data: formattedWord })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -70,7 +71,7 @@ export async function getRandomWordsHandler(req: Request, res: Response) {
     
     res.status(200).json({ success: true, data: formattedWords })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -82,6 +83,6 @@ export async function getStatsHandler(req: Request, res: Response) {
     const stats = await getTrainingStats(userId)
     res.status(200).json({ success: true, data: stats })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }

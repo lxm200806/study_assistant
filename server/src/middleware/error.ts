@@ -7,5 +7,10 @@ export function errorMiddleware(err: Error & { type?: string; status?: number },
     return res.status(413).json({ success: false, error: 'AUDIO_TOO_LARGE' })
   }
 
-  res.status(err.status || 500).json({ success: false, error: err.message })
+  const status = err.status || 500
+  // 5xx 只暴露通用错误码，避免把 Prisma / 内部实现细节返回给客户端
+  if (status >= 500) {
+    return res.status(status).json({ success: false, error: 'INTERNAL_ERROR' })
+  }
+  res.status(status).json({ success: false, error: err.message })
 }

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import { studyUserId } from '../middleware/auth'
+import { signSessionToken } from '../services/session-token'
 import {
   clampCount,
   parseHistoryDate,
@@ -8,6 +9,7 @@ import {
   REJECT_TEXT,
   type RejectReason
 } from '../services/typing-logic'
+import { internalError } from '../utils/http-errors'
 import {
   createPracticeArticle,
   deletePracticeArticle,
@@ -62,7 +64,7 @@ function sendTypingError(res: Response, error: unknown) {
       ...(rejected ? { rejected } : {})
     })
   }
-  return res.status(500).json({ success: false, error: message })
+  return internalError(res, error)
 }
 
 export async function typingSummaryHandler(req: Request, res: Response) {
@@ -97,7 +99,16 @@ export async function typingQueueHandler(req: Request, res: Response) {
       includeMastered: req.query.includeMastered === '1' || req.query.includeMastered === 'true',
       allBooks: req.query.allBooks === '1' || req.query.allBooks === 'true'
     })
-    res.status(200).json({ success: true, data })
+    // 按书取词时同样签发词表凭证，拼读练习结束会用它完成词汇会话。
+    const sessionToken =
+      data.scopedToBook && data.bookCode && data.words.length
+        ? signSessionToken(
+            learnerId,
+            data.bookCode,
+            data.words.map(word => word.id)
+          )
+        : undefined
+    res.status(200).json({ success: true, data: { ...data, sessionToken } })
   } catch (error) {
     sendTypingError(res, error)
   }

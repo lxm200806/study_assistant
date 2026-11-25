@@ -56,10 +56,10 @@ onShow(async () => {
 <style lang="scss" scoped>
 .header { padding: 12rpx 8rpx 24rpx; }
 .title { display: block; font-size: 40rpx; font-weight: 700; }
-.subtitle, .muted { display: block; color: #888; font-size: 24rpx; margin-top: 8rpx; }
+.subtitle, .muted { display: block; color: var(--pc-text-3); font-size: 24rpx; margin-top: 8rpx; }
 .stats { display: flex; flex-wrap: wrap; gap: 16rpx; }
 .stat { flex: 1 1 28%; }
-.num { display: block; font-size: 36rpx; font-weight: 700; color: #667eea; }
+.num { display: block; font-size: 36rpx; font-weight: 700; color: var(--pc-accent); }
 .section { display: block; font-weight: 600; font-size: 30rpx; }
 .row { margin-top: 12rpx; font-size: 26rpx; }
 </style>

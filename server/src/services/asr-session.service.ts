@@ -1,9 +1,11 @@
 import { randomUUID } from 'crypto'
 import { isXfyunAsrConfigured } from './llm-config.service'
 import { createXfyunSession, type XfyunAudioEncoding, XfyunAsrSession } from './asr-xfyun.service'
-import { transcribeAudio } from './speech.service'
+import { reserveSpeechUsage, transcribeAudio } from './speech.service'
 
 const SESSION_TTL_MS = 5 * 60 * 1000
+const MAX_SESSION_BYTES = 5 * 1024 * 1024
+const MAX_SESSION_CHUNKS = 300
 
 interface AsrSessionEntry {
   userId: string
@@ -14,6 +16,7 @@ interface AsrSessionEntry {
   partialText: string
   createdAt: number
   chunkCount: number
+  totalBytes: number
 }
 
 const sessions = new Map<string, AsrSessionEntry>()
@@ -26,11 +29,22 @@ function shortSessionId(sessionId: string): string {
   return sessionId.slice(0, 8)
 }
 
+function dropSession(sessionId: string, session: AsrSessionEntry): void {
+  sessions.delete(sessionId)
+  if (session.xfyun) {
+    try {
+      void Promise.resolve(session.xfyun.close()).catch(() => undefined)
+    } catch {
+      // ignore
+    }
+  }
+}
+
 function cleanupSessions(): void {
   const now = Date.now()
   for (const [id, session] of sessions.entries()) {
     if (now - session.createdAt > SESSION_TTL_MS) {
-      sessions.delete(id)
+      dropSession(id, session)
     }
   }
 }
@@ -50,7 +64,8 @@ export async function startAsrSession(
     audioChunks: [],
     partialText: '',
     createdAt: Date.now(),
-    chunkCount: 0
+    chunkCount: 0,
+    totalBytes: 0
   }
 
   if (provider === 'xfyun') {
@@ -61,6 +76,21 @@ export async function startAsrSession(
     } catch (error) {
       console.error('[asr-session] xfyun connect failed:', (error as Error).message)
       entry.provider = 'whisper'
+    }
+  }
+
+  if (entry.provider === 'xfyun') {
+    try {
+      await reserveSpeechUsage(userId, 'asr')
+    } catch (error) {
+      if (entry.xfyun) {
+        try {
+          await entry.xfyun.close()
+        } catch {
+          // ignore
+        }
+      }
+      throw error
     }
   }
 
@@ -85,7 +115,15 @@ export async function pushAsrChunk(
   }
 
   const buffer = Buffer.from(audioBase64, 'base64')
+  if (
+    session.chunkCount + 1 > MAX_SESSION_CHUNKS ||
+    session.totalBytes + buffer.length > MAX_SESSION_BYTES
+  ) {
+    dropSession(sessionId, session)
+    throw new Error('ASR_SESSION_TOO_LARGE')
+  }
   session.chunkCount += 1
+  session.totalBytes += buffer.length
   const chunkNo = session.chunkCount
   const elapsedMs = Date.now() - session.createdAt
   if (buffer.length > 0) {
@@ -115,7 +153,7 @@ export async function pushAsrChunk(
       session.encoding === 'raw' ? 'audio/L16;rate=16000' : 'audio/mp3'
     )
     session.partialText = result.text
-    sessions.delete(sessionId)
+    dropSession(sessionId, session)
     debugAsrSession('whisper-final-on-last-chunk', {
       sessionId: shortSessionId(sessionId),
       chunkNo,
@@ -158,7 +196,7 @@ export async function endAsrSession(userId: string, sessionId: string): Promise<
   }
 
   if (session.partialText) {
-    sessions.delete(sessionId)
+    dropSession(sessionId, session)
     debugAsrSession('session-end-existing-final', {
       sessionId: shortSessionId(sessionId),
       elapsedMs: Date.now() - session.createdAt,

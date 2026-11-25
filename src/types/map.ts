@@ -26,6 +26,8 @@ export interface SessionResponse {
   mode: SessionMode
   unit?: SessionUnitMeta
   recheck?: SessionRecheckMeta
+  /** 服务端签发的本次词表凭证，完成会话时回传。 */
+  sessionToken?: string
 }
 
 export interface SessionRecheckMeta {

@@ -35,7 +35,7 @@ export function parseTypingTokens(sentence: string): TypingToken[] {
 
     const rest = sentence.slice(i)
 
-    let m = rest.match(/^[\$¥€£]\d{1,3}(?:,\d{3})*(?:\.\d+)?%?/)
+    let m = rest.match(/^[$¥€£]\d{1,3}(?:,\d{3})*(?:\.\d+)?%?/)
     if (m) {
       tokens.push({ word: m[0], start: i, end: i + m[0].length, type: TokenType.Number })
       i += m[0].length
@@ -56,7 +56,7 @@ export function parseTypingTokens(sentence: string): TypingToken[] {
       continue
     }
 
-    m = rest.match(/^[A-Za-z0-9]+(?:['\-][A-Za-z0-9]+)*/)
+    m = rest.match(/^[A-Za-z0-9]+(?:['-][A-Za-z0-9]+)*/)
     if (m) {
       tokens.push({ word: m[0], start: i, end: i + m[0].length, type: TokenType.Word })
       i += m[0].length

@@ -137,7 +137,7 @@ import WordHeatmapGrid from '@/components/map/WordHeatmapGrid.vue'
 type StatusFilter = 'all' | 'new' | 'learning' | 'mastered'
 type ViewMode = 'grid' | 'list'
 
-const PAGE_SIZE = 2000
+const PAGE_SIZE = 120
 
 const vocabStore = useVocabularyStore()
 const userStore = useUserStore()
@@ -267,8 +267,12 @@ watch(pageCount, (count) => {
 function goPage(next: number) {
   if (next < 1 || next > pageCount.value) return
   page.value = next
-  if (typeof window !== 'undefined') {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+  // PC 壳层只滚动 uni-main，window.scrollTo 在那里不起作用
+  const scroller = typeof document !== 'undefined' ? document.querySelector('uni-main') : null
+  if (scroller) {
+    scroller.scrollTo({ top: 0, behavior: 'smooth' })
+  } else {
+    uni.pageScrollTo({ scrollTop: 0, duration: 300 })
   }
 }
 
@@ -361,18 +365,10 @@ onHide(() => {
 
 onMounted(async () => {
   if (!(await requireReadySession())) return
-  enterDesktopChrome()
-  if (userStore.isChinese) {
-    try {
-      chineseCoverage.value = await chineseAPI.coverage()
-    } catch {
-      chineseCoverage.value = {}
-    }
-    return
-  }
+  if (userStore.isChinese) return
+  // onShow 已负责拉取图鉴数据，这里只做一次性初始化，避免首屏重复请求
   await vocabStore.loadBooks()
   vocabStore.loadSettings()
-  await loadMap()
 })
 </script>
 
@@ -385,7 +381,7 @@ onMounted(async () => {
   --atlas-ink-3: #7a7d8a;
   --atlas-line: rgba(26, 32, 53, 0.1);
   --atlas-line-strong: rgba(26, 32, 53, 0.15);
-  --atlas-serif: "Fraunces", "Songti SC", "STSong", "Noto Serif SC", Georgia, serif;
+  --atlas-serif: "Songti SC", "STSong", "Noto Serif SC", Georgia, serif;
   --atlas-sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Segoe UI", "Microsoft YaHei", sans-serif;
   --gutter: 28px;
 

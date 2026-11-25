@@ -16,7 +16,8 @@ export function detectRecordBackend(): RecordBackend {
   if (isBrowserH5()) {
     if (
       typeof navigator !== 'undefined' &&
-      navigator.mediaDevices?.getUserMedia &&
+      !!navigator.mediaDevices &&
+      typeof navigator.mediaDevices.getUserMedia === 'function' &&
       typeof MediaRecorder !== 'undefined'
     ) {
       return 'h5'
@@ -79,7 +80,7 @@ export async function readRecordingAsBase64(
 
 export type XfyunAudioEncoding = 'lame' | 'raw'
 
-async function loadRecordingBlob(filePath: string, fallbackMimeType: string): Promise<Blob> {
+async function loadRecordingBlob(filePath: string): Promise<Blob> {
   if (filePath.startsWith('blob:')) {
     const res = await fetch(filePath)
     return res.blob()
@@ -98,9 +99,9 @@ function uint8ArrayToBase64(bytes: Uint8Array): string {
 
 export async function convertRecordingToPcm16Base64(
   filePath: string,
-  fallbackMimeType: string
+  _fallbackMimeType: string
 ): Promise<string> {
-  const blob = await loadRecordingBlob(filePath, fallbackMimeType)
+  const blob = await loadRecordingBlob(filePath)
   const arrayBuffer = await blob.arrayBuffer()
   const AudioCtx = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
   if (!AudioCtx) {

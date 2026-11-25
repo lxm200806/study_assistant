@@ -153,20 +153,20 @@ onShow(async () => {
 
 <style lang="scss" scoped>
 .course-list { padding-top: 20rpx; }
-.loading-text { display: block; padding: 80rpx 0; text-align: center; color: #999; font-size: 26rpx; }
+.loading-text { display: block; padding: 80rpx 0; text-align: center; color: var(--pc-text-3); font-size: 26rpx; }
 .course-card {
   margin-bottom: 22rpx;
   padding: 28rpx;
   overflow: hidden;
-  border: 1rpx solid #eef0f7;
+  border: 1rpx solid var(--pc-border);
   border-radius: 24rpx;
   box-shadow: 0 10rpx 30rpx rgba(60, 72, 120, 0.08);
 }
 .course-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 20rpx; }
-.course-name { flex: 1; color: #1f2937; font-size: 34rpx; font-weight: 700; line-height: 1.35; }
-.update-badge { flex-shrink: 0; padding: 6rpx 12rpx; border-radius: 999rpx; background: #fff7ed; color: #c2410c; font-size: 20rpx; }
-.course-details { display: flex; align-items: center; flex-wrap: wrap; gap: 10rpx; margin-top: 14rpx; color: #6b7280; font-size: 24rpx; }
-.detail-dot { color: #d1d5db; }
+.course-name { flex: 1; color: var(--pc-text); font-size: 34rpx; font-weight: 700; line-height: 1.35; }
+.update-badge { flex-shrink: 0; padding: 6rpx 12rpx; border-radius: 999rpx; background: var(--pc-danger-soft); color: var(--pc-danger); font-size: 20rpx; }
+.course-details { display: flex; align-items: center; flex-wrap: wrap; gap: 10rpx; margin-top: 14rpx; color: var(--pc-text-2); font-size: 24rpx; }
+.detail-dot { color: var(--pc-border); }
 .main-actions { display: flex; gap: 16rpx; margin-top: 26rpx; }
 .action-btn {
   flex: 1;
@@ -179,18 +179,18 @@ onShow(async () => {
   line-height: 72rpx;
 }
 .action-btn::after, .text-action::after { border: 0; }
-.primary-action { background: linear-gradient(135deg, #667eea, #5b6ee1); color: #fff; }
-.plan-action { background: #eef2ff; color: #5264d9; }
-.plain-action { background: #f3f4f6; color: #4b5563; }
-.minor-actions { display: flex; align-items: center; justify-content: flex-end; margin-top: 18rpx; padding-top: 16rpx; border-top: 1rpx solid #f0f1f5; }
-.text-action { min-width: 0; height: 48rpx; margin: 0; padding: 0 20rpx; background: transparent; color: #6b7280; font-size: 23rpx; line-height: 48rpx; }
-.text-action + .text-action { border-left: 1rpx solid #eee; border-radius: 0; }
-.danger { color: #dc2626; }
-.edit-title { display: block; margin-bottom: 14rpx; color: #374151; font-size: 26rpx; font-weight: 600; }
-.input { box-sizing: border-box; width: 100%; background: #f7f8fc; border: 2rpx solid #dfe4ff; border-radius: 14rpx; padding: 18rpx 20rpx; font-size: 28rpx; }
+.primary-action { background: var(--pc-accent); color: var(--pc-on-accent); }
+.plan-action { background: var(--pc-accent-soft); color: var(--pc-accent); }
+.plain-action { background: var(--pc-surface-1); color: var(--pc-text-2); }
+.minor-actions { display: flex; align-items: center; justify-content: flex-end; margin-top: 18rpx; padding-top: 16rpx; border-top: 1rpx solid var(--pc-border); }
+.text-action { min-width: 0; height: 48rpx; margin: 0; padding: 0 20rpx; background: transparent; color: var(--pc-text-2); font-size: 23rpx; line-height: 48rpx; }
+.text-action + .text-action { border-left: 1rpx solid var(--pc-border); border-radius: 0; }
+.danger { color: var(--pc-danger); }
+.edit-title { display: block; margin-bottom: 14rpx; color: var(--pc-text); font-size: 26rpx; font-weight: 600; }
+.input { box-sizing: border-box; width: 100%; background: var(--pc-surface-1); border: 2rpx solid var(--pc-border); border-radius: 14rpx; padding: 18rpx 20rpx; font-size: 28rpx; }
 .edit-actions { display: flex; gap: 16rpx; margin-top: 18rpx; }
 .empty { padding: 60rpx 40rpx; text-align: center; }
-.empty-title { display: block; color: #374151; font-size: 30rpx; font-weight: 600; }
-.empty-desc { display: block; margin-top: 10rpx; color: #9ca3af; font-size: 24rpx; }
+.empty-title { display: block; color: var(--pc-text); font-size: 30rpx; font-weight: 600; }
+.empty-desc { display: block; margin-top: 10rpx; color: var(--pc-text-3); font-size: 24rpx; }
 .empty-btn { width: 240rpx; margin-top: 26rpx; }
 </style>

@@ -1,22 +1,22 @@
 #!/bin/bash
-# 打印 WSL 开发环境的访问地址（供 Windows 浏览器使用）
+# 打印可访问地址（本机 + 局域网），跨 WSL / Git Bash / Linux
 
 print_access_urls() {
   local port="$1"
-  local label="$2"
-  local wsl_ip
-
-  wsl_ip="$(hostname -I 2>/dev/null | awk '{print $1}')"
+  local label="${2:-服务}"
 
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   echo "  $label"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-  echo "  推荐: http://localhost:$port"
-  if [ -n "$wsl_ip" ]; then
-    echo "  备用: http://${wsl_ip}:$port"
-  fi
-  echo ""
-  echo "  API 已通过 Vite 代理到后端，无需单独访问 3004"
-  echo "  请优先使用 http://localhost:$port（Windows 浏览器访问 WSL 最稳定）"
+  node -e '
+    const os = require("os")
+    const port = process.argv[1]
+    console.log("  本机: http://localhost:" + port)
+    for (const list of Object.values(os.networkInterfaces())) {
+      for (const item of list || []) {
+        if (item.family === "IPv4" && !item.internal) console.log("  局域网: http://" + item.address + ":" + port)
+      }
+    }
+  ' "$port"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 }

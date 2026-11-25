@@ -20,6 +20,10 @@ chmod +x deploy.sh
 
 浏览器访问：`http://服务器IP`（默认 80 端口）
 
+> `DATABASE_URL` 必须显式填写，compose 不再用 `POSTGRES_PASSWORD` 拼接连接串。
+> 密码含 `@ : / # ? &` 等字符时必须先 URL 编码（如 `p@ss` → `p%40ss`），
+> 否则 Prisma 会把连接串解析错。
+
 ## 架构
 
 | 容器 | 说明 |
@@ -46,12 +50,17 @@ docker compose -f docker-compose.prod.yml down -v
 
 ## HTTPS
 
-生产环境语音功能需要 HTTPS。可在宿主机 Nginx/Caddy 前再加一层，或使用 certbot：
+生产环境语音功能（麦克风）需要 HTTPS。API 容器不再映射宿主机端口，外部只能经
+`study-assistant-web`（Nginx）访问，TLS 建议在这一层或宿主机反向代理上终止。
+可在宿主机 Nginx/Caddy 前再加一层，或使用 certbot：
 
 ```bash
 # 示例：宿主机 certbot + 反代到 8080，把 docker-compose 里 HTTP_PORT 改为 8080
 sudo certbot --nginx -d your-domain.com
 ```
+
+Nginx 已内置 gzip、静态资源长缓存、`index.html` no-cache 和基础安全头；
+`/api/chat/stream` 单独关闭代理缓冲，其余 API 保持默认缓冲。
 
 ## 更新版本
 
@@ -63,13 +72,18 @@ git pull
 ## GitHub Actions 自动构建镜像（可选）
 
 推送 `main` 分支后，`.github/workflows/docker.yml` 会构建镜像并推到 GitHub Container Registry。
+PR 只做类型检查、测试和镜像构建，不推送；`main` 推送 `latest` 与 `sha-*` 标签。
 
 服务器拉取预构建镜像（无需本地 build）：
 
 ```bash
-# .env.prod 里可设 IMAGE_TAG=latest
-docker compose -f docker-compose.prod.yml pull
-docker compose -f docker-compose.prod.yml up -d
+# .env.prod 可选：IMAGE_TAG=latest 或 git commit sha
+# 私有仓库需先 docker login ghcr.io
+docker compose -f docker-compose.prod.yml --env-file .env.prod pull
+docker compose -f docker-compose.prod.yml --env-file .env.prod up -d
 ```
 
-（需在 compose 里改用 `image:` 而非 `build:`，见 workflow 注释。）
+compose 里同时保留了 `build:` 与 `image:`：`up -d --build` 走本地构建，
+`pull` 则只拉取 CI 产物、不会重新构建。镜像地址可用 `API_IMAGE` / `WEB_IMAGE` 覆盖，默认是
+`ghcr.io/lxm200806/study_assistant/{api,web}:${IMAGE_TAG:-latest}`。
+若服务器只允许使用预构建镜像，可把 compose 里的 `build:` 段删掉，避免误触发本地构建。

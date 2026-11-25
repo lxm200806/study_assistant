@@ -242,14 +242,15 @@ const updateDate = () => {
 }
 
 const loadStats = async () => {
-  await vocabStore.loadVocabulary()
   vocabStore.loadStats()
   vocabStore.loadTrainingRecords()
-  
-  await vocabStore.loadServerStats()
-  await vocabStore.loadDueCount()
-  await vocabStore.loadDailyStats()
-  
+
+  await Promise.all([
+    vocabStore.loadServerStats(),
+    vocabStore.loadDueCount(),
+    vocabStore.loadDailyStats()
+  ])
+
   dailyGoal.value = getDailyGoal()
   dailyWordCount.value = vocabStore.dailyStats.wordCount
   streak.value = vocabStore.dailyStats.streak

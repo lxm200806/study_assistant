@@ -80,14 +80,14 @@ import { onLoad, onShow } from '@dcloudio/uni-app'
 import { usePepTextMode } from '@/composables/usePepTextMode'
 import { requireSubject } from '@/utils/subject'
 import { openPage } from '@/utils/navigation'
-import { getPepBook, type PepPassage } from '@/data/primary/load'
+import { loadPepBook, type PepBook, type PepPassage } from '@/data/primary/load'
 import { rememberPrimaryBook, rememberPrimaryUnit } from '@/utils/primary-session'
 
 const { mode, setMode } = usePepTextMode()
 const code = ref('pep-g3a-2024')
 const unitId = ref('')
 
-const book = computed(() => getPepBook(code.value))
+const book = ref<PepBook | null>(null)
 const unit = computed(() => book.value?.units.find(u => u.id === unitId.value) || null)
 
 const activePassages = computed(() => {
@@ -107,7 +107,12 @@ onLoad((query) => {
   unitId.value = String(query?.id || query?.unit || '')
   rememberPrimaryBook(code.value)
   if (unitId.value) rememberPrimaryUnit(code.value, unitId.value)
+  void loadBook()
 })
+
+async function loadBook() {
+  book.value = await loadPepBook(code.value)
+}
 
 onShow(async () => {
   if (!(await requireSubject('english', 'student'))) return

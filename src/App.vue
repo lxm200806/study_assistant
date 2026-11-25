@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import { useUserStore } from '@/stores/user'
+import { useVocabularyStore } from '@/stores/vocabulary'
 import { applyAppShell } from '@/utils/subject'
 import { isBrowserH5 } from '@/utils/audio-recording'
 import { installPcRouteSync } from '@/utils/pc-route'
 import { applyPcTheme } from '@/utils/pc-theme'
+import { getAuthToken } from '@/utils/api'
 
 onLaunch(() => {
   if (!isBrowserH5()) return
@@ -16,6 +18,7 @@ onShow(async () => {
   const userStore = useUserStore()
   await userStore.checkLogin()
   applyAppShell()
+  if (getAuthToken()) void useVocabularyStore().flushPracticeQueue()
 })
 
 onHide(() => {
@@ -62,16 +65,18 @@ page {
 }
 
 .card {
-  background: white;
+  background: var(--pc-surface-2, #fffdf8);
+  color: var(--pc-text, #1f1a14);
+  border: 1px solid var(--pc-border, rgba(31, 26, 20, 0.1));
   border-radius: 16rpx;
   padding: 30rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+  box-shadow: var(--pc-shadow, 0 2rpx 12rpx rgba(0, 0, 0, 0.06));
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: var(--pc-accent, #0f6e6a);
+  color: var(--pc-on-accent, #ffffff);
   border: none;
   border-radius: 40rpx;
   padding: 24rpx;
@@ -80,8 +85,8 @@ page {
 }
 
 .btn-secondary {
-  background: #f5f5f5;
-  color: #333;
+  background: var(--pc-surface-1, #efe6d6);
+  color: var(--pc-text, #1f1a14);
   border: none;
   border-radius: 40rpx;
   padding: 24rpx;
@@ -110,11 +115,11 @@ page {
 }
 
 .text-primary {
-  color: #667eea;
+  color: var(--pc-accent, #0f6e6a);
 }
 
 .text-gray {
-  color: #999;
+  color: var(--pc-text-3, #8a8175);
 }
 
 .text-sm {

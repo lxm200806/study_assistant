@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { transcribeAudio, assessPronunciation } from '../services/speech.service'
 import { startAsrSession, pushAsrChunk, endAsrSession } from '../services/asr-session.service'
 import { getAsrProvider } from '../services/llm-config.service'
+import { internalError } from '../utils/http-errors'
 
 export async function getAsrConfigHandler(_req: Request, res: Response) {
   res.status(200).json({
@@ -18,7 +19,7 @@ export async function startAsrSessionHandler(req: Request, res: Response) {
     const result = await startAsrSession(userId, encoding === 'raw' ? 'raw' : 'lame')
     res.status(200).json({ success: true, data: result })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -37,7 +38,7 @@ export async function pushAsrChunkHandler(req: Request, res: Response) {
     const result = await pushAsrChunk(userId, sessionId, audioBase64, !!isLast)
     res.status(200).json({ success: true, data: result })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -52,7 +53,7 @@ export async function endAsrSessionHandler(req: Request, res: Response) {
     const text = await endAsrSession(userId, sessionId)
     res.status(200).json({ success: true, data: { text } })
   } catch (error) {
-    res.status(500).json({ success: false, error: (error as Error).message })
+    internalError(res, error)
   }
 }
 
@@ -102,7 +103,7 @@ export async function assessHandler(req: Request, res: Response) {
     if (msg === 'SPEECH_LIMIT') status = 429
     else if (msg === 'WHISPER_NOT_CONFIGURED') status = 503
     else if (msg === 'AUDIO_TOO_LARGE' || msg === 'EMPTY_AUDIO') status = 400
-    else console.error('[assess] unexpected error:', msg, (error as Error).stack)
+    if (status === 500) return internalError(res, error)
     res.status(status).json({ success: false, error: msg })
   }
 }

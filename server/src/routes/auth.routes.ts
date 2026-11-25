@@ -41,7 +41,7 @@ router.put('/role', authMiddleware, setRoleHandler)
 router.put('/students/active', authMiddleware, setActiveStudentHandler)
 router.put('/students/:id', authMiddleware, renameStudentHandler)
 router.delete('/students/:id', authMiddleware, archiveStudentHandler)
-if (!isProduction()) {
+if (!isProduction() && process.env.WECHAT_LOGIN_STUB === 'true') {
   router.post(
     '/wechat',
     rateLimit({ windowMs: 60 * 60 * 1000, max: 10, keyPrefix: 'auth-wechat' }),

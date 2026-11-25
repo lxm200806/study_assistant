@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { authAPI, getAuthToken } from '@/utils/api'
 import { unwrapStorage } from '@/utils/storage'
 import { applyAppShell, goToLanding, type Subject } from '@/utils/subject'
+import { useVocabularyStore } from '@/stores/vocabulary'
 
 export type AccountType = 'parent' | 'student'
 export type ActiveRole = 'parent' | 'student'
@@ -80,6 +81,11 @@ export const useUserStore = defineStore('user', () => {
     persistUser(user)
   }
 
+  /** 切换账号/孩子后清空词汇练习的内存态；登出时一并清理本地缓存 */
+  const resetVocabularyState = (clearStorage = false) => {
+    useVocabularyStore().resetLearnerState({ clearStorage })
+  }
+
   const markRoleChosen = () => {
     roleChosen.value = true
     uni.setStorageSync(ROLE_CHOSEN_KEY, '1')
@@ -132,6 +138,7 @@ export const useUserStore = defineStore('user', () => {
   const switchStudent = async (studentId: string) => {
     const result = await authAPI.setActiveStudent(studentId)
     if (result.user) persistUser(result.user as StoredUser)
+    resetVocabularyState()
   }
 
   const chooseParentRole = async () => {
@@ -143,6 +150,7 @@ export const useUserStore = defineStore('user', () => {
   const chooseStudentRole = async (studentId: string) => {
     const result = await authAPI.setRole('student', studentId)
     if (result.user) persistUser(result.user as StoredUser)
+    resetVocabularyState()
     markRoleChosen()
   }
 
@@ -152,8 +160,10 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const removeStudent = async (studentId: string) => {
+    const previousLearnerId = activeLearnerId.value
     const result = await authAPI.archiveStudent(studentId)
     if (result.user) persistUser(result.user as StoredUser)
+    if (studentId === previousLearnerId) resetVocabularyState()
   }
 
   const goHome = () => {
@@ -206,6 +216,7 @@ export const useUserStore = defineStore('user', () => {
           persistUser(result.user as StoredUser)
         }
 
+        resetVocabularyState()
         isLoggedIn.value = true
         uni.showToast({ title: '登录成功', icon: 'success' })
         navigateAfterAuth()
@@ -225,6 +236,7 @@ export const useUserStore = defineStore('user', () => {
         if (result.user) {
           persistUser(result.user as StoredUser)
         }
+        resetVocabularyState()
         isLoggedIn.value = true
         uni.showToast({ title: '微信登录成功', icon: 'success' })
         navigateAfterAuth()
@@ -251,6 +263,7 @@ export const useUserStore = defineStore('user', () => {
           })
         }
 
+        resetVocabularyState()
         isLoggedIn.value = true
         uni.showToast({ title: '注册成功', icon: 'success' })
         navigateAfterAuth()
@@ -275,6 +288,7 @@ export const useUserStore = defineStore('user', () => {
     learner.value = null
     children.value = []
     clearRoleChosen()
+    resetVocabularyState(true)
     uni.removeStorageSync('accessToken')
     uni.removeStorageSync('refreshToken')
     uni.removeStorageSync('user')

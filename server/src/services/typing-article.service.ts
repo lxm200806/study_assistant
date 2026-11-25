@@ -1,4 +1,5 @@
 import prisma from '../prisma/client'
+import { runSerializable } from '../prisma/tx'
 import { builtinArticles, findBuiltinArticle } from '../data/practice-articles'
 import {
   splitPieces,
@@ -341,24 +342,44 @@ export async function submitSentenceAnswer(
   // 线性文章练习不改词汇错词本；只返回本句没写对的词用于提示。
   const wrongWords = isCorrect ? [] : await markSentenceContentWrong(learnerId, row.text, !linear)
   // 文章练习按单元线性推进，不使用记忆曲线：只记录练习次数与最近结果，不写 due/FSRS。
-  const fields = linear
-    ? {
-        practiceCount: { increment: 1 },
-        ...(isCorrect ? { correctCount: { increment: 1 } } : {}),
-        lastPractice: now,
-        recentLapse: !isCorrect
-      }
-    : scheduleCard(cardInputFrom(row), isCorrect)
-  const updated = await prisma.articleSentenceCard.update({
-    where: {
-      learnerId_articleKey_sentenceIndex: {
-        learnerId,
-        articleKey: parsed.key,
-        sentenceIndex
-      }
-    },
-    data: fields
-  })
+  const updated = linear
+    ? await prisma.articleSentenceCard.update({
+        where: {
+          learnerId_articleKey_sentenceIndex: {
+            learnerId,
+            articleKey: parsed.key,
+            sentenceIndex
+          }
+        },
+        data: {
+          practiceCount: { increment: 1 },
+          ...(isCorrect ? { correctCount: { increment: 1 } } : {}),
+          lastPractice: now,
+          recentLapse: !isCorrect
+        }
+      })
+    : await runSerializable(async tx => {
+        const current = await tx.articleSentenceCard.findUnique({
+          where: {
+            learnerId_articleKey_sentenceIndex: {
+              learnerId,
+              articleKey: parsed.key,
+              sentenceIndex
+            }
+          }
+        })
+        if (!current) throw new Error('NOT_FOUND')
+        return tx.articleSentenceCard.update({
+          where: {
+            learnerId_articleKey_sentenceIndex: {
+              learnerId,
+              articleKey: parsed.key,
+              sentenceIndex
+            }
+          },
+          data: scheduleCard(cardInputFrom(current), isCorrect)
+        })
+      })
   return {
     articleKey: updated.articleKey,
     sentenceIndex: updated.sentenceIndex,

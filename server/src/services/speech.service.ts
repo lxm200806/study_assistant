@@ -3,6 +3,7 @@ import { isXfyunAsrConfigured } from './llm-config.service'
 import { transcribeWithXfyun, type XfyunAudioEncoding } from './asr-xfyun.service'
 import { getBillingUser } from './billing-user'
 import { startOfToday } from '../utils/date-key'
+import { runSerializable } from '../prisma/tx'
 
 const FREE_DAILY_SPEECH = 10
 
@@ -111,25 +112,28 @@ async function isPremiumUser(userId: string): Promise<boolean> {
   return !!user && user.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
 }
 
-async function checkSpeechQuota(userId: string): Promise<void> {
-  if (await isPremiumUser(userId)) return
+/** 占一条当日语音额度；配额检查与写入在同一事务内完成，避免并发绕过。 */
+export async function reserveSpeechUsage(userId: string, kind: string): Promise<string | null> {
+  if (await isPremiumUser(userId)) return null
 
-  const todayStart = startOfToday()
-  const count = await prisma.speechUsageLog.count({
-    where: { learnerId: userId, createdAt: { gte: todayStart } }
+  return runSerializable(async tx => {
+    const count = await tx.speechUsageLog.count({
+      where: { learnerId: userId, createdAt: { gte: startOfToday() } }
+    })
+    if (count >= FREE_DAILY_SPEECH) {
+      throw new Error('SPEECH_LIMIT')
+    }
+    const row = await tx.speechUsageLog.create({ data: { learnerId: userId, kind } })
+    return row.id
   })
-  if (count >= FREE_DAILY_SPEECH) {
-    throw new Error('SPEECH_LIMIT')
-  }
 }
 
-async function recordSpeechUsage(userId: string, kind: string): Promise<void> {
-  await prisma.speechUsageLog.create({ data: { learnerId: userId, kind } })
+export async function releaseSpeechUsage(usageId: string | null): Promise<void> {
+  if (!usageId) return
+  await prisma.speechUsageLog.delete({ where: { id: usageId } }).catch(() => undefined)
 }
 
 export async function transcribeAudio(userId: string, audioBase64: string, mimeType = 'audio/mp3'): Promise<TranscribeResult> {
-  await checkSpeechQuota(userId)
-
   const buffer = Buffer.from(audioBase64, 'base64')
   if (buffer.length === 0) {
     throw new Error('EMPTY_AUDIO')
@@ -138,46 +142,51 @@ export async function transcribeAudio(userId: string, audioBase64: string, mimeT
     throw new Error('AUDIO_TOO_LARGE')
   }
 
-  if (isXfyunAsrConfigured()) {
-    if (isBrowserFriendlyMime(mimeType)) {
-      // Browser H5 recordings are often WebM/Opus; keep them on the Whisper path.
-    } else {
-    try {
-      const text = await transcribeWithXfyun(audioBase64, xfyunEncodingFromMime(mimeType))
-      await recordSpeechUsage(userId, 'transcribe')
-      return { text }
-    } catch (error) {
-      console.error('[speech] xfyun transcribe failed:', (error as Error).message)
-    }
-    }
-  }
-
+  // Browser H5 recordings are often WebM/Opus; keep them on the Whisper path.
+  const useXfyun = isXfyunAsrConfigured() && !isBrowserFriendlyMime(mimeType)
   const config = getWhisperConfig()
-  if (!config) {
+  if (!useXfyun && !config) {
     throw new Error('WHISPER_NOT_CONFIGURED')
   }
 
-  const ext = audioExtension(mimeType)
-  const blob = new Blob([buffer], { type: mimeType })
-  const form = new FormData()
-  form.append('file', blob, `audio.${ext}`)
-  form.append('model', process.env.WHISPER_MODEL || 'whisper-1')
-  form.append('language', 'en')
+  const reservation = await reserveSpeechUsage(userId, 'transcribe')
+  try {
+    if (useXfyun) {
+      try {
+        const text = await transcribeWithXfyun(audioBase64, xfyunEncodingFromMime(mimeType))
+        return { text }
+      } catch (error) {
+        console.error('[speech] xfyun transcribe failed:', (error as Error).message)
+      }
+    }
 
-  const res = await fetch(`${config.baseUrl}/audio/transcriptions`, {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${config.apiKey}` },
-    body: form
-  })
+    if (!config) {
+      throw new Error('WHISPER_NOT_CONFIGURED')
+    }
 
-  if (!res.ok) {
-    throw new Error('TRANSCRIBE_FAILED')
+    const ext = audioExtension(mimeType)
+    const blob = new Blob([buffer], { type: mimeType })
+    const form = new FormData()
+    form.append('file', blob, `audio.${ext}`)
+    form.append('model', process.env.WHISPER_MODEL || 'whisper-1')
+    form.append('language', 'en')
+
+    const res = await fetch(`${config.baseUrl}/audio/transcriptions`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${config.apiKey}` },
+      body: form
+    })
+
+    if (!res.ok) {
+      throw new Error('TRANSCRIBE_FAILED')
+    }
+
+    const data = await res.json() as { text?: string }
+    return { text: (data.text || '').trim() }
+  } catch (error) {
+    await releaseSpeechUsage(reservation)
+    throw error
   }
-
-  const data = await res.json() as { text?: string }
-  await recordSpeechUsage(userId, 'transcribe')
-
-  return { text: (data.text || '').trim() }
 }
 
 export async function assessPronunciation(

@@ -45,22 +45,27 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import { usePepTextMode } from '@/composables/usePepTextMode'
 import { requireSubject } from '@/utils/subject'
 import { openPage } from '@/utils/navigation'
-import { getPepBook, type PepUnit } from '@/data/primary/load'
+import { loadPepBook, type PepBook, type PepUnit } from '@/data/primary/load'
 import { rememberPrimaryBook, rememberPrimaryUnit } from '@/utils/primary-session'
 
 const { mode, setMode } = usePepTextMode()
 const code = ref('pep-g3a-2024')
-const book = computed(() => getPepBook(code.value))
+const book = ref<PepBook | null>(null)
 
 onLoad((query) => {
   code.value = String(query?.code || 'pep-g3a-2024')
   rememberPrimaryBook(code.value)
+  void loadBook()
 })
+
+async function loadBook() {
+  book.value = await loadPepBook(code.value)
+}
 
 onShow(async () => {
   if (!(await requireSubject('english', 'student'))) return

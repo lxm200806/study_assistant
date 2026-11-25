@@ -6,27 +6,32 @@ import { buildSystemPrompt, getLearnerChatContext } from './chat-learner-context
 import { sanitizeFreeChatReply } from './chat-reply-sanitize.service'
 import { getBillingUser } from './billing-user'
 import { startOfToday } from '../utils/date-key'
+import { runSerializable } from '../prisma/tx'
 
 const HISTORY_LIMIT = 20
 export const FREE_DAILY_CHAT = 5
 
-export async function assertChatQuota(userId: string): Promise<void> {
+/** 校验当日免费额度并写入用户消息，检查与写入在同一事务内完成。 */
+export async function reserveUserChatMessage(
+  userId: string,
+  content: string,
+  mode?: ChatMode
+): Promise<void> {
   const user = await getBillingUser(userId)
   const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
-  if (isPremium) return
-
-  const todayStart = startOfToday()
-  const todayCount = await prisma.chatRecord.count({
-    where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
-  })
-  if (todayCount >= FREE_DAILY_CHAT) {
-    throw new Error('CHAT_LIMIT')
+  if (isPremium) {
+    await prisma.chatRecord.create({ data: { learnerId: userId, role: 'user', content, mode } })
+    return
   }
-}
 
-export async function saveUserChatMessage(userId: string, content: string, mode?: ChatMode): Promise<void> {
-  await prisma.chatRecord.create({
-    data: { learnerId: userId, role: 'user', content, mode }
+  await runSerializable(async tx => {
+    const todayCount = await tx.chatRecord.count({
+      where: { learnerId: userId, role: 'user', createdAt: { gte: startOfToday() } }
+    })
+    if (todayCount >= FREE_DAILY_CHAT) {
+      throw new Error('CHAT_LIMIT')
+    }
+    await tx.chatRecord.create({ data: { learnerId: userId, role: 'user', content, mode } })
   })
 }
 

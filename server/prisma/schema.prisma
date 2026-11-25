@@ -84,6 +84,8 @@ model Book {
   level       String
   wordCount   Int      @default(0)
   isFree      Boolean  @default(false)
+  /// 词书 JSON 的内容指纹，用于判断是否需要重新同步。
+  contentHash String?
   createdAt   DateTime @default(now())
 
   vocabulary    BookVocabulary[]
@@ -108,6 +110,7 @@ model BookVocabulary {
   word Vocabulary @relation(fields: [wordId], references: [id])
 
   @@unique([bookId, wordId])
+  @@index([bookId, sortOrder])
 }
 
 model Vocabulary {
@@ -222,6 +225,8 @@ model TrainingRecord {
 
   learner Learner    @relation(fields: [learnerId], references: [id], onDelete: Cascade)
   word    Vocabulary @relation(fields: [wordId], references: [id])
+
+  @@index([learnerId, createdAt])
 }
 
 model ChatRecord {
@@ -233,6 +238,8 @@ model ChatRecord {
   createdAt DateTime @default(now())
 
   learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
+
+  @@index([learnerId, createdAt])
 }
 
 model SpeechUsageLog {
@@ -257,7 +264,6 @@ model DailyStudyLog {
   learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
 
   @@unique([learnerId, date])
-  @@index([learnerId, date])
 }
 
 model UserBookUnlock {

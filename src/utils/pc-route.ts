@@ -4,7 +4,6 @@ import { ref } from 'vue'
 export const PC_BARE_PAGES = new Set([
   '/pages/login/login',
   '/pages/register/register',
-  '/pages/onboarding/onboarding',
   '/pages/family/roles'
 ])
 

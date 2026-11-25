@@ -1,47 +1,23 @@
 #!/bin/bash
-# 补装 Linux 原生二进制（node_modules 曾在 Windows 下安装时需要）
-# 用法: ./scripts/fix-native-deps.sh
+# 原生依赖检查（不再从网络下载固定平台 tgz）
+#
+# 历史实现会硬编码下载 Linux x64 的 rollup/esbuild 二进制且无校验和，
+# 在 ARM、依赖提升或 npm ci 之后反而会破坏 node_modules。
+# 现在只做检查，平台二进制交给 npm 的可选依赖。
 
 set -e
 cd "$(dirname "$0")/.."
-source ./scripts/node-env.sh
 
-# 仅在 Linux/WSL 下补装 Linux 原生二进制；Windows/macOS 下安装依赖时已自带对应平台二进制
-if [ "$(uname -s)" != "Linux" ]; then
-  echo "✅ 当前平台 $(uname -s)，无需补装 Linux 原生依赖"
-  exit 0
+if command -v node >/dev/null 2>&1; then
+  echo "✅ Node $(node --version)（$(node -p 'process.platform + "-" + process.arch')）"
+else
+  echo "未找到 Node.js" >&2
+  exit 1
 fi
 
-install_pkg() {
-  local scope="$1"
-  local name="$2"
-  local version="$3"
-  local check_file="$4"
-  local install_dir="$5"
-
-  if [ -f "$check_file" ]; then
-    return 0
-  fi
-
-  echo "→ 安装 ${scope}/${name}@${version}"
-  local tmp
-  tmp="$(mktemp -d)"
-  curl -sL "https://registry.npmjs.org/${scope}/${name}/-/${name}-${version}.tgz" -o "$tmp/pkg.tgz"
-  tar -xzf "$tmp/pkg.tgz" -C "$tmp"
-  mkdir -p "$(dirname "$install_dir")"
-  rm -rf "$install_dir"
-  mv "$tmp/package" "$install_dir"
-  rm -rf "$tmp"
-}
-
-ROLLUP_VER="$(node -p "require('./node_modules/rollup/package.json').version")"
-install_pkg "@rollup" "rollup-linux-x64-gnu" "$ROLLUP_VER" \
-  "node_modules/@rollup/rollup-linux-x64-gnu/rollup.linux-x64-gnu.node" \
-  "node_modules/@rollup/rollup-linux-x64-gnu"
-
-ESBUILD_VER="$(node -p "require('./node_modules/vite/node_modules/esbuild/package.json').version")"
-install_pkg "@esbuild" "linux-x64" "$ESBUILD_VER" \
-  "node_modules/vite/node_modules/@esbuild/linux-x64/bin/esbuild" \
-  "node_modules/vite/node_modules/@esbuild/linux-x64"
-
-echo "✅ 原生依赖已就绪"
+cat <<'EOF'
+原生依赖（rollup / esbuild）由 npm 的可选平台包自动安装。
+如切换平台后出现 "Cannot find module @rollup/rollup-*"：
+  rm -rf node_modules package-lock.json && npm install
+不要再手工下载固定 Linux x64 二进制。
+EOF

@@ -13,7 +13,7 @@ Frontend is UniApp 3 + Vue 3 + TypeScript + Pinia (H5 and WeChat mini-program). 
 
 ## Commands
 
-Shell scripts are bash and were originally written for Linux/WSL. This repo is nevertheless developed **directly on Windows** (Git Bash + native Node 22, no WSL) — see **Windows local dev** below. `scripts/node-env.sh` rejects Node whose path contains `/mnt/c/` or ends in `.exe`; under Git Bash `command -v node` returns an extension-less `/c/...` path, so the guard does not fire and Windows Node runs normally.
+Shell scripts are thin wrappers around `scripts/dev.mjs`, so development works on Linux/macOS and **directly on Windows** (Git Bash or PowerShell, native Node 22). `scripts/dev.mjs` resolves Git Bash explicitly because `bash` on `PATH` is usually WSL's `C:\Windows\System32\bash.exe`. See **Windows local dev** below.
 
 ### Setup
 
@@ -31,7 +31,7 @@ npm run dev:h5             # H5 dev server, proxies /api -> 127.0.0.1:3005
 npm run dev:mp-weixin
 npm run build:h5
 npm run build:mp-weixin
-bash restart-client.sh     # restart H5 in its own process group (after pages.json/vite.config/deps changes)
+node scripts/dev.mjs restart web   # restart H5 (after pages.json/vite.config/deps changes)
 
 cd server
 npm run dev                # prisma generate + nodemon + ts-node on src/app.ts
@@ -45,45 +45,39 @@ The API port is `PORT` from `server/.env`. The repo's dev scripts and Vite proxy
 
 ### Windows local dev (the actual dev machine)
 
-Windows 10 + Git Bash + native Node 22, **no WSL**. Everything below was verified on 2026-11-23.
+Windows 10 + native Node 22, run from PowerShell or Git Bash. WSL is not required.
 
-**Start everything** from the repo root:
-
-```bash
-bash start-dev.sh   # Postgres (Docker, skipped if up) -> prisma migrate deploy -> API 3005 -> H5 5173
-```
-
-Both services run in the background; logs go to `logs/server.log` and `logs/client.log`. To start one side only:
+**Start / stop / restart** from the repo root:
 
 ```bash
-cd server && bash dev.sh    # API only: prisma generate + nodemon + ts-node on src/app.ts
-bash dev-h5.sh              # H5 only (same as npm run dev:h5)
-bash restart-client.sh      # restart H5 after vite.config / pages.json / dependency changes
+node scripts/dev.mjs start all      # DB check -> prisma generate + migrate deploy -> API 3005 -> H5 5173
+node scripts/dev.mjs status         # ports + real PIDs
+node scripts/dev.mjs restart api    # or web / all
+node scripts/dev.mjs stop all
+node scripts/dev.mjs migrate        # prisma generate + migrate deploy only
+bash start-dev.sh                   # same as start all (Git Bash)
 ```
 
-**Verify — all three must be 200.** Do not treat `/` alone as proof of life; that is only the Vite shell:
+`start` accepts `--foreground`, `--no-db`, `--no-migrate`, `--no-generate`. Logs go to `logs/server.log` and `logs/client.log`; if a log file is still locked by an old process the manager retries and falls back to `logs/<name>-<ts>.log`.
 
-```bash
-curl -s -o /dev/null -w "API   %{http_code}\n" http://127.0.0.1:3005/api/books
-curl -s -o /dev/null -w "H5    %{http_code}\n" http://127.0.0.1:5173/
-curl -s -o /dev/null -w "Proxy %{http_code}\n" http://127.0.0.1:5173/api/books
+**Verify — all five must be 200** (PowerShell / `curl.exe`, or `curl -s -o /dev/null -w "%{http_code}"` in Git Bash):
+
+```powershell
+curl.exe -s -o NUL -w "health %{http_code}`n" http://127.0.0.1:3005/health
+curl.exe -s -o NUL -w "ready  %{http_code}`n" http://127.0.0.1:3005/ready
+curl.exe -s -o NUL -w "books  %{http_code}`n" http://127.0.0.1:3005/api/books
+curl.exe -s -o NUL -w "h5     %{http_code}`n" http://127.0.0.1:5173/
+curl.exe -s -o NUL -w "proxy  %{http_code}`n" http://127.0.0.1:5173/api/books
 ```
 
-`/api/books` returning ~2 KB of JSON containing real book codes (`pep-g3a-2024`, …) proves API + Postgres + the Vite `/api` proxy are all healthy. `/api/books` and `:5173/api/books` must return the same byte count.
+`/health` is liveness, `/ready` checks the database. `/api/books` returning ~2 KB of JSON with real book codes (`pep-g3a-2024`, …) proves API + Postgres + the Vite `/api` proxy are all healthy; `:3005/api/books` and `:5173/api/books` must return the same byte count.
 
-**Stop — use `netstat` + `taskkill`, never the pid files:**
+**Notes:**
 
-```bash
-netstat -ano | grep -E ":3005|:5173" | grep LISTENING   # rightmost column is the PID
-taskkill //F //PID <pid>                                # Git Bash: double slashes, or MSYS mangles the arg
-```
-
-**Windows gotchas (all confirmed on this machine):**
-
-- `scripts/stop-port.sh` calls `lsof`, which does not exist in Git Bash. `stop_port` therefore always prints `✓ 端口 N 未被占用` and frees nothing. Consequence: `start-dev.sh` / `restart-client.sh` are **not reliable restarts** on Windows — the old process may still hold the port, the new one dies on `EADDRINUSE`, and the readiness `curl` passes against the *stale* server. After any "restart", re-check `netstat` for a **changed** PID before believing it.
-- `logs/server.pid` and `logs/client.pid` are wrong. `start-dev.sh` uses `nohup npm run dev &`, so `$!` is the npm/bash wrapper, not node (observed: file says `231`, real PID was `14320`). Never `kill` those files.
-- `server.log` contains `PrismaClientKnownRequestError P2002 … modelName: 'Book'` during startup seeding. That is a duplicate-name warning from `initBooks()`, not a boot failure — the following `Chinese library seeded: inserted N` line means startup continued.
+- `logs/server.pid` / `logs/client.pid` now contain the real launcher PID (nodemon for API, node for H5). `stop` kills the port listener *and* the recorded launcher, so nodemon cannot respawn the child behind your back. Do not kill pid files manually; use `stop`.
+- The Vite build needs `NODE_OPTIONS=--require scripts/patch-os-ni.cjs`; `dev.mjs` injects it with forward slashes (backslashes get eaten when Node re-parses `NODE_OPTIONS`).
 - Both ports bind `0.0.0.0`, so a phone on the same Wi-Fi reaches the H5 build at `http://<lan-ip>:5173/` (this machine: `192.168.1.30:5173`).
+- `.sh` files must stay LF. `.gitattributes` enforces `*.sh text eol=lf`; with `core.autocrlf=true` a stale CRLF checkout makes bash fail with `$'\r': command not found`.
 
 ### Database
 

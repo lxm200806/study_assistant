@@ -1,4 +1,6 @@
 import prisma from '../prisma/client'
+import { Prisma } from '@prisma/client'
+import { runSerializable } from '../prisma/tx'
 import { assertBookAccess } from './book-access.service'
 import { getBookByCode } from './book.service'
 import { recordDailyStudy } from './daily-study.service'
@@ -85,12 +87,17 @@ function flagsFrom(mark?: {
   }
 }
 
-async function saveFlags(learnerId: string, wordId: string, flags: MarkFlags): Promise<MarkFlags> {
+async function saveFlags(
+  db: Prisma.TransactionClient,
+  learnerId: string,
+  wordId: string,
+  flags: MarkFlags
+): Promise<MarkFlags> {
   if (!flags.favorite && !flags.skipMastered && !flags.inWrongBook) {
-    await prisma.learnerWordMark.deleteMany({ where: { learnerId, wordId } })
+    await db.learnerWordMark.deleteMany({ where: { learnerId, wordId } })
     return flags
   }
-  await prisma.learnerWordMark.upsert({
+  await db.learnerWordMark.upsert({
     where: { learnerId_wordId: { learnerId, wordId } },
     create: { learnerId, wordId, ...flags },
     update: flags
@@ -392,85 +399,87 @@ export async function submitTypingAnswer(
   mode: TypingMode
 ) {
   await requireWord(wordId)
-  const existingStat = await prisma.typingModeStat.findUnique({
-    where: { learnerId_wordId_mode: { learnerId, wordId, mode } }
-  })
-  const priorStat = existingStat
-    ? null
-    : await prisma.typingModeStat.findFirst({
-        where: { learnerId, wordId, mode: { not: mode }, practiceCount: { gt: 0 } },
-        orderBy: { reps: 'desc' }
+  return runSerializable(async tx => {
+    const existingStat = await tx.typingModeStat.findUnique({
+      where: { learnerId_wordId_mode: { learnerId, wordId, mode } }
+    })
+    const priorStat = existingStat
+      ? null
+      : await tx.typingModeStat.findFirst({
+          where: { learnerId, wordId, mode: { not: mode }, practiceCount: { gt: 0 } },
+          orderBy: { reps: 'desc' }
+        })
+    const review = scheduleCard(
+      existingStat
+        ? cardInputFrom(existingStat)
+        : priorStat
+          ? {
+              practiceCount: 0,
+              correctCount: 0,
+              stability: priorStat.stability,
+              difficulty: priorStat.difficulty,
+              reps: Math.min(1, priorStat.reps),
+              lapses: priorStat.lapses,
+              fsrsState: 'Learning',
+              lastReview: priorStat.lastReview,
+              lastPractice: priorStat.lastPractice,
+              retrievability: priorStat.retrievability,
+              recentLapse: false,
+              learningSteps: 0,
+              scheduledDays: 0
+            }
+          : { practiceCount: 0, correctCount: 0 },
+      isCorrect
+    )
+    if (existingStat) {
+      await tx.typingModeStat.update({
+        where: { id: existingStat.id },
+        data: review
       })
-  const review = scheduleCard(
-    existingStat
-      ? cardInputFrom(existingStat)
-      : priorStat
-        ? {
-            practiceCount: 0,
-            correctCount: 0,
-            stability: priorStat.stability,
-            difficulty: priorStat.difficulty,
-            reps: Math.min(1, priorStat.reps),
-            lapses: priorStat.lapses,
-            fsrsState: 'Learning',
-            lastReview: priorStat.lastReview,
-            lastPractice: priorStat.lastPractice,
-            retrievability: priorStat.retrievability,
-            recentLapse: false,
-            learningSteps: 0,
-            scheduledDays: 0
-          }
-        : { practiceCount: 0, correctCount: 0 },
-    isCorrect
-  )
-  if (existingStat) {
-    await prisma.typingModeStat.update({
-      where: { id: existingStat.id },
-      data: review
+    } else {
+      await tx.typingModeStat.create({
+        data: { learnerId, wordId, mode, ...review }
+      })
+    }
+    const existing = await tx.learnerWordMark.findUnique({
+      where: { learnerId_wordId: { learnerId, wordId } }
     })
-  } else {
-    await prisma.typingModeStat.create({
-      data: { learnerId, wordId, mode, ...review }
+    const wrongState = nextWrongBookState(
+      { inWrongBook: existing?.inWrongBook ?? false, wrongStreak: existing?.wrongStreak ?? 0 },
+      isCorrect
+    )
+    const flags = await saveFlags(tx, learnerId, wordId, {
+      favorite: existing?.favorite ?? false,
+      skipMastered: existing?.skipMastered ?? false,
+      inWrongBook: wrongState.inWrongBook,
+      wrongSource: wrongState.inWrongBook
+        ? (!isCorrect ? 'word' : (existing?.wrongSource || 'word'))
+        : '',
+      wrongStreak: wrongState.wrongStreak
     })
-  }
-  const existing = await prisma.learnerWordMark.findUnique({
-    where: { learnerId_wordId: { learnerId, wordId } }
+    // 跟写、自测只记在拼读方式里。默写和听写同时把同一份调度写入「会写」统计，
+    // 只镜像拼读算出的下次复习时间，不再单独跑一次 FSRS，避免两套到期时间互相打架。
+    if (mode === 'recall' || mode === 'dictation') {
+      const { practiceCount: _practiceCount, correctCount: _correctCount, ...schedule } = review
+      await tx.vocabularyStat.upsert({
+        where: { learnerId_wordId_type: { learnerId, wordId, type: 'writing' } },
+        create: {
+          learnerId,
+          wordId,
+          type: 'writing',
+          practiceCount: 1,
+          correctCount: isCorrect ? 1 : 0,
+          ...schedule
+        },
+        update: {
+          practiceCount: { increment: 1 },
+          ...(isCorrect ? { correctCount: { increment: 1 } } : {}),
+          ...schedule
+        }
+      })
+    }
+    return { review, ...flags }
   })
-  const wrongState = nextWrongBookState(
-    { inWrongBook: existing?.inWrongBook ?? false, wrongStreak: existing?.wrongStreak ?? 0 },
-    isCorrect
-  )
-  const flags = await saveFlags(learnerId, wordId, {
-    favorite: existing?.favorite ?? false,
-    skipMastered: existing?.skipMastered ?? false,
-    inWrongBook: wrongState.inWrongBook,
-    wrongSource: wrongState.inWrongBook
-      ? (!isCorrect ? 'word' : (existing?.wrongSource || 'word'))
-      : '',
-    wrongStreak: wrongState.wrongStreak
-  })
-  // 跟写、自测只记在拼读方式里。默写和听写同时把同一份调度写入「会写」统计，
-  // 只镜像拼读算出的下次复习时间，不再单独跑一次 FSRS，避免两套到期时间互相打架。
-  if (mode === 'recall' || mode === 'dictation') {
-    const { practiceCount: _practiceCount, correctCount: _correctCount, ...schedule } = review
-    await prisma.vocabularyStat.upsert({
-      where: { learnerId_wordId_type: { learnerId, wordId, type: 'writing' } },
-      create: {
-        learnerId,
-        wordId,
-        type: 'writing',
-        practiceCount: 1,
-        correctCount: isCorrect ? 1 : 0,
-        ...schedule
-      },
-      update: {
-        practiceCount: { increment: 1 },
-        ...(isCorrect ? { correctCount: { increment: 1 } } : {}),
-        ...schedule
-      }
-    })
-  }
-  return { review, ...flags }
 }
 
 export async function updateTypingMark(
@@ -479,17 +488,19 @@ export async function updateTypingMark(
   patch: { favorite?: boolean; skipMastered?: boolean }
 ) {
   await requireWord(wordId)
-  const existing = await prisma.learnerWordMark.findUnique({
-    where: { learnerId_wordId: { learnerId, wordId } }
+  return runSerializable(async tx => {
+    const existing = await tx.learnerWordMark.findUnique({
+      where: { learnerId_wordId: { learnerId, wordId } }
+    })
+    const flags = await saveFlags(tx, learnerId, wordId, {
+      favorite: patch.favorite ?? existing?.favorite ?? false,
+      skipMastered: patch.skipMastered ?? existing?.skipMastered ?? false,
+      inWrongBook: existing?.inWrongBook ?? false,
+      wrongSource: existing?.inWrongBook ? (existing.wrongSource || '') : '',
+      wrongStreak: existing?.inWrongBook ? (existing.wrongStreak ?? 0) : 0
+    })
+    return { wordId, ...flags }
   })
-  const flags = await saveFlags(learnerId, wordId, {
-    favorite: patch.favorite ?? existing?.favorite ?? false,
-    skipMastered: patch.skipMastered ?? existing?.skipMastered ?? false,
-    inWrongBook: existing?.inWrongBook ?? false,
-    wrongSource: existing?.inWrongBook ? (existing.wrongSource || '') : '',
-    wrongStreak: existing?.inWrongBook ? (existing.wrongStreak ?? 0) : 0
-  })
-  return { wordId, ...flags }
 }
 
 export async function markSentenceContentWrong(
@@ -500,7 +511,7 @@ export async function markSentenceContentWrong(
   const tokens = contentWords(sentence)
   if (!tokens.length) return []
   const found = await prisma.vocabulary.findMany({
-    where: { word: { in: tokens, mode: 'insensitive' } },
+    where: { word: { in: tokens } },
     select: { id: true, word: true }
   })
   const bySpelling = new Map(found.map(word => [word.word.toLowerCase(), word]))
@@ -657,7 +668,7 @@ async function resolveListEntries(learnerId: string, entries: ListEntry[]) {
   const spellings = entries.map(entry => entry.spelling)
   const found = spellings.length
     ? await prisma.vocabulary.findMany({
-        where: { word: { in: spellings, mode: 'insensitive' } }
+        where: { word: { in: spellings } }
       })
     : []
   const knownIds = new Map(found.map(word => [word.word.toLowerCase(), word.id]))
@@ -693,7 +704,7 @@ async function resolveListEntries(learnerId: string, entries: ListEntry[]) {
       wordIds.set(entry.spelling, word.id)
     } catch {
       const again = await prisma.vocabulary.findFirst({
-        where: { word: { equals: entry.spelling, mode: 'insensitive' } }
+        where: { word: entry.spelling }
       })
       if (again) wordIds.set(entry.spelling, again.id)
       else rejected.push({ token: entry.spelling, reason: 'save_failed' })

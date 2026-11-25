@@ -1,6 +1,8 @@
 # Dependencies & build output (rebuilt inside Docker)
 node_modules
 server/node_modules
+.npm-cache
+server/.npm-cache
 dist
 server/dist
 

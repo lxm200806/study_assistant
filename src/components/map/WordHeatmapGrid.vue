@@ -15,7 +15,6 @@
             :src="thumbOf(word.word)!"
             mode="aspectFill"
             lazy-load
-            @load="onThumbLoad(word.word)"
             @error="onThumbError(word.word)"
           />
           <view v-else class="plate" :style="{ '--hue': plateColor(word) }">
@@ -86,7 +85,7 @@ import {
 } from '@/utils/wordAtlas'
 import { speakWord, unlockTtsPlayback } from '@/utils/tts'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     words: MapWordEntry[]
     view?: 'grid' | 'list'
@@ -101,7 +100,6 @@ const emit = defineEmits<{
 const atlasReady = ref(false)
 const speakingId = ref('')
 const broken = reactive<Record<string, boolean>>({})
-const loaded = reactive<Record<string, boolean>>({})
 const PLATE_HUES = ['#C4573A', '#7F9B77', '#D9A03A', '#5F7FA3', '#A86B8C', '#4E7C76']
 
 function phoneticOf(word: MapWordEntry) {
@@ -135,10 +133,6 @@ function thumbOf(word: string): string | null {
 
 function onThumbError(word: string) {
   broken[word] = true
-}
-
-function onThumbLoad(word: string) {
-  loaded[word] = true
 }
 
 function plateColor(word: MapWordEntry) {
