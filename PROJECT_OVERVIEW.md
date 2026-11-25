@@ -240,4 +240,4 @@ bash deploy.sh
 
 `npm test` 默认跳过数据库集成（177 个通过，14 个跳过）；`npm run test:db` 使用临时 `it_*` schema 跑全部 191 个测试。API 同时挂载 `/api` 与 `/api/v1`，练习/结算支持可选 `Idempotency-Key`。CI 的 PostgreSQL 16 服务会自动执行集成测试，并构建 H5 与微信小程序、检查 API 生成类型是否最新。
 
-前端已有 Vitest 单测（7 个文件 / 17 个测试，覆盖 user/vocabulary store 和纯逻辑），通过 `npm run test:frontend` 运行；Playwright H5 冒烟测试（`e2e/smoke.spec.ts`，7 个用例）通过 `npm run test:e2e` 运行，另有可选的真实 API + PostgreSQL 测试 `e2e/real-api.spec.ts`（CI 独立 job）。recognition / 语文 drill 页面冒烟仍待补强。
+前端已有 Vitest 单测（7 个文件 / 17 个测试，覆盖 user/vocabulary store 和纯逻辑），通过 `npm run test:frontend` 运行；Playwright H5 冒烟测试（`e2e/smoke.spec.ts`，9 个用例，含 quiz/PC 侧栏、认读、语文 drill、拼读）通过 `npm run test:e2e` 运行，另有可选的真实 API + PostgreSQL 测试 `e2e/real-api.spec.ts`（CI 独立 job）。

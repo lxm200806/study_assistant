@@ -72,6 +72,20 @@ async function loginAsDemo(page: Page) {
   await expect(page.getByText('小明', { exact: true })).toBeVisible({ timeout: 15_000 })
 }
 
+async function seedStudentStorage(page: Page, user: typeof DEMO_USER) {
+  await page.goto('/#/pages/login/login')
+  await page.evaluate((student) => {
+    const storage = (window as unknown as {
+      uni: { setStorageSync: (key: string, value: unknown) => void }
+    }).uni
+    storage.setStorageSync('accessToken', 'e2e-access-token')
+    storage.setStorageSync('refreshToken', 'e2e-refresh-token')
+    storage.setStorageSync('user', student)
+    storage.setStorageSync('roleChosen', '1')
+    storage.setStorageSync('currentBookCode', 'pep-g3a-2024')
+  }, user)
+}
+
 test.beforeEach(async ({ page }) => {
   await mockUnauthorizedApi(page)
 })
@@ -179,18 +193,121 @@ test('renders the authenticated book list', async ({ page }) => {
   await expect(page.getByText('人教 PEP 三上', { exact: true })).toBeVisible()
 })
 
+test('renders the recognition setup for a student', async ({ page }) => {
+  await seedStudentStorage(page, DEMO_STUDENT)
+  await page.route(isApiRequest, route =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ success: true, data: null })
+    })
+  )
+  await page.route(
+    (url: URL) => url.pathname === '/api/books',
+    route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          data: [
+            {
+              id: 'b-e2e',
+              code: 'pep-g3a-2024',
+              name: '人教 PEP 三上',
+              description: 'E2E 测试词书',
+              level: '小学三上',
+              wordCount: 120,
+              isFree: true
+            }
+          ]
+        })
+      })
+  )
+  await page.route(
+    (url: URL) => url.pathname === '/api/vocab/stats',
+    route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          data: {
+            listening: { total: 0, mastered: 0, avgMastery: 0 },
+            speaking: { total: 0, mastered: 0, avgMastery: 0 },
+            reading: { total: 0, mastered: 0, avgMastery: 0 },
+            writing: { total: 0, mastered: 0, avgMastery: 0 }
+          }
+        })
+      })
+  )
+
+  await page.goto('/#/pages/recognition/recognition')
+  await expect(page.locator('uni-page-body').getByText('认读练习', { exact: true })).toBeVisible()
+  await expect(page.locator('uni-page-body uni-button.start')).toContainText('开始')
+})
+
+test('renders the Chinese drill card for a student', async ({ page }) => {
+  await seedStudentStorage(page, { ...DEMO_STUDENT, activeSubject: 'chinese' })
+  await page.route(isApiRequest, route =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ success: true, data: null })
+    })
+  )
+  await page.route(
+    (url: URL) => url.pathname === '/api/chinese/courses/c-e2e/today',
+    route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          today: '2026-11-25',
+          items: [
+            {
+              id: 'p-e2e',
+              kind: 'poem',
+              level: 'L1',
+              grade: '三年级上',
+              prompt: '床前明月光',
+              answer: '疑是地上霜',
+              questionType: 'dictation',
+              lemma: '静夜思',
+              role: 'new',
+              groupSize: 1,
+              groupIndex: 1,
+              groupEnergy: 1,
+              parts: 1,
+              part: 1,
+              audience: 'all',
+              difficulty: 'primary',
+              options: {},
+              mode: 'learn'
+            }
+          ],
+          due: 1,
+          fresh: 1,
+          tasks: 1,
+          cards: 1,
+          itemCount: 1,
+          courseName: '语文测试课',
+          mode: 'learn',
+          defaultMode: 'learn',
+          modes: [{ id: 'learn', label: '学一学', hint: '' }],
+          modeCounts: { learn: 1 },
+          dailyMinutes: 15,
+          progress: { title: '今日学习', hint: '', status: '' }
+        })
+      })
+  )
+
+  await page.goto('/#/pages/chinese/drill?id=c-e2e')
+  await expect(page.getByText('床前明月光', { exact: true })).toBeVisible()
+})
+
 test('starts the typing practice flow for a student', async ({ page }) => {
-  await page.goto('/#/pages/login/login')
-  await page.evaluate((student) => {
-    const storage = (window as unknown as {
-      uni: { setStorageSync: (key: string, value: unknown) => void }
-    }).uni
-    storage.setStorageSync('accessToken', 'e2e-access-token')
-    storage.setStorageSync('refreshToken', 'e2e-refresh-token')
-    storage.setStorageSync('user', student)
-    storage.setStorageSync('roleChosen', '1')
-    storage.setStorageSync('currentBookCode', 'pep-g3a-2024')
-  }, DEMO_STUDENT)
+  await seedStudentStorage(page, DEMO_STUDENT)
 
   // 拼读设置页还会顺带请求 progress/due-count 等；给未单独 mock 的接口一个空成功响应，
   // 避免 catch-all 的 401 触发“登录失效”弹窗拦截点击。
