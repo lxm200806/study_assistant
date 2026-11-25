@@ -61,6 +61,7 @@
     "build:cet-books": "node ./node_modules/ts-node/dist/bin.js --transpile-only scripts/vocabulary-import/build-cet-books.ts",
     "prisma:generate": "node ./node_modules/prisma/build/index.js generate",
     "openapi:export": "node ./node_modules/ts-node/dist/bin.js --transpile-only scripts/export-openapi.ts",
+    "content:sync": "node ./node_modules/ts-node/dist/bin.js --transpile-only scripts/sync-content.ts",
     "migrate:fsrs": "node ./node_modules/ts-node/dist/bin.js scripts/migrate-fsrs.ts",
     "seed:admin": "node ./node_modules/ts-node/dist/bin.js scripts/seed-admin.ts",
     "fill:meanings": "node ./node_modules/ts-node/dist/bin.js scripts/fill-missing-meanings.ts",
