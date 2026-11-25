@@ -72,7 +72,7 @@ import TypingSpace from './TypingSpace.vue'
 import { usePracticeWordTyping, type PracticeTypingSettings } from '@/typing-engine/usePracticeWordTyping'
 import { WordPlayTrigger, WordPracticeType } from '@/typing-engine/types'
 import { playTypingBeep, playTypingCorrect, playTypingKeyboard, unlockTypingAudio } from '@/typing-engine/sounds'
-import { isBrowserH5 } from '@/utils/audio-recording'
+import { isBrowserH5 } from '@/platform/runtime'
 
 const props = withDefaults(
   defineProps<{

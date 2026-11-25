@@ -1,5 +1,5 @@
 import { useUserStore } from '@/stores/user'
-import { isBrowserH5 } from '@/utils/audio-recording'
+import { isBrowserH5 } from '@/platform/runtime'
 import { isWidePc } from '@/utils/pc-route'
 
 export type Subject = 'english' | 'chinese'

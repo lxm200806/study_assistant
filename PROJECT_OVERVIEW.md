@@ -65,6 +65,7 @@ src/
 ├── components/               # 通用组件、训练组件、图谱图表、拼读输入
 ├── composables/              # 训练、音频、流式 ASR/TTS 等组合逻辑
 ├── typing-engine/            # 拼读纯逻辑引擎（token/归一化/标记/音效）
+├── platform/                 # 跨端适配（runtime / storage / audio / stream）
 ├── stores/                   # Pinia 状态（user / vocabulary）
 ├── utils/                    # API、导航、语音、主题、掌握度等工具
 ├── data/                     # 前端词库元数据 + primary 课本 JSON

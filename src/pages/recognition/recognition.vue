@@ -184,7 +184,7 @@ import { useGroupComplete } from '@/composables/useGroupComplete'
 import { useDailySession } from '@/composables/useDailySession'
 import { onLoad } from '@dcloudio/uni-app'
 import { requireSubject } from '@/utils/subject'
-import { isBrowserH5 } from '@/utils/audio-recording'
+import { isBrowserH5 } from '@/platform/runtime'
 import { atlasThumbUrl, resolveAtlasId } from '@/utils/wordAtlas'
 
 type RecogMode = 'zh' | 'en' | 'listen'

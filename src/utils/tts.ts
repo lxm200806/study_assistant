@@ -1,5 +1,5 @@
 import { getApiBaseUrl } from '@/utils/api'
-import { isBrowserH5 } from '@/utils/audio-recording'
+import { isBrowserH5 } from '@/platform/runtime'
 import { splitTextForTts, isValidTtsText, sanitizeForTts, MAX_TTS_LENGTH } from '@/utils/tts-text'
 
 let speaking = false

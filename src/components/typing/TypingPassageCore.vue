@@ -48,7 +48,7 @@ import TypingSpace from './TypingSpace.vue'
 import { useTokenTypingFlow } from '@/typing-engine/useTokenTypingFlow'
 import type { TypingToken } from '@/typing-engine/parse-tokens'
 import { unlockTypingAudio } from '@/typing-engine/sounds'
-import { isBrowserH5 } from '@/utils/audio-recording'
+import { isBrowserH5 } from '@/platform/runtime'
 
 const props = withDefaults(
   defineProps<{

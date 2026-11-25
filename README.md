@@ -23,6 +23,7 @@
 
 ```text
 src/                 前端 UniApp 应用（pages / composables / stores / typing-engine）
+src/platform/        跨端适配（runtime / storage / audio / stream）
 server/              Express API 服务
 server/src/chinese/  语文课程、题卡、SM-2 与资源同步
 server/src/validation/  zod 入参校验与 OpenAPI 注册表

@@ -1,20 +1,22 @@
-import { unwrapStorage } from './storage'
+import { isBrowserH5 } from '@/platform/runtime'
+import { getStored, removeStored, setStored } from '@/platform/storage'
 
 export function getAuthToken(): string | null {
-  const raw = uni.getStorageSync('accessToken')
-  const token = unwrapStorage<string>(raw) ?? (typeof raw === 'string' ? raw : null)
-  return token || null
+  return getStored<string>('accessToken') || null
 }
 
 export function getApiBaseUrl(): string {
   // Dev: Vite proxy; Prod: Nginx proxies /api → backend (same origin).
   const configured = (import.meta.env.VITE_API_BASE as string | undefined)?.trim()
   if (configured) return configured.replace(/\/+$/, '')
-  if (typeof window !== 'undefined' && window.location?.origin) {
-    return `${window.location.origin}/api`
+  if (isBrowserH5()) {
+    if (typeof window !== 'undefined' && window.location?.origin) {
+      return `${window.location.origin}/api`
+    }
+    return import.meta.env.DEV ? '/api' : ''
   }
   // 非 H5（小程序/App）没有同源概念，必须显式配置 VITE_API_BASE
-  return import.meta.env.DEV ? '/api' : ''
+  return ''
 }
 
 export interface ResponseData<T = any> {
@@ -68,9 +70,9 @@ function networkError(message: string): ApiError {
 }
 
 function clearLocalSession() {
-  uni.removeStorageSync('accessToken')
-  uni.removeStorageSync('refreshToken')
-  uni.removeStorageSync('user')
+  removeStored('accessToken')
+  removeStored('refreshToken')
+  removeStored('user')
 }
 
 function currentRoutePath(): string {
@@ -125,9 +127,7 @@ function hintServerUnavailable() {
 }
 
 function getRefreshToken(): string | null {
-  const raw = uni.getStorageSync('refreshToken')
-  const token = unwrapStorage<string>(raw) ?? (typeof raw === 'string' ? raw : null)
-  return token || null
+  return getStored<string>('refreshToken') || null
 }
 
 export async function tryRefreshAccessToken(): Promise<boolean> {
@@ -142,8 +142,8 @@ export async function tryRefreshAccessToken(): Promise<boolean> {
         skipAuthHandler: true
       })
       if (result.accessToken) {
-        uni.setStorageSync('accessToken', result.accessToken)
-        if (result.refreshToken) uni.setStorageSync('refreshToken', result.refreshToken)
+        setStored('accessToken', result.accessToken)
+        if (result.refreshToken) setStored('refreshToken', result.refreshToken)
         return true
       }
       return false
