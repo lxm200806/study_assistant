@@ -175,7 +175,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
     if (!code) return
     try {
       const result = await statsAPI.bookMap(code, trainingType)
-      bookMapData.value = (result.data as VocabularyMapData) || null
+      bookMapData.value = (result.data as unknown as VocabularyMapData) || null
     } catch (error) {
       console.error('Failed to load book map:', error)
       bookMapData.value = null
@@ -214,7 +214,7 @@ export const useVocabularyStore = defineStore('vocabulary', () => {
       const result = await trainingAPI.completeSession(bookCode, wordIds, sessionTokens.value)
       await loadBookProgress(bookCode)
       void loadServerStats()
-      return (result as { newlyCovered?: number }).newlyCovered || 0
+      return result.newlyCovered || 0
     } catch (error) {
       console.error('Failed to complete session:', error)
       return 0

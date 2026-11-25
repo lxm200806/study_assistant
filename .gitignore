@@ -18,6 +18,8 @@ server/.npm-cache/
 dist/
 logs/
 node_modules/
+playwright-report/
+test-results/
 public/atlas/
 server/.env
 server/openapi.json

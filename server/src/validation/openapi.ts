@@ -17,6 +17,19 @@ import {
   typingAnswerBodySchema,
   typingQueueQuerySchema
 } from './schemas'
+import {
+  bookMapResponseSchema,
+  bookSessionResponseSchema,
+  chineseReviewResponseSchema,
+  chineseTodayResponseSchema,
+  completeSessionResponseSchema,
+  practiceResponseSchema,
+  refreshResponseSchema,
+  setActiveStudentResponseSchema,
+  tokenResponseSchema,
+  typingAnswerResponseSchema,
+  typingQueueResponseSchema
+} from './responses'
 
 extendZodWithOpenApi(z)
 
@@ -36,8 +49,29 @@ const chineseReviewBody = registry.register('ChineseReviewBody', chineseReviewBo
 const bookParams = registry.register('BookCodeParams', z.object({ code: z.string().min(1) }))
 const courseParams = registry.register('CourseIdParams', z.object({ courseId: z.string().min(1) }))
 
-const ok = { description: '成功' }
+const tokenResponse = registry.register('TokenResponse', tokenResponseSchema)
+const refreshResponse = registry.register('RefreshResponse', refreshResponseSchema)
+const activeStudentResponse = registry.register(
+  'SetActiveStudentResponse',
+  setActiveStudentResponseSchema
+)
+const bookSessionResponse = registry.register('BookSessionResponse', bookSessionResponseSchema)
+const bookMapResponse = registry.register('BookMapResponse', bookMapResponseSchema)
+const practiceResponse = registry.register('PracticeResponse', practiceResponseSchema)
+const completeSessionResponse = registry.register(
+  'CompleteSessionResponse',
+  completeSessionResponseSchema
+)
+const typingQueueResponse = registry.register('TypingQueueResponse', typingQueueResponseSchema)
+const typingAnswerResponse = registry.register('TypingAnswerResponse', typingAnswerResponseSchema)
+const chineseTodayResponse = registry.register('ChineseTodayResponse', chineseTodayResponseSchema)
+const chineseReviewResponse = registry.register('ChineseReviewResponse', chineseReviewResponseSchema)
+
 const badRequest = { description: '请求参数不正确' }
+const success = (schema: z.ZodTypeAny) => ({
+  description: '成功',
+  content: { 'application/json': { schema } }
+})
 
 registry.registerPath({
   method: 'post',
@@ -45,7 +79,7 @@ registry.registerPath({
   tags: ['auth'],
   summary: '注册账号',
   request: { body: { content: { 'application/json': { schema: credentials } } } },
-  responses: { 201: ok, 400: badRequest }
+  responses: { 201: success(tokenResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -54,7 +88,7 @@ registry.registerPath({
   tags: ['auth'],
   summary: '登录',
   request: { body: { content: { 'application/json': { schema: credentials } } } },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(tokenResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -63,7 +97,7 @@ registry.registerPath({
   tags: ['auth'],
   summary: '刷新 access token',
   request: { body: { content: { 'application/json': { schema: refresh } } } },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(refreshResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -73,7 +107,7 @@ registry.registerPath({
   summary: '切换当前学生',
   security: [{ bearerAuth: [] }],
   request: { body: { content: { 'application/json': { schema: activeStudent } } } },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(activeStudentResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -83,7 +117,7 @@ registry.registerPath({
   summary: '取训练会话',
   security: [{ bearerAuth: [] }],
   request: { params: bookParams, query: bookSessionQuery },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(bookSessionResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -93,7 +127,7 @@ registry.registerPath({
   summary: '词书掌握图谱',
   security: [{ bearerAuth: [] }],
   request: { params: bookParams, query: bookMapQuery },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(bookMapResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -103,7 +137,7 @@ registry.registerPath({
   summary: '提交一次练习',
   security: [{ bearerAuth: [] }],
   request: { body: { content: { 'application/json': { schema: practiceBody } } } },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(practiceResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -113,7 +147,7 @@ registry.registerPath({
   summary: '结算训练会话',
   security: [{ bearerAuth: [] }],
   request: { body: { content: { 'application/json': { schema: completeSessionBody } } } },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(completeSessionResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -123,7 +157,7 @@ registry.registerPath({
   summary: '取拼读队列',
   security: [{ bearerAuth: [] }],
   request: { query: typingQueueQuery },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(typingQueueResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -133,7 +167,7 @@ registry.registerPath({
   summary: '提交拼读答案',
   security: [{ bearerAuth: [] }],
   request: { body: { content: { 'application/json': { schema: typingAnswerBody } } } },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(typingAnswerResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -143,7 +177,7 @@ registry.registerPath({
   summary: '语文今日队列',
   security: [{ bearerAuth: [] }],
   request: { params: courseParams, query: chineseTodayQuery },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(chineseTodayResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -156,7 +190,7 @@ registry.registerPath({
     params: courseParams,
     body: { content: { 'application/json': { schema: chineseReviewBody } } }
   },
-  responses: { 200: ok, 400: badRequest }
+  responses: { 200: success(chineseReviewResponse), 400: badRequest }
 })
 
 const generator = new OpenApiGeneratorV3(registry.definitions)

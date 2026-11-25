@@ -62,6 +62,7 @@ src/
 │   ├── family/               # 角色选择、学生管理
 │   ├── admin/                # 词库缺失检查
 │   └── chinese/              # 语文课程、题库、练习、计划、统计、资源、草稿
+├── api/                      # 按领域拆分的 API 客户端（auth/learning/speech/typing/chinese）
 ├── components/               # 通用组件、训练组件、图谱图表、拼读输入
 ├── composables/              # 训练、音频、流式 ASR/TTS 等组合逻辑
 ├── typing-engine/            # 拼读纯逻辑引擎（token/归一化/标记/音效）
@@ -239,4 +240,4 @@ bash deploy.sh
 
 `npm test` 默认跳过数据库集成（177 个通过，7 个跳过）；`npm run test:db` 使用临时 `it_*` schema 跑全部 184 个测试。CI 的 PostgreSQL 16 服务会自动执行集成测试，并构建 H5 与微信小程序、检查 API 生成类型是否最新。
 
-前端组件测试和端到端测试仍未配置，这是后续补强方向。
+前端已有 Playwright H5 冒烟测试（`e2e/smoke.spec.ts`，6 个用例：登录页、登录错误、未登录守卫、模拟登录进入角色页、登录后词书列表、学生拼读设置页），通过 `npm run test:e2e` 运行。前端组件测试仍未配置，这是后续补强方向。

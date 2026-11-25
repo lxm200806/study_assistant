@@ -32,7 +32,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["TokenResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -77,7 +79,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["TokenResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -122,7 +126,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["RefreshResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -166,7 +172,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["SetActiveStudentResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -215,7 +223,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["BookSessionResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -260,7 +270,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["BookMapResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -307,7 +319,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["PracticeResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -352,7 +366,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["CompleteSessionResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -399,7 +415,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["TypingQueueResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -446,7 +464,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["TypingAnswerResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -491,7 +511,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["ChineseTodayResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -540,7 +562,9 @@ export interface paths {
                     headers: {
                         [name: string]: unknown;
                     };
-                    content?: never;
+                    content: {
+                        "application/json": components["schemas"]["ChineseReviewResponse"];
+                    };
                 };
                 /** @description 请求参数不正确 */
                 400: {
@@ -648,6 +672,221 @@ export interface components {
         };
         CourseIdParams: {
             courseId: string;
+        };
+        TokenResponse: {
+            accessToken: string;
+            refreshToken: string;
+            user: {
+                id: string;
+                username: string;
+                isAdmin?: boolean;
+                hasOnboarded?: boolean;
+                plan?: string;
+                activeSubject?: string;
+                accountType?: string;
+                displayName?: string;
+                activeLearnerId?: string | null;
+                activeRole?: string;
+                learner?: {
+                    id: string;
+                    name: string;
+                    activeSubject?: string;
+                } | null;
+                children?: {
+                    id: string;
+                    name: string;
+                    activeSubject?: string;
+                }[];
+            };
+        };
+        RefreshResponse: {
+            accessToken: string;
+        };
+        SetActiveStudentResponse: {
+            /** @enum {boolean} */
+            success: true;
+            learner: {
+                id: string;
+                name: string;
+                activeSubject?: string;
+            };
+            user: {
+                id: string;
+                username: string;
+                isAdmin?: boolean;
+                hasOnboarded?: boolean;
+                plan?: string;
+                activeSubject?: string;
+                accountType?: string;
+                displayName?: string;
+                activeLearnerId?: string | null;
+                activeRole?: string;
+                learner?: {
+                    id: string;
+                    name: string;
+                    activeSubject?: string;
+                } | null;
+                children?: {
+                    id: string;
+                    name: string;
+                    activeSubject?: string;
+                }[];
+            };
+        };
+        BookSessionResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                words: {
+                    id: string;
+                    word: string;
+                    meaning: string;
+                    phonetic?: string;
+                    englishMeaning?: string;
+                    example?: string;
+                    examples?: string[];
+                    topic?: string;
+                    tags?: string[];
+                }[];
+                progress?: {
+                    [key: string]: unknown;
+                };
+                mode: string;
+                sessionToken: string;
+            };
+        };
+        BookMapResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                book?: {
+                    [key: string]: unknown;
+                };
+                summary?: {
+                    [key: string]: unknown;
+                };
+                byContentType?: {
+                    [key: string]: unknown;
+                }[];
+                byTopic?: {
+                    [key: string]: unknown;
+                }[];
+                words?: {
+                    [key: string]: unknown;
+                }[];
+                weakestTopics?: string[];
+            };
+        };
+        PracticeResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                wordId: string;
+                /** @enum {string} */
+                type: "listening" | "speaking" | "reading" | "writing";
+                practiceCount?: number;
+                correctCount?: number;
+                lastPractice?: string | null;
+                mastery: number;
+                due?: string | null;
+                stability?: number;
+                difficulty?: number;
+                reps?: number;
+                lapses?: number;
+                fsrsState?: string;
+                lastReview?: string | null;
+                retrievability?: number;
+                recentLapse?: boolean;
+                needsReconfirm?: boolean;
+                learningSteps?: number;
+                scheduledDays?: number;
+                status?: string;
+                weakReason?: string | null;
+            };
+        };
+        CompleteSessionResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                newlyCovered: number;
+                cycleReset: boolean;
+                dailyWordCount: number | null;
+                streak: number | null;
+            };
+            newlyCovered: number;
+        };
+        TypingQueueResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                source: string;
+                mode: string;
+                scopedToBook: boolean;
+                bookCode?: string | null;
+                words: {
+                    id: string;
+                    word: string;
+                    meaning: string;
+                    phonetic?: string;
+                    favorite?: boolean;
+                    skipMastered?: boolean;
+                    inWrongBook?: boolean;
+                    due?: string | null;
+                    practiced?: boolean;
+                    recentLapse?: boolean;
+                }[];
+                missing?: string[];
+                rejected?: {
+                    [key: string]: unknown;
+                }[];
+                sessionToken?: string;
+            };
+        };
+        TypingAnswerResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                review: {
+                    [key: string]: unknown;
+                };
+                favorite: boolean;
+                skipMastered: boolean;
+                inWrongBook: boolean;
+                wrongSource?: string;
+                wrongStreak?: number;
+            };
+        };
+        ChineseTodayResponse: {
+            today: string;
+            items: {
+                [key: string]: unknown;
+            }[];
+            due?: number;
+            fresh?: number;
+            tasks?: number;
+            cards?: number;
+            courseName?: string;
+            mode: string;
+            modes?: {
+                [key: string]: unknown;
+            }[];
+            modeCounts?: {
+                [key: string]: number;
+            };
+            dailyMinutes?: number;
+        };
+        ChineseReviewResponse: {
+            answer?: string;
+            lines?: string[];
+            correct?: boolean;
+            quality?: number;
+            state?: {
+                [key: string]: unknown;
+            };
+            isNew?: boolean;
+            mode?: string;
+            updateSm2?: boolean;
+            revealed?: boolean;
         };
     };
     responses: never;

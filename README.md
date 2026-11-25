@@ -23,7 +23,9 @@
 
 ```text
 src/                 前端 UniApp 应用（pages / composables / stores / typing-engine）
+src/api/             按领域拆分的 API 客户端（auth / learning / speech / typing / chinese）
 src/platform/        跨端适配（runtime / storage / audio / stream）
+e2e/                 Playwright H5 冒烟测试
 server/              Express API 服务
 server/src/chinese/  语文课程、题卡、SM-2 与资源同步
 server/src/validation/  zod 入参校验与 OpenAPI 注册表
@@ -125,7 +127,7 @@ npm run prisma:generate
 npm run gen:api   # 根目录执行：导出 OpenAPI，生成 src/types/api-generated.ts
 ```
 
-核心接口的请求类型来自 `server/src/validation/schemas.ts`，前端通过 `src/types/api-contract.ts` 引用。修改 zod schema 后需要重新生成；CI 会检查生成文件是否过期。
+核心接口的请求/响应类型来自 `server/src/validation/schemas.ts` 与 `responses.ts`，前端通过 `src/types/api-contract.ts` 引用。修改 zod schema 后需要重新生成；CI 会检查生成文件是否过期。
 
 ## 生产部署
 
@@ -176,8 +178,11 @@ npm run typecheck
 npm run lint
 npm run lint:server
 npm run build:h5
+npm run test:e2e
 ```
 
 涉及数据库链路时再跑 `cd server && npm run test:db`；CI 会自动执行这套集成测试。
 
-前端暂无独立测试运行器；后端有 31 个 Vitest 文件（30 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（177 个通过，7 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 184 个测试）。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；同时构建 H5 和微信小程序、检查 API 生成类型是否最新，并运行成语内容审计 `npm run audit:idioms`。
+前端暂无单元测试运行器；已有 Playwright H5 冒烟测试 `e2e/smoke.spec.ts`（6 个用例：登录页、登录错误、未登录守卫、模拟登录进入角色页、登录后词书列表、学生拼读设置页）。Windows 本地默认使用系统 Edge，其他平台/CI 使用安装的 Chromium；可通过 `PLAYWRIGHT_CHANNEL` 覆盖。
+
+后端有 31 个 Vitest 文件（30 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（177 个通过，7 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 184 个测试）。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；同时构建 H5 和微信小程序、检查 API 生成类型是否最新、运行 Playwright 冒烟，并运行成语内容审计 `npm run audit:idioms`。
