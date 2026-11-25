@@ -1,5 +1,5 @@
 import { getApiBaseUrl, getAuthToken, tryRefreshAccessToken } from '@/utils/api'
-import { isBrowserH5 } from './runtime'
+import { isBrowserH5, isMiniProgram } from './runtime'
 
 export type ChatStreamMode = 'free' | 'challenge' | 'roleplay'
 
@@ -23,11 +23,14 @@ export interface ChatStreamOptions {
 const STREAM_IDLE_TIMEOUT_MS = 45_000
 
 /**
- * H5 使用 fetch + ReadableStream 读 SSE。
- * 小程序/App 目前没有统一的流式 HTTP 实现，降级为普通 /chat/send，
- * 一次性把完整回复交给页面；后续可在本文件补 uni.request 分块实现。
+ * H5 使用 fetch + ReadableStream；微信小程序使用 uni.request 的 enableChunked
+ * 分块读取；App 或不支持分块的环境降级为普通 /chat/send。
  */
 export async function streamChatMessage(options: ChatStreamOptions): Promise<void> {
+  if (isMiniProgram()) {
+    await streamViaChunkedUni(options)
+    return
+  }
   if (isBrowserH5() && typeof fetch === 'function' && typeof AbortController !== 'undefined') {
     await streamViaFetch(options)
     return
@@ -160,6 +163,131 @@ async function streamViaFetch(options: ChatStreamOptions): Promise<void> {
   } finally {
     if (idleTimer) clearTimeout(idleTimer)
   }
+}
+
+function decodeChunk(data: unknown): string {
+  if (typeof data === 'string') return data
+  if (!(data instanceof ArrayBuffer)) return ''
+  const bytes = new Uint8Array(data)
+  const Decoder = (globalThis as { TextDecoder?: typeof TextDecoder }).TextDecoder
+  if (Decoder) return new Decoder().decode(bytes)
+  let binary = ''
+  for (const byte of bytes) binary += String.fromCharCode(byte)
+  try {
+    const escapeFn = (globalThis as { escape?: (value: string) => string }).escape
+    return escapeFn ? decodeURIComponent(escapeFn(binary)) : binary
+  } catch {
+    return binary
+  }
+}
+
+async function streamViaChunkedUni(
+  options: ChatStreamOptions,
+  retried = false
+): Promise<void> {
+  const baseUrl = getApiBaseUrl()
+  if (!baseUrl) {
+    options.onError('未配置 API 地址：请设置 VITE_API_BASE 环境变量')
+    return
+  }
+
+  let settled = false
+  let buffer = ''
+  let currentEvent = 'message'
+  let fullText = ''
+  const finish = (payload: ChatStreamDonePayload) => {
+    if (settled) return
+    settled = true
+    options.onDone(payload)
+  }
+  const fail = (message: string) => {
+    if (settled) return
+    settled = true
+    options.onError(message)
+  }
+  const feed = (text: string) => {
+    buffer += text
+    const lines = buffer.split('\n')
+    buffer = lines.pop() || ''
+    for (const raw of lines) {
+      const line = raw.trimEnd()
+      if (line.startsWith('event:')) {
+        currentEvent = line.slice(6).trim()
+        continue
+      }
+      if (!line.startsWith('data:')) continue
+      const payload = line.slice(5).trim()
+      if (!payload) continue
+      try {
+        const data = JSON.parse(payload)
+        if (currentEvent === 'token' && data.text) {
+          fullText += String(data.text)
+          options.onToken(data.text)
+        } else if (currentEvent === 'done') {
+          const donePayload = data as ChatStreamDonePayload
+          finish({
+            ...donePayload,
+            fullText: donePayload.fullText || fullText,
+            matchedWords: donePayload.matchedWords || []
+          })
+        } else if (currentEvent === 'error') {
+          fail(data.message || 'Stream error')
+        }
+      } catch {
+        // ignore malformed SSE payloads
+      }
+    }
+  }
+
+  const token = getAuthToken()
+  const task = uni.request({
+    url: `${baseUrl}/chat/stream`,
+    method: 'POST',
+    timeout: STREAM_IDLE_TIMEOUT_MS,
+    header: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {})
+    },
+    data: {
+      content: options.content,
+      bookCode: options.bookCode,
+      mode: options.mode || 'free',
+      scenario: options.scenario
+    },
+    enableChunked: true,
+    success: async (res: { statusCode: number; data: unknown }) => {
+      if (res.statusCode === 401 && !retried) {
+        const refreshed = await tryRefreshAccessToken()
+        if (refreshed) {
+          await streamViaChunkedUni(options, true)
+          return
+        }
+      }
+      if (res.statusCode >= 400) {
+        const body = parseBody(res.data)
+        fail(String(body.error || `Request failed (${res.statusCode})`))
+        return
+      }
+      if (!settled) {
+        if (fullText.trim()) finish({ fullText, matchedWords: [] })
+        else fail('回复中断，请稍后重试')
+      }
+    },
+    fail: (err: { errMsg?: string }) => fail(err.errMsg || '网络异常，请稍后重试')
+  } as unknown as UniApp.RequestOptions) as unknown as {
+    onChunkReceived?: (callback: (res: { data: ArrayBuffer }) => void) => void
+    abort?: () => void
+  }
+
+  if (typeof task.onChunkReceived !== 'function') {
+    settled = true
+    task.abort?.()
+    await streamViaUniRequest(options)
+    return
+  }
+  task.onChunkReceived(res => {
+    if (!settled) feed(decodeChunk(res.data))
+  })
 }
 
 function parseBody(data: unknown): Record<string, unknown> {

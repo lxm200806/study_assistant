@@ -15,5 +15,5 @@
 1. 平台判断集中到 `runtime.ts`，页面不写 `#ifdef`。
 2. 新增平台能力时，先在本目录加适配器，再让页面调用。
 3. `src/utils/audio-recording.ts` 和 `src/utils/chat-stream.ts` 只保留兼容 re-export。
-4. 小程序如果要做真正的流式聊天，在 `stream.ts` 补 `uni.request` 的 `enableChunked`
-   实现，保持 `streamChatMessage` 签名不变。
+4. 微信小程序已使用 `uni.request` 的 `enableChunked` 读取 SSE；不支持分块的环境仍降级到
+   `/chat/send`，保持 `streamChatMessage` 签名不变。

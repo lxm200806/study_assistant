@@ -24,7 +24,7 @@
 ```text
 src/                 前端 UniApp 应用（pages / composables / stores / typing-engine）
 src/api/             按领域拆分的 API 客户端（auth / learning / speech / typing / chinese）
-src/platform/        跨端适配（runtime / storage / audio / stream）
+src/platform/        跨端适配（runtime / storage / audio / stream；小程序分块 SSE）
 e2e/                 Playwright H5 冒烟测试
 server/              Express API 服务
 server/src/chinese/  语文课程、题卡、SM-2 与资源同步

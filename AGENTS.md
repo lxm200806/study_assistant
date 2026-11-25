@@ -169,9 +169,9 @@ This is the most important cross-cutting concept:
 
 ### Frontend
 
-- `src/main.ts` creates the SSR-style UniApp app with Pinia. `src/pages.json` defines pages, tabBar, and the wide-screen `leftWindow`.
+- `src/main.ts` creates the SSR-style UniApp app with Pinia and installs a global `errorHandler` (logs unhandled component errors). `src/pages.json` defines pages, tabBar, and the wide-screen `leftWindow`.
 - **API client:** endpoint wrappers live in `src/api/` by domain (`client.ts` + `auth.ts`, `learning.ts`, `speech.ts`, `typing.ts`, `chinese.ts`); `src/utils/api.ts` is a compatibility re-export. Base URL is same-origin `/api` on H5 (Vite proxy in dev, Nginx in prod); non-H5 builds require `VITE_API_BASE`. The wrapper handles 401 refresh-and-retry, session-expired modal, 403 → `BOOK_LOCKED`, and a "backend not started" toast. Token storage goes through `src/platform/storage.ts`.
-- **Platform layer:** `src/platform/` is the cross-platform boundary: `runtime.ts` (H5 / mp-weixin / app detection), `storage.ts` (uni storage + token helpers), `audio.ts` (recorder / Web Audio), `stream.ts` (H5 SSE via fetch; non-H5 falls back to `/chat/send`). New code should import these adapters instead of calling `fetch`, `MediaRecorder`, `window`, or `uni.getSystemInfoSync` directly. `src/utils/audio-recording.ts` and `src/utils/chat-stream.ts` are compatibility re-exports. Layouts are still driven by `pages.json` + `App.vue` + `windows/left-window.vue`; extract `src/layouts/` only when a near-term App target is confirmed.
+- **Platform layer:** `src/platform/` is the cross-platform boundary: `runtime.ts` (H5 / mp-weixin / app detection), `storage.ts` (uni storage + token helpers), `audio.ts` (recorder / Web Audio), `stream.ts` (H5 SSE via fetch; WeChat mini-program via `uni.request` `enableChunked`; other non-H5 environments fall back to `/chat/send`). New code should import these adapters instead of calling `fetch`, `MediaRecorder`, `window`, or `uni.getSystemInfoSync` directly. `src/utils/audio-recording.ts` and `src/utils/chat-stream.ts` are compatibility re-exports. Layouts are still driven by `pages.json` + `App.vue` + `windows/left-window.vue`; extract `src/layouts/` only when a near-term App target is confirmed.
 - **Stores:** `src/stores/user.ts` (session, active learner, subject/role switching, `applyAppShell`) and `src/stores/vocabulary.ts` (current book, session loading, progress/due counts, maps).
 - Training pages share `src/composables/useTrainingFlow.ts`, `useTrainingStart.ts`, and `useDailySession.ts`; streaming audio is in `useStreamingAsr.ts` / `useStreamingTts.ts`. The large typing page keeps its styles in `src/pages/typing/typing.scss` and shared page types in `typing.types.ts`; keep new pure logic out of the SFC where possible.
 - **Route guards:** `src/utils/subject.ts` exposes `requireReadySession()` / `requireSubject()`. Accounts without a chosen role or learners are redirected to `pages/family/students`. `activeSubject` switches English/Chinese UX (tab labels, landing pages) via `applyAppShell`.
@@ -193,7 +193,7 @@ This is the most important cross-cutting concept:
 ## Repo-specific notes
 
 - All `server/src` sources, including `app.ts` and `server.ts`, are UTF-8 and editable normally. The old `app_new.ts` copy has been removed.
-- `PROJECT_PROGRESS*.md` are historical and stale (they describe a removed `mobile/` React Native app). Prefer `README.md`, `PROJECT_OVERVIEW.md`, and `doc/`.
+- `doc/archive/PROJECT_PROGRESS*.md` are historical and stale (they describe a removed `mobile/` React Native app). Prefer `README.md`, `PROJECT_OVERVIEW.md`, and `doc/`.
 - Search exclusions: `.npm-cache/` (a local npm cache in the repo root), `node_modules`, `server/data/sources`, `server/data/kb/md|downloads`, and `logs`.
 - Root `tsconfig.json` aliases `@/*` → `src/*`; `@vocab/*` also maps into `server/src/data/vocabulary/*` but is currently unused.
 - Vocabulary maps are served at `/api/vocab/maps/...`, not `/api/stats/...` (see `server/src/routes/vocab.routes.ts` and `statsAPI` in `src/utils/api.ts`).
