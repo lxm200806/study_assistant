@@ -87,7 +87,9 @@ import {
   quizWordsResponseSchema,
   refreshResponseSchema,
   reviewResponseSchema,
+  sessionsResponseSchema,
   setActiveStudentResponseSchema,
+  simpleSuccessResponseSchema,
   speechResponseSchema,
   studentMutationResponseSchema,
   studentsResponseSchema,
@@ -211,6 +213,11 @@ const courseParams = registry.register('CourseIdParams', z.object({ courseId: z.
 
 const tokenResponse = registry.register('TokenResponse', tokenResponseSchema)
 const refreshResponse = registry.register('RefreshResponse', refreshResponseSchema)
+const simpleSuccessResponse = registry.register(
+  'SimpleSuccessResponse',
+  simpleSuccessResponseSchema
+)
+const sessionsResponse = registry.register('SessionsResponse', sessionsResponseSchema)
 const activeStudentResponse = registry.register(
   'SetActiveStudentResponse',
   setActiveStudentResponseSchema
@@ -338,6 +345,33 @@ registry.registerPath({
   summary: '当前账号资料',
   security: [{ bearerAuth: [] }],
   responses: { 200: success(profileResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/auth/logout',
+  tags: ['auth'],
+  summary: '退出当前设备',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(simpleSuccessResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/auth/logout-all',
+  tags: ['auth'],
+  summary: '退出全部设备',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(simpleSuccessResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/auth/sessions',
+  tags: ['auth'],
+  summary: '当前账号设备会话',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(sessionsResponse) }
 })
 
 registry.registerPath({

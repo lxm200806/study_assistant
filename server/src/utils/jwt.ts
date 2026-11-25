@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto'
 import jwt, { type JwtPayload } from 'jsonwebtoken'
 import { getJwtAccessSecret, getJwtRefreshSecret } from '../config/env'
 
@@ -8,6 +9,10 @@ export interface AuthTokenPayload extends JwtPayload {
   userId: string
   username?: string
   typ: 'access' | 'refresh'
+  /** User.tokenVersion，用于一键撤销全部会话。 */
+  ver?: number
+  /** AuthSession.id，用于按设备撤销。 */
+  sid?: string
 }
 
 function verifyTypedToken(token: string, expectedType: AuthTokenPayload['typ']): AuthTokenPayload | null {
@@ -22,17 +27,33 @@ function verifyTypedToken(token: string, expectedType: AuthTokenPayload['typ']):
   }
 }
 
-export function generateAccessToken(userId: string, username: string): string {
+export function generateAccessToken(
+  userId: string,
+  username: string,
+  tokenVersion = 0,
+  sessionId?: string
+): string {
   return jwt.sign(
-    { userId, username, typ: 'access' },
+    { userId, username, typ: 'access', ver: tokenVersion, ...(sessionId ? { sid: sessionId } : {}) },
     getJwtAccessSecret(),
     { expiresIn: accessExpiresIn, algorithm: 'HS256' }
   )
 }
 
-export function generateRefreshToken(userId: string): string {
+export function generateRefreshToken(
+  userId: string,
+  tokenVersion = 0,
+  sessionId?: string
+): string {
   return jwt.sign(
-    { userId, typ: 'refresh' },
+    {
+      userId,
+      typ: 'refresh',
+      ver: tokenVersion,
+      ...(sessionId ? { sid: sessionId } : {}),
+      // 轮换可能发生在同一秒；jti 保证新旧 refresh token 不重复。
+      jti: randomUUID()
+    },
     getJwtRefreshSecret(),
     { expiresIn: refreshExpiresIn, algorithm: 'HS256' }
   )

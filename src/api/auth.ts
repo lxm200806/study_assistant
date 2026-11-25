@@ -24,6 +24,15 @@ export const authAPI = {
   profile: async () => {
     return request('/auth/profile', 'GET')
   },
+  logout: async () => {
+    return request('/auth/logout', 'POST')
+  },
+  logoutAll: async () => {
+    return request('/auth/logout-all', 'POST')
+  },
+  sessions: async () => {
+    return request('/auth/sessions', 'GET')
+  },
   onboard: async (subject?: string) => {
     const body: Record<string, string> = {}
     if (subject) body.subject = subject

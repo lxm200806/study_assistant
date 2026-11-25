@@ -14,6 +14,7 @@ declare global {
       username?: string
       learnerId?: string
       accountType?: string
+      sessionId?: string
     }
   }
 }
@@ -51,11 +52,25 @@ export function authMiddleware(req: Request, res: Response, next: NextFunction) 
         where: { id: decoded.userId },
         select: {
           id: true,
-          activeLearnerId: true
+          activeLearnerId: true,
+          tokenVersion: true
         }
       })
       if (!user) {
         return res.status(401).json(apiErrorBody('Unauthorized', 'UNAUTHORIZED'))
+      }
+      if (user.tokenVersion !== (decoded.ver ?? 0)) {
+        return res.status(401).json(apiErrorBody('Session revoked', 'SESSION_REVOKED'))
+      }
+      if (decoded.sid) {
+        const session = await prisma.authSession.findFirst({
+          where: { id: decoded.sid, userId: user.id, revokedAt: null },
+          select: { id: true }
+        })
+        if (!session) {
+          return res.status(401).json(apiErrorBody('Session revoked', 'SESSION_REVOKED'))
+        }
+        req.sessionId = decoded.sid
       }
       if (user.activeLearnerId) {
         const child = await prisma.learner.findFirst({

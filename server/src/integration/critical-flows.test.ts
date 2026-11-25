@@ -587,4 +587,55 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     })
     expect(stat?.practiceCount).toBe(1)
   })
+
+  it('rotates refresh tokens and revokes device sessions', async () => {
+    const username = `session_${Date.now()}`
+    const registered = await api
+      .post('/api/auth/register')
+      .send({ username, password: 'TestPass123!' })
+    expect(registered.status).toBe(201)
+
+    const rotated = await api.post('/api/auth/refresh').send({
+      refreshToken: registered.body.refreshToken
+    })
+    expect(rotated.status).toBe(200)
+    expect(rotated.body.refreshToken).toBeTruthy()
+
+    const reused = await api.post('/api/auth/refresh').send({
+      refreshToken: registered.body.refreshToken
+    })
+    expect(reused.status).toBe(400)
+
+    const sessions = await api
+      .get('/api/auth/sessions')
+      .set('Authorization', `Bearer ${rotated.body.accessToken}`)
+    expect(sessions.status).toBe(200)
+    expect(sessions.body.data).toHaveLength(1)
+    expect(sessions.body.data[0].current).toBe(true)
+
+    const logout = await api
+      .post('/api/auth/logout')
+      .set('Authorization', `Bearer ${rotated.body.accessToken}`)
+    expect(logout.status).toBe(200)
+
+    const revoked = await api
+      .get('/api/auth/profile')
+      .set('Authorization', `Bearer ${rotated.body.accessToken}`)
+    expect(revoked.status).toBe(401)
+    expect(revoked.body.code).toBe('SESSION_REVOKED')
+
+    const loggedIn = await api
+      .post('/api/auth/login')
+      .send({ username, password: 'TestPass123!' })
+    expect(loggedIn.status).toBe(200)
+    const logoutAll = await api
+      .post('/api/auth/logout-all')
+      .set('Authorization', `Bearer ${loggedIn.body.accessToken}`)
+    expect(logoutAll.status).toBe(200)
+    const afterAll = await api
+      .get('/api/auth/profile')
+      .set('Authorization', `Bearer ${loggedIn.body.accessToken}`)
+    expect(afterAll.status).toBe(401)
+    expect(afterAll.body.code).toBe('SESSION_REVOKED')
+  })
 })

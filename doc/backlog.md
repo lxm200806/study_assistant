@@ -12,7 +12,7 @@
 | M5 | 前端 Vitest：stores、纯逻辑（7 个文件 / 17 个测试） | DONE |
 | M6a | Playwright：quiz + PC 侧栏、真实 API+DB E2E | DONE |
 | M6b | Playwright：recognition / 语文 drill 页面冒烟 | DONE |
-| M7 | 安全：refresh token 撤销/轮换、设备会话 | TODO |
+| M7 | 安全：refresh token 轮换/撤销、设备会话、logout/logout-all | DONE |
 | M8 | 安全：TTS 鉴权、审计日志、CSP/HSTS、账号注销/导出、2FA、依赖/密钥扫描、合规检查 | TODO |
 | M9 | 可观测/运维：Metrics、Sentry、超时熔断、优雅退出、备份/迁移/告警 | TODO |
 | M10 | 性能/扩展：Redis、对象存储、图谱 SQL、缓存、同步 job、索引审查、包体积 | 部分 BLOCKED |

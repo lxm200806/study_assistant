@@ -1,9 +1,13 @@
 import prisma from '../prisma/client'
 import { hashPassword, comparePassword } from '../utils/password'
-import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from '../utils/jwt'
 import { LoginDto, RegisterDto, TokenResponse } from '../types'
 import { ensureActiveLearner, setActiveLearner, type LearnerSummary } from './family.service'
 import { isProduction } from '../config/env'
+import {
+  issueSessionTokens,
+  rotateSessionTokens,
+  type SessionContext
+} from './auth-session.service'
 
 function normalizeSubject(value?: string | null) {
   return value === 'chinese' ? 'chinese' : 'english'
@@ -55,7 +59,10 @@ async function withFamily(user: {
   return toUserResponse({ ...user, activeLearnerId: family.activeLearnerId }, family)
 }
 
-export async function register(dto: RegisterDto): Promise<TokenResponse> {
+export async function register(
+  dto: RegisterDto,
+  context?: SessionContext
+): Promise<TokenResponse> {
   const existingUser = await prisma.user.findUnique({
     where: { username: dto.username }
   })
@@ -76,17 +83,14 @@ export async function register(dto: RegisterDto): Promise<TokenResponse> {
     }
   })
 
-  const accessToken = generateAccessToken(user.id, user.username)
-  const refreshToken = generateRefreshToken(user.id)
-
+  const tokens = await issueSessionTokens(user, context)
   return {
-    accessToken,
-    refreshToken,
+    ...tokens,
     user: await withFamily(user)
   }
 }
 
-export async function login(dto: LoginDto): Promise<TokenResponse> {
+export async function login(dto: LoginDto, context?: SessionContext): Promise<TokenResponse> {
   const user = await prisma.user.findUnique({
     where: { username: dto.username }
   })
@@ -101,34 +105,18 @@ export async function login(dto: LoginDto): Promise<TokenResponse> {
     throw new Error('Invalid credentials')
   }
 
-  const accessToken = generateAccessToken(user.id, user.username)
-  const refreshToken = generateRefreshToken(user.id)
-
+  const tokens = await issueSessionTokens(user, context)
   return {
-    accessToken,
-    refreshToken,
+    ...tokens,
     user: await withFamily(user)
   }
 }
 
-export async function refreshToken(refreshToken: string): Promise<{ accessToken: string }> {
-  const decoded = verifyRefreshToken(refreshToken)
-
-  if (!decoded) {
-    throw new Error('Invalid refresh token')
-  }
-
-  const user = await prisma.user.findUnique({
-    where: { id: decoded.userId }
-  })
-
-  if (!user) {
-    throw new Error('User not found')
-  }
-
-  const accessToken = generateAccessToken(user.id, user.username)
-
-  return { accessToken }
+export async function refreshToken(
+  token: string,
+  context?: SessionContext
+): Promise<{ accessToken: string; refreshToken: string }> {
+  return rotateSessionTokens(token, context)
 }
 
 export async function getProfile(userId: string) {
@@ -201,7 +189,7 @@ export async function setActiveRole(userId: string, role?: string, studentId?: s
   throw new Error('请选择家长或学生角色')
 }
 
-export async function wechatLoginStub(code: string) {
+export async function wechatLoginStub(code: string, context?: SessionContext) {
   if (isProduction() || process.env.WECHAT_LOGIN_STUB !== 'true') {
     throw new Error('Wechat login is not configured')
   }
@@ -218,7 +206,6 @@ export async function wechatLoginStub(code: string) {
       }
     })
   }
-  const accessToken = generateAccessToken(user.id, user.username)
-  const refreshToken = generateRefreshToken(user.id)
-  return { accessToken, refreshToken, user: await withFamily(user) }
+  const tokens = await issueSessionTokens(user, context)
+  return { ...tokens, user: await withFamily(user) }
 }

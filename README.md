@@ -87,7 +87,7 @@ bash start-dev.sh
 | API 文档 | http://localhost:3005/api-docs |
 | PostgreSQL | localhost:5432 |
 
-> `/api-docs` 仅开发环境挂载。文档由 `server/src/validation/openapi.ts` 中的 zod 注册表生成，目前覆盖登录/家庭、词汇、词书、训练、测验、拼读/短文、聊天、语文、admin、speech、TTS 等 78 个核心接口；其余接口仍以 `server/src/routes/*.ts` 和 `server/src/chinese/chinese.routes.ts` 为准。
+> `/api-docs` 仅开发环境挂载。文档由 `server/src/validation/openapi.ts` 中的 zod 注册表生成，目前覆盖登录/家庭/会话、词汇、词书、训练、测验、拼读/短文、聊天、语文、admin、speech、TTS 等 81 个核心接口；其余接口仍以 `server/src/routes/*.ts` 和 `server/src/chinese/chinese.routes.ts` 为准。
 
 ## 常用命令
 
@@ -186,4 +186,4 @@ npm run test:e2e
 
 前端单元测试使用 Vitest + happy-dom + uni mock：`npm run test:frontend` 运行 7 个文件、17 个测试，覆盖 user/vocabulary store 和 storage、quiz-options、tts-text、speech-text、normalize-word 等纯逻辑。Playwright H5 冒烟测试 `e2e/smoke.spec.ts` 有 9 个用例：登录页、登录错误、未登录守卫、模拟登录进入角色页、quiz 开始页 + PC 侧栏、登录后词书列表、认读设置页、语文 drill 卡片、学生拼读设置 → 开始练习；`e2e/real-api.spec.ts` 是可选的真实 API + PostgreSQL 测试（`E2E_REAL_API=1`，CI 独立 job 执行）。Windows 本地默认使用系统 Edge，其他平台/CI 使用安装的 Chromium；可通过 `PLAYWRIGHT_CHANNEL` 覆盖。
 
-后端有 31 个 Vitest 文件（30 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（177 个通过，14 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 191 个测试）。API 同时挂载 `/api` 与 `/api/v1`；练习和结算支持可选 `Idempotency-Key`。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；同时构建 H5 和微信小程序、检查 API 生成类型是否最新、运行 Playwright 冒烟，并运行成语内容审计 `npm run audit:idioms`。
+后端有 31 个 Vitest 文件（30 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（177 个通过，15 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 192 个测试）。API 同时挂载 `/api` 与 `/api/v1`；练习和结算支持可选 `Idempotency-Key`；登录会话支持 refresh 轮换、设备列表、单设备退出和全设备退出。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；同时构建 H5 和微信小程序、检查 API 生成类型是否最新、运行 Playwright 冒烟，并运行成语内容审计 `npm run audit:idioms`。

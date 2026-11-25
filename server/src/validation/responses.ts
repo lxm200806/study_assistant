@@ -33,7 +33,17 @@ export const tokenResponseSchema = z.object({
 })
 
 export const refreshResponseSchema = z.object({
-  accessToken: z.string()
+  accessToken: z.string(),
+  refreshToken: z.string()
+})
+
+export const simpleSuccessResponseSchema = z.object({
+  success: z.literal(true)
+})
+
+export const sessionsResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(anyObject)
 })
 
 export const setActiveStudentResponseSchema = z.object({

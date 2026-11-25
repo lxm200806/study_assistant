@@ -274,6 +274,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const logout = () => {
+    void authAPI.logout().catch(() => undefined)
     isLoggedIn.value = false
     username.value = ''
     userId.value = ''

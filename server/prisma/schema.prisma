@@ -21,6 +21,7 @@ model User {
   displayName     String?
   activeLearnerId String?   @unique
   activeRole      String    @default("parent")
+  tokenVersion    Int       @default(0)
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 
@@ -28,8 +29,26 @@ model User {
   learners      Learner[]           @relation("AccountLearners")
   bookUnlocks   UserBookUnlock[]
   dailyActives  AccountDailyActive[]
+  sessions      AuthSession[]
   chineseUploads ChineseResource[]  @relation("ChineseResourceUploader")
   chineseCards  ChinesePublished[]  @relation("ChineseCardCreator")
+}
+
+/// 设备会话：每个 refresh token 对应一行，轮换时更新哈希，撤销后立即失效。
+model AuthSession {
+  id         String    @id @default(uuid())
+  userId     String
+  tokenHash  String    @unique
+  userAgent  String    @default("")
+  ip         String    @default("")
+  createdAt  DateTime  @default(now())
+  lastUsedAt DateTime  @default(now())
+  revokedAt  DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, revokedAt])
+  @@map("auth_sessions")
 }
 
 // 学习者（孩子）。学习进度、课程、掌握度都挂在这里；一个账号下多个孩子仍在本表。

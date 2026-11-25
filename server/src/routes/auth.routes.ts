@@ -12,7 +12,10 @@ import {
   renameStudentHandler,
   archiveStudentHandler,
   setActiveStudentHandler,
-  setRoleHandler
+  setRoleHandler,
+  logoutHandler,
+  logoutAllHandler,
+  sessionsHandler
 } from '../controllers/auth.controller'
 import { authMiddleware } from '../middleware/auth'
 import { rateLimit } from '../middleware/rate-limit'
@@ -44,6 +47,9 @@ router.post('/register', registerLimit, validateBody(credentialsBodySchema), reg
 router.post('/login', loginLimit, validateBody(credentialsBodySchema), loginHandler)
 router.post('/refresh', refreshLimit, validateBody(refreshBodySchema), refreshHandler)
 router.get('/profile', authMiddleware, profileHandler)
+router.post('/logout', authMiddleware, logoutHandler)
+router.post('/logout-all', authMiddleware, logoutAllHandler)
+router.get('/sessions', authMiddleware, sessionsHandler)
 router.post('/onboard', authMiddleware, validateBody(onboardBodySchema), onboardHandler)
 router.put('/subject', authMiddleware, validateBody(subjectBodySchema), setSubjectHandler)
 router.get('/students', authMiddleware, listStudentsHandler)

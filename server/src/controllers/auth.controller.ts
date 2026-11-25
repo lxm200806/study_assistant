@@ -1,16 +1,24 @@
 import { Request, Response } from 'express'
 import { register, login, refreshToken, getProfile, completeOnboarding, wechatLoginStub, setActiveSubject, setActiveRole } from '../services/auth.service'
 import { archiveChild, createChild, listChildren, renameChild, setActiveLearner } from '../services/family.service'
+import { listSessions, revokeAllSessions, revokeSession, type SessionContext } from '../services/auth-session.service'
+
+function sessionContext(req: Request): SessionContext {
+  return {
+    userAgent: String(req.headers['user-agent'] || ''),
+    ip: String(req.ip || '')
+  }
+}
 
 export async function registerHandler(req: Request, res: Response) {
   try {
     const { username, password } = req.body
-    
+
     if (!username || !password) {
       return res.status(400).json({ error: 'Username and password are required' })
     }
-    
-    const result = await register({ username, password })
+
+    const result = await register({ username, password }, sessionContext(req))
     res.status(201).json(result)
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
@@ -20,12 +28,12 @@ export async function registerHandler(req: Request, res: Response) {
 export async function loginHandler(req: Request, res: Response) {
   try {
     const { username, password } = req.body
-    
+
     if (!username || !password) {
       return res.status(400).json({ error: 'Username and password are required' })
     }
-    
-    const result = await login({ username, password })
+
+    const result = await login({ username, password }, sessionContext(req))
     res.status(200).json(result)
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
@@ -35,13 +43,40 @@ export async function loginHandler(req: Request, res: Response) {
 export async function refreshHandler(req: Request, res: Response) {
   try {
     const { refreshToken: token } = req.body
-    
+
     if (!token) {
       return res.status(400).json({ error: 'Refresh token is required' })
     }
-    
-    const result = await refreshToken(token)
+
+    const result = await refreshToken(token, sessionContext(req))
     res.status(200).json(result)
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function logoutHandler(req: Request, res: Response) {
+  try {
+    if (req.sessionId) await revokeSession(req.sessionId)
+    res.status(200).json({ success: true })
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function logoutAllHandler(req: Request, res: Response) {
+  try {
+    await revokeAllSessions(req.userId!)
+    res.status(200).json({ success: true })
+  } catch (error) {
+    res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function sessionsHandler(req: Request, res: Response) {
+  try {
+    const data = await listSessions(req.userId!, req.sessionId)
+    res.status(200).json({ success: true, data })
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
   }
@@ -135,7 +170,7 @@ export async function setRoleHandler(req: Request, res: Response) {
 export async function wechatLoginHandler(req: Request, res: Response) {
   try {
     const { code } = req.body
-    const result = await wechatLoginStub(code)
+    const result = await wechatLoginStub(code, sessionContext(req))
     res.status(200).json(result)
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
