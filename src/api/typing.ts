@@ -2,13 +2,20 @@ import { request } from './client'
 import type {
   TypingAnswerBody,
   TypingAnswerData,
+  TypingCreateListData,
+  TypingListBody,
+  TypingListsData,
   TypingQueueData,
-  TypingQueueQuery
+  TypingQueueQuery,
+  TypingSummaryData
 } from '@/types/api-contract'
 
 export const typingAPI = {
   summary: (bookCode: string, mode = 'follow') =>
-    request(`/typing/summary?bookCode=${encodeURIComponent(bookCode)}&mode=${encodeURIComponent(mode)}`, 'GET'),
+    request<TypingSummaryData>(
+      `/typing/summary?bookCode=${encodeURIComponent(bookCode)}&mode=${encodeURIComponent(mode)}`,
+      'GET'
+    ),
   queue: (options: {
     bookCode?: string
     source: TypingQueueQuery['source']
@@ -33,8 +40,11 @@ export const typingAPI = {
   mark: (wordId: string, patch: { favorite?: boolean; skipMastered?: boolean }) =>
     request('/typing/marks', 'PUT', { wordId, ...patch }),
   activity: (count: number) => request('/typing/activity', 'POST', { count }),
-  lists: () => request('/typing/lists', 'GET'),
-  createList: (name: string, text: string) => request('/typing/lists', 'POST', { name, text }),
+  lists: () => request<TypingListsData>('/typing/lists', 'GET'),
+  createList: (name: string, text: string) => {
+    const body: TypingListBody = { name, text }
+    return request<TypingCreateListData>('/typing/lists', 'POST', body)
+  },
   deleteList: (id: string) => request(`/typing/lists/${id}`, 'DELETE'),
   articles: () => request('/typing/articles', 'GET'),
   createArticle: (title: string, body: string, translation: string) =>

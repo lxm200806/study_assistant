@@ -1,7 +1,13 @@
 import { Router } from 'express'
 import { authMiddleware } from '../middleware/auth'
-import { validateBody, validateQuery } from '../validation/validate'
-import { typingAnswerBodySchema, typingQueueQuerySchema } from '../validation/schemas'
+import { validateBody, validateParams, validateQuery } from '../validation/validate'
+import {
+  idParamsSchema,
+  typingAnswerBodySchema,
+  typingListBodySchema,
+  typingQueueQuerySchema,
+  typingSummaryQuerySchema
+} from '../validation/schemas'
 import {
   typingActivityHandler,
   typingAnswerHandler,
@@ -25,7 +31,7 @@ import {
 
 const router = Router()
 
-router.get('/summary', authMiddleware, typingSummaryHandler)
+router.get('/summary', authMiddleware, validateQuery(typingSummaryQuerySchema), typingSummaryHandler)
 router.get('/queue', authMiddleware, validateQuery(typingQueueQuerySchema), typingQueueHandler)
 router.post('/answer', authMiddleware, validateBody(typingAnswerBodySchema), typingAnswerHandler)
 router.put('/marks', authMiddleware, typingMarkHandler)
@@ -34,8 +40,8 @@ router.get('/history', authMiddleware, typingHistoryHandler)
 router.post('/sessions', authMiddleware, typingSessionHandler)
 
 router.get('/lists', authMiddleware, typingListsHandler)
-router.post('/lists', authMiddleware, typingCreateListHandler)
-router.delete('/lists/:id', authMiddleware, typingDeleteListHandler)
+router.post('/lists', authMiddleware, validateBody(typingListBodySchema), typingCreateListHandler)
+router.delete('/lists/:id', authMiddleware, validateParams(idParamsSchema), typingDeleteListHandler)
 
 router.get('/articles', authMiddleware, typingArticlesHandler)
 router.post('/articles', authMiddleware, typingCreateArticleHandler)

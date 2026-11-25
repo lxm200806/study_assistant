@@ -3,6 +3,8 @@ import { sendChatMessage, getChatHistory, getChatRemaining, type ChatMode } from
 import { streamChatMessage } from '../services/chat-stream.service'
 import { assertBookAccess } from '../services/book-access.service'
 import { internalError } from '../utils/http-errors'
+import { validatedQuery } from '../validation/validate'
+import type { ChatHistoryQuery } from '../validation/schemas'
 
 const MAX_MESSAGE_LENGTH = 2000
 
@@ -93,8 +95,7 @@ export async function getHistoryHandler(req: Request, res: Response) {
   try {
     const userId = req.learnerId
     if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
-    const page = parseInt(req.query.page as string) || 1
-    const limit = parseInt(req.query.limit as string) || 20
+    const { page, limit } = validatedQuery<ChatHistoryQuery>(res)
 
     const history = await getChatHistory(userId, page, limit)
     res.status(200).json({ success: true, data: history })

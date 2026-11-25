@@ -1,11 +1,19 @@
 import { request, requestDirect } from './client'
 import type {
+  BookDetailData,
+  BookListData,
   BookMapData,
   BookSessionData,
   CompleteSessionBody,
   CompleteSessionResponse,
+  HistoryData,
   PracticeBody,
-  PracticeData
+  PracticeData,
+  QuizSubmitBody,
+  QuizSubmitData,
+  QuizWordsData,
+  ReviewData,
+  ReviewQuery
 } from '@/types/api-contract'
 
 export const vocabularyAPI = {
@@ -31,29 +39,29 @@ export const trainingAPI = {
   recheck: async (bookCode: string, wordId: string, type: string, isCorrect: boolean) => {
     return request('/training/recheck', 'POST', { bookCode, wordId, type, isCorrect })
   },
-  review: async (type?: string, bookCode?: string, limit?: number) => {
+  review: async (type?: ReviewQuery['type'], bookCode?: string, limit?: number) => {
     const params = new URLSearchParams()
     if (type) params.set('type', type)
     if (bookCode) params.set('bookCode', bookCode)
     if (limit) params.set('limit', String(limit))
     const query = params.toString()
-    return request(`/training/review${query ? `?${query}` : ''}`, 'GET')
+    return request<ReviewData>(`/training/review${query ? `?${query}` : ''}`, 'GET')
   },
   completeSession: async (bookCode: string, wordIds: string[], sessionTokens: string[] = []) => {
     const body: CompleteSessionBody = { bookCode, wordIds, sessionTokens }
     return requestDirect<CompleteSessionResponse>('/training/session/complete', 'POST', body)
   },
   history: async (page: number = 1, limit: number = 20) => {
-    return request(`/training/history?page=${page}&limit=${limit}`, 'GET')
+    return request<HistoryData>(`/training/history?page=${page}&limit=${limit}`, 'GET')
   }
 }
 
 export const bookAPI = {
   list: async () => {
-    return request('/books', 'GET')
+    return request<BookListData>('/books', 'GET')
   },
   detail: async (code: string) => {
-    return request(`/books/${code}`, 'GET')
+    return request<BookDetailData>(`/books/${code}`, 'GET')
   },
   random: async (code: string, count: number = 10) => {
     return request(`/books/${code}/random?count=${count}`, 'GET')
@@ -101,9 +109,10 @@ export const statsAPI = {
 
 export const quizAPI = {
   words: async (bookCode: string, count: number = 30) => {
-    return request(`/training/quiz/words?bookCode=${bookCode}&count=${count}`, 'GET')
+    return request<QuizWordsData>(`/training/quiz/words?bookCode=${bookCode}&count=${count}`, 'GET')
   },
-  submit: async (bookCode: string, items: { wordId: string; isCorrect: boolean }[]) => {
-    return request('/training/quiz/submit', 'POST', { bookCode, items })
+  submit: async (bookCode: string, items: QuizSubmitBody['items']) => {
+    const body: QuizSubmitBody = { bookCode, items }
+    return request<QuizSubmitData>('/training/quiz/submit', 'POST', body)
   }
 }

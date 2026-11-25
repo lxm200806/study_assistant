@@ -2,16 +2,14 @@ import { Request, Response } from 'express'
 import { getQuizWords, submitQuiz } from '../services/quiz.service'
 import { assertBookAccess } from '../services/book-access.service'
 import { internalError } from '../utils/http-errors'
+import { validatedQuery } from '../validation/validate'
+import type { QuizSubmitBody, QuizWordsQuery } from '../validation/schemas'
 
 export async function getQuizWordsHandler(req: Request, res: Response) {
   try {
     const userId = req.learnerId
     if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
-    const bookCode = req.query.bookCode as string
-    const count = parseInt(req.query.count as string) || 30
-    if (!bookCode) {
-      return res.status(400).json({ success: false, error: 'bookCode required' })
-    }
+    const { bookCode, count } = validatedQuery<QuizWordsQuery>(res)
     await assertBookAccess(userId, bookCode)
     const words = await getQuizWords(userId, bookCode, count)
     res.status(200).json({ success: true, data: words })
@@ -28,10 +26,7 @@ export async function submitQuizHandler(req: Request, res: Response) {
   try {
     const userId = req.learnerId
     if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
-    const { bookCode, items } = req.body as { bookCode?: string; items?: { wordId: string; isCorrect: boolean }[] }
-    if (!bookCode || !Array.isArray(items)) {
-      return res.status(400).json({ success: false, error: 'Invalid body' })
-    }
+    const { bookCode, items } = req.body as QuizSubmitBody
     await assertBookAccess(userId, bookCode)
     const result = await submitQuiz(userId, bookCode, items)
     res.status(200).json({ success: true, data: result })

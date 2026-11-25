@@ -53,6 +53,39 @@ export const chineseTodayQuerySchema = z.object({
   reciteOffset: z.coerce.number().int().min(0).max(10_000).default(0)
 })
 
+export const bookCodeParamsSchema = z.object({
+  code: z.string().trim().min(1, '缺少词书编码').max(64)
+})
+
+export const reviewQuerySchema = z.object({
+  type: wordTypeSchema.optional(),
+  bookCode: z.string().trim().min(1).max(64).optional(),
+  limit: z.coerce.number().int().min(1).max(200).default(50)
+})
+
+export const historyQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).max(100_000).default(1),
+  limit: z.coerce.number().int().min(1).max(100).default(20)
+})
+
+export const quizWordsQuerySchema = z.object({
+  bookCode: z.string().trim().min(1, '缺少 bookCode').max(64),
+  count: z.coerce.number().int().min(1).max(200).default(30)
+})
+
+export const quizSubmitBodySchema = z.object({
+  bookCode: z.string().trim().min(1, '缺少 bookCode').max(64),
+  items: z
+    .array(
+      z.object({
+        wordId: z.string().min(1),
+        isCorrect: z.boolean()
+      })
+    )
+    .min(1, 'items 不能为空')
+    .max(200)
+})
+
 export const practiceBodySchema = z.object({
   wordId: z.string().min(1, '缺少 wordId'),
   type: wordTypeSchema,
@@ -85,6 +118,32 @@ export const chineseReviewBodySchema = z.object({
   selfRating: z.enum(['', 'known', 'again']).optional()
 })
 
+export const idParamsSchema = z.object({
+  id: z.string().trim().min(1, '缺少 id').max(64)
+})
+
+export const typingSummaryQuerySchema = z.object({
+  bookCode: z.string().trim().min(1, '缺少 bookCode').max(64),
+  mode: typingModeSchema.default('follow')
+})
+
+export const typingListBodySchema = z.object({
+  name: z.string().trim().max(40).optional(),
+  text: z.string().trim().min(1, '词表内容不能为空').max(20_000)
+})
+
+export const chatSendBodySchema = z.object({
+  content: z.string().trim().min(1, '消息不能为空').max(2_000),
+  bookCode: z.string().trim().min(1).max(64).optional(),
+  mode: z.enum(['free', 'challenge', 'roleplay']).optional(),
+  scenario: z.string().trim().max(200).optional()
+})
+
+export const chatHistoryQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).max(100_000).default(1),
+  limit: z.coerce.number().int().min(1).max(100).default(20)
+})
+
 export type CredentialsBody = z.infer<typeof credentialsBodySchema>
 export type RefreshBody = z.infer<typeof refreshBodySchema>
 export type SetActiveStudentBody = z.infer<typeof setActiveStudentBodySchema>
@@ -92,7 +151,17 @@ export type BookSessionQuery = z.infer<typeof bookSessionQuerySchema>
 export type BookMapQuery = z.infer<typeof bookMapQuerySchema>
 export type TypingQueueQuery = z.infer<typeof typingQueueQuerySchema>
 export type ChineseTodayQuery = z.infer<typeof chineseTodayQuerySchema>
+export type BookCodeParams = z.infer<typeof bookCodeParamsSchema>
+export type ReviewQuery = z.infer<typeof reviewQuerySchema>
+export type HistoryQuery = z.infer<typeof historyQuerySchema>
+export type QuizWordsQuery = z.infer<typeof quizWordsQuerySchema>
+export type QuizSubmitBody = z.infer<typeof quizSubmitBodySchema>
 export type PracticeBody = z.infer<typeof practiceBodySchema>
 export type CompleteSessionBody = z.infer<typeof completeSessionBodySchema>
 export type TypingAnswerBody = z.infer<typeof typingAnswerBodySchema>
 export type ChineseReviewBody = z.infer<typeof chineseReviewBodySchema>
+export type IdParams = z.infer<typeof idParamsSchema>
+export type TypingSummaryQuery = z.infer<typeof typingSummaryQuerySchema>
+export type TypingListBody = z.infer<typeof typingListBodySchema>
+export type ChatSendBody = z.infer<typeof chatSendBodySchema>
+export type ChatHistoryQuery = z.infer<typeof chatHistoryQuerySchema>

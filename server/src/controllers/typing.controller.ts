@@ -10,7 +10,7 @@ import {
 } from '../services/typing-logic'
 import { internalError } from '../utils/http-errors'
 import { validatedQuery } from '../validation/validate'
-import type { TypingQueueQuery } from '../validation/schemas'
+import type { TypingQueueQuery, TypingSummaryQuery } from '../validation/schemas'
 import {
   createPracticeArticle,
   deletePracticeArticle,
@@ -72,10 +72,7 @@ export async function typingSummaryHandler(req: Request, res: Response) {
   try {
     const learnerId = studyOrReply(req, res)
     if (!learnerId) return
-    const bookCode = String(req.query.bookCode || '')
-    if (!bookCode) return res.status(400).json({ success: false, error: 'bookCode is required' })
-    const mode = parseTypingMode(req.query.mode)
-    if (!mode) return res.status(400).json({ success: false, error: 'unknown mode' })
+    const { bookCode, mode } = validatedQuery<TypingSummaryQuery>(res)
     const data = await getTypingSummary(learnerId, bookCode, mode)
     res.status(200).json({ success: true, data })
   } catch (error) {

@@ -1,27 +1,26 @@
 import { request } from './client'
+import type {
+  ChatHistoryData,
+  ChatQuotaData,
+  ChatSendBody,
+  ChatSendData
+} from '@/types/api-contract'
 
 export const chatAPI = {
   send: async (
     content: string,
     bookCode?: string,
-    mode?: 'free' | 'challenge' | 'roleplay',
+    mode?: ChatSendBody['mode'],
     scenario?: string
   ) => {
-    return request<{
-      userMessage: string
-      aiResponse: string
-      matchedWords: Array<{ wordId: string; word: string; type: string }>
-      remainingFree?: number
-    }>('/chat/send', 'POST', { content, bookCode, mode, scenario })
+    const body: ChatSendBody = { content, bookCode, mode, scenario }
+    return request<ChatSendData>('/chat/send', 'POST', body)
   },
   history: async (page: number = 1, limit: number = 20) => {
-    return request<Array<{ id: string; role: string; content: string; createdAt: string }>>(
-      `/chat/history?page=${page}&limit=${limit}`,
-      'GET'
-    )
+    return request<ChatHistoryData>(`/chat/history?page=${page}&limit=${limit}`, 'GET')
   },
   quota: async () => {
-    return request<{ remaining: number; isPremium: boolean }>('/chat/quota', 'GET')
+    return request<ChatQuotaData>('/chat/quota', 'GET')
   }
 }
 

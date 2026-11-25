@@ -142,7 +142,7 @@ test('renders the authenticated book list', async ({ page }) => {
   await expect(page.getByText('人教 PEP 三上', { exact: true })).toBeVisible()
 })
 
-test('renders the typing setup page for a student', async ({ page }) => {
+test('starts the typing practice flow for a student', async ({ page }) => {
   await page.goto('/#/pages/login/login')
   await page.evaluate((student) => {
     const storage = (window as unknown as {
@@ -155,6 +155,15 @@ test('renders the typing setup page for a student', async ({ page }) => {
     storage.setStorageSync('currentBookCode', 'pep-g3a-2024')
   }, DEMO_STUDENT)
 
+  // 拼读设置页还会顺带请求 progress/due-count 等；给未单独 mock 的接口一个空成功响应，
+  // 避免 catch-all 的 401 触发“登录失效”弹窗拦截点击。
+  await page.route(isApiRequest, route =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ success: true, data: null })
+    })
+  )
   await page.route(
     (url: URL) => url.pathname === '/api/books',
     route =>
@@ -207,8 +216,40 @@ test('renders the typing setup page for a student', async ({ page }) => {
         body: JSON.stringify({ success: true, data: { days: [], speed: [] } })
       })
   )
+  await page.route(
+    (url: URL) => url.pathname === '/api/typing/queue',
+    route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          data: {
+            source: 'smart',
+            mode: 'follow',
+            scopedToBook: true,
+            bookCode: 'pep-g3a-2024',
+            words: [
+              {
+                id: 'w-e2e',
+                word: 'apple',
+                meaning: '苹果',
+                phonetic: '/ˈæpl/',
+                favorite: false,
+                skipMastered: false,
+                inWrongBook: false
+              }
+            ],
+            sessionToken: 'e2e-typing-session'
+          }
+        })
+      })
+  )
 
   await page.goto('/#/pages/typing/typing')
   await expect(page.locator('uni-page-body').getByText('拼读练习', { exact: true })).toBeVisible()
   await expect(page.locator('uni-page-body uni-button.start')).toContainText('开始')
+
+  await page.locator('uni-page-body uni-button.start').click()
+  await expect(page.locator('uni-page-body').getByText('跟着拼写', { exact: true })).toBeVisible()
 })

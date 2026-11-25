@@ -40,3 +40,17 @@ export function validateQuery<T extends ZodTypeAny>(schema: T): RequestHandler {
 export function validatedQuery<T>(res: Response): T {
   return res.locals.validatedQuery as T
 }
+
+/** 校验 params，解析结果放在 res.locals.validatedParams。 */
+export function validateParams<T extends ZodTypeAny>(schema: T): RequestHandler {
+  return (req, res, next) => {
+    const result = schema.safeParse(req.params)
+    if (!result.success) return invalidRequest(res, result.error)
+    res.locals.validatedParams = result.data
+    next()
+  }
+}
+
+export function validatedParams<T>(res: Response): T {
+  return res.locals.validatedParams as T
+}

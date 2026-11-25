@@ -8,17 +8,24 @@ import {
 } from '../controllers/training.controller'
 import { getQuizWordsHandler, submitQuizHandler } from '../controllers/quiz.controller'
 import { authMiddleware } from '../middleware/auth'
-import { validateBody } from '../validation/validate'
-import { completeSessionBodySchema, practiceBodySchema } from '../validation/schemas'
+import { validateBody, validateQuery } from '../validation/validate'
+import {
+  completeSessionBodySchema,
+  historyQuerySchema,
+  practiceBodySchema,
+  quizSubmitBodySchema,
+  quizWordsQuerySchema,
+  reviewQuerySchema
+} from '../validation/schemas'
 
 const router = Router()
 
 router.post('/practice', authMiddleware, validateBody(practiceBodySchema), practiceHandler)
 router.post('/recheck', authMiddleware, recheckHandler)
 router.post('/session/complete', authMiddleware, validateBody(completeSessionBodySchema), completeSessionHandler)
-router.get('/review', authMiddleware, getReviewHandler)
-router.get('/history', authMiddleware, getHistoryHandler)
-router.get('/quiz/words', authMiddleware, getQuizWordsHandler)
-router.post('/quiz/submit', authMiddleware, submitQuizHandler)
+router.get('/review', authMiddleware, validateQuery(reviewQuerySchema), getReviewHandler)
+router.get('/history', authMiddleware, validateQuery(historyQuerySchema), getHistoryHandler)
+router.get('/quiz/words', authMiddleware, validateQuery(quizWordsQuerySchema), getQuizWordsHandler)
+router.post('/quiz/submit', authMiddleware, validateBody(quizSubmitBodySchema), submitQuizHandler)
 
 export default router

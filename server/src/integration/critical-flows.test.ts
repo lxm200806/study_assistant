@@ -234,20 +234,43 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     expect(progress?.practicedWordIds).toEqual(expect.arrayContaining(sessionWordIds))
   })
 
-  it('runs the Chinese today queue and review flow', async () => {
-    const course = await prisma.chineseCourse.create({
-      data: {
-        learnerId,
-        name: '集成测试语文课',
-        dailyMinutes: 15
-      }
+  it('runs the quiz flow', async () => {
+    const quiz = await authed(api.get('/api/training/quiz/words')).query({
+      bookCode,
+      count: 2
     })
-    await prisma.chineseCourseItem.create({
-      data: { courseId: course.id, pointId, sort: 0 }
+    expect(quiz.status).toBe(200)
+    const words = quiz.body.data as Array<{ id: string }>
+    expect(words.length).toBeGreaterThan(0)
+
+    const answers = words.map((word, index) => ({
+      wordId: word.id,
+      isCorrect: index === 0
+    }))
+    const submitted = await authed(api.post('/api/training/quiz/submit')).send({
+      bookCode,
+      items: answers
     })
+    expect(submitted.status).toBe(200)
+    expect(submitted.body.data.total).toBe(words.length)
+    expect(submitted.body.data.correct).toBe(1)
+    expect(submitted.body.data.accuracy).toBe(Math.round((1 / words.length) * 100))
+  })
+
+  it('creates a Chinese course through the API and runs today/review', async () => {
+    const created = await authed(api.post('/api/chinese/courses')).send({
+      name: '集成测试语文课',
+      kinds: ['poem'],
+      levels: ['L1'],
+      difficulties: ['primary'],
+      dailyMinutes: 15
+    })
+    expect(created.status).toBe(200)
+    const courseId = String(created.body.id || '')
+    expect(courseId).toBeTruthy()
 
     const today = await authed(
-      api.get(`/api/chinese/courses/${course.id}/today`).query({ mode: 'learn' })
+      api.get(`/api/chinese/courses/${courseId}/today`).query({ mode: 'learn' })
     )
     expect(today.status).toBe(200)
     const items = today.body.items as Array<{ id: string }>
@@ -255,13 +278,13 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     expect(items.some(item => item.id === pointId)).toBe(true)
 
     const reviewed = await authed(
-      api.post(`/api/chinese/courses/${course.id}/review`)
+      api.post(`/api/chinese/courses/${courseId}/review`)
     ).send({ pointId, answer: pointAnswer, mode: 'learn' })
     expect(reviewed.status).toBe(200)
 
     const state = await prisma.chineseReviewState.findUnique({
       where: {
-        learnerId_courseId_pointId: { learnerId, courseId: course.id, pointId }
+        learnerId_courseId_pointId: { learnerId, courseId, pointId }
       }
     })
     expect(state).not.toBeNull()

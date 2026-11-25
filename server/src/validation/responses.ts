@@ -207,3 +207,174 @@ export const chineseReviewResponseSchema = z
     revealed: z.boolean().optional()
   })
   .passthrough()
+
+export const bookSummarySchema = z
+  .object({
+    id: z.string(),
+    name: z.string(),
+    code: z.string(),
+    description: z.string().nullable().optional(),
+    level: z.string(),
+    wordCount: z.number(),
+    isFree: z.boolean(),
+    createdAt: z.string().optional()
+  })
+  .passthrough()
+
+export const bookListResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(bookSummarySchema)
+})
+
+export const bookDetailDataSchema = z
+  .object({
+    id: z.string(),
+    name: z.string(),
+    code: z.string(),
+    description: z.string().nullable().optional(),
+    level: z.string(),
+    wordCount: z.number(),
+    words: z.array(bookWordSchema)
+  })
+  .passthrough()
+
+export const bookDetailResponseSchema = z.object({
+  success: z.literal(true),
+  data: bookDetailDataSchema
+})
+
+export const reviewStatSchema = z
+  .object({
+    wordId: z.string(),
+    type: wordTypeSchema.optional(),
+    word: z.string().optional(),
+    meaning: z.string().optional(),
+    due: z.string().nullable().optional(),
+    mastery: z.number().optional(),
+    status: z.string().optional(),
+    weakReason: z.string().nullable().optional()
+  })
+  .passthrough()
+
+export const reviewResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(reviewStatSchema)
+})
+
+export const trainingHistoryItemSchema = z
+  .object({
+    id: z.string(),
+    wordId: z.string(),
+    type: wordTypeSchema,
+    isCorrect: z.boolean(),
+    createdAt: z.string(),
+    word: anyObject.optional()
+  })
+  .passthrough()
+
+export const historyResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(trainingHistoryItemSchema)
+})
+
+export const quizWordsResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(bookWordSchema)
+})
+
+export const quizSubmitResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    bookCode: z.string(),
+    total: z.number(),
+    correct: z.number(),
+    accuracy: z.number(),
+    wrongCount: z.number()
+  })
+})
+
+export const typingSummaryResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    bookCode: z.string(),
+    mode: z.string(),
+    bookWords: z.number(),
+    due: z.number(),
+    unseen: z.number(),
+    skipped: z.number(),
+    wrong: z.number(),
+    favorite: z.number()
+  })
+})
+
+export const typingListsResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(
+    z
+      .object({
+        id: z.string(),
+        name: z.string(),
+        count: z.number(),
+        createdAt: z.string()
+      })
+      .passthrough()
+  )
+})
+
+export const typingCreateListResponseSchema = z.object({
+  success: z.literal(true),
+  data: z
+    .object({
+      id: z.string(),
+      name: z.string(),
+      count: z.number(),
+      linked: z.number(),
+      created: z.number(),
+      matched: z.number(),
+      missing: z.array(z.string()),
+      rejected: z.array(anyObject)
+    })
+    .passthrough()
+})
+
+export const typingDeleteListResponseSchema = z.object({
+  success: z.literal(true)
+})
+
+export const chatSendDataSchema = z
+  .object({
+    userMessage: z.string(),
+    aiResponse: z.string(),
+    matchedWords: z.array(anyObject),
+    remainingFree: z.number().optional(),
+    usedFallback: z.boolean().optional()
+  })
+  .passthrough()
+
+export const chatSendResponseSchema = z.object({
+  success: z.literal(true),
+  data: chatSendDataSchema
+})
+
+export const chatHistoryResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(
+    z
+      .object({
+        id: z.string(),
+        role: z.string(),
+        content: z.string(),
+        mode: z.string().nullable().optional(),
+        createdAt: z.string()
+      })
+      .passthrough()
+  )
+})
+
+export const chatQuotaResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    remaining: z.number(),
+    isPremium: z.boolean()
+  })
+})

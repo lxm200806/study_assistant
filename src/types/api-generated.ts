@@ -192,6 +192,87 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/books": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 词书列表 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BookListResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/books/{code}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 词书详情 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    code: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BookDetailResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/books/{code}/session": {
         parameters: {
             query?: never;
@@ -380,6 +461,350 @@ export interface paths {
             };
         };
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/training/review": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 待复习队列 */
+        get: {
+            parameters: {
+                query?: {
+                    type?: "listening" | "speaking" | "reading" | "writing";
+                    bookCode?: string;
+                    limit?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ReviewResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/training/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 训练历史 */
+        get: {
+            parameters: {
+                query?: {
+                    page?: number;
+                    limit?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HistoryResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/training/quiz/words": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 测验题目 */
+        get: {
+            parameters: {
+                query: {
+                    bookCode: string;
+                    count?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["QuizWordsResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/training/quiz/submit": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 提交测验 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["QuizSubmitBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["QuizSubmitResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 拼读统计 */
+        get: {
+            parameters: {
+                query: {
+                    bookCode: string;
+                    mode?: "follow" | "dictation" | "self" | "recall";
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingSummaryResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/lists": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 练习词表列表 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingListsResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        /** 创建练习词表 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["TypingListBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingCreateListResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/typing/lists/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** 删除练习词表 */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["TypingDeleteListResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
         options?: never;
         head?: never;
         patch?: never;
@@ -581,6 +1006,182 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/chat/send": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 发送聊天消息 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ChatSendBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ChatSendResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/chat/stream": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** SSE 流式聊天 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["ChatSendBody"];
+                };
+            };
+            responses: {
+                /** @description SSE 事件流（event: token / done / error） */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/event-stream": string;
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/chat/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 聊天历史 */
+        get: {
+            parameters: {
+                query?: {
+                    page?: number;
+                    limit?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ChatHistoryResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/chat/quota": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 聊天剩余额度 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ChatQuotaResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -640,6 +1241,59 @@ export interface components {
             extraMinutes: number | null;
             /** @default 0 */
             reciteOffset: number | null;
+        };
+        ReviewQuery: {
+            /** @enum {string} */
+            type?: "listening" | "speaking" | "reading" | "writing";
+            bookCode?: string;
+            /** @default 50 */
+            limit: number;
+        };
+        HistoryQuery: {
+            /** @default 1 */
+            page: number;
+            /** @default 20 */
+            limit: number;
+        };
+        QuizWordsQuery: {
+            bookCode: string;
+            /** @default 30 */
+            count: number;
+        };
+        QuizSubmitBody: {
+            bookCode: string;
+            items: {
+                wordId: string;
+                isCorrect: boolean;
+            }[];
+        };
+        TypingSummaryQuery: {
+            bookCode: string;
+            /**
+             * @default follow
+             * @enum {string}
+             */
+            mode: "follow" | "dictation" | "self" | "recall";
+        };
+        TypingListBody: {
+            name?: string;
+            text: string;
+        };
+        IdParams: {
+            id: string;
+        };
+        ChatSendBody: {
+            content: string;
+            bookCode?: string;
+            /** @enum {string} */
+            mode?: "free" | "challenge" | "roleplay";
+            scenario?: string;
+        };
+        ChatHistoryQuery: {
+            /** @default 1 */
+            page: number;
+            /** @default 20 */
+            limit: number;
         };
         PracticeBody: {
             wordId: string;
@@ -887,6 +1541,175 @@ export interface components {
             mode?: string;
             updateSm2?: boolean;
             revealed?: boolean;
+        };
+        BookListResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                name: string;
+                code: string;
+                description?: string | null;
+                level: string;
+                wordCount: number;
+                isFree: boolean;
+                createdAt?: string;
+            }[];
+        };
+        BookDetailResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                name: string;
+                code: string;
+                description?: string | null;
+                level: string;
+                wordCount: number;
+                words: {
+                    id: string;
+                    word: string;
+                    meaning: string;
+                    phonetic?: string;
+                    englishMeaning?: string;
+                    example?: string;
+                    examples?: string[];
+                    topic?: string;
+                    tags?: string[];
+                }[];
+            };
+        };
+        ReviewResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                wordId: string;
+                /** @enum {string} */
+                type?: "listening" | "speaking" | "reading" | "writing";
+                word?: string;
+                meaning?: string;
+                due?: string | null;
+                mastery?: number;
+                status?: string;
+                weakReason?: string | null;
+            }[];
+        };
+        HistoryResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                wordId: string;
+                /** @enum {string} */
+                type: "listening" | "speaking" | "reading" | "writing";
+                isCorrect: boolean;
+                createdAt: string;
+                word?: {
+                    [key: string]: unknown;
+                };
+            }[];
+        };
+        QuizWordsResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                word: string;
+                meaning: string;
+                phonetic?: string;
+                englishMeaning?: string;
+                example?: string;
+                examples?: string[];
+                topic?: string;
+                tags?: string[];
+            }[];
+        };
+        QuizSubmitResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                bookCode: string;
+                total: number;
+                correct: number;
+                accuracy: number;
+                wrongCount: number;
+            };
+        };
+        TypingSummaryResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                bookCode: string;
+                mode: string;
+                bookWords: number;
+                due: number;
+                unseen: number;
+                skipped: number;
+                wrong: number;
+                favorite: number;
+            };
+        };
+        TypingListsResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                name: string;
+                count: number;
+                createdAt: string;
+            }[];
+        };
+        TypingCreateListResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                name: string;
+                count: number;
+                linked: number;
+                created: number;
+                matched: number;
+                missing: string[];
+                rejected: {
+                    [key: string]: unknown;
+                }[];
+            };
+        };
+        TypingDeleteListResponse: {
+            /** @enum {boolean} */
+            success: true;
+        };
+        ChatSendResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                userMessage: string;
+                aiResponse: string;
+                matchedWords: {
+                    [key: string]: unknown;
+                }[];
+                remainingFree?: number;
+                usedFallback?: boolean;
+            };
+        };
+        ChatHistoryResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                role: string;
+                content: string;
+                mode?: string | null;
+                createdAt: string;
+            }[];
+        };
+        ChatQuotaResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                remaining: number;
+                isPremium: boolean;
+            };
         };
     };
     responses: never;

@@ -4,10 +4,11 @@ import { completeBookSession } from '../services/coverage.service'
 import { assertBookAccess } from '../services/book-access.service'
 import { verifySessionToken } from '../services/session-token'
 import prisma from '../prisma/client'
-import { clampInt } from '../utils/pagination'
 import type { WordType } from '../types'
 import { studyUserId } from '../middleware/auth'
 import { internalError } from '../utils/http-errors'
+import { validatedQuery } from '../validation/validate'
+import type { HistoryQuery, ReviewQuery } from '../validation/schemas'
 
 const MAX_SESSION_WORDS = 200
 const TRAINING_TYPES: WordType[] = ['listening', 'speaking', 'reading', 'writing']
@@ -42,9 +43,7 @@ export async function getReviewHandler(req: Request, res: Response) {
   try {
     const userId = studyOrReply(req, res)
     if (!userId) return
-    const type = req.query.type as WordType | undefined
-    const bookCode = req.query.bookCode as string | undefined
-    const limit = clampInt(req.query.limit, 50, 1, MAX_SESSION_WORDS)
+    const { type, bookCode, limit } = validatedQuery<ReviewQuery>(res)
 
     if (bookCode) {
       await assertBookAccess(userId, bookCode)
@@ -65,8 +64,7 @@ export async function getHistoryHandler(req: Request, res: Response) {
   try {
     const userId = studyOrReply(req, res)
     if (!userId) return
-    const page = clampInt(req.query.page, 1, 1, 100000)
-    const limit = clampInt(req.query.limit, 20, 1, 100)
+    const { page, limit } = validatedQuery<HistoryQuery>(res)
 
     const history = await getTrainingHistory(userId, page, limit)
     res.status(200).json({ success: true, data: history })

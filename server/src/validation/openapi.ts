@@ -7,28 +7,50 @@ import { z } from 'zod'
 import {
   bookMapQuerySchema,
   bookSessionQuerySchema,
+  chatHistoryQuerySchema,
+  chatSendBodySchema,
   chineseReviewBodySchema,
   chineseTodayQuerySchema,
   completeSessionBodySchema,
   credentialsBodySchema,
+  historyQuerySchema,
+  idParamsSchema,
   practiceBodySchema,
+  quizSubmitBodySchema,
+  quizWordsQuerySchema,
   refreshBodySchema,
+  reviewQuerySchema,
   setActiveStudentBodySchema,
   typingAnswerBodySchema,
-  typingQueueQuerySchema
+  typingListBodySchema,
+  typingQueueQuerySchema,
+  typingSummaryQuerySchema
 } from './schemas'
 import {
+  bookDetailResponseSchema,
+  bookListResponseSchema,
   bookMapResponseSchema,
   bookSessionResponseSchema,
+  chatHistoryResponseSchema,
+  chatQuotaResponseSchema,
+  chatSendResponseSchema,
   chineseReviewResponseSchema,
   chineseTodayResponseSchema,
   completeSessionResponseSchema,
+  historyResponseSchema,
   practiceResponseSchema,
+  quizSubmitResponseSchema,
+  quizWordsResponseSchema,
   refreshResponseSchema,
+  reviewResponseSchema,
   setActiveStudentResponseSchema,
   tokenResponseSchema,
   typingAnswerResponseSchema,
-  typingQueueResponseSchema
+  typingCreateListResponseSchema,
+  typingDeleteListResponseSchema,
+  typingListsResponseSchema,
+  typingQueueResponseSchema,
+  typingSummaryResponseSchema
 } from './responses'
 
 extendZodWithOpenApi(z)
@@ -42,6 +64,15 @@ const bookSessionQuery = registry.register('BookSessionQuery', bookSessionQueryS
 const bookMapQuery = registry.register('BookMapQuery', bookMapQuerySchema)
 const typingQueueQuery = registry.register('TypingQueueQuery', typingQueueQuerySchema)
 const chineseTodayQuery = registry.register('ChineseTodayQuery', chineseTodayQuerySchema)
+const reviewQuery = registry.register('ReviewQuery', reviewQuerySchema)
+const historyQuery = registry.register('HistoryQuery', historyQuerySchema)
+const quizWordsQuery = registry.register('QuizWordsQuery', quizWordsQuerySchema)
+const quizSubmitBody = registry.register('QuizSubmitBody', quizSubmitBodySchema)
+const typingSummaryQuery = registry.register('TypingSummaryQuery', typingSummaryQuerySchema)
+const typingListBody = registry.register('TypingListBody', typingListBodySchema)
+const idParams = registry.register('IdParams', idParamsSchema)
+const chatSendBody = registry.register('ChatSendBody', chatSendBodySchema)
+const chatHistoryQuery = registry.register('ChatHistoryQuery', chatHistoryQuerySchema)
 const practiceBody = registry.register('PracticeBody', practiceBodySchema)
 const completeSessionBody = registry.register('CompleteSessionBody', completeSessionBodySchema)
 const typingAnswerBody = registry.register('TypingAnswerBody', typingAnswerBodySchema)
@@ -66,6 +97,25 @@ const typingQueueResponse = registry.register('TypingQueueResponse', typingQueue
 const typingAnswerResponse = registry.register('TypingAnswerResponse', typingAnswerResponseSchema)
 const chineseTodayResponse = registry.register('ChineseTodayResponse', chineseTodayResponseSchema)
 const chineseReviewResponse = registry.register('ChineseReviewResponse', chineseReviewResponseSchema)
+const bookListResponse = registry.register('BookListResponse', bookListResponseSchema)
+const bookDetailResponse = registry.register('BookDetailResponse', bookDetailResponseSchema)
+const reviewResponse = registry.register('ReviewResponse', reviewResponseSchema)
+const historyResponse = registry.register('HistoryResponse', historyResponseSchema)
+const quizWordsResponse = registry.register('QuizWordsResponse', quizWordsResponseSchema)
+const quizSubmitResponse = registry.register('QuizSubmitResponse', quizSubmitResponseSchema)
+const typingSummaryResponse = registry.register('TypingSummaryResponse', typingSummaryResponseSchema)
+const typingListsResponse = registry.register('TypingListsResponse', typingListsResponseSchema)
+const typingCreateListResponse = registry.register(
+  'TypingCreateListResponse',
+  typingCreateListResponseSchema
+)
+const typingDeleteListResponse = registry.register(
+  'TypingDeleteListResponse',
+  typingDeleteListResponseSchema
+)
+const chatSendResponse = registry.register('ChatSendResponse', chatSendResponseSchema)
+const chatHistoryResponse = registry.register('ChatHistoryResponse', chatHistoryResponseSchema)
+const chatQuotaResponse = registry.register('ChatQuotaResponse', chatQuotaResponseSchema)
 
 const badRequest = { description: '请求参数不正确' }
 const success = (schema: z.ZodTypeAny) => ({
@@ -112,6 +162,24 @@ registry.registerPath({
 
 registry.registerPath({
   method: 'get',
+  path: '/api/books',
+  tags: ['books'],
+  summary: '词书列表',
+  responses: { 200: success(bookListResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/books/{code}',
+  tags: ['books'],
+  summary: '词书详情',
+  security: [{ bearerAuth: [] }],
+  request: { params: bookParams },
+  responses: { 200: success(bookDetailResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
   path: '/api/books/{code}/session',
   tags: ['books'],
   summary: '取训练会话',
@@ -148,6 +216,85 @@ registry.registerPath({
   security: [{ bearerAuth: [] }],
   request: { body: { content: { 'application/json': { schema: completeSessionBody } } } },
   responses: { 200: success(completeSessionResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/training/review',
+  tags: ['training'],
+  summary: '待复习队列',
+  security: [{ bearerAuth: [] }],
+  request: { query: reviewQuery },
+  responses: { 200: success(reviewResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/training/history',
+  tags: ['training'],
+  summary: '训练历史',
+  security: [{ bearerAuth: [] }],
+  request: { query: historyQuery },
+  responses: { 200: success(historyResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/training/quiz/words',
+  tags: ['training'],
+  summary: '测验题目',
+  security: [{ bearerAuth: [] }],
+  request: { query: quizWordsQuery },
+  responses: { 200: success(quizWordsResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/training/quiz/submit',
+  tags: ['training'],
+  summary: '提交测验',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: quizSubmitBody } } } },
+  responses: { 200: success(quizSubmitResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/typing/summary',
+  tags: ['typing'],
+  summary: '拼读统计',
+  security: [{ bearerAuth: [] }],
+  request: { query: typingSummaryQuery },
+  responses: { 200: success(typingSummaryResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/typing/lists',
+  tags: ['typing'],
+  summary: '练习词表列表',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(typingListsResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/typing/lists',
+  tags: ['typing'],
+  summary: '创建练习词表',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: typingListBody } } } },
+  responses: { 201: success(typingCreateListResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'delete',
+  path: '/api/typing/lists/{id}',
+  tags: ['typing'],
+  summary: '删除练习词表',
+  security: [{ bearerAuth: [] }],
+  request: { params: idParams },
+  responses: { 200: success(typingDeleteListResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -191,6 +338,51 @@ registry.registerPath({
     body: { content: { 'application/json': { schema: chineseReviewBody } } }
   },
   responses: { 200: success(chineseReviewResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chat/send',
+  tags: ['chat'],
+  summary: '发送聊天消息',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: chatSendBody } } } },
+  responses: { 200: success(chatSendResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/chat/stream',
+  tags: ['chat'],
+  summary: 'SSE 流式聊天',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: chatSendBody } } } },
+  responses: {
+    200: {
+      description: 'SSE 事件流（event: token / done / error）',
+      content: { 'text/event-stream': { schema: z.string() } }
+    },
+    400: badRequest
+  }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chat/history',
+  tags: ['chat'],
+  summary: '聊天历史',
+  security: [{ bearerAuth: [] }],
+  request: { query: chatHistoryQuery },
+  responses: { 200: success(chatHistoryResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/chat/quota',
+  tags: ['chat'],
+  summary: '聊天剩余额度',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(chatQuotaResponse) }
 })
 
 const generator = new OpenApiGeneratorV3(registry.definitions)
