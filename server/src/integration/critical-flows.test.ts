@@ -505,4 +505,54 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     const transcribeInvalid = await authed(api.post('/api/speech/transcribe')).send({})
     expect(transcribeInvalid.status).toBe(400)
   })
+
+  it('returns 401/403/404/409 on the expected boundaries', async () => {
+    const noAuth = await api.get(`/api/books/${bookCode}/session`)
+    expect(noAuth.status).toBe(401)
+
+    const badToken = await api
+      .get(`/api/books/${bookCode}/session`)
+      .set('Authorization', 'Bearer invalid-token')
+    expect(badToken.status).toBe(401)
+
+    const missingBook = await authed(api.get('/api/books/not-a-real-book'))
+    expect(missingBook.status).toBe(404)
+
+    const locked = await prisma.book.create({
+      data: {
+        name: `锁定测试书 ${Date.now()}`,
+        code: `locked-${Date.now()}`,
+        level: 'test',
+        wordCount: 1,
+        isFree: false
+      }
+    })
+    const lockedSession = await authed(api.get(`/api/books/${locked.code}/session`))
+    expect(lockedSession.status).toBe(403)
+
+    const username = `no_learner_${Date.now()}`
+    const registered = await api
+      .post('/api/auth/register')
+      .send({ username, password: 'TestPass123!' })
+    const noLearner = await api
+      .get(`/api/books/${bookCode}/session`)
+      .set('Authorization', `Bearer ${registered.body.accessToken}`)
+    expect(noLearner.status).toBe(409)
+
+    const recheck = await authed(api.post('/api/training/recheck')).send({
+      bookCode,
+      wordId: sessionWordIds[0],
+      type: 'reading',
+      isCorrect: true
+    })
+    expect(recheck.status).toBe(200)
+
+    const draftImport = await authed(api.post('/api/chinese/drafts/import')).send({
+      text: '测试导入'
+    })
+    expect(draftImport.status).toBe(403)
+
+    const resourceSync = await authed(api.post('/api/chinese/resources/sync-all'))
+    expect(resourceSync.status).toBe(403)
+  })
 })
