@@ -248,7 +248,7 @@ function selectMode(id: string) {
   loadToday(id)
 }
 
-async function submit(reveal: boolean, selfRating = '') {
+async function submit(reveal: boolean, selfRating: '' | 'known' | 'again' = '') {
   if (!card.value) return
   busy.value = true
   try {

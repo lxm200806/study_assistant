@@ -20,6 +20,7 @@ logs/
 node_modules/
 public/atlas/
 server/.env
+server/openapi.json
 server/data/chinese/official/
 server/data/kb/downloads/
 server/data/kb/md/

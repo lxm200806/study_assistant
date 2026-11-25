@@ -31,6 +31,7 @@ npm run dev:h5             # H5 dev server, proxies /api -> 127.0.0.1:3005
 npm run dev:mp-weixin
 npm run build:h5
 npm run build:mp-weixin
+npm run gen:api          # export OpenAPI + regenerate src/types/api-generated.ts
 node scripts/dev.mjs restart web   # restart H5 (after pages.json/vite.config/deps changes)
 
 cd server
@@ -100,9 +101,9 @@ npm run test:watch
 npx vitest run src/services/review-engine.test.ts   # single test file
 ```
 
-No frontend test runner or end-to-end tests are configured; root `npm run test` delegates to the backend. There are 31 Vitest files (30 unit + `src/integration/critical-flows.test.ts`). Without a test database: 177 tests pass and the 5 integration tests are skipped; `npm run test:db` creates a random `it_*` schema, runs `prisma migrate deploy`, executes all 182 tests, then drops the schema. The integration suite covers register/login/refresh → learner → book session → practice → session completion, plus Chinese today/review and the validation 400 envelope.
+No frontend test runner or end-to-end tests are configured; root `npm run test` delegates to the backend. There are 31 Vitest files (30 unit + `src/integration/critical-flows.test.ts`). Without a test database: 177 tests pass and the 7 integration tests are skipped; `npm run test:db` creates a random `it_*` schema, runs `prisma migrate deploy`, executes all 184 tests, then drops the schema. The integration suite covers register/login/refresh → learner → book session → practice → session completion, Chinese today/review, typing queue/answer/mark/list, and chat send/history/quota/SSE (forced deterministic fallback).
 
-The README's pre-commit verification is: backend `npm run test` + `npm run build`, then root `npm run typecheck`, `npm run lint`, `npm run lint:server`, `npm run build:h5`. Root `.eslintrc.cjs` covers `src/**` (Vue + TypeScript + Prettier); `server/.eslintrc.cjs` covers `server/src/**` and runs with `--max-warnings 0`. `npm run typecheck` runs `vue-tsc --noEmit`. CI sets `TEST_DATABASE_URL` against a PostgreSQL 16 service, so `npm test` runs the integration suite there too.
+The README's pre-commit verification is: backend `npm run test` + `npm run build`, then root `npm run typecheck`, `npm run lint`, `npm run lint:server`, `npm run build:h5`. Root `.eslintrc.cjs` covers `src/**` (Vue + TypeScript + Prettier); `server/.eslintrc.cjs` covers `server/src/**` and runs with `--max-warnings 0`. `npm run typecheck` runs `vue-tsc --noEmit`. CI sets `TEST_DATABASE_URL` against a PostgreSQL 16 service, so `npm test` runs the integration suite there too; it also builds H5 + mp-weixin and checks that `src/types/api-generated.ts` is up to date.
 
 ### Production
 
@@ -133,6 +134,7 @@ This is the most important cross-cutting concept:
 - `server/src/server.ts` is the process entry: it calls `createApp()`, listens on `0.0.0.0`, and runs `bootstrap()`. `server/src/app.ts` exports `createApp()` and mounts `/api/auth`, `/api/vocab`, `/api/training`, `/api/chat`, `/api/books`, `/api/stats`, `/api/admin`, `/api/tts`, `/api/speech`, `/api/typing`, `/api/chinese`, plus `/api-docs` in non-production only; it does not listen, so integration tests can import it directly.
 - Routes (`server/src/routes/*`, `server/src/chinese/chinese.routes.ts`) → controllers → services; Prisma singleton is `server/src/prisma/client.ts`.
 - Input validation is zod-based: schemas live in `server/src/validation/schemas.ts`, `validateBody` / `validateQuery` in `server/src/validation/validate.ts`, and the OpenAPI document in `server/src/validation/openapi.ts`. Add a schema and register the path when touching a core endpoint; invalid input returns 400 with `{ success: false, code: 'INVALID_REQUEST', details }`.
+- Frontend request DTOs are generated from the same spec: `npm run gen:api` writes `src/types/api-generated.ts` (readable aliases in `src/types/api-contract.ts`). CI regenerates and fails if the tracked file is stale. Response schemas are not generated yet, so response types stay manual until they are added to the OpenAPI registry.
 - Responses are generally `{ success, data, error }`; errors go through `middleware/error.ts`. The client treats 401 as session expiry (with refresh-retry) and 403 as `BOOK_LOCKED`.
 - Observability: `middleware/request-context.ts` generates or forwards `X-Request-Id`; `middleware/access-log.ts` emits JSON `http_request` records (method, path, status, duration, user/learner; skips `/health`, `/ready`, `/api-docs`); `errorMiddleware` logs 4xx/5xx with request id and stack. `NODE_ENV=test` silences structured logs.
 - Public routes: `GET /api/books`, `GET /api/chinese/meta`, `GET /api/tts`, `POST /api/auth/register|login|refresh`, plus `/`, `/health`, `/ready` (and `/api/auth/wechat` only when `WECHAT_LOGIN_STUB=true` outside production). Everything else under `/api` requires a Bearer token.

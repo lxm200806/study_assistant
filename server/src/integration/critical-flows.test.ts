@@ -74,6 +74,9 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     process.env.JWT_SECRET = process.env.JWT_SECRET || 'integration_test_access_secret_at_least_32_chars'
     process.env.JWT_REFRESH_SECRET =
       process.env.JWT_REFRESH_SECRET || 'integration_test_refresh_secret_at_least_32_chars'
+    // 强制聊天走确定性 fallback，避免测试环境误连真实 LLM。
+    delete process.env.OPENAI_API_KEY
+    delete process.env.DEEPSEEK_API_KEY
 
     const { createApp } = await import('../app')
     prisma = (await import('../prisma/client')).default
@@ -262,5 +265,93 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
       }
     })
     expect(state).not.toBeNull()
+  })
+
+  it('runs the typing queue, answer, mark and list flow', async () => {
+    const queue = await authed(api.get('/api/typing/queue')).query({
+      bookCode,
+      source: 'smart',
+      mode: 'follow',
+      count: 2
+    })
+    expect(queue.status).toBe(200)
+    const words = queue.body.data.words as Array<{ id: string }>
+    expect(words.length).toBeGreaterThan(0)
+
+    const wordId = words[0].id
+    const answered = await authed(api.post('/api/typing/answer')).send({
+      wordId,
+      isCorrect: true,
+      mode: 'follow'
+    })
+    expect(answered.status).toBe(200)
+
+    const stat = await prisma.typingModeStat.findUnique({
+      where: { learnerId_wordId_mode: { learnerId, wordId, mode: 'follow' } }
+    })
+    expect(stat).not.toBeNull()
+
+    const marked = await authed(api.put('/api/typing/marks')).send({
+      wordId,
+      favorite: true
+    })
+    expect(marked.status).toBe(200)
+    const mark = await prisma.learnerWordMark.findUnique({
+      where: { learnerId_wordId: { learnerId, wordId } }
+    })
+    expect(mark?.favorite).toBe(true)
+
+    const created = await authed(api.post('/api/typing/lists')).send({
+      name: '集成测试词表',
+      text: 'zebra yellow'
+    })
+    expect(created.status).toBe(201)
+    const listId = created.body.data.id
+
+    const lists = await authed(api.get('/api/typing/lists'))
+    expect(lists.status).toBe(200)
+    expect(lists.body.data.some((item: { id: string }) => item.id === listId)).toBe(true)
+
+    const deleted = await authed(api.delete(`/api/typing/lists/${listId}`))
+    expect(deleted.status).toBe(200)
+  })
+
+  it('runs the chat send, history, quota and SSE stream flow', async () => {
+    const sent = await authed(api.post('/api/chat/send')).send({
+      content: 'hello',
+      bookCode,
+      mode: 'free'
+    })
+    expect(sent.status).toBe(200)
+    expect(sent.body.success).toBe(true)
+    expect(typeof sent.body.data.aiResponse).toBe('string')
+    expect(sent.body.data.aiResponse.length).toBeGreaterThan(0)
+
+    const history = await authed(api.get('/api/chat/history')).query({ page: 1, limit: 10 })
+    expect(history.status).toBe(200)
+    expect(history.body.data.length).toBeGreaterThanOrEqual(2)
+
+    const quota = await authed(api.get('/api/chat/quota'))
+    expect(quota.status).toBe(200)
+    expect(typeof quota.body.data.remaining).toBe('number')
+
+    const streamed = await authed(api.post('/api/chat/stream')).send({
+      content: 'hello again',
+      bookCode,
+      mode: 'free'
+    })
+    expect(streamed.status).toBe(200)
+    expect(String(streamed.headers['content-type'])).toContain('text/event-stream')
+    expect(streamed.text).toContain('event: token')
+    expect(streamed.text).toContain('event: done')
+
+    const doneMatch = streamed.text.match(/event: done\ndata: (.*)\n\n/)
+    expect(doneMatch).not.toBeNull()
+    const done = JSON.parse(doneMatch![1]) as {
+      fullText: string
+      usedFallback: boolean
+    }
+    expect(done.fullText.length).toBeGreaterThan(0)
+    expect(done.usedFallback).toBe(true)
   })
 })

@@ -39,5 +39,12 @@ module.exports = {
     ],
     '@typescript-eslint/ban-ts-comment': 'warn'
   },
-  ignorePatterns: ['dist/**', 'unpackage/**', 'node_modules/**', 'server/**', 'src/static/**']
+  ignorePatterns: [
+    'dist/**',
+    'unpackage/**',
+    'node_modules/**',
+    'server/**',
+    'src/static/**',
+    'src/types/api-generated.ts'
+  ]
 }

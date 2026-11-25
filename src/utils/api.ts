@@ -1,5 +1,15 @@
 import { isBrowserH5 } from '@/platform/runtime'
 import { getStored, removeStored, setStored } from '@/platform/storage'
+import type {
+  ChineseReviewBody,
+  CompleteSessionBody,
+  CredentialsBody,
+  PracticeBody,
+  RefreshBody,
+  SetActiveStudentBody,
+  TypingAnswerBody,
+  TypingQueueQuery
+} from '@/types/api-contract'
 
 export function getAuthToken(): string | null {
   return getStored<string>('accessToken') || null
@@ -246,13 +256,16 @@ export async function request<T>(
 
 export const authAPI = {
   login: async (username: string, password: string) => {
-    return request('/auth/login', 'POST', { username, password })
+    const body: CredentialsBody = { username, password }
+    return request('/auth/login', 'POST', body)
   },
   register: async (username: string, password: string) => {
-    return request('/auth/register', 'POST', { username, password })
+    const body: CredentialsBody = { username, password }
+    return request('/auth/register', 'POST', body)
   },
   refresh: async (refreshToken: string) => {
-    return request('/auth/refresh', 'POST', { refreshToken })
+    const body: RefreshBody = { refreshToken }
+    return request('/auth/refresh', 'POST', body)
   },
   profile: async () => {
     return request('/auth/profile', 'GET')
@@ -275,7 +288,8 @@ export const authAPI = {
     return request('/auth/students', 'POST', { name })
   },
   setActiveStudent: async (studentId: string) => {
-    return request('/auth/students/active', 'PUT', { studentId })
+    const body: SetActiveStudentBody = { studentId }
+    return request('/auth/students/active', 'PUT', body)
   },
   renameStudent: async (id: string, name: string) => {
     return request(`/auth/students/${id}`, 'PUT', { name })
@@ -321,8 +335,9 @@ export const vocabularyAPI = {
 }
 
 export const trainingAPI = {
-  practice: async (wordId: string, type: string, isCorrect: boolean) => {
-    return request('/training/practice', 'POST', { wordId, type, isCorrect })
+  practice: async (wordId: string, type: PracticeBody['type'], isCorrect: boolean) => {
+    const body: PracticeBody = { wordId, type, isCorrect }
+    return request('/training/practice', 'POST', body)
   },
   recheck: async (bookCode: string, wordId: string, type: string, isCorrect: boolean) => {
     return request('/training/recheck', 'POST', { bookCode, wordId, type, isCorrect })
@@ -336,7 +351,8 @@ export const trainingAPI = {
     return request(`/training/review${query ? `?${query}` : ''}`, 'GET')
   },
   completeSession: async (bookCode: string, wordIds: string[], sessionTokens: string[] = []) => {
-    return request('/training/session/complete', 'POST', { bookCode, wordIds, sessionTokens })
+    const body: CompleteSessionBody = { bookCode, wordIds, sessionTokens }
+    return request('/training/session/complete', 'POST', body)
   },
   history: async (page: number = 1, limit: number = 20) => {
     return request(`/training/history?page=${page}&limit=${limit}`, 'GET')
@@ -457,10 +473,10 @@ export const typingAPI = {
     request(`/typing/summary?bookCode=${encodeURIComponent(bookCode)}&mode=${encodeURIComponent(mode)}`, 'GET'),
   queue: (options: {
     bookCode?: string
-    source: string
+    source: TypingQueueQuery['source']
     count: number
     listId?: string
-    mode?: string
+    mode?: TypingQueueQuery['mode']
     includeMastered?: boolean
     allBooks?: boolean
   }) => {
@@ -472,8 +488,10 @@ export const typingAPI = {
     if (options.allBooks) params.set('allBooks', '1')
     return request(`/typing/queue?${params.toString()}`, 'GET')
   },
-  answer: (wordId: string, isCorrect: boolean, mode = 'follow') =>
-    request('/typing/answer', 'POST', { wordId, isCorrect, mode }),
+  answer: (wordId: string, isCorrect: boolean, mode: TypingAnswerBody['mode'] = 'follow') => {
+    const body: TypingAnswerBody = { wordId, isCorrect, mode }
+    return request('/typing/answer', 'POST', body)
+  },
   mark: (wordId: string, patch: { favorite?: boolean; skipMastered?: boolean }) =>
     request('/typing/marks', 'PUT', { wordId, ...patch }),
   activity: (count: number) => request('/typing/activity', 'POST', { count }),
@@ -531,7 +549,7 @@ export const chineseAPI = {
     return request(`/chinese/courses/${id}/today${query ? `?${query}` : ''}`, 'GET')
   },
   plan: (id: string) => request(`/chinese/courses/${id}/plan`, 'GET'),
-  review: (id: string, body: Record<string, unknown>) => request(`/chinese/courses/${id}/review`, 'POST', body),
+  review: (id: string, body: ChineseReviewBody) => request(`/chinese/courses/${id}/review`, 'POST', body),
   stats: (id: string) => request(`/chinese/courses/${id}/stats`, 'GET'),
   resources: () => request('/chinese/resources', 'GET'),
   resource: (id: string) => request(`/chinese/resources/${id}`, 'GET'),

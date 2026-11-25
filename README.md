@@ -119,6 +119,14 @@ npm run prisma:migrate
 npm run prisma:generate
 ```
 
+### API 契约
+
+```bash
+npm run gen:api   # 根目录执行：导出 OpenAPI，生成 src/types/api-generated.ts
+```
+
+核心接口的请求类型来自 `server/src/validation/schemas.ts`，前端通过 `src/types/api-contract.ts` 引用。修改 zod schema 后需要重新生成；CI 会检查生成文件是否过期。
+
 ## 生产部署
 
 复制并填写生产环境变量：
@@ -172,4 +180,4 @@ npm run build:h5
 
 涉及数据库链路时再跑 `cd server && npm run test:db`；CI 会自动执行这套集成测试。
 
-前端暂无独立测试运行器；后端有 31 个 Vitest 文件（30 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（177 个通过，5 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 182 个测试）。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；此外还会运行成语内容审计 `npm run audit:idioms`。
+前端暂无独立测试运行器；后端有 31 个 Vitest 文件（30 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（177 个通过，7 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 184 个测试）。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；同时构建 H5 和微信小程序、检查 API 生成类型是否最新，并运行成语内容审计 `npm run audit:idioms`。

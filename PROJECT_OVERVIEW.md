@@ -69,7 +69,7 @@ src/
 ├── stores/                   # Pinia 状态（user / vocabulary）
 ├── utils/                    # API、导航、语音、主题、掌握度等工具
 ├── data/                     # 前端词库元数据 + primary 课本 JSON
-└── types/                    # 前端类型
+└── types/                    # 前端类型；api-generated.ts 由 npm run gen:api 生成
 
 server/
 ├── src/
@@ -182,6 +182,12 @@ npm run prisma:migrate
 npm run prisma:generate
 ```
 
+根目录生成前端 API 类型：
+
+```bash
+npm run gen:api
+```
+
 ## 开发环境配置
 
 | 项 | 默认值 |
@@ -229,8 +235,8 @@ bash deploy.sh
 - 拼读：队列选择、FSRS 调度
 - AI/语音：聊天上下文与回复清洗、词汇匹配、TTS 重音、ASR 片段合并、口语评分归一化
 - 基础设施：JWT、限流、分页、日期键、词形格式化、zod 校验、request id
-- 关键链路集成：注册/登录/刷新 → 学生 → 取书会话 → 提交练习 → 结算会话；语文今日队列 → 提交复习
+- 关键链路集成：注册/登录/刷新 → 学生 → 取书会话 → 提交练习 → 结算会话；语文今日队列 → 提交复习；拼读队列/答题/标记/词表；聊天发送/历史/配额/SSE
 
-`npm test` 默认跳过数据库集成（177 个通过，5 个跳过）；`npm run test:db` 使用临时 `it_*` schema 跑全部 182 个测试。CI 的 PostgreSQL 16 服务会自动执行集成测试。
+`npm test` 默认跳过数据库集成（177 个通过，7 个跳过）；`npm run test:db` 使用临时 `it_*` schema 跑全部 184 个测试。CI 的 PostgreSQL 16 服务会自动执行集成测试，并构建 H5 与微信小程序、检查 API 生成类型是否最新。
 
 前端组件测试和端到端测试仍未配置，这是后续补强方向。
