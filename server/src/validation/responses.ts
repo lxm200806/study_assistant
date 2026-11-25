@@ -378,3 +378,62 @@ export const chatQuotaResponseSchema = z.object({
     isPremium: z.boolean()
   })
 })
+
+export const profileResponseSchema = z.object({
+  success: z.literal(true),
+  data: userSummarySchema
+})
+
+export const studentsResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(learnerSummarySchema)
+})
+
+export const studentMutationResponseSchema = z.object({
+  success: z.literal(true),
+  learner: learnerSummarySchema,
+  user: userSummarySchema
+})
+
+export const userMutationResponseSchema = z.object({
+  success: z.literal(true),
+  user: userSummarySchema
+})
+
+export const vocabListResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(bookWordSchema)
+})
+
+export const vocabDetailResponseSchema = z.object({
+  success: z.literal(true),
+  data: bookWordSchema
+})
+
+export const vocabStatsResponseSchema = z.object({
+  success: z.literal(true),
+  data: anyObject
+})
+
+export const globalMapResponseSchema = z.object({
+  success: z.literal(true),
+  data: anyObject
+})
+
+export const bookProgressResponseSchema = z.object({
+  success: z.literal(true),
+  data: anyObject
+})
+
+export const dueCountResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    dueCount: z.number(),
+    overdueCount: z.number()
+  })
+})
+
+export const bookRandomResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(bookWordSchema)
+})

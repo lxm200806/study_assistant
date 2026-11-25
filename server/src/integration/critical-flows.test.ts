@@ -377,4 +377,49 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     expect(done.fullText.length).toBeGreaterThan(0)
     expect(done.usedFallback).toBe(true)
   })
+
+  it('serves profile, vocab and book helper endpoints', async () => {
+    const profile = await authed(api.get('/api/auth/profile'))
+    expect(profile.status).toBe(200)
+    expect(profile.body.data.username).toBeTruthy()
+
+    const vocab = await authed(api.get('/api/vocab')).query({ page: 1, limit: 2 })
+    expect(vocab.status).toBe(200)
+    expect(Array.isArray(vocab.body.data)).toBe(true)
+
+    const randomWords = await authed(api.get('/api/vocab/random')).query({ count: 2 })
+    expect(randomWords.status).toBe(200)
+    expect(Array.isArray(randomWords.body.data)).toBe(true)
+
+    const stats = await authed(api.get('/api/vocab/stats'))
+    expect(stats.status).toBe(200)
+
+    const randomBookWords = await authed(
+      api.get(`/api/books/${bookCode}/random`).query({ count: 2 })
+    )
+    expect(randomBookWords.status).toBe(200)
+    expect(randomBookWords.body.data.length).toBeGreaterThan(0)
+
+    const due = await authed(api.get(`/api/books/${bookCode}/due-count`))
+    expect(due.status).toBe(200)
+    expect(typeof due.body.data.dueCount).toBe('number')
+
+    const progress = await authed(api.get(`/api/books/${bookCode}/progress`))
+    expect(progress.status).toBe(200)
+  })
+
+  it('creates, renames and archives a student', async () => {
+    const created = await authed(api.post('/api/auth/students')).send({ name: '第二个学生' })
+    expect(created.status).toBe(201)
+    const studentId = String(created.body.learner.id)
+
+    const renamed = await authed(api.put(`/api/auth/students/${studentId}`)).send({
+      name: '改名学生'
+    })
+    expect(renamed.status).toBe(200)
+    expect(renamed.body.learner.name).toBe('改名学生')
+
+    const archived = await authed(api.delete(`/api/auth/students/${studentId}`))
+    expect(archived.status).toBe(200)
+  })
 })

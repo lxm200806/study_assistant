@@ -13,23 +13,33 @@ import {
   chineseTodayQuerySchema,
   completeSessionBodySchema,
   credentialsBodySchema,
+  dueCountQuerySchema,
+  globalMapQuerySchema,
   historyQuerySchema,
   idParamsSchema,
+  onboardBodySchema,
   practiceBodySchema,
   quizSubmitBodySchema,
   quizWordsQuerySchema,
+  randomCountQuerySchema,
   refreshBodySchema,
   reviewQuerySchema,
+  roleBodySchema,
   setActiveStudentBodySchema,
+  studentNameBodySchema,
+  subjectBodySchema,
   typingAnswerBodySchema,
   typingListBodySchema,
   typingQueueQuerySchema,
-  typingSummaryQuerySchema
+  typingSummaryQuerySchema,
+  vocabListQuerySchema
 } from './schemas'
 import {
   bookDetailResponseSchema,
   bookListResponseSchema,
   bookMapResponseSchema,
+  bookProgressResponseSchema,
+  bookRandomResponseSchema,
   bookSessionResponseSchema,
   chatHistoryResponseSchema,
   chatQuotaResponseSchema,
@@ -37,14 +47,23 @@ import {
   chineseReviewResponseSchema,
   chineseTodayResponseSchema,
   completeSessionResponseSchema,
+  dueCountResponseSchema,
+  globalMapResponseSchema,
   historyResponseSchema,
   practiceResponseSchema,
+  profileResponseSchema,
   quizSubmitResponseSchema,
   quizWordsResponseSchema,
   refreshResponseSchema,
   reviewResponseSchema,
   setActiveStudentResponseSchema,
+  studentMutationResponseSchema,
+  studentsResponseSchema,
   tokenResponseSchema,
+  userMutationResponseSchema,
+  vocabDetailResponseSchema,
+  vocabListResponseSchema,
+  vocabStatsResponseSchema,
   typingAnswerResponseSchema,
   typingCreateListResponseSchema,
   typingDeleteListResponseSchema,
@@ -60,6 +79,14 @@ const registry = new OpenAPIRegistry()
 const credentials = registry.register('CredentialsBody', credentialsBodySchema)
 const refresh = registry.register('RefreshBody', refreshBodySchema)
 const activeStudent = registry.register('SetActiveStudentBody', setActiveStudentBodySchema)
+const onboardBody = registry.register('OnboardBody', onboardBodySchema)
+const subjectBody = registry.register('SubjectBody', subjectBodySchema)
+const studentNameBody = registry.register('StudentNameBody', studentNameBodySchema)
+const roleBody = registry.register('RoleBody', roleBodySchema)
+const vocabListQuery = registry.register('VocabListQuery', vocabListQuerySchema)
+const randomCountQuery = registry.register('RandomCountQuery', randomCountQuerySchema)
+const globalMapQuery = registry.register('GlobalMapQuery', globalMapQuerySchema)
+const dueCountQuery = registry.register('DueCountQuery', dueCountQuerySchema)
 const bookSessionQuery = registry.register('BookSessionQuery', bookSessionQuerySchema)
 const bookMapQuery = registry.register('BookMapQuery', bookMapQuerySchema)
 const typingQueueQuery = registry.register('TypingQueueQuery', typingQueueQuerySchema)
@@ -86,6 +113,20 @@ const activeStudentResponse = registry.register(
   'SetActiveStudentResponse',
   setActiveStudentResponseSchema
 )
+const profileResponse = registry.register('ProfileResponse', profileResponseSchema)
+const studentsResponse = registry.register('StudentsResponse', studentsResponseSchema)
+const studentMutationResponse = registry.register(
+  'StudentMutationResponse',
+  studentMutationResponseSchema
+)
+const userMutationResponse = registry.register('UserMutationResponse', userMutationResponseSchema)
+const vocabListResponse = registry.register('VocabListResponse', vocabListResponseSchema)
+const vocabDetailResponse = registry.register('VocabDetailResponse', vocabDetailResponseSchema)
+const vocabStatsResponse = registry.register('VocabStatsResponse', vocabStatsResponseSchema)
+const globalMapResponse = registry.register('GlobalMapResponse', globalMapResponseSchema)
+const bookProgressResponse = registry.register('BookProgressResponse', bookProgressResponseSchema)
+const dueCountResponse = registry.register('DueCountResponse', dueCountResponseSchema)
+const bookRandomResponse = registry.register('BookRandomResponse', bookRandomResponseSchema)
 const bookSessionResponse = registry.register('BookSessionResponse', bookSessionResponseSchema)
 const bookMapResponse = registry.register('BookMapResponse', bookMapResponseSchema)
 const practiceResponse = registry.register('PracticeResponse', practiceResponseSchema)
@@ -162,6 +203,87 @@ registry.registerPath({
 
 registry.registerPath({
   method: 'get',
+  path: '/api/auth/profile',
+  tags: ['auth'],
+  summary: '当前账号资料',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(profileResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/auth/onboard',
+  tags: ['auth'],
+  summary: '完成首次引导',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: onboardBody } } } },
+  responses: { 200: success(userMutationResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'put',
+  path: '/api/auth/subject',
+  tags: ['auth'],
+  summary: '切换学科',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: subjectBody } } } },
+  responses: { 200: success(userMutationResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/auth/students',
+  tags: ['auth'],
+  summary: '学生列表',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(studentsResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/auth/students',
+  tags: ['auth'],
+  summary: '创建学生',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: studentNameBody } } } },
+  responses: { 201: success(studentMutationResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'put',
+  path: '/api/auth/role',
+  tags: ['auth'],
+  summary: '切换家长/学生角色',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: roleBody } } } },
+  responses: { 200: success(userMutationResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'put',
+  path: '/api/auth/students/{id}',
+  tags: ['auth'],
+  summary: '修改学生姓名',
+  security: [{ bearerAuth: [] }],
+  request: {
+    params: idParams,
+    body: { content: { 'application/json': { schema: studentNameBody } } }
+  },
+  responses: { 200: success(studentMutationResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'delete',
+  path: '/api/auth/students/{id}',
+  tags: ['auth'],
+  summary: '归档学生',
+  security: [{ bearerAuth: [] }],
+  request: { params: idParams },
+  responses: { 200: success(userMutationResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
   path: '/api/books',
   tags: ['books'],
   summary: '词书列表',
@@ -180,6 +302,36 @@ registry.registerPath({
 
 registry.registerPath({
   method: 'get',
+  path: '/api/books/{code}/due-count',
+  tags: ['books'],
+  summary: '词书待复习数量',
+  security: [{ bearerAuth: [] }],
+  request: { params: bookParams, query: dueCountQuery },
+  responses: { 200: success(dueCountResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/books/{code}/progress',
+  tags: ['books'],
+  summary: '词书进度',
+  security: [{ bearerAuth: [] }],
+  request: { params: bookParams },
+  responses: { 200: success(bookProgressResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/books/{code}/random',
+  tags: ['books'],
+  summary: '词书随机词',
+  security: [{ bearerAuth: [] }],
+  request: { params: bookParams, query: randomCountQuery },
+  responses: { 200: success(bookRandomResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
   path: '/api/books/{code}/session',
   tags: ['books'],
   summary: '取训练会话',
@@ -190,12 +342,61 @@ registry.registerPath({
 
 registry.registerPath({
   method: 'get',
+  path: '/api/vocab',
+  tags: ['vocab'],
+  summary: '词汇列表',
+  security: [{ bearerAuth: [] }],
+  request: { query: vocabListQuery },
+  responses: { 200: success(vocabListResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/vocab/random',
+  tags: ['vocab'],
+  summary: '随机词汇',
+  security: [{ bearerAuth: [] }],
+  request: { query: randomCountQuery },
+  responses: { 200: success(vocabListResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/vocab/stats',
+  tags: ['vocab'],
+  summary: '词汇统计',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(vocabStatsResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/vocab/maps/global',
+  tags: ['vocab'],
+  summary: '全局词汇图谱',
+  security: [{ bearerAuth: [] }],
+  request: { query: globalMapQuery },
+  responses: { 200: success(globalMapResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
   path: '/api/vocab/maps/book/{code}',
   tags: ['vocab'],
   summary: '词书掌握图谱',
   security: [{ bearerAuth: [] }],
   request: { params: bookParams, query: bookMapQuery },
   responses: { 200: success(bookMapResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/vocab/{id}',
+  tags: ['vocab'],
+  summary: '词汇详情',
+  security: [{ bearerAuth: [] }],
+  request: { params: idParams },
+  responses: { 200: success(vocabDetailResponse), 400: badRequest }
 })
 
 registry.registerPath({

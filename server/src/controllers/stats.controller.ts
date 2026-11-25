@@ -4,7 +4,7 @@ import { getBookMetaByCode } from '../services/book.service'
 import { assertBookAccess, getBookAccessScope } from '../services/book-access.service'
 import { internalError } from '../utils/http-errors'
 import { validatedQuery } from '../validation/validate'
-import type { BookMapQuery } from '../validation/schemas'
+import type { BookMapQuery, GlobalMapQuery } from '../validation/schemas'
 
 export async function getBookMapHandler(req: Request, res: Response) {
   try {
@@ -39,7 +39,7 @@ export async function getGlobalMapHandler(req: Request, res: Response) {
     const userId = req.learnerId
     if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     // Global atlas = all books' unique words; allow a large page for desktop 图鉴
-    const limit = Math.min(Math.max(parseInt(req.query.limit as string) || 8000, 1), 12000)
+    const { limit } = validatedQuery<GlobalMapQuery>(res)
     const scope = await getBookAccessScope(userId)
     const data = await getGlobalMap(userId, limit, scope.all ? undefined : scope.codes)
     res.status(200).json({ success: true, data })

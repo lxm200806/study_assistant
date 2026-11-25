@@ -192,6 +192,328 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/auth/profile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 当前账号资料 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["ProfileResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/onboard": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 完成首次引导 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["OnboardBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["UserMutationResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/subject": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** 切换学科 */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["SubjectBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["UserMutationResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/students": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 学生列表 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["StudentsResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        /** 创建学生 */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["StudentNameBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                201: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["StudentMutationResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/role": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** 切换家长/学生角色 */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["RoleBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["UserMutationResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/auth/students/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** 修改学生姓名 */
+        put: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["StudentNameBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["StudentMutationResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        post?: never;
+        /** 归档学生 */
+        delete: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["UserMutationResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/books": {
         parameters: {
             query?: never;
@@ -273,6 +595,145 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/books/{code}/due-count": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 词书待复习数量 */
+        get: {
+            parameters: {
+                query?: {
+                    type?: "listening" | "speaking" | "reading" | "writing";
+                };
+                header?: never;
+                path: {
+                    code: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["DueCountResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/books/{code}/progress": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 词书进度 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    code: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BookProgressResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/books/{code}/random": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 词书随机词 */
+        get: {
+            parameters: {
+                query?: {
+                    count?: number;
+                };
+                header?: never;
+                path: {
+                    code: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BookRandomResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/books/{code}/session": {
         parameters: {
             query?: never;
@@ -325,6 +786,178 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/vocab": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 词汇列表 */
+        get: {
+            parameters: {
+                query?: {
+                    page?: number;
+                    limit?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["VocabListResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/vocab/random": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 随机词汇 */
+        get: {
+            parameters: {
+                query?: {
+                    count?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["VocabListResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/vocab/stats": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 词汇统计 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["VocabStatsResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/vocab/maps/global": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 全局词汇图谱 */
+        get: {
+            parameters: {
+                query?: {
+                    limit?: number;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["GlobalMapResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/vocab/maps/book/{code}": {
         parameters: {
             query?: never;
@@ -353,6 +986,51 @@ export interface paths {
                     };
                     content: {
                         "application/json": components["schemas"]["BookMapResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/vocab/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 词汇详情 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["VocabDetailResponse"];
                     };
                 };
                 /** @description 请求参数不正确 */
@@ -1197,6 +1875,41 @@ export interface components {
             studentId?: string;
             id?: string;
         };
+        OnboardBody: {
+            /** @enum {string} */
+            subject?: "english" | "chinese";
+        };
+        SubjectBody: {
+            /** @enum {string} */
+            subject: "english" | "chinese";
+        };
+        StudentNameBody: {
+            name: string;
+        };
+        RoleBody: {
+            /** @enum {string} */
+            role: "parent" | "student";
+            studentId?: string;
+            id?: string;
+        };
+        VocabListQuery: {
+            /** @default 1 */
+            page: number;
+            /** @default 20 */
+            limit: number;
+        };
+        RandomCountQuery: {
+            /** @default 10 */
+            count: number;
+        };
+        GlobalMapQuery: {
+            /** @default 8000 */
+            limit: number;
+        };
+        DueCountQuery: {
+            /** @enum {string} */
+            type?: "listening" | "speaking" | "reading" | "writing";
+        };
         BookSessionQuery: {
             /** @default 10 */
             count: number;
@@ -1386,6 +2099,172 @@ export interface components {
                     activeSubject?: string;
                 }[];
             };
+        };
+        ProfileResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                username: string;
+                isAdmin?: boolean;
+                hasOnboarded?: boolean;
+                plan?: string;
+                activeSubject?: string;
+                accountType?: string;
+                displayName?: string;
+                activeLearnerId?: string | null;
+                activeRole?: string;
+                learner?: {
+                    id: string;
+                    name: string;
+                    activeSubject?: string;
+                } | null;
+                children?: {
+                    id: string;
+                    name: string;
+                    activeSubject?: string;
+                }[];
+            };
+        };
+        StudentsResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                name: string;
+                activeSubject?: string;
+            }[];
+        };
+        StudentMutationResponse: {
+            /** @enum {boolean} */
+            success: true;
+            learner: {
+                id: string;
+                name: string;
+                activeSubject?: string;
+            };
+            user: {
+                id: string;
+                username: string;
+                isAdmin?: boolean;
+                hasOnboarded?: boolean;
+                plan?: string;
+                activeSubject?: string;
+                accountType?: string;
+                displayName?: string;
+                activeLearnerId?: string | null;
+                activeRole?: string;
+                learner?: {
+                    id: string;
+                    name: string;
+                    activeSubject?: string;
+                } | null;
+                children?: {
+                    id: string;
+                    name: string;
+                    activeSubject?: string;
+                }[];
+            };
+        };
+        UserMutationResponse: {
+            /** @enum {boolean} */
+            success: true;
+            user: {
+                id: string;
+                username: string;
+                isAdmin?: boolean;
+                hasOnboarded?: boolean;
+                plan?: string;
+                activeSubject?: string;
+                accountType?: string;
+                displayName?: string;
+                activeLearnerId?: string | null;
+                activeRole?: string;
+                learner?: {
+                    id: string;
+                    name: string;
+                    activeSubject?: string;
+                } | null;
+                children?: {
+                    id: string;
+                    name: string;
+                    activeSubject?: string;
+                }[];
+            };
+        };
+        VocabListResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                word: string;
+                meaning: string;
+                phonetic?: string;
+                englishMeaning?: string;
+                example?: string;
+                examples?: string[];
+                topic?: string;
+                tags?: string[];
+            }[];
+        };
+        VocabDetailResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                word: string;
+                meaning: string;
+                phonetic?: string;
+                englishMeaning?: string;
+                example?: string;
+                examples?: string[];
+                topic?: string;
+                tags?: string[];
+            };
+        };
+        VocabStatsResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                [key: string]: unknown;
+            };
+        };
+        GlobalMapResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                [key: string]: unknown;
+            };
+        };
+        BookProgressResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                [key: string]: unknown;
+            };
+        };
+        DueCountResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                dueCount: number;
+                overdueCount: number;
+            };
+        };
+        BookRandomResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                id: string;
+                word: string;
+                meaning: string;
+                phonetic?: string;
+                englishMeaning?: string;
+                example?: string;
+                examples?: string[];
+                topic?: string;
+                tags?: string[];
+            }[];
         };
         BookSessionResponse: {
             /** @enum {boolean} */

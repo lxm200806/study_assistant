@@ -5,10 +5,9 @@ import { signSessionToken } from '../services/session-token'
 import { getDueCount } from '../services/training.service'
 import { assertBookAccess } from '../services/book-access.service'
 import { formatBookWord, formatWordForClient } from '../utils/wordFormat'
-import { clampInt } from '../utils/pagination'
 import { internalError } from '../utils/http-errors'
 import { validatedQuery } from '../validation/validate'
-import type { BookSessionQuery } from '../validation/schemas'
+import type { BookSessionQuery, DueCountQuery, RandomCountQuery } from '../validation/schemas'
 
 export async function getBooksHandler(req: Request, res: Response) {
   try {
@@ -64,7 +63,7 @@ export async function getBookDetailHandler(req: Request, res: Response) {
 export async function getRandomWordsFromBookHandler(req: Request, res: Response) {
   try {
     const { code } = req.params
-    const count = clampInt(req.query.count, 10, 1, 50)
+    const { count } = validatedQuery<RandomCountQuery>(res)
     const meta = await getBookMetaByCode(code)
     if (!meta) {
       return res.status(404).json({ success: false, error: 'Book not found' })
@@ -162,7 +161,7 @@ export async function getBookDueCountHandler(req: Request, res: Response) {
     const meta = await getBookMetaByCode(code)
     if (!meta) return res.status(404).json({ success: false, error: 'Book not found' })
     await assertBookAccess(userId, code)
-    const type = req.query.type as import('../types').WordType | undefined
+    const { type } = validatedQuery<DueCountQuery>(res)
     const counts = await getDueCount(userId, code, type)
     res.status(200).json({ success: true, data: counts })
   } catch (error) {

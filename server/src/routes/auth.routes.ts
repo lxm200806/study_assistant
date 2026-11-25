@@ -16,11 +16,16 @@ import {
 } from '../controllers/auth.controller'
 import { authMiddleware } from '../middleware/auth'
 import { rateLimit } from '../middleware/rate-limit'
-import { validateBody } from '../validation/validate'
+import { validateBody, validateParams } from '../validation/validate'
 import {
   credentialsBodySchema,
+  idParamsSchema,
+  onboardBodySchema,
   refreshBodySchema,
-  setActiveStudentBodySchema
+  roleBodySchema,
+  setActiveStudentBodySchema,
+  studentNameBodySchema,
+  subjectBodySchema
 } from '../validation/schemas'
 import { isProduction } from '../config/env'
 
@@ -39,14 +44,14 @@ router.post('/register', registerLimit, validateBody(credentialsBodySchema), reg
 router.post('/login', loginLimit, validateBody(credentialsBodySchema), loginHandler)
 router.post('/refresh', refreshLimit, validateBody(refreshBodySchema), refreshHandler)
 router.get('/profile', authMiddleware, profileHandler)
-router.post('/onboard', authMiddleware, onboardHandler)
-router.put('/subject', authMiddleware, setSubjectHandler)
+router.post('/onboard', authMiddleware, validateBody(onboardBodySchema), onboardHandler)
+router.put('/subject', authMiddleware, validateBody(subjectBodySchema), setSubjectHandler)
 router.get('/students', authMiddleware, listStudentsHandler)
-router.post('/students', authMiddleware, createStudentHandler)
-router.put('/role', authMiddleware, setRoleHandler)
+router.post('/students', authMiddleware, validateBody(studentNameBodySchema), createStudentHandler)
+router.put('/role', authMiddleware, validateBody(roleBodySchema), setRoleHandler)
 router.put('/students/active', authMiddleware, validateBody(setActiveStudentBodySchema), setActiveStudentHandler)
-router.put('/students/:id', authMiddleware, renameStudentHandler)
-router.delete('/students/:id', authMiddleware, archiveStudentHandler)
+router.put('/students/:id', authMiddleware, validateParams(idParamsSchema), validateBody(studentNameBodySchema), renameStudentHandler)
+router.delete('/students/:id', authMiddleware, validateParams(idParamsSchema), archiveStudentHandler)
 if (!isProduction() && process.env.WECHAT_LOGIN_STUB === 'true') {
   router.post(
     '/wechat',

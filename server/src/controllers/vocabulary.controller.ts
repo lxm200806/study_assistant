@@ -1,13 +1,13 @@
 import { Request, Response } from 'express'
 import { getVocabulary, getVocabularyById, getRandomVocabulary, getTrainingStats } from '../services/vocabulary.service'
 import { getEmoji } from '../utils/emojiMap'
-import { clampInt } from '../utils/pagination'
 import { internalError } from '../utils/http-errors'
+import { validatedQuery } from '../validation/validate'
+import type { RandomCountQuery, VocabListQuery } from '../validation/schemas'
 
 export async function getVocabularyListHandler(req: Request, res: Response) {
   try {
-    const page = clampInt(req.query.page, 1, 1, 100000)
-    const limit = clampInt(req.query.limit, 20, 1, 50)
+    const { page, limit } = validatedQuery<VocabListQuery>(res)
 
     const words = await getVocabulary(page, limit, req.learnerId)
     
@@ -55,7 +55,7 @@ export async function getVocabularyDetailHandler(req: Request, res: Response) {
 
 export async function getRandomWordsHandler(req: Request, res: Response) {
   try {
-    const count = clampInt(req.query.count, 10, 1, 50)
+    const { count } = validatedQuery<RandomCountQuery>(res)
 
     const words = await getRandomVocabulary(count, req.learnerId)
     

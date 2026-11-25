@@ -122,6 +122,41 @@ export const idParamsSchema = z.object({
   id: z.string().trim().min(1, '缺少 id').max(64)
 })
 
+export const studentNameBodySchema = z.object({
+  name: z.string().trim().min(1, '请填写学生姓名').max(20, '姓名过长')
+})
+
+export const onboardBodySchema = z.object({
+  subject: z.enum(['english', 'chinese']).optional()
+})
+
+export const subjectBodySchema = z.object({
+  subject: z.enum(['english', 'chinese'])
+})
+
+export const roleBodySchema = z.object({
+  role: z.enum(['parent', 'student']),
+  studentId: z.string().trim().min(1).optional(),
+  id: z.string().trim().min(1).optional()
+})
+
+export const vocabListQuerySchema = z.object({
+  page: z.coerce.number().int().min(1).max(100_000).default(1),
+  limit: z.coerce.number().int().min(1).max(50).default(20)
+})
+
+export const randomCountQuerySchema = z.object({
+  count: z.coerce.number().int().min(1).max(50).default(10)
+})
+
+export const globalMapQuerySchema = z.object({
+  limit: z.coerce.number().int().min(1).max(12_000).default(8000)
+})
+
+export const dueCountQuerySchema = z.object({
+  type: wordTypeSchema.optional()
+})
+
 export const typingSummaryQuerySchema = z.object({
   bookCode: z.string().trim().min(1, '缺少 bookCode').max(64),
   mode: typingModeSchema.default('follow')
@@ -161,6 +196,14 @@ export type CompleteSessionBody = z.infer<typeof completeSessionBodySchema>
 export type TypingAnswerBody = z.infer<typeof typingAnswerBodySchema>
 export type ChineseReviewBody = z.infer<typeof chineseReviewBodySchema>
 export type IdParams = z.infer<typeof idParamsSchema>
+export type StudentNameBody = z.infer<typeof studentNameBodySchema>
+export type OnboardBody = z.infer<typeof onboardBodySchema>
+export type SubjectBody = z.infer<typeof subjectBodySchema>
+export type RoleBody = z.infer<typeof roleBodySchema>
+export type VocabListQuery = z.infer<typeof vocabListQuerySchema>
+export type RandomCountQuery = z.infer<typeof randomCountQuerySchema>
+export type GlobalMapQuery = z.infer<typeof globalMapQuerySchema>
+export type DueCountQuery = z.infer<typeof dueCountQuerySchema>
 export type TypingSummaryQuery = z.infer<typeof typingSummaryQuerySchema>
 export type TypingListBody = z.infer<typeof typingListBodySchema>
 export type ChatSendBody = z.infer<typeof chatSendBodySchema>
