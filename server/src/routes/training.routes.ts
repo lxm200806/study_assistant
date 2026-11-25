@@ -8,6 +8,7 @@ import {
 } from '../controllers/training.controller'
 import { getQuizWordsHandler, submitQuizHandler } from '../controllers/quiz.controller'
 import { authMiddleware } from '../middleware/auth'
+import { idempotency } from '../middleware/idempotency'
 import { validateBody, validateQuery } from '../validation/validate'
 import {
   completeSessionBodySchema,
@@ -20,9 +21,9 @@ import {
 
 const router = Router()
 
-router.post('/practice', authMiddleware, validateBody(practiceBodySchema), practiceHandler)
+router.post('/practice', authMiddleware, validateBody(practiceBodySchema), idempotency(), practiceHandler)
 router.post('/recheck', authMiddleware, recheckHandler)
-router.post('/session/complete', authMiddleware, validateBody(completeSessionBodySchema), completeSessionHandler)
+router.post('/session/complete', authMiddleware, validateBody(completeSessionBodySchema), idempotency(), completeSessionHandler)
 router.get('/review', authMiddleware, validateQuery(reviewQuerySchema), getReviewHandler)
 router.get('/history', authMiddleware, validateQuery(historyQuerySchema), getHistoryHandler)
 router.get('/quiz/words', authMiddleware, validateQuery(quizWordsQuerySchema), getQuizWordsHandler)

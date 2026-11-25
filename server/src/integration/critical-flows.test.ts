@@ -509,11 +509,14 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
   it('returns 401/403/404/409 on the expected boundaries', async () => {
     const noAuth = await api.get(`/api/books/${bookCode}/session`)
     expect(noAuth.status).toBe(401)
+    expect(noAuth.body.success).toBe(false)
+    expect(noAuth.body.code).toBe('UNAUTHORIZED')
 
     const badToken = await api
       .get(`/api/books/${bookCode}/session`)
       .set('Authorization', 'Bearer invalid-token')
     expect(badToken.status).toBe(401)
+    expect(badToken.body.code).toBe('INVALID_TOKEN')
 
     const missingBook = await authed(api.get('/api/books/not-a-real-book'))
     expect(missingBook.status).toBe(404)
@@ -554,5 +557,34 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
 
     const resourceSync = await authed(api.post('/api/chinese/resources/sync-all'))
     expect(resourceSync.status).toBe(403)
+  })
+
+  it('supports the /api/v1 alias and idempotency keys', async () => {
+    const v1Books = await api.get('/api/v1/books')
+    expect(v1Books.status).toBe(200)
+    expect(v1Books.body.success).toBe(true)
+
+    const word = await prisma.vocabulary.create({
+      data: { word: `idem-${Date.now()}`, meaning: '幂等测试' }
+    })
+    const key = `idem-${Date.now()}`
+    const body = { wordId: word.id, type: 'reading', isCorrect: true }
+
+    const first = await authed(api.post('/api/training/practice'))
+      .set('Idempotency-Key', key)
+      .send(body)
+    const second = await authed(api.post('/api/training/practice'))
+      .set('Idempotency-Key', key)
+      .send(body)
+
+    expect(first.status).toBe(200)
+    expect(second.status).toBe(200)
+    expect(second.headers['idempotency-replayed']).toBe('true')
+    expect(second.body).toEqual(first.body)
+
+    const stat = await prisma.vocabularyStat.findUnique({
+      where: { learnerId_wordId_type: { learnerId, wordId: word.id, type: 'reading' } }
+    })
+    expect(stat?.practiceCount).toBe(1)
   })
 })

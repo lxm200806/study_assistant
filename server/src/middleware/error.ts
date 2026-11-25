@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { log } from '../utils/logger'
+import { apiErrorBody } from '../utils/api-response'
 
 export function errorMiddleware(err: Error & { type?: string; status?: number }, req: Request, res: Response, _next: NextFunction) {
   const path = req.originalUrl.split('?')[0]
@@ -13,7 +14,7 @@ export function errorMiddleware(err: Error & { type?: string; status?: number },
       status: 413,
       error: 'AUDIO_TOO_LARGE'
     })
-    return res.status(413).json({ success: false, error: 'AUDIO_TOO_LARGE' })
+    return res.status(413).json(apiErrorBody('AUDIO_TOO_LARGE', 'AUDIO_TOO_LARGE'))
   }
 
   const status = err.status || 500
@@ -27,7 +28,7 @@ export function errorMiddleware(err: Error & { type?: string; status?: number },
       error: err.message,
       stack: err.stack
     })
-    return res.status(status).json({ success: false, error: 'INTERNAL_ERROR' })
+    return res.status(status).json(apiErrorBody('INTERNAL_ERROR', 'INTERNAL_ERROR'))
   }
 
   log('warn', 'request_error', {
@@ -37,5 +38,5 @@ export function errorMiddleware(err: Error & { type?: string; status?: number },
     status,
     error: err.message
   })
-  res.status(status).json({ success: false, error: err.message })
+  res.status(status).json(apiErrorBody(err.message, 'REQUEST_FAILED'))
 }

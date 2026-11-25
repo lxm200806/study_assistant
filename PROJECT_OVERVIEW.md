@@ -238,6 +238,6 @@ bash deploy.sh
 - 基础设施：JWT、限流、分页、日期键、词形格式化、zod 校验、request id
 - 关键链路集成：注册/登录/刷新 → 学生 → 取书会话 → 提交练习 → 结算会话；语文今日队列 → 提交复习；拼读队列/答题/标记/词表；聊天发送/历史/配额/SSE
 
-`npm test` 默认跳过数据库集成（177 个通过，13 个跳过）；`npm run test:db` 使用临时 `it_*` schema 跑全部 190 个测试。CI 的 PostgreSQL 16 服务会自动执行集成测试，并构建 H5 与微信小程序、检查 API 生成类型是否最新。
+`npm test` 默认跳过数据库集成（177 个通过，14 个跳过）；`npm run test:db` 使用临时 `it_*` schema 跑全部 191 个测试。API 同时挂载 `/api` 与 `/api/v1`，练习/结算支持可选 `Idempotency-Key`。CI 的 PostgreSQL 16 服务会自动执行集成测试，并构建 H5 与微信小程序、检查 API 生成类型是否最新。
 
 前端已有 Playwright H5 冒烟测试（`e2e/smoke.spec.ts`，6 个用例：登录页、登录错误、未登录守卫、模拟登录进入角色页、登录后词书列表、学生拼读设置 → 开始练习），通过 `npm run test:e2e` 运行。前端组件测试仍未配置，这是后续补强方向。

@@ -43,20 +43,25 @@ export function createApp() {
   app.use(securityHeaders())
   app.use(cors({ origin: resolveCorsOrigin(), credentials: true }))
   // 语音接口需要上传 base64 音频分片；其余接口限制为 2MB，避免大包拖垮进程
-  app.use('/api/speech', express.json({ limit: '15mb' }))
+  app.use(['/api/speech', '/api/v1/speech'], express.json({ limit: '15mb' }))
   app.use(express.json({ limit: '2mb' }))
 
-  app.use('/api/auth', authRoutes)
-  app.use('/api/vocab', vocabRoutes)
-  app.use('/api/training', trainingRoutes)
-  app.use('/api/chat', chatRoutes)
-  app.use('/api/books', bookRoutes)
-  app.use('/api/stats', statsRoutes)
-  app.use('/api/admin', adminRoutes)
-  app.use('/api/tts', ttsRoutes)
-  app.use('/api/speech', speechRoutes)
-  app.use('/api/typing', typingRoutes)
-  app.use('/api/chinese', chineseRoutes)
+  // `/api` 保持不变；同时提供 `/api/v1` 别名，便于新客户端固定版本。
+  const mountApi = (base: string) => {
+    app.use(`${base}/auth`, authRoutes)
+    app.use(`${base}/vocab`, vocabRoutes)
+    app.use(`${base}/training`, trainingRoutes)
+    app.use(`${base}/chat`, chatRoutes)
+    app.use(`${base}/books`, bookRoutes)
+    app.use(`${base}/stats`, statsRoutes)
+    app.use(`${base}/admin`, adminRoutes)
+    app.use(`${base}/tts`, ttsRoutes)
+    app.use(`${base}/speech`, speechRoutes)
+    app.use(`${base}/typing`, typingRoutes)
+    app.use(`${base}/chinese`, chineseRoutes)
+  }
+  mountApi('/api')
+  mountApi('/api/v1')
 
   if (!isProduction()) {
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiDocument))

@@ -7,7 +7,7 @@
 | M1 | 接口契约：auth/家庭、词汇、词书剩余接口 + 对应测试 | DONE |
 | M2a | 接口契约：拼读标记/历史/会话、短文 CRUD + 对应测试 | DONE |
 | M2b | 接口契约：语文课程/资源/草稿、admin、speech/TTS | DONE |
-| M3 | 错误信封统一、API 版本策略、分页与幂等 | TODO |
+| M3 | 错误信封统一、`/api/v1` 别名、幂等键（单实例） | DONE |
 | M4 | 异常链路集成测试：401/403/404/409、recheck、admin/speech/tts 边界 | DONE |
 | M5 | 前端 Vitest：stores、composables、纯逻辑 | TODO |
 | M6 | Playwright：quiz/recognition/语文页面、真实 API+DB E2E | TODO |

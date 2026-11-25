@@ -1,4 +1,5 @@
 import type { Request, RequestHandler } from 'express'
+import { apiErrorBody } from '../utils/api-response'
 
 export interface RateLimitOptions {
   windowMs: number
@@ -54,7 +55,9 @@ export function rateLimit(options: RateLimitOptions): RequestHandler {
 
     if (bucket.count > options.max) {
       res.setHeader('Retry-After', String(Math.max(1, Math.ceil((bucket.resetAt - now) / 1000))))
-      res.status(429).json({ error: options.message || 'Too many requests, please try again later' })
+      res
+        .status(429)
+        .json(apiErrorBody(options.message || 'Too many requests, please try again later', 'RATE_LIMITED'))
       return
     }
 
