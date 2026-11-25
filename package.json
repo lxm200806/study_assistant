@@ -33,7 +33,7 @@
         "@dcloudio/uni-app-plus": "^3.0.0-4020420240722001",
         "@dcloudio/uni-cli-shared": "3.0.0-4020420240722001",
         "@dcloudio/uni-stacktracey": "3.0.0-4020420240722001",
-        "@dcloudio/vite-plugin-uni": "3.0.0-4020420240722001",
+        "@dcloudio/vite-plugin-uni": "3.0.0-5030420261029002",
         "@playwright/test": "^1.65.1",
         "@types/node": "^20.11.0",
         "@typescript-eslint/eslint-plugin": "^7.18.0",
