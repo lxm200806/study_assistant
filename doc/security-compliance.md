@@ -7,15 +7,17 @@
 - 密码 bcrypt 哈希；注册密码至少 8 位。
 - 账号导出 `GET /api/auth/account/export` 与注销 `POST /api/auth/account/delete`。
 - CORS 白名单、安全响应头、生产 HSTS、登录/注册/聊天/TTS/ASR 限流。
+- `/api/tts` 需要 access token（支持 `?token=`，因为音频元素不能设置 Authorization 头）。
 - 管理端写操作审计 `admin_audit_logs`，通过 `GET /api/admin/audit` 查询。
 - 请求参数 zod 校验；5xx 不返回内部细节。
 - Dependabot 每周检查 npm 依赖和 GitHub Actions。
+- `Security` CI 工作流运行 gitleaks 和 `npm audit --omit=dev --audit-level=critical`。
+- Nginx 已配置 CSP Report-Only，观察后再切换强制 CSP。
 
 ## 待办 / 风险
 
-- `GET /api/tts` 仍是公开接口（有分钟/小时限流），存在被刷成本的风险；后续改为签名 URL 或鉴权。
-- CSP 尚未启用；H5 大量内联样式，需要先在测试环境验证 report-only。
 - 管理员 2FA 未实现；建议对 `isAdmin` 账号强制 TOTP。
+- zod 3 存在 high 级内存耗尽公告，升级 zod 4 + zod-to-openapi 9 属于 major，需要单独验证。
 - 账号注销目前是 API，前端入口和二次确认仍需产品确认。
 - App 上架前需补：隐私政策、用户协议、ICP备案、软著、儿童个人信息保护、应用商店权限声明。
 - 生产日志保留由 Docker `json-file` 10MB × 3 控制；如需长期审计，接入集中日志。

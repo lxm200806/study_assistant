@@ -501,7 +501,10 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     const asrConfig = await authed(api.get('/api/speech/asr/config'))
     expect(asrConfig.status).toBe(200)
 
-    const ttsMissing = await api.get('/api/tts')
+    const ttsNoAuth = await api.get('/api/tts')
+    expect(ttsNoAuth.status).toBe(401)
+
+    const ttsMissing = await authed(api.get('/api/tts'))
     expect(ttsMissing.status).toBe(400)
 
     const transcribeInvalid = await authed(api.post('/api/speech/transcribe')).send({})

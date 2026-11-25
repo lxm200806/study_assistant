@@ -1,4 +1,4 @@
-import { getApiBaseUrl } from '@/utils/api'
+import { getApiBaseUrl, getAuthToken } from '@/utils/api'
 import { isBrowserH5 } from '@/platform/runtime'
 import { splitTextForTts, isValidTtsText, sanitizeForTts, MAX_TTS_LENGTH } from '@/utils/tts-text'
 
@@ -50,6 +50,8 @@ function buildBackendTtsUrl(
   let url = `${getApiBaseUrl()}/tts?word=${encodeURIComponent(cleaned)}`
   if (accent === 'uk') url += '&accent=uk'
   if (gender === 'male') url += '&gender=male'
+  const token = getAuthToken()
+  if (token) url += `&token=${encodeURIComponent(token)}`
   return url
 }
 
