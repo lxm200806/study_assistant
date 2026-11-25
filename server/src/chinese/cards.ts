@@ -387,20 +387,6 @@ export function packOneDay(sessions: StudySession[], daily: number): [StudySessi
   return [picked, used]
 }
 
-function packWithin(sessions: StudySession[], limit: number, allowOversizedFirst = true): [StudySession[], number] {
-  if (limit <= 0) return [[], 0]
-  const picked: StudySession[] = []
-  let used = 0
-  for (const session of sessions) {
-    if (!picked.length && session.energy > limit && !allowOversizedFirst) break
-    if (picked.length && used + session.energy > limit) break
-    picked.push(session)
-    used += session.energy
-    if (used >= limit) break
-  }
-  return [picked, used]
-}
-
 export function rowId(row: PointLike): string {
   if (row.id != null) return String(row.id)
   return String(row.point_key || row.pointKey || row.key || '')

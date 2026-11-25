@@ -16,6 +16,12 @@ import {
 } from '../controllers/auth.controller'
 import { authMiddleware } from '../middleware/auth'
 import { rateLimit } from '../middleware/rate-limit'
+import { validateBody } from '../validation/validate'
+import {
+  credentialsBodySchema,
+  refreshBodySchema,
+  setActiveStudentBodySchema
+} from '../validation/schemas'
 import { isProduction } from '../config/env'
 
 const router = Router()
@@ -29,16 +35,16 @@ const loginLimit = rateLimit({
 })
 const refreshLimit = rateLimit({ windowMs: 15 * 60 * 1000, max: 60, keyPrefix: 'auth-refresh' })
 
-router.post('/register', registerLimit, registerHandler)
-router.post('/login', loginLimit, loginHandler)
-router.post('/refresh', refreshLimit, refreshHandler)
+router.post('/register', registerLimit, validateBody(credentialsBodySchema), registerHandler)
+router.post('/login', loginLimit, validateBody(credentialsBodySchema), loginHandler)
+router.post('/refresh', refreshLimit, validateBody(refreshBodySchema), refreshHandler)
 router.get('/profile', authMiddleware, profileHandler)
 router.post('/onboard', authMiddleware, onboardHandler)
 router.put('/subject', authMiddleware, setSubjectHandler)
 router.get('/students', authMiddleware, listStudentsHandler)
 router.post('/students', authMiddleware, createStudentHandler)
 router.put('/role', authMiddleware, setRoleHandler)
-router.put('/students/active', authMiddleware, setActiveStudentHandler)
+router.put('/students/active', authMiddleware, validateBody(setActiveStudentBodySchema), setActiveStudentHandler)
 router.put('/students/:id', authMiddleware, renameStudentHandler)
 router.delete('/students/:id', authMiddleware, archiveStudentHandler)
 if (!isProduction() && process.env.WECHAT_LOGIN_STUB === 'true') {

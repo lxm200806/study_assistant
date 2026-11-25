@@ -5,11 +5,12 @@ import {
   clampCount,
   parseHistoryDate,
   parseTypingMode,
-  parseTypingSource,
   REJECT_TEXT,
   type RejectReason
 } from '../services/typing-logic'
 import { internalError } from '../utils/http-errors'
+import { validatedQuery } from '../validation/validate'
+import type { TypingQueueQuery } from '../validation/schemas'
 import {
   createPracticeArticle,
   deletePracticeArticle,
@@ -86,18 +87,15 @@ export async function typingQueueHandler(req: Request, res: Response) {
   try {
     const learnerId = studyOrReply(req, res)
     if (!learnerId) return
-    const source = parseTypingSource(req.query.source || 'smart')
-    if (!source) return res.status(400).json({ success: false, error: 'unknown source' })
-    const mode = parseTypingMode(req.query.mode)
-    if (!mode) return res.status(400).json({ success: false, error: 'unknown mode' })
+    const query = validatedQuery<TypingQueueQuery>(res)
     const data = await getTypingQueue(learnerId, {
-      bookCode: req.query.bookCode ? String(req.query.bookCode) : undefined,
-      source,
-      mode,
-      count: clampCount(req.query.count, 20),
-      listId: req.query.listId ? String(req.query.listId) : undefined,
-      includeMastered: req.query.includeMastered === '1' || req.query.includeMastered === 'true',
-      allBooks: req.query.allBooks === '1' || req.query.allBooks === 'true'
+      bookCode: query.bookCode,
+      source: query.source,
+      mode: query.mode,
+      count: query.count,
+      listId: query.listId,
+      includeMastered: query.includeMastered === '1' || query.includeMastered === 'true',
+      allBooks: query.allBooks === '1' || query.allBooks === 'true'
     })
     // 按书取词时同样签发词表凭证，拼读练习结束会用它完成词汇会话。
     const sessionToken =

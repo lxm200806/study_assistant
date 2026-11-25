@@ -1,4 +1,3 @@
-import prisma from '../prisma/client'
 import { WordType } from '../types'
 import { getBookByCode } from './book.service'
 import { practice } from './training.service'

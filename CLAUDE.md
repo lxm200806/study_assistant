@@ -34,12 +34,12 @@ npm run build:mp-weixin
 node scripts/dev.mjs restart web   # restart H5 (after pages.json/vite.config/deps changes)
 
 cd server
-npm run dev                # prisma generate + nodemon + ts-node on src/app.ts
+npm run dev                # prisma generate + nodemon + ts-node on src/server.ts
 npm run build              # tsc -> server/dist
-npm run start              # node dist/app.js
+npm run start              # node dist/server.js
 ```
 
-API docs: `http://localhost:3005/api-docs` (Swagger generated from `server/src/routes/*.ts`). `start-dev.sh` writes `logs/server.log` and `logs/client.log`.
+API docs UI: `http://localhost:3005/api-docs` (dev only). The spec is generated from zod schemas registered in `server/src/validation/openapi.ts`; it currently covers the core auth/book/training/typing/Chinese paths (12 operations), while the remaining endpoints are still route-only — treat the route files as the full endpoint reference. `start-dev.sh` writes `logs/server.log` and `logs/client.log`.
 
 The API port is `PORT` from `server/.env`. The repo's dev scripts and Vite proxy assume **3005** locally; production compose forces **3004**.
 
@@ -94,12 +94,15 @@ cd server && npm run db:studio
 
 ```bash
 cd server
-npm run test        # vitest run (src/**/*.test.ts and scripts/**/*.test.ts)
+npm run test        # unit tests; DB integration is skipped unless TEST_DATABASE_URL/RUN_DB_TESTS=1
+npm run test:db     # unit + DB integration against a throwaway schema derived from server/.env
 npm run test:watch
 npx vitest run src/services/review-engine.test.ts   # single test file
 ```
 
-No frontend test runner is configured. The README's pre-commit verification is: backend `npm run test` + `npm run build`, then root `npm run build:h5`. There is no lint/format script or checked-in ESLint/Prettier config.
+No frontend test runner or end-to-end tests are configured; root `npm run test` delegates to the backend. There are 31 Vitest files (30 unit + `src/integration/critical-flows.test.ts`). Without a test database: 177 tests pass and the 5 integration tests are skipped; `npm run test:db` creates a random `it_*` schema, runs `prisma migrate deploy`, executes all 182 tests, then drops the schema. The integration suite covers register/login/refresh → learner → book session → practice → session completion, plus Chinese today/review and the validation 400 envelope.
+
+The README's pre-commit verification is: backend `npm run test` + `npm run build`, then root `npm run typecheck`, `npm run lint`, `npm run lint:server`, `npm run build:h5`. Root `.eslintrc.cjs` covers `src/**` (Vue + TypeScript + Prettier); `server/.eslintrc.cjs` covers `server/src/**` and runs with `--max-warnings 0`. `npm run typecheck` runs `vue-tsc --noEmit`. CI sets `TEST_DATABASE_URL` against a PostgreSQL 16 service, so `npm test` runs the integration suite there too.
 
 ### Production
 
@@ -127,9 +130,12 @@ This is the most important cross-cutting concept:
 
 ### Backend layering
 
-- Entry point is `server/src/app.ts`. It mounts `/api/auth`, `/api/vocab`, `/api/training`, `/api/chat`, `/api/books`, `/api/stats`, `/api/admin`, `/api/tts`, `/api/speech`, `/api/typing`, `/api/chinese`, plus `/api-docs`. `app_new.ts` is an unused stale copy that references a non-existent `vocabularyRoutes`; do not use it as a reference.
+- `server/src/server.ts` is the process entry: it calls `createApp()`, listens on `0.0.0.0`, and runs `bootstrap()`. `server/src/app.ts` exports `createApp()` and mounts `/api/auth`, `/api/vocab`, `/api/training`, `/api/chat`, `/api/books`, `/api/stats`, `/api/admin`, `/api/tts`, `/api/speech`, `/api/typing`, `/api/chinese`, plus `/api-docs` in non-production only; it does not listen, so integration tests can import it directly.
 - Routes (`server/src/routes/*`, `server/src/chinese/chinese.routes.ts`) → controllers → services; Prisma singleton is `server/src/prisma/client.ts`.
+- Input validation is zod-based: schemas live in `server/src/validation/schemas.ts`, `validateBody` / `validateQuery` in `server/src/validation/validate.ts`, and the OpenAPI document in `server/src/validation/openapi.ts`. Add a schema and register the path when touching a core endpoint; invalid input returns 400 with `{ success: false, code: 'INVALID_REQUEST', details }`.
 - Responses are generally `{ success, data, error }`; errors go through `middleware/error.ts`. The client treats 401 as session expiry (with refresh-retry) and 403 as `BOOK_LOCKED`.
+- Observability: `middleware/request-context.ts` generates or forwards `X-Request-Id`; `middleware/access-log.ts` emits JSON `http_request` records (method, path, status, duration, user/learner; skips `/health`, `/ready`, `/api-docs`); `errorMiddleware` logs 4xx/5xx with request id and stack. `NODE_ENV=test` silences structured logs.
+- Public routes: `GET /api/books`, `GET /api/chinese/meta`, `GET /api/tts`, `POST /api/auth/register|login|refresh`, plus `/`, `/health`, `/ready` (and `/api/auth/wechat` only when `WECHAT_LOGIN_STUB=true` outside production). Everything else under `/api` requires a Bearer token.
 - After `listen`, startup runs `ensureAdminUser()` (env `ADMIN_USERNAME`/`ADMIN_PASSWORD`), `initVocabulary()`, `initBooks()` (sync built vocabulary JSON into DB, skipping books whose counts already match), then `seedChineseIfEmpty()`.
 
 ### English learning domain
@@ -151,7 +157,7 @@ This is the most important cross-cutting concept:
 - Content packs in `server/data/chinese/raw/*.json` are registered in `server/src/chinese/materials.ts` and synced into `chinese_resources` → `chinese_published` point cards; user imports go through a draft/publish flow (`drafts.ts`, statuses `draft | published | discarded`). Entries and grade/level links use `chinese_entries`, `chinese_entry_grades`, `chinese_entry_levels`.
 - Courses (`chinese_courses`) filter published cards by kind/level/grade/difficulty. Daily planning/queue is in `course.service.ts` + `schedule.ts`; study modes `learn | test | recite | filter` are in `study-modes.ts` (test cannot reveal answers; recite does not update SM-2).
 - Scheduling uses SM-2 (`server/src/chinese/sm2.ts`), completely separate from English FSRS. Answer grading is Levenshtein-based in `grade.ts` (quality 1/3/5).
-- Idioms: `server/data/chinese/raw/idioms/` is the source of truth. Edit the split source files, run `cd server && npm run build:idioms`, then `npm run audit:idioms` (must be zero errors), then sync via the admin/resource API. `generated/小学成语_发布包.json` is generated — never hand-edit it.
+- Idioms: `server/data/chinese/raw/idioms/` is the source of truth. Edit the split source files, run `cd server && npm run build:idioms`, then `npm run audit:idioms` (must be zero errors), then sync through `/api/chinese/resources/*` (`sync-all` / `sync-incremental` / `:id/sync`). `generated/小学成语_发布包.json` is generated — never hand-edit it.
 
 ### Frontend
 
@@ -177,7 +183,7 @@ This is the most important cross-cutting concept:
 
 ## Repo-specific notes
 
-- `server/src/app.ts` is currently **not valid UTF-8** (legacy CJK encoding). Read shows replacement characters and Edit/Write refuse it; convert deliberately or edit with an encoding-preserving shell tool. Other source files are UTF-8.
+- All `server/src` sources, including `app.ts` and `server.ts`, are UTF-8 and editable normally. The old `app_new.ts` copy has been removed.
 - `PROJECT_PROGRESS*.md` are historical and stale (they describe a removed `mobile/` React Native app). Prefer `README.md`, `PROJECT_OVERVIEW.md`, and `doc/`.
 - Search exclusions: `.npm-cache/` (a local npm cache in the repo root), `node_modules`, `server/data/sources`, `server/data/kb/md|downloads`, and `logs`.
 - Root `tsconfig.json` aliases `@/*` → `src/*`; `@vocab/*` also maps into `server/src/data/vocabulary/*` but is currently unused.

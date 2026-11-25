@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import { authMiddleware } from '../middleware/auth'
+import { validateBody, validateQuery } from '../validation/validate'
+import { chineseReviewBodySchema, chineseTodayQuerySchema } from '../validation/schemas'
 import {
   coverageHandler,
   createCourseHandler,
@@ -42,9 +44,9 @@ router.patch('/courses/:courseId', authMiddleware, patchCourseHandler)
 router.put('/courses/:courseId', authMiddleware, patchCourseHandler)
 router.delete('/courses/:courseId', authMiddleware, deleteCourseHandler)
 router.post('/courses/:courseId/sync', authMiddleware, syncCourseHandler)
-router.get('/courses/:courseId/today', authMiddleware, todayHandler)
+router.get('/courses/:courseId/today', authMiddleware, validateQuery(chineseTodayQuerySchema), todayHandler)
 router.get('/courses/:courseId/plan', authMiddleware, planHandler)
-router.post('/courses/:courseId/review', authMiddleware, reviewHandler)
+router.post('/courses/:courseId/review', authMiddleware, validateBody(chineseReviewBodySchema), reviewHandler)
 router.get('/courses/:courseId/stats', authMiddleware, statsHandler)
 router.get('/resources', authMiddleware, resourcesHandler)
 router.post('/resources/sync-incremental', authMiddleware, syncIncrementalHandler)

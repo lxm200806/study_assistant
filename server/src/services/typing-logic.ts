@@ -59,6 +59,7 @@ export function parseWordTokens(text: string, limit = 400): string[] {
 export function splitPieces(text: string, limit = 200): string[] {
   const cleaned = text.replace(/\r\n/g, '\n').trim()
   if (!cleaned) return []
+  // eslint-disable-next-line no-control-regex -- \u0000 是缩写保护的哨兵字符
   const protectedText = cleaned.replace(/\b(Mr|Mrs|Ms|Dr|St|Prof)\./g, '$1\u0000')
   return protectedText
     .split(/\n+|(?<=[.!?。！？])\s+/)

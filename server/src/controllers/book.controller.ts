@@ -1,12 +1,14 @@
 import { Request, Response } from 'express'
 import { getBooks, getBookByCode, getBookMetaByCode, getRandomWordsFromBook } from '../services/book.service'
-import { getSessionWords, getBookProgress, type SessionMode } from '../services/coverage.service'
+import { getSessionWords, getBookProgress } from '../services/coverage.service'
 import { signSessionToken } from '../services/session-token'
 import { getDueCount } from '../services/training.service'
 import { assertBookAccess } from '../services/book-access.service'
 import { formatBookWord, formatWordForClient } from '../utils/wordFormat'
 import { clampInt } from '../utils/pagination'
 import { internalError } from '../utils/http-errors'
+import { validatedQuery } from '../validation/validate'
+import type { BookSessionQuery } from '../validation/schemas'
 
 export async function getBooksHandler(req: Request, res: Response) {
   try {
@@ -95,13 +97,13 @@ export async function getBookSessionHandler(req: Request, res: Response) {
     const userId = req.learnerId
     if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { code } = req.params
-    const count = parseInt(req.query.count as string) || 10
-    const mode = (req.query.mode as SessionMode) || 'coverage'
-    const type = req.query.type as string | undefined
-    const topic = req.query.topic as string | undefined
-    const unitId = typeof req.query.unit === 'string' ? req.query.unit : undefined
-    const excludeRaw = typeof req.query.exclude === 'string' ? req.query.exclude : ''
-    const excludeIds = excludeRaw
+    const query = validatedQuery<BookSessionQuery>(res)
+    const count = query.count
+    const mode = query.mode
+    const type = query.type
+    const topic = query.topic
+    const unitId = query.unit
+    const excludeIds = (query.exclude || '')
       .split(',')
       .map(s => s.trim())
       .filter(Boolean)

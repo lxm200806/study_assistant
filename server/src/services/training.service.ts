@@ -2,7 +2,6 @@ import prisma from '../prisma/client'
 import { PracticeDto, WordType } from '../types'
 
 const TRAINING_TYPES: WordType[] = ['listening', 'speaking', 'reading', 'writing']
-const HOME_REVIEW_PER_TYPE = 5
 import {
   processPractice,
   buildFsrsFieldsFromStat,

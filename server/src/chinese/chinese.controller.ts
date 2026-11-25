@@ -26,6 +26,8 @@ import {
 } from './drafts'
 import { HttpError } from './http'
 import { getResource, seedChineseIfEmpty, summarizeSync, syncAllOfficial, syncResourceById } from './materials'
+import { validatedQuery } from '../validation/validate'
+import type { ChineseTodayQuery } from '../validation/schemas'
 
 async function withUser(req: Request) {
   const user = await prisma.user.findUnique({
@@ -95,14 +97,15 @@ export const syncCourseHandler = wrap(async req => {
   return syncCourse(req.params.courseId, studyId(user))
 })
 
-export const todayHandler = wrap(async req => {
+export const todayHandler = wrap(async (req, res) => {
   const user = await withUser(req)
+  const query = validatedQuery<ChineseTodayQuery>(res)
   return todayQueue(
     req.params.courseId,
     studyId(user),
-    String(req.query.mode || ''),
-    Number(req.query.extraMinutes || 0),
-    Number(req.query.reciteOffset || 0)
+    query.mode || '',
+    query.extraMinutes,
+    query.reciteOffset
   )
 })
 

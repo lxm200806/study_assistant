@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import { authMiddleware } from '../middleware/auth'
+import { validateBody, validateQuery } from '../validation/validate'
+import { typingAnswerBodySchema, typingQueueQuerySchema } from '../validation/schemas'
 import {
   typingActivityHandler,
   typingAnswerHandler,
@@ -24,8 +26,8 @@ import {
 const router = Router()
 
 router.get('/summary', authMiddleware, typingSummaryHandler)
-router.get('/queue', authMiddleware, typingQueueHandler)
-router.post('/answer', authMiddleware, typingAnswerHandler)
+router.get('/queue', authMiddleware, validateQuery(typingQueueQuerySchema), typingQueueHandler)
+router.post('/answer', authMiddleware, validateBody(typingAnswerBodySchema), typingAnswerHandler)
 router.put('/marks', authMiddleware, typingMarkHandler)
 router.post('/activity', authMiddleware, typingActivityHandler)
 router.get('/history', authMiddleware, typingHistoryHandler)

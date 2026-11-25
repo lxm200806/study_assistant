@@ -1,4 +1,3 @@
-import prisma from '../prisma/client'
 import { getSessionWords, type SessionMode } from './coverage.service'
 
 export interface QuizSubmitItem {

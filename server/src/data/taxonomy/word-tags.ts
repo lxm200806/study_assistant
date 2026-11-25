@@ -176,12 +176,12 @@ export function resolveWordTaxonomy(
   const key = word.toLowerCase()
   const fromTable = WORD_TAGS[key]
 
-  let contentType: ContentType =
+  const contentType: ContentType =
     overrides?.contentType ||
     fromTable?.contentType ||
     (FUNCTION_WORDS.has(key) ? 'function' : 'non-fiction')
 
-  let topic: TopicCategory = normalizeTopic(
+  const topic: TopicCategory = normalizeTopic(
     overrides?.topic || fromTable?.topic || (FUNCTION_WORDS.has(key) ? 'thinking' : 'uncategorized')
   )
 

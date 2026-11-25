@@ -1,6 +1,5 @@
 import prisma from '../prisma/client'
 import { getBookByCode } from './book.service'
-import { getReviewWords } from './training.service'
 import { recordChatVocabulary, type MatchedWord } from './vocab-match.service'
 import { getLlmApiKey } from './llm-config.service'
 import { completeChat } from './llm-chat.service'

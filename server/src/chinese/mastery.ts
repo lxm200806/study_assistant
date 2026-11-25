@@ -1,6 +1,5 @@
 import {
   MASTERY_DECAY_HALF_LIFE_DAYS,
-  MASTERY_HIGH,
   MASTERY_KNOWN,
   type PointLike
 } from './constants'

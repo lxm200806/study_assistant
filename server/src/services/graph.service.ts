@@ -7,7 +7,7 @@ import {
   buildTypeStatsFromEntry,
   type WordStatEntry
 } from './mastery-aggregate.service'
-import { getContentTypeLabel, getTopicLabel, TOPIC_CATEGORIES } from '../data/taxonomy'
+import { getContentTypeLabel, TOPIC_CATEGORIES } from '../data/taxonomy'
 import type { ContentType, TopicCategory } from '../data/vocabulary/types'
 
 /* ═══════════════════════════════════════════

@@ -1,6 +1,11 @@
 # Study Assistant
 
-英语词汇学习与训练应用。项目采用前后端同仓结构：前端基于 UniApp/Vue 3，可运行 H5 和微信小程序；后端基于 Express/Prisma/PostgreSQL，提供词书、训练、复习调度、AI 陪聊、TTS/ASR 等能力。
+面向中文市场的双语学习应用，包含两条独立学习线：
+
+- **英语**：词书 + 听力/口语/认读/拼写训练，使用 FSRS 调度复习。
+- **语文**：古诗词/文言/成语/句子等题卡课程，使用 SM-2 调度复习；另有独立的键盘拼读（跟写/听写/自测/默写）。
+
+项目采用前后端同仓结构：前端基于 UniApp/Vue 3，可运行 H5 和微信小程序；后端基于 Express/Prisma/PostgreSQL，提供词书、训练、复习调度、语文课程、AI 陪聊、TTS/ASR 等能力。
 
 ## 技术栈
 
@@ -8,18 +13,25 @@
 |------|------|
 | 前端 | UniApp 3, Vue 3, TypeScript, Pinia, Vite, SCSS |
 | 后端 | Express, TypeScript, Prisma, PostgreSQL, JWT |
-| 学习算法 | ts-fsrs 间隔复习 |
+| 输入校验 | zod + zod-to-openapi |
+| 可观测性 | request id + JSON 结构化日志 |
+| 学习算法 | ts-fsrs（英语）+ 自研 SM-2（语文） |
+| AI/语音 | OpenAI 兼容 LLM、Edge TTS、讯飞/Whisper ASR |
 | 部署 | Docker Compose, Nginx |
 
 ## 目录结构
 
 ```text
-src/                 前端 UniApp 应用
+src/                 前端 UniApp 应用（pages / composables / stores / typing-engine）
 server/              Express API 服务
+server/src/chinese/  语文课程、题卡、SM-2 与资源同步
+server/src/validation/  zod 入参校验与 OpenAPI 注册表
 server/prisma/       Prisma schema 与数据库迁移
-server/data/         词库源数据与构建产物
-scripts/             本地开发、数据库、词库同步脚本
+server/data/         英语词库、语文题卡等源数据与构建产物
+server/scripts/      词库导入、成语题卡构建、教材抽取
+scripts/             跨平台开发编排（dev.mjs）与数据库脚本
 deploy/              生产 Nginx 与 Web 镜像配置
+doc/                 壳层、主题、数据库表说明
 ```
 
 ## 本地开发
@@ -72,6 +84,8 @@ bash start-dev.sh
 | API 文档 | http://localhost:3005/api-docs |
 | PostgreSQL | localhost:5432 |
 
+> `/api-docs` 仅开发环境挂载。文档由 `server/src/validation/openapi.ts` 中的 zod 注册表生成，目前覆盖登录、词书会话、训练、拼读、语文等 12 个核心接口；其余接口仍以 `server/src/routes/*.ts` 和 `server/src/chinese/chinese.routes.ts` 为准。
+
 ## 常用命令
 
 ### 启停（跨平台）
@@ -99,6 +113,7 @@ cd server
 npm run dev
 npm run build
 npm run test
+npm run test:db
 npm run prisma:migrate
 npm run prisma:generate
 ```
@@ -129,12 +144,15 @@ bash deploy.sh
 
 ## 核心模块
 
-- 用户认证：注册、登录、JWT、管理员、新手引导。
-- 词书学习：KET、PET、中考、高考等词库，支持免费和会员词书。
-- 训练模式：听力、认读、拼写、口语、阶段小测。
-- 复习调度：基于 FSRS 维护到期时间、记忆保持率和掌握度。
-- 学习统计：每日学习、词书进度、词汇图谱、薄弱项分析。
+- 账号与家庭：账号登录、JWT 刷新、多学生（Learner）切换、家长/学生角色、科目切换。
+- 词书学习：KET、PET、中考、高考、PEP/Join in 等词库，支持免费和会员/解锁词书。
+- 英语训练：听力、口语、认读、拼写（`listening | speaking | reading | writing`）、跨书核对、阶段小测。
+- 复习调度：英语用 FSRS；语文题卡用独立的 SM-2，两套状态互不影响。
+- 拼读练习：跟写、听写、自测、默写，支持收藏、错词本、自定义词表和短文句子复习。
+- 语文学习：部编教材与成语题卡、课程组课、今日计划、学习/测试/背诵/筛选模式。
+- 学习统计：每日学习、词书进度、词汇图谱、语文课程统计与薄弱项分析。
 - AI 能力：陪聊、场景对话、词汇匹配、语音识别和朗读。
+- 小学课文阅读：`src/pages/primary/*` 读取 `src/data/primary/` 内置课本 JSON。
 
 ## 验证建议
 
@@ -147,5 +165,10 @@ npm run build
 cd ..
 npm run typecheck
 npm run lint
+npm run lint:server
 npm run build:h5
 ```
+
+涉及数据库链路时再跑 `cd server && npm run test:db`；CI 会自动执行这套集成测试。
+
+前端暂无独立测试运行器；后端有 31 个 Vitest 文件（30 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（177 个通过，5 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 182 个测试）。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；此外还会运行成语内容审计 `npm run audit:idioms`。

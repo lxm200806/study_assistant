@@ -3,13 +3,15 @@ import { getBookMap, getGlobalMap, getBookWordStats } from '../services/graph.se
 import { getBookMetaByCode } from '../services/book.service'
 import { assertBookAccess, getBookAccessScope } from '../services/book-access.service'
 import { internalError } from '../utils/http-errors'
+import { validatedQuery } from '../validation/validate'
+import type { BookMapQuery } from '../validation/schemas'
 
 export async function getBookMapHandler(req: Request, res: Response) {
   try {
     const userId = req.learnerId
     if (!userId) return res.status(409).json({ success: false, error: '请先添加学生' })
     const { code } = req.params
-    const trainingType = req.query.type as string | undefined
+    const { type: trainingType } = validatedQuery<BookMapQuery>(res)
 
     const meta = await getBookMetaByCode(code)
     if (!meta) return res.status(404).json({ success: false, error: 'Book not found' })

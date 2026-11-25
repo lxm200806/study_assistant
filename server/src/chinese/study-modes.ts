@@ -38,7 +38,7 @@ export function normalizeMode(value: unknown, fallback: StudyMode = DEFAULT_MODE
   return aliases[String(value || '').trim()] || ((MODES as readonly string[]).includes(fallback) ? fallback : DEFAULT_MODE)
 }
 
-export function defaultStudyMode(planned: PlannedToday | null | undefined): StudyMode {
+export function defaultStudyMode(_planned: PlannedToday | null | undefined): StudyMode {
   return 'learn'
 }
 

@@ -3,7 +3,7 @@
 本文档依据 `server/prisma/schema.prisma` 整理，对应 PostgreSQL 库 `study_assistant`。  
 Prisma 模型名与真实表名不一致时，以表名为准。
 
-当前共 21 张业务表，按模块分为：账号与学习者、英语词书、对话与用量、语文课程。
+当前共 30 张业务表，按模块分为：账号与学习者、英语词书与练习、对话与用量、语文课程、拼读/键盘练习。
 
 ## 总览
 
@@ -20,6 +20,7 @@ Prisma 模型名与真实表名不一致时，以表名为准。
 | 英语 | `TrainingRecord` | 单次练习对错流水 |
 | 英语 | `UserBookUnlock` | 账号已解锁的词书 |
 | 英语 | `DailyStudyLog` | 每日英语学习量和连续天数 |
+| 英语 | `book_word_checks` | 跨书核对结果（每本书/单词/技能） |
 | 对话 | `ChatRecord` | AI 对话消息 |
 | 对话 | `SpeechUsageLog` | 语音识别/合成用量 |
 | 语文 | `chinese_resources` | 语文资料包及同步状态 |
@@ -31,6 +32,13 @@ Prisma 模型名与真实表名不一致时，以表名为准。
 | 语文 | `chinese_course_items` | 课程包含哪些题卡 |
 | 语文 | `chinese_review_states` | 语文 SM-2 复习状态 |
 | 语文 | `chinese_review_logs` | 语文答题流水 |
+| 拼读 | `learner_word_marks` | 收藏 / 跳过已掌握 / 错词本标记 |
+| 拼读 | `practice_lists` | 自定义练习词表 |
+| 拼读 | `practice_list_items` | 词表条目 |
+| 拼读 | `practice_articles` | 用户短文 |
+| 拼读 | `article_sentence_cards` | 短文句子的 FSRS 卡片 |
+| 拼读 | `typing_mode_stats` | 键盘练习分模式的 FSRS 状态 |
+| 拼读 | `typing_session_logs` | 键盘练习用时/字数流水 |
 
 ---
 
@@ -105,16 +113,17 @@ Prisma 模型名与真实表名不一致时，以表名为准。
 | `level` | TEXT | 必填 | 程度或年级标记 |
 | `wordCount` | INTEGER | 默认 0 | 词数缓存 |
 | `isFree` | BOOLEAN | 默认 `false` | 是否免费书；否则需会员或解锁 |
+| `contentHash` | TEXT | 可空 | 词书 JSON 内容指纹，用于判断是否需要重新同步 |
 | `createdAt` | TIMESTAMP | 默认 now | 创建时间 |
 
 ### `Vocabulary`
 
-一条英语单词或短语。
+一条英语单词或短语。全库按拼写唯一：多本书共用一行，词书内的释义和例句放在 `BookVocabulary`。
 
 | 字段 | 类型 | 约束 | 含义 |
 | --- | --- | --- | --- |
 | `id` | TEXT | 主键，UUID | 单词 ID |
-| `word` | TEXT | 必填 | 英文写法 |
+| `word` | TEXT | 唯一，必填 | 英文写法 |
 | `meaning` | TEXT | 必填 | 中文释义 |
 | `phonetic` | TEXT | 可空 | 音标 |
 | `imageUrl` | TEXT | 可空 | 配图地址 |
@@ -123,7 +132,18 @@ Prisma 模型名与真实表名不一致时，以表名为准。
 | `contentType` | TEXT | 可空 | 内容分类，用于知识图谱筛选 |
 | `topic` | TEXT | 可空 | 主题分类 |
 | `tags` | TEXT[] | 默认空数组 | 标签 |
+| `senseKey` | TEXT | 默认空 | 旧义项键，保留兼容，不再拆义项 |
+| `senseLabel` | TEXT | 默认空 | 旧义项标签 |
+| `ownerLearnerId` | TEXT | 可空，外键 → `Learner.id`，删除时置空 | 学习者自建词条；词书词为空 |
+| `phoneticUk` | TEXT | 可空 | 英音音标 |
+| `phoneticUs` | TEXT | 可空 | 美音音标 |
+| `synonyms` | TEXT | 默认空 | 同义词 |
+| `roots` | TEXT | 默认空 | 词根 |
+| `etymology` | TEXT | 默认空 | 词源 |
+| `phrases` | TEXT | 默认空 | 短语 |
 | `createdAt` | TIMESTAMP | 默认 now | 创建时间 |
+
+索引：`ownerLearnerId`。
 
 ### `BookVocabulary`
 
@@ -135,8 +155,12 @@ Prisma 模型名与真实表名不一致时，以表名为准。
 | `bookId` | TEXT | 外键 → `Book.id` | 词书 |
 | `wordId` | TEXT | 外键 → `Vocabulary.id` | 单词 |
 | `sort_order` | INTEGER | 默认 0 | 在该书中的排序。Prisma 字段名是 `sortOrder` |
+| `meaning` | TEXT | 默认空 | 这本书里的中文释义 |
+| `englishMeaning` | TEXT | 默认空 | 这本书里的英文释义 |
+| `exampleSentences` | TEXT[] | 默认空数组 | 这本书里的例句；多条时练习按天轮换 |
 
-唯一约束：`(bookId, wordId)`。
+唯一约束：`(bookId, wordId)`。  
+索引：`(bookId, sortOrder)`。
 
 ### `BookStudyProgress`
 
@@ -162,7 +186,7 @@ Prisma 模型名与真实表名不一致时，以表名为准。
 | `id` | TEXT | 主键，UUID | 统计 ID |
 | `learnerId` | TEXT | 外键 → `Learner.id`，级联删除 | 学习者 |
 | `wordId` | TEXT | 外键 → `Vocabulary.id` | 单词 |
-| `type` | TEXT | 必填 | 练习类型，如听写、认读、拼写、口语 |
+| `type` | TEXT | 必填 | 练习类型：`listening` / `speaking` / `reading` / `writing` |
 | `practiceCount` | INTEGER | 默认 0 | 练习次数（展示缓存） |
 | `correctCount` | INTEGER | 默认 0 | 正确次数（展示缓存） |
 | `lastPractice` | TIMESTAMP | 可空 | 最近一次练习时间 |
@@ -176,9 +200,31 @@ Prisma 模型名与真实表名不一致时，以表名为准。
 | `lastReview` | TIMESTAMP | 可空 | 最近一次复习时间 |
 | `retrievability` | DOUBLE | 默认 0 | 当前可提取概率 |
 | `recentLapse` | BOOLEAN | 默认 `false` | 最近是否刚遗忘 |
+| `needsReconfirm` | BOOLEAN | 默认 `false` | 跨书核对未通过：仍算练过，但掌握度按待复习处理 |
+| `learningSteps` | INTEGER | 默认 0 | FSRS 学习步进 |
+| `scheduledDays` | INTEGER | 默认 0 | FSRS 计划间隔天数 |
 
 唯一约束：`(learnerId, wordId, type)`。  
 索引：`(learnerId, type, due)`。
+
+### `book_word_checks`
+
+每本书、每个词、每种技能的跨书核对结果。通过后这本书不再把该词当作待确认。
+
+| 字段 | 类型 | 约束 | 含义 |
+| --- | --- | --- | --- |
+| `id` | TEXT | 主键，UUID | 核对 ID |
+| `learnerId` | TEXT | 外键 → `Learner.id`，级联删除 | 学习者 |
+| `bookId` | TEXT | 外键 → `Book.id`，级联删除 | 词书 |
+| `wordId` | TEXT | 外键 → `Vocabulary.id`，级联删除 | 单词 |
+| `type` | TEXT | 必填 | 技能类型，与 `VocabularyStat.type` 一致 |
+| `passed` | BOOLEAN | 默认 `false` | 是否通过核对 |
+| `failStreak` | INTEGER | 默认 0 | 连续失败次数 |
+| `checkedAt` | TIMESTAMP | 默认 now | 最近核对时间 |
+| `createdAt` | TIMESTAMP | 默认 now | 创建时间 |
+
+唯一约束：`(learnerId, bookId, wordId, type)`。  
+索引：`(learnerId, bookId, type)`。
 
 ### `TrainingRecord`
 
@@ -189,7 +235,7 @@ Prisma 模型名与真实表名不一致时，以表名为准。
 | `id` | TEXT | 主键，UUID | 记录 ID |
 | `learnerId` | TEXT | 外键 → `Learner.id`，级联删除 | 学习者 |
 | `wordId` | TEXT | 外键 → `Vocabulary.id` | 单词 |
-| `type` | TEXT | 必填 | 练习类型，与 `VocabularyStat.type` 对应 |
+| `type` | TEXT | 必填 | 练习类型，与 `VocabularyStat.type` 一致（`listening` / `speaking` / `reading` / `writing`） |
 | `isCorrect` | BOOLEAN | 必填 | 本次是否正确 |
 | `createdAt` | TIMESTAMP | 默认 now | 作答时间 |
 
@@ -431,13 +477,171 @@ Prisma 模型名与真实表名不一致时，以表名为准。
 
 ---
 
+## 拼读 / 键盘练习
+
+键盘练习的复习状态独立于英语四技能，不写入 `VocabularyStat.writing`。跟写、听写、自测、默写分别记在 `typing_mode_stats`；短文句子记在 `article_sentence_cards`。
+
+### `learner_word_marks`
+
+学习者对单词的收藏、跳过已掌握和错词本标记。
+
+| 字段 | 类型 | 约束 | 含义 |
+| --- | --- | --- | --- |
+| `learnerId` | TEXT | 联合主键，外键 → `Learner.id`，级联删除 | 学习者 |
+| `wordId` | TEXT | 联合主键，外键 → `Vocabulary.id`，级联删除 | 单词 |
+| `favorite` | BOOLEAN | 默认 `false` | 是否收藏 |
+| `skipMastered` | BOOLEAN | 默认 `false` | 是否主动标记已掌握并跳过 |
+| `inWrongBook` | BOOLEAN | 默认 `false` | 是否在错词本 |
+| `wrongSource` | TEXT | 默认空 | 错误来源：`word` 单词本身 / `sentence` 短文句子 |
+| `wrongStreak` | INTEGER | 默认 0 | 错词本连续答对次数，达到阈值自动移出 |
+| `updatedAt` | TIMESTAMP | 自动更新 | 更新时间 |
+
+主键：`(learnerId, wordId)`。  
+索引：`(learnerId, inWrongBook)`、`(learnerId, favorite)`。
+
+### `practice_lists`
+
+学习者自建的练习词表。
+
+| 字段 | 类型 | 约束 | 含义 |
+| --- | --- | --- | --- |
+| `id` | TEXT | 主键，UUID | 词表 ID |
+| `learnerId` | TEXT | 外键 → `Learner.id`，级联删除 | 学习者 |
+| `name` | TEXT | 必填 | 词表名称 |
+| `source` | TEXT | 必填 | 来源标记 |
+| `createdAt` | TIMESTAMP | 默认 now | 创建时间 |
+| `updatedAt` | TIMESTAMP | 自动更新 | 更新时间 |
+
+索引：`learnerId`。
+
+### `practice_list_items`
+
+词表里的每一条。词书里没有的拼写会先写成学习者自建词条，再挂到这里。
+
+| 字段 | 类型 | 约束 | 含义 |
+| --- | --- | --- | --- |
+| `id` | TEXT | 主键，UUID | 条目 ID |
+| `listId` | TEXT | 外键 → `practice_lists.id`，级联删除 | 所属词表 |
+| `position` | INTEGER | 必填 | 词表内顺序 |
+| `spelling` | TEXT | 必填 | 拼写 |
+| `gloss` | TEXT | 默认空 | 释义 |
+| `wordId` | TEXT | 外键 → `Vocabulary.id`，级联删除 | 对应词条 |
+| `synonyms` | TEXT | 默认空 | 同义词 |
+| `roots` | TEXT | 默认空 | 词根 |
+| `etymology` | TEXT | 默认空 | 词源 |
+| `phrases` | TEXT | 默认空 | 短语 |
+| `phoneticUk` | TEXT | 默认空 | 英音音标 |
+| `phoneticUs` | TEXT | 默认空 | 美音音标 |
+
+唯一约束：`(listId, spelling)`。  
+索引：`(listId, position)`。
+
+### `practice_articles`
+
+用户录入的短文，用于句子级拼读练习。
+
+| 字段 | 类型 | 约束 | 含义 |
+| --- | --- | --- | --- |
+| `id` | TEXT | 主键，UUID | 短文 ID |
+| `learnerId` | TEXT | 外键 → `Learner.id`，级联删除 | 学习者 |
+| `title` | TEXT | 必填 | 标题 |
+| `body` | TEXT | 必填 | 正文 |
+| `translation` | TEXT | 默认空 | 译文 |
+| `createdAt` | TIMESTAMP | 默认 now | 创建时间 |
+| `updatedAt` | TIMESTAMP | 自动更新 | 更新时间 |
+
+索引：`learnerId`。
+
+### `article_sentence_cards`
+
+短文句子的 FSRS 卡片。`articleKey` 为 `user:<文章 id>` 或 `builtin:<示例 id>`。
+
+| 字段 | 类型 | 约束 | 含义 |
+| --- | --- | --- | --- |
+| `learnerId` | TEXT | 联合主键，外键 → `Learner.id`，级联删除 | 学习者 |
+| `articleKey` | TEXT | 联合主键 | 文章键 |
+| `sentenceIndex` | INTEGER | 联合主键 | 句子序号 |
+| `text` | TEXT | 必填 | 句子原文 |
+| `translation` | TEXT | 默认空 | 译文 |
+| `practiceCount` | INTEGER | 默认 0 | 练习次数（展示缓存） |
+| `correctCount` | INTEGER | 默认 0 | 正确次数（展示缓存） |
+| `lastPractice` | TIMESTAMP | 可空 | 最近练习时间 |
+| `mastery` | INTEGER | 默认 0 | 掌握度（展示缓存） |
+| `due` | TIMESTAMP | 可空 | 下次复习时间 |
+| `stability` | DOUBLE | 默认 0 | FSRS 稳定度 |
+| `difficulty` | DOUBLE | 默认 0 | FSRS 难度 |
+| `reps` | INTEGER | 默认 0 | 成功复习次数 |
+| `lapses` | INTEGER | 默认 0 | 遗忘次数 |
+| `fsrsState` | TEXT | 默认 `New` | FSRS 状态 |
+| `lastReview` | TIMESTAMP | 可空 | 最近复习时间 |
+| `retrievability` | DOUBLE | 默认 0 | 当前可提取概率 |
+| `recentLapse` | BOOLEAN | 默认 `false` | 最近是否刚遗忘 |
+| `learningSteps` | INTEGER | 默认 0 | FSRS 学习步进 |
+| `scheduledDays` | INTEGER | 默认 0 | FSRS 计划间隔天数 |
+
+主键：`(learnerId, articleKey, sentenceIndex)`。  
+索引：`(learnerId, due)`。
+
+### `typing_mode_stats`
+
+键盘练习按方式分开记复习。跟写、听写、自测、默写不共用 `writing` 卡片。
+
+| 字段 | 类型 | 约束 | 含义 |
+| --- | --- | --- | --- |
+| `id` | TEXT | 主键，UUID | 状态 ID |
+| `learnerId` | TEXT | 外键 → `Learner.id`，级联删除 | 学习者 |
+| `wordId` | TEXT | 外键 → `Vocabulary.id`，级联删除 | 单词 |
+| `mode` | TEXT | 必填 | `follow` / `dictation` / `self` / `recall` |
+| `practiceCount` | INTEGER | 默认 0 | 练习次数（展示缓存） |
+| `correctCount` | INTEGER | 默认 0 | 正确次数（展示缓存） |
+| `lastPractice` | TIMESTAMP | 可空 | 最近练习时间 |
+| `mastery` | INTEGER | 默认 0 | 掌握度（展示缓存） |
+| `due` | TIMESTAMP | 可空 | 下次复习时间 |
+| `stability` | DOUBLE | 默认 0 | FSRS 稳定度 |
+| `difficulty` | DOUBLE | 默认 0 | FSRS 难度 |
+| `reps` | INTEGER | 默认 0 | 成功复习次数 |
+| `lapses` | INTEGER | 默认 0 | 遗忘次数 |
+| `fsrsState` | TEXT | 默认 `New` | FSRS 状态 |
+| `lastReview` | TIMESTAMP | 可空 | 最近复习时间 |
+| `retrievability` | DOUBLE | 默认 0 | 当前可提取概率 |
+| `recentLapse` | BOOLEAN | 默认 `false` | 最近是否刚遗忘 |
+| `learningSteps` | INTEGER | 默认 0 | FSRS 学习步进 |
+| `scheduledDays` | INTEGER | 默认 0 | FSRS 计划间隔天数 |
+
+唯一约束：`(learnerId, wordId, mode)`。  
+索引：`(learnerId, mode, due)`。
+
+### `typing_session_logs`
+
+一组键盘练习的用时和字数，只属于当前学习者。速度图和练习热力图读这张表。
+
+| 字段 | 类型 | 约束 | 含义 |
+| --- | --- | --- | --- |
+| `id` | TEXT | 主键，UUID | 会话 ID |
+| `learnerId` | TEXT | 外键 → `Learner.id`，级联删除 | 学习者 |
+| `date` | TEXT | 必填 | 日期，通常为 `YYYY-MM-DD` |
+| `durationMs` | INTEGER | 必填 | 练习时长（毫秒） |
+| `typedChars` | INTEGER | 必填 | 输入字符数 |
+| `correctChars` | INTEGER | 必填 | 正确字符数 |
+| `itemCount` | INTEGER | 必填 | 题目数 |
+| `correctCount` | INTEGER | 必填 | 正确题数 |
+| `kind` | TEXT | 必填 | 练习类型 |
+| `createdAt` | TIMESTAMP | 默认 now | 创建时间 |
+
+索引：`(learnerId, date)`。
+
+---
+
 ## 主要关系
 
 ```text
 User
  ├─ Learner（accountId）
- │    ├─ BookStudyProgress / VocabularyStat / TrainingRecord / DailyStudyLog
+ │    ├─ BookStudyProgress / VocabularyStat / TrainingRecord / DailyStudyLog / book_word_checks
  │    ├─ ChatRecord / SpeechUsageLog
+ │    ├─ learner_word_marks / practice_lists → practice_list_items
+ │    ├─ practice_articles / article_sentence_cards
+ │    ├─ typing_mode_stats / typing_session_logs
  │    └─ chinese_courses
  │         ├─ chinese_course_items → chinese_published
  │         ├─ chinese_review_states → chinese_published
@@ -447,6 +651,7 @@ User
  └─ chinese_resources / chinese_published.createdBy
 
 Book ← BookVocabulary → Vocabulary
+Learner ← Vocabulary.ownerLearnerId（自建词条）
 
 chinese_entries ← chinese_entry_grades
 chinese_entries ← chinese_entry_levels
@@ -459,3 +664,5 @@ chinese_resources ← chinese_published
 - 用户数 / DAU / 留存只统计 `User` 和 `account_daily_actives`，不要把 `Learner` 算进去。
 - 语文发布包同步时按 `pointKey` 更新 `chinese_published`，按 `entryKey` 更新 `chinese_entries`。
 - 成语词条的拼音、释义以 `server/data/chinese/raw/idioms/` 下的分卷 JSON 为准，数据库只存发布后的题卡。
+- 键盘拼读的复习状态写 `typing_mode_stats` / `article_sentence_cards`，不要写 `VocabularyStat.writing`。
+- 词书里没有的拼写用 `Vocabulary.ownerLearnerId` 标记为自建词条，不要为同一拼写新增第二行。
