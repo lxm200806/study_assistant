@@ -35,7 +35,7 @@
         "@dcloudio/uni-stacktracey": "3.0.0-4020420240722001",
         "@dcloudio/vite-plugin-uni": "3.0.0-4020420240722001",
         "@playwright/test": "^1.65.1",
-        "@types/node": "^20.11.0",
+        "@types/node": "^26.6.6",
         "@typescript-eslint/eslint-plugin": "^7.18.0",
         "@typescript-eslint/parser": "^7.18.0",
         "@vitejs/plugin-vue": "^5.2.4",
