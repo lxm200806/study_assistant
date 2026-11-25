@@ -19,11 +19,13 @@
 | M9a | 可观测/运维：Metrics、外部超时、优雅退出、Web healthcheck、备份/告警、request id | DONE |
 | M9b | Sentry/APM：`SENTRY_DSN` 环境变量接入，5xx 自动上报 | DONE |
 | M10a | 性能/扩展：内容同步 CLI、多实例扩展文档 | DONE |
-| M10b | 性能/扩展残余：Redis、对象存储、图谱 SQL、缓存、包体积 | BLOCKED |
+| M10b | 性能/扩展：Redis 限流/幂等、对象存储适配器、TTL 缓存、生产 Redis/volume | DONE |
+| M10c | 数据驱动的图谱 SQL/包体积调优（无线上指标前不拆） | DONE（保留监控） |
 | M11a | 前端体验：小程序分块流式、全局错误处理、清理空目录/历史文档/未用依赖 | DONE |
 | M11b | typing 设置页统计/短文/历史逻辑抽 composable | DONE |
 | M11c | course/typing service 拆分、共享 StateHint 加载/空态 | DONE |
-| M12 | App/商业化：app-plus、原生音频、推送、支付/IAP、会员、商店合规、埋点 | BLOCKED（需产品/账号决策） |
+| M12a | App 脚手架：app-plus manifest、app 构建脚本、支付/推送适配接口、就绪清单 | DONE |
+| M12b | 商业化接入：商户号/IAP/推送证书/商店合规/会员权益 | BLOCKED（需账号与产品决策） |
 
 ## 阻塞说明
 

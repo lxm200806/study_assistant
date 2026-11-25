@@ -14,6 +14,8 @@
         "test:e2e": "playwright test",
         "gen:api": "npm --prefix server run openapi:export && openapi-typescript server/openapi.json -o src/types/api-generated.ts",
         "build:mp-weixin": "node scripts/run-uni.mjs build -p mp-weixin",
+        "dev:app": "node scripts/run-uni.mjs -p app",
+        "build:app": "node scripts/run-uni.mjs build -p app",
         "build:h5": "node scripts/run-uni.mjs build",
         "fix:native": "bash scripts/fix-native-deps.sh",
         "dev:mp-weixin": "node scripts/run-uni.mjs -p mp-weixin"
@@ -28,6 +30,7 @@
     },
     "devDependencies": {
         "@dcloudio/types": "^3.4.8",
+        "@dcloudio/uni-app-plus": "^3.0.0-4020420240722001",
         "@dcloudio/uni-cli-shared": "3.0.0-4020420240722001",
         "@dcloudio/uni-stacktracey": "3.0.0-4020420240722001",
         "@dcloudio/vite-plugin-uni": "3.0.0-4020420240722001",

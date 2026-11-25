@@ -17,6 +17,12 @@ const env = {
   NODE_OPTIONS: `${existing}--require "${patchPath}"`
 }
 
+const platformIndex = process.argv.indexOf('-p')
+if (process.argv[platformIndex + 1] === 'app') {
+  // App 构建默认 iife，和页面分包冲突；开启 amd 代码分割。
+  env.UNI_APP_CODE_SPLITING = env.UNI_APP_CODE_SPLITING || 'true'
+}
+
 const child = spawn(process.execPath, [UNI_BIN, ...process.argv.slice(2)], {
   cwd: ROOT,
   stdio: 'inherit',
