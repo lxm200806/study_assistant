@@ -18,13 +18,25 @@
         <text class="label">词从哪来</text>
         <view class="chips">
           <view
-            v-for="item in sources"
-            :key="item.key"
-            :class="['chip', source === item.key ? 'on' : '']"
-            @tap="source = item.key"
-          >{{ item.label }}</view>
+            :class="['chip', source === 'smart' ? 'on' : '']"
+            @tap="pickSource('smart')"
+          >智能</view>
+          <template v-if="moreSources">
+            <view
+              v-for="item in extraSources"
+              :key="item.key"
+              :class="['chip', source === item.key ? 'on' : '']"
+              @tap="pickSource(item.key)"
+            >{{ sourceLabel(item) }}</view>
+            <view class="chip" @tap="moreSources = false">收起</view>
+          </template>
+          <view v-else class="chip" @tap="moreSources = true">更多来源</view>
         </view>
-        <text class="hint">点开始即可。先跟写再自测，把这一组学完；再默写或听写检测，可关掉其中一种。只有检测计入会写。智能先练错词和到期词。</text>
+        <view v-if="source === 'wrong' || source === 'favorite'" class="chips scope-chips">
+          <view :class="['chip', !allBooks ? 'on' : '']" @tap="allBooks = false">本书</view>
+          <view :class="['chip', allBooks ? 'on' : '']" @tap="allBooks = true">全部词书</view>
+        </view>
+        <text class="hint">点开始即可。先跟写再自测，把这一组学完；再默写或听写检测，可关掉其中一种。只有检测计入会写。智能以到期和薄弱词为主，新词不超过三成。</text>
 
         <text class="label">这一组</text>
         <view class="chips">
@@ -230,6 +242,13 @@
         <text v-if="showPhonetic && phoneticLine" class="phonetic">{{ phoneticLine }}</text>
         <text v-if="showMeaningLine && !(isH5 && wordMode === 'recall' && !typingShowResult)" class="meaning-line">{{ meaningLine }}</text>
         <text v-if="firstLetter && !isH5" class="phonetic">首字母 {{ firstLetter }}</text>
+        <view v-if="lane === 'words' && currentWord" class="word-flags">
+          <text v-if="isDueWord(currentWord.due)" class="flag due">到期</text>
+          <text v-if="!currentWord.practiced" class="flag fresh">新词</text>
+          <text v-if="currentWord.recentLapse" class="flag lapse">最近答错</text>
+          <text v-if="currentWord.inWrongBook" class="flag wrong">错词本</text>
+          <text v-if="currentWord.favorite" class="flag favorite">收藏</text>
+        </view>
         <text v-if="currentWord?.wrongSource === 'sentence'" class="hint">这个词来自一句没写对的短文。</text>
       </view>
 
@@ -359,12 +378,14 @@ import {
   loadKeySound,
   loadShortcuts,
   loadTtsGender,
+  loadTypingSource,
   saveAutoExample,
   saveAutoSpeak,
   saveEnabledWordModes,
   saveKeySound,
   saveShortcuts,
   saveTtsGender,
+  saveTypingSource,
   type PersistedWordMode,
   type ShortcutAction,
   type TtsGender
@@ -384,6 +405,9 @@ interface TypingWord {
   favorite: boolean
   skipMastered: boolean
   inWrongBook: boolean
+  due?: string | null
+  practiced?: boolean
+  recentLapse?: boolean
   phoneticUk?: string
   phoneticUs?: string
   synonyms?: string
@@ -474,7 +498,14 @@ const wordPhase = ref<WordPhase>('learn')
 const enabledExamModes = ref<ExamMode[]>(loadExamModes())
 const wordMode = ref<WordMode>('follow')
 const articleMode = ref<ArticleMode>('follow')
-const source = ref<Source>('smart')
+const savedSource = loadTypingSource()
+const source = ref<Source>(
+  (['smart', 'wrong', 'favorite', 'random'] as Source[]).includes(savedSource as Source)
+    ? savedSource as Source
+    : 'smart'
+)
+const moreSources = ref(source.value !== 'smart')
+const allBooks = ref(false)
 const groupSize = ref(20)
 const counts = [5, 10, 15, 20, 30, 40, 50]
 const learnModes: Array<{ key: WordMode; label: string }> = [
@@ -489,12 +520,31 @@ const wordModes: Array<{ key: WordMode; label: string }> = [
   ...learnModes,
   ...examModeOptions
 ]
-const sources: Array<{ key: Source; label: string }> = [
-  { key: 'smart', label: '智能' },
+const extraSources: Array<{ key: Source; label: string }> = [
   { key: 'wrong', label: '错词' },
   { key: 'favorite', label: '收藏' },
   { key: 'random', label: '随机' }
 ]
+
+function pickSource(key: Source) {
+  source.value = key
+  saveTypingSource(key)
+  if (key !== 'wrong' && key !== 'favorite') allBooks.value = false
+}
+
+function sourceLabel(item: { key: Source; label: string }) {
+  if (!summary.value) return item.label
+  if (allBooks.value && (item.key === 'wrong' || item.key === 'favorite')) return item.label
+  if (item.key === 'wrong') return `${item.label} ${summary.value.wrong}`
+  if (item.key === 'favorite') return `${item.label} ${summary.value.favorite}`
+  return item.label
+}
+
+function isDueWord(value?: string | null) {
+  if (!value) return false
+  const time = new Date(value).getTime()
+  return Number.isFinite(time) && time <= Date.now()
+}
 
 const summary = ref<Summary | null>(null)
 const articles = ref<ArticleRow[]>([])
@@ -1057,7 +1107,8 @@ async function startWords() {
       bookCode: vocabStore.currentBookCode,
       source: source.value,
       count: groupSize.value,
-      mode: wordMode.value
+      mode: wordMode.value,
+      allBooks: allBooks.value
     })
     const data = result.data as { words: TypingWord[]; scopedToBook: boolean; missing?: string[]; rejected?: RejectedToken[] }
     words.value = data?.words || []
@@ -1581,6 +1632,10 @@ onUnmounted(() => {
   gap: 8px;
 }
 
+.scope-chips {
+  margin-top: -4px;
+}
+
 .practice-rail {
   display: flex;
   flex-wrap: nowrap;
@@ -1847,6 +1902,39 @@ onUnmounted(() => {
 .prompt-h5 .hint {
   width: 100%;
   text-align: center;
+}
+
+.prompt-h5 .word-flags {
+  justify-content: center;
+}
+
+.word-flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.flag {
+  padding: 2px 9px;
+  border: 1px solid var(--pc-border-strong);
+  border-radius: 999px;
+  color: var(--pc-text-3);
+  font-size: 12px;
+}
+
+.flag.due,
+.flag.favorite {
+  border-color: var(--pc-accent);
+  background: var(--pc-accent-soft);
+  color: var(--pc-accent);
+}
+
+.flag.lapse,
+.flag.wrong {
+  border-color: var(--pc-danger);
+  background: var(--pc-danger-soft);
+  color: var(--pc-danger);
 }
 
 .big-word, .live-line {

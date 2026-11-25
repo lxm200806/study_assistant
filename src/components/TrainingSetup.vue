@@ -122,9 +122,9 @@ const vocabStore = useVocabularyStore()
 
 const sessionModes = [
   { key: 'coverage' as SessionMode, label: SESSION_MODE_LABELS.coverage, desc: '优先练未覆盖的词' },
-  { key: 'review' as SessionMode, label: SESSION_MODE_LABELS.review, desc: '优先练到期复习词' },
-  { key: 'weak' as SessionMode, label: SESSION_MODE_LABELS.weak, desc: '优先练薄弱词汇' },
-  { key: 'smart' as SessionMode, label: SESSION_MODE_LABELS.smart, desc: '综合到期、薄弱与进度推荐' }
+  { key: 'review' as SessionMode, label: SESSION_MODE_LABELS.review, desc: '到期词优先，不足时补薄弱词' },
+  { key: 'weak' as SessionMode, label: SESSION_MODE_LABELS.weak, desc: '先练学过的薄弱词，没有时才补新词' },
+  { key: 'smart' as SessionMode, label: SESSION_MODE_LABELS.smart, desc: '到期、薄弱、新词按比例混合' }
 ]
 
 const setWordsPerGroup = (num: number) => {

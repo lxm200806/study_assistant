@@ -5,6 +5,7 @@ import { type ChatMode } from './chat.service'
 import { buildSystemPrompt, getLearnerChatContext } from './chat-learner-context.service'
 import { sanitizeFreeChatReply } from './chat-reply-sanitize.service'
 import { getBillingUser } from './billing-user'
+import { startOfToday } from '../utils/date-key'
 
 const HISTORY_LIMIT = 20
 export const FREE_DAILY_CHAT = 5
@@ -14,8 +15,7 @@ export async function assertChatQuota(userId: string): Promise<void> {
   const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
   if (isPremium) return
 
-  const todayStart = new Date()
-  todayStart.setHours(0, 0, 0, 0)
+  const todayStart = startOfToday()
   const todayCount = await prisma.chatRecord.count({
     where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
   })

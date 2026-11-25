@@ -101,8 +101,8 @@ export interface VocabularyMapData {
 export const SESSION_MODE_LABELS: Record<SessionMode, string> = {
   coverage: '全书覆盖',
   smart: '智能推荐',
-  weak: '薄弱强化',
-  review: '到期复习',
+  weak: '薄弱优先',
+  review: '到期优先',
   unit: '单元顺序'
 }
 

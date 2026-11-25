@@ -22,6 +22,8 @@ export function cardInputFrom(row: {
   lastPractice: Date | null
   retrievability: number
   recentLapse: boolean
+  learningSteps: number
+  scheduledDays: number
 }): VocabularyStatInput {
   return {
     practiceCount: row.practiceCount,
@@ -35,6 +37,8 @@ export function cardInputFrom(row: {
     lastReview: row.lastReview,
     lastPractice: row.lastPractice,
     retrievability: row.retrievability,
-    recentLapse: row.recentLapse
+    recentLapse: row.recentLapse,
+    learningSteps: row.learningSteps,
+    scheduledDays: row.scheduledDays
   }
 }

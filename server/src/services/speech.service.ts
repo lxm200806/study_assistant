@@ -2,6 +2,7 @@ import prisma from '../prisma/client'
 import { isXfyunAsrConfigured } from './llm-config.service'
 import { transcribeWithXfyun, type XfyunAudioEncoding } from './asr-xfyun.service'
 import { getBillingUser } from './billing-user'
+import { startOfToday } from '../utils/date-key'
 
 const FREE_DAILY_SPEECH = 10
 
@@ -113,8 +114,7 @@ async function isPremiumUser(userId: string): Promise<boolean> {
 async function checkSpeechQuota(userId: string): Promise<void> {
   if (await isPremiumUser(userId)) return
 
-  const todayStart = new Date()
-  todayStart.setHours(0, 0, 0, 0)
+  const todayStart = startOfToday()
   const count = await prisma.speechUsageLog.count({
     where: { learnerId: userId, createdAt: { gte: todayStart } }
   })

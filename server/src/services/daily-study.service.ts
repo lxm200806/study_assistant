@@ -1,11 +1,8 @@
 import prisma from '../prisma/client'
-
-function dateKey(d = new Date()): string {
-  return d.toISOString().slice(0, 10)
-}
+import { addDaysToKey, todayKey } from '../utils/date-key'
 
 export async function recordDailyStudy(userId: string, wordCount: number) {
-  const today = dateKey()
+  const today = todayKey()
   const existing = await prisma.dailyStudyLog.findUnique({
     where: { learnerId_date: { learnerId: userId, date: today } }
   })
@@ -17,7 +14,7 @@ export async function recordDailyStudy(userId: string, wordCount: number) {
     })
   }
 
-  const yesterday = dateKey(new Date(Date.now() - 86400000))
+  const yesterday = addDaysToKey(today, -1)
   const prev = await prisma.dailyStudyLog.findUnique({
     where: { learnerId_date: { learnerId: userId, date: yesterday } }
   })
@@ -30,7 +27,7 @@ export async function recordDailyStudy(userId: string, wordCount: number) {
 }
 
 export async function getDailyStats(userId: string) {
-  const today = dateKey()
+  const today = todayKey()
   const todayLog = await prisma.dailyStudyLog.findUnique({
     where: { learnerId_date: { learnerId: userId, date: today } }
   })
@@ -55,19 +52,17 @@ async function computeStreak(userId: string): Promise<number> {
     take: 60
   })
   let streak = 0
-  let expect = dateKey()
+  let expect = todayKey()
   for (const log of logs) {
     if (log.date !== expect || log.wordCount <= 0) break
     streak++
-    const d = new Date(expect)
-    d.setDate(d.getDate() - 1)
-    expect = dateKey(d)
+    expect = addDaysToKey(expect, -1)
   }
   return streak
 }
 
 export async function getWeeklyReport(userId: string) {
-  const since = dateKey(new Date(Date.now() - 7 * 86400000))
+  const since = addDaysToKey(todayKey(), -7)
   const logs = await prisma.dailyStudyLog.findMany({
     where: { learnerId: userId, date: { gte: since } },
     orderBy: { date: 'asc' }

@@ -38,6 +38,8 @@ export interface FsrsStatFields {
   lastPractice: Date | null
   retrievability: number
   recentLapse: boolean
+  learningSteps: number
+  scheduledDays: number
 }
 
 export interface VocabularyStatInput {
@@ -53,6 +55,8 @@ export interface VocabularyStatInput {
   lastPractice?: Date | null
   retrievability?: number
   recentLapse?: boolean
+  learningSteps?: number
+  scheduledDays?: number
 }
 
 const STATE_NAMES: Record<State, FsrsStateName> = {
@@ -78,7 +82,12 @@ export function nameToState(name: string): State {
 }
 
 export function statToCard(stat: VocabularyStatInput, now: Date = new Date()): Card {
-  if (!stat.practiceCount || stat.practiceCount === 0) {
+  const blank =
+    (!stat.practiceCount || stat.practiceCount === 0) &&
+    !stat.reps &&
+    !stat.stability &&
+    !stat.difficulty
+  if (blank) {
     return createEmptyCard(now)
   }
 
@@ -86,9 +95,11 @@ export function statToCard(stat: VocabularyStatInput, now: Date = new Date()): C
     due: stat.due ?? now,
     stability: stat.stability ?? 0,
     difficulty: stat.difficulty ?? 0,
-    elapsed_days: 0,
-    scheduled_days: 0,
-    learning_steps: 0,
+    elapsed_days: stat.lastReview
+      ? Math.max(0, Math.floor((now.getTime() - stat.lastReview.getTime()) / 86400000))
+      : 0,
+    scheduled_days: stat.scheduledDays ?? 0,
+    learning_steps: stat.learningSteps ?? 0,
     reps: stat.reps ?? 0,
     lapses: stat.lapses ?? 0,
     state: nameToState(stat.fsrsState ?? 'New'),
@@ -98,7 +109,16 @@ export function statToCard(stat: VocabularyStatInput, now: Date = new Date()): C
 
 export function cardToStatFields(card: Card, now: Date = new Date()): Pick<
   FsrsStatFields,
-  'due' | 'stability' | 'difficulty' | 'reps' | 'lapses' | 'fsrsState' | 'lastReview' | 'retrievability'
+  | 'due'
+  | 'stability'
+  | 'difficulty'
+  | 'reps'
+  | 'lapses'
+  | 'fsrsState'
+  | 'lastReview'
+  | 'retrievability'
+  | 'learningSteps'
+  | 'scheduledDays'
 > {
   const retrievability = computeRetrievability(card, now)
   return {
@@ -109,7 +129,9 @@ export function cardToStatFields(card: Card, now: Date = new Date()): Pick<
     lapses: card.lapses,
     fsrsState: stateToName(card.state),
     lastReview: card.last_review ?? now,
-    retrievability
+    retrievability,
+    learningSteps: card.learning_steps,
+    scheduledDays: card.scheduled_days
   }
 }
 
@@ -226,7 +248,9 @@ export function buildFsrsFieldsFromStat(
     lastReview: stat.lastReview ?? card.last_review ?? null,
     lastPractice: stat.lastPractice ?? null,
     retrievability,
-    recentLapse: stat.recentLapse ?? false
+    recentLapse: stat.recentLapse ?? false,
+    learningSteps: stat.learningSteps ?? 0,
+    scheduledDays: stat.scheduledDays ?? 0
   }
 }
 

@@ -6,6 +6,7 @@ import {
   articleKeyFor,
   liveMarks,
   mergeLexical,
+  nextWrongBookState,
   parseListDocument,
   parseWordTokens,
   partitionKnownSpellings,
@@ -48,9 +49,11 @@ describe('typing queue', () => {
     expect(pickQueueIds(candidates, 'smart', 10)).toEqual(['lapse', 'due', 'new', 'star', 'later', 'wrong'])
   })
 
-  it('keeps mastered words available in the wrong-word and favorite sources', () => {
-    expect(pickQueueIds(candidates, 'wrong', 10)).toEqual(['skip', 'wrong'])
-    expect(pickQueueIds(candidates, 'favorite', 10)).toEqual(['skip', 'star'])
+  it('skips mastered words in the wrong-word and favorite sources by default', () => {
+    expect(pickQueueIds(candidates, 'wrong', 10)).toEqual(['wrong'])
+    expect(pickQueueIds(candidates, 'favorite', 10)).toEqual(['star'])
+    expect(pickQueueIds(candidates, 'wrong', 10, { includeMastered: true })).toEqual(['skip', 'wrong'])
+    expect(pickQueueIds(candidates, 'favorite', 10, { includeMastered: true })).toEqual(['skip', 'star'])
   })
 
   it('follows imported list order and drops mastered spellings', () => {
@@ -66,6 +69,29 @@ describe('typing queue', () => {
 })
 
 describe('typing text', () => {
+  it('graduates a wrong-book word after three consecutive correct answers', () => {
+    expect(nextWrongBookState({ inWrongBook: false, wrongStreak: 0 }, false)).toEqual({
+      inWrongBook: true,
+      wrongStreak: 0,
+      graduated: false
+    })
+
+    let state = { inWrongBook: true, wrongStreak: 0 }
+    state = nextWrongBookState(state, true)
+    expect(state).toEqual({ inWrongBook: true, wrongStreak: 1, graduated: false })
+    state = nextWrongBookState(state, true)
+    expect(state).toEqual({ inWrongBook: true, wrongStreak: 2, graduated: false })
+    expect(nextWrongBookState(state, true)).toEqual({ inWrongBook: false, wrongStreak: 0, graduated: true })
+  })
+
+  it('resets the streak when a wrong-book word is answered incorrectly again', () => {
+    expect(nextWrongBookState({ inWrongBook: true, wrongStreak: 2 }, false)).toEqual({
+      inWrongBook: true,
+      wrongStreak: 0,
+      graduated: false
+    })
+  })
+
   it('parses a pasted word list once per spelling', () => {
     expect(parseWordTokens('Apple, apple; mother-in-law\ndon’t 123')).toEqual([
       'apple',

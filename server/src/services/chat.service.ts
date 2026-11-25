@@ -8,6 +8,7 @@ import { buildFallbackResponse, loadRecentChatHistory } from './chat-context.ser
 import { buildSystemPrompt, getLearnerChatContext } from './chat-learner-context.service'
 import { sanitizeFreeChatReply } from './chat-reply-sanitize.service'
 import { getBillingUser } from './billing-user'
+import { startOfToday } from '../utils/date-key'
 
 const FREE_DAILY_CHAT = 5
 
@@ -31,8 +32,7 @@ export async function sendChatMessage(
   const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
 
   if (!isPremium) {
-    const todayStart = new Date()
-    todayStart.setHours(0, 0, 0, 0)
+    const todayStart = startOfToday()
     const todayCount = await prisma.chatRecord.count({
       where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
     })
@@ -59,8 +59,7 @@ export async function sendChatMessage(
 
   let remainingFree: number | undefined
   if (!isPremium) {
-    const todayStart = new Date()
-    todayStart.setHours(0, 0, 0, 0)
+    const todayStart = startOfToday()
     const todayCount = await prisma.chatRecord.count({
       where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
     })
@@ -99,8 +98,7 @@ export async function getChatRemaining(userId: string): Promise<{ remaining: num
   const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
   if (isPremium) return { remaining: -1, isPremium: true }
 
-  const todayStart = new Date()
-  todayStart.setHours(0, 0, 0, 0)
+  const todayStart = startOfToday()
   const todayCount = await prisma.chatRecord.count({
     where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
   })

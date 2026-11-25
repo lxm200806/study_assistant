@@ -1,3 +1,5 @@
+import { todayKey } from '../utils/date-key'
+
 const MIN_EASE = 1.3
 const FIRST_INTERVAL = 1
 const SECOND_INTERVAL = 6
@@ -29,10 +31,7 @@ export function formatDay(value: Date | string | null | undefined): string {
 }
 
 export function todayText(now: Date = new Date()): string {
-  const year = now.getFullYear()
-  const month = String(now.getMonth() + 1).padStart(2, '0')
-  const day = String(now.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}`
+  return todayKey(now)
 }
 
 export function addDays(dayText: string, dayCount: number): string {

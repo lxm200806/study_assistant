@@ -422,11 +422,21 @@ export const statsAPI = {
 export const typingAPI = {
   summary: (bookCode: string, mode = 'follow') =>
     request(`/typing/summary?bookCode=${encodeURIComponent(bookCode)}&mode=${encodeURIComponent(mode)}`, 'GET'),
-  queue: (options: { bookCode?: string; source: string; count: number; listId?: string; mode?: string }) => {
+  queue: (options: {
+    bookCode?: string
+    source: string
+    count: number
+    listId?: string
+    mode?: string
+    includeMastered?: boolean
+    allBooks?: boolean
+  }) => {
     const params = new URLSearchParams({ source: options.source, count: String(options.count) })
     if (options.bookCode) params.set('bookCode', options.bookCode)
     if (options.listId) params.set('listId', options.listId)
     if (options.mode) params.set('mode', options.mode)
+    if (options.includeMastered) params.set('includeMastered', '1')
+    if (options.allBooks) params.set('allBooks', '1')
     return request(`/typing/queue?${params.toString()}`, 'GET')
   },
   answer: (wordId: string, isCorrect: boolean, mode = 'follow') =>

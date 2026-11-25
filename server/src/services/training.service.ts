@@ -73,7 +73,9 @@ export async function practice(userId: string, dto: PracticeDto): Promise<Practi
           fsrsState: fields.fsrsState,
           lastReview: fields.lastReview,
           retrievability: fields.retrievability,
-          recentLapse: fields.recentLapse
+          recentLapse: fields.recentLapse,
+          learningSteps: fields.learningSteps,
+          scheduledDays: fields.scheduledDays
         },
         include: { word: true }
       })
@@ -94,7 +96,9 @@ export async function practice(userId: string, dto: PracticeDto): Promise<Practi
           fsrsState: fields.fsrsState,
           lastReview: fields.lastReview,
           retrievability: fields.retrievability,
-          recentLapse: fields.recentLapse
+          recentLapse: fields.recentLapse,
+          learningSteps: fields.learningSteps,
+          scheduledDays: fields.scheduledDays
         },
         include: { word: true }
       })

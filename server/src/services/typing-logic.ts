@@ -1,3 +1,5 @@
+import { stableUnit } from './smart-queue'
+
 export type TypingSource = 'smart' | 'wrong' | 'favorite' | 'random' | 'list'
 
 export interface QueueCandidate {
@@ -10,6 +12,31 @@ export interface QueueCandidate {
   inWrongBook: boolean
   favorite: boolean
   skipMastered: boolean
+}
+
+/** 错词本连续答对多少次后自动毕业。 */
+export const WRONG_GRADUATE_STREAK = 3
+
+export interface WrongBookState {
+  inWrongBook: boolean
+  wrongStreak: number
+}
+
+export function nextWrongBookState(
+  current: WrongBookState,
+  isCorrect: boolean
+): WrongBookState & { graduated: boolean } {
+  if (!isCorrect) {
+    return { inWrongBook: true, wrongStreak: 0, graduated: false }
+  }
+  if (!current.inWrongBook) {
+    return { inWrongBook: false, wrongStreak: 0, graduated: false }
+  }
+  const wrongStreak = current.wrongStreak + 1
+  if (wrongStreak >= WRONG_GRADUATE_STREAK) {
+    return { inWrongBook: false, wrongStreak: 0, graduated: true }
+  }
+  return { inWrongBook: true, wrongStreak, graduated: false }
 }
 
 const WORD_TOKEN = /^[a-z][a-z0-9'’-]{0,48}$/i
@@ -96,16 +123,18 @@ export function pickQueueIds(
   candidates: QueueCandidate[],
   source: TypingSource,
   count: number,
-  options?: { listIds?: string[]; random?: () => number }
+  options?: { listIds?: string[]; random?: () => number; includeMastered?: boolean; dailySeed?: string }
 ): string[] {
   const limit = Math.max(0, Math.floor(count))
   if (limit === 0) return []
 
   if (source === 'wrong') {
-    return takeIds(candidates.filter(row => row.inWrongBook).sort(byOrder), limit)
+    const pool = candidates.filter(row => row.inWrongBook && (options?.includeMastered || !row.skipMastered))
+    return takeIds(pool.sort(byOrder), limit)
   }
   if (source === 'favorite') {
-    return takeIds(candidates.filter(row => row.favorite).sort(byOrder), limit)
+    const pool = candidates.filter(row => row.favorite && (options?.includeMastered || !row.skipMastered))
+    return takeIds(pool.sort(byOrder), limit)
   }
   if (source === 'list') {
     const byId = new Map(candidates.map(row => [row.id, row]))
@@ -132,10 +161,15 @@ export function pickQueueIds(
     return takeIds(copy, limit)
   }
 
+  const seededOrder = (a: QueueCandidate, b: QueueCandidate) => {
+    if (!options?.dailySeed) return byOrder(a, b)
+    const delta = stableUnit(`${options.dailySeed}:${a.id}`) - stableUnit(`${options.dailySeed}:${b.id}`)
+    return delta || byOrder(a, b)
+  }
   const lapses = pool.filter(row => row.recentLapse).sort(byDueThenOrder)
   const due = pool.filter(row => !row.recentLapse && row.dueMs != null).sort(byDueThenOrder)
-  const fresh = pool.filter(row => !row.practiced && !row.recentLapse && row.dueMs == null).sort(byOrder)
-  const rest = pool.filter(row => row.practiced && !row.recentLapse && row.dueMs == null).sort(byOrder)
+  const fresh = pool.filter(row => !row.practiced && !row.recentLapse && row.dueMs == null).sort(seededOrder)
+  const rest = pool.filter(row => row.practiced && !row.recentLapse && row.dueMs == null).sort(seededOrder)
   const seen = new Set<string>()
   const out: string[] = []
   for (const row of [...lapses, ...due, ...fresh, ...rest]) {

@@ -16,6 +16,7 @@ const SOUND_KEY = 'typingKeySound'
 const AUTO_SPEAK_KEY = 'typingAutoSpeak'
 const AUTO_EXAMPLE_KEY = 'typingAutoExample'
 const TTS_GENDER_KEY = 'typingTtsGender'
+const SOURCE_KEY = 'typingLastSource'
 
 export type TtsGender = 'female' | 'male'
 const WORD_MODES_KEY = 'typingEnabledWordModes'
@@ -120,6 +121,15 @@ export function loadTtsGender(): TtsGender {
 
 export function saveTtsGender(gender: TtsGender) {
   uni.setStorageSync(TTS_GENDER_KEY, gender)
+}
+
+export function loadTypingSource(): string {
+  const saved = uni.getStorageSync(SOURCE_KEY)
+  return typeof saved === 'string' ? saved : ''
+}
+
+export function saveTypingSource(source: string) {
+  uni.setStorageSync(SOURCE_KEY, source)
 }
 
 /** Default: all four modes selected */

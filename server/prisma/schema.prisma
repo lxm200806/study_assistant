@@ -176,6 +176,8 @@ model VocabularyStat {
   lastReview     DateTime?
   retrievability Float     @default(0)
   recentLapse    Boolean   @default(false)
+  learningSteps  Int       @default(0)
+  scheduledDays  Int       @default(0)
 
   learner Learner    @relation(fields: [learnerId], references: [id], onDelete: Cascade)
   word    Vocabulary @relation(fields: [wordId], references: [id])
@@ -423,6 +425,8 @@ model LearnerWordMark {
   inWrongBook  Boolean  @default(false)
   /// word: 这个词本身写错。sentence: 来自一句没写对的短文。
   wrongSource  String   @default("")
+  /// 错词本连续答对次数，达到阈值后自动移出错词本。
+  wrongStreak  Int      @default(0)
   updatedAt    DateTime @updatedAt
 
   learner Learner    @relation(fields: [learnerId], references: [id], onDelete: Cascade)
@@ -507,6 +511,8 @@ model ArticleSentenceCard {
   lastReview     DateTime?
   retrievability Float    @default(0)
   recentLapse    Boolean  @default(false)
+  learningSteps  Int      @default(0)
+  scheduledDays  Int      @default(0)
 
   learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
 
@@ -534,6 +540,8 @@ model TypingModeStat {
   lastReview     DateTime?
   retrievability Float     @default(0)
   recentLapse    Boolean   @default(false)
+  learningSteps  Int       @default(0)
+  scheduledDays  Int       @default(0)
 
   learner Learner    @relation(fields: [learnerId], references: [id], onDelete: Cascade)
   word    Vocabulary @relation(fields: [wordId], references: [id], onDelete: Cascade)

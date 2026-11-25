@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import { verifyAccessToken } from '../utils/jwt'
 import { assertAuthConfig } from '../config/env'
 import prisma from '../prisma/client'
+import { todayKey } from '../utils/date-key'
 
 assertAuthConfig()
 
@@ -14,10 +15,6 @@ declare global {
       accountType?: string
     }
   }
-}
-
-function todayKey(d = new Date()): string {
-  return d.toISOString().slice(0, 10)
 }
 
 async function recordAccountActive(userId: string) {

@@ -1,4 +1,5 @@
 import prisma from '../prisma/client'
+import { startOfToday, todayKey } from '../utils/date-key'
 import { formatBookWord } from '../utils/wordFormat'
 import {
   aggregateBookWordStats,
@@ -8,8 +9,10 @@ import {
 } from './mastery-aggregate.service'
 import {
   buildFsrsFieldsFromStat,
-  computeWeakPriorityScore
+  computeWeakPriorityScore,
+  getWeakReason
 } from './review-engine.service'
+import { pickSmartQueue, stableUnit, type SmartQueueCandidate } from './smart-queue'
 import { getBookByCode } from './book.service'
 
 export type SessionMode = 'coverage' | 'smart' | 'weak' | 'review' | 'unit'
@@ -115,31 +118,70 @@ function computeScore(
   return getPriorityScore(aggregated, inCycle, typeStat)
 }
 
+/** 智能组卷的紧迫度权重，全部按“小时 / 记忆保持率 / 新词”解释，避免不可读的魔法数。 */
+const SMART_DUE_BASE = 2000
+const SMART_OVERDUE_HOURS_CAP = 24 * 14
+const SMART_OVERDUE_HOUR_WEIGHT = 3
+const SMART_NEW_BASE = 600
+const SMART_NEW_NOT_IN_CYCLE = 800
+const SMART_MASTERED_PENALTY = 1500
+const SMART_FORGETTING_WEIGHT = 300
+const SMART_WEAK_BONUS = 200
+const SMART_LAPSE_WEIGHT = 30
+const SMART_LAPSE_CAP = 180
+const SMART_DAILY_NEW_CAP = 20
+const SMART_JITTER = 10
+
 function computeSmartScore(
+  userId: string,
   bvWordId: string,
   statsMap: Map<string, WordStatEntry[]>,
   aggregated: ReturnType<typeof aggregateBookWordStats> extends Map<string, infer V> ? V : never,
   inCycle: boolean,
-  trainingType?: string
+  trainingType: string | undefined,
+  dayKey: string
 ): number {
   const typeStat = getTypeStat(statsMap, bvWordId, trainingType)
   const now = new Date()
+  const fsrs = typeStat ? buildFsrsFieldsFromStat(typeStat, now) : null
+  const due = fsrs?.due != null && fsrs.due.getTime() <= now.getTime()
+  const overdueHours = due ? (now.getTime() - fsrs!.due!.getTime()) / 3_600_000 : 0
+  const overdueUrgency = Math.min(SMART_OVERDUE_HOURS_CAP, overdueHours) * SMART_OVERDUE_HOUR_WEIGHT
+  const forgetting = fsrs ? (1 - fsrs.retrievability) * SMART_FORGETTING_WEIGHT : 0
+  const weakBonus = fsrs && getWeakReason(fsrs, now) ? SMART_WEAK_BONUS : 0
+  const lapsePenalty = fsrs ? Math.min(SMART_LAPSE_CAP, fsrs.lapses * SMART_LAPSE_WEIGHT) : 0
+
   let score = getPriorityScore(aggregated, inCycle, typeStat)
-  const due = typeStat?.due != null && typeStat.due.getTime() <= now.getTime()
 
   if (due) {
-    score += 2000 + Math.min(500, (now.getTime() - typeStat!.due!.getTime()) / 3600000)
+    score += SMART_DUE_BASE + overdueUrgency
   }
 
   // 生词优先；其它书已学过且未到期 → 大幅降权，不当新学刷
   if (!aggregated.practiced) {
-    score += 600
-    if (!inCycle) score += 800
+    score += SMART_NEW_BASE
+    if (!inCycle) score += SMART_NEW_NOT_IN_CYCLE
   } else if (!due) {
-    score -= 1500
+    score -= SMART_MASTERED_PENALTY
   }
 
-  return score + Math.random() * 10
+  // 同一天同一用户的顺序稳定，跨天再变化，避免每次刷新都换一批词。
+  return score + forgetting + weakBonus - lapsePenalty + stableUnit(`${dayKey}:${userId}:${bvWordId}`) * SMART_JITTER
+}
+
+/** 当天已练过的不同词数，用作新词额度的保守近似（复习词也会占用额度）。 */
+async function countPracticedWordsToday(userId: string, trainingType?: string): Promise<number> {
+  if (!trainingType) return 0
+  const rows = await prisma.trainingRecord.findMany({
+    where: {
+      learnerId: userId,
+      type: trainingType,
+      createdAt: { gte: startOfToday() }
+    },
+    select: { wordId: true },
+    distinct: ['wordId']
+  })
+  return rows.length
 }
 
 function normalizeUnitId(unitId: string): string {
@@ -233,7 +275,7 @@ export async function getSessionWords(
     const nextUnitId = idx >= 0 && idx < unitIds.length - 1 ? unitIds[idx + 1] : null
     return {
       words: selected.map(bv =>
-        formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${now.toISOString().slice(0, 10)}`, rotate: true })
+        formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${todayKey(now)}`, rotate: true })
       ),
       progress: progressInfo,
       mode: 'unit' as SessionMode,
@@ -273,25 +315,40 @@ export async function getSessionWords(
   }
 
   if (mode === 'smart') {
-    const scored = bookWords.map(bv => {
+    const dayKey = todayKey(now)
+    const candidates: SmartQueueCandidate[] = bookWords.map(bv => {
       const mastery = aggregated.get(bv.wordId)!
       const inCycle = coveredSet.has(bv.wordId)
+      const typeStat = getTypeStat(statsMap, bv.wordId, trainingType)
+      const fsrs = typeStat ? buildFsrsFieldsFromStat(typeStat, now) : null
+      const due = fsrs?.due != null && fsrs.due.getTime() <= now.getTime()
       return {
-        bv,
-        score: computeSmartScore(bv.wordId, statsMap, mastery, inCycle, trainingType)
+        id: bv.wordId,
+        order: bv.sortOrder,
+        score: computeSmartScore(userId, bv.wordId, statsMap, mastery, inCycle, trainingType, dayKey),
+        isNew: !mastery.practiced,
+        due,
+        weak: due || (fsrs ? getWeakReason(fsrs, now) != null : false),
+        recentWrong: typeStat?.recentLapse === true,
+        lapses: typeStat?.lapses ?? 0
       }
     })
-    scored.sort((a, b) => b.score - a.score)
-    const selected = scored.slice(0, count).map(s => s.bv)
+    const practicedToday = await countPracticedWordsToday(userId, trainingType)
+    const dailyNewRemaining = Math.max(0, SMART_DAILY_NEW_CAP - practicedToday)
+    const selectedIds = pickSmartQueue(candidates, { count, dailyNewRemaining })
+    const byId = new Map(bookWords.map(bv => [bv.wordId, bv]))
+    const selected = selectedIds.map(id => byId.get(id)).filter((bv): bv is (typeof bookWords)[number] => !!bv)
+
     const progressInfo = await getBookProgress(userId, bookCode)
     return {
-      words: selected.map(bv => formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${now.toISOString().slice(0, 10)}`, rotate: true })),
+      words: selected.map(bv => formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${todayKey(now)}`, rotate: true })),
       progress: progressInfo,
       mode
     }
   }
 
   if (mode === 'review') {
+    const practicedBookWords = bookWords.filter(bv => aggregated.get(bv.wordId)!.practiced)
     const dueWords = bookWords.filter(bv => {
       const typeStat = getTypeStat(statsMap, bv.wordId, trainingType)
       return typeStat?.due != null && typeStat.due.getTime() <= now.getTime()
@@ -301,7 +358,11 @@ export async function getSessionWords(
 
     if (selectedBookWords.length < count) {
       const dueIds = new Set(selectedBookWords.map(bv => bv.wordId))
-      const scored = bookWords
+      // 整本从未学过时没有可复习的词，退回新学兜底，避免空会话
+      const fallbackPool = practicedBookWords.length > 0
+        ? practicedBookWords
+        : bookWords.filter(bv => !aggregated.get(bv.wordId)!.practiced)
+      const scored = fallbackPool
         .filter(bv => !dueIds.has(bv.wordId))
         .map(bv => ({
           bv,
@@ -316,7 +377,49 @@ export async function getSessionWords(
 
     const progressInfo = await getBookProgress(userId, bookCode)
     return {
-      words: selectedBookWords.map(bv => formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${now.toISOString().slice(0, 10)}`, rotate: true })),
+      words: selectedBookWords.map(bv => formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${todayKey(now)}`, rotate: true })),
+      progress: progressInfo,
+      mode
+    }
+  }
+
+  // weak：先按薄弱度练已学词；没有已学词或数量不足时，才补新词。
+  if (mode === 'weak') {
+    const scoredWeak = bookWords
+      .filter(bv => aggregated.get(bv.wordId)!.practiced)
+      .map(bv => ({
+        bv,
+        score: computeScore(bv.wordId, statsMap, aggregated.get(bv.wordId)!, coveredSet.has(bv.wordId), 'weak', trainingType)
+      }))
+      .sort((a, b) => b.score - a.score)
+
+    let selectedBookWords = scoredWeak.slice(0, count).map(s => s.bv)
+
+    if (selectedBookWords.length < count) {
+      const taken = new Set(selectedBookWords.map(bv => bv.wordId))
+      const scoredNew = bookWords
+        .filter(bv => !aggregated.get(bv.wordId)!.practiced && !taken.has(bv.wordId))
+        .map(bv => ({
+          bv,
+          score: computeScore(
+            bv.wordId,
+            statsMap,
+            aggregated.get(bv.wordId)!,
+            coveredSet.has(bv.wordId),
+            mode,
+            trainingType
+          ) + (coveredSet.has(bv.wordId) ? -500 : 800)
+        }))
+        .sort((a, b) => b.score - a.score)
+      selectedBookWords = [
+        ...selectedBookWords,
+        ...scoredNew.slice(0, count - selectedBookWords.length).map(s => s.bv)
+      ]
+    }
+
+    const progressInfo = await getBookProgress(userId, bookCode)
+    return {
+      words: selectedBookWords.map(bv => formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${todayKey(now)}`, rotate: true })),
       progress: progressInfo,
       mode
     }
@@ -387,7 +490,7 @@ export async function getSessionWords(
   const progressInfo = await getBookProgress(userId, bookCode)
 
   return {
-    words: selectedBookWords.map(bv => formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${now.toISOString().slice(0, 10)}`, rotate: true })),
+    words: selectedBookWords.map(bv => formatBookWord(bv, { seed: `${userId}:${bv.wordId}:${todayKey(now)}`, rotate: true })),
     progress: progressInfo,
     mode
   }

@@ -2,6 +2,7 @@ import prisma from '../prisma/client'
 import { assertBookAccess } from './book-access.service'
 import { getBookByCode } from './book.service'
 import { recordDailyStudy } from './daily-study.service'
+import { todayKey } from '../utils/date-key'
 import { formatBookWord, formatWordForClient } from '../utils/wordFormat'
 import {
   mergeLexical,
@@ -14,6 +15,7 @@ import {
   pickQueueIds,
   presentListMeaning,
   recentDateKeys,
+  nextWrongBookState,
   wordsForWrongBook,
   type LexicalBits,
   type ListEntry,
@@ -24,7 +26,6 @@ import {
   type TypingSource
 } from './typing-logic'
 import { cardInputFrom, scheduleCard } from './typing-schedule'
-import { practice } from './training.service'
 
 const LIST_TEXT_LIMIT = 20000
 const NAME_LIMIT = 40
@@ -50,6 +51,9 @@ export interface TypingWord {
   phrases?: string
   note?: string
   wrongSource?: string
+  due?: string | null
+  practiced?: boolean
+  recentLapse?: boolean
 }
 
 interface MarkFlags {
@@ -57,10 +61,11 @@ interface MarkFlags {
   skipMastered: boolean
   inWrongBook: boolean
   wrongSource: string
+  wrongStreak: number
 }
 
 function emptyFlags(): MarkFlags {
-  return { favorite: false, skipMastered: false, inWrongBook: false, wrongSource: '' }
+  return { favorite: false, skipMastered: false, inWrongBook: false, wrongSource: '', wrongStreak: 0 }
 }
 
 function flagsFrom(mark?: {
@@ -68,13 +73,15 @@ function flagsFrom(mark?: {
   skipMastered: boolean
   inWrongBook: boolean
   wrongSource?: string
+  wrongStreak?: number
 } | null): MarkFlags {
   if (!mark) return emptyFlags()
   return {
     favorite: mark.favorite,
     skipMastered: mark.skipMastered,
     inWrongBook: mark.inWrongBook,
-    wrongSource: mark.inWrongBook ? (mark.wrongSource || '') : ''
+    wrongSource: mark.inWrongBook ? (mark.wrongSource || '') : '',
+    wrongStreak: mark.inWrongBook ? (mark.wrongStreak ?? 0) : 0
   }
 }
 
@@ -145,7 +152,8 @@ function toTypingWord(
   formatted: ReturnType<typeof formatWordForClient>,
   flags: MarkFlags,
   word?: LexicalSource | null,
-  item?: Pick<ListEntry, 'gloss' | 'phoneticUk' | 'phoneticUs' | 'synonyms' | 'roots' | 'etymology' | 'phrases'> | null
+  item?: Pick<ListEntry, 'gloss' | 'phoneticUk' | 'phoneticUs' | 'synonyms' | 'roots' | 'etymology' | 'phrases'> | null,
+  meta?: { due?: Date | null; practiced?: boolean; recentLapse?: boolean }
 ): TypingWord {
   const meaning = presentListMeaning(
     { meaning: formatted.meaning, ownerLearnerId: word?.ownerLearnerId },
@@ -163,7 +171,14 @@ function toTypingWord(
     tags: formatted.tags,
     note: meaning.note,
     ...mergeLexical(lexicalFrom(word), item || undefined),
-    ...flags
+    ...flags,
+    ...(meta
+      ? {
+          due: meta.due ? meta.due.toISOString() : null,
+          practiced: meta.practiced ?? false,
+          recentLapse: meta.recentLapse ?? false
+        }
+      : {})
   }
 }
 
@@ -230,7 +245,15 @@ export async function getTypingSummary(learnerId: string, bookCode: string, mode
 
 export async function getTypingQueue(
   learnerId: string,
-  options: { bookCode?: string; source: TypingSource; count: number; listId?: string; mode: TypingMode }
+  options: {
+    bookCode?: string
+    source: TypingSource
+    count: number
+    listId?: string
+    mode: TypingMode
+    includeMastered?: boolean
+    allBooks?: boolean
+  }
 ) {
   const { source, count, mode } = options
   const bookCode = options.bookCode?.trim() || undefined
@@ -259,11 +282,18 @@ export async function getTypingQueue(
     const candidates = book.vocabulary.map(link =>
       candidateFrom(link.wordId, link.sortOrder, statById.get(link.wordId), markById.get(link.wordId) || emptyFlags(), now)
     )
-    const ids = pickQueueIds(candidates, source, count)
+    const ids = pickQueueIds(candidates, source, count, {
+      dailySeed: source === 'smart' ? `${learnerId}:${mode}:${todayKey()}` : undefined
+    })
     const linkById = new Map(book.vocabulary.map(link => [link.wordId, link]))
     const words = ids.map(id => {
       const link = linkById.get(id)!
-      return toTypingWord(formatBookWord(link), markById.get(id) || emptyFlags(), link.word)
+      const stat = statById.get(id)
+      return toTypingWord(formatBookWord(link), markById.get(id) || emptyFlags(), link.word, null, {
+        due: stat?.due ?? null,
+        practiced: (stat?.practiceCount ?? 0) > 0,
+        recentLapse: !!stat?.recentLapse
+      })
     })
     return { source, mode, scopedToBook: true, bookCode, words, missing: [] as string[], rejected: [] as RejectedToken[] }
   }
@@ -304,9 +334,16 @@ export async function getTypingQueue(
     }
   }
 
+  let scopedWordIds: Set<string> | undefined
+  if (bookCode && !options.allBooks) {
+    const scopedBook = await getBookByCode(bookCode)
+    if (!scopedBook) throw new Error('Book not found')
+    scopedWordIds = new Set(scopedBook.vocabulary.map(link => link.wordId))
+  }
   const marks = await prisma.learnerWordMark.findMany({
     where: {
       learnerId,
+      ...(scopedWordIds ? { wordId: { in: [...scopedWordIds] } } : {}),
       ...(source === 'wrong' ? { inWrongBook: true } : { favorite: true })
     },
     include: { word: true },
@@ -324,15 +361,28 @@ export async function getTypingQueue(
   const candidates = marks.map((mark, index) =>
     candidateFrom(mark.wordId, index, statById.get(mark.wordId), flagsFrom(mark), now)
   )
-  const picked = new Set(pickQueueIds(candidates, source, count))
+  const picked = new Set(pickQueueIds(candidates, source, count, { includeMastered: options.includeMastered }))
   const words = marks
     .filter(mark => picked.has(mark.wordId))
     .map(mark => {
       const overlay = overlays.get(mark.wordId)
       const base = overlay || formatWordForClient(mark.word)
-      return toTypingWord(base, flagsFrom(mark), mark.word)
+      const stat = statById.get(mark.wordId)
+      return toTypingWord(base, flagsFrom(mark), mark.word, null, {
+        due: stat?.due ?? null,
+        practiced: (stat?.practiceCount ?? 0) > 0,
+        recentLapse: !!stat?.recentLapse
+      })
     })
-  return { source, mode, scopedToBook: false, bookCode: bookCode || null, words, missing: [] as string[], rejected: [] as RejectedToken[] }
+  return {
+    source,
+    mode,
+    scopedToBook: !!scopedWordIds,
+    bookCode: bookCode || null,
+    words,
+    missing: [] as string[],
+    rejected: [] as RejectedToken[]
+  }
 }
 
 export async function submitTypingAnswer(
@@ -345,7 +395,34 @@ export async function submitTypingAnswer(
   const existingStat = await prisma.typingModeStat.findUnique({
     where: { learnerId_wordId_mode: { learnerId, wordId, mode } }
   })
-  const review = scheduleCard(existingStat ? cardInputFrom(existingStat) : { practiceCount: 0, correctCount: 0 }, isCorrect)
+  const priorStat = existingStat
+    ? null
+    : await prisma.typingModeStat.findFirst({
+        where: { learnerId, wordId, mode: { not: mode }, practiceCount: { gt: 0 } },
+        orderBy: { reps: 'desc' }
+      })
+  const review = scheduleCard(
+    existingStat
+      ? cardInputFrom(existingStat)
+      : priorStat
+        ? {
+            practiceCount: 0,
+            correctCount: 0,
+            stability: priorStat.stability,
+            difficulty: priorStat.difficulty,
+            reps: Math.min(1, priorStat.reps),
+            lapses: priorStat.lapses,
+            fsrsState: 'Learning',
+            lastReview: priorStat.lastReview,
+            lastPractice: priorStat.lastPractice,
+            retrievability: priorStat.retrievability,
+            recentLapse: false,
+            learningSteps: 0,
+            scheduledDays: 0
+          }
+        : { practiceCount: 0, correctCount: 0 },
+    isCorrect
+  )
   if (existingStat) {
     await prisma.typingModeStat.update({
       where: { id: existingStat.id },
@@ -359,15 +436,39 @@ export async function submitTypingAnswer(
   const existing = await prisma.learnerWordMark.findUnique({
     where: { learnerId_wordId: { learnerId, wordId } }
   })
+  const wrongState = nextWrongBookState(
+    { inWrongBook: existing?.inWrongBook ?? false, wrongStreak: existing?.wrongStreak ?? 0 },
+    isCorrect
+  )
   const flags = await saveFlags(learnerId, wordId, {
     favorite: existing?.favorite ?? false,
     skipMastered: existing?.skipMastered ?? false,
-    inWrongBook: !isCorrect,
-    wrongSource: !isCorrect ? 'word' : ''
+    inWrongBook: wrongState.inWrongBook,
+    wrongSource: wrongState.inWrongBook
+      ? (!isCorrect ? 'word' : (existing?.wrongSource || 'word'))
+      : '',
+    wrongStreak: wrongState.wrongStreak
   })
-  // 跟写、自测只记在拼读方式里。默写和听写才计入「会写」。
+  // 跟写、自测只记在拼读方式里。默写和听写同时把同一份调度写入「会写」统计，
+  // 只镜像拼读算出的下次复习时间，不再单独跑一次 FSRS，避免两套到期时间互相打架。
   if (mode === 'recall' || mode === 'dictation') {
-    await practice(learnerId, { wordId, type: 'writing', isCorrect })
+    const { practiceCount: _practiceCount, correctCount: _correctCount, ...schedule } = review
+    await prisma.vocabularyStat.upsert({
+      where: { learnerId_wordId_type: { learnerId, wordId, type: 'writing' } },
+      create: {
+        learnerId,
+        wordId,
+        type: 'writing',
+        practiceCount: 1,
+        correctCount: isCorrect ? 1 : 0,
+        ...schedule
+      },
+      update: {
+        practiceCount: { increment: 1 },
+        ...(isCorrect ? { correctCount: { increment: 1 } } : {}),
+        ...schedule
+      }
+    })
   }
   return { review, ...flags }
 }
@@ -385,7 +486,8 @@ export async function updateTypingMark(
     favorite: patch.favorite ?? existing?.favorite ?? false,
     skipMastered: patch.skipMastered ?? existing?.skipMastered ?? false,
     inWrongBook: existing?.inWrongBook ?? false,
-    wrongSource: existing?.inWrongBook ? (existing.wrongSource || '') : ''
+    wrongSource: existing?.inWrongBook ? (existing.wrongSource || '') : '',
+    wrongStreak: existing?.inWrongBook ? (existing.wrongStreak ?? 0) : 0
   })
   return { wordId, ...flags }
 }
@@ -431,11 +533,13 @@ export async function markSentenceContentWrong(
         learnerId,
         wordId: word.id,
         inWrongBook: true,
-        wrongSource: 'sentence'
+        wrongSource: 'sentence',
+        wrongStreak: 0
       },
       update: {
         inWrongBook: true,
-        wrongSource: 'sentence'
+        wrongSource: 'sentence',
+        wrongStreak: 0
       }
     })
     added.push(word.word)

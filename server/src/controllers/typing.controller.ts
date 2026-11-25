@@ -93,7 +93,9 @@ export async function typingQueueHandler(req: Request, res: Response) {
       source,
       mode,
       count: clampCount(req.query.count, 20),
-      listId: req.query.listId ? String(req.query.listId) : undefined
+      listId: req.query.listId ? String(req.query.listId) : undefined,
+      includeMastered: req.query.includeMastered === '1' || req.query.includeMastered === 'true',
+      allBooks: req.query.allBooks === '1' || req.query.allBooks === 'true'
     })
     res.status(200).json({ success: true, data })
   } catch (error) {
