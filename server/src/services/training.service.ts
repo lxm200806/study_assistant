@@ -19,6 +19,14 @@ export interface PracticeResult extends FsrsStatFields {
   needsReconfirm?: boolean
 }
 
+const TX_MAX_ATTEMPTS = 3
+const RETRYABLE_PRISMA_CODES = new Set(['P2034', 'P2002'])
+
+export function isRetryableTransactionError(error: unknown): boolean {
+  const code = (error as { code?: unknown } | null)?.code
+  return typeof code === 'string' && RETRYABLE_PRISMA_CODES.has(code)
+}
+
 function toPracticeResult(
   wordId: string,
   type: WordType,
@@ -36,88 +44,93 @@ function toPracticeResult(
 }
 
 export async function practice(userId: string, dto: PracticeDto): Promise<PracticeResult> {
-  const now = new Date()
-  const existingStat = await prisma.vocabularyStat.findUnique({
-    where: {
-      learnerId_wordId_type: {
-        learnerId: userId,
-        wordId: dto.wordId,
-        type: dto.type
-      }
-    }
-  })
+  let lastError: unknown
 
-  const input = existingStat ?? {
-    practiceCount: 0,
-    correctCount: 0,
-    reps: 0,
-    lapses: 0,
-    fsrsState: 'New',
-    recentLapse: false
+  for (let attempt = 1; attempt <= TX_MAX_ATTEMPTS; attempt++) {
+    try {
+      return await prisma.$transaction(
+        async tx => {
+          const now = new Date()
+          const existingStat = await tx.vocabularyStat.findUnique({
+            where: {
+              learnerId_wordId_type: {
+                learnerId: userId,
+                wordId: dto.wordId,
+                type: dto.type
+              }
+            }
+          })
+
+          const input = existingStat ?? {
+            practiceCount: 0,
+            correctCount: 0,
+            reps: 0,
+            lapses: 0,
+            fsrsState: 'New',
+            recentLapse: false
+          }
+
+          const fields = processPractice(input, dto.isCorrect, now)
+          // 答对即视为完成跨书核对；答错保留现状，由 recheck 接口置为待核对。
+          const needsReconfirm = dto.isCorrect ? false : (existingStat?.needsReconfirm ?? false)
+          const statData = {
+            practiceCount: fields.practiceCount,
+            correctCount: fields.correctCount,
+            lastPractice: fields.lastPractice,
+            mastery: fields.mastery,
+            due: fields.due,
+            stability: fields.stability,
+            difficulty: fields.difficulty,
+            reps: fields.reps,
+            lapses: fields.lapses,
+            fsrsState: fields.fsrsState,
+            lastReview: fields.lastReview,
+            retrievability: fields.retrievability,
+            recentLapse: fields.recentLapse,
+            needsReconfirm,
+            learningSteps: fields.learningSteps,
+            scheduledDays: fields.scheduledDays
+          }
+
+          if (existingStat) {
+            await tx.vocabularyStat.update({
+              where: { id: existingStat.id },
+              data: statData
+            })
+          } else {
+            await tx.vocabularyStat.create({
+              data: {
+                learnerId: userId,
+                wordId: dto.wordId,
+                type: dto.type,
+                ...statData
+              }
+            })
+          }
+
+          await tx.trainingRecord.create({
+            data: {
+              learnerId: userId,
+              wordId: dto.wordId,
+              type: dto.type,
+              isCorrect: dto.isCorrect
+            }
+          })
+
+          return { ...toPracticeResult(dto.wordId, dto.type, fields), needsReconfirm }
+        },
+        { isolationLevel: 'Serializable' }
+      )
+    } catch (error) {
+      if (!isRetryableTransactionError(error) || attempt === TX_MAX_ATTEMPTS) {
+        throw error
+      }
+      lastError = error
+      await new Promise(resolve => setTimeout(resolve, attempt * 10))
+    }
   }
 
-  const fields = processPractice(input, dto.isCorrect, now)
-  // 答对即视为完成跨书核对；答错保留现状，由 recheck 接口置为待核对。
-  const needsReconfirm = dto.isCorrect ? false : (existingStat?.needsReconfirm ?? false)
-
-  const updatedStat = existingStat
-    ? await prisma.vocabularyStat.update({
-        where: { id: existingStat.id },
-        data: {
-          practiceCount: fields.practiceCount,
-          correctCount: fields.correctCount,
-          lastPractice: fields.lastPractice,
-          mastery: fields.mastery,
-          due: fields.due,
-          stability: fields.stability,
-          difficulty: fields.difficulty,
-          reps: fields.reps,
-          lapses: fields.lapses,
-          fsrsState: fields.fsrsState,
-          lastReview: fields.lastReview,
-          retrievability: fields.retrievability,
-          recentLapse: fields.recentLapse,
-          needsReconfirm,
-          learningSteps: fields.learningSteps,
-          scheduledDays: fields.scheduledDays
-        },
-        include: { word: true }
-      })
-    : await prisma.vocabularyStat.create({
-        data: {
-          learnerId: userId,
-          wordId: dto.wordId,
-          type: dto.type,
-          practiceCount: fields.practiceCount,
-          correctCount: fields.correctCount,
-          lastPractice: fields.lastPractice,
-          mastery: fields.mastery,
-          due: fields.due,
-          stability: fields.stability,
-          difficulty: fields.difficulty,
-          reps: fields.reps,
-          lapses: fields.lapses,
-          fsrsState: fields.fsrsState,
-          lastReview: fields.lastReview,
-          retrievability: fields.retrievability,
-          recentLapse: fields.recentLapse,
-          needsReconfirm,
-          learningSteps: fields.learningSteps,
-          scheduledDays: fields.scheduledDays
-        },
-        include: { word: true }
-      })
-
-  await prisma.trainingRecord.create({
-    data: {
-      learnerId: userId,
-      wordId: dto.wordId,
-      type: dto.type,
-      isCorrect: dto.isCorrect
-    }
-  })
-
-  return { ...toPracticeResult(updatedStat.wordId, dto.type, fields), needsReconfirm }
+  throw lastError ?? new Error('practice transaction failed')
 }
 
 export interface ReviewWordsOptions {
@@ -137,12 +150,12 @@ async function fetchDueStatsByType(
     where: {
       learnerId: userId,
       practiceCount: { gt: 0 },
-      due: { lte: now },
       type,
+      OR: [{ due: { lte: now } }, { needsReconfirm: true }],
       ...(wordIds ? { wordId: { in: wordIds } } : {})
     },
     include: { word: true },
-    orderBy: { due: 'asc' },
+    orderBy: [{ needsReconfirm: 'desc' }, { due: 'asc' }],
     take: perTypeLimit
   })
 }
@@ -219,19 +232,19 @@ export async function getDueCount(userId: string, bookCode: string, trainingType
     return { dueCount: 0, overdueCount: 0 }
   }
 
-  const dueCount = trainingType
-    ? await prisma.vocabularyStat.count({
-        where: {
-          learnerId: userId,
-          wordId: { in: book.vocabulary.map(bv => bv.wordId) },
-          practiceCount: { gt: 0 },
-          due: { lte: now },
-          type: trainingType
-        }
-      })
-    : (await getAggregatedDueStats(userId, bookCode, HOME_REVIEW_PER_TYPE)).length
+  const dueWords = await prisma.vocabularyStat.findMany({
+    where: {
+      learnerId: userId,
+      wordId: { in: book.vocabulary.map(bv => bv.wordId) },
+      practiceCount: { gt: 0 },
+      OR: [{ due: { lte: now } }, { needsReconfirm: true }],
+      ...(trainingType ? { type: trainingType } : {})
+    },
+    select: { wordId: true },
+    distinct: ['wordId']
+  })
 
-  return { dueCount, overdueCount: dueCount }
+  return { dueCount: dueWords.length, overdueCount: dueWords.length }
 }
 
 export async function getTrainingHistory(userId: string, page: number = 1, limit: number = 20) {
