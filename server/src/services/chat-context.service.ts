@@ -5,34 +5,33 @@ import { type ChatMode } from './chat.service'
 import { buildSystemPrompt, getLearnerChatContext } from './chat-learner-context.service'
 import { sanitizeFreeChatReply } from './chat-reply-sanitize.service'
 import { getBillingUser } from './billing-user'
-import { startOfToday } from '../utils/date-key'
-import { runSerializable } from '../prisma/tx'
+import { consumeQuota } from '../entitlements/entitlement.service'
+import { PERMISSIONS } from '../entitlements/permissions'
 
 const HISTORY_LIMIT = 20
-export const FREE_DAILY_CHAT = 5
 
-/** 校验当日免费额度并写入用户消息，检查与写入在同一事务内完成。 */
+/** 按账号 AI 文字额度扣减一次并写入用户消息。 */
 export async function reserveUserChatMessage(
   userId: string,
   content: string,
   mode?: ChatMode
-): Promise<void> {
-  const user = await getBillingUser(userId)
-  const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
-  if (isPremium) {
-    await prisma.chatRecord.create({ data: { learnerId: userId, role: 'user', content, mode } })
-    return
-  }
+): Promise<{ remaining: number | null }> {
+  const account = await getBillingUser(userId)
+  if (!account) throw new Error('CHAT_LIMIT')
 
-  await runSerializable(async tx => {
-    const todayCount = await tx.chatRecord.count({
-      where: { learnerId: userId, role: 'user', createdAt: { gte: startOfToday() } }
+  try {
+    const quota = await consumeQuota(account.id, PERMISSIONS.AI_CHAT_TEXT, 1, {
+      scopeId: 'account'
     })
-    if (todayCount >= FREE_DAILY_CHAT) {
+    await prisma.chatRecord.create({ data: { learnerId: userId, role: 'user', content, mode } })
+    return { remaining: quota.remaining }
+  } catch (error) {
+    const message = (error as Error).message
+    if (message === 'QUOTA_EXCEEDED' || message === 'PERMISSION_DENIED') {
       throw new Error('CHAT_LIMIT')
     }
-    await tx.chatRecord.create({ data: { learnerId: userId, role: 'user', content, mode } })
-  })
+    throw error
+  }
 }
 
 export async function saveAiChatMessage(userId: string, content: string, mode?: ChatMode): Promise<void> {

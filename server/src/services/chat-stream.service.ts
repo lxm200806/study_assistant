@@ -82,7 +82,7 @@ export async function streamChatMessage(
     res.end()
   } catch (error) {
     const msg = (error as Error).message
-    writeSse(res, 'error', { message: msg === 'CHAT_LIMIT' ? '今日免费对话次数已用完' : msg })
+    writeSse(res, 'error', { message: msg === 'CHAT_LIMIT' ? '对话额度已用完' : msg })
     res.end()
   }
 }

@@ -2,10 +2,8 @@ import prisma from '../prisma/client'
 import { isXfyunAsrConfigured } from './llm-config.service'
 import { transcribeWithXfyun, type XfyunAudioEncoding } from './asr-xfyun.service'
 import { getBillingUser } from './billing-user'
-import { startOfToday } from '../utils/date-key'
-import { runSerializable } from '../prisma/tx'
-
-const FREE_DAILY_SPEECH = 10
+import { consumeQuota, refundQuota } from '../entitlements/entitlement.service'
+import { PERMISSIONS } from '../entitlements/permissions'
 
 function passThreshold(): number {
   return Number(process.env.SPEECH_PASS_THRESHOLD || 70)
@@ -107,30 +105,39 @@ function isBrowserFriendlyMime(mimeType: string): boolean {
   return lower.includes('webm') || lower.includes('ogg') || lower.includes('mp4') || lower.includes('m4a')
 }
 
-async function isPremiumUser(userId: string): Promise<boolean> {
-  const user = await getBillingUser(userId)
-  return !!user && user.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
-}
-
-/** 占一条当日语音额度；配额检查与写入在同一事务内完成，避免并发绕过。 */
+/** 按账号语音评测额度扣减一次，并保留一条用量流水用于释放/审计。 */
 export async function reserveSpeechUsage(userId: string, kind: string): Promise<string | null> {
-  if (await isPremiumUser(userId)) return null
+  const account = await getBillingUser(userId)
+  if (!account) throw new Error('SPEECH_LIMIT')
 
-  return runSerializable(async tx => {
-    const count = await tx.speechUsageLog.count({
-      where: { learnerId: userId, createdAt: { gte: startOfToday() } }
-    })
-    if (count >= FREE_DAILY_SPEECH) {
+  try {
+    await consumeQuota(account.id, PERMISSIONS.AI_SPEECH_ASSESS, 1, { scopeId: 'account' })
+  } catch (error) {
+    const message = (error as Error).message
+    if (message === 'QUOTA_EXCEEDED' || message === 'PERMISSION_DENIED') {
       throw new Error('SPEECH_LIMIT')
     }
-    const row = await tx.speechUsageLog.create({ data: { learnerId: userId, kind } })
-    return row.id
-  })
+    throw error
+  }
+
+  const row = await prisma.speechUsageLog.create({ data: { learnerId: userId, kind } })
+  return row.id
 }
 
 export async function releaseSpeechUsage(usageId: string | null): Promise<void> {
   if (!usageId) return
+  const row = await prisma.speechUsageLog.findUnique({
+    where: { id: usageId },
+    select: { learnerId: true }
+  })
   await prisma.speechUsageLog.delete({ where: { id: usageId } }).catch(() => undefined)
+  if (!row) return
+  const account = await getBillingUser(row.learnerId)
+  if (account) {
+    await refundQuota(account.id, PERMISSIONS.AI_SPEECH_ASSESS, 1, { scopeId: 'account' }).catch(
+      () => undefined
+    )
+  }
 }
 
 export async function transcribeAudio(userId: string, audioBase64: string, mimeType = 'audio/mp3'): Promise<TranscribeResult> {

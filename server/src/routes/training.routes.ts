@@ -9,6 +9,8 @@ import {
 import { getQuizWordsHandler, submitQuizHandler } from '../controllers/quiz.controller'
 import { authMiddleware } from '../middleware/auth'
 import { idempotency } from '../middleware/idempotency'
+import { requirePermission, requireTrainingPermission } from '../middleware/entitlement'
+import { PERMISSIONS } from '../entitlements/permissions'
 import { validateBody, validateQuery } from '../validation/validate'
 import {
   completeSessionBodySchema,
@@ -21,12 +23,37 @@ import {
 
 const router = Router()
 
-router.post('/practice', authMiddleware, validateBody(practiceBodySchema), idempotency(), practiceHandler)
-router.post('/recheck', authMiddleware, recheckHandler)
+router.post(
+  '/practice',
+  authMiddleware,
+  validateBody(practiceBodySchema),
+  requireTrainingPermission,
+  idempotency(),
+  practiceHandler
+)
+router.post('/recheck', authMiddleware, requireTrainingPermission, recheckHandler)
 router.post('/session/complete', authMiddleware, validateBody(completeSessionBodySchema), idempotency(), completeSessionHandler)
-router.get('/review', authMiddleware, validateQuery(reviewQuerySchema), getReviewHandler)
+router.get(
+  '/review',
+  authMiddleware,
+  validateQuery(reviewQuerySchema),
+  requireTrainingPermission,
+  getReviewHandler
+)
 router.get('/history', authMiddleware, validateQuery(historyQuerySchema), getHistoryHandler)
-router.get('/quiz/words', authMiddleware, validateQuery(quizWordsQuerySchema), getQuizWordsHandler)
-router.post('/quiz/submit', authMiddleware, validateBody(quizSubmitBodySchema), submitQuizHandler)
+router.get(
+  '/quiz/words',
+  authMiddleware,
+  validateQuery(quizWordsQuerySchema),
+  requirePermission(PERMISSIONS.ENGLISH_QUIZ),
+  getQuizWordsHandler
+)
+router.post(
+  '/quiz/submit',
+  authMiddleware,
+  validateBody(quizSubmitBodySchema),
+  requirePermission(PERMISSIONS.ENGLISH_QUIZ),
+  submitQuizHandler
+)
 
 export default router

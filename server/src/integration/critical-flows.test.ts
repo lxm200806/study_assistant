@@ -86,6 +86,9 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     prisma = (await import('../prisma/client')).default
     api = request(createApp())
 
+    const { seedEntitlementCatalog } = await import('../entitlements/seed')
+    await seedEntitlementCatalog()
+
     const stamp = Date.now()
     bookCode = `it-book-${stamp}`
     const book = await prisma.book.create({
@@ -173,6 +176,21 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     const refreshed = await api.post('/api/auth/refresh').send({ refreshToken })
     expect(refreshed.status).toBe(200)
     expect(refreshed.body.accessToken).toBeTruthy()
+  })
+
+  it('returns the free baseline entitlements', async () => {
+    const result = await authed(api.get('/api/entitlements'))
+    expect(result.status).toBe(200)
+
+    const permissions = result.body.data.permissions as Record<string, unknown>
+    expect(permissions['english.recognition']).toMatchObject({ active: true })
+    expect(permissions['english.books.all']).toBeUndefined()
+    expect(permissions['ai.chat.text']).toMatchObject({
+      active: true,
+      limitValue: 5,
+      period: 'day'
+    })
+    expect(result.body.data.credits.balance).toBe(0)
   })
 
   it('creates the learner and loads a signed training session', async () => {
@@ -706,6 +724,65 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     expect(afterDisable.status).toBe(200)
   })
 
+  it('grants and revokes entitlements through the admin API', async () => {
+    const username = `ent_${Date.now()}_${Math.floor(Math.random() * 10_000)}`
+    await prisma.user.create({
+      data: { username, passwordHash: await hashPassword('TestPass123!') }
+    })
+    const login = await api.post('/api/auth/login').send({
+      username,
+      password: 'TestPass123!'
+    })
+    expect(login.status).toBe(200)
+    const userToken = login.body.accessToken as string
+    const userAuth = (req: request.Test) => req.set('Authorization', `Bearer ${userToken}`)
+
+    const before = await userAuth(api.get('/api/entitlements'))
+    expect(before.body.data.permissions['english.books.all']).toBeUndefined()
+
+    const granted = await authed(api.post('/api/admin/entitlements/grant')).send({
+      username,
+      permissionKeys: ['english.books.all', 'english.games'],
+      endsAt: new Date(Date.now() + 86_400_000).toISOString()
+    })
+    expect(granted.status).toBe(200)
+
+    const after = await userAuth(api.get('/api/entitlements'))
+    expect(after.body.data.permissions['english.books.all']).toMatchObject({ active: true })
+    expect(after.body.data.permissions['english.games']).toMatchObject({ active: true })
+
+    const revoked = await authed(api.post('/api/admin/entitlements/revoke')).send({
+      username,
+      permissionKey: 'english.books.all'
+    })
+    expect(revoked.status).toBe(200)
+
+    const final = await userAuth(api.get('/api/entitlements'))
+    expect(final.body.data.permissions['english.books.all']).toBeUndefined()
+    expect(final.body.data.permissions['english.games']).toMatchObject({ active: true })
+  })
+
+  it('lists and updates plans through the admin API', async () => {
+    const before = await authed(api.get('/api/admin/plans'))
+    expect(before.status).toBe(200)
+    expect(Array.isArray(before.body.data)).toBe(true)
+
+    const patched = await authed(api.patch('/api/admin/plans/chinese_core_month')).send({
+      active: true,
+      priceCents: 1_990
+    })
+    expect(patched.status).toBe(200)
+
+    const publicPlans = await api.get('/api/billing/plans')
+    expect(
+      publicPlans.body.data.some(
+        (plan: { code: string }) => plan.code === 'chinese_core_month'
+      )
+    ).toBe(true)
+
+    await authed(api.patch('/api/admin/plans/chinese_core_month')).send({ active: false })
+  })
+
   it('exports and deletes an account', async () => {
     const username = `delete_${Date.now()}`
     const registered = await api
@@ -751,6 +828,71 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
 
     const profile = await authed(api.get('/api/auth/profile'))
     expect(profile.body.data.plan).toBe('premium')
+
+    const subscription = await prisma.subscription.findFirst({
+      where: { accountId: accountUserId, planCode }
+    })
+    expect(subscription).toBeTruthy()
+    const booksGrant = await prisma.entitlementGrant.findFirst({
+      where: {
+        accountId: accountUserId,
+        permissionKey: 'english.books.all',
+        sourceType: 'subscription'
+      }
+    })
+    expect(booksGrant).toBeTruthy()
+  })
+
+  it('adds AI credits when purchasing a credit pack', async () => {
+    await prisma.membershipPlan.update({
+      where: { code: 'ai_voice_pack_small' },
+      data: { active: true }
+    })
+    const plans = await api.get('/api/billing/plans')
+    const pack = plans.body.data.find(
+      (plan: { code: string }) => plan.code === 'ai_voice_pack_small'
+    )
+    expect(pack).toBeTruthy()
+    const beforeWallet = await prisma.creditWallet.findUnique({
+      where: { accountId: accountUserId }
+    })
+
+    const created = await authed(api.post('/api/billing/orders')).send({
+      planCode: pack.code
+    })
+    expect(created.status).toBe(201)
+    const paid = await authed(
+      api.post(`/api/billing/orders/${created.body.data.id}/pay`)
+    ).send({})
+    expect(paid.status).toBe(200)
+
+    const wallet = await prisma.creditWallet.findUnique({
+      where: { accountId: accountUserId }
+    })
+    expect(wallet?.balance).toBe((beforeWallet?.balance || 0) + 60)
+    const ledger = await prisma.creditLedger.findFirst({
+      where: { accountId: accountUserId, reason: 'grant', delta: 60 }
+    })
+    expect(ledger).toBeTruthy()
+
+    await prisma.membershipPlan.update({
+      where: { code: 'ai_voice_pack_small' },
+      data: { active: false }
+    })
+  })
+
+  it('grants AI credits through the admin API', async () => {
+    const beforeWallet = await prisma.creditWallet.findUnique({
+      where: { accountId: accountUserId }
+    })
+    const result = await authed(api.post('/api/admin/credits/grant')).send({
+      accountId: accountUserId,
+      amount: 25,
+      reason: 'integration test'
+    })
+
+    expect(result.status).toBe(200)
+    expect(result.body.data.balance).toBe((beforeWallet?.balance || 0) + 25)
   })
 
   it('registers and removes a push token', async () => {

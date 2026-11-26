@@ -46,13 +46,27 @@ export const reloginRequiredResponseSchema = z.object({
   data: z.object({ reloginRequired: z.literal(true) })
 })
 
+export const planPermissionSchema = z.object({
+  planCode: z.string().optional(),
+  permissionKey: z.string(),
+  limitValue: z.number().int().nullable().optional(),
+  period: z.string().nullable().optional()
+})
+
 export const membershipPlanSchema = z.object({
   code: z.string(),
   name: z.string(),
+  kind: z.string(),
+  subject: z.string(),
+  groupKey: z.string().nullable().optional(),
+  description: z.string().optional(),
   days: z.number().int(),
   priceCents: z.number().int(),
+  creditAmount: z.number().int().optional(),
   active: z.boolean(),
-  createdAt: z.string()
+  sortOrder: z.number().int().optional(),
+  createdAt: z.string(),
+  permissions: z.array(planPermissionSchema).optional()
 })
 
 export const paymentOrderSchema = z.object({
@@ -63,8 +77,47 @@ export const paymentOrderSchema = z.object({
   status: z.enum(['pending', 'paid']),
   provider: z.string(),
   providerOrderId: z.string().nullable(),
+  planSnapshot: anyObject.nullable().optional(),
   createdAt: z.string(),
   paidAt: z.string().nullable()
+})
+
+export const entitlementPermissionSchema = z.object({
+  key: z.string(),
+  kind: z.string(),
+  unit: z.string().nullable(),
+  limitValue: z.number().int().nullable(),
+  period: z.string().nullable(),
+  active: z.boolean(),
+  expiresAt: z.string().nullable(),
+  used: z.number().int(),
+  remaining: z.number().int().nullable(),
+  sources: z.array(z.string())
+})
+
+export const entitlementSubscriptionSchema = z.object({
+  id: z.string(),
+  planCode: z.string(),
+  planName: z.string(),
+  subject: z.string(),
+  kind: z.string(),
+  endsAt: z.string(),
+  autoRenew: z.boolean()
+})
+
+export const entitlementsResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    accountId: z.string(),
+    isAdmin: z.boolean(),
+    permissions: z.record(z.string(), entitlementPermissionSchema),
+    subscriptions: z.array(entitlementSubscriptionSchema),
+    credits: z.object({ balance: z.number().int() }),
+    legacyPlan: z.object({
+      plan: z.string(),
+      expiresAt: z.string().nullable()
+    })
+  })
 })
 
 export const billingPlansResponseSchema = z.object({
@@ -484,7 +537,9 @@ export const chatQuotaResponseSchema = z.object({
   success: z.literal(true),
   data: z.object({
     remaining: z.number(),
-    isPremium: z.boolean()
+    isPremium: z.boolean(),
+    limitValue: z.number().nullable(),
+    period: z.string().nullable()
   })
 })
 

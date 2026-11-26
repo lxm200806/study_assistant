@@ -3,7 +3,7 @@
 本文档依据 `server/prisma/schema.prisma` 整理，对应 PostgreSQL 库 `study_assistant`。  
 Prisma 模型名与真实表名不一致时，以表名为准。
 
-当前共 30 张业务表，按模块分为：账号与学习者、英语词书与练习、对话与用量、语文课程、拼读/键盘练习。
+当前共 42 张业务表，按模块分为：账号与学习者、英语词书与练习、对话与用量、语文课程、拼读/键盘练习、会员与权限。
 
 ## 总览
 
@@ -39,6 +39,18 @@ Prisma 模型名与真实表名不一致时，以表名为准。
 | 拼读 | `article_sentence_cards` | 短文句子的 FSRS 卡片 |
 | 拼读 | `typing_mode_stats` | 键盘练习分模式的 FSRS 状态 |
 | 拼读 | `typing_session_logs` | 键盘练习用时/字数流水 |
+| 会员 | `membership_plans` | 套餐（免费/学科会员/加购/点数包） |
+| 会员 | `payment_orders` | 支付订单与套餐快照 |
+| 权限 | `permissions` | 细粒度权限目录 |
+| 权限 | `plan_permissions` | 套餐→权限映射与配额 |
+| 权限 | `subscriptions` | 账号购买的套餐周期 |
+| 权限 | `entitlement_grants` | 实际授权（订阅/赠送/试用/管理员） |
+| 权限 | `usage_counters` | 每日/每月次数配额 |
+| AI | `credit_wallets` | AI 点数余额 |
+| AI | `credit_ledger` | AI 点数流水 |
+| 账号 | `auth_sessions` | 设备会话 |
+| 账号 | `admin_audit_logs` | 管理端写操作审计 |
+| 账号 | `push_tokens` | App/小程序推送 token |
 
 ---
 

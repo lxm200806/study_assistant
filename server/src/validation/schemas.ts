@@ -56,6 +56,77 @@ export const adminAuditQuerySchema = z.object({
   limit: z.coerce.number().int().min(1).max(200).default(50)
 })
 
+export const adminAccountQuerySchema = z
+  .object({
+    accountId: z.string().trim().min(1).optional(),
+    username: z.string().trim().min(1).max(64).optional()
+  })
+  .refine(value => Boolean(value.accountId || value.username), {
+    message: 'accountId or username is required',
+    path: ['accountId']
+  })
+
+export const adminGrantEntitlementBodySchema = z
+  .object({
+    accountId: z.string().trim().min(1).optional(),
+    username: z.string().trim().min(1).max(64).optional(),
+    permissionKeys: z.array(z.string().trim().min(1).max(128)).min(1).max(50),
+    endsAt: z.string().datetime().optional(),
+    limitValue: z.number().int().min(0).max(1_000_000).nullable().optional(),
+    period: z.enum(['day', 'month', 'period', 'total']).nullable().optional()
+  })
+  .refine(value => Boolean(value.accountId || value.username), {
+    message: 'accountId or username is required',
+    path: ['accountId']
+  })
+
+export const adminRevokeEntitlementBodySchema = z
+  .object({
+    accountId: z.string().trim().min(1).optional(),
+    username: z.string().trim().min(1).max(64).optional(),
+    permissionKey: z.string().trim().min(1).max(128).optional(),
+    sourceType: z.string().trim().min(1).max(32).optional(),
+    sourceId: z.string().trim().min(1).max(128).optional()
+  })
+  .refine(value => Boolean(value.accountId || value.username), {
+    message: 'accountId or username is required',
+    path: ['accountId']
+  })
+  .refine(value => Boolean(value.permissionKey || value.sourceType || value.sourceId), {
+    message: 'permissionKey or sourceType/sourceId is required',
+    path: ['permissionKey']
+  })
+
+export const adminPlanPatchBodySchema = z
+  .object({
+    name: z.string().trim().min(1).max(64).optional(),
+    description: z.string().trim().max(500).optional(),
+    days: z.number().int().min(0).max(3650).optional(),
+    priceCents: z.number().int().min(0).max(10_000_000).optional(),
+    creditAmount: z.number().int().min(0).max(1_000_000).optional(),
+    active: z.boolean().optional(),
+    sortOrder: z.number().int().min(-10_000).max(10_000).optional()
+  })
+  .refine(value => Object.keys(value).length > 0, {
+    message: 'at least one field is required'
+  })
+
+export const planCodeParamsSchema = z.object({
+  code: z.string().trim().min(1).max(64)
+})
+
+export const adminGrantCreditsBodySchema = z
+  .object({
+    accountId: z.string().trim().min(1).optional(),
+    username: z.string().trim().min(1).max(64).optional(),
+    amount: z.number().int().min(1).max(1_000_000),
+    reason: z.string().trim().max(100).optional()
+  })
+  .refine(value => Boolean(value.accountId || value.username), {
+    message: 'accountId or username is required',
+    path: ['accountId']
+  })
+
 export const setActiveStudentBodySchema = z
   .object({
     studentId: z.string().trim().min(1).optional(),
@@ -401,6 +472,12 @@ export type PayOrderBody = z.infer<typeof payOrderBodySchema>
 export type RegisterPushTokenBody = z.infer<typeof registerPushTokenBodySchema>
 export type DeleteAccountBody = z.infer<typeof deleteAccountBodySchema>
 export type AdminAuditQuery = z.infer<typeof adminAuditQuerySchema>
+export type AdminAccountQuery = z.infer<typeof adminAccountQuerySchema>
+export type AdminGrantEntitlementBody = z.infer<typeof adminGrantEntitlementBodySchema>
+export type AdminRevokeEntitlementBody = z.infer<typeof adminRevokeEntitlementBodySchema>
+export type AdminPlanPatchBody = z.infer<typeof adminPlanPatchBodySchema>
+export type AdminGrantCreditsBody = z.infer<typeof adminGrantCreditsBodySchema>
+export type PlanCodeParams = z.infer<typeof planCodeParamsSchema>
 export type RefreshBody = z.infer<typeof refreshBodySchema>
 export type SetActiveStudentBody = z.infer<typeof setActiveStudentBodySchema>
 export type BookSessionQuery = z.infer<typeof bookSessionQuerySchema>

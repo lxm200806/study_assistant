@@ -16,6 +16,7 @@ import typingRoutes from './routes/typing.routes'
 import chineseRoutes from './chinese/chinese.routes'
 import billingRoutes from './routes/billing.routes'
 import pushRoutes from './routes/push.routes'
+import entitlementRoutes from './routes/entitlement.routes'
 import { errorMiddleware } from './middleware/error'
 import { requestContext } from './middleware/request-context'
 import { accessLog } from './middleware/access-log'
@@ -66,6 +67,7 @@ export function createApp() {
     app.use(`${base}/chinese`, chineseRoutes)
     app.use(`${base}/billing`, billingRoutes)
     app.use(`${base}/push`, pushRoutes)
+    app.use(`${base}/entitlements`, entitlementRoutes)
   }
   mountApi('/api')
   mountApi('/api/v1')

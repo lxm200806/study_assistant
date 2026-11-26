@@ -7,23 +7,24 @@ const prismaMock = vi.hoisted(() => ({
   userBookUnlock: { findUnique: vi.fn(), findMany: vi.fn() }
 }))
 
+const entitlementMock = vi.hoisted(() => ({
+  hasPermission: vi.fn()
+}))
+
 vi.mock('../prisma/client', () => ({ default: prismaMock }))
+vi.mock('../entitlements/entitlement.service', () => entitlementMock)
 
 import { canAccessBook, getBookAccessScope } from './book-access.service'
 
 type AccountOverrides = {
   id: string
   isAdmin: boolean
-  plan: string
-  planExpiresAt: Date | null
 }
 
 function account(overrides: Partial<AccountOverrides> = {}) {
   return {
     id: 'acc-1',
     isAdmin: false,
-    plan: 'free',
-    planExpiresAt: null,
     ...overrides
   }
 }
@@ -37,31 +38,29 @@ describe('book access', () => {
     prismaMock.book.findMany.mockResolvedValue([])
     prismaMock.userBookUnlock.findUnique.mockResolvedValue(null)
     prismaMock.userBookUnlock.findMany.mockResolvedValue([])
+    entitlementMock.hasPermission.mockResolvedValue(false)
   })
 
-  it('grants full scope to admins', async () => {
+  it('grants full scope to admins without checking entitlements', async () => {
     prismaMock.user.findUnique.mockResolvedValue(account({ isAdmin: true }))
 
     const scope = await getBookAccessScope('acc-1')
 
     expect(scope.all).toBe(true)
     expect(prismaMock.book.findMany).not.toHaveBeenCalled()
+    expect(entitlementMock.hasPermission).not.toHaveBeenCalled()
   })
 
-  it('grants full scope to an active premium account', async () => {
-    prismaMock.user.findUnique.mockResolvedValue(
-      account({ plan: 'premium', planExpiresAt: new Date(Date.now() + 86_400_000) })
-    )
+  it('grants full scope when the account has english.books.all', async () => {
+    entitlementMock.hasPermission.mockResolvedValue(true)
 
     const scope = await getBookAccessScope('acc-1')
 
     expect(scope.all).toBe(true)
+    expect(entitlementMock.hasPermission).toHaveBeenCalledWith('acc-1', 'english.books.all')
   })
 
-  it('limits an expired premium account to free and unlocked books', async () => {
-    prismaMock.user.findUnique.mockResolvedValue(
-      account({ plan: 'premium', planExpiresAt: new Date(Date.now() - 1_000) })
-    )
+  it('limits an account without english.books.all to free and unlocked books', async () => {
     prismaMock.book.findMany.mockResolvedValue([
       { id: 'b1', code: 'free-book', isFree: true },
       { id: 'b2', code: 'paid-book', isFree: false },

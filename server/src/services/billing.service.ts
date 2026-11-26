@@ -1,39 +1,27 @@
+import { Prisma } from '@prisma/client'
 import prisma from '../prisma/client'
 import { isProduction } from '../config/env'
+import { seedEntitlementCatalogOnce } from '../entitlements/seed'
+import { activatePlanInTx, type PlanActivation } from '../entitlements/entitlement.service'
 
-const DEFAULT_PLANS = [
-  { code: 'premium_month', name: 'Premium 月卡', days: 30, priceCents: 2_990 },
-  { code: 'premium_year', name: 'Premium 年卡', days: 365, priceCents: 19_900 }
-]
+type PlanWithPermissions = Prisma.MembershipPlanGetPayload<{
+  include: { permissions: true }
+}>
 
 export async function ensureBillingPlans(): Promise<void> {
-  for (const plan of DEFAULT_PLANS) {
-    await prisma.membershipPlan.upsert({
-      where: { code: plan.code },
-      create: plan,
-      update: { name: plan.name, days: plan.days, priceCents: plan.priceCents }
-    })
-  }
+  await seedEntitlementCatalogOnce()
 }
 
-let plansReady: Promise<void> | null = null
-
-/** 进程内只确保一次套餐存在，避免每次读取 plans 都写两次 upsert。 */
 export function ensureBillingPlansOnce(): Promise<void> {
-  if (!plansReady) {
-    plansReady = ensureBillingPlans().catch(error => {
-      plansReady = null
-      throw error
-    })
-  }
-  return plansReady
+  return seedEntitlementCatalogOnce()
 }
 
 export async function listBillingPlans() {
   await ensureBillingPlansOnce()
   return prisma.membershipPlan.findMany({
-    where: { active: true },
-    orderBy: { priceCents: 'asc' }
+    where: { active: true, kind: { not: 'free' } },
+    orderBy: [{ subject: 'asc' }, { sortOrder: 'asc' }, { priceCents: 'asc' }],
+    include: { permissions: { orderBy: { permissionKey: 'asc' } } }
   })
 }
 
@@ -57,15 +45,21 @@ export function resolvePaymentProvider(): string {
 export async function createPaymentOrder(userId: string, planCode: string) {
   const provider = resolvePaymentProvider()
   const plan = await prisma.membershipPlan.findFirst({
-    where: { code: planCode, active: true }
+    where: { code: planCode, active: true },
+    include: { permissions: true }
   })
   if (!plan) throw new Error('PLAN_NOT_FOUND')
+  if (plan.kind === 'free' || plan.priceCents <= 0) {
+    throw new Error('PLAN_NOT_PURCHASABLE')
+  }
+
   return prisma.paymentOrder.create({
     data: {
       userId,
       planCode: plan.code,
       amountCents: plan.priceCents,
-      provider
+      provider,
+      planSnapshot: planToActivation(plan) as unknown as Prisma.InputJsonValue
     }
   })
 }
@@ -73,7 +67,7 @@ export async function createPaymentOrder(userId: string, planCode: string) {
 export async function payPaymentOrder(userId: string, orderId: string) {
   const order = await prisma.paymentOrder.findFirst({
     where: { id: orderId, userId },
-    include: { plan: true }
+    include: { plan: { include: { permissions: true } } }
   })
   if (!order) throw new Error('ORDER_NOT_FOUND')
   // 已支付订单保持幂等，不再依赖当前支付渠道配置
@@ -81,6 +75,8 @@ export async function payPaymentOrder(userId: string, orderId: string) {
 
   const provider = resolvePaymentProvider()
   const now = new Date()
+  const activation = activationForOrder(order)
+
   return prisma.$transaction(async tx => {
     const updated = await tx.paymentOrder.updateMany({
       where: { id: orderId, userId, status: 'pending' },
@@ -95,12 +91,10 @@ export async function payPaymentOrder(userId: string, orderId: string) {
       return tx.paymentOrder.findUniqueOrThrow({ where: { id: orderId } })
     }
 
-    const user = await tx.user.findUniqueOrThrow({ where: { id: userId } })
-    const base = user.planExpiresAt && user.planExpiresAt > now ? user.planExpiresAt : now
-    const planExpiresAt = new Date(base.getTime() + order.plan.days * 86_400_000)
-    await tx.user.update({
-      where: { id: userId },
-      data: { plan: 'premium', planExpiresAt }
+    await activatePlanInTx(tx, userId, activation, {
+      source: 'order',
+      orderId,
+      now
     })
     return tx.paymentOrder.findUniqueOrThrow({ where: { id: orderId } })
   })
@@ -112,4 +106,59 @@ export async function listPaymentOrders(userId: string) {
     orderBy: { createdAt: 'desc' },
     take: 50
   })
+}
+
+function planToActivation(plan: PlanWithPermissions): PlanActivation {
+  return {
+    code: plan.code,
+    name: plan.name,
+    kind: plan.kind,
+    subject: plan.subject,
+    groupKey: plan.groupKey,
+    days: plan.days,
+    priceCents: plan.priceCents,
+    creditAmount: plan.creditAmount,
+    permissions: plan.permissions.map(permission => ({
+      permissionKey: permission.permissionKey,
+      limitValue: permission.limitValue,
+      period: permission.period
+    }))
+  }
+}
+
+function activationForOrder(
+  order: Prisma.PaymentOrderGetPayload<{
+    include: { plan: { include: { permissions: true } } }
+  }>
+): PlanActivation {
+  const fallback = planToActivation(order.plan)
+  const snapshot = order.planSnapshot as unknown
+  if (!snapshot || typeof snapshot !== 'object') return fallback
+
+  const data = snapshot as Record<string, unknown>
+  if (typeof data.code !== 'string' || !Array.isArray(data.permissions)) return fallback
+
+  const permissions = data.permissions
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === 'object')
+    .map(item => ({
+      permissionKey: String(item.permissionKey || ''),
+      limitValue: typeof item.limitValue === 'number' ? item.limitValue : null,
+      period: typeof item.period === 'string' ? item.period : null
+    }))
+    .filter(item => item.permissionKey)
+
+  if (!permissions.length) return fallback
+
+  return {
+    code: String(data.code),
+    name: typeof data.name === 'string' ? data.name : fallback.name,
+    kind: typeof data.kind === 'string' ? data.kind : fallback.kind,
+    subject: typeof data.subject === 'string' ? data.subject : fallback.subject,
+    groupKey: typeof data.groupKey === 'string' ? data.groupKey : null,
+    days: typeof data.days === 'number' ? data.days : fallback.days,
+    priceCents: typeof data.priceCents === 'number' ? data.priceCents : fallback.priceCents,
+    creditAmount:
+      typeof data.creditAmount === 'number' ? data.creditAmount : fallback.creditAmount,
+    permissions
+  }
 }

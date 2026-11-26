@@ -8,7 +8,9 @@ import {
   endAsrSessionHandler
 } from '../controllers/speech.controller'
 import { authMiddleware } from '../middleware/auth'
+import { requirePermission } from '../middleware/entitlement'
 import { rateLimit } from '../middleware/rate-limit'
+import { PERMISSIONS } from '../entitlements/permissions'
 import { asyncHandler } from '../utils/async-handler'
 import { validateBody } from '../validation/validate'
 import {
@@ -25,6 +27,7 @@ router.get('/asr/config', authMiddleware, asyncHandler(getAsrConfigHandler))
 router.post(
   '/asr/session/start',
   authMiddleware,
+  requirePermission(PERMISSIONS.AI_SPEECH_ASSESS),
   rateLimit({ windowMs: 60 * 1000, max: 10, keyPrefix: 'asr-start' }),
   validateBody(asrStartBodySchema),
   startAsrSessionHandler
@@ -46,6 +49,7 @@ router.post(
 router.post(
   '/transcribe',
   authMiddleware,
+  requirePermission(PERMISSIONS.AI_SPEECH_ASSESS),
   rateLimit({ windowMs: 60 * 1000, max: 20, keyPrefix: 'speech-transcribe' }),
   validateBody(transcribeBodySchema),
   transcribeHandler
@@ -53,6 +57,7 @@ router.post(
 router.post(
   '/assess',
   authMiddleware,
+  requirePermission(PERMISSIONS.AI_SPEECH_ASSESS),
   rateLimit({ windowMs: 60 * 1000, max: 20, keyPrefix: 'speech-assess' }),
   validateBody(assessBodySchema),
   assessHandler

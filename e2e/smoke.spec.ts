@@ -17,7 +17,56 @@ const DEMO_USER = {
 
 const DEMO_STUDENT = { ...DEMO_USER, activeRole: 'student' }
 
+const FREE_ENTITLEMENTS = {
+  success: true,
+  data: {
+    accountId: DEMO_USER.id,
+    isAdmin: false,
+    permissions: {
+      'english.recognition': {
+        key: 'english.recognition',
+        kind: 'access',
+        unit: null,
+        limitValue: null,
+        period: null,
+        active: true,
+        expiresAt: null,
+        used: 0,
+        remaining: null,
+        sources: ['free']
+      },
+      'ai.chat.text': {
+        key: 'ai.chat.text',
+        kind: 'quota',
+        unit: 'message',
+        limitValue: 5,
+        period: 'day',
+        active: true,
+        expiresAt: null,
+        used: 0,
+        remaining: 5,
+        sources: ['free']
+      }
+    },
+    subscriptions: [],
+    credits: { balance: 0 },
+    legacyPlan: { plan: 'free', expiresAt: null }
+  }
+}
+
 const isApiRequest = (url: URL) => url.pathname.startsWith('/api/')
+
+async function mockFreeEntitlements(page: Page) {
+  await page.route(
+    (url: URL) => url.pathname === '/api/entitlements',
+    route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify(FREE_ENTITLEMENTS)
+      })
+  )
+}
 
 async function mockUnauthorizedApi(page: Page) {
   await page.route(isApiRequest, route =>
@@ -30,6 +79,7 @@ async function mockUnauthorizedApi(page: Page) {
 }
 
 async function mockDemoLogin(page: Page) {
+  await mockFreeEntitlements(page)
   await page.route(
     (url: URL) => url.pathname === '/api/auth/login',
     route =>
@@ -73,6 +123,7 @@ async function loginAsDemo(page: Page) {
 }
 
 async function seedStudentStorage(page: Page, user: typeof DEMO_USER) {
+  await mockFreeEntitlements(page)
   await page.goto('/#/pages/login/login')
   await page.evaluate((student) => {
     const storage = (window as unknown as {
@@ -191,6 +242,62 @@ test('renders the authenticated book list', async ({ page }) => {
 
   await page.goto('/#/pages/books/books')
   await expect(page.getByText('人教 PEP 三上', { exact: true })).toBeVisible()
+})
+
+test('renders subject membership plans from entitlements and billing', async ({ page }) => {
+  await loginAsDemo(page)
+  await page.route(isApiRequest, route =>
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ success: true, data: null })
+    })
+  )
+  await page.route(
+    (url: URL) => url.pathname === '/api/billing/plans',
+    route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          success: true,
+          data: [
+            {
+              code: 'english_core_month',
+              name: '英语全科会员',
+              kind: 'subscription',
+              subject: 'english',
+              description: '全部英语词书 + 认读/拼读/文章/测验',
+              days: 30,
+              priceCents: 2990,
+              active: true
+            }
+          ]
+        })
+      })
+  )
+  await page.route(
+    (url: URL) => url.pathname === '/api/books',
+    route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ success: true, data: [] })
+      })
+  )
+  await page.route(
+    (url: URL) => url.pathname === '/api/stats/weekly-report',
+    route =>
+      route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ success: true, data: null })
+      })
+  )
+
+  await page.goto('/#/pages/membership/membership')
+  await expect(page.getByText(/英语全科会员/).first()).toBeVisible()
+  await expect(page.getByText('免费版', { exact: true }).first()).toBeVisible()
 })
 
 test('renders the recognition setup for a student', async ({ page }) => {

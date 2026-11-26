@@ -1,11 +1,14 @@
 import type { Vocabulary } from '@/types'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { useUserStore } from '@/stores/user'
+import { useEntitlementsStore } from '@/stores/entitlements'
+import { PERMISSIONS } from '@/utils/permissions'
 import { promptSessionExpired } from '@/utils/api'
 
 export function isBookAccessible(bookCode: string, isFree?: boolean): boolean {
   const userStore = useUserStore()
-  if (userStore.isAdmin || userStore.plan === 'premium') return true
+  const entitlements = useEntitlementsStore()
+  if (userStore.isAdmin || entitlements.has(PERMISSIONS.ENGLISH_BOOKS_ALL)) return true
   if (isFree === true || bookCode === 'mse-ket' || bookCode === 'ket') return true
   if (bookCode.startsWith('pep-g')) return true
   return false
@@ -16,7 +19,7 @@ type LoadErrorKind = 'auth' | 'locked' | 'network' | 'unknown'
 function classifyTrainingLoadError(error: unknown): LoadErrorKind {
   const msg = (error as Error)?.message || String(error || '')
   if (/Unauthorized|401|Invalid token|请先登录/i.test(msg)) return 'auth'
-  if (/BOOK_LOCKED|会员|403/i.test(msg)) return 'locked'
+  if (/BOOK_LOCKED|PERMISSION_DENIED|会员|403/i.test(msg)) return 'locked'
   if (/Network|timeout|网络/i.test(msg)) return 'network'
   return 'unknown'
 }

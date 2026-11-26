@@ -19,6 +19,10 @@ export async function startAsrSessionHandler(req: Request, res: Response) {
     const result = await startAsrSession(userId, encoding === 'raw' ? 'raw' : 'lame')
     res.status(200).json({ success: true, data: result })
   } catch (error) {
+    const msg = (error as Error).message
+    if (msg === 'SPEECH_LIMIT') {
+      return res.status(429).json({ success: false, error: '语音额度已用完' })
+    }
     internalError(res, error)
   }
 }
@@ -73,7 +77,7 @@ export async function transcribeHandler(req: Request, res: Response) {
     const msg = (error as Error).message
     const status = msg === 'SPEECH_LIMIT' ? 429 : msg === 'WHISPER_NOT_CONFIGURED' ? 503 : 500
     const errorText = msg === 'SPEECH_LIMIT'
-      ? '今日免费语音识别次数已用完'
+      ? '语音额度已用完'
       : msg === 'WHISPER_NOT_CONFIGURED'
         ? '语音识别服务未配置'
         : msg

@@ -9,34 +9,39 @@ datasource db {
 
 // 能登录的家庭账号。用户数、付费、日活、留存都统计这张表。
 model User {
-  id              String    @id @default(uuid())
-  username        String    @unique
-  passwordHash    String
-  isAdmin         Boolean   @default(false)
-  plan            String    @default("free")
-  planExpiresAt   DateTime?
-  paymentOrders   PaymentOrder[]
-  pushTokens      PushToken[]
-  wxOpenId        String?   @unique
-  hasOnboarded    Boolean   @default(false)
-  activeSubject   String    @default("english")
-  displayName     String?
-  activeLearnerId String?   @unique
-  activeRole      String    @default("parent")
-  tokenVersion    Int       @default(0)
-  twoFactorSecret String?
-  twoFactorEnabled Boolean  @default(false)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id               String         @id @default(uuid())
+  username         String         @unique
+  passwordHash     String
+  isAdmin          Boolean        @default(false)
+  plan             String         @default("free")
+  planExpiresAt    DateTime?
+  paymentOrders    PaymentOrder[]
+  pushTokens       PushToken[]
+  wxOpenId         String?        @unique
+  hasOnboarded     Boolean        @default(false)
+  activeSubject    String         @default("english")
+  displayName      String?
+  activeLearnerId  String?        @unique
+  activeRole       String         @default("parent")
+  tokenVersion     Int            @default(0)
+  twoFactorSecret  String?
+  twoFactorEnabled Boolean        @default(false)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
 
-  activeLearner Learner?            @relation("ActiveLearner", fields: [activeLearnerId], references: [id], onDelete: SetNull)
-  learners      Learner[]           @relation("AccountLearners")
-  bookUnlocks   UserBookUnlock[]
-  dailyActives  AccountDailyActive[]
-  sessions      AuthSession[]
-  adminAuditLogs AdminAuditLog[]
-  chineseUploads ChineseResource[]  @relation("ChineseResourceUploader")
-  chineseCards  ChinesePublished[]  @relation("ChineseCardCreator")
+  activeLearner     Learner?             @relation("ActiveLearner", fields: [activeLearnerId], references: [id], onDelete: SetNull)
+  learners          Learner[]            @relation("AccountLearners")
+  bookUnlocks       UserBookUnlock[]
+  dailyActives      AccountDailyActive[]
+  sessions          AuthSession[]
+  adminAuditLogs    AdminAuditLog[]
+  chineseUploads    ChineseResource[]    @relation("ChineseResourceUploader")
+  chineseCards      ChinesePublished[]   @relation("ChineseCardCreator")
+  subscriptions     Subscription[]
+  entitlementGrants EntitlementGrant[]
+  creditWallet      CreditWallet?
+  creditLedgers     CreditLedger[]
+  usageCounters     UsageCounter[]
 }
 
 /// 管理端写操作审计。actor 删除后保留记录，actorId 置空。
@@ -185,7 +190,7 @@ model Vocabulary {
   listItems       PracticeListItem[]
   typingModeStats TypingModeStat[]
   wordChecks      BookWordCheck[]
-  owner           Learner?             @relation("LearnerOwnedWords", fields: [ownerLearnerId], references: [id], onDelete: SetNull)
+  owner           Learner?           @relation("LearnerOwnedWords", fields: [ownerLearnerId], references: [id], onDelete: SetNull)
 
   @@index([ownerLearnerId])
 }
@@ -527,18 +532,18 @@ model PracticeList {
 
 // 词表里的每一条。词书里没有的拼写会先写成学习者自建词条，再挂到这里。
 model PracticeListItem {
-  id          String @id @default(uuid())
-  listId      String
-  position    Int
-  spelling    String
-  gloss       String @default("")
-  wordId      String
-  synonyms    String @default("")
-  roots       String @default("")
-  etymology   String @default("")
-  phrases     String @default("")
-  phoneticUk  String @default("")
-  phoneticUs  String @default("")
+  id         String @id @default(uuid())
+  listId     String
+  position   Int
+  spelling   String
+  gloss      String @default("")
+  wordId     String
+  synonyms   String @default("")
+  roots      String @default("")
+  etymology  String @default("")
+  phrases    String @default("")
+  phoneticUk String @default("")
+  phoneticUs String @default("")
 
   list PracticeList @relation(fields: [listId], references: [id], onDelete: Cascade)
   word Vocabulary   @relation(fields: [wordId], references: [id], onDelete: Cascade)
@@ -569,22 +574,22 @@ model ArticleSentenceCard {
   articleKey     String
   sentenceIndex  Int
   text           String
-  translation    String   @default("")
-  practiceCount  Int      @default(0)
-  correctCount   Int      @default(0)
+  translation    String    @default("")
+  practiceCount  Int       @default(0)
+  correctCount   Int       @default(0)
   lastPractice   DateTime?
-  mastery        Int      @default(0)
+  mastery        Int       @default(0)
   due            DateTime?
-  stability      Float    @default(0)
-  difficulty     Float    @default(0)
-  reps           Int      @default(0)
-  lapses         Int      @default(0)
-  fsrsState      String   @default("New")
+  stability      Float     @default(0)
+  difficulty     Float     @default(0)
+  reps           Int       @default(0)
+  lapses         Int       @default(0)
+  fsrsState      String    @default("New")
   lastReview     DateTime?
-  retrievability Float    @default(0)
-  recentLapse    Boolean  @default(false)
-  learningSteps  Int      @default(0)
-  scheduledDays  Int      @default(0)
+  retrievability Float     @default(0)
+  recentLapse    Boolean   @default(false)
+  learningSteps  Int       @default(0)
+  scheduledDays  Int       @default(0)
 
   learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
 
@@ -625,16 +630,16 @@ model TypingModeStat {
 
 // 一组键盘练习的用时和字数，只属于当前学习者。速度图和练习热力都读这张表。
 model TypingSessionLog {
-  id            String   @id @default(uuid())
-  learnerId     String
-  date          String
-  durationMs    Int
-  typedChars    Int
-  correctChars  Int
-  itemCount     Int
-  correctCount  Int
-  kind          String
-  createdAt     DateTime @default(now())
+  id           String   @id @default(uuid())
+  learnerId    String
+  date         String
+  durationMs   Int
+  typedChars   Int
+  correctChars Int
+  itemCount    Int
+  correctCount Int
+  kind         String
+  createdAt    DateTime @default(now())
 
   learner Learner @relation(fields: [learnerId], references: [id], onDelete: Cascade)
 
@@ -644,27 +649,173 @@ model TypingSessionLog {
 
 // 会员套餐：价格和时长在数据库维护，便于运营调整。
 model MembershipPlan {
-  code       String         @id
-  name       String
-  days       Int
-  priceCents Int
-  active     Boolean        @default(true)
-  createdAt  DateTime       @default(now())
-  orders     PaymentOrder[]
+  code          String           @id
+  name          String
+  /// free / subscription / addon / credit / beta
+  kind          String           @default("subscription")
+  /// english / chinese / math / ai / bundle / family
+  subject       String           @default("english")
+  /// 同一学科套餐组，用于升级/互斥（如 english.plan）
+  groupKey      String?
+  description   String           @default("")
+  days          Int
+  priceCents    Int
+  creditAmount  Int              @default(0)
+  active        Boolean          @default(true)
+  sortOrder     Int              @default(0)
+  createdAt     DateTime         @default(now())
+  orders        PaymentOrder[]
+  permissions   PlanPermission[]
+  subscriptions Subscription[]
 
+  @@index([subject, kind, active])
   @@map("membership_plans")
+}
+
+/// 权限目录。业务代码只认 key，不认套餐名。
+model Permission {
+  key         String  @id
+  name        String
+  subject     String
+  groupKey    String  @default("")
+  /// access / quota
+  kind        String  @default("access")
+  unit        String?
+  description String  @default("")
+  active      Boolean @default(true)
+
+  plans  PlanPermission[]
+  grants EntitlementGrant[]
+  usage  UsageCounter[]
+
+  @@index([subject, active])
+  @@map("permissions")
+}
+
+/// 套餐 → 权限映射；limitValue/period 用于次数/时长配额。
+model PlanPermission {
+  planCode      String
+  permissionKey String
+  limitValue    Int?
+  /// day / month / period / total
+  period        String?
+
+  plan       MembershipPlan @relation(fields: [planCode], references: [code], onDelete: Cascade)
+  permission Permission     @relation(fields: [permissionKey], references: [key], onDelete: Cascade)
+
+  @@id([planCode, permissionKey])
+  @@map("plan_permissions")
+}
+
+/// 账号购买的套餐周期。授权另行写入 EntitlementGrant。
+model Subscription {
+  id        String   @id @default(uuid())
+  accountId String
+  planCode  String
+  /// active / expired / canceled
+  status    String   @default("active")
+  startsAt  DateTime @default(now())
+  endsAt    DateTime
+  autoRenew Boolean  @default(false)
+  /// order / admin / gift / trial / beta
+  source    String   @default("order")
+  orderId   String?
+  snapshot  Json?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  account User           @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  plan    MembershipPlan @relation(fields: [planCode], references: [code])
+
+  @@index([accountId, status, endsAt])
+  @@index([planCode])
+  @@map("subscriptions")
+}
+
+/// 实际生效的权限授权。可来自订阅、试用、赠送、活动或管理员。
+model EntitlementGrant {
+  id            String    @id @default(uuid())
+  accountId     String
+  permissionKey String
+  /// baseline / subscription / trial / gift / promo / admin
+  sourceType    String
+  sourceId      String?
+  startsAt      DateTime  @default(now())
+  endsAt        DateTime?
+  limitValue    Int?
+  period        String?
+  metadata      Json?
+  createdAt     DateTime  @default(now())
+
+  account    User       @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionKey], references: [key], onDelete: Cascade)
+
+  @@index([accountId, permissionKey, endsAt])
+  @@index([sourceType, sourceId])
+  @@map("entitlement_grants")
+}
+
+/// AI 点数钱包；余额与流水分离，便于对账。
+model CreditWallet {
+  accountId String   @id
+  balance   Int      @default(0)
+  updatedAt DateTime @updatedAt
+
+  account User @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@map("credit_wallets")
+}
+
+model CreditLedger {
+  id            String   @id @default(uuid())
+  accountId     String
+  delta         Int
+  /// grant / consume / refund / expire / adjust
+  reason        String
+  permissionKey String?
+  learnerId     String?
+  refId         String?
+  metadata      Json?
+  createdAt     DateTime @default(now())
+
+  account User @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  @@index([accountId, createdAt])
+  @@map("credit_ledger")
+}
+
+/// 通用配额计数（每日/每月次数、语音分钟数等）。
+model UsageCounter {
+  id            String   @id @default(uuid())
+  accountId     String
+  /// account 或 learnerId，用于账号级/孩子级配额
+  scopeId       String   @default("account")
+  permissionKey String
+  /// 如 2026-11-26 / 2026-11
+  periodKey     String
+  used          Int      @default(0)
+  updatedAt     DateTime @updatedAt
+
+  account    User       @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionKey], references: [key], onDelete: Cascade)
+
+  @@unique([accountId, scopeId, permissionKey, periodKey])
+  @@index([accountId, permissionKey, periodKey])
+  @@map("usage_counters")
 }
 
 // 支付订单。当前 mock 渠道用于开发/演示，真实渠道接入后沿用同一张表。
 model PaymentOrder {
-  id              String         @id @default(uuid())
+  id              String    @id @default(uuid())
   userId          String
   planCode        String
   amountCents     Int
-  status          String         @default("pending")
-  provider        String         @default("mock")
+  status          String    @default("pending")
+  provider        String    @default("mock")
   providerOrderId String?
-  createdAt       DateTime       @default(now())
+  /// 下单时的套餐与权限快照，避免后续改价/改权限影响已支付订单
+  planSnapshot    Json?
+  createdAt       DateTime  @default(now())
   paidAt          DateTime?
 
   user User           @relation(fields: [userId], references: [id], onDelete: Cascade)

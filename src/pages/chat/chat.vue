@@ -6,7 +6,7 @@
         {{ currentBookName }} · {{ modeLabel }}
         <text v-if="chatMode === 'roleplay' && scenarioChosen && scenario"> · {{ scenarioLabel }}</text>
         <text v-else-if="modeHint && chatMode !== 'roleplay'"> · {{ modeHint }}</text>
-        <text v-if="!quota.isPremium && quota.remaining >= 0"> · 今日剩余 {{ quota.remaining }} 次</text>
+        <text v-if="quotaLabel"> · {{ quotaLabel }}</text>
       </text>
       <view class="mode-tabs">
         <text
@@ -180,7 +180,19 @@ const uiMode = ref<UiMode>('voice')
 const scenario = ref('')
 const scenarioChosen = ref(false)
 const customScenarioInput = ref('')
-const quota = ref({ remaining: -1, isPremium: false })
+const quota = ref({
+  remaining: -1,
+  isPremium: false,
+  limitValue: null as number | null,
+  period: null as string | null
+})
+const quotaLabel = computed(() => {
+  if (quota.value.isPremium) return 'AI 不限'
+  if (quota.value.remaining < 0) return ''
+  const prefix =
+    quota.value.period === 'month' ? '本月' : quota.value.period === 'day' ? '今日' : ''
+  return `${prefix}剩余 ${quota.value.remaining} 次`
+})
 const voiceStatus = ref<VoiceStatus>('idle')
 const partialTranscript = ref('')
 const isBusy = ref(false)

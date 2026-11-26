@@ -85,7 +85,7 @@ export async function sendMessageHandler(req: Request, res: Response) {
       return res.status(403).json({ success: false, error: 'BOOK_LOCKED' })
     }
     if (msg === 'CHAT_LIMIT') {
-      return res.status(429).json({ success: false, error: '今日免费对话次数已用完' })
+      return res.status(429).json({ success: false, error: '对话额度已用完' })
     }
     internalError(res, error)
   }

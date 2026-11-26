@@ -3,6 +3,7 @@ import { ensureAdminUser } from './services/admin-seed.service'
 import { initBooks } from './services/book.service'
 import { initVocabulary } from './utils/seed'
 import { ensureBillingPlansOnce } from './services/billing.service'
+import { backfillLegacyPremiumGrants } from './entitlements/seed'
 
 export interface BootState {
   ready: boolean
@@ -47,6 +48,7 @@ export async function bootstrap(): Promise<void> {
   })
   await runStep('chinese', () => seedChineseIfEmpty())
   await runStep('billing', () => ensureBillingPlansOnce())
+  await runStep('entitlements', () => backfillLegacyPremiumGrants())
   state.ready = true
   state.finishedAt = new Date().toISOString()
 }

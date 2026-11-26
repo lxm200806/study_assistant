@@ -4191,6 +4191,42 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/entitlements": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 当前账号权限、订阅与 AI 余额 */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["EntitlementsResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/billing/plans": {
         parameters: {
             query?: never;
@@ -4938,10 +4974,22 @@ export interface components {
             data: {
                 code: string;
                 name: string;
+                kind: string;
+                subject: string;
+                groupKey?: string | null;
+                description?: string;
                 days: number;
                 priceCents: number;
+                creditAmount?: number;
                 active: boolean;
+                sortOrder?: number;
                 createdAt: string;
+                permissions?: {
+                    planCode?: string;
+                    permissionKey: string;
+                    limitValue?: number | null;
+                    period?: string | null;
+                }[];
             }[];
         };
         BillingOrderResponse: {
@@ -4956,6 +5004,9 @@ export interface components {
                 status: "pending" | "paid";
                 provider: string;
                 providerOrderId: string | null;
+                planSnapshot?: {
+                    [key: string]: unknown;
+                } | null;
                 createdAt: string;
                 paidAt: string | null;
             };
@@ -4972,6 +5023,9 @@ export interface components {
                 status: "pending" | "paid";
                 provider: string;
                 providerOrderId: string | null;
+                planSnapshot?: {
+                    [key: string]: unknown;
+                } | null;
                 createdAt: string;
                 paidAt: string | null;
             }[];
@@ -5011,6 +5065,44 @@ export interface components {
                 streak: number;
                 accuracy: number;
                 practiceCount: number;
+            };
+        };
+        EntitlementsResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                accountId: string;
+                isAdmin: boolean;
+                permissions: {
+                    [key: string]: {
+                        key: string;
+                        kind: string;
+                        unit: string | null;
+                        limitValue: number | null;
+                        period: string | null;
+                        active: boolean;
+                        expiresAt: string | null;
+                        used: number;
+                        remaining: number | null;
+                        sources: string[];
+                    };
+                };
+                subscriptions: {
+                    id: string;
+                    planCode: string;
+                    planName: string;
+                    subject: string;
+                    kind: string;
+                    endsAt: string;
+                    autoRenew: boolean;
+                }[];
+                credits: {
+                    balance: number;
+                };
+                legacyPlan: {
+                    plan: string;
+                    expiresAt: string | null;
+                };
             };
         };
         SessionsResponse: {
@@ -5569,6 +5661,8 @@ export interface components {
             data: {
                 remaining: number;
                 isPremium: boolean;
+                limitValue: number | null;
+                period: string | null;
             };
         };
         TypingMarkResponse: {

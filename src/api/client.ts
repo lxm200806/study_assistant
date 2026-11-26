@@ -23,6 +23,7 @@ export interface ResponseData<T = any> {
   success?: boolean
   data?: T
   error?: string
+  code?: string
   accessToken?: string
   refreshToken?: string
   user?: {
@@ -60,11 +61,12 @@ export function getLastRequestId(): string {
   return lastRequestId
 }
 
-type ApiError = Error & { status?: number; network?: boolean }
+type ApiError = Error & { status?: number; network?: boolean; code?: string }
 
-function apiError(message: string, status?: number): ApiError {
+function apiError(message: string, status?: number, code?: string): ApiError {
   const error = new Error(message) as ApiError
   if (status != null) error.status = status
+  if (code) error.code = code
   return error
 }
 
@@ -239,7 +241,8 @@ export async function request<T>(
         }
 
         if (res.statusCode === 403) {
-          reject(apiError(`BOOK_LOCKED: ${errMsg}`, 403))
+          const code = body?.code === 'PERMISSION_DENIED' ? 'PERMISSION_DENIED' : 'BOOK_LOCKED'
+          reject(apiError(`${code}: ${errMsg}`, 403, code))
           return
         }
 

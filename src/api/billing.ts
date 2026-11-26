@@ -1,10 +1,24 @@
 import { request } from './client'
 
+export interface BillingPlanPermission {
+  permissionKey: string
+  limitValue?: number | null
+  period?: string | null
+}
+
 export interface BillingPlan {
   code: string
   name: string
+  kind?: string
+  subject?: string
+  groupKey?: string | null
+  description?: string
   days: number
   priceCents: number
+  creditAmount?: number
+  active?: boolean
+  sortOrder?: number
+  permissions?: BillingPlanPermission[]
 }
 
 export interface PaymentOrder {
@@ -13,6 +27,7 @@ export interface PaymentOrder {
   amountCents: number
   status: string
   provider: string
+  planSnapshot?: unknown
   createdAt: string
   paidAt?: string | null
 }

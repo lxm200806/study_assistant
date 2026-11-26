@@ -125,9 +125,12 @@ import { computed, onMounted, ref } from 'vue'
 import { onShow } from '@dcloudio/uni-app'
 import { authAPI } from '@/api/auth'
 import { useUserStore } from '@/stores/user'
+import { useEntitlementsStore } from '@/stores/entitlements'
+import { PERMISSIONS } from '@/utils/permissions'
 import { requireReadySession } from '@/utils/subject'
 
 const userStore = useUserStore()
+const entitlements = useEntitlementsStore()
 
 const displayName = computed(() =>
   userStore.isStudentRole
@@ -138,7 +141,10 @@ const displayName = computed(() =>
 const planLabel = computed(() => {
   if (userStore.isStudentRole) return '角色'
   const mode = userStore.isAdmin ? '账号 · 管理' : '账号'
-  return userStore.plan === 'premium' ? `${mode} · Premium` : mode
+  const active =
+    entitlements.subscriptions.length > 0 ||
+    entitlements.has(PERMISSIONS.ENGLISH_BOOKS_ALL)
+  return active ? `${mode} · 会员` : mode
 })
 
 const roleHint = computed(() => {

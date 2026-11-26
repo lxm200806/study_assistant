@@ -92,6 +92,7 @@ import {
   completeSessionResponseSchema,
   dailyStatsResponseSchema,
   dueCountResponseSchema,
+  entitlementsResponseSchema,
   globalMapResponseSchema,
   historyResponseSchema,
   practiceResponseSchema,
@@ -286,6 +287,10 @@ const dailyStatsResponse = registry.register('DailyStatsResponse', dailyStatsRes
 const weeklyReportResponse = registry.register(
   'WeeklyReportResponse',
   weeklyReportResponseSchema
+)
+const entitlementsResponse = registry.register(
+  'EntitlementsResponse',
+  entitlementsResponseSchema
 )
 const sessionsResponse = registry.register('SessionsResponse', sessionsResponseSchema)
 const anyDataResponse = registry.register('AnyDataResponse', anyDataResponseSchema)
@@ -1363,6 +1368,15 @@ registry.registerPath({
     },
     400: badRequest
   }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/entitlements',
+  tags: ['billing'],
+  summary: '当前账号权限、订阅与 AI 余额',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(entitlementsResponse) }
 })
 
 registry.registerPath({

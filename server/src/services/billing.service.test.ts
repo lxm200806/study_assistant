@@ -12,7 +12,17 @@ const prismaMock = vi.hoisted(() => ({
   $transaction: vi.fn()
 }))
 
+const seedMock = vi.hoisted(() => ({
+  seedEntitlementCatalogOnce: vi.fn()
+}))
+
+const activationMock = vi.hoisted(() => ({
+  activatePlanInTx: vi.fn()
+}))
+
 vi.mock('../prisma/client', () => ({ default: prismaMock }))
+vi.mock('../entitlements/seed', () => seedMock)
+vi.mock('../entitlements/entitlement.service', () => activationMock)
 
 import {
   createPaymentOrder,
@@ -21,12 +31,31 @@ import {
   resolvePaymentProvider
 } from './billing.service'
 
+function plan(overrides: Record<string, unknown> = {}) {
+  return {
+    code: 'english_core_month',
+    name: '英语全科会员',
+    kind: 'subscription',
+    subject: 'english',
+    groupKey: 'english.plan',
+    days: 30,
+    priceCents: 2_990,
+    creditAmount: 0,
+    permissions: [
+      { permissionKey: 'english.books.all', limitValue: null, period: null }
+    ],
+    ...overrides
+  }
+}
+
 beforeEach(() => {
   vi.clearAllMocks()
   vi.unstubAllEnvs()
   vi.stubEnv('NODE_ENV', 'test')
   vi.stubEnv('PAYMENT_PROVIDER', 'mock')
   vi.stubEnv('ALLOW_MOCK_PAYMENT', 'false')
+  seedMock.seedEntitlementCatalogOnce.mockResolvedValue(undefined)
+  activationMock.activatePlanInTx.mockResolvedValue('sub-1')
 })
 
 afterEach(() => {
@@ -67,24 +96,32 @@ describe('payment orders', () => {
     expect(prismaMock.paymentOrder.create).not.toHaveBeenCalled()
   })
 
-  it('creates mock orders with the resolved provider', async () => {
-    prismaMock.membershipPlan.findFirst.mockResolvedValue({
-      code: 'premium_month',
-      priceCents: 2_990
-    })
+  it('creates mock orders with a plan snapshot', async () => {
+    prismaMock.membershipPlan.findFirst.mockResolvedValue(plan())
     prismaMock.paymentOrder.create.mockResolvedValue({ id: 'order-1' })
 
-    const order = await createPaymentOrder('u1', 'premium_month')
+    const order = await createPaymentOrder('u1', 'english_core_month')
 
     expect(order).toEqual({ id: 'order-1' })
-    expect(prismaMock.paymentOrder.create).toHaveBeenCalledWith({
-      data: {
-        userId: 'u1',
-        planCode: 'premium_month',
-        amountCents: 2_990,
-        provider: 'mock'
-      }
-    })
+    expect(prismaMock.paymentOrder.create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          userId: 'u1',
+          planCode: 'english_core_month',
+          amountCents: 2_990,
+          provider: 'mock',
+          planSnapshot: expect.objectContaining({ code: 'english_core_month' })
+        })
+      })
+    )
+  })
+
+  it('rejects free or zero-price plans as unpurchasable', async () => {
+    prismaMock.membershipPlan.findFirst.mockResolvedValue(
+      plan({ code: 'free', kind: 'free', priceCents: 0 })
+    )
+
+    await expect(createPaymentOrder('u1', 'free')).rejects.toThrow('PLAN_NOT_PURCHASABLE')
   })
 
   it('refuses to pay a pending order in production when mock is disabled', async () => {
@@ -92,7 +129,8 @@ describe('payment orders', () => {
     prismaMock.paymentOrder.findFirst.mockResolvedValue({
       id: 'order-1',
       status: 'pending',
-      plan: { days: 30 }
+      plan: plan(),
+      planSnapshot: null
     })
 
     await expect(payPaymentOrder('u1', 'order-1')).rejects.toThrow(
@@ -112,7 +150,7 @@ describe('payment orders', () => {
     expect(prismaMock.paymentOrder.updateMany).not.toHaveBeenCalled()
   })
 
-  it('pays a pending mock order and extends membership', async () => {
+  it('pays a pending mock order and activates the plan entitlements', async () => {
     const now = new Date('2026-01-01T00:00:00.000Z')
     vi.useFakeTimers()
     vi.setSystemTime(now)
@@ -120,14 +158,13 @@ describe('payment orders', () => {
     prismaMock.paymentOrder.findFirst.mockResolvedValue({
       id: 'order-1',
       status: 'pending',
-      plan: { days: 30 }
+      plan: plan(),
+      planSnapshot: null
     })
     prismaMock.$transaction.mockImplementation(async (callback: (tx: unknown) => unknown) =>
       callback(prismaMock)
     )
     prismaMock.paymentOrder.updateMany.mockResolvedValue({ count: 1 })
-    prismaMock.user.findUniqueOrThrow.mockResolvedValue({ id: 'u1', planExpiresAt: null })
-    prismaMock.user.update.mockResolvedValue({})
     prismaMock.paymentOrder.findUniqueOrThrow.mockResolvedValue({
       id: 'order-1',
       status: 'paid'
@@ -136,25 +173,27 @@ describe('payment orders', () => {
     const result = await payPaymentOrder('u1', 'order-1')
 
     expect(result).toEqual({ id: 'order-1', status: 'paid' })
-    expect(prismaMock.user.update).toHaveBeenCalledWith({
-      where: { id: 'u1' },
-      data: {
-        plan: 'premium',
-        planExpiresAt: new Date(now.getTime() + 30 * 86_400_000)
-      }
-    })
+    expect(activationMock.activatePlanInTx).toHaveBeenCalledWith(
+      prismaMock,
+      'u1',
+      expect.objectContaining({
+        code: 'english_core_month',
+        subject: 'english',
+        kind: 'subscription'
+      }),
+      expect.objectContaining({ orderId: 'order-1', source: 'order' })
+    )
   })
 })
 
 describe('billing plans', () => {
-  it('ensures default plans only once per process', async () => {
-    prismaMock.membershipPlan.upsert.mockResolvedValue({})
+  it('seeds the catalog and lists active purchasable plans', async () => {
     prismaMock.membershipPlan.findMany.mockResolvedValue([])
 
     await listBillingPlans()
     await listBillingPlans()
 
-    expect(prismaMock.membershipPlan.upsert).toHaveBeenCalledTimes(2)
+    expect(seedMock.seedEntitlementCatalogOnce).toHaveBeenCalled()
     expect(prismaMock.membershipPlan.findMany).toHaveBeenCalledTimes(2)
   })
 })

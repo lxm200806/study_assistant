@@ -1,10 +1,10 @@
 import prisma from '../prisma/client'
+import { hasPermission } from '../entitlements/entitlement.service'
+import { PERMISSIONS } from '../entitlements/permissions'
 
 type BillingAccount = {
   id: string
   isAdmin: boolean
-  plan: string
-  planExpiresAt: Date | null
 }
 
 async function resolveBillingAccount(userId: string): Promise<BillingAccount | null> {
@@ -12,19 +12,24 @@ async function resolveBillingAccount(userId: string): Promise<BillingAccount | n
     where: { id: userId },
     include: { account: true }
   })
-  if (learner) return learner.account
-  return prisma.user.findUnique({ where: { id: userId } })
+  if (learner) {
+    return { id: learner.account.id, isAdmin: learner.account.isAdmin }
+  }
+  return prisma.user.findUnique({
+    where: { id: userId },
+    select: { id: true, isAdmin: true }
+  })
 }
 
-function hasFullBookAccess(user: BillingAccount): boolean {
+async function hasFullBookAccess(user: BillingAccount): Promise<boolean> {
   if (user.isAdmin) return true
-  return user.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
+  return hasPermission(user.id, PERMISSIONS.ENGLISH_BOOKS_ALL)
 }
 
 export async function canAccessBook(userId: string, bookCode: string): Promise<boolean> {
   const user = await resolveBillingAccount(userId)
   if (!user) return false
-  if (hasFullBookAccess(user)) return true
+  if (await hasFullBookAccess(user)) return true
 
   const book = await prisma.book.findUnique({ where: { code: bookCode } })
   if (!book) return false
@@ -46,7 +51,7 @@ export interface BookAccessScope {
 export async function getBookAccessScope(userId: string): Promise<BookAccessScope> {
   const user = await resolveBillingAccount(userId)
   if (!user) return { all: false, codes: new Set() }
-  if (hasFullBookAccess(user)) return { all: true, codes: new Set() }
+  if (await hasFullBookAccess(user)) return { all: true, codes: new Set() }
 
   const [books, unlocks] = await Promise.all([
     prisma.book.findMany({ select: { id: true, code: true, isFree: true } }),

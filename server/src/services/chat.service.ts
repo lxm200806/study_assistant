@@ -7,9 +7,8 @@ import { buildFallbackResponse, loadRecentChatHistory, reserveUserChatMessage } 
 import { buildSystemPrompt, getLearnerChatContext } from './chat-learner-context.service'
 import { sanitizeFreeChatReply } from './chat-reply-sanitize.service'
 import { getBillingUser } from './billing-user'
-import { startOfToday } from '../utils/date-key'
-
-const FREE_DAILY_CHAT = 5
+import { getEntitlements } from '../entitlements/entitlement.service'
+import { PERMISSIONS } from '../entitlements/permissions'
 
 export type ChatMode = 'free' | 'challenge' | 'roleplay'
 
@@ -27,10 +26,7 @@ export async function sendChatMessage(
   mode: ChatMode = 'free',
   scenario?: string
 ): Promise<SendChatResult> {
-  const user = await getBillingUser(userId)
-  const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
-
-  await reserveUserChatMessage(userId, content, mode)
+  const quota = await reserveUserChatMessage(userId, content, mode)
 
   const history = await loadRecentChatHistory(userId, mode)
   const learnerContext = await getLearnerChatContext(userId, bookCode)
@@ -44,16 +40,12 @@ export async function sendChatMessage(
     ? await recordChatVocabulary(userId, bookCode, content, aiResponse)
     : []
 
-  let remainingFree: number | undefined
-  if (!isPremium) {
-    const todayStart = startOfToday()
-    const todayCount = await prisma.chatRecord.count({
-      where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
-    })
-    remainingFree = Math.max(0, FREE_DAILY_CHAT - todayCount)
+  return {
+    userMessage: content,
+    aiResponse,
+    matchedWords,
+    remainingFree: quota.remaining ?? undefined
   }
-
-  return { userMessage: content, aiResponse, matchedWords, remainingFree }
 }
 
 async function generateAIResponse(
@@ -80,16 +72,26 @@ async function generateAIResponse(
   return buildFallbackResponse(userMessage, learnerContext.backgroundWords, mode)
 }
 
-export async function getChatRemaining(userId: string): Promise<{ remaining: number; isPremium: boolean }> {
-  const user = await getBillingUser(userId)
-  const isPremium = user?.plan === 'premium' && (!user.planExpiresAt || user.planExpiresAt > new Date())
-  if (isPremium) return { remaining: -1, isPremium: true }
+export async function getChatRemaining(userId: string): Promise<{
+  remaining: number
+  isPremium: boolean
+  limitValue: number | null
+  period: string | null
+}> {
+  const account = await getBillingUser(userId)
+  if (!account) return { remaining: 0, isPremium: false, limitValue: null, period: null }
 
-  const todayStart = startOfToday()
-  const todayCount = await prisma.chatRecord.count({
-    where: { learnerId: userId, role: 'user', createdAt: { gte: todayStart } }
-  })
-  return { remaining: Math.max(0, FREE_DAILY_CHAT - todayCount), isPremium: false }
+  const snapshot = await getEntitlements(account.id)
+  const permission = snapshot.permissions[PERMISSIONS.AI_CHAT_TEXT]
+  if (!permission?.active) {
+    return { remaining: 0, isPremium: false, limitValue: null, period: null }
+  }
+  return {
+    remaining: permission.remaining ?? -1,
+    isPremium: permission.limitValue == null,
+    limitValue: permission.limitValue,
+    period: permission.period
+  }
 }
 
 export async function getChatHistory(userId: string, page = 1, limit = 20) {

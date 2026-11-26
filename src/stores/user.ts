@@ -4,6 +4,7 @@ import { authAPI, getAuthToken } from '@/utils/api'
 import { unwrapStorage } from '@/utils/storage'
 import { applyAppShell, goToLanding, type Subject } from '@/utils/subject'
 import { useVocabularyStore } from '@/stores/vocabulary'
+import { useEntitlementsStore } from '@/stores/entitlements'
 
 export type AccountType = 'parent' | 'student'
 export type ActiveRole = 'parent' | 'student'
@@ -124,6 +125,7 @@ export const useUserStore = defineStore('user', () => {
       const result = await authAPI.profile()
       const profile = result.data as StoredUser
       if (profile) persistUser(profile)
+      await useEntitlementsStore().load(true)
     } catch {
       // ignore
     }
@@ -218,6 +220,7 @@ export const useUserStore = defineStore('user', () => {
 
         resetVocabularyState()
         isLoggedIn.value = true
+        await useEntitlementsStore().load(true)
         uni.showToast({ title: '登录成功', icon: 'success' })
         navigateAfterAuth()
       }
@@ -238,6 +241,7 @@ export const useUserStore = defineStore('user', () => {
         }
         resetVocabularyState()
         isLoggedIn.value = true
+        await useEntitlementsStore().load(true)
         uni.showToast({ title: '微信登录成功', icon: 'success' })
         navigateAfterAuth()
       }
@@ -265,6 +269,7 @@ export const useUserStore = defineStore('user', () => {
 
         resetVocabularyState()
         isLoggedIn.value = true
+        await useEntitlementsStore().load(true)
         uni.showToast({ title: '注册成功', icon: 'success' })
         navigateAfterAuth()
       }
@@ -274,6 +279,7 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const clearSession = (options: { toast?: string } = {}) => {
+    useEntitlementsStore().reset()
     isLoggedIn.value = false
     username.value = ''
     userId.value = ''
@@ -324,6 +330,7 @@ export const useUserStore = defineStore('user', () => {
       }
       roleChosen.value = uni.getStorageSync(ROLE_CHOSEN_KEY) === '1'
       isLoggedIn.value = true
+      await useEntitlementsStore().load()
       return true
     }
     return false

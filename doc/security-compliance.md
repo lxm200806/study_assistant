@@ -6,6 +6,8 @@
 - 设备会话 `AuthSession`：登录创建、refresh 轮换、logout 撤销单设备、logout-all 提升 `tokenVersion` 撤销全部。
 - 密码 bcrypt 哈希；注册密码至少 8 位。
 - 登录后可修改密码 `POST /api/auth/password`；修改后提升 `tokenVersion` 并撤销所有设备会话，强制重新登录。
+- 细粒度权限：`Permission` → `PlanPermission` → `Subscription/EntitlementGrant`；路由用 `requirePermission` 校验，管理端赠送/回收权限和 AI 点数均写入审计日志。
+- AI 点数使用 `CreditWallet` + `CreditLedger` 记账；聊天/语音按 `UsageCounter` 扣减额度，失败可退回。
 - 账号导出 `GET /api/auth/account/export` 与注销 `POST /api/auth/account/delete`。
 - CORS 白名单、安全响应头、生产 HSTS、登录/注册/聊天/TTS/ASR 限流。
 - `/api/tts` 需要 access token（支持 `?token=`，因为音频元素不能设置 Authorization 头）。
@@ -22,6 +24,7 @@
 - 管理员 TOTP 2FA 已实现（管理页绑定/关闭，登录需 6 位验证码）；密钥目前明文存于 `User.twoFactorSecret`，数据库泄露时风险较高，后续可改为 KMS/环境密钥加密。
 - zod 3 存在 high 级内存耗尽公告，升级 zod 4 + zod-to-openapi 9 属于 major，需要单独验证。
 - 忘记密码/重置密码需要邮箱或短信基础设施，当前只支持登录后修改密码。
+- 真实微信/支付宝/IAP 支付、回调验签、退款/对账尚未接入；生产环境默认禁用 mock 支付。AI 语音陪聊功能本身尚未上线（权限和点数账本已预留）。
 - App 上架前需补：隐私政策、用户协议、ICP备案、软著、儿童个人信息保护、应用商店权限声明。
 - 生产日志保留由 Docker `json-file` 10MB × 3 控制；如需长期审计，接入集中日志。
 - 备份/恢复流程见 `deploy/README.md`，上线前需要实际演练。

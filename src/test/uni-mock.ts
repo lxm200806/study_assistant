@@ -25,7 +25,10 @@ export const uniMock = {
     platform: 'web',
     windowWidth: 1200
   }),
-  request: vi.fn()
+  request: vi.fn((options: { fail?: (error: { errMsg: string }) => void }) => {
+    // 单元测试默认不连后端；调用方会走失败分支并自行降级
+    options?.fail?.({ errMsg: 'uni.request is not mocked in unit tests' })
+  })
 }
 
 export function installUniMock(): void {
