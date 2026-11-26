@@ -361,7 +361,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onUnmounted, ref } from 'vue'
+import { onUnmounted, ref } from 'vue'
 import { onLoad, onShow } from '@dcloudio/uni-app'
 import BookSwitcher from '@/components/BookSwitcher.vue'
 import StateHint from '@/components/StateHint.vue'
@@ -372,28 +372,12 @@ import { useVocabularyStore } from '@/stores/vocabulary'
 import { typingAPI } from '@/utils/api'
 import { isBrowserH5 } from '@/platform/runtime'
 import { requireSubject } from '@/utils/subject'
-import { setTtsGender, speakPassage, speakSentence, speakText, unlockTtsPlayback } from '@/utils/tts'
+import { speakPassage, speakSentence, speakText, unlockTtsPlayback } from '@/utils/tts'
 import { splitTextForTts } from '@/utils/tts-text'
 import {
   answersMatch,
-  liveMarks,
-  loadAutoExample,
-  loadAutoSpeak,
-  loadEnabledWordModes,
-  loadKeySound,
-  loadShortcuts,
-  loadTtsGender,
-  loadTypingSource,
-  saveAutoExample,
-  saveAutoSpeak,
   saveEnabledWordModes,
-  saveKeySound,
-  saveShortcuts,
-  saveTtsGender,
-  saveTypingSource,
-  type PersistedWordMode,
-  type ShortcutAction,
-  type TtsGender
+  type PersistedWordMode
 } from '@/utils/typing'
 import { unlockTypingAudio } from '@/typing-engine/sounds'
 import type {
@@ -404,50 +388,23 @@ import type {
   ExamMode,
   RejectedToken,
   SentenceItem,
-  Source,
   Stage,
   TypingWord,
   WordMode,
   WordPhase
 } from './typing.types'
 import { useTypingSetup } from './useTypingSetup'
-
-const LEARN_MODE_ORDER: WordMode[] = ['follow', 'self']
-const EXAM_MODE_ORDER: ExamMode[] = ['recall', 'dictation']
-
-function loadExamModes(): ExamMode[] {
-  const saved = loadEnabledWordModes().filter((mode): mode is ExamMode =>
-    mode === 'recall' || mode === 'dictation'
-  )
-  return saved.length ? saved : [...EXAM_MODE_ORDER]
-}
-
-function shuffleInPlace<T>(list: T[]) {
-  for (let i = list.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[list[i], list[j]] = [list[j], list[i]]
-  }
-  return list
-}
-
-/**
- * 检测题卡：默写相对易、听写更难。
- * 两种都开时，先整组默写（词序打乱），再整组听写（词序再打乱）；
- * 只开一种则只出该种并打乱词序。
- */
-function buildExamQueue(wordCount: number, modes: ExamMode[]): ExamCard[] {
-  const ordered = EXAM_MODE_ORDER.filter((mode) => modes.includes(mode))
-  const cards: ExamCard[] = []
-  for (const mode of ordered) {
-    const block: ExamCard[] = []
-    for (let wordIndex = 0; wordIndex < wordCount; wordIndex++) {
-      block.push({ wordIndex, mode })
-    }
-    shuffleInPlace(block)
-    cards.push(...block)
-  }
-  return cards
-}
+import {
+  EXAM_MODE_ORDER,
+  LEARN_MODE_ORDER,
+  buildExamQueue,
+  loadExamModes,
+  shuffleInPlace
+} from './exam-builder'
+import { useTypingArticleEditor } from './useTypingArticleEditor'
+import { useTypingPreferences } from './useTypingPreferences'
+import { useTypingPresentation } from './useTypingPresentation'
+import { useTypingSetupOptions } from './useTypingSetupOptions'
 
 const vocabStore = useVocabularyStore()
 const isH5 = isBrowserH5()
@@ -458,16 +415,6 @@ const wordPhase = ref<WordPhase>('learn')
 const enabledExamModes = ref<ExamMode[]>(loadExamModes())
 const wordMode = ref<WordMode>('follow')
 const articleMode = ref<ArticleMode>('follow')
-const savedSource = loadTypingSource()
-const source = ref<Source>(
-  (['smart', 'wrong', 'favorite', 'random'] as Source[]).includes(savedSource as Source)
-    ? savedSource as Source
-    : 'smart'
-)
-const moreSources = ref(source.value !== 'smart')
-const allBooks = ref(false)
-const groupSize = ref(20)
-const counts = [5, 10, 15, 20, 30, 40, 50]
 const learnModes: Array<{ key: WordMode; label: string }> = [
   { key: 'follow', label: '跟写' },
   { key: 'self', label: '自测' }
@@ -476,29 +423,6 @@ const examModeOptions: Array<{ key: ExamMode; label: string }> = [
   { key: 'recall', label: '默写' },
   { key: 'dictation', label: '听写' }
 ]
-const wordModes: Array<{ key: WordMode; label: string }> = [
-  ...learnModes,
-  ...examModeOptions
-]
-const extraSources: Array<{ key: Source; label: string }> = [
-  { key: 'wrong', label: '错词' },
-  { key: 'favorite', label: '收藏' },
-  { key: 'random', label: '随机' }
-]
-
-function pickSource(key: Source) {
-  source.value = key
-  saveTypingSource(key)
-  if (key !== 'wrong' && key !== 'favorite') allBooks.value = false
-}
-
-function sourceLabel(item: { key: Source; label: string }) {
-  if (!summary.value) return item.label
-  if (allBooks.value && (item.key === 'wrong' || item.key === 'favorite')) return item.label
-  if (item.key === 'wrong') return `${item.label} ${summary.value.wrong}`
-  if (item.key === 'favorite') return `${item.label} ${summary.value.favorite}`
-  return item.label
-}
 
 function isDueWord(value?: string | null) {
   if (!value) return false
@@ -519,12 +443,18 @@ const {
   localDate,
   barHeight
 } = useTypingSetup(wordMode)
-const articleTitle = ref('')
-const articleBody = ref('')
-const articleTranslation = ref('')
-const editingId = ref('')
-const editingBuiltin = ref(false)
-const editImpact = ref<{ kept: number; reset: number; retired: number } | null>(null)
+
+const {
+  source,
+  moreSources,
+  allBooks,
+  groupSize,
+  counts,
+  extraSources,
+  pickSource,
+  sourceLabel
+} = useTypingSetupOptions(summary)
+
 const sentenceWrongWords = ref<string[]>([])
 const roundStartedAt = ref(0)
 const typedChars = ref(0)
@@ -548,196 +478,117 @@ const hintLevel = ref(0)
 const selfVisible = ref(false)
 const inputArmed = ref(false)
 const accent = ref<'us' | 'uk'>('us')
-const ttsGender = ref<TtsGender>(loadTtsGender())
-setTtsGender(ttsGender.value)
 const scopedToBook = ref(false)
 const answered = ref<Answered[]>([])
 const correctCount = ref(0)
 const suspendKeys = ref(false)
-const shortcuts = ref(loadShortcuts())
-const keySound = ref(loadKeySound())
-const autoSpeak = ref(loadAutoSpeak())
-const autoExample = ref(loadAutoExample())
 const activeExampleIndex = ref(-1)
-const capturing = ref<ShortcutAction | null>(null)
 const typingShowResult = ref(false)
 const typingShowFull = ref(false)
 const committing = ref(false)
 const cardKey = ref(0)
 
-const shortcutRows: Array<{ action: ShortcutAction; label: string }> = [
-  { action: 'replay', label: '发音' },
-  { action: 'example', label: '例句' },
-  { action: 'favorite', label: '收藏' },
-  { action: 'mastered', label: '已掌握' },
-  { action: 'hint', label: '提示' },
-  { action: 'accent', label: '切换英美' },
-  { action: 'sound', label: '按键轻响' }
-]
+const {
+  articleTitle,
+  articleBody,
+  articleTranslation,
+  editingId,
+  editingBuiltin,
+  editImpact,
+  beginEdit,
+  cancelEdit,
+  onArticleFieldBlur,
+  saveArticle,
+  removeArticle,
+  pickArticleFile
+} = useTypingArticleEditor({ refreshArticles, suspendKeys })
+
+const {
+  shortcuts,
+  keySound,
+  autoSpeak,
+  autoExample,
+  ttsGender,
+  capturing,
+  shortcutRows,
+  hotkeyLabel,
+  toggleSound,
+  toggleAutoSpeak,
+  toggleAutoExample,
+  setGender
+} = useTypingPreferences({
+  stage,
+  suspendKeys,
+  onReplay: () => void replay(),
+  onExample: () => void playExample(),
+  onFavorite: () => void toggleFavorite(),
+  onMastered: () => void toggleMastered(),
+  onHint: () => bumpHint(),
+  onToggleAccent: () => {
+    accent.value = accent.value === 'us' ? 'uk' : 'us'
+  }
+})
 
 let selfTimer: ReturnType<typeof setTimeout> | null = null
 let lastAction = 0
 
-const currentWord = computed(() => {
-  if (lane.value !== 'words') return undefined
-  if (wordPhase.value === 'exam' && examQueue.value.length) {
-    const card = examQueue.value[examCursor.value]
-    return card ? words.value[card.wordIndex] : undefined
-  }
-  return words.value[index.value]
-})
-const currentSentence = computed(() => (lane.value === 'article' ? sentences.value[index.value] : undefined))
-const expectedText = computed(() => currentWord.value?.word || currentSentence.value?.text || '')
-const total = computed(() => (lane.value === 'words' ? words.value.length : sentences.value.length))
-const examModes = computed(() =>
-  EXAM_MODE_ORDER.filter((mode) => enabledExamModes.value.includes(mode))
-)
-const activeModeChain = computed(() => {
-  if (lane.value !== 'words') return [] as WordMode[]
-  if (wordPhase.value === 'learn') return [...LEARN_MODE_ORDER]
-  return examModes.value.length ? [...examModes.value] : ([] as WordMode[])
-})
-const modeStepIndex = computed(() => {
-  const i = activeModeChain.value.indexOf(wordMode.value)
-  return i >= 0 ? i : 0
-})
-const progressLabel = computed(() => {
-  if (lane.value === 'article') {
-    const mode = articleMode.value === 'follow' ? '跟写' : '听写'
-    return `${mode} · ${Math.min(index.value + 1, total.value)}/${total.value}`
-  }
-  const phaseLabel = wordPhase.value === 'learn' ? '学习' : '检测'
-  const mode = wordModes.find(item => item.key === wordMode.value)?.label || '跟写'
-  if (wordPhase.value === 'exam' && examQueue.value.length) {
-    const n = Math.min(examCursor.value + 1, examQueue.value.length)
-    return `${phaseLabel} · ${mode} · ${n}/${examQueue.value.length}`
-  }
-  return `${phaseLabel} · ${mode} · ${Math.min(index.value + 1, total.value)}/${total.value}`
-})
-const progressPct = computed(() => {
-  if (!total.value) return 0
-  if (lane.value !== 'words') {
-    return Math.min(100, Math.round(((index.value + (showResult.value || committing.value ? 1 : 0)) / total.value) * 100))
-  }
-  const learnModesCount = LEARN_MODE_ORDER.length
-  const examModesCount = examModes.value.length
-  const totalSteps = total.value * learnModesCount + Math.max(examQueue.value.length, total.value * examModesCount)
-  if (!totalSteps) return 0
-  const doneCard = showResult.value || committing.value ? 1 : 0
-  let stepsDone = 0
-  if (wordPhase.value === 'learn') {
-    stepsDone = index.value * learnModesCount + modeStepIndex.value + doneCard
-  } else {
-    stepsDone = total.value * learnModesCount + examCursor.value + doneCard
-  }
-  return Math.min(100, Math.round((stepsDone / totalSteps) * 100))
-})
-/** 跟写/自测/默写/听写共用 FollowWrite + 下划线占位，视觉与自测对齐（不用 Dictation 单条底线） */
-const enginePracticeType = computed((): WordPracticeType => WordPracticeType.FollowWrite)
-const engineMasked = computed(() => {
-  if (lane.value === 'article') return articleMode.value === 'dictation'
-  if (wordMode.value === 'dictation' || wordMode.value === 'recall') return true
-  if (wordMode.value === 'self') return !selfVisible.value
-  return false
-})
-/** Only article/sentence uses passage (wait-for-space). Word-lane phrases stay on word engine. */
-const usePassageTyping = computed(() => lane.value === 'article')
+const enginePracticeType = WordPracticeType.FollowWrite
 const activeArticleId = ref('')
 const roundSaved = ref(false)
-const dictationMode = computed(() => (
-  (lane.value === 'words' && wordMode.value === 'dictation')
-  || (lane.value === 'article' && articleMode.value === 'dictation')
-))
-const maskedPrompt = computed(() => '·'.repeat(Math.max(4, Math.min(expectedText.value.length, 24))))
-const followLive = computed(() => {
-  if (showResult.value) return false
-  if (lane.value === 'article') return articleMode.value === 'follow'
-  return wordMode.value === 'follow'
+
+const {
+  currentWord,
+  currentSentence,
+  expectedText,
+  total,
+  examModes,
+  activeModeChain,
+  progressLabel,
+  progressPct,
+  engineMasked,
+  usePassageTyping,
+  dictationMode,
+  maskedPrompt,
+  followLive,
+  showSpelling,
+  marks,
+  graded,
+  phoneticLine,
+  showPhonetic,
+  showMeaningLine,
+  meaningLine,
+  firstLetter,
+  exampleList,
+  showExamplesPanel,
+  sentenceTranslation,
+  showAside,
+  promptKicker,
+  placeholder,
+  accuracy,
+  missed
+} = useTypingPresentation({
+  lane,
+  wordPhase,
+  wordMode,
+  articleMode,
+  enabledExamModes,
+  words,
+  sentences,
+  index,
+  examQueue,
+  examCursor,
+  userInput,
+  showResult,
+  selfVisible,
+  hintLevel,
+  accent,
+  typingShowResult,
+  committing,
+  answered,
+  correctCount,
+  fullTranslation,
+  showFullTranslation
 })
-const showSpelling = computed(() => {
-  if (!expectedText.value) return false
-  if (showResult.value) return true
-  if (lane.value === 'article') return articleMode.value === 'follow'
-  if (wordMode.value === 'follow') return true
-  if (wordMode.value === 'self') return selfVisible.value
-  return false
-})
-const marks = computed(() => liveMarks(expectedText.value, userInput.value))
-const graded = computed(() => (showResult.value ? liveMarks(expectedText.value, userInput.value) : []))
-const phoneticLine = computed(() => {
-  const word = currentWord.value
-  if (!word) return ''
-  if (accent.value === 'uk' && word.phoneticUk) return word.phoneticUk
-  if (accent.value === 'us' && word.phoneticUs) return word.phoneticUs
-  return word.phonetic || ''
-})
-const showPhonetic = computed(() => {
-  if (lane.value !== 'words' || !phoneticLine.value) return false
-  if (showResult.value || wordMode.value === 'follow') return true
-  return hintLevel.value >= 1
-})
-const showMeaningLine = computed(() => {
-  if (lane.value !== 'words' || !currentWord.value) return false
-  if (wordMode.value === 'recall' && !showResult.value) return !!currentWord.value.englishMeaning
-  if (showResult.value || wordMode.value === 'follow') return true
-  return hintLevel.value >= 1
-})
-const meaningLine = computed(() => {
-  if (!currentWord.value) return ''
-  if (wordMode.value === 'recall' && !showResult.value) return currentWord.value.englishMeaning || ''
-  return currentWord.value.meaning
-})
-const firstLetter = computed(() => {
-  if (showSpelling.value || hintLevel.value < 2) return ''
-  return expectedText.value.trim().charAt(0)
-})
-const exampleList = computed(() => {
-  const word = currentWord.value
-  if (!word || lane.value !== 'words') return [] as string[]
-  const list = [
-    ...(word.examples || []),
-    ...(word.example ? [word.example] : [])
-  ]
-    .map(item => item.trim())
-    .filter(Boolean)
-  return [...new Set(list)]
-})
-const showExamplesPanel = computed(() => {
-  if (!exampleList.value.length) return false
-  if (showResult.value || typingShowResult.value) return true
-  if (wordMode.value === 'follow') return true
-  if (wordMode.value === 'self' && selfVisible.value) return true
-  return hintLevel.value >= 1
-})
-const sentenceTranslation = computed(() => {
-  const text = currentSentence.value?.translation || ''
-  if (!text) return ''
-  if (showResult.value || articleMode.value === 'follow') return text
-  return ''
-})
-const showAside = computed(() => (
-  !!currentWord.value?.englishMeaning
-  || !!sentenceTranslation.value
-  || !!(showFullTranslation.value && fullTranslation.value)
-  || !!(currentWord.value?.note || currentWord.value?.synonyms || currentWord.value?.roots
-    || currentWord.value?.etymology || currentWord.value?.phrases || currentWord.value?.topic)
-))
-const promptKicker = computed(() => {
-  if (lane.value === 'article') {
-    const title = currentSentence.value?.title ? `${currentSentence.value.title} · ` : ''
-    return title + (articleMode.value === 'follow' ? '跟着这一句输入' : '听写这一句')
-  }
-  if (wordMode.value === 'self' && selfVisible.value) return '看一眼，马上遮住'
-  if (wordMode.value === 'self') return '凭刚才的印象输入'
-  if (wordMode.value === 'recall') return '根据释义默写'
-  if (wordMode.value === 'dictation') return '听写'
-  return '跟着拼写'
-})
-const placeholder = computed(() => (lane.value === 'article' ? '输入这一句' : '输入单词'))
-const accuracy = computed(() => (
-  answered.value.length ? Math.round((correctCount.value / answered.value.length) * 100) : 0
-))
-const missed = computed(() => answered.value.filter(item => !item.ok))
 
 function toast(title: string) {
   uni.showToast({ title, icon: 'none' })
@@ -819,11 +670,6 @@ function onWordModeChip(key: WordMode) {
   if (current?.mode === examKey) {
     applyExamCard()
   }
-}
-
-function hotkeyLabel(action: ShortcutAction) {
-  const key = (shortcuts.value[action] || '').toUpperCase()
-  return key ? `⌥${key}` : ''
 }
 
 function firstEnabledMode(): WordMode {
@@ -927,37 +773,6 @@ const REJECT_LABEL: Record<string, string> = {
 function rejectionNote(items?: RejectedToken[]) {
   if (!items?.length) return ''
   return items.slice(0, 6).map(item => `${item.token}（${REJECT_LABEL[item.reason] || item.reason}）`).join('、')
-}
-
-function readTextFile(limit: number, assign: (text: string) => void) {
-  if (!isH5 || typeof document === 'undefined') {
-    toast('文件导入请在电脑浏览器里使用，或直接粘贴')
-    return
-  }
-  const input = document.createElement('input')
-  input.type = 'file'
-  input.accept = '.txt,text/plain,.md'
-  input.onchange = () => {
-    const file = input.files?.[0]
-    if (!file) return
-    if (file.size > 200000) {
-      toast('文件太大')
-      return
-    }
-    const reader = new FileReader()
-    reader.onload = () => assign(String(reader.result || '').slice(0, limit))
-    reader.onerror = () => toast('没能读取文件')
-    reader.readAsText(file)
-  }
-  input.click()
-}
-
-function pickArticleFile() {
-  readTextFile(8000, text => {
-    articleBody.value = text
-    toast(editingId.value ? '已放入短文，确认后保存修改' : '已放入短文，确认后保存')
-    void refreshEditImpact()
-  })
 }
 
 function resetRound() {
@@ -1087,83 +902,6 @@ async function startArticle(id: string) {
   } finally {
     busy.value = false
   }
-}
-
-async function beginEdit(item: ArticleRow) {
-  try {
-    const result = await typingAPI.article(item.id)
-    const data = result.data as { title?: string; body?: string; sourceTranslation?: string; translation?: string }
-    editingId.value = item.id
-    editingBuiltin.value = !!item.builtin
-    articleTitle.value = data?.title || item.title
-    articleBody.value = data?.body || ''
-    articleTranslation.value = data?.sourceTranslation || data?.translation || ''
-    editImpact.value = null
-    await refreshEditImpact()
-  } catch (error) {
-    toast((error as Error).message || '没能打开短文')
-  }
-}
-
-function cancelEdit() {
-  editingId.value = ''
-  editingBuiltin.value = false
-  editImpact.value = null
-  articleTitle.value = ''
-  articleBody.value = ''
-  articleTranslation.value = ''
-}
-
-async function refreshEditImpact() {
-  if (!editingId.value || !articleBody.value.trim()) {
-    editImpact.value = null
-    return
-  }
-  try {
-    const result = await typingAPI.previewArticle(editingId.value, articleBody.value, articleTranslation.value)
-    editImpact.value = (result.data as { kept: number; reset: number; retired: number }) || null
-  } catch {
-    editImpact.value = null
-  }
-}
-
-function onArticleFieldBlur() {
-  suspendKeys.value = false
-  void refreshEditImpact()
-}
-
-async function saveArticle() {
-  if (!articleBody.value.trim()) {
-    toast('先粘贴短文')
-    return
-  }
-  try {
-    if (editingId.value) {
-      await refreshEditImpact()
-      const result = await typingAPI.updateArticle(editingId.value, articleTitle.value, articleBody.value, articleTranslation.value)
-      const data = result.data as { kept?: number; reset?: number; retired?: number; copied?: boolean }
-      const changed = (data?.reset || 0) + (data?.retired || 0)
-      const copied = data?.copied ? '已另存为你的短文。' : ''
-      cancelEdit()
-      await refreshArticles()
-      if (changed) toast(`${copied}${data?.kept || 0} 句保留进度，${changed} 句重新开始`)
-      else toast(copied || '短文已保存')
-      return
-    }
-    await typingAPI.createArticle(articleTitle.value, articleBody.value, articleTranslation.value)
-    articleTitle.value = ''
-    articleBody.value = ''
-    articleTranslation.value = ''
-    await refreshArticles()
-    toast('短文已保存')
-  } catch (error) {
-    toast((error as Error).message || '没能保存')
-  }
-}
-
-async function removeArticle(id: string) {
-  await typingAPI.deleteArticle(id)
-  await refreshArticles()
 }
 
 function highlightExampleParts(sentence: string) {
@@ -1407,70 +1145,6 @@ function backToSetup() {
   void refreshHistory()
 }
 
-function toggleSound() {
-  keySound.value = !keySound.value
-  saveKeySound(keySound.value)
-}
-
-function toggleAutoSpeak() {
-  autoSpeak.value = !autoSpeak.value
-  saveAutoSpeak(autoSpeak.value)
-}
-
-function toggleAutoExample() {
-  autoExample.value = !autoExample.value
-  saveAutoExample(autoExample.value)
-}
-
-function setGender(gender: TtsGender) {
-  if (ttsGender.value === gender) return
-  ttsGender.value = gender
-  saveTtsGender(gender)
-  setTtsGender(gender)
-}
-
-function runShortcut(action: ShortcutAction) {
-  if (action === 'replay') void replay()
-  else if (action === 'example') void playExample()
-  else if (action === 'favorite') void toggleFavorite()
-  else if (action === 'mastered') void toggleMastered()
-  else if (action === 'hint') bumpHint()
-  else if (action === 'accent') accent.value = accent.value === 'us' ? 'uk' : 'us'
-  else if (action === 'sound') toggleSound()
-}
-
-/** Mac Option produces symbols in event.key; use event.code (KeyR → r). */
-function letterFromEvent(event: KeyboardEvent): string | null {
-  if (event.code.startsWith('Key') && event.code.length === 4) {
-    return event.code.slice(3).toLowerCase()
-  }
-  if (event.code.startsWith('Digit') && event.code.length === 6) {
-    return event.code.slice(5)
-  }
-  if (/^[a-z0-9]$/i.test(event.key)) return event.key.toLowerCase()
-  return null
-}
-
-function onKeyDown(event: KeyboardEvent) {
-  if (!isH5 || suspendKeys.value || event.isComposing) return
-  const letter = letterFromEvent(event)
-  if (capturing.value && letter) {
-    event.preventDefault()
-    shortcuts.value = { ...shortcuts.value, [capturing.value]: letter }
-    saveShortcuts(shortcuts.value)
-    capturing.value = null
-    return
-  }
-  // Mac: Option = altKey. Ctrl also accepted for convenience.
-  if ((event.altKey || event.ctrlKey) && !event.metaKey && !event.repeat && stage.value === 'practice' && letter) {
-    const action = (Object.keys(shortcuts.value) as ShortcutAction[]).find(name => shortcuts.value[name] === letter)
-    if (action) {
-      event.preventDefault()
-      runShortcut(action)
-    }
-  }
-}
-
 const pendingArticleId = ref('')
 const pendingAutoStart = ref(false)
 
@@ -1502,16 +1176,8 @@ onShow(async () => {
   }
 })
 
-if (isH5 && typeof window !== 'undefined') {
-  // capture so Option/Ctrl shortcuts work even if children listen first
-  window.addEventListener('keydown', onKeyDown, true)
-}
-
 onUnmounted(() => {
   if (selfTimer) clearTimeout(selfTimer)
-  if (isH5 && typeof window !== 'undefined') {
-    window.removeEventListener('keydown', onKeyDown, true)
-  }
 })
 </script>
 
