@@ -215,7 +215,7 @@ jobs:
             type=sha
 
       - name: Build API image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: server/Dockerfile
@@ -226,7 +226,7 @@ jobs:
           cache-to: type=gha,mode=max,scope=api
 
       - name: Build Web image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: deploy/web/Dockerfile
