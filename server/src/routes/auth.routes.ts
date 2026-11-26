@@ -21,12 +21,14 @@ import {
   twoFactorStatusHandler,
   twoFactorSetupHandler,
   twoFactorEnableHandler,
-  twoFactorDisableHandler
+  twoFactorDisableHandler,
+  changePasswordHandler
 } from '../controllers/auth.controller'
 import { authMiddleware } from '../middleware/auth'
 import { rateLimit } from '../middleware/rate-limit'
 import { validateBody, validateParams } from '../validation/validate'
 import {
+  changePasswordBodySchema,
   credentialsBodySchema,
   deleteAccountBodySchema,
   disableTwoFactorBodySchema,
@@ -52,6 +54,7 @@ const loginLimit = rateLimit({
   key: req => `${req.ip || 'unknown'}:${String(req.body?.username || '').toLowerCase()}`
 })
 const refreshLimit = rateLimit({ windowMs: 15 * 60 * 1000, max: 60, keyPrefix: 'auth-refresh' })
+const passwordLimit = rateLimit({ windowMs: 60 * 60 * 1000, max: 10, keyPrefix: 'auth-password' })
 
 router.post('/register', registerLimit, validateBody(registerBodySchema), registerHandler)
 router.post('/login', loginLimit, validateBody(credentialsBodySchema), loginHandler)
@@ -59,6 +62,7 @@ router.post('/refresh', refreshLimit, validateBody(refreshBodySchema), refreshHa
 router.get('/profile', authMiddleware, profileHandler)
 router.post('/logout', authMiddleware, logoutHandler)
 router.post('/logout-all', authMiddleware, logoutAllHandler)
+router.post('/password', authMiddleware, passwordLimit, validateBody(changePasswordBodySchema), changePasswordHandler)
 router.get('/sessions', authMiddleware, sessionsHandler)
 router.get('/2fa/status', authMiddleware, twoFactorStatusHandler)
 router.post('/2fa/setup', authMiddleware, twoFactorSetupHandler)

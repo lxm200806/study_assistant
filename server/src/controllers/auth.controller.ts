@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { register, login, refreshToken, getProfile, completeOnboarding, wechatLoginStub, setActiveSubject, setActiveRole, getTwoFactorStatus, setupTwoFactor, enableTwoFactor, disableTwoFactor } from '../services/auth.service'
+import { register, login, refreshToken, getProfile, completeOnboarding, wechatLoginStub, setActiveSubject, setActiveRole, getTwoFactorStatus, setupTwoFactor, enableTwoFactor, disableTwoFactor, changePassword } from '../services/auth.service'
 import { archiveChild, createChild, listChildren, renameChild, setActiveLearner } from '../services/family.service'
 import { listSessions, revokeAllSessions, revokeSession, type SessionContext } from '../services/auth-session.service'
 import { deleteAccount, exportAccount } from '../services/account.service'
@@ -116,6 +116,20 @@ export async function twoFactorDisableHandler(req: Request, res: Response) {
     res.status(200).json({ success: true, data })
   } catch (error) {
     res.status(400).json({ error: (error as Error).message })
+  }
+}
+
+export async function changePasswordHandler(req: Request, res: Response) {
+  try {
+    const data = await changePassword(
+      req.userId!,
+      String(req.body?.currentPassword || ''),
+      String(req.body?.newPassword || '')
+    )
+    res.status(200).json({ success: true, data })
+  } catch (error) {
+    // 密码错误返回 400，避免客户端按 401 处理成会话过期
+    res.status(400).json({ success: false, error: (error as Error).message })
   }
 }
 

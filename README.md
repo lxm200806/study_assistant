@@ -88,7 +88,7 @@ bash start-dev.sh
 | API 文档 | http://localhost:3005/api-docs |
 | PostgreSQL | localhost:5432 |
 
-> `/api-docs` 仅开发环境挂载。文档由 `server/src/validation/openapi.ts` 中的 zod 注册表生成，目前覆盖登录/家庭/会话/账号/2FA、词汇、词书、训练、测验、拼读/短文、聊天、语文、admin、speech、TTS 等 88 个核心接口；其余接口仍以 `server/src/routes/*.ts` 和 `server/src/chinese/chinese.routes.ts` 为准。
+> `/api-docs` 仅开发环境挂载。文档由 `server/src/validation/openapi.ts` 中的 zod 注册表生成，目前覆盖登录/家庭/会话/账号/2FA、词汇、词书、训练、测验、拼读/短文、聊天、语文、admin、speech、TTS、会员、推送、统计等 95 条路径（105 个操作）；其余接口仍以 `server/src/routes/*.ts` 和 `server/src/chinese/chinese.routes.ts` 为准。
 
 ## 常用命令
 

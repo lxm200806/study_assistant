@@ -273,8 +273,7 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  const logout = () => {
-    void authAPI.logout().catch(() => undefined)
+  const clearSession = (options: { toast?: string } = {}) => {
     isLoggedIn.value = false
     username.value = ''
     userId.value = ''
@@ -295,8 +294,13 @@ export const useUserStore = defineStore('user', () => {
     uni.removeStorageSync('user')
     uni.removeStorageSync('vocabularyStats')
     uni.removeStorageSync('trainingRecords')
-    uni.showToast({ title: '已退出登录', icon: 'none' })
+    if (options.toast) uni.showToast({ title: options.toast, icon: 'none' })
     uni.reLaunch({ url: '/pages/login/login' })
+  }
+
+  const logout = () => {
+    void authAPI.logout().catch(() => undefined)
+    clearSession({ toast: '已退出登录' })
   }
 
   const checkLogin = async () => {
@@ -348,6 +352,7 @@ export const useUserStore = defineStore('user', () => {
     wechatLogin,
     register,
     logout,
+    clearSession,
     checkLogin,
     setOnboarded,
     setSubject,

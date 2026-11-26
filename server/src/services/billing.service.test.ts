@@ -16,6 +16,7 @@ vi.mock('../prisma/client', () => ({ default: prismaMock }))
 
 import {
   createPaymentOrder,
+  listBillingPlans,
   payPaymentOrder,
   resolvePaymentProvider
 } from './billing.service'
@@ -142,5 +143,18 @@ describe('payment orders', () => {
         planExpiresAt: new Date(now.getTime() + 30 * 86_400_000)
       }
     })
+  })
+})
+
+describe('billing plans', () => {
+  it('ensures default plans only once per process', async () => {
+    prismaMock.membershipPlan.upsert.mockResolvedValue({})
+    prismaMock.membershipPlan.findMany.mockResolvedValue([])
+
+    await listBillingPlans()
+    await listBillingPlans()
+
+    expect(prismaMock.membershipPlan.upsert).toHaveBeenCalledTimes(2)
+    expect(prismaMock.membershipPlan.findMany).toHaveBeenCalledTimes(2)
   })
 })

@@ -38,6 +38,11 @@ export const registerBodySchema = z.object({
   password: z.string().min(8, '密码至少 8 位').max(200, '密码过长')
 })
 
+export const changePasswordBodySchema = z.object({
+  currentPassword: z.string().min(1, '请输入当前密码').max(200, '密码过长'),
+  newPassword: z.string().min(8, '新密码至少 8 位').max(200, '密码过长')
+})
+
 export const refreshBodySchema = z.object({
   refreshToken: z.string().min(1, '缺少 refreshToken')
 })
@@ -388,6 +393,7 @@ export const ttsQuerySchema = z.object({
 
 export type CredentialsBody = z.infer<typeof credentialsBodySchema>
 export type RegisterBody = z.infer<typeof registerBodySchema>
+export type ChangePasswordBody = z.infer<typeof changePasswordBodySchema>
 export type TwoFactorCodeBody = z.infer<typeof twoFactorCodeBodySchema>
 export type DisableTwoFactorBody = z.infer<typeof disableTwoFactorBodySchema>
 export type CreatePaymentOrderBody = z.infer<typeof createPaymentOrderBodySchema>

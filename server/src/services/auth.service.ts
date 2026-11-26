@@ -266,3 +266,35 @@ export async function disableTwoFactor(userId: string, password: string) {
   })
   return { enabled: false }
 }
+
+export async function changePassword(
+  userId: string,
+  currentPassword: string,
+  newPassword: string
+): Promise<{ reloginRequired: true }> {
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { passwordHash: true }
+  })
+  if (!user) throw new Error('User not found')
+  if (!(await comparePassword(currentPassword, user.passwordHash))) {
+    throw new Error('当前密码不正确')
+  }
+  if (await comparePassword(newPassword, user.passwordHash)) {
+    throw new Error('新密码不能与当前密码相同')
+  }
+
+  const passwordHash = await hashPassword(newPassword)
+  const revokedAt = new Date()
+  await prisma.$transaction([
+    prisma.user.update({
+      where: { id: userId },
+      data: { passwordHash, tokenVersion: { increment: 1 } }
+    }),
+    prisma.authSession.updateMany({
+      where: { userId, revokedAt: null },
+      data: { revokedAt }
+    })
+  ])
+  return { reloginRequired: true }
+}

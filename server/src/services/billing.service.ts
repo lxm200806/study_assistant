@@ -16,8 +16,21 @@ export async function ensureBillingPlans(): Promise<void> {
   }
 }
 
+let plansReady: Promise<void> | null = null
+
+/** 进程内只确保一次套餐存在，避免每次读取 plans 都写两次 upsert。 */
+export function ensureBillingPlansOnce(): Promise<void> {
+  if (!plansReady) {
+    plansReady = ensureBillingPlans().catch(error => {
+      plansReady = null
+      throw error
+    })
+  }
+  return plansReady
+}
+
 export async function listBillingPlans() {
-  await ensureBillingPlans()
+  await ensureBillingPlansOnce()
   return prisma.membershipPlan.findMany({
     where: { active: true },
     orderBy: { priceCents: 'asc' }

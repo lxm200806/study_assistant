@@ -41,6 +41,79 @@ export const simpleSuccessResponseSchema = z.object({
   success: z.literal(true)
 })
 
+export const reloginRequiredResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({ reloginRequired: z.literal(true) })
+})
+
+export const membershipPlanSchema = z.object({
+  code: z.string(),
+  name: z.string(),
+  days: z.number().int(),
+  priceCents: z.number().int(),
+  active: z.boolean(),
+  createdAt: z.string()
+})
+
+export const paymentOrderSchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  planCode: z.string(),
+  amountCents: z.number().int(),
+  status: z.enum(['pending', 'paid']),
+  provider: z.string(),
+  providerOrderId: z.string().nullable(),
+  createdAt: z.string(),
+  paidAt: z.string().nullable()
+})
+
+export const billingPlansResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(membershipPlanSchema)
+})
+
+export const billingOrderResponseSchema = z.object({
+  success: z.literal(true),
+  data: paymentOrderSchema
+})
+
+export const billingOrdersResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.array(paymentOrderSchema)
+})
+
+export const pushTokenRegistrationResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({ id: z.string() })
+})
+
+export const pushTokenRemovalResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({ removed: z.literal(true) })
+})
+
+export const dailyStatsResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    date: z.string(),
+    wordCount: z.number().int(),
+    goal: z.number().int(),
+    streak: z.number().int(),
+    progress: z.number().int()
+  })
+})
+
+export const weeklyReportResponseSchema = z.object({
+  success: z.literal(true),
+  data: z.object({
+    totalWords: z.number().int(),
+    activeDays: z.number().int(),
+    streak: z.number().int(),
+    accuracy: z.number().int(),
+    practiceCount: z.number().int()
+  })
+})
+
 export const sessionsResponseSchema = z.object({
   success: z.literal(true),
   data: z.array(anyObject)

@@ -27,6 +27,9 @@ export const authAPI = {
   logout: async () => {
     return request('/auth/logout', 'POST')
   },
+  changePassword: async (currentPassword: string, newPassword: string) => {
+    return request('/auth/password', 'POST', { currentPassword, newPassword })
+  },
   logoutAll: async () => {
     return request('/auth/logout-all', 'POST')
   },

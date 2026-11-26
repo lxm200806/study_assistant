@@ -6,6 +6,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import request from 'supertest'
 import { PrismaClient } from '@prisma/client'
 import { generateTotp } from '../utils/totp'
+import { hashPassword } from '../utils/password'
 
 const TEST_BASE_URL = process.env.TEST_DATABASE_URL || process.env.DATABASE_URL || ''
 const DB_TESTS_ENABLED =
@@ -764,5 +765,47 @@ describe.skipIf(!DB_TESTS_ENABLED || !TEST_BASE_URL)('critical API flows', () =>
     const removed = await authed(api.delete('/api/push/register')).send({ token })
     expect(removed.status).toBe(200)
     expect(removed.body.data.removed).toBe(true)
+  })
+
+  it('changes password, revokes old tokens and requires new credentials', async () => {
+    const username = `pwd_${Date.now()}_${Math.floor(Math.random() * 10_000)}`
+    const oldPassword = 'OldPass123!'
+    const newPassword = 'NewPass456!'
+    await prisma.user.create({
+      data: { username, passwordHash: await hashPassword(oldPassword) }
+    })
+
+    const login = await api.post('/api/auth/login').send({ username, password: oldPassword })
+    expect(login.status).toBe(200)
+    const token = login.body.accessToken as string
+
+    const wrongCurrent = await api
+      .post('/api/auth/password')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ currentPassword: 'WrongPass', newPassword })
+    expect(wrongCurrent.status).toBe(400)
+
+    const tooShort = await api
+      .post('/api/auth/password')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ currentPassword: oldPassword, newPassword: 'short' })
+    expect(tooShort.status).toBe(400)
+
+    const changed = await api
+      .post('/api/auth/password')
+      .set('Authorization', `Bearer ${token}`)
+      .send({ currentPassword: oldPassword, newPassword })
+    expect(changed.status).toBe(200)
+    expect(changed.body).toMatchObject({ success: true, data: { reloginRequired: true } })
+
+    const oldTokenProfile = await api
+      .get('/api/auth/profile')
+      .set('Authorization', `Bearer ${token}`)
+    expect(oldTokenProfile.status).toBe(401)
+
+    const oldLogin = await api.post('/api/auth/login').send({ username, password: oldPassword })
+    expect(oldLogin.status).toBe(400)
+    const newLogin = await api.post('/api/auth/login').send({ username, password: newPassword })
+    expect(newLogin.status).toBe(200)
   })
 })

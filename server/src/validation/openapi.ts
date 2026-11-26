@@ -15,6 +15,7 @@ import {
   bookSessionQuerySchema,
   chatHistoryQuerySchema,
   chatSendBodySchema,
+  changePasswordBodySchema,
   chineseAdminPatchBodySchema,
   chineseCourseBodySchema,
   chineseCoursePatchBodySchema,
@@ -28,6 +29,7 @@ import {
   chineseTodayQuerySchema,
   completeSessionBodySchema,
   courseIdParamsSchema,
+  createPaymentOrderBodySchema,
   credentialsBodySchema,
   deleteAccountBodySchema,
   disableTwoFactorBodySchema,
@@ -37,12 +39,14 @@ import {
   historyQuerySchema,
   idParamsSchema,
   onboardBodySchema,
+  payOrderBodySchema,
   pointIdParamsSchema,
   practiceBodySchema,
   quizSubmitBodySchema,
   quizWordsQuerySchema,
   randomCountQuerySchema,
   refreshBodySchema,
+  registerPushTokenBodySchema,
   resourceIdParamsSchema,
   reviewQuerySchema,
   roleBodySchema,
@@ -69,6 +73,9 @@ import {
 import {
   adminResponseSchema,
   anyDataResponseSchema,
+  billingOrderResponseSchema,
+  billingOrdersResponseSchema,
+  billingPlansResponseSchema,
   bookDetailResponseSchema,
   bookListResponseSchema,
   chineseArrayResponseSchema,
@@ -83,14 +90,18 @@ import {
   chineseReviewResponseSchema,
   chineseTodayResponseSchema,
   completeSessionResponseSchema,
+  dailyStatsResponseSchema,
   dueCountResponseSchema,
   globalMapResponseSchema,
   historyResponseSchema,
   practiceResponseSchema,
   profileResponseSchema,
+  pushTokenRegistrationResponseSchema,
+  pushTokenRemovalResponseSchema,
   quizSubmitResponseSchema,
   quizWordsResponseSchema,
   refreshResponseSchema,
+  reloginRequiredResponseSchema,
   reviewResponseSchema,
   sessionsResponseSchema,
   setActiveStudentResponseSchema,
@@ -120,7 +131,8 @@ import {
   typingMarkResponseSchema,
   typingQueueResponseSchema,
   typingSessionResponseSchema,
-  typingSummaryResponseSchema
+  typingSummaryResponseSchema,
+  weeklyReportResponseSchema
 } from './responses'
 
 extendZodWithOpenApi(z)
@@ -210,6 +222,7 @@ const disableTwoFactorBody = registry.register(
   'DisableTwoFactorBody',
   disableTwoFactorBodySchema
 )
+const changePasswordBody = registry.register('ChangePasswordBody', changePasswordBodySchema)
 const twoFactorCodeBody = registry.register('TwoFactorCodeBody', twoFactorCodeBodySchema)
 const asrStartBody = registry.register('AsrStartBody', asrStartBodySchema)
 const asrChunkBody = registry.register('AsrChunkBody', asrChunkBodySchema)
@@ -221,6 +234,19 @@ const chatSendBody = registry.register('ChatSendBody', chatSendBodySchema)
 const chatHistoryQuery = registry.register('ChatHistoryQuery', chatHistoryQuerySchema)
 const practiceBody = registry.register('PracticeBody', practiceBodySchema)
 const completeSessionBody = registry.register('CompleteSessionBody', completeSessionBodySchema)
+const createPaymentOrderBody = registry.register(
+  'CreatePaymentOrderBody',
+  createPaymentOrderBodySchema
+)
+const payOrderBody = registry.register('PayOrderBody', payOrderBodySchema)
+const registerPushTokenBody = registry.register(
+  'RegisterPushTokenBody',
+  registerPushTokenBodySchema
+)
+const paymentOrderParams = registry.register(
+  'PaymentOrderIdParams',
+  z.object({ id: z.string().min(1) })
+)
 const typingAnswerBody = registry.register('TypingAnswerBody', typingAnswerBodySchema)
 const chineseReviewBody = registry.register('ChineseReviewBody', chineseReviewBodySchema)
 const bookParams = registry.register('BookCodeParams', z.object({ code: z.string().min(1) }))
@@ -231,6 +257,35 @@ const refreshResponse = registry.register('RefreshResponse', refreshResponseSche
 const simpleSuccessResponse = registry.register(
   'SimpleSuccessResponse',
   simpleSuccessResponseSchema
+)
+const reloginRequiredResponse = registry.register(
+  'ReloginRequiredResponse',
+  reloginRequiredResponseSchema
+)
+const billingPlansResponse = registry.register(
+  'BillingPlansResponse',
+  billingPlansResponseSchema
+)
+const billingOrderResponse = registry.register(
+  'BillingOrderResponse',
+  billingOrderResponseSchema
+)
+const billingOrdersResponse = registry.register(
+  'BillingOrdersResponse',
+  billingOrdersResponseSchema
+)
+const pushTokenRegistrationResponse = registry.register(
+  'PushTokenRegistrationResponse',
+  pushTokenRegistrationResponseSchema
+)
+const pushTokenRemovalResponse = registry.register(
+  'PushTokenRemovalResponse',
+  pushTokenRemovalResponseSchema
+)
+const dailyStatsResponse = registry.register('DailyStatsResponse', dailyStatsResponseSchema)
+const weeklyReportResponse = registry.register(
+  'WeeklyReportResponse',
+  weeklyReportResponseSchema
 )
 const sessionsResponse = registry.register('SessionsResponse', sessionsResponseSchema)
 const anyDataResponse = registry.register('AnyDataResponse', anyDataResponseSchema)
@@ -391,6 +446,16 @@ registry.registerPath({
   summary: '退出全部设备',
   security: [{ bearerAuth: [] }],
   responses: { 200: success(simpleSuccessResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/auth/password',
+  tags: ['auth'],
+  summary: '修改密码',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: changePasswordBody } } } },
+  responses: { 200: success(reloginRequiredResponse), 400: badRequest }
 })
 
 registry.registerPath({
@@ -1300,6 +1365,93 @@ registry.registerPath({
   }
 })
 
+registry.registerPath({
+  method: 'get',
+  path: '/api/billing/plans',
+  tags: ['billing'],
+  summary: '会员套餐列表',
+  responses: { 200: success(billingPlansResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/billing/orders',
+  tags: ['billing'],
+  summary: '我的会员订单',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(billingOrdersResponse) }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/billing/orders',
+  tags: ['billing'],
+  summary: '创建会员订单',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: createPaymentOrderBody } } } },
+  responses: {
+    201: success(billingOrderResponse),
+    400: badRequest,
+    503: { description: '支付渠道未配置' }
+  }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/billing/orders/{id}/pay',
+  tags: ['billing'],
+  summary: '支付会员订单（mock/真实渠道）',
+  security: [{ bearerAuth: [] }],
+  request: {
+    params: paymentOrderParams,
+    body: { content: { 'application/json': { schema: payOrderBody } } }
+  },
+  responses: {
+    200: success(billingOrderResponse),
+    400: badRequest,
+    404: { description: '订单不存在' },
+    503: { description: '支付渠道未配置' }
+  }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/push/register',
+  tags: ['push'],
+  summary: '注册推送 token',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: registerPushTokenBody } } } },
+  responses: { 201: success(pushTokenRegistrationResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'delete',
+  path: '/api/push/register',
+  tags: ['push'],
+  summary: '移除推送 token',
+  security: [{ bearerAuth: [] }],
+  request: { body: { content: { 'application/json': { schema: registerPushTokenBody } } } },
+  responses: { 200: success(pushTokenRemovalResponse), 400: badRequest }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/stats/daily',
+  tags: ['stats'],
+  summary: '今日学习统计',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(dailyStatsResponse) }
+})
+
+registry.registerPath({
+  method: 'get',
+  path: '/api/stats/weekly-report',
+  tags: ['stats'],
+  summary: '近 7 天学习报告',
+  security: [{ bearerAuth: [] }],
+  responses: { 200: success(weeklyReportResponse) }
+})
+
 const generator = new OpenApiGeneratorV3(registry.definitions)
 
 export const openApiDocument = generator.generateDocument({
@@ -1307,7 +1459,8 @@ export const openApiDocument = generator.generateDocument({
   info: {
     title: '学习助手 API',
     version: '1.0.0',
-    description: '核心接口的 Zod schema 与 OpenAPI 文档。当前覆盖登录、词书会话、训练、拼读、语文核心链路。'
+    description:
+      '核心接口的 Zod schema 与 OpenAPI 文档。当前覆盖登录、词书会话、训练、拼读、语文、会员、推送和统计核心链路。'
   },
   servers: [{ url: `http://localhost:${process.env.PORT || 3005}` }]
 })
