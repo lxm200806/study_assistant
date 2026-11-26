@@ -9,6 +9,7 @@ import {
 } from '../controllers/speech.controller'
 import { authMiddleware } from '../middleware/auth'
 import { rateLimit } from '../middleware/rate-limit'
+import { asyncHandler } from '../utils/async-handler'
 import { validateBody } from '../validation/validate'
 import {
   asrChunkBodySchema,
@@ -20,7 +21,7 @@ import {
 
 const router = Router()
 
-router.get('/asr/config', authMiddleware, getAsrConfigHandler)
+router.get('/asr/config', authMiddleware, asyncHandler(getAsrConfigHandler))
 router.post(
   '/asr/session/start',
   authMiddleware,

@@ -65,6 +65,9 @@ jobs:
       - name: Build MP-Weixin
         run: npm run build:mp-weixin
 
+      - name: Check mini-program package size
+        run: npm run check:mp-size
+
       - name: Cache Playwright browsers
         uses: actions/cache@v4
         with:

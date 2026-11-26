@@ -30,9 +30,12 @@ bash start-dev.sh          # one-shot: Postgres, prisma migrate deploy, API 3005
 npm run dev:h5             # H5 dev server, proxies /api -> 127.0.0.1:3005
 npm run dev:mp-weixin
 npm run dev:app
+npm run dev:app:lan      # App dev, auto-detect LAN IP for API/assets
 npm run build:h5
 npm run build:mp-weixin
+npm run check:mp-size    # after build:mp-weixin; main 2MB / total 20MB gate
 npm run build:app        # 产物在 dist/build/app，交给 HBuilderX 打包
+npm run build:app:lan    # App build with http://<LAN_IP>:3005/api + :5173 assets
 npm run gen:api          # export OpenAPI + regenerate src/types/api-generated.ts
 node scripts/dev.mjs restart web   # restart H5 (after pages.json/vite.config/deps changes)
 
@@ -79,7 +82,7 @@ curl.exe -s -o NUL -w "proxy  %{http_code}`n" http://127.0.0.1:5173/api/books
 
 - `logs/server.pid` / `logs/client.pid` now contain the real launcher PID (nodemon for API, node for H5). `stop` kills the port listener *and* the recorded launcher, so nodemon cannot respawn the child behind your back. Do not kill pid files manually; use `stop`.
 - The Vite build needs `NODE_OPTIONS=--require scripts/patch-os-ni.cjs`; `dev.mjs` injects it with forward slashes (backslashes get eaten when Node re-parses `NODE_OPTIONS`).
-- Both ports bind `0.0.0.0`, so a phone on the same Wi-Fi reaches the H5 build at `http://<lan-ip>:5173/` (this machine: `192.168.1.30:5173`).
+- Both ports bind `0.0.0.0`, so a phone on the same Wi-Fi reaches the H5 build at `http://<lan-ip>:5173/` (current Wi-Fi IP: `192.168.31.245`; run `npm run build:app:lan` to auto-detect and inject the LAN API/asset URLs for App testing).
 - `.sh` files must stay LF. `.gitattributes` enforces `*.sh text eol=lf`; with `core.autocrlf=true` a stale CRLF checkout makes bash fail with `$'\r': command not found`.
 
 ### Database
@@ -143,6 +146,7 @@ This is the most important cross-cutting concept:
 - Input validation is zod-based: schemas live in `server/src/validation/schemas.ts`, `validateBody` / `validateQuery` in `server/src/validation/validate.ts`, and the OpenAPI document in `server/src/validation/openapi.ts`. Add a schema and register the path when touching a core endpoint; invalid input returns 400 with `{ success: false, code: 'INVALID_REQUEST', details }`.
 - Frontend request/response DTOs are generated from the same spec: `npm run gen:api` writes `src/types/api-generated.ts` (readable aliases in `src/types/api-contract.ts`); response schemas live in `server/src/validation/responses.ts`. CI regenerates and fails if the tracked file is stale.
 - Responses are generally `{ success, data, error }`; errors go through `middleware/error.ts` and use `{ success: false, error, code, details? }` (`apiErrorBody`). The client treats 401 as session expiry (with refresh-retry) and 403 as `BOOK_LOCKED`.
+- Express 4 does not catch rejected promises from async route handlers. Wrap them with `asyncHandler` from `server/src/utils/async-handler.ts` (or catch and call `next(error)`); unknown routes return the JSON `{ success: false, error: 'Not found', code: 'NOT_FOUND' }` envelope.
 - Routers are mounted at both `/api` and `/api/v1`; `/api` remains the compatibility surface. `POST /training/practice` and `/training/session/complete` accept an optional `Idempotency-Key` header (10 min; Redis via `REDIS_URL`, memory fallback).
 - Observability: `middleware/request-context.ts` generates or forwards `X-Request-Id`; `middleware/access-log.ts` emits JSON `http_request` records (method, path, status, duration, user/learner; skips `/health`, `/ready`, `/metrics`, `/api-docs`); `errorMiddleware` logs 4xx/5xx with request id and stack. `GET /metrics` exports Prometheus counters/histogram (optional `METRICS_TOKEN`). `server.ts` handles SIGTERM/SIGINT and disconnects Prisma. Set `SENTRY_DSN` to report 5xx to Sentry/APM (`server/src/instrument.ts`). `NODE_ENV=test` silences structured logs.
 - Public routes: `GET /api/books`, `GET /api/chinese/meta`, `GET /api/tts`, `POST /api/auth/register|login|refresh`, plus `/`, `/health`, `/ready` (and `/api/auth/wechat` only when `WECHAT_LOGIN_STUB=true` outside production). Everything else under `/api` requires a Bearer token.
@@ -154,7 +158,7 @@ This is the most important cross-cutting concept:
 - Session selection modes live in `server/src/services/book.service.ts` (with scoring in `coverage.service.ts`): `coverage`, `smart`, `weak`, `review`, `unit`. `unit` order comes from the curriculum `units.json`.
 - FSRS is in `server/src/services/review-engine.service.ts` (ts-fsrs, retention 0.9, learning steps `10m`/`1d`). State is per `(learnerId, wordId, type)` in `VocabularyStat`, where `type` ∈ `listening | speaking | reading | writing`. `/api/training/practice` updates FSRS and appends `TrainingRecord`; the stat counters are display caches, `TrainingRecord` is the source-of-truth stream.
 - `/api/training/session/complete` updates `BookStudyProgress` and `DailyStudyLog` (daily word count + streak).
-- Billing/membership: `GET /api/billing/plans`, `POST /api/billing/orders`, `POST /api/billing/orders/:id/pay` (mock provider by default, sets `User.plan='premium'`/`planExpiresAt`); push tokens via `POST/DELETE /api/push/register`.
+- Billing/membership: `GET /api/billing/plans`, `POST /api/billing/orders`, `POST /api/billing/orders/:id/pay` (mock provider by default outside production; production disables mock unless `ALLOW_MOCK_PAYMENT=true`; sets `User.plan='premium'`/`planExpiresAt`); push tokens via `POST/DELETE /api/push/register`.
 - Membership/access is in `book-access.service.ts` (admin OR active premium OR free book OR unlock).
 
 ### Typing / keyboard practice (拼读)
@@ -174,7 +178,8 @@ This is the most important cross-cutting concept:
 
 - `src/main.ts` creates the SSR-style UniApp app with Pinia and installs a global `errorHandler` (logs unhandled component errors). `src/pages.json` defines pages, tabBar, and the wide-screen `leftWindow`.
 - **API client:** endpoint wrappers live in `src/api/` by domain (`client.ts` + `auth.ts`, `learning.ts`, `speech.ts`, `typing.ts`, `chinese.ts`); `src/utils/api.ts` is a compatibility re-export. Base URL is same-origin `/api` on H5 (Vite proxy in dev, Nginx in prod); non-H5 builds require `VITE_API_BASE`. The wrapper handles 401 refresh-and-retry, session-expired modal, 403 → `BOOK_LOCKED`, and a "backend not started" toast. Token storage goes through `src/platform/storage.ts`.
-- **Platform layer:** `src/platform/` is the cross-platform boundary: `runtime.ts` (H5 / mp-weixin / app detection), `storage.ts` (uni storage + token helpers), `audio.ts` (recorder / Web Audio), `stream.ts` (H5 SSE via fetch; WeChat mini-program via `uni.request` `enableChunked`; other non-H5 environments fall back to `/chat/send`), `payment.ts` / `push.ts` (App payment/push provider interfaces; default unavailable until credentials are configured). New code should import these adapters instead of calling `fetch`, `MediaRecorder`, `window`, or `uni.getSystemInfoSync` directly. `src/utils/audio-recording.ts` and `src/utils/chat-stream.ts` are compatibility re-exports. Layouts are still driven by `pages.json` + `App.vue` + `windows/left-window.vue`; extract `src/layouts/` only when a near-term App target is confirmed.
+- **Platform layer:** `src/platform/` is the cross-platform boundary: `runtime.ts` (H5 / mp-weixin / app detection), `storage.ts` (uni storage + token helpers), `audio.ts` (recorder / Web Audio), `stream.ts` (H5 SSE via fetch; WeChat mini-program via `uni.request` `enableChunked`; other non-H5 environments fall back to `/chat/send`), `assets.ts` (asset URL + JSON loading via `fetch`/`uni.request`, driven by `VITE_ASSET_BASE`), `payment.ts` / `push.ts` (App payment/push provider interfaces; default unavailable until credentials are configured). New code should import these adapters instead of calling `fetch`, `MediaRecorder`, `window`, or `uni.getSystemInfoSync` directly. `src/utils/audio-recording.ts` and `src/utils/chat-stream.ts` are compatibility re-exports. Layouts are still driven by `pages.json` + `App.vue` + `windows/left-window.vue`; extract `src/layouts/` only when a near-term App target is confirmed.
+- **Static assets:** small always-needed files stay in `src/static/` (icons, keyboard sounds). Large shared assets live in `assets/` and are never bundled into mp/App: H5 dev serves `assets/atlas` at `/static/atlas` and H5 build copies it into the output, while mp/App load it from `VITE_ASSET_BASE` through `src/platform/assets.ts`. Run `npm run check:mp-size` after `build:mp-weixin` (2MB main / 20MB total). See `doc/asset-loading.md`.
 - **Stores:** `src/stores/user.ts` (session, active learner, subject/role switching, `applyAppShell`) and `src/stores/vocabulary.ts` (current book, session loading, progress/due counts, maps).
 - Training pages share `src/composables/useTrainingFlow.ts`, `useTrainingStart.ts`, and `useDailySession.ts`; streaming audio is in `useStreamingAsr.ts` / `useStreamingTts.ts`. The large typing page keeps its styles in `src/pages/typing/typing.scss`, shared page types in `typing.types.ts`, and setup/history loading in `useTypingSetup.ts`; keep new pure logic out of the SFC where possible.
 - **Route guards:** `src/utils/subject.ts` exposes `requireReadySession()` / `requireSubject()`. Accounts without a chosen role or learners are redirected to `pages/family/students`. `activeSubject` switches English/Chinese UX (tab labels, landing pages) via `applyAppShell`.

@@ -24,6 +24,7 @@ import { securityHeaders } from './middleware/security-headers'
 import { getBootState } from './bootstrap'
 import { isProduction } from './config/env'
 import { openApiDocument } from './validation/openapi'
+import { apiErrorBody } from './utils/api-response'
 import prisma from './prisma/client'
 
 function resolveCorsOrigin(): cors.CorsOptions['origin'] {
@@ -105,6 +106,11 @@ export function createApp() {
     } catch {
       return res.status(503).json({ success: false, data: state, error: 'database unavailable' })
     }
+  })
+
+  // 未命中任何路由时也返回统一的 JSON 错误信封，避免 Express 默认 HTML 404
+  app.use((_req, res) => {
+    res.status(404).json(apiErrorBody('Not found', 'NOT_FOUND'))
   })
 
   app.use(errorMiddleware)

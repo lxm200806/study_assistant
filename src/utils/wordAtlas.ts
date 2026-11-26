@@ -1,11 +1,18 @@
 /**
  * Word Atlas (词光) illustration lookup.
- * Files live in this repo at src/static/atlas/ (served as /static/atlas/...).
+ * Source files live in assets/atlas/. H5 serves/copies them under /static/atlas;
+ * mini-program and App load them from VITE_ASSET_BASE (CDN/OSS).
  * Only thumbs + word-to-id are vendored; full img/audio stay in word-atlas if needed later.
  */
 
+import { loadJsonAsset, tryAssetUrl } from '@/platform/assets'
+
+const ATLAS_INDEX_PATH = 'static/atlas/word-to-id.json'
+const ATLAS_THUMB_PREFIX = 'static/atlas/thumb'
+
 let wordToId: Record<string, string> | null = null
 let loading: Promise<Record<string, string>> | null = null
+let loadWarningShown = false
 
 function stripDiacritics(text: string): string {
   return text.normalize('NFD').replace(/\p{M}/gu, '')
@@ -22,34 +29,20 @@ function normalizeAtlasKey(word: string): string {
 async function loadWordToId(): Promise<Record<string, string>> {
   if (wordToId) return wordToId
   if (loading) return loading
-  loading = new Promise((resolve) => {
-    const finish = (map: Record<string, string>) => {
-      wordToId = map
-      resolve(map)
+  loading = (async () => {
+    try {
+      const data = await loadJsonAsset<Record<string, string>>(ATLAS_INDEX_PATH)
+      wordToId = data && typeof data === 'object' ? data : {}
+    } catch (error) {
+      // 非 H5 未配置 VITE_ASSET_BASE，或 CDN 不可达：图鉴降级为占位符
+      if (!loadWarningShown) {
+        loadWarningShown = true
+        console.warn('[atlas] 图鉴索引加载失败，已降级为占位符', error)
+      }
+      wordToId = {}
     }
-    // H5 / Vite: uni-app serves src/static at /static/; public/ also at /
-    if (typeof fetch === 'function') {
-      const tryUrls = ['/static/atlas/word-to-id.json', '/atlas/word-to-id.json']
-      ;(async () => {
-        for (const url of tryUrls) {
-          try {
-            const r = await fetch(url)
-            if (!r.ok) continue
-            const data = await r.json()
-            if (data && typeof data === 'object') {
-              finish(data as Record<string, string>)
-              return
-            }
-          } catch {
-            // try next
-          }
-        }
-        finish({})
-      })()
-      return
-    }
-    finish({})
-  })
+    return wordToId
+  })()
   return loading
 }
 
@@ -77,8 +70,7 @@ export async function resolveAtlasId(word: string): Promise<string | null> {
 
 export function atlasThumbUrl(id: string | null | undefined): string | null {
   if (!id) return null
-  // uni-app: files under src/static are served from /static/
-  return `/static/atlas/thumb/${id}.webp`
+  return tryAssetUrl(`${ATLAS_THUMB_PREFIX}/${id}.webp`)
 }
 
 export async function getAtlasThumbUrl(word: string): Promise<string | null> {

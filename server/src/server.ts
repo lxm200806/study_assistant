@@ -8,6 +8,10 @@ import prisma from './prisma/client'
 const PORT = Number(process.env.PORT) || 3000
 const app = createApp()
 
+if (isProduction() && !process.env.PAYMENT_PROVIDER && process.env.ALLOW_MOCK_PAYMENT !== 'true') {
+  console.warn('[billing] PAYMENT_PROVIDER is not configured; membership checkout is disabled in production')
+}
+
 const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on http://0.0.0.0:${PORT}`)
   if (!isProduction()) {

@@ -9,6 +9,7 @@
 - CORS 白名单、安全响应头、生产 HSTS、登录/注册/聊天/TTS/ASR 限流。
 - `/api/tts` 需要 access token（支持 `?token=`，因为音频元素不能设置 Authorization 头）。
 - 管理端写操作审计 `admin_audit_logs`，通过 `GET /api/admin/audit` 查询。
+- 生产环境默认禁用 mock 支付：未配置真实 `PAYMENT_PROVIDER` 时会员下单/支付返回 503；仅在生产演示时可显式设置 `ALLOW_MOCK_PAYMENT=true`。
 - 请求参数 zod 校验；5xx 不返回内部细节。
 - Dependabot 每周检查 npm 依赖和 GitHub Actions。
 - `Security` CI 工作流运行 gitleaks 和 `npm audit --omit=dev --audit-level=critical`。

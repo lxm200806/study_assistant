@@ -1,4 +1,5 @@
 import prisma from '../prisma/client'
+import { isProduction } from '../config/env'
 
 const DEFAULT_PLANS = [
   { code: 'premium_month', name: 'Premium 月卡', days: 30, priceCents: 2_990 },
@@ -23,7 +24,25 @@ export async function listBillingPlans() {
   })
 }
 
+/**
+ * 当前只有 mock 渠道可用。生产环境默认禁用 mock，避免用户不付款直接开通会员；
+ * 如确需在生产做演示，必须显式设置 ALLOW_MOCK_PAYMENT=true。
+ */
+export function resolvePaymentProvider(): string {
+  const provider = (process.env.PAYMENT_PROVIDER || 'mock').trim().toLowerCase()
+  if (provider !== 'mock') {
+    // 真实微信/支付宝/IAP 渠道尚未实现，接入前一律视为未配置
+    throw new Error('PAYMENT_PROVIDER_NOT_CONFIGURED')
+  }
+  const allowMockInProduction = (process.env.ALLOW_MOCK_PAYMENT || '').trim().toLowerCase() === 'true'
+  if (isProduction() && !allowMockInProduction) {
+    throw new Error('PAYMENT_PROVIDER_NOT_CONFIGURED')
+  }
+  return provider
+}
+
 export async function createPaymentOrder(userId: string, planCode: string) {
+  const provider = resolvePaymentProvider()
   const plan = await prisma.membershipPlan.findFirst({
     where: { code: planCode, active: true }
   })
@@ -33,7 +52,7 @@ export async function createPaymentOrder(userId: string, planCode: string) {
       userId,
       planCode: plan.code,
       amountCents: plan.priceCents,
-      provider: process.env.PAYMENT_PROVIDER || 'mock'
+      provider
     }
   })
 }
@@ -44,13 +63,10 @@ export async function payPaymentOrder(userId: string, orderId: string) {
     include: { plan: true }
   })
   if (!order) throw new Error('ORDER_NOT_FOUND')
+  // 已支付订单保持幂等，不再依赖当前支付渠道配置
   if (order.status === 'paid') return order
 
-  const provider = process.env.PAYMENT_PROVIDER || 'mock'
-  if (provider !== 'mock') {
-    throw new Error('PAYMENT_PROVIDER_NOT_CONFIGURED')
-  }
-
+  const provider = resolvePaymentProvider()
   const now = new Date()
   return prisma.$transaction(async tx => {
     const updated = await tx.paymentOrder.updateMany({
@@ -58,8 +74,8 @@ export async function payPaymentOrder(userId: string, orderId: string) {
       data: {
         status: 'paid',
         paidAt: now,
-        provider: 'mock',
-        providerOrderId: `mock_${orderId}`
+        provider,
+        providerOrderId: `${provider}_${orderId}`
       }
     })
     if (updated.count === 0) {

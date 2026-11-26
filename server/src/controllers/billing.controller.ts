@@ -8,6 +8,7 @@ import {
 
 function errorStatus(message: string): number {
   if (message === 'ORDER_NOT_FOUND') return 404
+  if (message === 'PAYMENT_PROVIDER_NOT_CONFIGURED') return 503
   return 400
 }
 

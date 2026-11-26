@@ -1,11 +1,11 @@
 
-# public/atlas 若为构建拷贝则仍忽略，源文件在 src/static/atlas/thumb/
+# public/atlas 若为构建拷贝则仍忽略，源文件在 assets/atlas/thumb/
 # 个人课本 Markdown / PDF（版权文本，仅本机）
 # 小学页本地原文覆盖（由 kb 导入生成）
 # 已授权教材原文本地覆盖（勿提交版权文本）
 # 本地词典数据（体积大，需自行下载到 server/data/sources/）
 # 编译产物
-# 词光插画：thumb 已入库（约 84MB），clone 即可用
+# 词光插画：thumb 已入库（约 84MB）；H5 构建拷贝到 /static/atlas，小程序/App 走 VITE_ASSET_BASE
 **/__pycache__/
 .npm-cache/
 server/.npm-cache/
@@ -15,6 +15,8 @@ server/.npm-cache/
 .claude/
 .env
 .env.prod
+.env.local
+.env.*.local
 dist/
 logs/
 node_modules/

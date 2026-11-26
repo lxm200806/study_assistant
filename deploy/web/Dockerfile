@@ -8,6 +8,7 @@ RUN npm ci --no-audit --no-fund
 
 COPY index.html vite.config.ts tsconfig.json tsconfig.node.json ./
 COPY src ./src
+COPY assets ./assets
 
 RUN node ./node_modules/@dcloudio/vite-plugin-uni/bin/uni.js build
 

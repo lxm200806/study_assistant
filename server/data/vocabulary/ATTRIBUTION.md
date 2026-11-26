@@ -13,7 +13,7 @@
 授权说明：https://creativecommons.org/licenses/by/4.0/  
 来源仓库：本地 `word-atlas`（与 `study_assistant` 同级）或 `WORD_ATLAS_PATH`
 
-插画缩略图已入库：`src/static/atlas/thumb/` + `word-to-id.json`（约 84MB，clone 即可用）。  
+插画缩略图已入库：`assets/atlas/thumb/` + `word-to-id.json`（约 84MB）；H5 构建会拷到 `/static/atlas`，小程序/App 通过 `VITE_ASSET_BASE` 加载。  
 词光的大图 `img/`、预录音频 `audio/`、界面音效 `sfx/` 当前未引入——发音走本项目 TTS。
 
 **不覆盖** KEW / 已 polish 词书中的中文释义、音标、英文释义与简单句（`basic`）。

@@ -24,7 +24,8 @@
 ```text
 src/                 前端 UniApp 应用（pages / composables / stores / typing-engine）
 src/api/             按领域拆分的 API 客户端（auth / learning / speech / typing / chinese）
-src/platform/        跨端适配（runtime / storage / audio / stream / payment / push）
+src/platform/        跨端适配（runtime / storage / audio / stream / assets / payment / push）
+assets/              大体积共享资源（词光图鉴）；H5 构建拷入 /static，小程序/App 走 VITE_ASSET_BASE
 e2e/                 Playwright H5 冒烟测试
 server/              Express API 服务
 server/src/chinese/  语文课程、题卡、SM-2 与资源同步
@@ -107,9 +108,14 @@ npm run dev:h5
 npm run build:h5
 npm run dev:mp-weixin
 npm run build:mp-weixin
+npm run check:mp-size  # 小程序包体门禁：主包 2MB / 整包 20MB
 npm run dev:app
 npm run build:app      # 产物在 dist/build/app，交给 HBuilderX 打包
+npm run dev:app:lan    # 内网调试：自动检测 LAN IP 并注入 API/assets 地址
+npm run build:app:lan  # 内网调试构建（API 3005 + H5 5173）
 ```
+
+> 小程序/App 构建需要 `VITE_API_BASE`；图鉴等大资源通过 `VITE_ASSET_BASE` 指向 CDN/OSS。H5 默认同源，并自动把 `assets/atlas` 拷到 `/static/atlas`。详见 `doc/asset-loading.md`。
 
 ### 后端
 
@@ -188,4 +194,4 @@ npm run test:e2e
 
 前端单元测试使用 Vitest + happy-dom + Vue plugin + uni mock：`npm run test:frontend` 运行 8 个文件、19 个测试，覆盖 user/vocabulary store、StateHint 和 storage、quiz-options、tts-text、speech-text、normalize-word 等逻辑。Playwright H5 冒烟测试 `e2e/smoke.spec.ts` 有 9 个用例：登录页、登录错误、未登录守卫、模拟登录进入角色页、quiz 开始页 + PC 侧栏、登录后词书列表、认读设置页、语文 drill 卡片、学生拼读设置 → 开始练习；`e2e/real-api.spec.ts` 是可选的真实 API + PostgreSQL 测试（`E2E_REAL_API=1`，CI 独立 job 执行）。Windows 本地默认使用系统 Edge，其他平台/CI 使用安装的 Chromium；可通过 `PLAYWRIGHT_CHANNEL` 覆盖。
 
-后端有 36 个 Vitest 文件（35 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（192 个通过，20 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 212 个测试）。管理员账号支持 TOTP 两步验证，会员开通支持 mock 支付。生产运维可用 `GET /metrics`（可选 `METRICS_TOKEN`）接入 Prometheus；设置 `SENTRY_DSN` 后 5xx 自动上报 Sentry/APM。API 同时挂载 `/api` 与 `/api/v1`；练习和结算支持可选 `Idempotency-Key`；登录会话支持 refresh 轮换、设备列表、单设备/全设备退出；支持账号导出与注销，管理端写操作有审计日志。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；同时构建 H5 和微信小程序、检查 API 生成类型是否最新、运行 Playwright 冒烟，并运行成语内容审计 `npm run audit:idioms`。
+后端有 36 个 Vitest 文件（35 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（192 个通过，20 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 212 个测试）。管理员账号支持 TOTP 两步验证；会员开通支持 mock 支付（生产环境默认禁用，需显式设置 `ALLOW_MOCK_PAYMENT=true`）。生产运维可用 `GET /metrics`（可选 `METRICS_TOKEN`）接入 Prometheus；设置 `SENTRY_DSN` 后 5xx 自动上报 Sentry/APM。API 同时挂载 `/api` 与 `/api/v1`；练习和结算支持可选 `Idempotency-Key`；登录会话支持 refresh 轮换、设备列表、单设备/全设备退出；支持账号导出与注销，管理端写操作有审计日志。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；同时构建 H5 和微信小程序、检查 API 生成类型是否最新、运行 Playwright 冒烟，并运行成语内容审计 `npm run audit:idioms`。

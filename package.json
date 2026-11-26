@@ -14,8 +14,11 @@
         "test:e2e": "playwright test",
         "gen:api": "npm --prefix server run openapi:export && openapi-typescript server/openapi.json -o src/types/api-generated.ts",
         "build:mp-weixin": "node scripts/run-uni.mjs build -p mp-weixin",
+        "check:mp-size": "node scripts/check-mp-size.mjs",
         "dev:app": "node scripts/run-uni.mjs -p app",
+        "dev:app:lan": "node scripts/run-app-lan.mjs dev",
         "build:app": "node scripts/run-uni.mjs build -p app",
+        "build:app:lan": "node scripts/run-app-lan.mjs build",
         "build:h5": "node scripts/run-uni.mjs build",
         "fix:native": "bash scripts/fix-native-deps.sh",
         "dev:mp-weixin": "node scripts/run-uni.mjs -p mp-weixin"

@@ -290,14 +290,18 @@ function httpOk(url) {
   })
 }
 
+const VIRTUAL_ADAPTER = /(vEthernet|WSL|VirtualBox|VMware|Hyper-V|Loopback|Tailscale|ZeroTier|docker)/i
+
 function lanAddresses() {
   const addresses = []
-  for (const list of Object.values(os.networkInterfaces())) {
+  for (const [name, list] of Object.entries(os.networkInterfaces())) {
     for (const item of list || []) {
-      if (item.family === 'IPv4' && !item.internal) addresses.push(item.address)
+      if (item.family !== 'IPv4' || item.internal) continue
+      addresses.push({ address: item.address, name, virtual: VIRTUAL_ADAPTER.test(name) })
     }
   }
-  return addresses
+  // 真实 Wi-Fi/以太网优先，避免把 Hyper-V/WSL 的 172.x 当成手机可访问地址
+  return addresses.sort((a, b) => Number(a.virtual) - Number(b.virtual))
 }
 
 function printUrls(target) {
@@ -305,8 +309,8 @@ function printUrls(target) {
   console.log(`  ${target.name}`)
   console.log('────────────────────────────────────')
   console.log(`  本机: http://localhost:${target.port}`)
-  for (const address of lanAddresses()) {
-    console.log(`  局域网: http://${address}:${target.port}`)
+  for (const { address, name, virtual } of lanAddresses()) {
+    console.log(`  局域网: http://${address}:${target.port}${virtual ? `  (${name}，虚拟网卡)` : ''}`)
   }
   if (target.key === 'web') {
     console.log(`  API 代理: /api -> http://127.0.0.1:${API_PORT}`)

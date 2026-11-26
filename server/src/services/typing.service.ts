@@ -9,8 +9,6 @@ import { todayKey } from '../utils/date-key'
 import { formatBookWord, formatWordForClient } from '../utils/wordFormat'
 import {
   mergeLexical,
-  parseListDocument,
-  partitionKnownSpellings,
   aggregateLearnerHistory,
   charsPerMinute,
   contentWords,
@@ -29,9 +27,6 @@ import {
   type TypingSource
 } from './typing-logic'
 import { cardInputFrom, scheduleCard } from './typing-schedule'
-
-const LIST_TEXT_LIMIT = 20000
-const NAME_LIMIT = 40
 
 export interface TypingWord {
   id: string
