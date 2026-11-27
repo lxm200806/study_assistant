@@ -24,6 +24,8 @@ playwright-report/
 test-results/
 public/atlas/
 server/.env
+server/certs/
+*.pem
 server/openapi.json
 server/data/chinese/official/
 server/data/kb/downloads/

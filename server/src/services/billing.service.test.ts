@@ -5,6 +5,7 @@ const prismaMock = vi.hoisted(() => ({
   paymentOrder: {
     create: vi.fn(),
     findFirst: vi.fn(),
+    findUnique: vi.fn(),
     updateMany: vi.fn(),
     findUniqueOrThrow: vi.fn()
   },
@@ -79,8 +80,26 @@ describe('resolvePaymentProvider', () => {
     expect(resolvePaymentProvider()).toBe('mock')
   })
 
-  it('rejects non-mock providers until a real provider is implemented', () => {
+  it('rejects wechat when merchant config is incomplete', () => {
     vi.stubEnv('PAYMENT_PROVIDER', 'wechat')
+    expect(() => resolvePaymentProvider()).toThrow('WECHAT_PAY_NOT_CONFIGURED')
+  })
+
+  it('accepts wechat when merchant config is complete', () => {
+    vi.stubEnv('PAYMENT_PROVIDER', 'wechat')
+    vi.stubEnv('WECHAT_PAY_MCHID', 'mch-1')
+    vi.stubEnv('WECHAT_PAY_APPID', 'wx-app')
+    vi.stubEnv('WECHAT_PAY_API_V3_KEY', 'x'.repeat(32))
+    vi.stubEnv('WECHAT_PAY_MCH_SERIAL_NO', 'serial-1')
+    vi.stubEnv('WECHAT_PAY_PRIVATE_KEY', 'dummy-private-key')
+    vi.stubEnv('WECHAT_PAY_NOTIFY_URL', 'https://example.com/api/billing/wechat/notify')
+    vi.stubEnv('WECHAT_PAY_PLATFORM_CERTS', '{"platform-1":"dummy-cert"}')
+
+    expect(resolvePaymentProvider()).toBe('wechat')
+  })
+
+  it('rejects unknown providers', () => {
+    vi.stubEnv('PAYMENT_PROVIDER', 'alipay')
     expect(() => resolvePaymentProvider()).toThrow('PAYMENT_PROVIDER_NOT_CONFIGURED')
   })
 })
@@ -155,12 +174,17 @@ describe('payment orders', () => {
     vi.useFakeTimers()
     vi.setSystemTime(now)
 
-    prismaMock.paymentOrder.findFirst.mockResolvedValue({
+    const pendingOrder = {
       id: 'order-1',
+      userId: 'u1',
       status: 'pending',
+      amountCents: 2_990,
+      provider: 'mock',
       plan: plan(),
       planSnapshot: null
-    })
+    }
+    prismaMock.paymentOrder.findFirst.mockResolvedValue(pendingOrder)
+    prismaMock.paymentOrder.findUnique.mockResolvedValue(pendingOrder)
     prismaMock.$transaction.mockImplementation(async (callback: (tx: unknown) => unknown) =>
       callback(prismaMock)
     )

@@ -813,6 +813,13 @@ model PaymentOrder {
   status          String    @default("pending")
   provider        String    @default("mock")
   providerOrderId String?
+  /// 微信支付 out_trade_no（<=32 位；内部订单仍用 UUID）
+  outTradeNo      String?   @unique
+  /// native / h5（网页版微信支付渠道）
+  channel         String?
+  /// 拉起支付使用的 appid（区别于登录 appid）
+  payAppId        String?
+  prepayId        String?
   /// 下单时的套餐与权限快照，避免后续改价/改权限影响已支付订单
   planSnapshot    Json?
   createdAt       DateTime  @default(now())

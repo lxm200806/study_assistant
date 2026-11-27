@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import express from 'express'
+import express, { type Request, type Response } from 'express'
 import cors from 'cors'
 import swaggerUi from 'swagger-ui-express'
 
@@ -28,6 +28,19 @@ import { openApiDocument } from './validation/openapi'
 import { apiErrorBody } from './utils/api-response'
 import prisma from './prisma/client'
 
+declare global {
+  namespace Express {
+    interface Request {
+      /** 微信支付回调验签需要原始 JSON 字符串。 */
+      rawBody?: string
+    }
+  }
+}
+
+function captureRawBody(req: Request, _res: Response, buffer: Buffer) {
+  if (buffer?.length) req.rawBody = buffer.toString('utf8')
+}
+
 function resolveCorsOrigin(): cors.CorsOptions['origin'] {
   const configured = (process.env.CORS_ORIGINS || '')
     .split(',')
@@ -42,6 +55,8 @@ function resolveCorsOrigin(): cors.CorsOptions['origin'] {
 
 export function createApp() {
   const app = express()
+  // 生产由 Nginx 反向代理；用于获取真实客户端 IP（H5 支付 payer_client_ip、限流）
+  app.set('trust proxy', 1)
 
   app.use(requestContext())
   app.use(metricsMiddleware())
@@ -49,8 +64,11 @@ export function createApp() {
   app.use(securityHeaders())
   app.use(cors({ origin: resolveCorsOrigin(), credentials: true }))
   // 语音接口需要上传 base64 音频分片；其余接口限制为 2MB，避免大包拖垮进程
-  app.use(['/api/speech', '/api/v1/speech'], express.json({ limit: '15mb' }))
-  app.use(express.json({ limit: '2mb' }))
+  app.use(
+    ['/api/speech', '/api/v1/speech'],
+    express.json({ limit: '15mb', verify: captureRawBody })
+  )
+  app.use(express.json({ limit: '2mb', verify: captureRawBody }))
 
   // `/api` 保持不变；同时提供 `/api/v1` 别名，便于新客户端固定版本。
   const mountApi = (base: string) => {

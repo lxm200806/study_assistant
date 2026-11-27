@@ -17,6 +17,8 @@ server/dist
 .env.*
 !.env.prod.example
 server/.env
+server/certs
+*.pem
 
 # Logs & runtime
 logs

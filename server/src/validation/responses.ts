@@ -77,9 +77,27 @@ export const paymentOrderSchema = z.object({
   status: z.enum(['pending', 'paid']),
   provider: z.string(),
   providerOrderId: z.string().nullable(),
+  outTradeNo: z.string().nullable().optional(),
+  channel: z.string().nullable().optional(),
+  payAppId: z.string().nullable().optional(),
+  prepayId: z.string().nullable().optional(),
   planSnapshot: anyObject.nullable().optional(),
   createdAt: z.string(),
   paidAt: z.string().nullable()
+})
+
+export const wechatPaymentDataSchema = z.object({
+  channel: z.enum(['native', 'h5']),
+  appid: z.string(),
+  prepayId: z.string(),
+  codeUrl: z.string().optional(),
+  h5Url: z.string().optional(),
+  qrCodeDataUrl: z.string().optional()
+})
+
+export const wechatPaymentResponseSchema = z.object({
+  success: z.literal(true),
+  data: wechatPaymentDataSchema
 })
 
 export const entitlementPermissionSchema = z.object({

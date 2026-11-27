@@ -23,6 +23,14 @@ export const payOrderBodySchema = z.object({
   provider: z.string().trim().max(32).optional()
 })
 
+export const wechatPayBodySchema = z.object({
+  channel: z.enum(['native', 'h5'])
+})
+
+export const paymentOrderParamsSchema = z.object({
+  id: z.string().trim().min(1).max(128)
+})
+
 export const registerPushTokenBodySchema = z.object({
   token: z.string().trim().min(1, '推送 token 不能为空').max(512),
   platform: z.string().trim().max(32).optional(),
@@ -469,6 +477,8 @@ export type TwoFactorCodeBody = z.infer<typeof twoFactorCodeBodySchema>
 export type DisableTwoFactorBody = z.infer<typeof disableTwoFactorBodySchema>
 export type CreatePaymentOrderBody = z.infer<typeof createPaymentOrderBodySchema>
 export type PayOrderBody = z.infer<typeof payOrderBodySchema>
+export type WechatPayBody = z.infer<typeof wechatPayBodySchema>
+export type PaymentOrderParams = z.infer<typeof paymentOrderParamsSchema>
 export type RegisterPushTokenBody = z.infer<typeof registerPushTokenBodySchema>
 export type DeleteAccountBody = z.infer<typeof deleteAccountBodySchema>
 export type AdminAuditQuery = z.infer<typeof adminAuditQuerySchema>

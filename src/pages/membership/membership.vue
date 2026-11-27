@@ -42,6 +42,16 @@
         <text class="plan-line">PEP/JT 小学及 KET 免费词书 · 认读/拼读/文章/测验 · 文本 AI 5 条/天</text>
       </view>
 
+      <view v-if="qrVisible" class="pay-mask" @tap="closeQr">
+        <view class="pay-panel" @tap.stop>
+          <text class="pay-title">微信扫码支付</text>
+          <text class="pay-desc">{{ qrPlanName }} · ¥{{ qrAmount }}</text>
+          <image v-if="qrCodeDataUrl" class="pay-qr" :src="qrCodeDataUrl" mode="aspectFit" />
+          <text class="pay-hint">请使用微信扫一扫完成支付，支付成功后自动开通。</text>
+          <button class="ghost" @tap="closeQr">稍后支付</button>
+        </view>
+      </view>
+
       <text class="label">词书解锁</text>
       <view v-for="book in books" :key="book.code" class="book-row">
         <text class="book-name">{{ book.name }}</text>
@@ -62,12 +72,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useVocabularyStore } from '@/stores/vocabulary'
 import { useUserStore } from '@/stores/user'
 import { useEntitlementsStore } from '@/stores/entitlements'
 import { billingAPI, statsAPI } from '@/utils/api'
-import type { BillingPlan } from '@/api'
+import type { BillingPlan, PaymentOrder } from '@/api'
+import { isBrowserH5 } from '@/platform/runtime'
 import { PERMISSIONS } from '@/utils/permissions'
 import { requireReadySession } from '@/utils/subject'
 
@@ -78,6 +89,11 @@ const entitlements = useEntitlementsStore()
 const books = ref<Array<{ code: string; name: string; isFree?: boolean }>>([])
 const plans = ref<BillingPlan[]>([])
 const paying = ref(false)
+const qrVisible = ref(false)
+const qrCodeDataUrl = ref('')
+const qrPlanName = ref('')
+const qrAmount = ref('')
+let pollTimer: ReturnType<typeof setInterval> | null = null
 const weeklyReport = ref<{
   totalWords: number
   activeDays: number
@@ -146,17 +162,108 @@ function formatDate(value: string | null | undefined) {
   return date.toLocaleDateString('zh-CN')
 }
 
+function stopPolling() {
+  if (pollTimer) {
+    clearInterval(pollTimer)
+    pollTimer = null
+  }
+}
+
+onUnmounted(stopPolling)
+
+function isMobileWeb() {
+  if (!isBrowserH5() || typeof navigator === 'undefined') return false
+  return (
+    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+    (typeof window !== 'undefined' && window.innerWidth <= 768)
+  )
+}
+
+function isWechatBrowser() {
+  return typeof navigator !== 'undefined' && /MicroMessenger/i.test(navigator.userAgent)
+}
+
+function startOrderPolling(orderId: string) {
+  stopPolling()
+  const startedAt = Date.now()
+  pollTimer = setInterval(() => {
+    void (async () => {
+      if (Date.now() - startedAt > 5 * 60 * 1000) {
+        stopPolling()
+        uni.showToast({ title: '支付确认超时，请稍后查看订单', icon: 'none' })
+        return
+      }
+      try {
+        const result = await billingAPI.order(orderId)
+        if (result.data?.status === 'paid') {
+          stopPolling()
+          qrVisible.value = false
+          await userStore.refreshProfile()
+          await entitlements.load(true)
+          uni.showToast({ title: '会员已开通', icon: 'success' })
+        }
+      } catch {
+        // 轮询失败不打断用户，下一轮继续
+      }
+    })()
+  }, 2000)
+}
+
+async function startWechatPay(order: PaymentOrder, plan: BillingPlan) {
+  if (!isBrowserH5()) {
+    uni.showToast({ title: '网页版微信支付请在浏览器中完成', icon: 'none' })
+    return
+  }
+  if (isWechatBrowser()) {
+    uni.showToast({ title: '微信内置浏览器请用系统浏览器打开后支付', icon: 'none' })
+    return
+  }
+
+  const channel = isMobileWeb() ? 'h5' : 'native'
+  const result = await billingAPI.wechatPay(order.id, channel)
+  const data = result.data
+  if (!data) throw new Error('微信支付下单失败')
+
+  if (data.channel === 'h5') {
+    if (data.h5Url && typeof window !== 'undefined') {
+      uni.showToast({ title: '正在跳转微信支付', icon: 'none' })
+      window.location.href = data.h5Url
+      return
+    }
+    throw new Error('微信支付链接缺失')
+  }
+
+  if (!data.qrCodeDataUrl) throw new Error('二维码生成失败')
+  qrCodeDataUrl.value = data.qrCodeDataUrl
+  qrPlanName.value = plan.name
+  qrAmount.value = priceLabel(plan)
+  qrVisible.value = true
+  startOrderPolling(order.id)
+}
+
+function closeQr() {
+  qrVisible.value = false
+  stopPolling()
+}
+
 async function subscribe(planCode: string) {
   if (paying.value) return
   paying.value = true
   try {
+    const plan = plans.value.find(item => item.code === planCode)
     const created = await billingAPI.createOrder(planCode)
     const order = created.data
     if (!order?.id) throw new Error('创建订单失败')
+
+    if (order.provider === 'wechat') {
+      if (!plan) throw new Error('套餐信息缺失')
+      await startWechatPay(order, plan)
+      return
+    }
+
     await billingAPI.payOrder(order.id)
     await userStore.refreshProfile()
     await entitlements.load(true)
-    const plan = plans.value.find(item => item.code === planCode)
     uni.showToast({
       title: plan?.kind === 'credit' ? '点数已到账' : '会员已开通',
       icon: 'success'
@@ -320,5 +427,58 @@ onMounted(async () => {
   border: 1px solid #e0d7cb;
   border-radius: 12px;
   padding: 14px 16px;
+}
+
+.pay-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(20, 16, 12, 0.45);
+}
+
+.pay-panel {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--pc-surface-2, #fffdf8);
+  color: var(--pc-text, #1f1a14);
+  text-align: center;
+  box-shadow: var(--pc-shadow, 0 18px 40px -18px rgba(26, 32, 53, 0.35));
+}
+
+.pay-title {
+  display: block;
+  font-size: 20px;
+  font-weight: 650;
+}
+
+.pay-desc {
+  display: block;
+  margin-top: 8px;
+  font-size: 15px;
+  color: var(--pc-text-2, #6d645b);
+}
+
+.pay-qr {
+  width: 280px;
+  height: 280px;
+  margin: 18px auto 10px;
+  display: block;
+}
+
+.pay-hint {
+  display: block;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--pc-text-2, #6d645b);
 }
 </style>

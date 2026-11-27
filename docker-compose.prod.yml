@@ -73,6 +73,8 @@ services:
     volumes:
       - tts_cache:/app/data/tts-cache
       - object_store:/app/data/object-store
+      # 微信支付商户证书/平台证书（目录已 gitignore，不进入镜像）
+      - ./server/certs:/app/certs:ro
     logging:
       driver: json-file
       options:

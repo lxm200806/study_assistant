@@ -27,9 +27,21 @@ export interface PaymentOrder {
   amountCents: number
   status: string
   provider: string
+  channel?: string | null
+  payAppId?: string | null
+  prepayId?: string | null
   planSnapshot?: unknown
   createdAt: string
   paidAt?: string | null
+}
+
+export interface WechatPaymentData {
+  channel: 'native' | 'h5'
+  appid: string
+  prepayId: string
+  codeUrl?: string
+  h5Url?: string
+  qrCodeDataUrl?: string
 }
 
 export const billingAPI = {
@@ -37,6 +49,9 @@ export const billingAPI = {
   orders: async () => request<PaymentOrder[]>('/billing/orders', 'GET'),
   createOrder: async (planCode: string) =>
     request<PaymentOrder>('/billing/orders', 'POST', { planCode }),
+  order: async (id: string) => request<PaymentOrder>(`/billing/orders/${id}`, 'GET'),
+  wechatPay: async (id: string, channel: 'native' | 'h5') =>
+    request<WechatPaymentData>(`/billing/orders/${id}/wechat-pay`, 'POST', { channel }),
   payOrder: async (id: string) =>
     request<PaymentOrder>(`/billing/orders/${id}/pay`, 'POST', { provider: 'mock' })
 }

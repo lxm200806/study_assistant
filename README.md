@@ -21,7 +21,7 @@
 
 ## 会员与权限
 
-会员按学科售卖（英语/语文/数学等），功能通过细粒度权限控制：`Permission` → `PlanPermission` → `Subscription/EntitlementGrant`，AI 使用单独的点数钱包。当前英语核心会员已启用，语文/数学/SVIP/AI 包已预留但默认未上架。详见 [doc/entitlements.md](doc/entitlements.md)。
+会员按学科售卖（英语/语文/数学等），功能通过细粒度权限控制：`Permission` → `PlanPermission` → `Subscription/EntitlementGrant`，AI 使用单独的点数钱包。当前英语核心会员已启用，网页版微信支付支持 PC 扫码和手机 H5 跳转；语文/数学/SVIP/AI 包已预留但默认未上架。详见 [doc/entitlements.md](doc/entitlements.md) 和 [doc/wechat-pay.md](doc/wechat-pay.md)。
 
 ## 目录结构
 
@@ -93,7 +93,7 @@ bash start-dev.sh
 | API 文档 | http://localhost:3005/api-docs |
 | PostgreSQL | localhost:5432 |
 
-> `/api-docs` 仅开发环境挂载。文档由 `server/src/validation/openapi.ts` 中的 zod 注册表生成，目前覆盖登录/家庭/会话/账号/2FA、词汇、词书、训练、测验、拼读/短文、聊天、语文、admin、speech、TTS、会员/权限、推送、统计等 96 条路径（106 个操作）；其余接口仍以 `server/src/routes/*.ts` 和 `server/src/chinese/chinese.routes.ts` 为准。
+> `/api-docs` 仅开发环境挂载。文档由 `server/src/validation/openapi.ts` 中的 zod 注册表生成，目前覆盖登录/家庭/会话/账号/2FA、词汇、词书、训练、测验、拼读/短文、聊天、语文、admin、speech、TTS、会员/权限、微信支付、推送、统计等 98 条路径（108 个操作）；其余接口仍以 `server/src/routes/*.ts` 和 `server/src/chinese/chinese.routes.ts` 为准。
 
 ## 常用命令
 
@@ -199,4 +199,4 @@ npm run test:e2e
 
 前端单元测试使用 Vitest + happy-dom + Vue plugin + uni mock：`npm run test:frontend` 运行 12 个文件、43 个测试，覆盖 user/vocabulary/entitlements store、StateHint、认读/拼读偏好和 storage、quiz-options、tts-text、speech-text、normalize-word 等逻辑。Playwright H5 冒烟测试 `e2e/smoke.spec.ts` 有 10 个用例：登录页、登录错误、未登录守卫、模拟登录进入角色页、quiz 开始页 + PC 侧栏、登录后词书列表、会员套餐页、认读设置页、语文 drill 卡片、学生拼读设置 → 开始练习；`e2e/real-api.spec.ts` 是可选的真实 API + PostgreSQL 测试（`E2E_REAL_API=1`，CI 独立 job 执行）。Windows 本地默认使用系统 Edge，其他平台/CI 使用安装的 Chromium；可通过 `PLAYWRIGHT_CHANNEL` 覆盖。
 
-后端有 41 个 Vitest 文件（40 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（221 个通过，26 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 247 个测试）。管理员账号支持 TOTP 两步验证；会员开通支持 mock 支付（生产环境默认禁用，需显式设置 `ALLOW_MOCK_PAYMENT=true`）。生产运维可用 `GET /metrics`（可选 `METRICS_TOKEN`）接入 Prometheus；设置 `SENTRY_DSN` 后 5xx 自动上报 Sentry/APM。API 同时挂载 `/api` 与 `/api/v1`；练习和结算支持可选 `Idempotency-Key`；登录会话支持 refresh 轮换、设备列表、单设备/全设备退出；支持账号导出与注销，管理端写操作有审计日志。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；同时构建 H5 和微信小程序、检查 API 生成类型是否最新、运行 Playwright 冒烟，并运行成语内容审计 `npm run audit:idioms`。
+后端有 42 个 Vitest 文件（41 个单元测试 + 1 个数据库集成测试），配置见 `server/vitest.config.ts`。`npm test` 默认跳过数据库集成（229 个通过，26 个跳过）；`npm run test:db` 会基于 `server/.env` 创建临时 `it_*` schema、执行迁移、跑完整链路后删除 schema（共 255 个测试）。管理员账号支持 TOTP 两步验证；会员开通支持 mock 支付（生产环境默认禁用，需显式设置 `ALLOW_MOCK_PAYMENT=true`）。生产运维可用 `GET /metrics`（可选 `METRICS_TOKEN`）接入 Prometheus；设置 `SENTRY_DSN` 后 5xx 自动上报 Sentry/APM。API 同时挂载 `/api` 与 `/api/v1`；练习和结算支持可选 `Idempotency-Key`；登录会话支持 refresh 轮换、设备列表、单设备/全设备退出；支持账号导出与注销，管理端写操作有审计日志。CI 使用独立的 PostgreSQL 16 服务并设置 `TEST_DATABASE_URL`，因此会自动跑全部测试；同时构建 H5 和微信小程序、检查 API 生成类型是否最新、运行 Playwright 冒烟，并运行成语内容审计 `npm run audit:idioms`。

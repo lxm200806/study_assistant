@@ -4337,6 +4337,121 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/billing/orders/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** 查询会员订单（微信 pending 会同步查询支付状态） */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["BillingOrderResponse"];
+                    };
+                };
+                /** @description 订单不存在 */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/billing/orders/{id}/wechat-pay": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** 创建微信网页支付预支付单（Native/H5） */
+        post: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: string;
+                };
+                cookie?: never;
+            };
+            requestBody?: {
+                content: {
+                    "application/json": components["schemas"]["WechatPayBody"];
+                };
+            };
+            responses: {
+                /** @description 成功 */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["WechatPaymentResponse"];
+                    };
+                };
+                /** @description 请求参数不正确 */
+                400: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description 订单不存在 */
+                404: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description 订单已支付 */
+                409: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+                /** @description 微信支付未配置 */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/billing/orders/{id}/pay": {
         parameters: {
             query?: never;
@@ -4346,7 +4461,7 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** 支付会员订单（mock/真实渠道） */
+        /** 支付会员订单（仅 mock 渠道；微信走回调/查询） */
         post: {
             parameters: {
                 query?: never;
@@ -4901,6 +5016,10 @@ export interface components {
         PayOrderBody: {
             provider?: string;
         };
+        WechatPayBody: {
+            /** @enum {string} */
+            channel: "native" | "h5";
+        };
         RegisterPushTokenBody: {
             token: string;
             platform?: string;
@@ -5004,6 +5123,10 @@ export interface components {
                 status: "pending" | "paid";
                 provider: string;
                 providerOrderId: string | null;
+                outTradeNo?: string | null;
+                channel?: string | null;
+                payAppId?: string | null;
+                prepayId?: string | null;
                 planSnapshot?: {
                     [key: string]: unknown;
                 } | null;
@@ -5023,12 +5146,29 @@ export interface components {
                 status: "pending" | "paid";
                 provider: string;
                 providerOrderId: string | null;
+                outTradeNo?: string | null;
+                channel?: string | null;
+                payAppId?: string | null;
+                prepayId?: string | null;
                 planSnapshot?: {
                     [key: string]: unknown;
                 } | null;
                 createdAt: string;
                 paidAt: string | null;
             }[];
+        };
+        WechatPaymentResponse: {
+            /** @enum {boolean} */
+            success: true;
+            data: {
+                /** @enum {string} */
+                channel: "native" | "h5";
+                appid: string;
+                prepayId: string;
+                codeUrl?: string;
+                h5Url?: string;
+                qrCodeDataUrl?: string;
+            };
         };
         PushTokenRegistrationResponse: {
             /** @enum {boolean} */

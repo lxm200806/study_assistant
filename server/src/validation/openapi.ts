@@ -40,6 +40,7 @@ import {
   idParamsSchema,
   onboardBodySchema,
   payOrderBodySchema,
+  wechatPayBodySchema,
   pointIdParamsSchema,
   practiceBodySchema,
   quizSubmitBodySchema,
@@ -100,6 +101,7 @@ import {
   pushTokenRegistrationResponseSchema,
   pushTokenRemovalResponseSchema,
   quizSubmitResponseSchema,
+  wechatPaymentResponseSchema,
   quizWordsResponseSchema,
   refreshResponseSchema,
   reloginRequiredResponseSchema,
@@ -240,6 +242,7 @@ const createPaymentOrderBody = registry.register(
   createPaymentOrderBodySchema
 )
 const payOrderBody = registry.register('PayOrderBody', payOrderBodySchema)
+const wechatPayBody = registry.register('WechatPayBody', wechatPayBodySchema)
 const registerPushTokenBody = registry.register(
   'RegisterPushTokenBody',
   registerPushTokenBodySchema
@@ -274,6 +277,10 @@ const billingOrderResponse = registry.register(
 const billingOrdersResponse = registry.register(
   'BillingOrdersResponse',
   billingOrdersResponseSchema
+)
+const wechatPaymentResponse = registry.register(
+  'WechatPaymentResponse',
+  wechatPaymentResponseSchema
 )
 const pushTokenRegistrationResponse = registry.register(
   'PushTokenRegistrationResponse',
@@ -1411,10 +1418,42 @@ registry.registerPath({
 })
 
 registry.registerPath({
+  method: 'get',
+  path: '/api/billing/orders/{id}',
+  tags: ['billing'],
+  summary: '查询会员订单（微信 pending 会同步查询支付状态）',
+  security: [{ bearerAuth: [] }],
+  request: { params: paymentOrderParams },
+  responses: {
+    200: success(billingOrderResponse),
+    404: { description: '订单不存在' }
+  }
+})
+
+registry.registerPath({
+  method: 'post',
+  path: '/api/billing/orders/{id}/wechat-pay',
+  tags: ['billing'],
+  summary: '创建微信网页支付预支付单（Native/H5）',
+  security: [{ bearerAuth: [] }],
+  request: {
+    params: paymentOrderParams,
+    body: { content: { 'application/json': { schema: wechatPayBody } } }
+  },
+  responses: {
+    200: success(wechatPaymentResponse),
+    400: badRequest,
+    404: { description: '订单不存在' },
+    409: { description: '订单已支付' },
+    503: { description: '微信支付未配置' }
+  }
+})
+
+registry.registerPath({
   method: 'post',
   path: '/api/billing/orders/{id}/pay',
   tags: ['billing'],
-  summary: '支付会员订单（mock/真实渠道）',
+  summary: '支付会员订单（仅 mock 渠道；微信走回调/查询）',
   security: [{ bearerAuth: [] }],
   request: {
     params: paymentOrderParams,
